@@ -37,6 +37,12 @@ jobs:
           cd docs
           make html
 
+      - name: Upload documentation
+        uses: actions/upload-artifact@v1
+        with:
+          name: Documentation HTML
+          path: docs/build/html/
+
       - name: Test docs
         run: |
           cd docs
