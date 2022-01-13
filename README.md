@@ -1,3 +1,5 @@
+[![docs](https://github.com/eProsima/vulcanexus/actions/workflows/docs.yml/badge.svg)](https://github.com/eProsima/vulcanexus/actions/workflows/docs.yml)
+
 # Vulcanexus
 
 eProsima extended ROS 2 distribution
