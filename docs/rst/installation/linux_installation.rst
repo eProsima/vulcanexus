@@ -49,4 +49,4 @@ Base Install: basic installation without simulation tools, demos, and tutorials.
 
     sudo apt install vulcanexus-galactic-base
 
-There are other packages available. Please refer to :ref:`main_feature` for more information.
+There are other packages available. Please refer to the :ref:`main_features` section for more information.
