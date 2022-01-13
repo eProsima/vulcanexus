@@ -31,7 +31,7 @@ Finally, add the eProsima Vulcanexus repository to your sources list:
 Install eProsima Vulcanexus packages
 ------------------------------------
 
-Remeber to update your apt repository caches after setting up the repositories:
+Remember to update your apt repository caches after setting up the repositories:
 
 .. code-block:: bash
 
