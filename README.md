@@ -13,6 +13,7 @@ Before being able to build the documentation, some dependencies need to be insta
 ```bash
 sudo apt update
 sudo apt install -y \
+    build-essential \
     python3 \
     python3-pip \
     python3-venv \
@@ -46,13 +47,11 @@ pip3 install -r vulcanexus/docs/requirements.txt
 # Source the python virtual environment
 source vulcanexus_venv/bin/activate
 # Change directories to the repository directory
-cd vulcanexus
+cd vulcanexus/docs
 # Make sure that the are no build directories
-rm -rf docs/build
-# Run sphinx
-sphinx-build \
-    -b html \
-    docs docs/build/html
+make clean
+# Generate HTML documentation
+make html
 # Open the documentation
 xdg-open docs/build/html/index.html
 ```
