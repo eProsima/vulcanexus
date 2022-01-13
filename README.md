@@ -1,4 +1,4 @@
-[![docs](https://github.com/eProsima/vulcanexus/actions/workflows/docs.yml/badge.svg)](https://github.com/eProsima/vulcanexus/actions/workflows/docs.yml)
+[![docs](https://github.com/eProsima/vulcanexus/actions/workflows/docs.yaml/badge.svg)](https://github.com/eProsima/vulcanexus/actions/workflows/docs.yaml)
 
 # Vulcanexus
 
