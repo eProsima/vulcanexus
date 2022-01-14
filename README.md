@@ -51,10 +51,10 @@ pip3 install -r vulcanexus/docs/requirements.txt
 source vulcanexus_venv/bin/activate
 # Change directories to the repository directory
 cd vulcanexus/docs
-# Make sure that the are no build directories
+# Make sure that there are no build directories
 make clean
 # Generate HTML documentation
 make html
 # Open the documentation
-xdg-open docs/build/html/index.html
+xdg-open build/html/index.html
 ```
