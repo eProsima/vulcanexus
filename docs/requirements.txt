@@ -1,0 +1,7 @@
+doc8==0.10.1
+docutils==0.16.0
+setuptools==59.4.0
+sphinx==4.3.1
+sphinx_rtd_theme==0.5.2
+sphinxcontrib.spelling==7.2.1
+sphinxcontrib-imagehelper==1.1.1
