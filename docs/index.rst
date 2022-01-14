@@ -18,6 +18,7 @@ Main features
 .. toctree::
    :maxdepth: 2
    :hidden:
+   :numbered: 5
 
    /rst/installation/linux_installation
    /rst/notes/notes
