@@ -5,18 +5,19 @@ Linux binary installation
 
 Debian packages for Vulcanexus Galactic Gamble are currently available for Ubuntu Focal.
 Please, start following the `Installation Guide for ROS 2 Galactic Geochelone <https://docs.ros.org/en/galactic/Installation/Ubuntu-Install-Debians.html>`_ setting the locale to support ``UTF-8`` (if necessary) and the ROS 2 apt repository.
-Before proceeding installing the ROS 2 packages, follow the steps below.
+Instead of proceeding with installing the ROS 2 packages, follow the steps below.
 
 Setup sources
 -------------
 
-First, enable the following required repository running the command:
+First, add the Qt 5.15 required repository running the commands:
 
 .. code-block:: bash
 
+    sudo apt install software-properties-common
     sudo add-apt-repository ppa:beineri/opt-qt-5.15.2-focal
 
-Next, authorize Vulcanexus GPG key with apt:
+Next, add Vulcanexus GPG key so apt can retrieve the packages:
 
 .. code-block:: bash
 
@@ -49,7 +50,7 @@ Base Install: basic installation without simulation tools, demos, and tutorials.
 
     sudo apt install vulcanexus-galactic-base
 
-There are other packages available. Please refer to the :ref:`main_features` section for more information.
+For other Vulcanexus packages, please refer to the :ref:`main_features` section for more information.
 
 Environment setup
 -----------------
@@ -59,6 +60,15 @@ In order to use the Vulcanexus installation, the environment must be set up sour
 .. code-block:: bash
 
     source /opt/vulcanexus/galactic/setup.bash
+
+Uninstall eProsima Vulcanexus packages
+--------------------------------------
+
+To uninstall Vulcanexus, it is enough to run the following command :
+
+.. code-block:: bash
+
+    sudo apt autoremove vulcanexus-galactic-desktop
 
 Next steps
 ----------
