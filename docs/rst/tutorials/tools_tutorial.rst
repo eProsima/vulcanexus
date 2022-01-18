@@ -41,7 +41,7 @@ Initiate Fast DDS Monitor running the following command:
 
 Once Fast DDS Monitor is launched, start a monitor in domain :code:`0` (default domain).
 
-.. figure:: /rst/figures/screenshots/tools_tutorial/init_domain.png
+.. figure:: /rst/figures/tools_tutorial/screenshots/init_domain.png
     :align: center
 
 Execute ROS 2 demo nodes with statistics
@@ -76,7 +76,7 @@ Monitoring network
 
 Now one should see in the DDS Panel two new Participants.
 
-.. figure:: /rst/figures/screenshots/tools_tutorial/participants.png
+.. figure:: /rst/figures/tools_tutorial/screenshots/participants.png
     :align: center
 
 Alias
@@ -86,7 +86,7 @@ Participants in ROS 2 are named :code:`/` by default.
 In order to differentiate them one could change the alias of the Participant.
 The :code:`ros2-galactic-talker` would be the one with one writer, and the :code:`ros2-galactic-listener` the one with a reader.
 
-.. figure:: /rst/figures/screenshots/tools_tutorial/alias.png
+.. figure:: /rst/figures/tools_tutorial/screenshots/alias.png
     :align: center
 
 Physical data
@@ -95,7 +95,7 @@ Physical data
 In order to see the information of the host and the physical context where every node is running, go to the Explorer Panel and activate the Physical Panel.
 There, the host, user and process of each node are displayed.
 
-.. figure:: /rst/figures/screenshots/tools_tutorial/physical.png
+.. figure:: /rst/figures/tools_tutorial/screenshots/physical.png
     :align: center
 
 Statistical data
@@ -103,7 +103,7 @@ Statistical data
 
 To show statistical data about the communication between the :code:`ros2-galactic-talker` and the :code:`ros2-galactic-listener`, follow the steps to `create dynamic series chart <https://fast-dds-monitor.readthedocs.io/en/latest/rst/getting_started/tutorial.html#tutorial-create-dynamic-series>`_ and plot this statistical data in a real time chart.
 
-.. figure:: /rst/figures/screenshots/tools_tutorial/statistics.png
+.. figure:: /rst/figures/tools_tutorial/screenshots/statistics.png
     :align: center
 
 Introspect metatraffic topics
@@ -115,5 +115,5 @@ These topics are the ones that ROS 2 uses for discovery and configuration purpos
 In order to see these topics in the monitor, click *View->Show Metatraffic* menu button.
 Now, these topics are shown in the logical panel, and also the Readers and Writers associated to them under their respective Participants.
 
-.. figure:: /rst/figures/screenshots/tools_tutorial/metatraffic.png
+.. figure:: /rst/figures/tools_tutorial/screenshots/metatraffic.png
     :align: center
