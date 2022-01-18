@@ -1,0 +1,19 @@
+{
+    "name": "vulcanexus_base",
+    "type": "cmake",
+    "dependencies": [
+        "foonathan_memory_vendor",
+        "fastcdr",
+        "fastrtps",
+        "rmw_fastrtps_shared_cpp",
+        "rosidl_typesupport_fastrtps",
+        "fastdds_statistics_backend",
+        "fastdds_monitor",
+        "shapes-demo",
+        "micro_ros_setup",
+        "dds_router"
+    ],
+    "hooks": [
+        "share/vulcanexus_base/environment/vulcanexus_base-setup.bash",
+    ]
+}
