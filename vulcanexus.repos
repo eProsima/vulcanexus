@@ -47,3 +47,7 @@ repositories:
         type: git
         url: https://github.com/eProsima/DDS-Router.git
         version: v0.1.0
+    eProsima/vulcanexus_base:
+        type: git
+        url: https://github.com/eProsima/vulcanexus.git
+        version: galactic
