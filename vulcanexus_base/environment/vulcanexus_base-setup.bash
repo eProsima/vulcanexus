@@ -13,3 +13,5 @@
 # limitations under the License.
 
 export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+export VULCANEXUS_DISTRO=galactic
+export LD_LIBRARY_PATH=/opt/qt515/lib:$LD_LIBRARY_PATH
