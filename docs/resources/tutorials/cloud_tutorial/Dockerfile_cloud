@@ -1,0 +1,13 @@
+# TODO: ensure this container exists
+FROM ubuntu-vulcanexus-cloud:galactic
+
+# Install demo-nodes-cpp
+RUN source /opt/vulcanexus/$ROS_DISTRO/setup.bash && \
+    apt update && \
+    apt install -y ros-$ROS_DISTRO-demo-nodes-cpp
+
+COPY ./run.bash /
+RUN chmod +x /run.bash
+
+# Setup entrypoint
+ENTRYPOINT ["/run.bash"]
