@@ -1,4 +1,4 @@
-.. _linux_installation:
+.. _linux_binary_installation:
 
 Linux binary installation
 =========================
