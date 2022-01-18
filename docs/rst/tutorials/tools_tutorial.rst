@@ -45,7 +45,7 @@ Once Fast DDS Monitor is launched, start a monitor in domain :code:`0` (default 
     :align: center
 
 Execute ROS 2 demo nodes with statistics
-----------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In order to activate the publication of statistical data, *eProsima Fast DDS* requires an environment variable specifying those kinds of statistical data to be reported.
 Consequently, before launching the ROS 2 nodes, remember to set ``FASTDDS_STATISTICS`` environment variable.
@@ -72,7 +72,7 @@ Run the following commands in different terminals (remember to source the Vulcan
     ros2 run demo_nodes_cpp talker
 
 Monitoring network
-------------------
+^^^^^^^^^^^^^^^^^^
 
 Now one should see in the DDS Panel two new Participants.
 
@@ -80,7 +80,7 @@ Now one should see in the DDS Panel two new Participants.
     :align: center
 
 Alias
-^^^^^
+"""""
 
 Participants in ROS 2 are named :code:`/` by default.
 In order to differentiate them one could change the alias of the Participant.
@@ -90,7 +90,7 @@ The :code:`ros2-galactic-talker` would be the one with one writer, and the :code
     :align: center
 
 Physical data
-^^^^^^^^^^^^^
+"""""""""""""
 
 In order to see the information of the host and the physical context where every node is running, go to the Explorer Panel and activate the Physical Panel.
 There, the host, user and process of each node are displayed.
@@ -99,7 +99,7 @@ There, the host, user and process of each node are displayed.
     :align: center
 
 Statistical data
-^^^^^^^^^^^^^^^^
+""""""""""""""""
 
 To show statistical data about the communication between the :code:`ros2-galactic-talker` and the :code:`ros2-galactic-listener`, follow the steps to `create dynamic series chart <https://fast-dds-monitor.readthedocs.io/en/latest/rst/getting_started/tutorial.html#tutorial-create-dynamic-series>`_ and plot this statistical data in a real time chart.
 
@@ -107,7 +107,7 @@ To show statistical data about the communication between the :code:`ros2-galacti
     :align: center
 
 Introspect metatraffic topics
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""""""""""""
 
 Fast DDS Monitor filters by default the topics used for sharing metatraffic and the endpoints related to them so the user can inspect their network easily.
 These topics are the ones that ROS 2 uses for discovery and configuration purposes, such as :code:`ros_discovery_info`, as well as those used by Fast DDS to report statistical data.
