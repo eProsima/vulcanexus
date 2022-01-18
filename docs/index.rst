@@ -20,5 +20,5 @@ Main features
    :hidden:
    :numbered: 5
 
-   /rst/installation/linux_installation
+   /rst/installation/installation_manual
    /rst/notes/notes
