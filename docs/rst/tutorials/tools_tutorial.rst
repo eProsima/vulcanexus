@@ -10,17 +10,17 @@ ROS 2 network statistics using Vulcanexus
 Background
 ----------
 
-Vulcanexus integrates *eProsima Fast DDS Monitor* which is a useful tool for monitoring and studying a ROS 2 network as ROS 2 relies on DDS communication protocol to communicate different nodes.
-The automatic discovery of entities in a local network allows to easily see the different Participants that are running, as its Endpoints, the Topics that each one is using, and even the network interfaces they are employing to communicate with each other.
-Additionally, one could receive statistical data from every endpoint in the network.
-This data is very useful to analyze the performance and seek any possible communication problem in the network.
+Vulcanexus integrates *eProsima Fast DDS Monitor* (refer to its `documentation <https://fast-dds-monitor.readthedocs.io/en/latest/>`_ for more info), which is a useful tool for monitoring and studying a ROS 2 network as ROS 2 relies on the `DDS specification <https://www.omg.org/spec/DDS/1.4/About-DDS/>`_ to communicate the different nodes.
+The automatic discovery of entities in a local network enables to easily identify the different running Participants, their Endpoints, the Topics that each of them is using, and even the network interfaces they are employing to communicate with one another.
+Additionally, it is possible to receive statistical data from every endpoint in the network leveraging the `Fast DDS Statistics Module <https://fast-dds.docs.eprosima.com/en/latest/fastdds/statistics/statistics.html>`_.
+This data is very useful to analyze the DDS network performance and seek possible communication problems in it.
 
 This tutorial provides step-by-step instructions to use Vulcanexus to monitor a ROS 2 talker/listener demo.
 
 Prerequisites
 -------------
 
-Ensure that the Vulcanexus installation includes the tools (either ``vulcanexus-galactic-desktop``, ``vulcanexus-galactic-tools``, or ``vulcanexus-galactic-base``).
+Ensure that the Vulcanexus installation includes the Vulcanexus tools (either ``vulcanexus-galactic-desktop``, ``vulcanexus-galactic-tools``, or ``vulcanexus-galactic-base``).
 Also, remember to source the environment in every terminal in this tutorial.
 
 .. code-block:: bash
@@ -47,7 +47,7 @@ Once Fast DDS Monitor is launched, start a monitor in domain :code:`0` (default 
 Execute ROS 2 demo nodes with statistics
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In order to activate the publication of statistical data, *eProsima Fast DDS* requires an environment variable specifying those kinds of statistical data to be reported.
+In order to activate the publication of statistical data, `eProsima Fast DDS <https://fast-dds.docs.eprosima.com/en/latest/>`_ requires an environment variable specifying which kinds of statistical data are to be reported.
 Consequently, before launching the ROS 2 nodes, remember to set ``FASTDDS_STATISTICS`` environment variable.
 Run the following commands in different terminals (remember to source the Vulcanexus environment):
 
@@ -74,7 +74,7 @@ Run the following commands in different terminals (remember to source the Vulcan
 Monitoring network
 ^^^^^^^^^^^^^^^^^^
 
-Now one should see in the DDS Panel two new Participants.
+Now, the two new Participants are visible in the *Fast DDS Monitor*'s DDS Panel.
 
 .. figure:: /rst/figures/tools_tutorial/screenshots/participants.png
     :align: center
@@ -83,8 +83,8 @@ Alias
 """""
 
 Participants in ROS 2 are named :code:`/` by default.
-In order to differentiate them one could change the alias of the Participant.
-The :code:`ros2-galactic-talker` would be the one with one writer, and the :code:`ros2-galactic-listener` the one with a reader.
+In order to differentiate them, it is possible to change the Participant's aliases within the *Fast DDS Monitor*.
+In this case, the :code:`vulcanexus-galactic-talker` Participant would be the one with a writer, and the :code:`vulcanexus-galactic-listener` Participant would be the one with a reader.
 
 .. figure:: /rst/figures/tools_tutorial/screenshots/alias.png
     :align: center
@@ -92,7 +92,7 @@ The :code:`ros2-galactic-talker` would be the one with one writer, and the :code
 Physical data
 """""""""""""
 
-In order to see the information of the host and the physical context where every node is running, go to the Explorer Panel and activate the Physical Panel.
+In order to see the information of the host and the physical context where every node is running, go to the Explorer Pane and activate the Physical Panel.
 There, the host, user and process of each node are displayed.
 
 .. figure:: /rst/figures/tools_tutorial/screenshots/physical.png
@@ -101,7 +101,7 @@ There, the host, user and process of each node are displayed.
 Statistical data
 """"""""""""""""
 
-To show statistical data about the communication between the :code:`ros2-galactic-talker` and the :code:`ros2-galactic-listener`, follow the steps to `create dynamic series chart <https://fast-dds-monitor.readthedocs.io/en/latest/rst/getting_started/tutorial.html#tutorial-create-dynamic-series>`_ and plot this statistical data in a real time chart.
+To show statistical data about the communication between the :code:`vulcanexus-galactic-talker` and the :code:`vulcanexus-galactic-listener`, follow the steps to `create dynamic series chart <https://fast-dds-monitor.readthedocs.io/en/latest/rst/getting_started/tutorial.html#tutorial-create-dynamic-series>`_.
 
 .. figure:: /rst/figures/tools_tutorial/screenshots/statistics.png
     :align: center
@@ -109,11 +109,11 @@ To show statistical data about the communication between the :code:`ros2-galacti
 Introspect metatraffic topics
 """""""""""""""""""""""""""""
 
-Fast DDS Monitor filters by default the topics used for sharing metatraffic and the endpoints related to them so the user can inspect their network easily.
+Fast DDS Monitor filters by default the topics used for sharing metatraffic, as well as the endpoints related to them, so users can inspect their network easily.
 These topics are the ones that ROS 2 uses for discovery and configuration purposes, such as :code:`ros_discovery_info`, as well as those used by Fast DDS to report statistical data.
 
 In order to see these topics in the monitor, click *View->Show Metatraffic* menu button.
-Now, these topics are shown in the logical panel, and also the Readers and Writers associated to them under their respective Participants.
+Now, these topics are shown in the logical panel. Furthermore, the Readers and Writers associated to them are now listed under their respective Participants.
 
 .. figure:: /rst/figures/tools_tutorial/screenshots/metatraffic.png
     :align: center
