@@ -1,10 +1,9 @@
-# TODO: ensure this container exists
 FROM ubuntu-vulcanexus-cloud:galactic
 
 # Install demo-nodes-cpp
-RUN source /opt/vulcanexus/$VULCANEXUS_DISTRO/setup.bash && \
+RUN source /opt/vulcanexus/galactic/setup.bash && \
     apt update && \
-    apt install -y ros-$ROS_DISTRO-demo-nodes-cpp
+    apt install -y ros-galactic-demo-nodes-cpp
 
 COPY ./run.bash /
 RUN chmod +x /run.bash
