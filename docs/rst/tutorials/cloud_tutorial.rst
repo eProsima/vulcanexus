@@ -1,7 +1,7 @@
 .. _vulcanexus_cloud_tutorial:
 
-Vulcanexus Cloud with Kubernetes
-================================
+Vulcanexus Cloud and Kubernetes
+===============================
 
 .. contents:: Table of Contents
     :depth: 2
