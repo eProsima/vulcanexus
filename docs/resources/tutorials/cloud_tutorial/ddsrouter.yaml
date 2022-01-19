@@ -31,6 +31,6 @@ spec:
               protocol: UDP
           volumeMounts:
             - name: config
-              mountPath: /opt/vulcanexus/galactic/ddsrouter/share/resources
-          args: ["-r", "ddsrouter -r 10 -c /opt/vulcanexus/galactic/ddsrouter/share/resources/DDSROUTER_CONFIGURATION.yaml"]
+              mountPath: /tmp
+          args: ["-r", "ddsrouter -r 10 -c /tmp/DDSROUTER_CONFIGURATION.yaml"]
       restartPolicy: Always
