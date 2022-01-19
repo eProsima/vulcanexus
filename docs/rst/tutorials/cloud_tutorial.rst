@@ -1,7 +1,7 @@
 .. _vulcanexus_cloud_tutorial:
 
-Vulcanexus Cloud tutorial
-=========================
+Vulcanexus Cloud with Kubernetes
+================================
 
 .. contents:: Table of Contents
     :depth: 2
@@ -93,7 +93,7 @@ Two different deployments are required to receive the ``talker`` messages in the
 
     The choice of a Local Discovery Server instead of a Simple Participant to communicate with the listener has to do with the difficulty of enabling multicast routing in cloud environments.
 
-The another deployment is the ROS 2 listener node properly speaking.
+The other deployment is the ROS 2 listener node properly speaking.
 This node has to be launched as a Client to the local DS running on the first deployment.
 
 The described scheme is represented in the following figure:
