@@ -1,7 +1,7 @@
 .. _vulcanexus_tools_tutorial:
 
-ROS 2 network statistics using Vulcanexus
-=========================================
+ROS 2 network statistics using Vulcanexus Tools
+===============================================
 
 .. contents:: Table of Contents
     :depth: 2
