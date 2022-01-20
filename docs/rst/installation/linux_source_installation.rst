@@ -24,7 +24,7 @@ Vulcanexus provides several tools and packages to the ROS 2 distribution that ha
 Install Vulcanexus dependencies
 -------------------------------
 
-First, follow the `Install dependencies using rosdep <https://docs.ros.org/en/galactic/Installation/Ubuntu-Development-Setup.html#install-dependencies-using-rosdep>`_ section of ROS 2 installation guide. 
+First, follow the `Install dependencies using rosdep <https://docs.ros.org/en/galactic/Installation/Ubuntu-Development-Setup.html#install-dependencies-using-rosdep>`_ section of ROS 2 installation guide.
 Then, some additional dependencies which are required for the Vulcanexus distribution must be installed.
 Start by adding the Qt 5.15 repository:
 
@@ -97,6 +97,11 @@ This tool is based on `CMake <https://cmake.org/>`_ and it is aimed at building 
 
     cd ~/vulcanexus_galactic
     colcon build
+
+.. important::
+
+    In case that only a set of packages are going to be built, please ensure to include always ``vulcanexus_base`` package in the set.
+    This auxiliary package is required to set several environment variables required by the distribution such as ``VULCANEXUS_DISTRO``.
 
 Environment setup
 -----------------
