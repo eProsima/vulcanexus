@@ -81,7 +81,7 @@ Please, refer to `Fast DDS-Gen documentation <https://fast-dds.docs.eprosima.com
 
 The generated Java application can be found in ``share/fastddsgen``.
 However, the ``scripts`` folder provides some user friendly scripts that are recommended to be used.
-This scripts can be made accesible to the session adding the ``scripts`` folder path to the ``PATH`` environment variable.
+This scripts can be made accessible to the session adding the ``scripts`` folder path to the ``PATH`` environment variable.
 
 .. code-block:: bash
 
