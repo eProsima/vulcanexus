@@ -128,7 +128,7 @@ Following there is a representation of the overall *K8s* cluster configuration:
 DDS-Router deployment
 """""""""""""""""""""
 
-The cloud router is launched from within a *Vulcanexus Cloud* Docker image, which uses as configuration file the one hosted in the previously set up ConfigMap.
+The cloud router is launched from within a *Vulcanexus Cloud* Docker image (that can be downloaded in `Vulcanexus webpage <TODO: include final URL>`_), which uses as configuration file the one hosted in the previously set up ConfigMap.
 Assuming the name of the generated Docker image is ``ubuntu-vulcanexus-cloud:galactic``, the cloud router will then be deployed with the following settings:
 
 .. literalinclude:: ../../resources/tutorials/cloud_tutorial/ddsrouter.yaml

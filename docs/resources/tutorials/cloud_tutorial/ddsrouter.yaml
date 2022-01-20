@@ -22,7 +22,7 @@ spec:
               - key: ddsrouter.config.file
                 path: DDSROUTER_CONFIGURATION.yaml
       containers:
-        - name: ubuntu-vulcanexus-cloud # TODO(Ensure this docker container exists)
+        - name: ubuntu-vulcanexus-cloud
           image: ubuntu-vulcanexus-cloud:galactic
           ports:
             - containerPort: 30001
