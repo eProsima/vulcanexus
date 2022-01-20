@@ -21,4 +21,5 @@ Main features
    :numbered: 5
 
    /rst/installation/installation_manual
+   /rst/tutorials/tutorials
    /rst/notes/notes
