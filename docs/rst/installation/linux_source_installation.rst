@@ -22,8 +22,6 @@ Next, install the Vulcanexus required development tools:
 .. code-block:: bash
 
     sudo apt update && sudo apt install -y \
-      ed \
-      clang \
       libp11-dev \
       libengine-pkcs11-openssl \
       libyaml-cpp-dev \
