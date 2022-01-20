@@ -22,4 +22,5 @@ Main features
 
    /rst/installation/installation_manual
    /rst/tutorials/tutorials
+   /rst/platforms/platforms
    /rst/notes/notes
