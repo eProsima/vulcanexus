@@ -31,7 +31,7 @@ Start by adding the Qt 5.15 repository:
 .. code-block:: bash
 
     sudo apt install -y software-properties-common
-    sudo add-apt-repository ppa:beineri/opt-qt-5.15.2-focal
+    sudo add-apt-repository -y ppa:beineri/opt-qt-5.15.2-focal
 
 Next, install the Vulcanexus required development tools:
 

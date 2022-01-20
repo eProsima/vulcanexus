@@ -8,6 +8,8 @@
         "fastdds_statistics_backend",
         "fastrtps",
         "foonathan_memory_vendor",
+        "micro_ros_agent",
+        "micro_ros_msgs",
         "micro_ros_setup",
         "rmw_fastrtps_cpp",
         "rmw_fastrtps_dynamic_cpp",
