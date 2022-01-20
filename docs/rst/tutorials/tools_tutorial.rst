@@ -10,7 +10,7 @@ ROS 2 network statistics using Vulcanexus Tools
 Background
 ----------
 
-Vulcanexus integrates *eProsima Fast DDS Monitor* (refer to its `documentation <https://fast-dds-monitor.readthedocs.io/en/latest/>`_ for more info), which is a useful tool for monitoring and studying a ROS 2 network as ROS 2 relies on the `DDS specification <https://www.omg.org/spec/DDS/1.4/About-DDS/>`_ to communicate the different nodes.
+Vulcanexus integrates `eProsima Fast DDS Monitor <https://fast-dds-monitor.readthedocs.io/en/latest/>`_, which is a useful tool for monitoring and studying a ROS 2 network as ROS 2 relies on the `DDS specification <https://www.omg.org/spec/DDS/1.4/About-DDS/>`_ to communicate the different nodes.
 The automatic discovery of entities in a local network enables to easily identify the different running Participants, their Endpoints, the Topics that each of them is using, and even the network interfaces they are employing to communicate with one another.
 Additionally, it is possible to receive statistical data from every endpoint in the network leveraging the `Fast DDS Statistics Module <https://fast-dds.docs.eprosima.com/en/latest/fastdds/statistics/statistics.html>`_.
 This data is very useful to analyze the DDS network performance and seek possible communication problems in it.
@@ -27,11 +27,8 @@ Also, remember to source the environment in every terminal in this tutorial.
 
     source /opt/vulcanexus/galactic/setup.bash
 
-Run tutorial
-------------
-
 Launch Fast DDS Monitor
-^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------
 
 Initiate Fast DDS Monitor running the following command:
 
@@ -45,7 +42,7 @@ Once Fast DDS Monitor is launched, start a monitor in domain :code:`0` (default 
     :align: center
 
 Execute ROS 2 demo nodes with statistics
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------------------
 
 In order to activate the publication of statistical data, `eProsima Fast DDS <https://fast-dds.docs.eprosima.com/en/latest/>`_ requires an environment variable specifying which kinds of statistical data are to be reported.
 Consequently, before launching the ROS 2 nodes, remember to set ``FASTDDS_STATISTICS`` environment variable.
@@ -72,7 +69,7 @@ Run the following commands in different terminals (remember to source the Vulcan
     ros2 run demo_nodes_cpp talker
 
 Monitoring network
-^^^^^^^^^^^^^^^^^^
+------------------
 
 Now, the two new Participants are visible in the *Fast DDS Monitor*'s DDS Panel.
 
@@ -80,7 +77,7 @@ Now, the two new Participants are visible in the *Fast DDS Monitor*'s DDS Panel.
     :align: center
 
 Alias
-"""""
+^^^^^
 
 Participants in ROS 2 are named :code:`/` by default.
 In order to differentiate them, it is possible to change the Participant's aliases within the *Fast DDS Monitor*.
@@ -90,7 +87,7 @@ In this case, the :code:`vulcanexus-galactic-talker` Participant would be the on
     :align: center
 
 Physical data
-"""""""""""""
+^^^^^^^^^^^^^
 
 In order to see the information of the host and the physical context where every node is running, go to the Explorer Pane and activate the Physical Panel.
 There, the host, user and process of each node are displayed.
@@ -99,7 +96,7 @@ There, the host, user and process of each node are displayed.
     :align: center
 
 Statistical data
-""""""""""""""""
+^^^^^^^^^^^^^^^^
 
 To show statistical data about the communication between the :code:`vulcanexus-galactic-talker` and the :code:`vulcanexus-galactic-listener`, follow the steps to `create dynamic series chart <https://fast-dds-monitor.readthedocs.io/en/latest/rst/getting_started/tutorial.html#tutorial-create-dynamic-series>`_.
 
@@ -107,7 +104,7 @@ To show statistical data about the communication between the :code:`vulcanexus-g
     :align: center
 
 Introspect metatraffic topics
-"""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Fast DDS Monitor filters by default the topics used for sharing metatraffic, as well as the endpoints related to them, so users can inspect their network easily.
 These topics are the ones that ROS 2 uses for discovery and configuration purposes, such as :code:`ros_discovery_info`, as well as those used by Fast DDS to report statistical data.

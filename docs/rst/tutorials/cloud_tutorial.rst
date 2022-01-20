@@ -29,11 +29,8 @@ Also, remember to source the environment in every terminal in this tutorial.
 
     For the full understanding of this tutorial basic understanding of Kubernetes is required.
 
-Run tutorial
-------------
-
 Local setup
-^^^^^^^^^^^
+-----------
 
 The local instance of *DDS Router* (local router) only requires to have a `Simple Participant <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/participants/simple.html>`_ and a `WAN Participant <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/participants/wan.html>`_ that will play the client role in the discovery process of remote participants (see `Discovery Server discovery mechanism <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery_server.html>`_).
 
@@ -45,7 +42,7 @@ Following there is a representation of the above-described scenario:
 
 
 Local router
-""""""""""""
+^^^^^^^^^^^^
 
 The configuration file used by the local router will be the following:
 
@@ -73,7 +70,7 @@ To launch the local router, execute the following command (remember to source th
 
 
 Talker
-""""""
+^^^^^^
 
 In another terminal, run the following command in order to start the ROS 2 node that publishes messages in DDS domain ``0`` (remember to source the Vulcanexus environment):
 
@@ -82,9 +79,9 @@ In another terminal, run the following command in order to start the ROS 2 node 
     ros2 run demo_nodes_cpp talker
 
 Kubernetes setup
-^^^^^^^^^^^^^^^^
+----------------
 
-Two different deployments are required to receive the ``talker`` messages in the Cloud, each in a different *K8s* pod. The *DDS Router* cloud instance (cloud router) consists of two participants:
+Two different deployments are required to receive the ``talker`` messages in the Cloud, each in a different *K8s* pod; the first one being a *DDS Router* cloud instance (cloud router), which consists of two participants:
 
 * A `WAN Participant <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/participants/wan.html>`_ that receives the messages coming from our LAN through the aforementioned UDP communication channel.
 * A `Local Discovery Server <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/participants/local_discovery_server.html>`_ (local DS) that propagates them to a ROS 2 listener node hosted in a different *K8s* pod.
@@ -93,7 +90,7 @@ Two different deployments are required to receive the ``talker`` messages in the
 
     The choice of a Local Discovery Server instead of a Simple Participant to communicate with the listener has to do with the difficulty of enabling multicast routing in cloud environments.
 
-The other deployment is the ROS 2 listener node properly speaking.
+The other deployment is the ROS 2 listener node.
 This node has to be launched as a Client to the local DS running on the first deployment.
 
 The described scheme is represented in the following figure:
@@ -126,7 +123,7 @@ Following there is a representation of the overall *K8s* cluster configuration:
 
 
 DDS-Router deployment
-"""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^
 
 The cloud router is launched from within a *Vulcanexus Cloud* Docker image (that can be downloaded in `Vulcanexus webpage <TODO: include final URL>`_), which uses as configuration file the one hosted in the previously set up ConfigMap.
 Assuming the name of the generated Docker image is ``ubuntu-vulcanexus-cloud:galactic``, the cloud router will then be deployed with the following settings:
@@ -136,7 +133,7 @@ Assuming the name of the generated Docker image is ``ubuntu-vulcanexus-cloud:gal
 
 
 Listener deployment
-"""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^
 
 Since ROS 2 demo nodes package is not installed by default in *Vulcanexus Cloud*, a new Docker image adding in this functionality must be generated.
 Also, the IP address and port of the local Discovery Server must be specified, so a custom entrypoint is also provided.
