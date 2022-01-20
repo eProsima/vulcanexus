@@ -73,4 +73,4 @@ To uninstall Vulcanexus, it is enough to run the following command :
 Next steps
 ----------
 
-Please, refer to the Tutorials section to keep learning about Vulcanexus capabilities and features.
+Please, refer to the :ref:`vulcanexus_tutorials` section to keep learning about Vulcanexus capabilities and features.

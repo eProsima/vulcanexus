@@ -111,4 +111,4 @@ In order to use the Vulcanexus installation, the environment must be set up sour
 Next steps
 ----------
 
-Please, refer to the Tutorials section to keep learning about Vulcanexus capabilities and features.
+Please, refer to the :ref:`vulcanexus_tutorials` section to keep learning about Vulcanexus capabilities and features.
