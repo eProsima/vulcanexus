@@ -2,7 +2,7 @@
     "name": "vulcanexus_base",
     "type": "cmake",
     "dependencies": [
-        "dds_router",
+        "ddsrouter",
         "fastcdr",
         "fastdds_monitor",
         "fastdds_statistics_backend",
@@ -11,8 +11,9 @@
         "micro_ros_setup",
         "rmw_fastrtps_cpp",
         "rmw_fastrtps_dynamic_cpp",
-        "rosidl_typesupport_fastrtps",
-        "shapes-demo"
+        "rosidl_typesupport_fastrtps_c",
+        "rosidl_typesupport_fastrtps_cpp",
+        "ShapesDemo"
     ],
     "hooks": [
         "share/vulcanexus_base/environment/vulcanexus_base-setup.bash",

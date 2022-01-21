@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+export LD_LIBRARY_PATH=/opt/qt515/lib:$LD_LIBRARY_PATH
 export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 export VULCANEXUS_DISTRO=galactic
-export LD_LIBRARY_PATH=/opt/qt515/lib:$LD_LIBRARY_PATH
+export VULCANEXUS_HOME="@VULCANEXUS_HOME@"

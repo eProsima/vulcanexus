@@ -21,6 +21,14 @@ set(vulcanexus_base_PATCH_VERSION 0)
 set(vulcanexus_base_MAJOR_VERSION
     ${vulcanexus_base_MAJOR_VERSION}.${vulcanexus_base_MINOR_VERSION}.${vulcanexus_base_PATCH_VERSION})
 
+set(VULCANEXUS_HOME ${CMAKE_INSTALL_PREFIX})
+string(REPLACE ${PROJECT_NAME} "" VULCANEXUS_HOME ${VULCANEXUS_HOME})
+
+# Configure bash script
+configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/environment/vulcanexus_base-setup.bash.in
+    ${CMAKE_INSTALL_PREFIX}/share/vulcanexus_base/environment/vulcanexus_base-setup.bash
+    @ONLY)
+
 install(FILES resource/vulcanexus_base DESTINATION share/ament_index/resource_index/packages)
 install(FILES resource/package.dsv DESTINATION share/vulcanexus_base)
-install(FILES environment/vulcanexus_base-setup.bash DESTINATION share/vulcanexus_base/environment)

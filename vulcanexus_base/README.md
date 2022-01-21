@@ -1,1 +1,3 @@
-A meta-package to force rmw_fastrtps_cpp as the default implementation.
+# Vulcanexus Base
+
+A meta-package to set up various Vulcanexus related configurations.
