@@ -1,4 +1,4 @@
-.. _linux_installation:
+.. _linux_binary_installation:
 
 Linux binary installation
 =========================
@@ -10,7 +10,7 @@ Instead of proceeding with installing the ROS 2 packages, follow the steps below
 Setup sources
 -------------
 
-First, add the Qt 5.15 required repository running the commands:
+First, add the Qt 5.15 repository, required for the installation of several Fast DDS Monitor dependencies, running the commands:
 
 .. code-block:: bash
 
@@ -73,4 +73,4 @@ To uninstall Vulcanexus, it is enough to run the following command :
 Next steps
 ----------
 
-Please, refer to the Tutorials section to keep learning about Vulcanexus capabilities and features.
+Please, refer to the :ref:`vulcanexus_tutorials` section to keep learning about Vulcanexus capabilities and features.
