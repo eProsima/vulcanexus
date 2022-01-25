@@ -8,4 +8,5 @@ This sections includes the Vulcanexus installation instructions for the Tier 1 s
 .. toctree::
     :maxdepth: 1
 
-    linux_installation.rst
+    linux_binary_installation.rst
+    linux_source_installation.rst
