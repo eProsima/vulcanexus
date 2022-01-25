@@ -10,7 +10,7 @@ Instead of proceeding with installing the ROS 2 packages, follow the steps below
 Setup sources
 -------------
 
-First, add the Qt 5.15 required repository running the commands:
+First, add the Qt 5.15 repository, required for the installation of several Fast DDS Monitor dependencies, running the commands:
 
 .. code-block:: bash
 

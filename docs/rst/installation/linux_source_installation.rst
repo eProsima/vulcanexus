@@ -26,7 +26,7 @@ Install Vulcanexus dependencies
 
 First, follow the `Install dependencies using rosdep <https://docs.ros.org/en/galactic/Installation/Ubuntu-Development-Setup.html#install-dependencies-using-rosdep>`_ section of ROS 2 installation guide.
 Then, some additional dependencies which are required for the Vulcanexus distribution must be installed.
-Start by adding the Qt 5.15 repository:
+Start by adding the Qt 5.15 repository required for the installation of several Fast DDS Monitor dependencies:
 
 .. code-block:: bash
 
@@ -57,7 +57,7 @@ Next, install the Vulcanexus required development tools:
 Build the code in the workspace
 -------------------------------
 
-If any other Vulcanexus or ROS 2 distribution have been installed from binaries, please ensure that the build is done in a fresh environment (previous installation is not sourced).
+If any other Vulcanexus or ROS 2 distribution has been installed from binaries, please ensure that the build is done in a fresh environment (previous installation is not sourced).
 This can be checked running the following command:
 
 .. code-block:: bash
@@ -65,10 +65,10 @@ This can be checked running the following command:
     printenv | grep 'VULCANEXUS\|ROS'
 
 The output should be empty.
-Please, be aware that in case you have added the environment sourcing to your ``.bashrc``, you must remove it in order to get a fresh environment.
+Please, be aware that in case the environment sourcing has been added to ``.bashrc``, it must be removed in order to get a fresh environment.
 
-Build Fast DDS-Gen
-^^^^^^^^^^^^^^^^^^
+Build Fast DDS-Gen (Optional)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 *Fast DDS-Gen* is a Java application that generates source code using the data types defined in an IDL file.
 This tool must be built separately following the instructions below.
@@ -101,7 +101,13 @@ This tool is based on `CMake <https://cmake.org/>`_ and it is aimed at building 
 .. important::
 
     In case that only a set of packages are going to be built, please ensure to include always ``vulcanexus_base`` package in the set.
-    This auxiliary package is required to set several environment variables required by the distribution such as ``VULCANEXUS_DISTRO``.
+    E.g.:
+
+    .. code-block:: bash
+
+        colcon build --packages-up-to demo_nodes_cpp vulcanexus_base
+
+    This auxiliary package is required to set several environment variables required by the distribution such as ``VULCANEXUS_DISTRO`` and ``VULCANEXUS_HOME``.
 
 Environment setup
 -----------------
