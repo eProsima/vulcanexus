@@ -21,7 +21,7 @@ Next, add Vulcanexus GPG key so apt can retrieve the packages:
 
 .. code-block:: bash
 
-    sudo curl -sSL https://raw.githubusercontent.com/eProsima/vulcanexus/master/vulcanexus.key -o /usr/share/keyrings/vulcanexus-archive-keyring.gpg
+    sudo curl -sSL https://raw.githubusercontent.com/eProsima/vulcanexus/main/vulcanexus.key -o /usr/share/keyrings/vulcanexus-archive-keyring.gpg
 
 Finally, add the eProsima Vulcanexus repository to your sources list:
 
