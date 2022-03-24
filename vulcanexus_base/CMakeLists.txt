@@ -21,7 +21,11 @@ set(vulcanexus_base_PATCH_VERSION 0)
 set(vulcanexus_base_MAJOR_VERSION
     ${vulcanexus_base_MAJOR_VERSION}.${vulcanexus_base_MINOR_VERSION}.${vulcanexus_base_PATCH_VERSION})
 
-set(VULCANEXUS_HOME ${CMAKE_INSTALL_PREFIX})
+if (NOT DEFINED ENV{VULCANEXUS_HOME}) 
+    set(VULCANEXUS_HOME ${CMAKE_INSTALL_PREFIX})
+else()
+    set(VULCANEXUS_HOME $ENV{VULCANEXUS_HOME})
+endif()
 string(REPLACE ${PROJECT_NAME} "" VULCANEXUS_HOME ${VULCANEXUS_HOME})
 
 # Configure bash script
