@@ -1,10 +1,13 @@
 amd
+combinable
+customizable
 dataflow
 entrypoint
 eProsima
 Kubernetes
 metatraffic
+middleware
 multicast
 ROS
-Vulcanexus
 vulcanexus
+Vulcanexus
