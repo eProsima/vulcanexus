@@ -39,7 +39,7 @@ repositories:
     type: git
     url: https://github.com/micro-ROS/micro_ros_setup.git
     version: 2.0.0
-  eProsima/RMW-FastRTPS:
+  eProsima/RMW-Fast-DDS:
     type: git
     url: https://github.com/eProsima/rmw_fastrtps.git
     version: 6f93e84db42076809f3e3adb7aed467a02d725ad
