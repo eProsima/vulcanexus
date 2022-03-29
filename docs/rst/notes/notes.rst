@@ -25,6 +25,6 @@ The following table outlines the Vulcanexus releases and their support cycles:
      - EOL Date
    * - :ref:`Galactic Gamble <notes_galactic_latest>`
      - v1
-     - TODO
+     - April 2022
      - November 2022
 

@@ -8,10 +8,10 @@ Vulcanexus Documentation
   :width: 100px
   :align: left
   :alt: Vulcanexus
-  :target: http://www.vulcanexus.com/
+  :target: https://www.vulcanexus.com/
 
 
-*Vulcanexus* is an enhanced *ROS 2* (Robot Operating System) distribution.
+`Vulcanexus <https://www.vulcanexus.com>`_ is an enhanced *ROS 2* (Robot Operating System) distribution.
 It allows users to build robotics applications combining the unique *Vulcanexus* elements with the *ROS 2* libraries, having *Fast DDS* as its fixed middleware implementation.
 
 These open source elements include numerous features and tools, providing *Vulcanexus* users customizable solutions while improving overall system performance.
