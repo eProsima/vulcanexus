@@ -24,7 +24,7 @@ With *Vulcanexus*, users have fast access to constantly improving functionalitie
 2. **VULCANEXUS-TOOLS**: a set of features and applications which allows users to test, improve and configure the performance of *Vulcanexus* in their systems.
 3. **VULCANEXUS-MICRO**: provides access for resource constrained devices (micro-controllers) to the DDS world, bridging the gap between them and *ROS 2*.
 4. **VULCANEXUS-CLOUD**: scales and integrates *ROS 2* networks located in geographically spaced environments, and enables the deployment of DDS entities in the cloud in a quick and easy way.
-5. **VULCANEXUS-SIMULATION**: enables users to design robotic simulations. It provides an end-to-end development environment to model, program and simulate robots.
+5. **VULCANEXUS-SIMULATION**: enables users to design robotic simulations, providing an end-to-end development environment to model, program, and simulate robots.
 
 *Vulcanexus* created a collection of downloadable packages that include useful combinations of the previously described elements with *ROS 2*:
 
