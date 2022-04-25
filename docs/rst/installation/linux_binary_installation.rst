@@ -51,7 +51,7 @@ And finally add ROS 2 repository to your sources list.
 Setup Vulcanexus sources
 ------------------------
 
-Once all ROS 2 prerequisites have been met, it is time to start setting up Vulcanexus. 
+Once all ROS 2 prerequisites have been met, it is time to start setting up Vulcanexus.
 
 First, add the Qt 5.15 repository, required for the installation of several Fast DDS Monitor dependencies, running the commands:
 
