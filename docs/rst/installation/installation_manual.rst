@@ -10,3 +10,4 @@ This sections includes the Vulcanexus installation instructions for the Tier 1 s
 
     linux_binary_installation.rst
     linux_source_installation.rst
+    docker.rst
