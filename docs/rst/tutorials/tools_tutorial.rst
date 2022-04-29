@@ -6,6 +6,7 @@ ROS 2 network statistics using Vulcanexus Tools
 .. contents:: Table of Contents
     :depth: 2
     :local:
+    :backlinks: none
 
 Background
 ----------

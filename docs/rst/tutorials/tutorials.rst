@@ -1,13 +1,10 @@
 .. _vulcanexus_tutorials:
 
-Tutorials
-=========
+Index of Tutorials
+==================
 
-This section provides several step-by-step instructions to run different Vulcanexus features.
+This page list the available step-by-step tutorials developed to exploit different Vulcanexus features.
 
-.. toctree::
-    :maxdepth: 1
-
-    tools_tutorial.rst
-    cloud_tutorial.rst
-    microros_tutorial.rst
+* :ref:`vulcanexus_tools_tutorial`
+* :ref:`vulcanexus_cloud_tutorial`
+* :ref:`vulcanexus_microros_tutorial`
