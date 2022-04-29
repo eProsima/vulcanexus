@@ -48,7 +48,6 @@ The following documentation includes instructions for installing each *Vulcanexu
    :hidden:
    :numbered: 5
 
-   /rst/tutorials/tutorials.rst
    /rst/tutorials/tools_tutorial.rst
    /rst/tutorials/cloud_tutorial.rst
    /rst/tutorials/microros_tutorial.rst
