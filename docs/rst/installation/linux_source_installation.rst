@@ -117,8 +117,3 @@ In order to use the Vulcanexus installation, the environment must be set up sour
 .. code-block:: bash
 
     source ~/vulcanexus_galactic/install/setup.bash
-
-Next steps
-----------
-
-Please, refer to the :ref:`vulcanexus_tutorials` section to keep learning about Vulcanexus capabilities and features.

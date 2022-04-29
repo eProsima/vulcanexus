@@ -63,5 +63,3 @@ The output should be:
 .. code-block:: bash
 
     /opt/vulcanexus/galactic
-
-Please refer to :ref:`vulcanexus_tutorials` to read about all the *Vulcanexus* possibilities and getting started with developing for *Vulcanexus*.

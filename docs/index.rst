@@ -33,11 +33,30 @@ With *Vulcanexus*, users have fast access to constantly improving functionalitie
 The following documentation includes instructions for installing each *Vulcanexus* packages, some tutorials help users to get started, and the supported platforms and releases.
 
 .. toctree::
+   :caption: Installation Manual
    :maxdepth: 2
    :hidden:
    :numbered: 5
 
-   /rst/installation/installation_manual
-   /rst/tutorials/tutorials
+   /rst/installation/linux_binary_installation.rst
+   /rst/installation/linux_source_installation.rst
+   /rst/installation/docker.rst
+
+.. toctree::
+   :caption: Tutorials
+   :maxdepth: 2
+   :hidden:
+   :numbered: 5
+
+   /rst/tutorials/tools_tutorial.rst
+   /rst/tutorials/cloud_tutorial.rst
+   /rst/tutorials/microros_tutorial.rst
+
+.. toctree::
+   :caption: Support
+   :maxdepth: 2
+   :hidden:
+   :numbered: 5
+
    /rst/platforms/platforms
    /rst/notes/notes
