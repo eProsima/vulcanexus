@@ -70,8 +70,3 @@ To uninstall Vulcanexus, it is enough to run the following command :
 .. code-block:: bash
 
     sudo apt autoremove vulcanexus-galactic-desktop
-
-Next steps
-----------
-
-Please, refer to the :ref:`vulcanexus_tutorials` section to keep learning about Vulcanexus capabilities and features.
