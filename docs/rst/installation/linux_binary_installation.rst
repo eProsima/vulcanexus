@@ -65,6 +65,7 @@ First, add the Qt 5.15 repository, required for the installation of several Fast
     sudo add-apt-repository ppa:beineri/opt-qt-5.15.2-focal
 
 Next, add Vulcanexus GPG key so apt can retrieve the packages:
+
 .. code-block:: bash
 
     sudo curl -sSL https://raw.githubusercontent.com/eProsima/vulcanexus/main/vulcanexus.key -o /usr/share/keyrings/vulcanexus-archive-keyring.gpg
