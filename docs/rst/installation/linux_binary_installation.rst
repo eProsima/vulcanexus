@@ -9,7 +9,7 @@ Since Vulcanexus is a ROS 2 all-in-one tool set, certain ROS 2 prerequisites nee
 ROS 2 prerequisites
 -------------------
 
-First of all, setup a `UTF-8` locale as required by ROS 2.
+First of all, set up a `UTF-8` locale as required by ROS 2.
 Locale settings can be checked and set up with the following commands:
 
 .. code-block:: bash
