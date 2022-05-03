@@ -3,23 +3,27 @@
 Linux binary installation
 =========================
 
-Debian packages for Vulcanexus Galactic Gamble are currently available for Ubuntu Focal. Since Vulcanexus is a ROS 2 overlay, certain ROS 2 prerequisites need to be met before installing.
+Debian packages for Vulcanexus Galactic Gamble are currently available for Ubuntu Focal.
+Since Vulcanexus is a ROS 2 all-in-one tool set, certain ROS 2 prerequisites need to be met before installing.
 
 ROS 2 prerequisites
 -------------------
 
-First of all, setup a UTF-8 locale as required by ROS 2. Locale settings can be checked and set up with the following commands:
+First of all, setup a `UTF-8` locale as required by ROS 2.
+Locale settings can be checked and set up with the following commands:
 
 .. code-block:: bash
 
     locale  # check for UTF-8
 
     sudo apt update && sudo apt install locales
+    # Any UTF-8 locale will work. Using en_US as an example
     sudo locale-gen en_US en_US.UTF-8
     sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
     export LANG=en_US.UTF-8
 
-ROS 2 also requires that the Ubuntu Universe repository is enabled. This can be checked and enabled with the following commands:
+ROS 2 also requires that the Ubuntu Universe repository is enabled.
+This can be checked and enabled with the following commands:
 
 .. code-block:: bash
 
@@ -30,19 +34,19 @@ ROS 2 also requires that the Ubuntu Universe repository is enabled. This can be 
     #  500 http://us.archive.ubuntu.com/ubuntu focal/universe amd64 Packages
     # release v=20.04,o=Ubuntu,a=focal,n=focal,l=Ubuntu,c=universe,b=amd64
     #
-    # If it doesn't, run
+    # Otherwise run
 
     sudo apt install software-properties-common
     sudo add-apt-repository universe
 
-Now download ROS 2 GPG key into your keystore.
+Now download ROS 2 GPG key into the keystore.
 
 .. code-block:: bash
 
     sudo apt update && sudo apt install curl gnupg lsb-release
     sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
 
-And finally add ROS 2 repository to your sources list.
+And finally add ROS 2 repository to the repository manager sources list.
 
 .. code-block:: bash
 
@@ -61,12 +65,11 @@ First, add the Qt 5.15 repository, required for the installation of several Fast
     sudo add-apt-repository ppa:beineri/opt-qt-5.15.2-focal
 
 Next, add Vulcanexus GPG key so apt can retrieve the packages:
-
 .. code-block:: bash
 
     sudo curl -sSL https://raw.githubusercontent.com/eProsima/vulcanexus/main/vulcanexus.key -o /usr/share/keyrings/vulcanexus-archive-keyring.gpg
 
-Finally, add the eProsima Vulcanexus repository to your sources list:
+Finally, add the eProsima Vulcanexus repository to the repository manager sources list:
 
 .. code-block:: bash
 
@@ -75,7 +78,7 @@ Finally, add the eProsima Vulcanexus repository to your sources list:
 Install eProsima Vulcanexus packages
 ------------------------------------
 
-Remember to update your apt repository caches after setting up the repositories:
+Remember to update the apt repository caches after setting up the repositories:
 
 .. code-block:: bash
 
