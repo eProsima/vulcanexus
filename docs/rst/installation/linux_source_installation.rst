@@ -77,6 +77,8 @@ With the ROS 2 repository properly set up the next step is to install the requir
     python3-pytest-rerunfailures \
     python3-rosdep \
     python3-setuptools \
+    python3-sphinx \
+    python3-sphinx-rtd-theme \
     python3-vcstool \
     wget
 
