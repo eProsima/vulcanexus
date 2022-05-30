@@ -19,12 +19,12 @@ Cloud environments such as container-oriented platforms can be connected using `
 Prerequisites
 -------------
 
-Ensure that the Vulcanexus installation includes the cloud and the ROS 2 demo nodes package (it is suggested to use ``vulcanexus-galactic-desktop``).
+Ensure that the Vulcanexus installation includes the cloud and the ROS 2 demo nodes package (it is suggested to use ``vulcanexus-humble-desktop``).
 Also, remember to source the environment in every terminal in this tutorial.
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/galactic/setup.bash
+    source /opt/vulcanexus/humble/setup.bash
 
 .. warning::
 
@@ -126,8 +126,8 @@ Following there is a representation of the overall *K8s* cluster configuration:
 DDS-Router deployment
 ^^^^^^^^^^^^^^^^^^^^^
 
-The cloud router is launched from within a *Vulcanexus Cloud* Docker image (that can be downloaded in `Vulcanexus webpage <TODO: include final URL>`_), which uses as configuration file the one hosted in the previously set up ConfigMap.
-Assuming the name of the generated Docker image is ``ubuntu-vulcanexus-cloud:galactic``, the cloud router will then be deployed with the following settings:
+The cloud router is launched from within a *Vulcanexus Cloud* Docker image (that can be downloaded in `Vulcanexus webpage <https://vulcanexus.org/>`_), which uses as configuration file the one hosted in the previously set up ConfigMap.
+Assuming the name of the generated Docker image is ``ubuntu-vulcanexus-cloud:humble``, the cloud router will then be deployed with the following settings:
 
 .. literalinclude:: ../../resources/tutorials/cloud_tutorial/ddsrouter.yaml
     :language: yaml
@@ -153,7 +153,7 @@ Build the docker image running the following command:
 
 .. code-block:: bash
 
-    docker build -t vulcanexus-cloud-demo-nodes:galactic -f Dockerfile
+    docker build -t vulcanexus-cloud-demo-nodes:humble -f Dockerfile
 
 Now, the listener pod can be deployed by providing the following configuration:
 

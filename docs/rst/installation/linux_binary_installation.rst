@@ -3,7 +3,7 @@
 Linux binary installation
 =========================
 
-Debian packages for Vulcanexus Galactic Gamble are currently available for Ubuntu Focal.
+Debian packages for Vulcanexus Humble Hierro are currently available for Ubuntu Focal.
 Since Vulcanexus is a ROS 2 all-in-one tool set, certain ROS 2 prerequisites need to be met before installing.
 
 ROS 2 prerequisites
@@ -31,8 +31,8 @@ This can be checked and enabled with the following commands:
 
     # This should print something similar to:
     #
-    #  500 http://us.archive.ubuntu.com/ubuntu focal/universe amd64 Packages
-    # release v=20.04,o=Ubuntu,a=focal,n=focal,l=Ubuntu,c=universe,b=amd64
+    #  500 http://us.archive.ubuntu.com/ubuntu jammy/universe amd64 Packages
+    # release v=22.04,o=Ubuntu,a=jammy,n=jammy,l=Ubuntu,c=universe,b=amd64
     #
     # Otherwise run
 
@@ -55,22 +55,15 @@ And finally add ROS 2 repository to the repository manager sources list.
 Setup Vulcanexus sources
 ------------------------
 
-Once all ROS 2 prerequisites have been met, it is time to start setting up Vulcanexus.
+Once all ROS 2 prerequisites have been met, it is time to set up Vulcanexus.
 
-First, add the Qt 5.15 repository, required for the installation of several Fast DDS Monitor dependencies, running the commands:
-
-.. code-block:: bash
-
-    sudo apt install software-properties-common
-    sudo add-apt-repository ppa:beineri/opt-qt-5.15.2-focal
-
-Next, add Vulcanexus GPG key so apt can retrieve the packages:
+Add Vulcanexus GPG key so apt can retrieve the packages:
 
 .. code-block:: bash
 
     sudo curl -sSL https://raw.githubusercontent.com/eProsima/vulcanexus/main/vulcanexus.key -o /usr/share/keyrings/vulcanexus-archive-keyring.gpg
 
-Finally, add the eProsima Vulcanexus repository to the repository manager sources list:
+Next, add the eProsima Vulcanexus repository to the repository manager sources list:
 
 .. code-block:: bash
 
@@ -89,13 +82,13 @@ Desktop install (Recommended): includes all the simulation tools, demos, and tut
 
 .. code-block:: bash
 
-    sudo apt install vulcanexus-galactic-desktop
+    sudo apt install vulcanexus-humble-desktop
 
 Base Install: basic installation without simulation tools, demos, and tutorials.
 
 .. code-block:: bash
 
-    sudo apt install vulcanexus-galactic-base
+    sudo apt install vulcanexus-humble-base
 
 For other Vulcanexus packages, please refer to the :ref:`Introduction <vulcanexus_introduction>` section for more
 information.
@@ -107,7 +100,7 @@ In order to use the Vulcanexus installation, the environment must be set up sour
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/galactic/setup.bash
+    source /opt/vulcanexus/humble/setup.bash
 
 Uninstall eProsima Vulcanexus packages
 --------------------------------------
@@ -116,4 +109,4 @@ To uninstall Vulcanexus, it is enough to run the following command :
 
 .. code-block:: bash
 
-    sudo apt autoremove vulcanexus-galactic-desktop
+    sudo apt autoremove vulcanexus-humble-desktop

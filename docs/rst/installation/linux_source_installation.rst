@@ -3,7 +3,7 @@
 Linux installation from sources
 ===============================
 
-This section explains how to build Vulcanexus in Ubuntu Focal.
+This section explains how to build Vulcanexus in Ubuntu Jammy.
 Since Vulcanexus is a ROS 2 all-in-one tool set, certain ROS 2 prerequisites need to be met before building.
 
 ROS 2 prerequisites
@@ -31,8 +31,8 @@ This can be checked and enabled with the following commands:
 
     # This should print something similar to:
     #
-    #  500 http://us.archive.ubuntu.com/ubuntu focal/universe amd64 Packages
-    # release v=20.04,o=Ubuntu,a=focal,n=focal,l=Ubuntu,c=universe,b=amd64
+    #  500 http://us.archive.ubuntu.com/ubuntu jammy/universe amd64 Packages
+    # release v=22.04,o=Ubuntu,a=jammy,n=jammy,l=Ubuntu,c=universe,b=amd64
     #
     # Otherwise run
 
@@ -62,26 +62,23 @@ With the ROS 2 repository properly set up the next step is to install the requir
     git \
     python3-colcon-common-extensions \
     python3-flake8 \
+    python3-flake8-blind-except \
+    python3-flake8-builtins \
+    python3-flake8-class-newline \
+    python3-flake8-comprehensions \
+    python3-flake8-deprecated \
+    python3-flake8-docstrings \
+    python3-flake8-import-order \
+    python3-flake8-quotes \
     python3-pip \
+    python3-pytest \
     python3-pytest-cov \
+    python3-pytest-repeat \
+    python3-pytest-rerunfailures \
     python3-rosdep \
     python3-setuptools \
     python3-vcstool \
     wget
-    # install some pip packages needed for testing
-    python3 -m pip install -U \
-    flake8-blind-except \
-    flake8-builtins \
-    flake8-class-newline \
-    flake8-comprehensions \
-    flake8-deprecated \
-    flake8-docstrings \
-    flake8-import-order \
-    flake8-quotes \
-    pytest-repeat \
-    pytest-rerunfailures \
-    pytest \
-    setuptools
 
 Get ROS 2 code
 --------------
@@ -90,9 +87,9 @@ Create a workspace for Vulcanexus and clone the ROS 2 repositories
 
 .. code-block:: bash
 
-    mkdir -p ~/vulcanexus_galactic/src
-    cd ~/vulcanexus_galactic
-    wget https://raw.githubusercontent.com/ros2/ros2/galactic/ros2.repos
+    mkdir -p ~/vulcanexus_humble/src
+    cd ~/vulcanexus_humble
+    wget https://raw.githubusercontent.com/ros2/ros2/humble/ros2.repos
     vcs import src < ros2.repos
 
 Now download the required dependencies for these packages.
@@ -111,41 +108,32 @@ Add the Vulcanexus repositories and metadata files to the Vulcanexus workspace:
 .. code-block::
 
     cd ~
-    cd vulcanexus_galactic
-    wget https://raw.githubusercontent.com/eProsima/vulcanexus/galactic/vulcanexus.repos
-    wget https://raw.githubusercontent.com/eProsima/vulcanexus/galactic/colcon.meta
+    cd vulcanexus_humble
+    wget https://raw.githubusercontent.com/eProsima/vulcanexus/humble/vulcanexus.repos
+    wget https://raw.githubusercontent.com/eProsima/vulcanexus/humble/colcon.meta
     vcs import --force src < vulcanexus.repos
 
 Install Vulcanexus dependencies
 -------------------------------
 
 Some additional dependencies which are required for the Vulcanexus distribution must be installed.
-Start by adding the Qt 5.15 repository required for the installation of several Fast DDS Monitor dependencies:
-
-.. code-block:: bash
-
-    sudo apt install -y software-properties-common
-    sudo add-apt-repository -y ppa:beineri/opt-qt-5.15.2-focal
-
-Next, install the Vulcanexus required development tools:
+Install the Vulcanexus required development tools with the following command:
 
 .. code-block:: bash
 
     sudo apt update && sudo apt install -y \
-      libp11-dev \
+      libasio-dev \
       libengine-pkcs11-openssl \
+      liblog4cxx-dev \
+      libp11-dev \
+      libqt5charts5-dev \
+      libssl-dev \
+      libtinyxml2-dev \
       libyaml-cpp-dev \
       openjdk-8-jdk \
-      qt5-default \
-      qt5153d \
-      qt515charts-no-lgpl \
-      qt515graphicaleffects \
-      qt515quickcontrols \
-      qt515quickcontrols2 \
-      qt515quicktimeline-no-lgpl \
-      qt515svg \
-      qt515tools \
-      qt515translations \
+      qtbase5-dev \
+      qtdeclarative5-dev \
+      qtquickcontrols2-5-dev \
       swig
 
 Build the code in the workspace
@@ -179,7 +167,7 @@ This scripts can be made accessible to the session adding the ``scripts`` folder
 
 .. code-block:: bash
 
-    export PATH=~/vulcanexus_galactic/src/eProsima/fastddsgen/scripts:$PATH
+    export PATH=~/vulcanexus_humble/src/eProsima/fastddsgen/scripts:$PATH
 
 Build workspace
 ^^^^^^^^^^^^^^^
@@ -189,7 +177,7 @@ This tool is based on `CMake <https://cmake.org/>`_ and it is aimed at building 
 
 .. code-block:: bash
 
-    cd ~/vulcanexus_galactic
+    cd ~/vulcanexus_humble
     colcon build
 
 .. important::
@@ -210,4 +198,4 @@ In order to use the Vulcanexus installation, the environment must be set up sour
 
 .. code-block:: bash
 
-    source ~/vulcanexus_galactic/install/setup.bash
+    source ~/vulcanexus_humble/install/setup.bash

@@ -1,9 +1,9 @@
-FROM ubuntu-vulcanexus-cloud:galactic
+FROM ubuntu-vulcanexus-cloud:humble
 
 # Install demo-nodes-cpp
-RUN source /opt/vulcanexus/galactic/setup.bash && \
+RUN source /opt/vulcanexus/humble/setup.bash && \
     apt update && \
-    apt install -y ros-galactic-demo-nodes-cpp
+    apt install -y ros-humble-demo-nodes-cpp
 
 COPY ./run.bash /
 RUN chmod +x /run.bash

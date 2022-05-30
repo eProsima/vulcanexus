@@ -15,6 +15,7 @@ The following table outlines the Vulcanexus releases and their support cycles:
     :hidden:
 
     /rst/notes/galactic/notes
+    /rst/notes/humble/notes
 
 .. list-table:: Vulcanexus versions
    :header-rows: 1
@@ -25,6 +26,10 @@ The following table outlines the Vulcanexus releases and their support cycles:
      - EOL Date
    * - :ref:`Galactic Gamble <notes_galactic_latest>`
      - v1
-     - TODO
+     - May 2022
      - November 2022
+   * - :ref:`Humble Hierro <notes_humble_latest>`
+     - v1
+     - May 2022
+     - May 2027
 
