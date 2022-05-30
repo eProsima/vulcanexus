@@ -15,6 +15,7 @@ The following table outlines the Vulcanexus releases and their support cycles:
     :hidden:
 
     /rst/notes/galactic/notes
+    /rst/notes/humble/notes
 
 .. list-table:: Vulcanexus versions
    :header-rows: 1
@@ -27,4 +28,8 @@ The following table outlines the Vulcanexus releases and their support cycles:
      - v1
      - TODO
      - November 2022
+   * - :ref:`Humble Hierro <notes_humble_latest>`
+     - v1
+     - TODO
+     - May 2027
 
