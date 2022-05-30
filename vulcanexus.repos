@@ -1,0 +1,65 @@
+repositories:
+  eProsima/DDS-Router:
+    type: git
+    url: https://github.com/eProsima/DDS-Router.git
+    version: v0.3.0
+  eProsima/Fast-CDR:
+    type: git
+    url: https://github.com/eProsima/Fast-CDR.git
+    version: v1.0.24
+  eProsima/Fast-DDS:
+    type: git
+    url: https://github.com/eProsima/Fast-DDS.git
+    version: v2.6.0
+  eProsima/Fast-DDS-Gen:
+    type: git
+    url: https://github.com/eProsima/Fast-DDS-Gen.git
+    version: v2.1.2
+  eProsima/Fast-DDS-Monitor:
+    type: git
+    url: https://github.com/eProsima/Fast-DDS-monitor.git
+    version: v1.1.0
+  eProsima/Fast-DDS-Python:
+    type: git
+    url: https://github.com/eProsima/Fast-DDS-python.git
+    version: 8b8f512f7a233f0c9915347e32b5474972e172cd
+  eProsima/Fast-DDS-Statistics-Backend:
+    type: git
+    url: https://github.com/eProsima/Fast-DDS-statistics-backend.git
+    version: 59e750b819773d3dea4c6895d8918c9b8bd3c304
+  eProsima/Foonathan-Memory-Vendor:
+    type: git
+    url: https://github.com/eProsima/foonathan_memory_vendor.git
+    version: v1.2.1
+  eProsima/Micro-ROS-Agent:
+    type: git
+    url: https://github.com/micro-ROS/micro-ROS-Agent.git
+    version: 3.0.2
+  eProsima/Micro-ROS-Setup:
+    type: git
+    url: https://github.com/micro-ROS/micro_ros_setup.git
+    version: 3.1.0
+  eProsima/Micro-XRCE-DDS-Agent:
+    type: git
+    url: https://github.com/eProsima/Micro-XRCE-DDS-Agent
+    version: v2.1.1
+  eProsima/RMW-Fast-DDS:
+    type: git
+    url: https://github.com/eProsima/rmw_fastrtps.git
+    version: 69e8254ebc5ba07ff49ea97f94a8e73e49b3251b
+  eProsima/Shapes-Demo:
+    type: git
+    url: https://github.com/eProsima/ShapesDemo.git
+    version: 660550da3772d1ab4106ae655962a983d5d752da
+  eProsima/Shapes-Demo-TypeSupport:
+    type: git
+    url: https://github.com/eProsima/ShapesDemo.git
+    version: v1.0.0
+  eProsima/Vulcanexus-Base:
+    type: git
+    url: https://github.com/eProsima/vulcanexus.git
+    version: c78631ba1c97e7513a42c6fb700278dc474b0cc8
+  ros2/ROSIDL-TypeSupport-FastRTPS:
+    type: git
+    url: https://github.com/ros2/rosidl_typesupport_fastrtps.git
+    version: 2.2.0
