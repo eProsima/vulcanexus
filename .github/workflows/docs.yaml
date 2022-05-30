@@ -1,0 +1,50 @@
+name: docs
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - main
+      - galactic
+      - humble
+
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  ubuntu-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt -y install \
+            build-essential \
+            python3 \
+            python3-pip \
+            python3-venv \
+            python3-sphinxcontrib.spelling \
+            imagemagick
+
+      - name: Install python requirements
+        run: pip3 install -r docs/requirements.txt
+
+      - name: Generate HTML docs
+        run: |
+          cd docs
+          make html
+
+      - name: Upload documentation
+        uses: actions/upload-artifact@v1
+        with:
+          name: Documentation HTML
+          path: docs/build/html/
+
+      - name: Test docs
+        run: |
+          cd docs
+          make test
