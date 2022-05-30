@@ -23,7 +23,7 @@ spec:
                 path: DDSROUTER_CONFIGURATION.yaml
       containers:
         - name: ubuntu-vulcanexus-cloud
-          image: ubuntu-vulcanexus-cloud:galactic
+          image: ubuntu-vulcanexus-cloud:humble
           ports:
             - containerPort: 30001
               protocol: UDP
