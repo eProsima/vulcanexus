@@ -79,7 +79,7 @@ With the ROS 2 repository properly set up the next step is to install the requir
     python3-setuptools \
     python3-vcstool \
     wget
-   
+
 Get ROS 2 code
 --------------
 
