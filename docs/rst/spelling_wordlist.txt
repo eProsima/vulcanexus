@@ -6,6 +6,7 @@ dataflow
 entrypoint
 eProsima
 gpg
+Hierro
 keyring
 keyrings
 keystore

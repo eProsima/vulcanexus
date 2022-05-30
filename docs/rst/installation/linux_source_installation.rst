@@ -117,7 +117,7 @@ Install Vulcanexus dependencies
 -------------------------------
 
 Some additional dependencies which are required for the Vulcanexus distribution must be installed.
-Install the Vulcanexus required development tools with the follwing command:
+Install the Vulcanexus required development tools with the following command:
 
 .. code-block:: bash
 
