@@ -111,6 +111,9 @@ Add the Vulcanexus repositories and metadata files to the Vulcanexus workspace:
 
     cd ~
     cd vulcanexus_humble
+    # Remove ROS 2 packages overridden by Vulcanexus
+    rm -rf src/ros2/rosidl_typesupport_fastrtps/ src/eProsima/foonathan_memory_vendor/ src/ros2/rmw_fastrtps/
+    # Get Vulcanexus sources
     wget https://raw.githubusercontent.com/eProsima/vulcanexus/humble/vulcanexus.repos
     wget https://raw.githubusercontent.com/eProsima/vulcanexus/humble/colcon.meta
     vcs import --force src < vulcanexus.repos
