@@ -77,8 +77,6 @@ With the ROS 2 repository properly set up the next step is to install the requir
         python3-pytest-rerunfailures \
         python3-rosdep \
         python3-setuptools \
-        python3-sphinx \
-        python3-sphinx-rtd-theme \
         python3-vcstool \
         wget
 
@@ -98,6 +96,7 @@ Now download the required dependencies for these packages.
 
 .. code-block:: bash
 
+    sudo apt upgrade
     sudo rosdep init
     rosdep update
     rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-6.0.1 urdfdom_headers"
@@ -136,6 +135,8 @@ Install the Vulcanexus required development tools with the following command:
         libtinyxml2-dev \
         libyaml-cpp-dev \
         openjdk-8-jdk \
+        python3-sphinx \
+        python3-sphinx-rtd-theme \
         qtbase5-dev \
         qtdeclarative5-dev \
         qtquickcontrols2-5-dev \
