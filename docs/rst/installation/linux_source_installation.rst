@@ -160,16 +160,16 @@ Please, refer to `Fast DDS-Gen documentation <https://fast-dds.docs.eprosima.com
 
 .. code-block:: bash
 
-    cd src/eProsima/fastddsgen
+    cd src/eProsima/Fast-DDS-Gen
     ./gradlew assemble
 
-The generated Java application can be found in ``share/fastddsgen``.
+The generated Java application can be found in ``src/eProsima/Fast-DDS-Gen/share/fastddsgen``.
 However, the ``scripts`` folder provides some user friendly scripts that are recommended to be used.
 This scripts can be made accessible to the session adding the ``scripts`` folder path to the ``PATH`` environment variable.
 
 .. code-block:: bash
 
-    export PATH=~/vulcanexus_humble/src/eProsima/fastddsgen/scripts:$PATH
+    export PATH=~/vulcanexus_humble/src/eProsima/Fast-DDS-Gen/scripts:$PATH
 
 Build workspace
 ^^^^^^^^^^^^^^^
