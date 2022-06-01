@@ -160,7 +160,7 @@ Please, refer to `Fast DDS-Gen documentation <https://fast-dds.docs.eprosima.com
 
 .. code-block:: bash
 
-    cd src/eProsima/fastddsgen
+    cd src/eProsima/Fast-DDS-Gen
     ./gradlew assemble
 
 The generated Java application can be found in ``share/fastddsgen``.
