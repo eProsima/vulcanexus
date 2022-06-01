@@ -57,30 +57,28 @@ With the ROS 2 repository properly set up the next step is to install the requir
 .. code-block:: bash
 
     sudo apt update && sudo apt install -y \
-    build-essential \
-    cmake \
-    git \
-    python3-colcon-common-extensions \
-    python3-flake8 \
-    python3-flake8-blind-except \
-    python3-flake8-builtins \
-    python3-flake8-class-newline \
-    python3-flake8-comprehensions \
-    python3-flake8-deprecated \
-    python3-flake8-docstrings \
-    python3-flake8-import-order \
-    python3-flake8-quotes \
-    python3-pip \
-    python3-pytest \
-    python3-pytest-cov \
-    python3-pytest-repeat \
-    python3-pytest-rerunfailures \
-    python3-rosdep \
-    python3-setuptools \
-    python3-sphinx \
-    python3-sphinx-rtd-theme \
-    python3-vcstool \
-    wget
+        build-essential \
+        cmake \
+        git \
+        python3-colcon-common-extensions \
+        python3-flake8 \
+        python3-flake8-blind-except \
+        python3-flake8-builtins \
+        python3-flake8-class-newline \
+        python3-flake8-comprehensions \
+        python3-flake8-deprecated \
+        python3-flake8-docstrings \
+        python3-flake8-import-order \
+        python3-flake8-quotes \
+        python3-pip \
+        python3-pytest \
+        python3-pytest-cov \
+        python3-pytest-repeat \
+        python3-pytest-rerunfailures \
+        python3-rosdep \
+        python3-setuptools \
+        python3-vcstool \
+        wget
 
 Get ROS 2 code
 --------------
@@ -98,9 +96,10 @@ Now download the required dependencies for these packages.
 
 .. code-block:: bash
 
+    sudo apt upgrade
     sudo rosdep init
     rosdep update
-    rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-5.3.1 urdfdom_headers"
+    rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-6.0.1 urdfdom_headers"
 
 Get Vulcanexus code
 -------------------
@@ -111,6 +110,9 @@ Add the Vulcanexus repositories and metadata files to the Vulcanexus workspace:
 
     cd ~
     cd vulcanexus_humble
+    # Remove ROS 2 packages overridden by Vulcanexus
+    rm -rf src/ros2/rosidl_typesupport_fastrtps/ src/eProsima/foonathan_memory_vendor/ src/ros2/rmw_fastrtps/
+    # Get Vulcanexus sources
     wget https://raw.githubusercontent.com/eProsima/vulcanexus/humble/vulcanexus.repos
     wget https://raw.githubusercontent.com/eProsima/vulcanexus/humble/colcon.meta
     vcs import --force src < vulcanexus.repos
@@ -124,19 +126,21 @@ Install the Vulcanexus required development tools with the following command:
 .. code-block:: bash
 
     sudo apt update && sudo apt install -y \
-      libasio-dev \
-      libengine-pkcs11-openssl \
-      liblog4cxx-dev \
-      libp11-dev \
-      libqt5charts5-dev \
-      libssl-dev \
-      libtinyxml2-dev \
-      libyaml-cpp-dev \
-      openjdk-8-jdk \
-      qtbase5-dev \
-      qtdeclarative5-dev \
-      qtquickcontrols2-5-dev \
-      swig
+        libasio-dev \
+        libengine-pkcs11-openssl \
+        liblog4cxx-dev \
+        libp11-dev \
+        libqt5charts5-dev \
+        libssl-dev \
+        libtinyxml2-dev \
+        libyaml-cpp-dev \
+        openjdk-8-jdk \
+        python3-sphinx \
+        python3-sphinx-rtd-theme \
+        qtbase5-dev \
+        qtdeclarative5-dev \
+        qtquickcontrols2-5-dev \
+        swig
 
 Build the code in the workspace
 -------------------------------
