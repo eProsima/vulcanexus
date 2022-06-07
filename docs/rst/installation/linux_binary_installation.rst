@@ -12,45 +12,34 @@ ROS 2 prerequisites
 First of all, set up a `UTF-8` locale as required by ROS 2.
 Locale settings can be checked and set up with the following commands:
 
-.. code-block:: bash
-
-    locale  # check for UTF-8
-
-    sudo apt update && sudo apt install locales
-    # Any UTF-8 locale will work. Using en_US as an example
-    sudo locale-gen en_US en_US.UTF-8
-    sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
-    export LANG=en_US.UTF-8
+.. literalinclude:: ../../resources/scripts/linux_binary_installation.bash
+   :language: bash
+   :start-after: ##LINUX_BINARY_LOCALE
+   :end-before: ##!
 
 ROS 2 also requires that the Ubuntu Universe repository is enabled.
 This can be checked and enabled with the following commands:
 
-.. code-block:: bash
-
-    apt-cache policy | grep universe
-
-    # This should print something similar to:
-    #
-    #  500 http://us.archive.ubuntu.com/ubuntu jammy/universe amd64 Packages
-    # release v=22.04,o=Ubuntu,a=jammy,n=jammy,l=Ubuntu,c=universe,b=amd64
-    #
-    # Otherwise run
-
-    sudo apt install software-properties-common
-    sudo add-apt-repository universe
+.. literalinclude:: ../../resources/scripts/linux_binary_installation.bash
+   :language: bash
+   :start-after: ##LINUX_BINARY_UBUNTU_UNIVERSE
+   :end-before: ##!
 
 Now download ROS 2 GPG key into the keystore.
 
-.. code-block:: bash
+.. literalinclude:: ../../resources/scripts/linux_binary_installation.bash
+   :language: bash
+   :start-after: ##LINUX_BINARY_KEYSTORE
+   :end-before: ##!
 
-    sudo apt update && sudo apt install curl gnupg lsb-release
-    sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
 
 And finally add ROS 2 repository to the repository manager sources list.
 
-.. code-block:: bash
+.. literalinclude:: ../../resources/scripts/linux_binary_installation.bash
+   :language: bash
+   :start-after: ##LINUX_BINARY_REPO_SOURCELIST
+   :end-before: ##!
 
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(source /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
 
 Setup Vulcanexus sources
 ------------------------
@@ -59,36 +48,41 @@ Once all ROS 2 prerequisites have been met, it is time to set up Vulcanexus.
 
 Add Vulcanexus GPG key so apt can retrieve the packages:
 
-.. code-block:: bash
-
-    sudo curl -sSL https://raw.githubusercontent.com/eProsima/vulcanexus/main/vulcanexus.key -o /usr/share/keyrings/vulcanexus-archive-keyring.gpg
+.. literalinclude:: ../../resources/scripts/linux_binary_installation.bash
+   :language: bash
+   :start-after: ##LINUX_BINARY_VULCA_SOURCES
+   :end-before: ##!
 
 Next, add the eProsima Vulcanexus repository to the repository manager sources list:
 
-.. code-block:: bash
+.. literalinclude:: ../../resources/scripts/linux_binary_installation.bash
+   :language: bash
+   :start-after: ##LINUX_BINARY_VULCA_ADD_REPO
+   :end-before: ##!
 
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/vulcanexus-archive-keyring.gpg] http://repo.vulcanexus.com/debian $(source /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/vulcanexus.list > /dev/null
 
 Install eProsima Vulcanexus packages
 ------------------------------------
 
 Remember to update the apt repository caches after setting up the repositories:
 
-.. code-block:: bash
-
-    sudo apt update
+.. literalinclude:: ../../resources/scripts/linux_binary_installation.bash
+   :language: bash
+   :start-after: ##LINUX_BINARY_VULCA_UPDATE
+   :end-before: ##!
 
 Desktop install (Recommended): includes all the simulation tools, demos, and tutorials.
 
-.. code-block:: bash
-
-    sudo apt install vulcanexus-humble-desktop
+.. literalinclude:: ../../resources/scripts/linux_binary_installation.bash
+   :language: bash
+   :start-after: ##LINUX_BINARY_VULCA_INSTALL
+   :end-before: ##!
 
 Base Install: basic installation without simulation tools, demos, and tutorials.
 
 .. code-block:: bash
 
-    sudo apt install vulcanexus-humble-base
+    sudo apt install -y vulcanexus-humble-base
 
 For other Vulcanexus packages, please refer to the :ref:`Introduction <vulcanexus_introduction>` section for more
 information.
