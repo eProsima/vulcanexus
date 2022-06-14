@@ -2,6 +2,12 @@
 
 set -e
 
+if (( $EUID == 0 )); then
+    shopt -s expand_aliases
+    alias sudo=''
+fi
+
+if !(locale | grep -e 'utf8' -e 'UTF-8') >/dev/null 2>&1; then
 
 ##LINUX_SOURCE_LOCALE
 locale  # check for UTF-8
@@ -12,6 +18,10 @@ sudo locale-gen en_US en_US.UTF-8
 sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 export LANG=en_US.UTF-8
 ##!
+
+locale
+
+fi
 
 ##LINUX_SOURCE_UBUNTU_UNIVERSE
 apt-cache policy | grep universe
