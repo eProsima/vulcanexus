@@ -52,7 +52,7 @@ sudo curl -sSL https://raw.githubusercontent.com/eProsima/vulcanexus/main/vulcan
 ##!
 
 ##LINUX_BINARY_VULCA_ADD_REPO
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/vulcanexus-archive-keyring.gpg] http://repo.vulcanexus.com/debian $(source /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/vulcanexus.list > /dev/null
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/vulcanexus-archive-keyring.gpg] http://repo.vulcanexus.org/debian $(source /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/vulcanexus.list > /dev/null
 ##!
 
 ##LINUX_BINARY_VULCA_UPDATE
