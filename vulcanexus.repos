@@ -26,7 +26,7 @@ repositories:
   eProsima/Fast-DDS-Statistics-Backend:
     type: git
     url: https://github.com/eProsima/Fast-DDS-statistics-backend.git
-    version: v0.6.0
+    version: b9f0c1ca219f82d691b8aab222e1e0454306fa57
   eProsima/Foonathan-Memory-Vendor:
     type: git
     url: https://github.com/eProsima/foonathan_memory_vendor.git
