@@ -2,7 +2,7 @@ repositories:
   eProsima/DDS-Router:
     type: git
     url: https://github.com/eProsima/DDS-Router.git
-    version: v0.3.0
+    version: v0.4.0
   eProsima/Fast-CDR:
     type: git
     url: https://github.com/eProsima/Fast-CDR.git
@@ -10,23 +10,23 @@ repositories:
   eProsima/Fast-DDS:
     type: git
     url: https://github.com/eProsima/Fast-DDS.git
-    version: v2.6.1
+    version: v2.7.0
   eProsima/Fast-DDS-Gen:
     type: git
     url: https://github.com/eProsima/Fast-DDS-Gen.git
-    version: v2.1.2
+    version: v2.1.3
   eProsima/Fast-DDS-Monitor:
     type: git
     url: https://github.com/eProsima/Fast-DDS-monitor.git
-    version: v1.1.0
+    version: v1.2.0
   eProsima/Fast-DDS-Python:
     type: git
     url: https://github.com/eProsima/Fast-DDS-python.git
-    version: 8b8f512f7a233f0c9915347e32b5474972e172cd
+    version: v1.1.0
   eProsima/Fast-DDS-Statistics-Backend:
     type: git
     url: https://github.com/eProsima/Fast-DDS-statistics-backend.git
-    version: 59e750b819773d3dea4c6895d8918c9b8bd3c304
+    version: v0.7.0
   eProsima/Foonathan-Memory-Vendor:
     type: git
     url: https://github.com/eProsima/foonathan_memory_vendor.git
@@ -46,7 +46,7 @@ repositories:
   eProsima/Micro-XRCE-DDS-Agent:
     type: git
     url: https://github.com/eProsima/Micro-XRCE-DDS-Agent
-    version: v2.1.1
+    version: v2.2.0
   eProsima/RMW-Fast-DDS:
     type: git
     url: https://github.com/eProsima/rmw_fastrtps.git
@@ -54,7 +54,7 @@ repositories:
   eProsima/Shapes-Demo:
     type: git
     url: https://github.com/eProsima/ShapesDemo.git
-    version: v2.6.1
+    version: v2.7.0
   eProsima/Shapes-Demo-TypeSupport:
     type: git
     url: https://github.com/eProsima/ShapesDemo-TypeSupport.git
