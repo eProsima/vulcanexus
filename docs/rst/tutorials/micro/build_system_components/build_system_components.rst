@@ -21,9 +21,9 @@ Renesas e\ :sup:`2` Studio
 
 This family of MCU features a wide range of features based on Arm® Cortex®-M33, -M23 and -M4 processor cores.
 
-Renesas e\ :sup:`2` Studio provide a whole integrated development environment that allows a quick development, test and profile embedded applications in a professional manner. micro-ROS component for Renesas provides a set of tools and instructions to integrate micro-ROS build system in a Renenas e\ :sup:`2` Studio project.
+Renesas e\ :sup:`2` Studio provide a whole integrated development environment that allows a quick development, test and profile embedded applications in a professional manner. micro-ROS component for Renesas provides a set of tools and instructions to integrate micro-ROS build system in a Renesas e\ :sup:`2` Studio project.
 
-This packages support multiple RTOSes (FreeRTOS and Azure RTOS) and a baremetal approach. Also a wide range of transport layer are available: UART, UDP/IP, TCP/IP, USB-CDC and CAN/FD.
+This packages support multiple RTOSes (FreeRTOS and Azure RTOS) and a bare-metal approach. Also a wide range of transport layer are available: UART, UDP/IP, TCP/IP, USB-CDC and CAN/FD.
 
 .. note::
 
@@ -217,7 +217,7 @@ micro-ROS for Arduino provides a set of prebuilt libraries for reference platfor
 Raspberry Pi Pico
 ^^^^^^^^^^^^^^^^^
 
-`Raspberry Pi Pico <https://www.raspberrypi.com/products/raspberry-pi-pico/>`_ is the highly embedded and super low cost solution of **Raspberry Pi for microcontroller environments**. It features a dual core Cortex-M0+ based silicon named RP2040, which include a wide variety of peripherals such as I2C, SPI, UART or GPIO, and even a hardware programable module named PIO. Also a full featured API for hardware abstraction are provided within the SDK.
+`Raspberry Pi Pico <https://www.raspberrypi.com/products/raspberry-pi-pico/>`_ is the highly embedded and super low cost solution of **Raspberry Pi for microcontroller environments**. It features a dual core Cortex-M0+ based silicon named RP2040, which include a wide variety of peripherals such as I2C, SPI, UART or GPIO, and even a hardware programmable module named PIO. Also a full featured API for hardware abstraction are provided within the SDK.
 
 micro-ROS module for Raspberry Pi Pico SDK provides a set of prebuilt libraries so the user do not have to handle the micro-ROS build procedure. Also, for advanced users, instructions for customizing the installation and recompiling the library are provided.
 
