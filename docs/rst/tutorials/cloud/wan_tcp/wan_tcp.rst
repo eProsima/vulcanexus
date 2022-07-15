@@ -1,6 +1,6 @@
 .. _cloud_wan_tcp_edge_cloud_arch_wan_tcp:
 
-Communicate distributed scenarios with Vulcannexus framework
+Communicate distributed scenarios with Vulcanexus framework
 ============================================================
 
 This tutorial aims to show the user how to recreate a robot deployment in a distributed network with the capability of monitoring, control and tracking through the Cloud.

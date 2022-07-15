@@ -22,8 +22,8 @@ Several key elements can be observed in it:
 
 1.  **ROS 2 Device Controller**.
     This is a ROS 2 application that sends commands to the edge robot.
-    It has been developed a basic C++ application for this tutorial that sends publications on the topic that the turtlesim_node listens.
-    By means of these publications (commands) from the controller, and the feedback information that the controller receives from the turtlesim_node, it is possible to control this node automatically without the need for user intervention which facilitates the deployment of the scenario at hand.
+    It has been developed a basic C++ application for this tutorial that sends publications on the topic that the ``turtlesim_node`` listens.
+    By means of these publications (commands) from the controller, and the feedback information that the controller receives from the ``turtlesim_node``, it is possible to control this node automatically without the need for user intervention which facilitates the deployment of the scenario at hand.
     The key feature of the *DDS Router* is that it is easy to configure, allowing to connect different networks with ROS 2 applications without the need to apply any changes to the developer's software or applications.
 
 1.  **ROS 2 Router / DDS Router**.
@@ -97,7 +97,7 @@ Then, to run the DDS Router Edge configure the environment as in the previous st
 
 .. note::
 
-    If you are deploying Vulcanexus from the Docker image, note that you will need to have a configuration file (config.yaml) to configure the DDS Router Edge accessible from your Docker container.
+    If you are deploying Vulcanexus from the Docker image, note that you will need to have a configuration file (``config.yaml``) to configure the DDS Router Edge accessible from your Docker container.
 
     You can do this by mounting a shared volume when launching the container, by copying the file from the local host to the container in case it is already running, or by editing a file from the Docker container itself.
 
@@ -116,18 +116,24 @@ Next, it is briefly explained the most relevant aspects of this configuration fi
 
 The ``participants`` are the interfaces of the DDS Router to communicate with other networks. In this case, we have two participants:
 
-    * ``local``: this is a simple participant that communicates with all ROS 2 nodes it finds. For more information about this participant please refer to the `Simple Participant section <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/participants/simple.html#user-manual-participants-simple>`_ of the DDS Router documentation.
+    *   ``local``: this is a simple participant that communicates with all ROS 2 nodes it finds.
+        For more information about this participant please refer to the `Simple Participant section <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/participants/simple.html#user-manual-participants-simple>`_ of the DDS Router documentation.
 
-    * ``router``: it is a participant designed for the communication between two *DDS Routers*. It uses the `Fast DDS Discovery Server discovery mechanism <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery_server.html#discovery-server>`_ to establish a point-to-point communication between two DDS entities, two *DDS Routers* in this case. It is not necessary to know more about this discovery protocol, but it is important to note that each ``router``-type participant must have a unique ``id`` across the entire network, which is configured with the ``discovery-server-guid`` tag.
+    *   ``router``: it is a participant designed for the communication between two *DDS Routers*.
+        It uses the `Fast DDS Discovery Server discovery mechanism <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery_server.html#discovery-server>`_ to establish a point-to-point communication between two DDS entities, two *DDS Routers* in this case.
+        It is not necessary to know more about this discovery protocol, but it is important to note that each ``router``-type participant must have a unique ``id`` across the entire network, which is configured with the ``discovery-server-guid`` tag.
 
-    For the DDS Router Edge, a connection address shall be defined which must be the same as the one exposed by the Cloud Server. There are some relevant configurations within this connection address:
+    For the DDS Router Edge, a connection address shall be defined which must be the same as the one exposed by the Cloud Server.
+    There are some relevant configurations within this connection address:
 
     * ``discovery-server-guid``: it defines the ``id`` of the ``router``-type participant of the DDS Router Cloud.
     * ``addresses``: defines the IP (``ip``) and port (``port``) of the network addresses to which it connects, and the transport protocol (``transport``) to be used in the communication, TCP in this case.
 
 .. note::
 
-    It is important to mention that the ROS 2 topics relayed by the DDS Router can be filtered by configuring the ``allowlist`` and ``blocklist``. However, in this case the DDS Router will retransmit all topics found in the network, so this is not configured. In case this is the case please refer to the DDS Router documentation for information on how to do this.
+    It is important to mention that the ROS 2 topics relayed by the DDS Router can be filtered by configuring the ``allowlist`` and ``blocklist``.
+    However, in this case the DDS Router will forward all topics found in the network, so this is not configured.
+    In case this is the case please refer to the `DDS Router documentation <https://eprosima-dds-router.readthedocs.io/en/latest/>`_ for information on how to do this.
 
 The following figure summarizes the deployment on the edge.
 
@@ -143,9 +149,11 @@ To finish this step, run the DDS Router with the configuration file created as a
 Running the turtlesim_square_move on the Cloud
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Run the ``turtlesim_square_move`` in the Cloud Server machine, which is the controller of the edge ``turtlesim_node``. This will send commands to the ROS 2 application on the edge to move the turtle and receive information about the current state of the turtle at any time.
+Run the ``turtlesim_square_move`` in the Cloud Server machine, which is the controller of the edge ``turtlesim_node``.
+This will send commands to the ROS 2 application on the edge to move the turtle and receive information about the current state of the turtle at any time.
 
-A ROS 2 application that moves the turtle by drawing a square has been developed for this purpose. The application is based on the `ROS 2 tutorials <https://github.com/ros/ros_tutorials/tree/humble/turtlesim>`_, but has been slightly modified in order to make it easier to understand and adapt to the ROS 2 and modern C++ programming methods.
+A ROS 2 application that moves the turtle by drawing a square has been developed for this purpose.
+The application is based on the `ROS 2 tutorials <https://github.com/ros/ros_tutorials/tree/humble/turtlesim>`_, but has been slightly modified in order to make it easier to understand and adapt to the ROS 2 and modern C++ programming methods.
 
 Then, start by creating the workspace of this application and downloading the source code:
 
@@ -164,7 +172,8 @@ Once created the workspace, source the Vulcanexus environment and build the ``tu
 
 .. note::
 
-    Since the purpose of this tutorial is not to explain how to create a ROS 2 node, but rather, the communication of these in distributed environments, the code will not be discussed in detail. Stay tuned for new tutorials in which we will discuss how to configure ROS 2 nodes, publishers/subscribers, services and actions.
+    Since the purpose of this tutorial is not to explain how to create a ROS 2 node, but rather, the communication of these in distributed environments, the code will not be discussed in detail.
+    Stay tuned for new tutorials in which we will discuss how to configure ROS 2 nodes, publishers/subscribers, services and actions.
 
 Now run the application:
 
@@ -175,9 +184,11 @@ Now run the application:
 
 The important points to note in this application are the following:
 
-* The control application sends the movement commands to the turtlesim_node through a publisher in the `geometry_msgs/msg/Twist <https://docs.ros2.org/foxy/api/geometry_msgs/msg/Twist.html>`_ topic. This topic expresses the velocity at which the turtle has to move divided into linear velocity (``linear``) and angular velocity (``angular``).
+*   The control application sends the movement commands to the ``turtlesim_node`` through a publisher in the `geometry_msgs/msg/Twist <https://docs.ros2.org/foxy/api/geometry_msgs/msg/Twist.html>`_ topic.
+    This topic expresses the velocity at which the turtle has to move divided into linear velocity (``linear``) and angular velocity (``angular``).
 
-* The application knows the position of the turtle on the map at any moment and whether it is stopped or moving by subscribing to the `turtlesim/msg/pose <https://docs.ros2.org/foxy/api/turtlesim/msg/Pose.html>`_ topic. This topic provides information about the turtle's coordinates (``x`` and ``y``) and the turtle's rotation (``theta``). We can also know its linear and angular velocity (``linear_velocity`` and ``angular_velocity``).
+*   The application knows the position of the turtle on the map at any moment and whether it is stopped or moving by subscribing to the `turtlesim/msg/pose <https://docs.ros2.org/foxy/api/turtlesim/msg/Pose.html>`_ topic.
+    This topic provides information about the turtle's coordinates (``x`` and ``y``) and the turtle's rotation (``theta``). We can also know its linear and angular velocity (``linear_velocity`` and ``angular_velocity``).
 
 Once the application is launched the following traces should be visible in the terminal.
 
@@ -211,7 +222,8 @@ This configuration will depend on your network router, but it should be similar 
 
 .. warning::
 
-    Due to a current limitation of DDS Router, the external port and internal port must match. Stay tuned for new versions of DDS Router that are intended to address this limitation.
+    Due to a current limitation of DDS Router, the external port and internal port must match.
+    Stay tuned for new versions of DDS Router that are intended to address this limitation.
 
 Configure the DDS Router Cloud
 ''''''''''''''''''''''''''''''
@@ -221,13 +233,16 @@ The DDS Router Cloud configuration file is quite similar to the DDS Router Edge 
 .. literalinclude:: ../../../../../resources/tutorials/edge_cloud_arch/dds_router_cloud.yaml
     :language: yaml
 
-In this case there are also two participants, two communication interfaces for the DDS Router. The first one communicates the DDS Router with any ROS 2 node, while the second one enables to establish a communication channel with another DDS Router.
+In this case there are also two participants, two communication interfaces for the DDS Router.
+The first one communicates the DDS Router with any ROS 2 node, while the second one enables to establish a communication channel with another DDS Router.
 
 Even so there are some differences in the second participant that are worth mentioning:
 
-1. The ``id`` of this participant is different from the previous one, ``1`` in this case. This is because, as mentioned above, the ids of this type of participant must be unique in the entire DDS Router network.
+1.  The ``id`` of this participant is different from the previous one, ``1`` in this case.
+    This is because, as mentioned above, the ids of this type of participant must be unique in the entire DDS Router network.
 
-1. This participant sets a listening address (``listening-addresses``), rather than a connection address. This is because it is the participant that waits for incoming communications since it has this network address exposed and accessible from the Internet.
+1.  This participant sets a listening address (``listening-addresses``), rather than a connection address.
+    This is because it is the participant that waits for incoming communications since it has this network address exposed and accessible from the Internet.
 
 To finish, as done in the previous steps, setup the Vulcanexus environment sourcing the `setup.bash` file and run the DDS Router Cloud with the above configuration.
 
