@@ -49,7 +49,8 @@ The following documentation includes instructions for installing each *Vulcanexu
    :numbered: 5
 
    /rst/tutorials/tools_tutorial.rst
-   /rst/tutorials/cloud_tutorial.rst
+   /rst/tutorials/cloud/cloud_tutorial.rst
+   /rst/tutorials/cloud/wan_tcp/wan_tcp.rst
    /rst/tutorials/microros_tutorial.rst
 
 .. toctree::

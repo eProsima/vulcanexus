@@ -1,0 +1,18 @@
+version: v2.0
+
+participants:
+
+  - name: ROS_2_LAN_1
+    kind: local
+
+  - name: WAN_Client
+    kind: wan
+    discovery-server-guid:
+      id: 0
+    connection-addresses:
+      - discovery-server-guid:
+          id: 1
+        addresses:
+          - ip: 1.1.1.1
+            port: 11666
+            transport: tcp
