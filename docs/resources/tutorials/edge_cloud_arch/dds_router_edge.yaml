@@ -5,14 +5,14 @@ participants:
   - name: ROS_2_LAN_1
     kind: local
 
-  - name: WAN_Client
-    kind: wan
+  - name: Router_Client
+    kind: router
     discovery-server-guid:
       id: 0
     connection-addresses:
       - discovery-server-guid:
           id: 1
         addresses:
-          - ip: 1.1.1.1
-            port: 11666
+          - ip: 123.123.123.123
+            port: 45678
             transport: tcp

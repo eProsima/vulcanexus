@@ -11,6 +11,7 @@ This way, all the elements involved in this architecture will be studied, starti
 The image below describes the scenario presented in this tutorial.
 
 .. figure:: /rst/figures/cloud/edge_cloud_wan.png
+   :align: center
 
 Several key elements can be observed in it:
 
@@ -131,6 +132,13 @@ The ``participants`` are the interfaces of the DDS Router to communicate with ot
 The following figure summarizes the deployment on the edge.
 
 .. figure:: /rst/figures/cloud/edge_deployment.png
+   :align: center
+
+To finish this step, run the DDS Router with the configuration file created as an argument.
+
+.. code-block::
+
+    ddsrouter -c <path/to/file>/ddsrouter_edge.yaml
 
 Running the turtlesim_square_move on the Cloud
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -188,8 +196,48 @@ Once the application is launched the following traces should be visible in the t
     [INFO] [1657870914.085652821] [turtlesim_square_move]: Reached goal
 
 
+Running the DDS Router Cloud
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Configure transversal NAT on the network router
+'''''''''''''''''''''''''''''''''''''''''''''''
 
+The first thing to do before starting to configure DDS Router is to configure the network router to allow a remote communication from the Internet to reach a specific device on the LAN, more specifically to expose an IP address and a port to the network that will be used by our DDS Router application.
 
+This configuration will depend on your network router, but it should be similar to the one shown in the following image.
 
+.. figure:: /rst/figures/cloud/router_settings.png
+   :align: center
 
+.. warning::
+
+    Due to a current limitation of DDS Router, the external port and internal port must match. Stay tuned for new versions of DDS Router that are intended to address this limitation.
+
+Configure the DDS Router Cloud
+''''''''''''''''''''''''''''''
+
+The DDS Router Cloud configuration file is quite similar to the DDS Router Edge configuration file, as can be seen below:
+
+.. literalinclude:: ../../../../../resources/tutorials/edge_cloud_arch/dds_router_cloud.yaml
+    :language: yaml
+
+In this case there are also two participants, two communication interfaces for the DDS Router. The first one communicates the DDS Router with any ROS 2 node, while the second one enables to establish a communication channel with another DDS Router.
+
+Even so there are some differences in the second participant that are worth mentioning:
+
+1. The ``id`` of this participant is different from the previous one, ``1`` in this case. This is because, as mentioned above, the ids of this type of participant must be unique in the entire DDS Router network.
+
+1. This participant sets a listening address (``listening-addresses``), rather than a connection address. This is because it is the participant that waits for incoming communications since it has this network address exposed and accessible from the Internet.
+
+To finish, as done in the previous steps, setup the Vulcanexus environment sourcing the `setup.bash` file and run the DDS Router Cloud with the above configuration.
+
+.. code-block:: bash
+
+    source /opt/vulcanexus/humble/setup.bash
+    ddsrouter -c <path/to/file>/ddsrouter_cloud.yaml
+
+If all the steps in this tutorial have been followed, the turtle in the ``turtlesim_node`` on the edge should move around creating a square.
+
+.. figure:: /rst/figures/cloud/turtlesim_node_square.png
+   :scale: 75%
+   :align: center
