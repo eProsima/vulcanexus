@@ -21,7 +21,7 @@ Renesas e\ :sup:`2` Studio
 
 This family of MCU features a wide range of features based on Arm® Cortex®-M33, -M23 and -M4 processor cores.
 
-Renesas e\ :sup:`2` Studio provide a whole integrated development environment that allows a quick development, test and profile embedded applications in a professional manner. micro-ROS component for Renesas provides a set of tools and instructions to integrate micro-ROS build system in a Renesas e\ :sup:`2` Studio project.
+Renesas e\ :sup:`2` Studio provide a whole integrated development environment that allows for professional development, test and profile of embedded applications. micro-ROS component for Renesas provides a set of tools and instructions to integrate the build and configurate micro-ROS inside of a Renesas e\ :sup:`2` Studio project.
 
 This packages support multiple RTOSes (FreeRTOS and Azure RTOS) and a bare-metal approach. Also a wide range of transport layer are available: UART, UDP/IP, TCP/IP, USB-CDC and CAN/FD.
 
@@ -123,7 +123,7 @@ Microsoft Azure RTOS
 
 `Azure RTOS <https://azure.microsoft.com/en-us/services/rtos/>`_ is the **embedded IoT development environment of Microsoft**. It provides a huge amount of solutions and ready-to-use libraries with focus in cloud applications and connectivity.
 
-By means of this module, micro-ROS is integrated in ThreadX (the Azure RTOS scheduler) and NetX (the Azure RTOS network stack) to enable a complete compliance with ROS 2 embedded applications.
+By means of this module, micro-ROS is integrated in ThreadX (the Azure RTOS scheduler), using NetX (the Azure RTOS network stack) to provide a UDP/IP transport.
 
 .. note::
 
@@ -161,7 +161,7 @@ ST Micro ST Cube IDE/MX
 
 `STM32Cube <https://www.st.com/en/ecosystems/stm32cube.html>`_ is one of the **preferred options of the users of ST Micro STM32 family**. By means of this module, the micro-ROS user will find easy to integrate the micro-ROS stack in a STM32Cube project.
 
-All the STM32 MCUs are supported by this IDE and most of them should be able to run the micro-ROS stack. By now, multiple Nucleo boards featuring STM32F4 and STM42F7 devices has been tested a proven to work. By using this module the micro-ROS user will find easy to port the micro-ROS to its own STM32 with FreeRTOS and a serial based transport.
+All the STM32 MCUs are supported by this IDE and most of them should be able to run the micro-ROS stack. By now, multiple Nucleo boards featuring STM32F4 and STM42F7 devices has been tested a proven to work. By using this module the micro-ROS user will find it easy to port micro-ROS to its own STM32 with FreeRTOS and the provided serial based transport.
 
 .. note::
 
@@ -197,7 +197,7 @@ By using this module, micro-ROS user will be able to integrate micro-ROS in thei
 Arduino
 ^^^^^^^
 
-`Arduino <https://www.arduino.cc/>`_ is the reference development framework for newbies in the embedded world. Using their **user-friendly IDE and tools**, Arduino users can easily go from their first blinky LED to the their own micro-ROS applications.
+`Arduino <https://www.arduino.cc/>`_ is the reference development framework to introduce new users to the embedded world. Using their **user-friendly IDE and tools**, Arduino users can easily go from their first blinky LED to the their own micro-ROS applications.
 
 micro-ROS for Arduino provides a set of prebuilt libraries for reference platforms so the user do not have to handle the micro-ROS build procedure. Also, for advanced users, instructions for customizing the installation and recompiling the library are provided.
 
@@ -217,7 +217,7 @@ micro-ROS for Arduino provides a set of prebuilt libraries for reference platfor
 Raspberry Pi Pico
 ^^^^^^^^^^^^^^^^^
 
-`Raspberry Pi Pico <https://www.raspberrypi.com/products/raspberry-pi-pico/>`_ is the highly embedded and super low cost solution of **Raspberry Pi for microcontroller environments**. It features a dual core Cortex-M0+ based silicon named RP2040, which include a wide variety of peripherals such as I2C, SPI, UART or GPIO, and even a hardware programmable module named PIO. Also a full featured API for hardware abstraction are provided within the SDK.
+`Raspberry Pi Pico <https://www.raspberrypi.com/products/raspberry-pi-pico/>`_ is the versatile embedded and super low cost solution of **Raspberry Pi for microcontroller environments**. It features a dual core Cortex-M0+ based silicon named RP2040, which include a wide variety of peripherals such as I2C, SPI, UART or GPIO, and even a hardware programmable module named PIO. Also a full featured API for hardware abstraction are provided within the SDK.
 
 micro-ROS module for Raspberry Pi Pico SDK provides a set of prebuilt libraries so the user do not have to handle the micro-ROS build procedure. Also, for advanced users, instructions for customizing the installation and recompiling the library are provided.
 
