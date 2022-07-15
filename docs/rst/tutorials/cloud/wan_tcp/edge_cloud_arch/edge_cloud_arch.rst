@@ -236,8 +236,15 @@ To finish, as done in the previous steps, setup the Vulcanexus environment sourc
     source /opt/vulcanexus/humble/setup.bash
     ddsrouter -c <path/to/file>/ddsrouter_cloud.yaml
 
+The following figure summarizes the deployment on the Cloud.
+
+.. figure:: /rst/figures/cloud/cloud_deployment.png
+   :align: center
+
 If all the steps in this tutorial have been followed, the turtle in the ``turtlesim_node`` on the edge should move around creating a square.
 
 .. figure:: /rst/figures/cloud/turtlesim_node_square.png
    :scale: 75%
    :align: center
+
+.. todo: add next steps section when the next tutorial is available.

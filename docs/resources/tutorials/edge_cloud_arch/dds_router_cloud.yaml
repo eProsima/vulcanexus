@@ -9,7 +9,7 @@ participants:
     kind: router
     discovery-server-guid:
       id: 1
-    listening-addresses:                                          # 9
-      - ip: 123.123.123.123                                               # 10
-        port: 45678                                               # 11
+    listening-addresses:
+      - ip: 123.123.123.123
+        port: 45678
         transport: tcp
