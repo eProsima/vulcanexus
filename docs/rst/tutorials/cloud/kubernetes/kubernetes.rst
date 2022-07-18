@@ -1,9 +1,10 @@
-.. _vulcanexus_cloud_tutorial:
+.. _tutorials_cloud_kubernetes_kubernetes:
+
 
 Vulcanexus Cloud and Kubernetes
 ===============================
 
-.. contents:: Table of Contents
+.. contents::
     :depth: 2
     :local:
     :backlinks: none
@@ -14,7 +15,7 @@ Background
 This walk-through tutorial sets up both a *Kubernetes* (*K8s*) network and a local environment in order to establish communication between a pair of ROS nodes, one sending messages from a LAN (talker) and another one receiving them in the Cloud (listener).
 Cloud environments such as container-oriented platforms can be connected using `eProsima DDS Router <https://eprosima-dds-router.readthedocs.io/en/latest/>`_, and thus, by launching a *DDS Router* instance at each side, communication can be established.
 
-.. figure:: /rst/figures/cloud_tutorial/ddsrouter_overview_wan.png
+.. figure:: /rst/figures/tutorials/cloud/ddsrouter_overview_wan.png
 
 Prerequisites
 -------------
@@ -39,7 +40,7 @@ After having acknowledged each other's existence through `Simple DDS discovery m
 Next, these messages will be sent to another participant hosted on a *K8s* cluster to which it connects via WAN communication over UDP/IP.
 Following there is a representation of the above-described scenario:
 
-.. figure:: /rst/figures/cloud_tutorial/vulcanexus_local.png
+.. figure:: /rst/figures/tutorials/cloud/vulcanexus_local.png
 
 
 Local router
@@ -47,7 +48,7 @@ Local router
 
 The configuration file used by the local router will be the following:
 
-.. literalinclude:: ../../resources/tutorials/cloud_tutorial/local-ddsrouter.yaml
+.. literalinclude:: /resources/tutorials/cloud/kubernetes/local-ddsrouter.yaml
     :language: yaml
 
 Please, copy the previous configuration snippet and save it to a file in your current working directory with name ``local-ddsrouter.yaml``.
@@ -96,16 +97,16 @@ This node has to be launched as a Client to the local DS running on the first de
 
 The described scheme is represented in the following figure:
 
-.. figure:: /rst/figures/cloud_tutorial/vulcanexus_cloud.png
+.. figure:: /rst/figures/tutorials/cloud/vulcanexus_cloud.png
 
 In addition to the two mentioned deployments, two *K8s* `services <https://kubernetes.io/docs/concepts/services-networking/service/>`_ are required in order to direct dataflow to each of the pods.
 A LoadBalancer will forward messages reaching the cluster to the WAN participant of the cloud router, and a ClusterIP service will be in charge of delivering messages from the local DS to the listener pod.
 Following there are the settings needed to launch these services in *K8s*:
 
-.. literalinclude:: ../../resources/tutorials/cloud_tutorial/load-balancer-service.yaml
+.. literalinclude:: /resources/tutorials/cloud/kubernetes/load-balancer-service.yaml
     :language: yaml
 
-.. literalinclude:: ../../resources/tutorials/cloud_tutorial/local-service.yaml
+.. literalinclude:: /resources/tutorials/cloud/kubernetes/local-service.yaml
     :language: yaml
 
 .. note::
@@ -115,12 +116,12 @@ Following there are the settings needed to launch these services in *K8s*:
 
 The configuration file used for the cloud router will be provided by setting up a `ConfigMap <https://kubernetes.io/docs/concepts/configuration/configmap/>`_:
 
-.. literalinclude:: ../../resources/tutorials/cloud_tutorial/ConfigMap.yaml
+.. literalinclude:: /resources/tutorials/cloud/kubernetes/ConfigMap.yaml
     :language: yaml
 
 Following there is a representation of the overall *K8s* cluster configuration:
 
-.. figure:: /rst/figures/cloud_tutorial/vulcanexus_k8s.png
+.. figure:: /rst/figures/tutorials/cloud/vulcanexus_k8s.png
 
 
 DDS-Router deployment
@@ -129,7 +130,7 @@ DDS-Router deployment
 The cloud router is launched from within a *Vulcanexus Cloud* Docker image (that can be downloaded in `Vulcanexus webpage <https://vulcanexus.org/>`_), which uses as configuration file the one hosted in the previously set up ConfigMap.
 Assuming the name of the generated Docker image is ``ubuntu-vulcanexus-cloud:humble``, the cloud router will then be deployed with the following settings:
 
-.. literalinclude:: ../../resources/tutorials/cloud_tutorial/ddsrouter.yaml
+.. literalinclude:: /resources/tutorials/cloud/kubernetes/ddsrouter.yaml
     :language: yaml
 
 
@@ -141,12 +142,12 @@ Also, the IP address and port of the local Discovery Server must be specified, s
 
 Copy the following snippet and save it to the current directory as ``Dockerfile``:
 
-.. literalinclude:: ../../resources/tutorials/cloud_tutorial/Dockerfile_cloud
+.. literalinclude:: /resources/tutorials/cloud/kubernetes/Dockerfile_cloud
     :language: Dockerfile
 
 Copy the following snippet and save it to the current directory as ``run.bash``:
 
-.. literalinclude:: ../../resources/tutorials/cloud_tutorial/run.bash
+.. literalinclude:: /resources/tutorials/cloud/kubernetes/run.bash
     :language: bash
 
 Build the docker image running the following command:
@@ -157,7 +158,7 @@ Build the docker image running the following command:
 
 Now, the listener pod can be deployed by providing the following configuration:
 
-.. literalinclude:: ../../resources/tutorials/cloud_tutorial/listener.yaml
+.. literalinclude:: /resources/tutorials/cloud/kubernetes/listener.yaml
     :language: yaml
 
 Once all these components are up and running, communication should have been established between the talker and listener nodes, so that messages finally manage to reach the listener pod and get printed in its ``STDOUT``.
