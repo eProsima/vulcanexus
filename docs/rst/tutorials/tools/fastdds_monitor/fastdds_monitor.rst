@@ -1,9 +1,9 @@
-.. _vulcanexus_tools_tutorial:
+.. _tutorials_tools_fastdds_monitor:
 
 ROS 2 network statistics using Vulcanexus Tools
 ===============================================
 
-.. contents:: Table of Contents
+.. contents::
     :depth: 2
     :local:
     :backlinks: none
@@ -39,7 +39,7 @@ Initiate Fast DDS Monitor running the following command:
 
 Once Fast DDS Monitor is launched, start a monitor in domain :code:`0` (default domain).
 
-.. figure:: /rst/figures/tools_tutorial/screenshots/init_domain.png
+.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/init_domain.png
     :align: center
 
 Execute ROS 2 demo nodes with statistics
@@ -74,7 +74,7 @@ Monitoring network
 
 Now, the two new Participants are visible in the *Fast DDS Monitor*'s DDS Panel.
 
-.. figure:: /rst/figures/tools_tutorial/screenshots/participants.png
+.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/participants.png
     :align: center
 
 Alias
@@ -84,7 +84,7 @@ Participants in ROS 2 are named :code:`/` by default.
 In order to differentiate them, it is possible to change the Participant's aliases within the *Fast DDS Monitor*.
 In this case, the :code:`vulcanexus-humble-talker` Participant would be the one with a writer, and the :code:`vulcanexus-humble-listener` Participant would be the one with a reader.
 
-.. figure:: /rst/figures/tools_tutorial/screenshots/alias.png
+.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/alias.png
     :align: center
 
 Physical data
@@ -93,7 +93,7 @@ Physical data
 In order to see the information of the host and the physical context where every node is running, go to the Explorer Pane and activate the Physical Panel.
 There, the host, user and process of each node are displayed.
 
-.. figure:: /rst/figures/tools_tutorial/screenshots/physical.png
+.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/physical.png
     :align: center
 
 Statistical data
@@ -101,7 +101,7 @@ Statistical data
 
 To show statistical data about the communication between the :code:`vulcanexus-humble-talker` and the :code:`vulcanexus-humble-listener`, follow the steps to `create dynamic series chart <https://fast-dds-monitor.readthedocs.io/en/latest/rst/getting_started/tutorial.html#tutorial-create-dynamic-series>`_.
 
-.. figure:: /rst/figures/tools_tutorial/screenshots/statistics.png
+.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/statistics.png
     :align: center
 
 Introspect metatraffic topics
@@ -113,5 +113,5 @@ These topics are the ones that ROS 2 uses for discovery and configuration purpos
 In order to see these topics in the monitor, click *View->Show Metatraffic* menu button.
 Now, these topics are shown in the logical panel. Furthermore, the Readers and Writers associated to them are now listed under their respective Participants.
 
-.. figure:: /rst/figures/tools_tutorial/screenshots/metatraffic.png
+.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/metatraffic.png
     :align: center
