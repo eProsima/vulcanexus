@@ -4,6 +4,14 @@
 Edge-Cloud communication on WAN
 ===============================
 
+.. contents::
+    :depth: 2
+    :local:
+    :backlinks: none
+
+Background
+----------
+
 This tutorial will cover the first steps to setup a distributed network of remotely controlled robots from the Cloud or an edge device.
 More specifically, it will focus on a basic edge-cloud architecture in which there is an edge robot deployed on a local network (LAN) with access to the Internet, and a server in the Cloud reachable through the Internet.
 
@@ -34,6 +42,10 @@ Several key elements can be observed in it:
     This example presents two routers that enable Internet communication:
     * *DDS Router Edge*. This is the DDS Router that is deployed on the edge robot side. This way it is possible for the robot to communicate out-of-the-box with an external server.
     * *DDS Router Cloud*. It plays the server role in the communication. It will expose a public network address to which the nodes connect to establish communication.
+
+
+Prerequisites
+-------------
 
 This tutorial will require two machines (*Robot 1* and *Cloud Server*) deployed on different networks (*LAN 1* and *Cloud*).
 It is possible to simulate the scenario by deploying everything needed on the same machine and two virtual networks but let's focus on the case of a real deployment.
