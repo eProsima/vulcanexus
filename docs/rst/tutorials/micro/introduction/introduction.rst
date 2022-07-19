@@ -59,7 +59,7 @@ In the same way as ROS 2, micro-ROS has a **pluggable middleware interface** so 
 Build Systems
 ^^^^^^^^^^^^^
 
-micro-ROS provides a set of tools for integrating it in many build systems, toolchains and embedded development frameworks. Those packages are heterogenous due to the diversity of tools used by different vendors.
+micro-ROS provides a set of tools for integrating it in many build systems, toolchains and embedded development frameworks. Those packages are heterogeneous due to the diversity of tools used by different vendors.
 
 In general, micro-ROS provides standalone solutions for most used RTOSes and environments such as: :ref:`Zephyr RTOS <micro_ros_zephyr_rtos>`, :ref:`Espressif ESP-IDF <micro_ros_esp_idf>`, FreeRTOS, :ref:`Microsoft Azure RTOS <micro_ros_azure_rtos>`, etc. But also provides packages for integrating it in major vendor tools: :ref:`Renesas e2 Studio<micro_ros_renesas_e2_studio>` or :ref:`STM32 Cube IDE/MX <micro_ros_stm32cube>`.
 
