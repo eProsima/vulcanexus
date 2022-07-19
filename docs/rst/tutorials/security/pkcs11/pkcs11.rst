@@ -36,8 +36,8 @@ Run the following commands to install the required packages (administrative priv
       gnutls-bin
 
 Note that `softhsm2` package creates a new group called `softhsm`.
-In order to grant access to the HSM module a user must belong to this group.
-Run the following command (administrative privileges may be required for non-root users):
+In order to grant access to the HSM module, non-root users must belong to this group (root users already have permission).
+To add a user to the group, run the following command (administrative privileges may be required):
 
 .. code-block:: bash
 
