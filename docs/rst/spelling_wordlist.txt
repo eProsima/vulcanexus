@@ -3,8 +3,10 @@ combinable
 curl
 customizable
 dataflow
+decrypt
 entrypoint
 eProsima
+filesystem
 gpg
 Hierro
 keyring
