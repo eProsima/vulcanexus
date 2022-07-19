@@ -48,18 +48,11 @@ The following documentation includes instructions for installing each *Vulcanexu
    :hidden:
    :numbered: 5
 
-<<<<<<< HEAD
    /rst/tutorials/core/ros2_tutorials
    /rst/tutorials/tools/tools_tutorials
    /rst/tutorials/cloud/cloud_tutorials
    /rst/tutorials/security/security_tutorials
    /rst/tutorials/micro/micro_tutorials
-=======
-   /rst/tutorials/tools_tutorial.rst
-   /rst/tutorials/pkcs11_tutorial.rst
-   /rst/tutorials/cloud_tutorial.rst
-   /rst/tutorials/microros_tutorial.rst
->>>>>>> 500a87a... Refs #13612: PKCS #11 tutorial
 
 .. toctree::
    :caption: Support
