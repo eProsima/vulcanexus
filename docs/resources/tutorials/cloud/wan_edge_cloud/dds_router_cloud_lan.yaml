@@ -1,0 +1,16 @@
+version: v2.0
+
+participants:
+
+  - name: ROS_2_Cloud
+    kind: local
+    domain: 1
+
+  - name: Router_Server
+    kind: router
+    discovery-server-guid:
+      id: 1
+    listening-addresses:
+      - ip: 123.123.123.123
+        port: 45678
+        transport: tcp
