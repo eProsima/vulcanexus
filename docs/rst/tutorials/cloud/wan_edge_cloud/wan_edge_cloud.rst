@@ -173,7 +173,9 @@ Then, start by creating the workspace of this application and downloading the so
 .. code-block:: bash
 
     mkdir -p turtlesim_move_ws/src && cd turtlesim_move_ws/src
-    git clone <github_repo>
+    git clone --branch humble https://github.com/eProsima/vulcanexus.git
+    mv vulcanexus/code/turtlesim .
+    rm -rf vulcanexus
     cd ..
 
 Once created the workspace, source the Vulcanexus environment and build the ``turtlesim_square_move`` application.
