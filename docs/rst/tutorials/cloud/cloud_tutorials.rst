@@ -14,3 +14,4 @@ The following are the tutorials that make up this course on communication in dis
 
     kubernetes/kubernetes
     wan_edge_cloud/wan_edge_cloud
+    edge_edge_repeater_cloud/edge_edge_repeater_cloud
