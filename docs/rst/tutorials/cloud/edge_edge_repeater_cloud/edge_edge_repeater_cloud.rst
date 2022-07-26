@@ -35,7 +35,7 @@ facilitating network configuration aspects such as NATs Traversals and dynamic a
     This way the ROS 2 nodes are logically isolated and will not discover other nodes out of their ROS 2 Domain.
 
 Following, all the elements involved in this architecture will be studied, starting with the edge robots and continuing with the intermediate elements that enable communication over the Internet between each edge and the Cloud.
-One edge will work as a controller and the other as a robot (as previously explained in :ref:`previous tutorial <tutorials_cloud_wan_edge_cloud_wan_edge_cloud>`).
+One edge will work as a controller and the other as a robot (as already explained in :ref:`previous tutorial <tutorials_cloud_wan_edge_cloud_wan_edge_cloud>`).
 
 The image below describes the scenario presented in this tutorial.
 
@@ -45,8 +45,8 @@ The image below describes the scenario presented in this tutorial.
 Several key elements can be observed in it:
 
 #.  **ROS 2 Application**.
-    ``turtlesim`` is the application used for this tutorial.
-    ``turtlesim`` is a ROS 2 application, first developed for ROS, aimed at teaching the basic concepts of ROS 2 such as publish/subscribe, services and actions.
+    *Turtlesim* is the application used for this tutorial.
+    *Turtlesim* is a ROS 2 application, first developed for ROS, aimed at teaching the basic concepts of ROS 2 such as publish/subscribe, services and actions.
     The edge robot will then be a ``turtlesim_node``, which is a simulator of a robot making use of these communication methods.
 
 #.  **ROS 2 Controller**.

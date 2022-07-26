@@ -33,8 +33,8 @@ The image below describes the scenario presented in this tutorial.
 Several key elements can be observed in it:
 
 #.  **ROS 2 Application**.
-    ``turtlesim`` is the application used for this tutorial.
-    ``turtlesim`` is a ROS 2 application, first developed for ROS, aimed at teaching the basic concepts of ROS 2 such as publish/subscribe, services and actions.
+    *Turtlesim* is the application used for this tutorial.
+    *Turtlesim* is a ROS 2 application, first developed for ROS, aimed at teaching the basic concepts of ROS 2 such as publish/subscribe, services and actions.
     The edge robot will then be a ``turtlesim_node``, which is a simulator of a robot making use of these communication methods.
 
 #.  **ROS 2 Device Controller**.
