@@ -32,18 +32,18 @@ The image below describes the scenario presented in this tutorial.
 
 Several key elements can be observed in it:
 
-1.  **ROS 2 Application**.
+#.  **ROS 2 Application**.
     The application used for this tutorial is the *turtlesim*.
     The *turtlesim* is a ROS 2 application, first developed for ROS, aimed at teaching the basic concepts of ROS 2 such as publish/subscribe, services and actions.
     That is why the edge robot will be the ``turtlesim_node`` which is a simulator of a robot that exploits these previous concepts.
 
-1.  **ROS 2 Device Controller**.
+#.  **ROS 2 Device Controller**.
     This is a ROS 2 application that sends commands to the edge robot.
     It has been developed a basic C++ application for this tutorial that sends publications on the topic that the ``turtlesim_node`` listens.
     By means of these publications (commands) from the controller, and the feedback information that the controller receives from the ``turtlesim_node``, it is possible to control this node automatically without the need for user intervention which facilitates the deployment of the scenario at hand.
     The key feature of the *DDS Router* is that it is easy to configure, allowing to connect different networks with ROS 2 applications without the need to apply any changes to the developer's software or applications.
 
-1.  **ROS 2 Router / DDS Router**.
+#.  **ROS 2 Router / DDS Router**.
     *eProsima ROS 2 Router*, a.k.a `DDS Router <https://github.com/eProsima/DDS-Router>`_, is an end-user software application that enables the connection of distributed ROS 2 networks (see DDS Router documentation `here <https://eprosima-dds-router.readthedocs.io/en/latest/>`_).
     That is, ROS 2 nodes such as publishers and subscriptions, or clients and services, deployed in one geographic location and using a dedicated local network will be able to communicate with other ROS 2 nodes deployed in different geographic areas on their own dedicated local networks as if they were all on the same network through the use of *DDS Router*.
 
@@ -75,7 +75,7 @@ Running turtlesim_node on the edge
 
 First, setup the Vulcanexus environment to have the ``turtlesim_node`` available.
 For this there are two options:
-1.  Running the Vulcanexus Docker image.
+#.  Running the Vulcanexus Docker image.
 
     Run the Vulcanexus Docker image with:
 
@@ -95,7 +95,7 @@ For this there are two options:
 
             source /opt/vulcanexus/humble/setup.bash
 
-1.  Setting up the development environment on the local host. For this second option, it is necessary to have installed the ``vucanexus-humble-desktop`` package, since this is the one that includes all the simulation tools, demos and tutorials.
+#.  Setting up the development environment on the local host. For this second option, it is necessary to have installed the ``vucanexus-humble-desktop`` package, since this is the one that includes all the simulation tools, demos and tutorials.
 
     Source the following file to setup the Vulcanexus environment:
 
@@ -291,10 +291,10 @@ The first one communicates the DDS Router with any ROS 2 node, while the second 
 
 Even so there are some differences in the second participant that are worth mentioning:
 
-1.  The ``id`` of this participant is different from the previous one, ``1`` in this case.
+#.  The ``id`` of this participant is different from the previous one, ``1`` in this case.
     This is because, as mentioned above, the ids of this type of participant must be unique in the entire DDS Router network.
 
-1.  This participant sets a listening address (``listening-addresses``), rather than a connection address.
+#.  This participant sets a listening address (``listening-addresses``), rather than a connection address.
     This is because it is the participant that waits for incoming communications since it has this network address exposed and accessible from the Internet.
 
 To finish, as done in the previous steps, setup the Vulcanexus environment sourcing the `setup.bash` file and run the DDS Router Cloud with the above configuration.
