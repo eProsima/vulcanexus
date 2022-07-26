@@ -23,7 +23,7 @@ More specifically, it will focus on a basic edge-cloud architecture in which the
     However, if communication through a LAN is your only option, it is still possible to follow the tutorial by changing the ROS 2 Domain Ids so that each ROS 2 node uses a different Domain (``0`` and ``1``).
     This way the ROS 2 nodes are logically isolated and will not discover other nodes out of their ROS 2 Domain.
 
-This way, all the elements involved in this architecture will be studied, starting with the edge robot, continuing with the controller hosted in the cloud also built as a ROS 2 node and concluding with the intermediate elements that enable communication over the Internet.
+Following, all the elements involved in this architecture will be studied, starting with the edge robot, continuing with the controller hosted in the cloud also built as a ROS 2 node and concluding with the intermediate elements that enable communication over the Internet.
 
 The image below describes the scenario presented in this tutorial.
 
@@ -33,19 +33,19 @@ The image below describes the scenario presented in this tutorial.
 Several key elements can be observed in it:
 
 #.  **ROS 2 Application**.
-    The application used for this tutorial is the *turtlesim*.
-    The *turtlesim* is a ROS 2 application, first developed for ROS, aimed at teaching the basic concepts of ROS 2 such as publish/subscribe, services and actions.
-    That is why the edge robot will be the ``turtlesim_node`` which is a simulator of a robot that exploits these previous concepts.
+    ``turtlesim`` is the application used for this tutorial.
+    ``turtlesim`` is a ROS 2 application, first developed for ROS, aimed at teaching the basic concepts of ROS 2 such as publish/subscribe, services and actions.
+    The edge robot will then be a ``turtlesim_node``, which is a simulator of a robot making use of these communication methods.
 
 #.  **ROS 2 Device Controller**.
     This is a ROS 2 application that sends commands to the edge robot.
-    It has been developed a basic C++ application for this tutorial that sends publications on the topic that the ``turtlesim_node`` listens.
+    A basic C++ application has been developed for this tutorial that sends publications under the topic on which the ``turtlesim_node`` listens.
     By means of these publications (commands) from the controller, and the feedback information that the controller receives from the ``turtlesim_node``, it is possible to control this node automatically without the need for user intervention which facilitates the deployment of the scenario at hand.
-    The key feature of the *DDS Router* is that it is easy to configure, allowing to connect different networks with ROS 2 applications without the need to apply any changes to the developer's software or applications.
+    The key feature of the *DDS Router* is that it is easy to configure, allowing to connect different networks with ROS 2 applications without requiring to apply any changes to the developer's software or applications.
 
 #.  **ROS 2 Router / DDS Router**.
     *eProsima ROS 2 Router*, a.k.a `DDS Router <https://github.com/eProsima/DDS-Router>`_, is an end-user software application that enables the connection of distributed ROS 2 networks (see DDS Router documentation `here <https://eprosima-dds-router.readthedocs.io/en/latest/>`_).
-    That is, ROS 2 nodes such as publishers and subscriptions, or clients and services, deployed in one geographic location and using a dedicated local network will be able to communicate with other ROS 2 nodes deployed in different geographic areas on their own dedicated local networks as if they were all on the same network through the use of *DDS Router*.
+    That is, ROS 2 nodes such as publishers and subscribers, or clients and services, deployed in one geographic location and using a dedicated local network will be able to communicate with other ROS 2 nodes deployed in different geographic areas on their own dedicated local networks as if they were all on the same network through the use of *DDS Router*.
 
     This example presents two routers that enable Internet communication:
 
@@ -59,7 +59,7 @@ Prerequisites
 This tutorial will require two machines (*Robot 1* and *Cloud Server*) deployed on different networks (*LAN 1* and *Cloud*).
 It is possible to simulate the scenario by deploying everything needed on the same machine and two virtual networks but let's focus on the case of a real deployment.
 
-It is also important to have previously installed Vulcanexus using one of the following installation methods:
+It is also necessary to have previously installed Vulcanexus using one of the following installation methods:
 
 * :ref:`linux_binary_installation`
 * :ref:`linux_source_installation`
@@ -73,8 +73,9 @@ First, let's deploy the ``turtlesim_node`` and DDS Router Edge on a machine on *
 Running turtlesim_node on the edge
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-First, setup the Vulcanexus environment to have the ``turtlesim_node`` available.
-For this there are two options:
+Setup the Vulcanexus environment to have the ``turtlesim_node`` available.
+For this, there are two possible options:
+
 #.  Running the Vulcanexus Docker image.
 
     Run the Vulcanexus Docker image with:
@@ -125,9 +126,9 @@ Then, to run the DDS Router Edge configure the environment as in the previous st
 
 .. note::
 
-    If you are deploying Vulcanexus from the Docker image, note that you will need to have a configuration file (``config.yaml``) to configure the DDS Router Edge accessible from your Docker container.
+    If deploying Vulcanexus from the Docker image, note that you will need to have a configuration file (``config.yaml``) for the DDS Router Edge accessible from your Docker container.
 
-    You can do this by mounting a shared volume when launching the container, by copying the file from the local host to the container in case it is already running, or by editing a file from the Docker container itself.
+    This can be achieved by mounting a shared volume when launching the container, by copying the file from the local host to the container in case it is already running, or by editing a file from the Docker container itself.
 
 Setup the Vulcanexus environment, either in a Docker container or on the local host, running the following command:
 
@@ -135,12 +136,12 @@ Setup the Vulcanexus environment, either in a Docker container or on the local h
 
     source /opt/vulcanexus/humble/setup.bash
 
-Let's create the DDS Router configuration file. It will look like the one shown below.
+Let's create a DDS Router configuration file as the one shown below.
 
 .. literalinclude:: /resources/tutorials/cloud/wan_edge_cloud/dds_router_edge.yaml
     :language: yaml
 
-Next, it is briefly explained the most relevant aspects of this configuration file.
+Next, the most relevant aspects of this configuration file are explained.
 
 The ``participants`` are the interfaces of the DDS Router to communicate with other networks. In this case, we have two participants:
 
@@ -161,7 +162,7 @@ The ``participants`` are the interfaces of the DDS Router to communicate with ot
 
     In this case, the DDS Router will forward all topics found in the network.
     However, it is important to mention that the ROS 2 topics relayed by the DDS Router can be filtered by configuring the ``allowlist`` and ``blocklist``.
-    If this is the case please refer to the `DDS Router documentation <https://eprosima-dds-router.readthedocs.io/en/latest/>`_ for information on how to do this.
+    If this is the case please refer to the `DDS Router documentation <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/configuration.html#topic-filtering>`_ for information on how to do this.
 
 The following figure summarizes the deployment on the edge.
 
