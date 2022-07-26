@@ -34,10 +34,8 @@ facilitating network configuration aspects such as NATs Traversals and dynamic a
     However, if communication through a LAN is your only option, it is still possible to follow the tutorial by changing the ROS 2 Domain Ids so that each edge uses a different Domain (``0`` and ``1``).
     This way the ROS 2 nodes are logically isolated and will not discover other nodes out of their ROS 2 Domain.
 
-Following, all the elements involved in this architecture will be studied, starting with the edge robots.
-One edge will work as a controller and the other as a (controlled) robot (as already explained in the :ref:`previous tutorial <tutorials_cloud_wan_edge_cloud_wan_edge_cloud>`).
-Continuing with the intermediate elements that enable communication over the Internet.
-These are the DDS Routers both in edges and in Cloud.
+Following, all the elements involved in this architecture will be studied, starting with the edge robots and continuing with the intermediate elements that enable communication over the Internet between each edge and the Cloud.
+One edge will work as a controller and the other as a robot (as previously explained in :ref:`previous tutorial <tutorials_cloud_wan_edge_cloud_wan_edge_cloud>`).
 
 The image below describes the scenario presented in this tutorial.
 
@@ -47,8 +45,8 @@ The image below describes the scenario presented in this tutorial.
 Several key elements can be observed in it:
 
 #.  **ROS 2 Application**.
-    *turtlesim* is the application used for this tutorial.
-    *turtlesim* is a ROS 2 application, first developed for ROS, aimed at teaching the basic concepts of ROS 2 such as publish/subscribe, services and actions.
+    ``turtlesim`` is the application used for this tutorial.
+    ``turtlesim`` is a ROS 2 application, first developed for ROS, aimed at teaching the basic concepts of ROS 2 such as publish/subscribe, services and actions.
     The edge robot will then be a ``turtlesim_node``, which is a simulator of a robot making use of these communication methods.
 
 #.  **ROS 2 Controller**.
@@ -60,7 +58,7 @@ Several key elements can be observed in it:
 
 #.  **ROS 2 Router / DDS Router**.
     *eProsima ROS 2 Router*, a.k.a `DDS Router <https://github.com/eProsima/DDS-Router>`_, is an end-user software application that enables the connection of distributed ROS 2 networks (see DDS Router documentation `here <https://eprosima-dds-router.readthedocs.io/en/latest/>`_).
-    That is, ROS 2 nodes such as publishers and subscriptions, or clients and services, deployed in one geographic location and using a dedicated local network will be able to communicate with other ROS 2 nodes deployed in different geographic areas on their own dedicated local networks as if they were all on the same network through the use of *DDS Router*.
+    That is, ROS 2 nodes such as publishers and subscribers, or clients and services, deployed in one geographic location and using a dedicated local network will be able to communicate with other ROS 2 nodes deployed in different geographic areas on their own dedicated local networks as if they were all on the same network through the use of *DDS Router*.
 
     This example presents two routers that enable Internet communication:
 
@@ -90,6 +88,7 @@ Running turtlesim_node on Edge 1
 
 Setup the Vulcanexus environment to have the ``turtlesim_node`` available.
 For this, there are two possible options:
+
 #.  Running the Vulcanexus Docker image.
 
     Run the Vulcanexus Docker image with:
@@ -122,7 +121,7 @@ Once the environment has been setup using one of the above options, simply run t
 
 .. code-block:: bash
 
-    ROS_DOMAIN_ID=1 ros2 run turtlesim turtlesim_node
+    ros2 run turtlesim turtlesim_node
 
 And a popup window like the following should appear:
 
@@ -180,14 +179,10 @@ The ``participants`` are the interfaces of the DDS Router to communicate with ot
 
 The following figure summarizes the deployment on the edge.
 
-.. todo::
-
-    add new image
-
 .. figure:: /rst/figures/tutorials/cloud/edge_1_repeater_deployment.png
    :align: center
 
-To finish this step, run the DDS Router with the configuration file created as an argument.
+Now, run the DDS Router with the configuration file created as an argument.
 
 .. code-block::
 
@@ -276,10 +271,6 @@ The following snippet shows a configuration file (changing Domain for LAN scenar
     :language: yaml
 
 The following figure summarizes the deployment on the edge 2.
-
-.. todo::
-
-    add new image
 
 .. figure:: /rst/figures/tutorials/cloud/edge_2_repeater_deployment.png
    :align: center
