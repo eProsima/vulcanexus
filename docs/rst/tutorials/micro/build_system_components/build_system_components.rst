@@ -106,7 +106,7 @@ NuttX RTOS
 
 `NuttX <https://nuttx.apache.org/>`_ is one of the most complete and mature RTOS available. It is **supported by Apache Foundation** and provides a piece of software with emphasis on standard compliance and small footprint. It is a powerful and flexible RTOS that can be used for embedded applications. Also, it is compliant with POSIX and ANSI standards.
 
-micro-ROS app for NuttX provides an example application environment where the micro-ROS stack is integrated in the NuttX 10 build system and can be ran as a NuttX application with an UART transport.
+micro-ROS component for NuttX provides an example application environment where the micro-ROS stack is integrated in the NuttX 10 build system and can be ran as a NuttX application with an UART transport.
 
 .. note::
 
