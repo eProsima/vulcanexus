@@ -3,7 +3,7 @@
 Build System Components
 =======================
 
-.. contents:: Table of Contents
+.. contents::
     :depth: 2
     :local:
     :backlinks: none
@@ -18,16 +18,15 @@ Renesas e\ :sup:`2` Studio
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `Renesas RA Family <https://www.renesas.com/us/en/products/microcontrollers-microprocessors/ra-cortex-m-mcus>`_ is the **official supported hardware** of micro-ROS.
+This family of MCU features a wide range of features based on Arm® Cortex®-M33, M23, and M4 processor cores.
 
-This family of MCU features a wide range of features based on Arm® Cortex®-M33, -M23 and -M4 processor cores.
+Renesas e\ :sup:`2` Studio provides a whole integrated development environment that allows for professional development, test and profiling of embedded applications. The micro-ROS component for Renesas provides a set of tools and instructions to integrate the build and configuration of micro-ROS inside of a Renesas e\ :sup:`2` Studio project.
 
-Renesas e\ :sup:`2` Studio provide a whole integrated development environment that allows for professional development, test and profile of embedded applications. micro-ROS component for Renesas provides a set of tools and instructions to integrate the build and configure micro-ROS inside of a Renesas e\ :sup:`2` Studio project.
-
-This packages support multiple RTOSes (FreeRTOS and Azure RTOS) and a bare-metal approach. Also a wide range of transport layer are available: UART, UDP/IP, TCP/IP, USB-CDC and CAN/FD.
+This packages supports multiple RTOSes (FreeRTOS and Azure RTOS), as well as a bare-metal approach. Also, a wide range of transport layer are available: UART, UDP/IP, TCP/IP, USB-CDC and CAN/FD.
 
 .. note::
 
-    For detailed instructions on how to use micro-ROS with this platform visit `micro-ROS for Renesas e2 Studio <https://github.com/micro-ROS/micro_ros_renesas2estudio_component>`_ Github repository or use your Vulcanexus distribution to download this module:
+    For detailed instructions on how to use micro-ROS with this platform, please refer to `micro-ROS for Renesas e2 Studio <https://github.com/micro-ROS/micro_ros_renesas2estudio_component>`_ Github repository or use your Vulcanexus distribution to download this module:
 
     .. code-block:: bash
 
@@ -43,7 +42,7 @@ Espressif ESP-IDF
 ^^^^^^^^^^^^^^^^^
 micro-ROS component for `ESP-IDF <https://docs.espressif.com/projects/esp-idf/en/latest/esp32/>`_ allows the integration of the micro-ROS stack in one of the most famous **WiFI-enabled MCUs**: the ESP32 family.
 
-By means of this component, the user will found easy to integrate, configure and deploy a micro-ROS application that can communicate with the ROS 2 dataspace over WiFi, UART or USB-CDC. By default this toolchain integrates FreeRTOS as framework and allows the user to run micro-ROS tasks simultaneously along with other user process.
+By means of this component, it is easy integrate, configure and deploy a micro-ROS application that can communicate with the ROS 2 dataspace over WiFi, UART or USB-CDC. By default, this toolchain integrates FreeRTOS as framework and allows the user to run micro-ROS tasks simultaneously along with other user process.
 
 Most of the ESP32 versions are supported: ESP32, ESP32-S2, ESP32-S3 and even the RISC-V based MCU of Espressif, the ESP32-C3.
 
