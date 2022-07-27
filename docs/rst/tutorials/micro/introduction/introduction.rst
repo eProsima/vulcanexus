@@ -15,7 +15,7 @@ Introduction to micro-ROS
     :backlinks: none
 
 **micro-ROS** is the default embedded toolkit for ROS 2 and Vulcanexus.
-It provides a complete set of tools, frameworks and APIs for deploying applications in *microcontrollers (MCU)* with full support for ROS 2 communications paradigms: Nodes, Publication/Subscription, services, etc.
+It provides a complete set of tools, frameworks and APIs for deploying applications in *microcontrollers (MCU)* with full support for ROS 2 communications paradigms: Nodes, Publication/Subscription, Services, etc.
 
 micro-ROS targets MCUs with 32 bit architectures and at least 32 kB of RAM, providing support for most popular **RTOSes** and **bare metal** systems.
 With this in mind, micro-ROS aims to be as **lightweight** and **versatile** as possible, with a wide set of configurable parameters to tune the application memory usage and timing requirements.
@@ -26,7 +26,8 @@ micro-ROS also targets **hard real-time** environments, giving the user control 
 * **Timing** of each operation to achieve **deterministic** behavior.
 * **Execution order** of the operations.
 
-micro-ROS is **transport agnostic**. With its default middleware (`eProsima Micro XRCE-DDS <https://micro-xrce-dds.docs.eprosima.com/en/latest/>`_) it is possible to run micro-ROS on top of almost any transport layer that supports a package or stream communication paradigm: TCP/IP or UDP/IP stacks, UART devices, CAN/FD buses, SPI, radio links, etc.
+micro-ROS is **transport agnostic**.
+With its default middleware (`eProsima Micro XRCE-DDS <https://micro-xrce-dds.docs.eprosima.com/en/latest/>`_) it is possible to run micro-ROS on top of almost any transport layer that supports a package or stream communication paradigm: TCP/IP or UDP/IP stacks, UART devices, CAN/FD buses, SPI, radio links, etc.
 
 .. _tutorials_micro_architecture:
 
@@ -36,8 +37,9 @@ Architecture
 micro-ROS follows an architecture that is based on ROS 2, but also has significant differences that allows the embedded integration.
 In order to ease the use, it also provides tools for handling the integration in embedded platforms.
 
-micro-ROS **layered architecture** abstracts the OS/RTOS with a middleware layer. On top of the middleware, micro-ROS uses the same ROS 2 core layers (RMW, RCL and RCUTILS).
-With respect to user APIs, micro-ROS provides a **C99 API named RCLC** that allow using all the concepts available on ROS 2 C++ or Python APIs (RCLCPP or RCLPY).
+micro-ROS **layered architecture** abstracts the OS/RTOS with a middleware layer.
+On top of the middleware, micro-ROS uses the same ROS 2 core layers (RMW, RCL and RCUTILS).
+With respect to user APIs, micro-ROS provides a **C99 API named RCLC** that allows using all the concepts available on ROS 2 C++ or Python APIs (RCLCPP or RCLPY).
 
 **Compatibility with ROS 2 type support** is also granted, meaning that any message definition used in ROS 2 can be used seamlessly in micro-ROS.
 By means of the micro-ROS build systems, any `.msg`, `.srv` or `.action` definition file can be integrated in the micro-ROS build in order to achieve a type interoperability with ROS 2.

@@ -19,13 +19,13 @@ Renesas e\ :sup:`2` Studio
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `Renesas RA Family <https://www.renesas.com/us/en/products/microcontrollers-microprocessors/ra-cortex-m-mcus>`_ is the **official supported hardware** of micro-ROS.
-This family of MCU features a wide range of features based on Arm® Cortex®-M33, M23, and M4 processor cores.
+This family of MCUs features a wide range of features based on Arm® Cortex®-M33, M23, and M4 processor cores.
 
 Renesas e\ :sup:`2` Studio provides a whole integrated development environment that allows for professional development, test and profiling of embedded applications.
 The micro-ROS component for Renesas provides a set of tools and instructions to integrate the build and configuration of micro-ROS inside of a Renesas e\ :sup:`2` Studio project.
 
-This packages supports multiple RTOSes (FreeRTOS and Azure RTOS), as well as a bare-metal approach.
-Also, a wide range of transport layer are available: UART, UDP/IP, TCP/IP, USB-CDC and CAN/FD.
+This package supports multiple RTOSes (FreeRTOS and Azure RTOS), as well as a bare-metal approach.
+Also, a wide range of transport layers are available: UART, UDP/IP, TCP/IP, USB-CDC and CAN/FD.
 
 .. note::
 
@@ -72,7 +72,7 @@ It provides a full featured and layered architectured RTOS ready for deploy prod
 Thanks to the huge amount of ready-to-use drivers, it will be easy to integrate connectivity solutions such as Bluetooth BLE, WiFi, USB or CAN.
 
 With the micro-ROS module for Zephyr RTOS, ROS 2 users will find easy to integrate an embedded micro-ROS application in the Zephyr ecosystem.
-This module support a considerable part of the huge amount of `supported boards by Zephyr <https://docs.zephyrproject.org/latest/boards/index.html>`_.
+This module support a considerable part of the list of `supported boards by Zephyr <https://docs.zephyrproject.org/latest/boards/index.html>`_.
 
 .. note::
 
