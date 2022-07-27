@@ -37,6 +37,7 @@ A workspace is a directory containing ROS 2 packages. Before using ROS 2, it’s
 Create a package
 ----------------
 
+
 Recall that packages should be created in the src directory, not the root of the workspace. So, navigate into dev_ws/src, and run the package creation command:
 
     .. code-block:: bash
@@ -54,6 +55,10 @@ Recall that packages should be created in the src directory, not the root of the
         ├── include
         │   └── cpp_pubsub
         └── src
+
+.. figure:: /rst/figures/tutorials/core/ros2_pub_sub/gif1.gif
+    :width: 1000px
+    :align: center
 
 Create publisher_member_function.cpp
 ------------------------------------
@@ -73,73 +78,9 @@ Create publisher_member_function.cpp
         └── src
             └── publisher_member_function.cpp
 
-    .. code-block:: c++
-
-        // node dependencies.
-        #include <chrono>
-        #include <functional>
-        #include <memory>
-        #include <string>
-
-        // allows you to use the most common pieces of the ROS 2 system.
-        #include "rclcpp/rclcpp.hpp"
-        // includes the built-in message type you will use to publish data.
-        #include "std_msgs/msg/string.hpp"
-
-        using namespace std::chrono_literals;
-
-        /* This example creates a subclass of Node and uses std::bind() to register a
-        * member function as a callback from the timer. */
-
-        // creates the node class MinimalPublisher by inheriting from rclcpp::Node. 
-        // Every this in the code is referring to the node.
-        class MinimalPublisher : public rclcpp::Node
-        {
-        public:
-
-            MinimalPublisher()
-                // initialize Node with node name.
-                : Node("minimal_publisher")
-                , count_(0)
-            {
-                // publisher of type std_msgs::msg::String on topic called topic and 
-                // queue size to limit messages in the event of a backup.
-                publisher_ = this->create_publisher<std_msgs::msg::String>("topic", 10);
-
-                // timer_callback function will be executed twice a second.
-                timer_ = this->create_wall_timer(
-                    500ms, std::bind(&MinimalPublisher::timer_callback, this));
-            }
-
-        private:
-
-            // The timer_callback function is where the message data is set and the messages are actually published.
-            void timer_callback()
-            {
-                auto message = std_msgs::msg::String();
-                message.data = "Hello, world! " + std::to_string(count_++);
-                // The RCLCPP_INFO macro ensures every published message is printed to the console.
-                RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());
-                publisher_->publish(message);
-            }
-
-            // private attributes.
-            rclcpp::TimerBase::SharedPtr timer_;
-            rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
-            size_t count_;
-        };
-
-        int main(
-                int argc,
-                char* argv[])
-        {
-            // initializes ROS 2.
-            rclcpp::init(argc, argv);
-            // starts processing data from the node, including callbacks from the timer.
-            rclcpp::spin(std::make_shared<MinimalPublisher>());
-            rclcpp::shutdown();
-            return 0;
-        }
+    .. literalinclude:: ../../../../resources/examples/core/ros2_pub_sub/src/publisher_member_function.cpp
+        :language: C++
+        :linenos:
 
 Create subscriber_member_function.cpp
 -------------------------------------
@@ -162,55 +103,10 @@ Create subscriber_member_function.cpp
 
     topic name and message type used by the publisher and subscriber must match to allow them to communicate.
 
-    .. code-block:: c++
+    .. literalinclude:: ../../../../resources/examples/core/ros2_pub_sub/src/subscriber_member_function.cpp
+        :language: C++
+        :linenos:
 
-        #include <memory>
-
-        // allows you to use the most common pieces of the ROS 2 system.
-        #include "rclcpp/rclcpp.hpp"
-        // includes the built-in message type you will use to publish data.
-        #include "std_msgs/msg/string.hpp"
-
-        using std::placeholders::_1;
-
-        class MinimalSubscriber : public rclcpp::Node
-        {
-        public:
-
-            MinimalSubscriber()
-                // initialize Node with node name.
-                : Node("minimal_subscriber")
-            {
-                // subscriber of type std_msgs::msg::String on topic called topic and 
-                // queue size to limit messages in the event of a backup and bind
-                // topic_callback to be called on data.
-                subscription_ = this->create_subscription<std_msgs::msg::String>(
-                    "topic", 10, std::bind(&MinimalSubscriber::topic_callback, this, _1));
-            }
-
-        private:
-            // function receives the string message data published over the topic, 
-            // and simply writes it to the console using the RCLCPP_INFO macro.
-            void topic_callback(
-                    const std_msgs::msg::String::SharedPtr msg) const
-            {
-                RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg->data.c_str());
-            }
-
-            rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
-        };
-
-        int main(
-                int argc,
-                char* argv[])
-        {
-            // initializes ROS 2.
-            rclcpp::init(argc, argv);
-            // preparing to receive messages whenever they come.
-            rclcpp::spin(std::make_shared<MinimalSubscriber>());
-            rclcpp::shutdown();
-            return 0;
-        }
 
 Add dependencies
 ----------------
@@ -236,36 +132,10 @@ CMakeLists.txt
 --------------
 
 Replace `CMakeLists.txt` content with next example:
-    
-    .. code-block:: text
 
-        cmake_minimum_required(VERSION 3.5)
-        project(cpp_pubsub)
-
-        if(NOT CMAKE_CXX_STANDARD)
-        set(CMAKE_CXX_STANDARD 14)
-        endif()
-
-        if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-        add_compile_options(-Wall -Wextra -Wpedantic)
-        endif()
-
-        find_package(ament_cmake REQUIRED)
-        find_package(rclcpp REQUIRED)
-        find_package(std_msgs REQUIRED)
-
-        add_executable(talker src/publisher_member_function.cpp)
-        ament_target_dependencies(talker rclcpp std_msgs)
-
-        add_executable(listener src/subscriber_member_function.cpp)
-        ament_target_dependencies(listener rclcpp std_msgs)
-
-        install(TARGETS
-                talker
-                listener
-                DESTINATION lib/${PROJECT_NAME})
-
-        ament_package()
+    .. literalinclude:: ../../../../resources/examples/core/ros2_pub_sub/CMakeLists.txt
+        :language: text
+        :linenos:
 
 Build
 -----
@@ -284,6 +154,9 @@ Still in the root of your workspace, dev_ws, build your new package:
         # ~/dev_ws
         colcon build --packages-select cpp_pubsub
 
+.. figure:: /rst/figures/tutorials/core/ros2_pub_sub/gif2.gif
+    :width: 1000px
+    :align: center
 
 Run
 -----
