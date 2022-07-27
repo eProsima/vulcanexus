@@ -1,5 +1,6 @@
 .. _tutorials_micro_build_system_components:
 
+
 Build System Components
 =======================
 
@@ -79,6 +80,8 @@ With the micro-ROS module for Zephyr RTOS, ROS 2 users will find easy to integra
 .. figure:: /rst/figures/tutorials/micro/platforms_logos/mbed_rtos.png
     :align: center
 
+.. _micro_ros_mbed_rtos:
+
 ARM MBed RTOS
 ^^^^^^^^^^^^^
 
@@ -95,6 +98,8 @@ micro-ROS provides a module for integration ROS 2 embedded application in `ARM M
 
 .. figure:: /rst/figures/tutorials/micro/platforms_logos/nuttx_rtos.png
     :align: center
+
+.. _micro_ros_nuttx_rtos:
 
 NuttX RTOS
 ^^^^^^^^^^
@@ -136,6 +141,8 @@ By means of this module, micro-ROS is integrated in ThreadX (the Azure RTOS sche
 .. figure:: /rst/figures/tutorials/micro/platforms_logos/tiva_c_series.png
     :align: center
 
+.. _micro_ros_tiva_c_series:
+
 TI Tiva C Series
 ^^^^^^^^^^^^^^^^
 
@@ -174,6 +181,8 @@ All the STM32 MCUs are supported by this IDE and most of them should be able to 
 .. figure:: /rst/figures/tutorials/micro/platforms_logos/platformio.png
     :align: center
 
+.. _micro_ros_platformio:
+
 Platform.IO
 ^^^^^^^^^^^
 
@@ -192,6 +201,8 @@ By using this module, micro-ROS user will be able to integrate micro-ROS in thei
 
 .. figure:: /rst/figures/tutorials/micro/platforms_logos/arduino.png
     :align: center
+
+.. _micro_ros_arduino:
 
 Arduino
 ^^^^^^^
@@ -212,6 +223,8 @@ micro-ROS for Arduino provides a set of prebuilt libraries for reference platfor
 
 .. figure:: /rst/figures/tutorials/micro/platforms_logos/raspberry_pi_pico.png
     :align: center
+
+.. _micro_ros_raspberry_pi_pico:
 
 Raspberry Pi Pico
 ^^^^^^^^^^^^^^^^^
