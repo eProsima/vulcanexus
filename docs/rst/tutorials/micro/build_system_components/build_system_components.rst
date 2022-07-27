@@ -229,7 +229,7 @@ micro-ROS for Arduino provides a set of prebuilt libraries for reference platfor
 Raspberry Pi Pico
 ^^^^^^^^^^^^^^^^^
 
-`Raspberry Pi Pico <https://www.raspberrypi.com/products/raspberry-pi-pico/>`_ is the versatile embedded and super low cost solution of **Raspberry Pi for microcontroller environments**. It features a dual core Cortex-M0+ based silicon named RP2040, which include a wide variety of peripherals such as I2C, SPI, UART or GPIO, and even a hardware programmable module named PIO. Also a full featured API for hardware abstraction are provided within the SDK.
+`Raspberry Pi Pico <https://www.raspberrypi.com/products/raspberry-pi-pico/>`_ is the versatile embedded and low cost solution of **Raspberry Pi for microcontroller environments**. It features a dual core Cortex-M0+ based silicon named RP2040, which include a wide variety of peripherals such as I2C, SPI, UART or GPIO, and even a hardware programmable module named PIO. Also a full featured API for hardware abstraction are provided within the SDK.
 
 micro-ROS module for Raspberry Pi Pico SDK provides a set of prebuilt libraries so the user do not have to handle the micro-ROS build procedure. Also, for advanced users, instructions for customizing the installation and recompiling the library are provided.
 
