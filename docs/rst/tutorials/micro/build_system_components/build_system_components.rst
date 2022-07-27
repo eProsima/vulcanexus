@@ -64,7 +64,7 @@ Most of the ESP32 versions are supported: ESP32, ESP32-S2, ESP32-S3 and even the
 Zephyr RTOS
 ^^^^^^^^^^^
 
-`Zephyr RTOS <https://docs.zephyrproject.org/>`_ is an RTOS for embedded systems **supported by the Linux Foundation**. It provides a full featured and layered architectured RTOS ready for deploy production-ready applications. Thanks to the huge amount of ready-to-use drivers, the users will find easy to integrate connectivity solutions such as Bluetooth BLE, WiFi, USB or CAN.
+`Zephyr RTOS <https://docs.zephyrproject.org/>`_ is an RTOS for embedded systems **supported by the Linux Foundation**. It provides a full featured and layered architectured RTOS ready for deploy production-ready applications. Thanks to the huge amount of ready-to-use drivers, it will be easy to integrate connectivity solutions such as Bluetooth BLE, WiFi, USB or CAN.
 
 With the micro-ROS module for Zephyr RTOS, ROS 2 users will find easy to integrate an embedded micro-ROS application in the Zephyr ecosystem. This module support a considerable part of the huge amount of `supported boards by Zephyr <https://docs.zephyrproject.org/latest/boards/index.html>`_.
 
@@ -165,7 +165,7 @@ Texas Instruments Tiva C Series is a family of MCU based on ARM Cortex-M4F. micr
 ST Micro ST Cube IDE/MX
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-`STM32Cube <https://www.st.com/en/ecosystems/stm32cube.html>`_ is one of the **preferred options of the users of ST Micro STM32 family**. By means of this module, the micro-ROS user will find easy to integrate the micro-ROS stack in a STM32Cube project.
+`STM32Cube <https://www.st.com/en/ecosystems/stm32cube.html>`_ is one of the **preferred options for using the ST Micro STM32 family**. By means of this module, the micro-ROS user will find easy to integrate the micro-ROS stack in a STM32Cube project.
 
 All the STM32 MCUs are supported by this IDE and most of them should be able to run the micro-ROS stack. By now, multiple Nucleo boards featuring STM32F4 and STM42F7 devices has been tested a proven to work. By using this module the micro-ROS user will find it easy to port micro-ROS to its own STM32 with FreeRTOS and the provided serial based transport.
 
