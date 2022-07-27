@@ -36,7 +36,7 @@ Architecture
 micro-ROS follows an architecture that is based on ROS 2, but also has significant differences that allows the embedded integration.
 In order to ease the use, it also provides tools for handling the integration in embedded platforms.
 
-micro-ROS **layered architecture** abstracts the OS/RTOS with a middleware layer. On top of the middleware, micro-ROS uses the same ROS 2 core layers (RMW, RCL and RCUTILS). With respect to user APIs, micro-ROS provides a **C99 API named RCLC** that provides the concepts available on ROS 2 C++ or Python APIs (RCLCPP or RCLPY).
+micro-ROS **layered architecture** abstracts the OS/RTOS with a middleware layer. On top of the middleware, micro-ROS uses the same ROS 2 core layers (RMW, RCL and RCUTILS). With respect to user APIs, micro-ROS provides a **C99 API named RCLC** that allow using all the concepts available on ROS 2 C++ or Python APIs (RCLCPP or RCLPY).
 
 **Compatibility with ROS 2 type support** is also granted, meaning that any message definition used in ROS 2 can be used seamlessly in micro-ROS. By means of the micro-ROS build systems, any `.msg`, `.srv` or `.action` definition file can be integrated in the micro-ROS build in order to achieve a type interoperability with ROS 2.
 
