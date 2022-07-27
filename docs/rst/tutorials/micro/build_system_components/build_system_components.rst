@@ -64,7 +64,7 @@ Most of the ESP32 versions are supported: ESP32, ESP32-S2, ESP32-S3 and even the
 Zephyr RTOS
 ^^^^^^^^^^^
 
-`Zephyr RTOS <https://docs.zephyrproject.org/>`_ is one of the most relevant RTOSes for embedded systems of the last years. **Supported by the Linux Foundation**, it provides a full featured and layered architectured RTOS ready for deploy production-ready applications. Thanks to the huge amount of ready-to-use drivers, the users will find easy to integrate connectivity solutions such as Bluetooth BLE, WiFi, USB or CAN.
+`Zephyr RTOS <https://docs.zephyrproject.org/>`_ is an RTOS for embedded systems **supported by the Linux Foundation**. It provides a full featured and layered architectured RTOS ready for deploy production-ready applications. Thanks to the huge amount of ready-to-use drivers, the users will find easy to integrate connectivity solutions such as Bluetooth BLE, WiFi, USB or CAN.
 
 With the micro-ROS module for Zephyr RTOS, ROS 2 users will find easy to integrate an embedded micro-ROS application in the Zephyr ecosystem. This module support a considerable part of the huge amount of `supported boards by Zephyr <https://docs.zephyrproject.org/latest/boards/index.html>`_.
 
