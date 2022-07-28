@@ -40,10 +40,7 @@ jobs:
       - name: Generate terminalizer gifs
         run: |
           cd docs
-          Xvfb :1 -screen 0 1024x768x24
-          export DISPLAY=:1
-          terminalizer render resources/terminalizer/test.yml -o resources/terminalizer/test
-          # make terminalizer
+          make terminalizer
 
       - name: Generate HTML docs
         run: |
