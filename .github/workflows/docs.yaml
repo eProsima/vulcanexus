@@ -39,6 +39,9 @@ jobs:
 
       - name: Generate terminalizer gifs
         run: |
+          # One liner fix for "error from previous GL command"
+          RENDER_FILE="$(which terminalizer | sed 's|/[^/]*$||')/../lib/node_modules/terminalizer/render/index.js"; grep -c disableHardwareAcceleration $RENDER_FILE || sed -i '32i app.disableHardwareAcceleration(); // <-- new code line' $RENDER_FILE
+
           cd docs
           make terminalizer
 
