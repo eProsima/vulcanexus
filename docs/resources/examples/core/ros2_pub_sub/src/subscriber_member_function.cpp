@@ -12,10 +12,10 @@ class MinimalSubscriber : public rclcpp::Node
 public:
 
     MinimalSubscriber()
-        // initialize Node with node name.
+        // Initialize Node with node name.
         : Node("minimal_subscriber")
     {
-        // subscriber of type std_msgs::msg::String on topic called topic and
+        // Subscriber of type std_msgs::msg::String on topic called topic and
         // queue size to limit messages in the event of a backup and bind
         // topic_callback to be called on data.
         subscription_ = this->create_subscription<std_msgs::msg::String>(
@@ -23,7 +23,7 @@ public:
     }
 
 private:
-    // function receives the string message data published over the topic,
+    // Function receives the string message data published over the topic,
     // and simply writes it to the console using the RCLCPP_INFO macro.
     void topic_callback(
             const std_msgs::msg::String::SharedPtr msg) const
@@ -38,9 +38,9 @@ int main(
         int argc,
         char* argv[])
 {
-    // initializes ROS 2.
+    // Initializes ROS 2.
     rclcpp::init(argc, argv);
-    // preparing to receive messages whenever they come.
+    // Preparing to receive messages whenever they come.
     rclcpp::spin(std::make_shared<MinimalSubscriber>());
     rclcpp::shutdown();
     return 0;

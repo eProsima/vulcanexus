@@ -15,18 +15,20 @@ ROS2 PubSub example
 Overview
 --------
 
-Writing a simple publisher and subscriber build it using Colcon.
-
-Nodes are executable processes that communicate over the ROS graph. In this tutorial, the nodes will pass information in the form of string messages to each other over a topic. The example used here is a simple “talker” and “listener” system; one node publishes data and the other subscribes to the topic so it can receive that data.
+This tutorial will guide you through the process of create a new workspace, create a package, implement a simple example with a publisher and a subscriber nodes and build and run it.
 
 
 Create a workspace
 --------------------
 
-A workspace is a directory containing ROS 2 packages. Before using ROS 2, it’s necessary to source your ROS 2 installation workspace in the terminal you plan to work in. This makes ROS 2’s packages available for you to use in that terminal.
+A workspace is a directory containing ROS 2 packages.
+
+To create a new workspace follow next steps:
 
     .. code-block:: bash
 
+        # Before use ROS 2 functionalities it is necessary to source 
+        # ROS 2 installation in the terminal where you are going to work in.
         source /opt/ros/humble/setup.bash
 
         # Best practice is to create a new directory for every new workspace.
@@ -37,16 +39,24 @@ A workspace is a directory containing ROS 2 packages. Before using ROS 2, it’s
 Create a package
 ----------------
 
+Packages are the most atomic unit of build and the unit of release.
 
-Recall that packages should be created in the src directory, not the root of the workspace. So, navigate into dev_ws/src, and run the package creation command:
+For this tutorial we are going to create a single `cpp_pubsub` package.
+
+Recall that packages should be created in the src directory, not the root of the workspace.
 
     .. code-block:: bash
 
+        cd ~/dev_ws/src
+
+        # Remember to source ROS 2 installation!.
         ros2 pkg create --build-type ament_cmake cpp_pubsub
 
         # Recall that this is the directory in any CMake package where the source files containing executables belong
         cd cpp_pubsub/src
     
+cpp_pubsub whould look like this:
+
     .. code-block:: text
 
         cpp_pubsub/
@@ -63,10 +73,16 @@ Recall that packages should be created in the src directory, not the root of the
 Create publisher_member_function.cpp
 ------------------------------------
 
+Lets start with publisher node, this node is going to publish messages that hopefully are going to be received by subscriber node.
+
+First create cpp file in our package src folder:
+
     .. code-block:: bash
 
         # on ~/dev_ws/srccpp_pubsub/src
         touch publisher_member_function.cpp
+
+cpp_pubsub whould look like this:
 
     .. code-block:: text
 
@@ -78,6 +94,8 @@ Create publisher_member_function.cpp
         └── src
             └── publisher_member_function.cpp
 
+Copy and paste next code on `publisher_member_function.cpp`. Feel free to spend some time reading comments to understand the code. 
+
     .. literalinclude:: ../../../../resources/examples/core/ros2_pub_sub/src/publisher_member_function.cpp
         :language: C++
         :linenos:
@@ -85,10 +103,14 @@ Create publisher_member_function.cpp
 Create subscriber_member_function.cpp
 -------------------------------------
 
+As we did before, first create the cpp file:
+
     .. code-block:: bash
 
         # on ~/dev_ws/srccpp_pubsub/src
         touch publisher_member_function.cpp
+
+Both cpp files should be under src directory:
 
     .. code-block:: text
 
@@ -101,7 +123,7 @@ Create subscriber_member_function.cpp
             ├── subscriber_member_function.cpp
             └── publisher_member_function.cpp
 
-    topic name and message type used by the publisher and subscriber must match to allow them to communicate.
+topic name and message type used by the publisher and subscriber must match to allow them to communicate.
 
     .. literalinclude:: ../../../../resources/examples/core/ros2_pub_sub/src/subscriber_member_function.cpp
         :language: C++
@@ -121,7 +143,7 @@ make sure to fill in the `<description>`, `<maintainer>` and `<license>` tags:
         <maintainer email="you@email.com">Your Name</maintainer>
         <license>Apache License 2.0</license>
 
-Add a new line after the `ament_cmake buildtool` dependency and paste the following dependencies corresponding to your node’s include statements:
+Add a new line after the `ament_cmake buildtool` dependency and paste the following dependencies corresponding to your nodes include statements:
 
     .. code-block:: xml
 
@@ -140,7 +162,9 @@ Replace `CMakeLists.txt` content with next example:
 Build
 -----
 
-You likely already have the rclcpp and std_msgs packages installed as part of your ROS 2 system. It’s good practice to run rosdep in the root of your workspace (dev_ws) to check for missing dependencies before building:
+You likely already have the rclcpp and std_msgs packages installed as part of your ROS 2 system.
+
+Run rosdep in the root of your workspace (dev_ws) to check for missing dependencies before building:
 
     .. code-block:: bash
 
@@ -161,7 +185,7 @@ Still in the root of your workspace, dev_ws, build your new package:
 Run
 -----
 
-source setup.bash on your workspace
+Source setup.bash on your workspace
     
     .. code-block:: bash
 
@@ -183,4 +207,4 @@ Then run listener in another terminal:
         # ~/dev_ws
         ros2 run cpp_pubsub listener
 
-The listener will start printing messages to the console.
+The listener will start printing messages.
