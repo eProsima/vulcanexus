@@ -34,9 +34,6 @@ clean:
 # Render terminalizer gifs
 .PHONY: terminalizer
 terminalizer:
-	# One liner fix for "error from previous GL command"
-	RENDER_FILE="$(which terminalizer | sed 's|/[^/]*$||')/../lib/node_modules/terminalizer/render/index.js"; grep -c disableHardwareAcceleration $RENDER_FILE || sed -i '32i app.disableHardwareAcceleration(); // <-- new code line' $RENDER_FILE
-
 	xvfb-run -a terminalizer render $(RESOURCESDIR)/terminalizer/test.yml -o $(RESOURCESDIR)/terminalizer/test
 	@echo
 	@echo "Terminalizer render finished. Generated gifs are in $(RESOURCESDIR)/terminalizer/"
