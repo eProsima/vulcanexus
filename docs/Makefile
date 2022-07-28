@@ -34,7 +34,7 @@ clean:
 # Render terminalizer gifs
 .PHONY: terminalizer
 terminalizer:
-	terminalizer render $(RESOURCESDIR)/terminalizer/test.yml -o $(RESOURCESDIR)/terminalizer/test
+	xvfb-run -a terminalizer render $(RESOURCESDIR)/terminalizer/test.yml -o $(RESOURCESDIR)/terminalizer/test
 	@echo
 	@echo "Terminalizer render finished. Generated gifs are in $(RESOURCESDIR)/terminalizer/"
 
