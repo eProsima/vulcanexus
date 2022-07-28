@@ -1,0 +1,239 @@
+# The configurations that used for the recording, feel free to edit them
+config:
+
+  # Specify a command to be executed
+  # like `/bin/bash -l`, `ls`, or any other commands
+  # the default is bash for Linux
+  # or powershell.exe for Windows
+  command: bash -l
+  
+  # Specify the current working directory path
+  # the default is the current working directory path
+  cwd: /home/username/workspace/vulcanexus
+  
+  # Export additional ENV variables
+  env:
+    recording: true
+  
+  # Explicitly set the number of columns
+  # or use `auto` to take the current
+  # number of columns of your shell
+  cols: 128
+  
+  # Explicitly set the number of rows
+  # or use `auto` to take the current
+  # number of rows of your shell
+  rows: 17
+  
+  # Amount of times to repeat GIF
+  # If value is -1, play once
+  # If value is 0, loop indefinitely
+  # If value is a positive number, loop n times
+  repeat: 0
+  
+  # Quality
+  # 1 - 100
+  quality: 1
+  
+  # Delay between frames in ms
+  # If the value is `auto` use the actual recording delays
+  frameDelay: auto
+  
+  # Maximum delay between frames in ms
+  # Ignored if the `frameDelay` isn't set to `auto`
+  # Set to `auto` to prevent limiting the max idle time
+  maxIdleTime: 2000
+  
+  # The surrounding frame box
+  # The `type` can be null, window, floating, or solid`
+  # To hide the title use the value null
+  # Don't forget to add a backgroundColor style with a null as type
+  frameBox:
+    type: floating
+    title: Terminalizer
+    style:
+      border: 0px black solid
+      # boxShadow: none
+      # margin: 0px
+  
+  # Add a watermark image to the rendered gif
+  # You need to specify an absolute path for
+  # the image on your machine or a URL, and you can also
+  # add your own CSS styles
+  watermark:
+    imagePath: null
+    style:
+      position: absolute
+      right: 15px
+      bottom: 15px
+      width: 100px
+      opacity: 0.9
+  
+  # Cursor style can be one of
+  # `block`, `underline`, or `bar`
+  cursorStyle: block
+  
+  # Font family
+  # You can use any font that is installed on your machine
+  # in CSS-like syntax
+  fontFamily: "Monaco, Lucida Console, Ubuntu Mono, Monospace"
+  
+  # The size of the font
+  fontSize: 24
+  
+  # The height of lines
+  lineHeight: 1
+  
+  # The spacing between letters
+  letterSpacing: 0
+  
+  # Theme
+  theme:
+    background: "transparent"
+    foreground: "#afafaf"
+    cursor: "#c7c7c7"
+    black: "#232628"
+    red: "#fc4384"
+    green: "#b3e33b"
+    yellow: "#ffa727"
+    blue: "#75dff2"
+    magenta: "#ae89fe"
+    cyan: "#708387"
+    white: "#d5d5d0"
+    brightBlack: "#626566"
+    brightRed: "#ff7fac"
+    brightGreen: "#c8ed71"
+    brightYellow: "#ebdf86"
+    brightBlue: "#75dff2"
+    brightMagenta: "#ae89fe"
+    brightCyan: "#b1c6ca"
+    brightWhite: "#f9f9f4"
+  
+# Records, feel free to edit them
+records:
+  - delay: 805
+    content: "\e]0;username@mydevice: ~/workspace/vulcanexus\a\e[01;32musername@mydevice\e[00m:\e[01;34m~/workspace/vulcanexus\e[00m$ "
+  - delay: 1120
+    content: T
+  - delay: 159
+    content: e
+  - delay: 176
+    content: s
+  - delay: 193
+    content: t
+  - delay: 77
+    content: i
+  - delay: 80
+    content: 'n'
+  - delay: 88
+    content: g
+  - delay: 106
+    content: ' '
+  - delay: 158
+    content: w
+  - delay: 218
+    content: i
+  - delay: 111
+    content: t
+  - delay: 158
+    content: h
+  - delay: 1153
+    content: ' '
+  - delay: 346
+    content: c
+  - delay: 126
+    content: o
+  - delay: 104
+    content: 'n'
+  - delay: 146
+    content: f
+  - delay: 207
+    content: i
+  - delay: 142
+    content: g
+  - delay: 371
+    content: .
+  - delay: 208
+    content: 'y'
+  - delay: 144
+    content: m
+  - delay: 90
+    content: l
+  - delay: 219
+    content: ' '
+  - delay: 515
+    content: t
+  - delay: 192
+    content: e
+  - delay: 166
+    content: r
+  - delay: 87
+    content: m
+  - delay: 107
+    content: i
+  - delay: 119
+    content: 'n'
+  - delay: 93
+    content: a
+  - delay: 130
+    content: l
+  - delay: 62
+    content: i
+  - delay: 87
+    content: z
+  - delay: 91
+    content: e
+  - delay: 170
+    content: r
+  - delay: 120
+    content: ' '
+  - delay: 121
+    content: c
+  - delay: 65
+    content: o
+  - delay: 49
+    content: 'n'
+  - delay: 107
+    content: gf
+  - delay: 471
+    content: "\b\e[K"
+  - delay: 338
+    content: "\b\e[K"
+  - delay: 96
+    content: f
+  - delay: 298
+    content: "\r\n"
+  - delay: 132
+    content: "Testing: command not found\r\n"
+  - delay: 9
+    content: "\e]0;username@mydevice: ~/workspace/vulcanexus\a\e[01;32musername@mydevice\e[00m:\e[01;34m~/workspace/vulcanexus\e[00m$ "
+  - delay: 1343
+    content: H
+  - delay: 178
+    content: e
+  - delay: 102
+    content: l
+  - delay: 155
+    content: l
+  - delay: 133
+    content: o
+  - delay: 187
+    content: ' '
+  - delay: 109
+    content: w
+  - delay: 105
+    content: o
+  - delay: 121
+    content: r
+  - delay: 376
+    content: l
+  - delay: 100
+    content: d
+  - delay: 380
+    content: '!'
+  - delay: 1293
+    content: "\a"
+  - delay: 795
+    content: "^C\r\n\e]0;username@mydevice: ~/workspace/vulcanexus\a\e[01;32musername@mydevice\e[00m:\e[01;34m~/workspace/vulcanexus\e[00m$ "
+  - delay: 743
+    content: "logout\r\n"
