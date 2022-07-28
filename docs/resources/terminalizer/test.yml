@@ -49,12 +49,11 @@ config:
   # To hide the title use the value null
   # Don't forget to add a backgroundColor style with a null as type
   frameBox:
-    type: floating
-    title: Terminalizer
+    type: null
+    title: null
     style:
-      border: 0px black solid
-      # boxShadow: none
-      # margin: 0px
+      border: 10px black solid
+      background: "black"
   
   # Add a watermark image to the rendered gif
   # You need to specify an absolute path for
