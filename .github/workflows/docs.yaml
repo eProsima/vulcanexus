@@ -39,6 +39,7 @@ jobs:
       - name: Generate terminalizer gifs
         run: |
           cd docs
+          export DISPLAY=:1
           terminalizer render resources/terminalizer/test.yml -o resources/terminalizer/test
           # make terminalizer
 
