@@ -26,7 +26,7 @@ any edge to the rest of devices connected to the server.
 Thus, it creates a bridge between 2 networks that do not have direct access to each other,
 facilitating network configuration aspects such as NATs Traversals and dynamic addresses.
 
-.. _warning_lan:
+.. _warning_lan_edge_edge:
 
 .. warning::
 
@@ -246,7 +246,7 @@ And finally, run the application:
 
         .. note::
 
-            As stated :ref:`here <warning_lan>`, change the ROS 2 Domain Id if running the edge and cloud applications on the same LAN.
+            As stated :ref:`here <warning_lan_edge_edge>`, change the ROS 2 Domain Id if running the edge and cloud applications on the same LAN.
 
 
 The important points to note in this application are the following:
@@ -267,13 +267,22 @@ In this example both edges use different ports to communicate with the Repeater,
 However this is not needed, and only one address could be used.
 The following snippet shows a configuration file (changing Domain for LAN scenarios):
 
-.. literalinclude:: /resources/tutorials/cloud/edge_edge_repeater_cloud/dds_router_edge_2.yaml
-    :language: yaml
+.. tabs::
 
-The following figure summarizes the deployment on the edge 2.
+    .. tab:: WAN
 
-.. figure:: /rst/figures/tutorials/cloud/edge_2_repeater_deployment.png
-   :align: center
+        .. literalinclude:: /resources/tutorials/cloud/edge_edge_repeater_cloud/dds_router_edge_2_wan.yaml
+            :language: yaml
+
+    .. tab:: LAN
+
+        .. literalinclude:: /resources/tutorials/cloud/edge_edge_repeater_cloud/dds_router_edge_2_lan.yaml
+            :language: yaml
+
+        .. note::
+
+            As stated :ref:`here <warning_lan_edge_edge>`, set the ROS 2 Domain Id on the ``local`` participant in order to discover the ``turtlesim_square_move`` ROS 2 node.
+
 
 Now, run the DDS Router with the configuration file created as an argument.
 
