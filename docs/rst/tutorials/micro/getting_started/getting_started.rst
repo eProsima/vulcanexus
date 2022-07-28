@@ -124,7 +124,6 @@ After the workspace is ready and sourced, micro-ROS applications can be added, b
 
   Certain topics as message memory handling or micro-ROS API details are not covered on this tutorial. Check the `micro-ROS User API <_tutorials_micro_user_api>`_ tutorial for more details.
 
-
 Write the micro-ROS publisher
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -196,7 +195,7 @@ The agent is included on Vulcanexus micro tool set. The default transport config
     # Start the agent
     ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888 -v5
 
-This command will start the Agent, allowing communication between our micro-ROS apps and ROS2 environment:
+This command will start the Agent, allowing communication between our micro-ROS apps and ROS2 environment.
 
 .. note::
 
@@ -227,4 +226,4 @@ Then run listener in another terminal:
   # ~/microros_ws
   ros2 run micro_pubsub subscriber
 
-The listener will start printing messages to the console. Notice how the creation of entities and each publication appears on the Agent log:
+The listener will start printing messages to the console. Notice how the creation of entities and each publication appears on the Agent log.

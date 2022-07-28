@@ -11,6 +11,7 @@ Please, visit `micro-ROS tutorial webpage <https://micro.ros.org/docs/tutorials/
 
     introduction/introduction.rst
     build_system_components/build_system_components.rst
+    getting_started/getting_started.rst
 
 
 .. Structure:
