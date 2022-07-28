@@ -36,6 +36,11 @@ jobs:
       - name: Install python requirements
         run: pip3 install -r docs/requirements.txt
 
+      - name: Generate terminalizer gifs
+        run: |
+          cd docs
+          make terminalizer
+
       - name: Generate HTML docs
         run: |
           cd docs
