@@ -39,7 +39,8 @@ jobs:
       - name: Generate terminalizer gifs
         run: |
           cd docs
-          make terminalizer
+          terminalizer render resources/terminalizer/test.yml -o resources/terminalizer/test
+          # make terminalizer
 
       - name: Generate HTML docs
         run: |
