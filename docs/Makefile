@@ -35,6 +35,7 @@ clean:
 .PHONY: terminalizer
 terminalizer:
 	xvfb-run -a terminalizer render $(RESOURCESDIR)/terminalizer/test.yml -o $(RESOURCESDIR)/terminalizer/test
+	xvfb-run -a terminalizer render $(RESOURCESDIR)/terminalizer/core/ros2_pub_sub/pubsub_workspace_terminalizer.yml -o $(RESOURCESDIR)/terminalizer/pubsub_workspace_terminalizer
 	@echo
 	@echo "Terminalizer render finished. Generated gifs are in $(RESOURCESDIR)/terminalizer/"
 

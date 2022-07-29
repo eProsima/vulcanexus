@@ -27,7 +27,7 @@ To create a new workspace follow next steps:
 
     .. code-block:: bash
 
-        # Before use ROS 2 functionalities it is necessary to source 
+        # Before use ROS 2 functionalities it is necessary to source
         # ROS 2 installation in the terminal where you are going to work in.
         source /opt/ros/humble/setup.bash
 
@@ -54,7 +54,7 @@ Recall that packages should be created in the src directory, not the root of the
 
         # Recall that this is the directory in any CMake package where the source files containing executables belong
         cd cpp_pubsub/src
-    
+
 cpp_pubsub whould look like this:
 
     .. code-block:: text
@@ -69,6 +69,8 @@ cpp_pubsub whould look like this:
 .. figure:: /rst/figures/tutorials/core/ros2_pub_sub/gif1.gif
     :width: 1000px
     :align: center
+
+.. image:: ../../../resources/terminalizer/pubsub_workspace_terminalizer.gif
 
 Create publisher_member_function.cpp
 ------------------------------------
@@ -94,7 +96,7 @@ cpp_pubsub whould look like this:
         └── src
             └── publisher_member_function.cpp
 
-Copy and paste next code on `publisher_member_function.cpp`. Feel free to spend some time reading comments to understand the code. 
+Copy and paste next code on `publisher_member_function.cpp`. Feel free to spend some time reading comments to understand the code.
 
     .. literalinclude:: ../../../../resources/examples/core/ros2_pub_sub/src/publisher_member_function.cpp
         :language: C++
@@ -186,7 +188,7 @@ Run
 -----
 
 Source setup.bash on your workspace
-    
+
     .. code-block:: bash
 
         # ~/dev_ws
