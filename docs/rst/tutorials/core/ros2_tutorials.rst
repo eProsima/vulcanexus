@@ -5,7 +5,7 @@ Vulcanexus Core Tutorials
 
 This section will provide a collection of ROS 2 tutorials, both on the use and application of the basic functionality, as well as on the exploitation of ROS 2 for more advanced users.
 
-.. note::
+.. toctree::
+    :maxdepth: 1
 
-    There are currently no ROS 2 tutorials available. New tutorials will be available soon.
-
+    security/security_tutorials
