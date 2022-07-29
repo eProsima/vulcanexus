@@ -19,7 +19,7 @@ Renesas e\ :sup:`2` Studio
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 `Renesas RA Family <https://www.renesas.com/us/en/products/microcontrollers-microprocessors/ra-cortex-m-mcus>`_ is the **official supported hardware** of micro-ROS.
-This family of MCUs features a wide range of features based on Arm® Cortex®-M33, M23, and M4 processor cores.
+This family of MCUs provides a wide range of features based on Arm® Cortex®-M33, M23, and M4 processor cores.
 
 Renesas e\ :sup:`2` Studio provides a whole integrated development environment that allows for professional development, test and profiling of embedded applications.
 The micro-ROS component for Renesas provides a set of tools and instructions to integrate the build and configuration of micro-ROS within a Renesas e\ :sup:`2` Studio project.
