@@ -1,0 +1,8 @@
+:orphan:
+
+404 - Page not found
+====================
+
+Unfortunately we couldn't find the content you were looking for.
+
+Please select a page from the side menu or feel free to create an issue on `GitHub <https://github.com/eProsima/vulcanexus>`_.
