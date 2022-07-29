@@ -10,6 +10,8 @@ Publishers and subscribers
 
 ROS 2 publishers and subscribers are the basic communication mechanism between nodes using topics. Further information about ROS 2 publish-subscribe pattern can be found on `Understanding topics <https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html>`_
 
+.. TODO(acuadros95): Refer to getting started tutorial
+
 Ready to use code related to this concepts can be found on micro-ROS-demos `int32_publisher <https://github.com/micro-ROS/micro-ROS-demos/tree/humble/rclc/int32_publisher/main.c>`_ and `int32_subscriber <https://github.com/micro-ROS/micro-ROS-demos/tree/humble/rclc/int32_subscriber/main.c>`_ examples.
 
 .. note::
@@ -158,6 +160,7 @@ Message initialization
 
 Before publishing or receiving a message, it may be necessary to initialize its memory for types with strings or sequences.
 Check the `Handling messages memory tutorial <https://micro.ros.org/docs/tutorials/advanced/handling_type_memory>`_ on micro-ROS web page for details.
+
 .. TODO(acuadros95): Add reference to future "Handling messages memory" tutorial
 
 Cleaning Up
@@ -174,4 +177,4 @@ To destroy an initialized publisher or subscriber:
   // Destroy subscriber
   rcl_subscription_fini(&subscriber, &node);
 
-This will delete any automatically created infrastructure on the agent (if possible) and deallocate used memory on the client side.
+This will delete any automatically created infrastructure on the agent (if possible) and free used memory on the client side.

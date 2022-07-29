@@ -51,7 +51,7 @@ Callback
 ^^^^^^^^
 
 Once a request arrives, the executor will call the configured callback with the request and response messages as arguments.
-The request message ``request_msg``contains the request sent by the client, while the ``response_msg`` argument should be modified with the server response to the request.
+The request message ``request_msg`` contains the request sent by the client, while the ``response_msg`` argument should be modified with the server response.
 The response message will be sent to the client after the callback returns.
 
 Using ``AddTwoInts.srv`` type definition as an example:
@@ -225,4 +225,4 @@ To destroy an initialized service or client:
   rcl_service_fini(&service, &node);
   rcl_client_fini(&client, &node);
 
-This will delete any automatically created infrastructure on the agent (if possible) and deallocate used memory on the client side.
+This will delete any automatically created infrastructure on the agent (if possible) and free used memory on the client side.
