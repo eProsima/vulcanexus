@@ -56,7 +56,8 @@ The `eProsima Micro XRCE-DDS <https://micro-xrce-dds.docs.eprosima.com/en/latest
 
 .. note::
 
-    `micro-ROS Agent <https://github.com/micro-ROS/micro-ROS-Agent>`_ is distributed along with `Vulcanexus Micro <https://docs.vulcanexus.org/en/latest/>`_. Check the `installation tutorial <https://docs.vulcanexus.org/en/latest/rst/installation/linux_binary_installation.html>`_.
+    `micro-ROS Agent <https://github.com/micro-ROS/micro-ROS-Agent>`_ is distributed along with `Vulcanexus Micro <https://docs.vulcanexus.org/en/latest/>`_.
+    Check the `installation tutorial <https://docs.vulcanexus.org/en/latest/rst/installation/linux_binary_installation.html>`_.
 
 In the same way as ROS 2, micro-ROS has a **pluggable middleware interface** so other middleware implementations can be used at the bottom layer of the stack.
 
