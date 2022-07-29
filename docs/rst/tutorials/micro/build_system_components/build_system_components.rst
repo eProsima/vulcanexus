@@ -22,7 +22,7 @@ Renesas e\ :sup:`2` Studio
 This family of MCUs features a wide range of features based on Arm® Cortex®-M33, M23, and M4 processor cores.
 
 Renesas e\ :sup:`2` Studio provides a whole integrated development environment that allows for professional development, test and profiling of embedded applications.
-The micro-ROS component for Renesas provides a set of tools and instructions to integrate the build and configuration of micro-ROS inside of a Renesas e\ :sup:`2` Studio project.
+The micro-ROS component for Renesas provides a set of tools and instructions to integrate the build and configuration of micro-ROS within a Renesas e\ :sup:`2` Studio project.
 
 This package supports multiple RTOSes (FreeRTOS and Azure RTOS), as well as a bare-metal approach.
 Also, a wide range of transport layers are available: UART, UDP/IP, TCP/IP, USB-CDC and CAN/FD.
