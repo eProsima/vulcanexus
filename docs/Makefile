@@ -4,6 +4,7 @@
 SPHINXBUILD   = sphinx-build
 SPHINXOPTS    =
 BUILDDIR      = build
+RESOURCESDIR  = resources
 
 # Internal variables.
 SOURCEDIR      = .
@@ -29,6 +30,14 @@ help:
 .PHONY: clean
 clean:
 	rm -rf $(BUILDDIR)/*
+
+# Render terminalizer gifs
+.PHONY: terminalizer
+terminalizer:
+	xvfb-run -a terminalizer render $(RESOURCESDIR)/terminalizer/test.yml -o $(RESOURCESDIR)/terminalizer/test
+	xvfb-run -a terminalizer render $(RESOURCESDIR)/terminalizer/core/ros2_pub_sub/pubsub_workspace_terminalizer.yml -o $(RESOURCESDIR)/terminalizer/pubsub_workspace_terminalizer
+	@echo
+	@echo "Terminalizer render finished. Generated gifs are in $(RESOURCESDIR)/terminalizer/"
 
 # Generate HTML documentation in $(BUILDDIR)/html
 .PHONY: html
