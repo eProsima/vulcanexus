@@ -100,7 +100,8 @@ project_source_docs_dir = os.path.abspath('{}/rst'.format(script_path))
 # ones.
 extensions = [
     'sphinx.ext.todo',
-    'sphinx_tabs.tabs'
+    'sphinx_tabs.tabs',
+    'notfound.extension'
 ]
 
 sphinx_tabs_disable_css_loading = False
