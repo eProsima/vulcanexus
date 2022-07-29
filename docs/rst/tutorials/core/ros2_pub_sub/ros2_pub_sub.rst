@@ -43,7 +43,7 @@ Packages are the most atomic unit of build and the unit of release.
 
 For this tutorial we are going to create a single `cpp_pubsub` package.
 
-Recall that packages should be created in the src directory, not the root of the workspace.
+Recall that packages should be created in the `src` directory, not the root of the workspace.
 
     .. code-block:: bash
 
@@ -55,7 +55,7 @@ Recall that packages should be created in the src directory, not the root of the
         # Recall that this is the directory in any CMake package where the source files containing executables belong
         cd cpp_pubsub/src
 
-cpp_pubsub whould look like this:
+`cpp_pubsub` would look like this:
 
     .. code-block:: text
 
@@ -72,19 +72,19 @@ cpp_pubsub whould look like this:
 
 .. image:: ../../../resources/terminalizer/pubsub_workspace_terminalizer.gif
 
-Create publisher_member_function.cpp
-------------------------------------
+Create Talker
+-------------
 
 Lets start with publisher node, this node is going to publish messages that hopefully are going to be received by subscriber node.
 
-First create cpp file in our package src folder:
+First create `cpp` file in our package `src` folder:
 
     .. code-block:: bash
 
         # on ~/dev_ws/srccpp_pubsub/src
         touch publisher_member_function.cpp
 
-cpp_pubsub whould look like this:
+`cpp_pubsub` would look like this:
 
     .. code-block:: text
 
@@ -102,17 +102,17 @@ Copy and paste next code on `publisher_member_function.cpp`. Feel free to spend 
         :language: C++
         :linenos:
 
-Create subscriber_member_function.cpp
--------------------------------------
+Create Listener
+---------------
 
-As we did before, first create the cpp file:
+As we did before, first create the `cpp` file:
 
     .. code-block:: bash
 
         # on ~/dev_ws/srccpp_pubsub/src
         touch publisher_member_function.cpp
 
-Both cpp files should be under src directory:
+Both `cpp` files should be under `src` directory:
 
     .. code-block:: text
 
@@ -164,16 +164,16 @@ Replace `CMakeLists.txt` content with next example:
 Build
 -----
 
-You likely already have the rclcpp and std_msgs packages installed as part of your ROS 2 system.
+You likely already have the `rclcpp` and `std_msgs` packages installed as part of your ROS 2 system.
 
-Run rosdep in the root of your workspace (dev_ws) to check for missing dependencies before building:
+Run `rosdep` in the root of your workspace (`dev_ws`) to check for missing dependencies before building:
 
     .. code-block:: bash
 
         # ~/dev_ws
         rosdep install -i --from-path src --rosdistro humble -y
 
-Still in the root of your workspace, dev_ws, build your new package:
+Still in the root of your workspace, `dev_ws`, build your new package:
 
     .. code-block:: bash
 
