@@ -6,6 +6,9 @@ Vulcanexus Micro Tutorials
 micro-ROS already provides several tutorials that can be also run within Vulcanexus.
 Please, visit `micro-ROS tutorial webpage <https://micro.ros.org/docs/tutorials/core/overview/>`_.
 
+.. Test generated gif
+.. image:: ../../../resources/terminalizer/test.gif
+
 .. toctree::
     :maxdepth: 1
 

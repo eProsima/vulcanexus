@@ -28,10 +28,23 @@ jobs:
             python3-pip \
             python3-venv \
             python3-sphinxcontrib.spelling \
-            imagemagick
+            imagemagick \
+            nodejs \
+            npm \
+            xvfb
+          npm install -g terminalizer
 
       - name: Install python requirements
         run: pip3 install -r docs/requirements.txt
+
+      - name: Generate terminalizer gifs
+        run: |
+          # One liner fix for "error from previous GL command"
+          export RENDER_FILE="$(which terminalizer | sed 's|/[^/]*$||')/../lib/node_modules/terminalizer/render/index.js"
+          grep -c disableHardwareAcceleration $RENDER_FILE || sed -i '32i app.disableHardwareAcceleration(); // <-- Disable GPU usage' $RENDER_FILE
+
+          cd docs
+          make terminalizer
 
       - name: Generate HTML docs
         run: |
