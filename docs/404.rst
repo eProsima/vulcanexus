@@ -1,20 +1,14 @@
 :orphan:
 
-.. .. image:: /rst/_static/css/imgs/vulcanexus_logo2.png
-..    :scale: 25 %
-..    :align: center
+.. image:: /rst/_static/css/imgs/vulcanexus_logo2.png
+   :width: 40%
+   :align: center
 
-.. .. image:: /rst/_static/css/imgs/404_volcano.png
-..    :scale: 25 %
-..    :align: center
+.. image:: /rst/_static/css/imgs/404_volcano.png
+   :width: 30%
+   :align: center
 
 .. raw:: html
-
-    <div>
-         <img src="_static/css/imgs/vulcanexus_logo2.png" alt="Vulcanexus Logo" style="display:block; margin-left:auto; margin-right:auto; width:40%;">
-         </br>
-         <img src="_static/css/imgs/404_volcano.png" alt="vulcano" style="display:block; margin-left:auto; margin-right:auto; width:30%;">
-    </div>
 
     <div class="section" id="404-section" style="text-align:center !important; font-family:Lato;" >
         </br>
