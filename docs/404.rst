@@ -1,8 +1,43 @@
 :orphan:
 
+.. .. image:: /rst/_static/css/imgs/vulcanexus_logo2.png
+..    :scale: 25 %
+..    :align: center
+
+.. .. image:: /rst/_static/css/imgs/404_volcano.png
+..    :scale: 25 %
+..    :align: center
+
+.. raw:: html
+
+    <div>
+         <img src="_static/css/imgs/vulcanexus_logo2.png" alt="Vulcanexus Logo" style="display:block; margin-left:auto; margin-right:auto; width:40%;">
+         </br>
+         <img src="_static/css/imgs/404_volcano.png" alt="vulcano" style="display:block; margin-left:auto; margin-right:auto; width:30%;">
+    </div>
+
+    <div class="section" id="404-section" style="text-align:center !important; font-family:Lato;" >
+        </br>
+        <h1 style="font-size:200% !important; letter-spacing:5px !important;">404 - Page not found</h1>
+        </br>
+        <section style="font-size:125% !important;">
+            Unfortunately we couldn't find the content you were looking for.
+        </section>
+        </br>
+        <section style="font-size:125% !important;">
+            Please select a page from the side menu or visit  <a href="https://vulcanexus.org">Vulcanexus.org</a>
+        </section>
+        </br>
+    </div>
+
+.. raw:: html
+
+   <div style="visibility: hidden;">
+
 404 - Page not found
 ====================
 
-Unfortunately we couldn't find the content you were looking for.
+.. raw:: html
 
-Please select a page from the side menu or feel free to create an issue on `GitHub <https://github.com/eProsima/vulcanexus>`_.
+   </div>
+
