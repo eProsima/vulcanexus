@@ -4,7 +4,6 @@ participants:
 
   - name: ROS_2_LAN_2
     kind: local
-    domain: 1
 
   - name: Router_Client
     kind: repeater-client

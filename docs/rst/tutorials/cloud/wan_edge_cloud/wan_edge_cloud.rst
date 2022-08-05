@@ -169,7 +169,7 @@ The following figure summarizes the deployment on the edge.
 .. figure:: /rst/figures/tutorials/cloud/edge_deployment.png
    :align: center
 
-To finish this step, run the DDS Router with the configuration file created as an argument.
+Now, run the DDS Router with the configuration file created as an argument.
 
 .. code-block::
 
