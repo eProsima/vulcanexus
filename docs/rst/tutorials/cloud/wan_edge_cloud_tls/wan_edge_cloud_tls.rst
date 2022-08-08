@@ -1,8 +1,14 @@
-.. _tutorials_cloud_wan_edge_cloud_wan_edge_cloud:
+.. _tutorials_cloud_wan_edge_cloud_tls_wan_edge_cloud_tls:
 
 
-Edge-Cloud communication on WAN
-===============================
+Edge-Cloud TLS communication on WAN
+====================================
+
+.. warning::
+
+   In this example it is assumed the reader has basic knowledge of TLS concepts
+   since terms like Certificate Authority (CA), Private Key, `Rivest–Shamir–Adleman` (RSA) cryptosystem,
+   and Diffie-Hellman encryption protocol are not explained in detail.
 
 .. contents::
     :depth: 2
@@ -12,18 +18,19 @@ Edge-Cloud communication on WAN
 Background
 ----------
 
-This tutorial will cover the first steps to setup a distributed network of remotely controlled robots from the Cloud or an edge device.
-More specifically, it will focus on a basic edge-cloud architecture in which there is an edge robot deployed on a local network (LAN) with access to the Internet, and a server in the Cloud reachable through the Internet.
+This tutorial builds on the previous one (:ref:`tutorials_cloud_wan_edge_cloud_wan_edge_cloud`),
+further showing how to secure the edge-cloud communication link with TLS protocol.
+It is recommended to follow these tutorials in order, as some concepts or installations may be already covered.
 
-.. _warning_lan:
+.. _warning_lan_tls:
 
 .. warning::
 
     This tutorial is intended for WAN communication.
-    However, if there is only access to a LAN communication, it is possible to follow the tutorial by changing the ROS 2 Domain Id so that the edge uses the default Domain (``0``) and the Cloud uses ROS 2 Domain ``1``.
-    This way the ROS 2 nodes are logically isolated and will not discovery other nodes out of their ROS 2 Domain.
+    However, if communication through a LAN is your only option, it is still possible to follow the tutorial by changing the ROS 2 Domain Ids so that each ROS 2 node uses a different Domain (``0`` and ``1``).
+    This way the ROS 2 nodes are logically isolated and will not discover other nodes out of their ROS 2 Domain.
 
-This way, all the elements involved in this architecture will be studied, starting with the edge robot, continuing with the controller hosted in the cloud also built as a ROS 2 node and concluding with the intermediate elements that enable communication over the Internet.
+Following, all the elements involved in this architecture will be studied, starting with the edge robot, continuing with the controller hosted in the cloud also built as a ROS 2 node and concluding with the intermediate elements that enable communication over the Internet.
 
 The image below describes the scenario presented in this tutorial.
 
@@ -32,20 +39,20 @@ The image below describes the scenario presented in this tutorial.
 
 Several key elements can be observed in it:
 
-1.  **ROS 2 Application**.
-    The application used for this tutorial is the *turtlesim*.
-    The *turtlesim* is a ROS 2 application, first developed for ROS, aimed at teaching the basic concepts of ROS 2 such as publish/subscribe, services and actions.
-    That is why the edge robot will be the ``turtlesim_node`` which is a simulator of a robot that exploits these previous concepts.
+#.  **ROS 2 Application**.
+    *Turtlesim* is the application used for this tutorial.
+    *Turtlesim* is a ROS 2 application, first developed for ROS, aimed at teaching the basic concepts of ROS 2 such as publish/subscribe, services and actions.
+    The edge robot will then be a ``turtlesim_node``, which is a simulator of a robot making use of these communication methods.
 
-1.  **ROS 2 Device Controller**.
+#.  **ROS 2 Device Controller**.
     This is a ROS 2 application that sends commands to the edge robot.
-    It has been developed a basic C++ application for this tutorial that sends publications on the topic that the ``turtlesim_node`` listens.
+    A basic C++ application has been developed for this tutorial that sends publications under the topic on which the ``turtlesim_node`` listens.
     By means of these publications (commands) from the controller, and the feedback information that the controller receives from the ``turtlesim_node``, it is possible to control this node automatically without the need for user intervention which facilitates the deployment of the scenario at hand.
-    The key feature of the *DDS Router* is that it is easy to configure, allowing to connect different networks with ROS 2 applications without the need to apply any changes to the developer's software or applications.
+    The key feature of the *DDS Router* is that it is easy to configure, allowing to connect different networks with ROS 2 applications without requiring to apply any changes to the developer's software or applications.
 
-1.  **ROS 2 Router / DDS Router**.
+#.  **ROS 2 Router / DDS Router**.
     *eProsima ROS 2 Router*, a.k.a `DDS Router <https://github.com/eProsima/DDS-Router>`_, is an end-user software application that enables the connection of distributed ROS 2 networks (see DDS Router documentation `here <https://eprosima-dds-router.readthedocs.io/en/latest/>`_).
-    That is, ROS 2 nodes such as publishers and subscriptions, or clients and services, deployed in one geographic location and using a dedicated local network will be able to communicate with other ROS 2 nodes deployed in different geographic areas on their own dedicated local networks as if they were all on the same network through the use of *DDS Router*.
+    That is, ROS 2 nodes such as publishers and subscribers, or clients and services, deployed in one geographic location and using a dedicated local network will be able to communicate with other ROS 2 nodes deployed in different geographic areas on their own dedicated local networks as if they were all on the same network through the use of *DDS Router*.
 
     This example presents two routers that enable Internet communication:
 
@@ -59,11 +66,68 @@ Prerequisites
 This tutorial will require two machines (*Robot 1* and *Cloud Server*) deployed on different networks (*LAN 1* and *Cloud*).
 It is possible to simulate the scenario by deploying everything needed on the same machine and two virtual networks but let's focus on the case of a real deployment.
 
-It is also important to have previously installed Vulcanexus using one of the following installation methods:
+It is also necessary to have previously installed *Vulcanexus* using one of the following installation methods:
 
 * :ref:`linux_binary_installation`
 * :ref:`linux_source_installation`
 * :ref:`docker_installation`
+
+.. note::
+
+    `OpenSSL <https://www.openssl.org/>`_, required in this tutorial to generate security keys and certificates, is already part of *Vulcanexus* toolset.
+
+.. _tls_configuration:
+
+TLS configuration
+-----------------
+
+Let us first generate the TLS credentials with which *DDS Router* instances will be configured. In this example,
+Elliptic Curve (EC) keys will be generated, and with/without password versions of the commands will be provided.
+
+Certification Authority (CA)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Create first a mock CA that will be used to generate a certificate for the DDS Router Cloud:
+
+.. code-block:: bash
+
+    # Generate the Certificate Authority (CA) Private Key > ca.key
+    openssl ecparam -name prime256v1 -genkey -noout -out ca.key
+    # openssl ecparam -name prime256v1 -genkey | openssl ec -aes256 -out ca.key -passout pass:cakey # with password
+
+    # Generate the Certificate Authority Certificate > ca.crt
+    openssl req -new -x509 -sha256 -key ca.key -out ca.crt -days 365 -config ca.cnf
+    # openssl req -new -x509 -sha256 -key ca.key -out ca.crt -days 365 -config ca.cnf -passin pass:cakey # with password
+
+DDS Router Cloud Certificate
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+We can now generate a certificate for the DDS Router Cloud instance following the steps below:
+
+.. code-block:: bash
+
+    # Generate the DDS-Router Certificate Private Key > ddsrouter.key
+    openssl ecparam -name prime256v1 -genkey -noout -out ddsrouter.key
+    # openssl ecparam -name prime256v1 -genkey | openssl ec -aes256 -out ddsrouter.key -passout pass:ddsrouterpass # with password
+
+    # Generate the DDS-Router Certificate Signing Request  > ddsrouter.csr
+    openssl req -new -sha256 -key ddsrouter.key -out ddsrouter.csr -config ddsrouter.cnf
+    # openssl req -new -sha256 -key ddsrouter.key -out ddsrouter.csr -config ddsrouter.cnf -passin pass:ddsrouterpass # with password
+
+    # Generate the DDS-Router Certificate (computed on the CA side) > ddsrouter.crt
+    openssl x509 -req -in ddsrouter.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out ddsrouter.crt -days 1000 -sha256
+    # openssl x509 -req -in ddsrouter.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out ddsrouter.crt -days 1000 -sha256 -passin pass:cakey # with password
+
+Diffie-Hellman Parameters
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+It only remains to generate the Diffie-Hellman (DF) parameters to define how OpenSSL performs the DF key-exchange:
+
+.. code-block:: bash
+
+    # Generate Diffie-Hellman (DF) parameters > dh_params.pem
+    openssl dhparam -out dh_params.pem 2048
+
 
 Deployment on LAN 1
 -------------------
@@ -73,9 +137,10 @@ First, let's deploy the ``turtlesim_node`` and DDS Router Edge on a machine on *
 Running turtlesim_node on the edge
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-First, setup the Vulcanexus environment to have the ``turtlesim_node`` available.
-For this there are two options:
-1.  Running the Vulcanexus Docker image.
+Setup the Vulcanexus environment to have the ``turtlesim_node`` available.
+For this, there are two possible options:
+
+#.  Running the Vulcanexus Docker image.
 
     Run the Vulcanexus Docker image with:
 
@@ -95,7 +160,7 @@ For this there are two options:
 
             source /opt/vulcanexus/humble/setup.bash
 
-1.  Setting up the development environment on the local host. For this second option, it is necessary to have installed the ``vucanexus-humble-desktop`` package, since this is the one that includes all the simulation tools, demos and tutorials.
+#.  Setting up the development environment on the local host. For this second option, it is necessary to have installed the ``vucanexus-humble-desktop`` package, since this is the one that includes all the simulation tools, demos and tutorials.
 
     Source the following file to setup the Vulcanexus environment:
 
@@ -125,9 +190,9 @@ Then, to run the DDS Router Edge configure the environment as in the previous st
 
 .. note::
 
-    If you are deploying Vulcanexus from the Docker image, note that you will need to have a configuration file (``config.yaml``) to configure the DDS Router Edge accessible from your Docker container.
+    If deploying Vulcanexus from the Docker image, note that you will need to have a configuration file (``config.yaml``) for the DDS Router Edge accessible from your Docker container.
 
-    You can do this by mounting a shared volume when launching the container, by copying the file from the local host to the container in case it is already running, or by editing a file from the Docker container itself.
+    This can be achieved by mounting a shared volume when launching the container, by copying the file from the local host to the container in case it is already running, or by editing a file from the Docker container itself.
 
 Setup the Vulcanexus environment, either in a Docker container or on the local host, running the following command:
 
@@ -135,12 +200,12 @@ Setup the Vulcanexus environment, either in a Docker container or on the local h
 
     source /opt/vulcanexus/humble/setup.bash
 
-Let's create the DDS Router configuration file. It will look like the one shown below.
+Let's create a DDS Router configuration file as the one shown below.
 
-.. literalinclude:: /resources/tutorials/cloud/wan_edge_cloud/dds_router_edge.yaml
+.. literalinclude:: /resources/tutorials/cloud/wan_edge_cloud_tls/dds_router_edge.yaml
     :language: yaml
 
-Next, it is briefly explained the most relevant aspects of this configuration file.
+Next, the most relevant aspects of this configuration file are explained.
 
 The ``participants`` are the interfaces of the DDS Router to communicate with other networks. In this case, we have two participants:
 
@@ -155,20 +220,21 @@ The ``participants`` are the interfaces of the DDS Router to communicate with ot
     There are some relevant configurations within this connection address:
 
     * ``discovery-server-guid``: it defines the ``id`` of the ``router``-type participant of the DDS Router Cloud.
-    * ``addresses``: defines the IP (``ip``) and port (``port``) of the network addresses to which it connects, and the transport protocol (``transport``) to be used in the communication, TCP in this case.
+    * ``addresses``: defines the IP (``ip``) and port (``port``) of the network addresses to which it connects, and the transport protocol (``transport``) to be used in the communication, TCP in this case (required for TLS).
+    * ``tls``: defines the TLS configuration parameters to establish a secure connection over TCP. For clients, only the certificate authority (CA) needs to be provided. Please refer to `DDS Router documentation <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/wan_configuration.html#tls>`__ for more details on how to configure TLS in a WAN participant.
 
 .. note::
 
     In this case, the DDS Router will forward all topics found in the network.
     However, it is important to mention that the ROS 2 topics relayed by the DDS Router can be filtered by configuring the ``allowlist`` and ``blocklist``.
-    If this is the case please refer to the `DDS Router documentation <https://eprosima-dds-router.readthedocs.io/en/latest/>`_ for information on how to do this.
+    If this is the case please refer to the `DDS Router documentation <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/configuration.html#topic-filtering>`__ for information on how to do this.
 
 The following figure summarizes the deployment on the edge.
 
-.. figure:: /rst/figures/tutorials/cloud/edge_deployment.png
+.. figure:: /rst/figures/tutorials/cloud/edge_deployment_tls.png
    :align: center
 
-To finish this step, run the DDS Router with the configuration file created as an argument.
+Now, run the DDS Router with the configuration file created as an argument.
 
 .. code-block::
 
@@ -247,20 +313,8 @@ The important points to note in this application are the following:
 Running the DDS Router Cloud
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Configure transversal NAT on the network router
-'''''''''''''''''''''''''''''''''''''''''''''''
-
-The first thing to do before starting to configure DDS Router is to configure the network router to allow a remote communication from the Internet to reach a specific device on the LAN, more specifically to expose an IP address and a port to the network that will be used by our DDS Router application.
-
-This configuration will depend on your network router, but it should be similar to the one shown in the following image.
-
-.. figure:: /rst/figures/tutorials/cloud/router_settings.png
-   :align: center
-
-.. warning::
-
-    Due to a current limitation of DDS Router, the external port and internal port must match.
-    Stay tuned for new versions of DDS Router that are intended to address this limitation.
+In case this device is working under a NAT, check :ref:`previous tutorial <tutorials_cloud_wan_edge_cloud_wan_edge_cloud_configure_transversal_nat>`
+for more information about how to configure the NAT to be accessible from the outside.
 
 Configure the DDS Router Cloud
 ''''''''''''''''''''''''''''''
@@ -271,12 +325,12 @@ The DDS Router Cloud configuration file is quite similar to the DDS Router Edge 
 
     .. tab:: WAN
 
-        .. literalinclude:: /resources/tutorials/cloud/wan_edge_cloud/dds_router_cloud_wan.yaml
+        .. literalinclude:: /resources/tutorials/cloud/wan_edge_cloud_tls/dds_router_cloud_wan.yaml
             :language: yaml
 
     .. tab:: LAN
 
-        .. literalinclude:: /resources/tutorials/cloud/wan_edge_cloud/dds_router_cloud_lan.yaml
+        .. literalinclude:: /resources/tutorials/cloud/wan_edge_cloud_tls/dds_router_cloud_lan.yaml
             :language: yaml
 
         .. note::
@@ -289,11 +343,13 @@ The first one communicates the DDS Router with any ROS 2 node, while the second 
 
 Even so there are some differences in the second participant that are worth mentioning:
 
-1.  The ``id`` of this participant is different from the previous one, ``1`` in this case.
+#.  The ``id`` of this participant is different from the previous one, ``1`` in this case.
     This is because, as mentioned above, the ids of this type of participant must be unique in the entire DDS Router network.
 
-1.  This participant sets a listening address (``listening-addresses``), rather than a connection address.
+#.  This participant sets a listening address (``listening-addresses``), rather than a connection address.
     This is because it is the participant that waits for incoming communications since it has this network address exposed and accessible from the Internet.
+
+#.  The :ref:`previously <tls_configuration>` generated TLS parameters and certificates are attached under the ``tls`` tag. Note that server and client configurations differ, as explained in `DDS Router documentation <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/wan_configuration.html#tls>`_.
 
 To finish, as done in the previous steps, setup the Vulcanexus environment sourcing the `setup.bash` file and run the DDS Router Cloud with the above configuration.
 
@@ -304,7 +360,7 @@ To finish, as done in the previous steps, setup the Vulcanexus environment sourc
 
 The following figure summarizes the deployment on the Cloud.
 
-.. figure:: /rst/figures/tutorials/cloud/cloud_deployment.png
+.. figure:: /rst/figures/tutorials/cloud/cloud_deployment_tls.png
    :align: center
 
 
@@ -332,11 +388,3 @@ and the ``turtlesim_square_move`` should prompt the following traces
     [INFO] [1657870911.985655175] [turtlesim_square_move]: Reached goal
     [INFO] [1657870911.985738726] [turtlesim_square_move]: New goal [5.467175 7.581143, 3.123200]
     [INFO] [1657870914.085652821] [turtlesim_square_move]: Reached goal
-
-Next steps
-----------
-
-Feel free to read the following tutorials extending this one to similar scenarios:
-
-* :ref:`Edge-Cloud TLS communication on WAN <tutorials_cloud_wan_edge_cloud_tls_wan_edge_cloud_tls>`: secure Edge-Cloud communication link by using TLS protocol.
-* :ref:`Edge-Edge communication via repeater <tutorials_cloud_edge_edge_repeater_cloud_edge_edge_repeater_cloud>`: communicate two edge devices distantly located be means of a third bridging component hosted in the cloud.

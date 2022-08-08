@@ -1,0 +1,22 @@
+version: v2.0
+
+participants:
+
+  - name: ROS_2_LAN_1
+    kind: local
+
+  - name: Router_Client
+    kind: router
+
+    discovery-server-guid:
+      id: 0
+    connection-addresses:
+      - discovery-server-guid:
+          id: 1
+        addresses:
+          - ip: 123.123.123.123
+            port: 45678
+            transport: tcp
+
+    tls:
+      ca: ca.crt
