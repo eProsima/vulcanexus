@@ -131,7 +131,7 @@ Following are the ones used in this example, however the implementation of new a
         * **Server**: subtract 2 integers get in request, and send solution in response.
           Command: ``ros2 run microservers_py server_subtraction``
 
-These files can be found in ``code/microservices`` in |VulcanexusDocsRepo| as a Colcon python package.
+These files can be found in ``code/microservices`` in |VulcanexusDocsRepo| as a `Colcon <https://colcon.readthedocs.io>`_ python package.
 In order to install these applications, follow these steps:
 
 Start by creating the workspace of this application and downloading the source code:
