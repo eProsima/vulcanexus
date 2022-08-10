@@ -112,7 +112,7 @@ Run any of the clients for the ROS 2 Services in this machine.
 This will publish ``Request`` messages to every server listening in the network.
 Once the whole network has been established, those messages will arrive to the server hosted in cloud, and will answer with a ``Response``.
 
-In this tutorial, an example on how to implement some of these services (for servers ans clients) is provided.
+In this tutorial, an example on how to implement some of these services (for servers and clients) is provided.
 Following are the ones used in this example, however the implementation of new and complex ones is straight-forward:
 
     * **addition_service**
@@ -131,7 +131,7 @@ Following are the ones used in this example, however the implementation of new a
         * **Server**: subtract 2 integers get in request, and send solution in response.
           Command: ``ros2 run microservers_py server_subtraction``
 
-These files can be found in |VulcanexusDocsRepo| in ``code/microservices`` as a Colcon python package.
+These files can be found in ``code/microservices`` in |VulcanexusDocsRepo| as a Colcon python package.
 In order to install these applications, follow these steps:
 
 Start by creating the workspace of this application and downloading the source code:
@@ -187,12 +187,12 @@ Setup the Vulcanexus environment, either in a Docker container or on the local h
 
     source /opt/vulcanexus/humble/setup.bash
 
-Let's create a the DDS Router configuration file as the one shown below.
+Let's create a DDS Router configuration file as the one shown below.
 
 .. literalinclude:: /resources/tutorials/cloud/microservices_cloud/dds_router_edge.yaml
     :language: yaml
 
-Next, it is briefly explained the most relevant aspects of this configuration file.
+Next, the most relevant aspects of this configuration file are explained.
 
 The ``participants`` are the interfaces of the DDS Router to communicate with other networks. In this case, we have two participants:
 
