@@ -13,15 +13,15 @@ Background
 ----------
 
 This tutorial will cover the first steps to setup a distributed network of remotely controlled robots from the Cloud or an edge device.
-More specifically, it will focus on a basic edge-cloud architecture in which there is an edge robot deployed on a local network (LAN) with access to the Internet, and a server in the Cloud reachable through the Internet.
+More specifically, it will focus on a basic edge-cloud architecture in which there is an edge robot deployed on a :term:`LAN` with access to the Internet, and a server in the Cloud reachable through the Internet.
 
 .. _warning_lan:
 
 .. warning::
 
-    This tutorial is intended for WAN communication.
-    However, if there is only access to a LAN communication, it is possible to follow the tutorial by changing the ROS 2 Domain Id so that the edge uses the default Domain (``0``) and the Cloud uses ROS 2 Domain ``1``.
-    This way the ROS 2 nodes are logically isolated and will not discovery other nodes out of their ROS 2 Domain.
+    This tutorial is intended for :term:`WAN` communication.
+    However, if communication through a LAN is your only option, it is still possible to follow the tutorial by changing the ROS 2 Domain Ids so that each ROS 2 node uses a different Domain (``0`` and ``1``).
+    This way the ROS 2 nodes are logically isolated and will not discover other nodes out of their ROS 2 Domain.
 
 This way, all the elements involved in this architecture will be studied, starting with the edge robot, continuing with the controller hosted in the cloud also built as a ROS 2 node and concluding with the intermediate elements that enable communication over the Internet.
 
@@ -338,5 +338,5 @@ Next steps
 
 Feel free to read the following tutorials extending this one to similar scenarios:
 
-* :ref:`Edge-Cloud TLS communication on WAN <tutorials_cloud_wan_edge_cloud_tls_wan_edge_cloud_tls>`: secure Edge-Cloud communication link by using TLS protocol.
+* :ref:`Edge-Cloud TLS communication on WAN <tutorials_cloud_wan_edge_cloud_tls_wan_edge_cloud_tls>`: secure Edge-Cloud communication channel by using TLS protocol.
 * :ref:`Edge-Edge communication via repeater <tutorials_cloud_edge_edge_repeater_cloud_edge_edge_repeater_cloud>`: communicate two edge devices distantly located be means of a third bridging component hosted in the cloud.

@@ -6,9 +6,9 @@ Edge-Cloud TLS communication on WAN
 
 .. warning::
 
-   In this example it is assumed the reader has basic knowledge of TLS concepts
-   since terms like Certificate Authority (CA), Private Key, `Rivest–Shamir–Adleman` (RSA) cryptosystem,
-   and Diffie-Hellman encryption protocol are not explained in detail.
+   In this example it is assumed the reader has basic knowledge of :term:`TLS` concepts
+   since terms like :term:`CA`, :term:`Public-key cryptography`, :term:`RSA`,
+   and :term:`Diffie-Hellman` are not explained in detail.
 
 .. contents::
     :depth: 2
@@ -19,22 +19,22 @@ Background
 ----------
 
 This tutorial builds on the previous one (:ref:`tutorials_cloud_wan_edge_cloud_wan_edge_cloud`),
-further showing how to secure the edge-cloud communication link with TLS protocol.
+further showing how to secure the edge-cloud :term:`TCP` communication channel with TLS protocol.
 It is recommended to follow these tutorials in order, as some concepts or installations may be already covered.
 
 .. _warning_lan_tls:
 
 .. warning::
 
-    This tutorial is intended for WAN communication.
-    However, if communication through a LAN is your only option, it is still possible to follow the tutorial by changing the ROS 2 Domain Ids so that each ROS 2 node uses a different Domain (``0`` and ``1``).
+    This tutorial is intended for :term:`WAN` communication.
+    However, if communication through a :term:`LAN` is your only option, it is still possible to follow the tutorial by changing the ROS 2 Domain Ids so that each ROS 2 node uses a different Domain (``0`` and ``1``).
     This way the ROS 2 nodes are logically isolated and will not discover other nodes out of their ROS 2 Domain.
 
 Following, all the elements involved in this architecture will be studied, starting with the edge robot, continuing with the controller hosted in the cloud also built as a ROS 2 node and concluding with the intermediate elements that enable communication over the Internet.
 
 The image below describes the scenario presented in this tutorial.
 
-.. figure:: /rst/figures/tutorials/cloud/edge_cloud_wan.png
+.. figure:: /rst/figures/tutorials/cloud/edge_cloud_wan_tls.png
    :align: center
 
 Several key elements can be observed in it:
@@ -54,10 +54,18 @@ Several key elements can be observed in it:
     *eProsima ROS 2 Router*, a.k.a `DDS Router <https://github.com/eProsima/DDS-Router>`_, is an end-user software application that enables the connection of distributed ROS 2 networks (see DDS Router documentation `here <https://eprosima-dds-router.readthedocs.io/en/latest/>`_).
     That is, ROS 2 nodes such as publishers and subscribers, or clients and services, deployed in one geographic location and using a dedicated local network will be able to communicate with other ROS 2 nodes deployed in different geographic areas on their own dedicated local networks as if they were all on the same network through the use of *DDS Router*.
 
+    This internet connection will be established using TCP protocol secured with TLS.
+    This means that the data connection between both servers will be guaranteed to be secured, and the data encrypted.
+
     This example presents two routers that enable Internet communication:
 
-    * *DDS Router Edge*. This is the DDS Router that is deployed on the edge robot side. This way it is possible for the robot to communicate out-of-the-box with an external server.
     * *DDS Router Cloud*. It plays the server role in the communication. It will expose a public network address to which the nodes connect to establish communication.
+      This DDS Router will work as the TLS Server, which means it must be authenticated in order for the client to trust and connect it.
+
+    * *DDS Router Edge*. This is the DDS Router that is deployed on the edge robot side. This way it is possible for the robot to communicate out-of-the-box with an external server.
+      This DDS Router will work as the TLS Client, so it must accept the Server CA in order to authenticate it before the communication is established.
+
+    In the following steps it will be explained how to configure TLS in both sides, so the communication is secured.
 
 
 Prerequisites
@@ -83,6 +91,10 @@ TLS configuration
 
 Let us first generate the TLS credentials with which *DDS Router* instances will be configured. In this example,
 Elliptic Curve (EC) keys will be generated, and with/without password versions of the commands will be provided.
+
+These files should be generated in cloud machine, or in a neutral host.
+The Cloud machine requires to hold the private key, as some other TLS files,
+while the Edge machine only requires to know the CA so it can assure it is communicating with a trusted server.
 
 Certification Authority (CA)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -221,7 +233,9 @@ The ``participants`` are the interfaces of the DDS Router to communicate with ot
 
     * ``discovery-server-guid``: it defines the ``id`` of the ``router``-type participant of the DDS Router Cloud.
     * ``addresses``: defines the IP (``ip``) and port (``port``) of the network addresses to which it connects, and the transport protocol (``transport``) to be used in the communication, TCP in this case (required for TLS).
-    * ``tls``: defines the TLS configuration parameters to establish a secure connection over TCP. For clients, only the certificate authority (CA) needs to be provided. Please refer to `DDS Router documentation <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/wan_configuration.html#tls>`__ for more details on how to configure TLS in a WAN participant.
+    * ``tls``: defines the TLS configuration parameters to establish a secure connection over TCP.
+      For clients, only the certificate authority (CA) needs to be provided.
+      Please refer to `DDS Router documentation <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/wan_configuration.html#tls>`__ for more details on how to configure TLS in a WAN participant.
 
 .. note::
 
