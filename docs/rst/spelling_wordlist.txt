@@ -4,6 +4,7 @@ Arduino
 bare-metal
 blinky
 combinable
+cryptographic
 cryptosystem
 curl
 customizable
