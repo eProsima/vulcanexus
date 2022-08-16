@@ -327,7 +327,7 @@ The important points to note in this application are the following:
 Running the DDS Router Cloud
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In case this device is working under a NAT, check :ref:`previous tutorial <tutorials_cloud_wan_edge_cloud_wan_edge_cloud_configure_transversal_nat>`
+In case this device is working under a NAT, check :ref:`previous tutorial <tutorials_cloud_wan_edge_cloud_nat>`
 for more information about how to configure the NAT to be accessible from the outside.
 
 Configure the DDS Router Cloud

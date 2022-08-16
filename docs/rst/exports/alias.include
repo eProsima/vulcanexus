@@ -1,0 +1,16 @@
+.. |FastDDSDocs| replace:: `Fast DDS Documentation <https://fast-dds.docs.eprosima.com/en/v2.3.0/>`__
+.. |DDSSpecification| replace:: `DDS specification <https://www.omg.org/spec/DDS/1.4/About-DDS/>`__
+
+.. |DiscServerFastDdsDocs| replace:: `Fast DDS Discovery Server discovery mechanism <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery_server.html#discovery-server>`__
+.. |InitialPeersFastDdsDocs| replace:: `Initial Peers discovery mechanism <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/simple.html#initial-peers>`__
+
+.. |VulcanexusDocsRepo| replace:: `Vulcanexus Documentation Repository <https://github.com/eProsima/vulcanexus>`__
+
+.. |ddsrouter| replace:: *DDS Router*
+.. |fastdds| replace:: *Fast DDS*
+.. |vulcanexus| replace:: *Vulcanexus*
+
+.. |eddsrouter| replace:: *eProsima DDS Router*
+.. |efastdds| replace:: *eProsima Fast DDS*
+
+.. |k8s| replace:: *K8s*

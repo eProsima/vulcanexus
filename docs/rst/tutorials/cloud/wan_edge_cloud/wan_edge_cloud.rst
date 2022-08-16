@@ -247,6 +247,8 @@ The important points to note in this application are the following:
 Running the DDS Router Cloud
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. _tutorials_cloud_wan_edge_cloud_nat:
+
 Configure transversal NAT on the network router
 '''''''''''''''''''''''''''''''''''''''''''''''
 
@@ -339,4 +341,7 @@ Next steps
 Feel free to read the following tutorials extending this one to similar scenarios:
 
 * :ref:`Edge-Cloud TLS communication on WAN <tutorials_cloud_wan_edge_cloud_tls_wan_edge_cloud_tls>`: secure Edge-Cloud communication channel by using TLS protocol.
-* :ref:`Edge-Edge communication via repeater <tutorials_cloud_edge_edge_repeater_cloud_edge_edge_repeater_cloud>`: communicate two edge devices distantly located be means of a third bridging component hosted in the cloud.
+
+.. todo:
+
+    * :ref:`Edge-Edge communication via repeater <tutorials_cloud_edge_edge_repeater_cloud_edge_edge_repeater_cloud>`: communicate two edge devices distantly located be means of a third bridging component hosted in the cloud.
