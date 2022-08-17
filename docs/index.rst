@@ -61,3 +61,13 @@ The following documentation includes instructions for installing each *Vulcanexu
 
    /rst/platforms/platforms
    /rst/notes/notes
+
+
+.. _index_appendix:
+
+.. toctree::
+   :caption: Appendixes
+   :maxdepth: 2
+   :hidden:
+
+   /rst/appendixes/glossary

@@ -1,0 +1,24 @@
+version: v2.0
+
+participants:
+
+  - name: ROS_2_Cloud
+    kind: local
+    domain: 1
+
+  - name: Router_Server
+    kind: router
+
+    discovery-server-guid:
+      id: 1
+    listening-addresses:
+      - ip: 123.123.123.123
+        port: 45678
+        transport: tcp
+
+    tls:
+      ca: ca.crt
+      password: ddsrouterpass
+      private_key: ddsrouter.key
+      cert: ddsrouter.crt
+      dh_params: dh_params.pem
