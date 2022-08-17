@@ -1,0 +1,13 @@
+{% extends "!footer.html" %}
+{% block extrafooter %}
+    {% if parents %}
+        {% if 'ROS 2 Documentation' in parents[0].title %}
+        <p>
+            © 2022 Open Robotics ROS 2 Documentation contributions included herein are the copyrights of their respective owners.
+            The documentation provided herein is licensed under the terms of the Creative Commons Attribution 4.0 International as published by Open Robotics.
+            ROS 2 and respective logos are trademarks of Open Robotics. All other trademarks are property of their respective owners.
+        </p>
+        {% endif %}
+    {% endif %}
+    {{ super() }}
+{% endblock %}

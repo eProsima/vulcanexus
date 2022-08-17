@@ -43,6 +43,14 @@ The following documentation includes instructions for installing each *Vulcanexu
    /rst/installation/docker.rst
 
 .. toctree::
+   :caption: Overview
+   :maxdepth: 2
+   :hidden:
+   :numbered: 5
+
+   /ros2_documentation/source/index.rst
+
+.. toctree::
    :caption: Tutorials
    :maxdepth: 2
    :hidden:
