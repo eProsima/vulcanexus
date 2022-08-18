@@ -1,4 +1,0 @@
-[submodule "docs/ros2_documentation"]
-	path = docs/ros2_documentation
-	url = https://github.com/ros2/ros2_documentation
-    branch = humble
