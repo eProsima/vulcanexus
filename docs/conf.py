@@ -92,6 +92,13 @@ script_path = os.path.abspath(pathlib.Path(__file__).parent.absolute())
 # Project directories
 project_source_docs_dir = os.path.abspath('{}/rst'.format(script_path))
 
+macros = {
+    'DISTRO': 'humble',
+    'DISTRO_TITLE': 'Humble',
+    'DISTRO_TITLE_FULL': 'Humble Hawksbill',
+    'REPOS_FILE_BRANCH': 'humble',
+}
+
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -260,7 +267,7 @@ html_logo = 'rst/_static/css/imgs/vulcanexus_logo1_white_stroke.png'
 # The name of an image file (relative to this directory) to use as a favicon of
 # the docs. This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
-#
+
 html_favicon = 'rst/_static/css/imgs/vulcanexus_icon.ico'
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -548,5 +555,13 @@ class RedirectFrom(Directive):
         RedirectFrom.redirections[document_path].update(self.content)
         return []
 
+def expand_macros(app, docname, source):
+    result = source[0]
+    for key, value in app.config.macros.items():
+        result = result.replace(f'{{{key}}}', value)
+    source[0] = result
+
 def setup(app):
+    app.connect('source-read', expand_macros)
+    app.add_config_value('macros', {}, True)
     RedirectFrom.register(app)
