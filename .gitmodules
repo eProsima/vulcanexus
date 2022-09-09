@@ -1,0 +1,3 @@
+[submodule "docs/ros2_documentation"]
+	path = docs/ros2_documentation
+	url = https://github.com/eProsima/ros2_documentation

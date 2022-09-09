@@ -18,8 +18,11 @@
 #
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
+import itertools
 import os
 import pathlib
+
+from docutils.parsers.rst import Directive
 
 import requests
 
@@ -89,6 +92,13 @@ script_path = os.path.abspath(pathlib.Path(__file__).parent.absolute())
 # Project directories
 project_source_docs_dir = os.path.abspath('{}/rst'.format(script_path))
 
+macros = {
+    'DISTRO': 'humble',
+    'DISTRO_TITLE': 'Humble',
+    'DISTRO_TITLE_FULL': 'Humble Hawksbill',
+    'REPOS_FILE_BRANCH': 'humble',
+}
+
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -100,6 +110,10 @@ project_source_docs_dir = os.path.abspath('{}/rst'.format(script_path))
 # ones.
 extensions = [
     'sphinx.ext.todo',
+    'sphinx.ext.graphviz',
+    'sphinx.ext.ifconfig',
+    'sphinx.ext.intersphinx',
+    'sphinx_sitemap',
     'sphinx_tabs.tabs',
     'notfound.extension'
 ]
@@ -111,9 +125,9 @@ try:
     import sphinxcontrib.spelling  # noqa: F401
     extensions.append('sphinxcontrib.spelling')
 
-    # spelling_word_list_filename = 'spelling_wordlist.txt'
     spelling_word_list_filename = [
         'rst/spelling_wordlist.txt',
+        'ros2_docs_spelling_wordlist.txt',
     ]
 
     from sphinxcontrib.spelling.filters import ContractionFilter
@@ -124,7 +138,7 @@ except ImportError:
 
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ['rst/_templates']
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
@@ -176,7 +190,8 @@ exclude_patterns = [
     '*/includes/*.rst',
     '*/*/includes/*.rst',
     '*/*/*/includes/*.rst',
-    '*/*/*/*/includes/*.rst'
+    '*/*/*/*/includes/*.rst',
+    '**/_*.rst'
 ]
 
 # The reST default role (used for this markup: `text`) to use for all
@@ -209,7 +224,8 @@ pygments_style = 'sphinx'
 
 suppress_warnings = [
     'cpp.duplicate_declaration',
-    'cpp.parse_function_declaration'
+    'cpp.parse_function_declaration',
+    'image.nonlocal_uri'
 ]
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
@@ -251,7 +267,7 @@ html_logo = 'rst/_static/css/imgs/vulcanexus_logo1_white_stroke.png'
 # The name of an image file (relative to this directory) to use as a favicon of
 # the docs. This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
-#
+
 html_favicon = 'rst/_static/css/imgs/vulcanexus_icon.ico'
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -307,8 +323,8 @@ html_context = {
 # html_show_sourcelink = True
 
 # If true, "Created using Sphinx" is shown in the HTML footer. Default is True.
-#
-# html_show_sphinx = True
+
+html_show_sphinx = False
 
 # If true, "(C) Copyright ..." is shown in the HTML footer. Default is True.
 #
@@ -455,3 +471,97 @@ texinfo_documents = [
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #
 # texinfo_no_detailmenu = False
+
+
+class RedirectFrom(Directive):
+
+    has_content = True
+    template_name = 'layout.html'
+    redirections = {}
+
+    @classmethod
+    def register(cls, app):
+        app.connect('html-collect-pages', cls.generate)
+        app.add_directive('redirect-from', cls)
+        return app
+
+    @classmethod
+    def generate(cls, app):
+        from sphinx.builders.html import StandaloneHTMLBuilder
+        if not isinstance(app.builder, StandaloneHTMLBuilder):
+            return
+
+        redirect_html_fragment = """
+            <link rel="canonical" href="{base_url}/{url}" />
+            <meta http-equiv="refresh" content="0; url={url}" />
+            <script>
+                window.location.href = '{url}';
+            </script>
+        """
+        redirections = {
+            os.path.splitext(os.path.relpath(
+                document_path, app.srcdir
+            ))[0]: redirect_urls
+            for document_path, redirect_urls in cls.redirections.items()
+        }
+        redirection_conflict = next((
+            (canon_1, canon_2, redirs_1.intersection(redirs_2))
+            for (canon_1, redirs_1), (canon_2, redirs_2)
+            in itertools.combinations(redirections.items(), 2)
+            if redirs_1.intersection(redirs_2)
+        ), None)
+        if redirection_conflict:
+            canonical_url_1, canonical_url_2 = redirection_conflict[:2]
+            conflicting_redirect_urls = redirection_conflict[-1]
+            raise RuntimeError(
+                'Documents {} and {} define conflicting redirects: {}'.format(
+                    canonical_url_1, canonical_url_2, conflicting_redirect_urls
+                )
+            )
+        all_canonical_urls = set(redirections.keys())
+        all_redirect_urls = {
+            redirect_url
+            for redirect_urls in redirections.values()
+            for redirect_url in redirect_urls
+        }
+        conflicting_urls = all_canonical_urls.intersection(all_redirect_urls)
+        if conflicting_urls:
+            raise RuntimeError(
+                'Some redirects conflict with existing documents: {}'.format(
+                    conflicting_urls
+                )
+            )
+
+        for canonical_url, redirect_urls in redirections.items():
+            for redirect_url in redirect_urls:
+                context = {
+                    'canonical_url': os.path.relpath(
+                        canonical_url, redirect_url
+                    ),
+                    'title': os.path.basename(redirect_url),
+                    'metatags': redirect_html_fragment.format(
+                        base_url=app.config.html_baseurl,
+                        url=app.builder.get_relative_uri(
+                            redirect_url, canonical_url
+                        )
+                    )
+                }
+                yield (redirect_url, context, cls.template_name)
+
+    def run(self):
+        document_path = self.state.document.current_source
+        if document_path not in RedirectFrom.redirections:
+            RedirectFrom.redirections[document_path] = set()
+        RedirectFrom.redirections[document_path].update(self.content)
+        return []
+
+def expand_macros(app, docname, source):
+    result = source[0]
+    for key, value in app.config.macros.items():
+        result = result.replace(f'{{{key}}}', value)
+    source[0] = result
+
+def setup(app):
+    app.connect('source-read', expand_macros)
+    app.add_config_value('macros', {}, True)
+    RedirectFrom.register(app)
