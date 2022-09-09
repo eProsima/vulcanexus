@@ -125,14 +125,15 @@ try:
     import sphinxcontrib.spelling  # noqa: F401
     extensions.append('sphinxcontrib.spelling')
 
-    # spelling_word_list_filename = 'spelling_wordlist.txt'
     spelling_word_list_filename = [
         'rst/spelling_wordlist.txt',
+        'ros2_docs_spelling_wordlist.txt',
     ]
 
     from sphinxcontrib.spelling.filters import ContractionFilter
     spelling_filters = [ContractionFilter]
     spelling_ignore_contributor_names = False
+    # spelling_exclude_patterns = ['**/ros2_documentation/**']
 except ImportError:
     pass
 
