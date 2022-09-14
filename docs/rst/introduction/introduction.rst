@@ -45,7 +45,7 @@ Finally, *ROS 2* provides several development tools for debugging, logging, visu
 
 - `eProsima Fast DDS Monitor <https://fast-dds-monitor.readthedocs.io/en/latest/>`_: graphical desktop application to monitor DDS communications when using *eProsima Fast DDS*.
 - `eProsima Shapes Demo <https://eprosima-shapes-demo.readthedocs.io/en/latest/index.html>`_: first demo application to understand the most used DDS Quality of Service (QoS) and test DDS and *ROS 2* communication.
-- :ref:`micro-ROS <tutorials_micro_introduction_microros>`: default embedded tookit for *ROS 2* and *Vulcanexus*.
+- :ref:`micro-ROS <tutorials_micro_introduction_microros>`: default embedded toolkit for *ROS 2* and *Vulcanexus*.
 - `eProsima DDS Router <https://eprosima-dds-router.readthedocs.io/en/latest/index.html>`_: end-user software application enabling the connection of distributed DDS networks.
 - `Webots <https://cyberbotics.com/doc/guide/foreword>`_: open-source three-dimensional mobile robot simulator.
 
@@ -59,7 +59,7 @@ ROS 2 Architecture
 *ROS 2* architecture is based on several abstraction layers.
 Developers usually interact exclusively with the client libraries, which expose the core communication APIs.
 Each one developed in a specific programming language to leave users freedom to choose the one that best applies to its application.
-Below, a common interface, ``rcl``, connects with the ROS MiddleWare (RMW) layer where the esential communication APIs are defined.
+Below, a common interface, ``rcl``, connects with the ROS MiddleWare (RMW) layer where the essential communication APIs are defined.
 Each DDS vendor provides its specific RMW implementation using their own DDS library.
 *Vulcanexus*, supporting *eProsima Fast DDS*, constantly updates the ``rmw_fastrtps`` library (Fast DDS previously was know as Fast-RTPS) in order to provide the latest features included in Fast DDS library to the *Vulcanexus* community, instead of having to wait to the next *ROS 2* release.
 
