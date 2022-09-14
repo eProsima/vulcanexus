@@ -17,7 +17,7 @@ It allows users to build robotics applications combining the unique *Vulcanexus*
 These open source elements include numerous features and tools, providing *Vulcanexus* users customizable solutions while improving overall system performance.
 With *Vulcanexus*, users have fast access to constantly improving functionalities, such as the latest *Fast DDS* version along with its new features.
 
-*Vulcanexus* combinable elements are:
+*Vulcanexus* collection of downloadable packages are:
 
 1. **VULCANEXUS-CORE**: a set of software libraries that enables users to build the most comprehensive and straightforward robotics application.
    It consists of eProsima *Fast DDS* and *ROS 2*.
@@ -25,8 +25,11 @@ With *Vulcanexus*, users have fast access to constantly improving functionalitie
 3. **VULCANEXUS-MICRO**: provides access for resource constrained devices (micro-controllers) to the DDS world, bridging the gap between them and *ROS 2*.
 4. **VULCANEXUS-CLOUD**: scales and integrates *ROS 2* networks located in geographically spaced environments, and enables the deployment of DDS entities in the cloud in a quick and easy way.
 5. **VULCANEXUS-SIMULATION**: enables users to design robotic simulations, providing an end-to-end development environment to model, program, and simulate robots.
+6. **VULCANEXUS-BASE**: includes within the same installation *Vulcanexus* tools, micro and cloud features.
+7. **VULCANEXUS-DESKTOP**: includes *ROS 2* desktop installation as well as every available *Vulcanexus* package.
+   It is the more complete *Vulcanexus* installation.
 
-*Vulcanexus* created a collection of downloadable packages that include useful combinations of the previously described elements with *ROS 2*:
+The table below shows the components included in every one of the previously explained packages:
 
 .. figure:: /rst/figures/intro/vulcanexus_packages_table.svg
 
