@@ -52,6 +52,7 @@ The following documentation includes instructions for installing each *Vulcanexu
    :numbered: 5
 
    /rst/introduction/introduction.rst
+   /rst/introduction/metapackages.rst
    /ros2_documentation/source/index.rst
 
 .. toctree::
