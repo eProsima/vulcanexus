@@ -8,8 +8,6 @@ Consequently, *Vulcanexus* shares the underlying concepts, principles and archit
 For more information about *ROS 2* please refer to the `Robot Operating System 2: Design, architecture, and uses in the wild <https://www.science.org/doi/10.1126/scirobotics.abm6074>`_ [#]_.
 This section will follow and summarize the most important points contained in this paper, pointing out the differences and improvements that *Vulcanexus* provides.
 
-.. [#] S. Macenski, T. Foote, B. Gerkey, C. Lalancette and W. Woodall, "Robot Operating System 2: Design, architecture, and uses in the wild", Science Robotics vol. 7, May 2022
-
 Scope
 -----
 
@@ -69,3 +67,5 @@ Each DDS vendor provides its specific RMW implementation using their own DDS lib
     :align: center
 
 For more information about *ROS 2*, the user is encouraged to read *ROS 2* documentation which is included within *Vulcanexus* documentation in the following section, especially the :doc:`Concepts <../../ros2_documentation/source/Concepts>` chapter.
+
+.. [#] S. Macenski, T. Foote, B. Gerkey, C. Lalancette and W. Woodall, "Robot Operating System 2: Design, architecture, and uses in the wild", Science Robotics vol. 7, May 2022
