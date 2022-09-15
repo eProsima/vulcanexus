@@ -3,6 +3,7 @@ architectured
 Arduino
 bare-metal
 blinky
+Backend
 combinable
 cryptographic
 cryptosystem
@@ -21,6 +22,7 @@ gpg
 Hierro
 interoperability
 kB
+interprocess
 keyring
 keyrings
 keystore
@@ -36,6 +38,7 @@ Pico
 prebuilt
 Renesas
 repository
+namespace
 ROS
 runtime
 sSL
