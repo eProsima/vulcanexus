@@ -11,9 +11,9 @@ ROS 2 network statistics using Vulcanexus Tools
 Background
 ----------
 
-Vulcanexus integrates `eProsima Fast DDS Monitor <https://fast-dds-monitor.readthedocs.io/en/latest/>`_, which is a useful tool for monitoring and studying a ROS 2 network as ROS 2 relies on the `DDS specification <https://www.omg.org/spec/DDS/1.4/About-DDS/>`_ to communicate the different nodes.
+Vulcanexus integrates `ROS 2 Monitor <https://fast-dds-monitor.readthedocs.io/en/latest/>`_, which is a useful tool for monitoring and studying a ROS 2 network as ROS 2 relies on the `DDS specification <https://www.omg.org/spec/DDS/1.4/About-DDS/>`_ to communicate the different nodes.
 The automatic discovery of entities in a local network enables to easily identify the different running Participants, their Endpoints, the Topics that each of them is using, and even the network interfaces they are employing to communicate with one another.
-Additionally, it is possible to receive statistical data from every endpoint in the network leveraging the `Fast DDS Statistics Module <https://fast-dds.docs.eprosima.com/en/latest/fastdds/statistics/statistics.html>`_.
+Additionally, it is possible to receive statistical data from every endpoint in the network leveraging the `ROS 2 Statistics Module <https://fast-dds.docs.eprosima.com/en/latest/fastdds/statistics/statistics.html>`_.
 This data is very useful to analyze the DDS network performance and seek possible communication problems in it.
 
 This tutorial provides step-by-step instructions to use Vulcanexus to monitor a ROS 2 talker/listener demo.
@@ -28,16 +28,16 @@ Also, remember to source the environment in every terminal in this tutorial.
 
     source /opt/vulcanexus/humble/setup.bash
 
-Launch Fast DDS Monitor
+Launch ROS 2 Monitor
 -----------------------
 
-Initiate Fast DDS Monitor running the following command:
+Initiate ROS 2 Monitor running the following command:
 
 .. code-block:: bash
 
     fastdds_monitor
 
-Once Fast DDS Monitor is launched, start a monitor in domain :code:`0` (default domain).
+Once ROS 2 Monitor is launched, start a monitor in domain :code:`0` (default domain).
 
 .. figure:: /rst/figures/tutorials/tools/monitor_screenshots/init_domain.png
     :align: center
@@ -72,7 +72,7 @@ Run the following commands in different terminals (remember to source the Vulcan
 Monitoring network
 ------------------
 
-Now, the two new Participants are visible in the *Fast DDS Monitor*'s DDS Panel.
+Now, the two new Participants are visible in the *ROS 2 Monitor*'s DDS Panel.
 
 .. figure:: /rst/figures/tutorials/tools/monitor_screenshots/participants.png
     :align: center
@@ -81,7 +81,7 @@ Alias
 ^^^^^
 
 Participants in ROS 2 are named :code:`/` by default.
-In order to differentiate them, it is possible to change the Participant's aliases within the *Fast DDS Monitor*.
+In order to differentiate them, it is possible to change the Participant's aliases within the *ROS 2 Monitor*.
 In this case, the :code:`vulcanexus-humble-talker` Participant would be the one with a writer, and the :code:`vulcanexus-humble-listener` Participant would be the one with a reader.
 
 .. figure:: /rst/figures/tutorials/tools/monitor_screenshots/alias.png
@@ -107,7 +107,7 @@ To show statistical data about the communication between the :code:`vulcanexus-h
 Introspect metatraffic topics
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Fast DDS Monitor filters by default the topics used for sharing metatraffic, as well as the endpoints related to them, so users can inspect their network easily.
+ROS 2 Monitor filters by default the topics used for sharing metatraffic, as well as the endpoints related to them, so users can inspect their network easily.
 These topics are the ones that ROS 2 uses for discovery and configuration purposes, such as :code:`ros_discovery_info`, as well as those used by Fast DDS to report statistical data.
 
 In order to see these topics in the monitor, click *View->Show Metatraffic* menu button.
