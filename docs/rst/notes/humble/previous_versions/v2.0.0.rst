@@ -1,0 +1,41 @@
+Humble Hierro (v2.0.0)
+^^^^^^^^^^^^^^^^^^^^^^
+
+Initial release extending `ROS 2 Humble Hawksbill <https://docs.ros.org/en/humble/Releases/Release-Humble-Hawksbill.html#new-features-in-this-ros-2-release>`_ including the following package versions:
+
+.. list-table::
+    :header-rows: 1
+
+    * - Package
+      - Version
+    * - eProsima Fast CDR
+      - `v1.0.24 <https://github.com/eProsima/Fast-CDR/releases/tag/v1.0.24>`__
+    * - eProsima Fast DDS
+      - `v2.6.0 <https://fast-dds.docs.eprosima.com/en/latest/notes/notes.html#version-2-6-0>`__
+    * - eProsima Fast DDS Gen
+      - `v2.1.2 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v2.1.2>`__
+    * - foonathan_memory_vendor
+      - `v1.2.1 <https://github.com/eProsima/foonathan_memory_vendor/releases/tag/v1.2.1>`__
+    * - micro-ROS Agent
+      - `v3.0.2 <https://github.com/micro-ROS/micro-ROS-Agent/blob/humble/micro_ros_agent/CHANGELOG.rst#302-2022-05-25>`__
+    * - micro-ROS Setup
+      - `v3.1.0 <https://github.com/micro-ROS/micro_ros_setup/blob/humble/CHANGELOG.rst#310-2022-05-25>`__
+    * - ROS 2 Monitor
+      - `v1.1.0 <https://fast-dds-monitor.readthedocs.io/en/latest/rst/notes/notes.html#version-v1-1-0>`__
+    * - ROS 2 Router
+      - `v0.3.0 <https://eprosima-dds-router.readthedocs.io/en/latest/rst/notes/notes.html#version-v0-3-0>`__
+    * - ROS 2 Shapes Demo
+      - `v2.6.1 <https://eprosima-shapes-demo.readthedocs.io/en/latest/notes/notes.html#version-2-6-1>`__
+    * - ROS 2 Statistics Backend
+      - `v0.6.0 <https://fast-dds-statistics-backend.readthedocs.io/en/latest/rst/notes/notes.html#version-0-6-0>`__
+    * - Vulcanexus Fast DDS RMW
+      - `v6.2.1 <https://github.com/eProsima/rmw_fastrtps/blob/humble/rmw_fastrtps_cpp/CHANGELOG.rst#621-2022-03-28>`__ improved with PKCS #11 support.
+
+This release also includes the following :ref:`binary package distributions <vulcanexus_binary_distribution>`:
+
+* Vulcanexus Humble Base: ``vulcanexus-humble-base``
+* Vulcanexus Humble Cloud: ``vulcanexus-humble-cloud``
+* Vulcanexus Humble Core: ``vulcanexus-humble-core``
+* Vulcanexus Humble Desktop: ``vulcanexus-humble-desktop``
+* Vulcanexus Humble Micro: ``vulcanexus-humble-micro``
+* Vulcanexus Humble Tools: ``vulcanexus-humble-tools``

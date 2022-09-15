@@ -14,8 +14,8 @@ The following table outlines the Vulcanexus releases and their support cycles:
 .. toctree::
     :hidden:
 
-    /rst/notes/galactic/notes
     /rst/notes/humble/notes
+    /rst/notes/galactic/notes
 
 .. list-table:: Vulcanexus versions
    :header-rows: 1
