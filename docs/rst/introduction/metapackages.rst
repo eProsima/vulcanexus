@@ -10,7 +10,7 @@ Vulcanexus Core
 ---------------
 
 **Vulcanexus Core** is the most fundamental and minimal *Vulcanexus* installation.
-It is composed by the `ROS 2 Base libraries <https://ros.org/reps/rep-2001.html#end-user-entry-points>`_ but with the latest `eProsima Fast DDS <https://fast-dds.docs.eprosima.com/en/latest/>`_ and `Fast CDR <https://www.eprosima.com/images/PDFs/Fast_CDR.pdf>`_ releases and the RMW needed to benefit from the latest features included in those releases.
+It is composed by the `ROS 2 Base libraries <https://ros.org/reps/rep-2001.html#end-user-entry-points>`_ but with the latest `eProsima Fast DDS <https://fast-dds.docs.eprosima.com/en/latest/>`_ and `Fast CDR <https://www.eprosima.com/images/PDFs/Fast_CDR.pdf>`_ releases and the ROS MiddleWare (RMW) needed to benefit from the latest features included in those releases.
 No additional developer tools are included with this basic installation.
 
 .. note::
@@ -31,8 +31,8 @@ Vulcanexus Tools
 ----------------
 
 **Vulcanexus Tools** is focused on helping developers with the introspection and debugging of their system.
-Thus, the `eProsima Fast DDS Monitor <https://fast-dds-monitor.readthedocs.io/en/latest/>`_ and its dependency (`eProsima Fast DDS Statistics Backend <https://fast-dds-statistics-backend.readthedocs.io/en/latest/>`_) are included in order to monitor and diagnose the DDS communication network.
-Also, `eProsima Shapes Demo <https://eprosima-shapes-demo.readthedocs.io/en/latest/index.html>`_ is provided as a simple demo to help testing that the communication is successfully established in the system.
+Thus, the `ROS 2 Monitor <https://fast-dds-monitor.readthedocs.io/en/latest/>`_ and the `ROS 2 Statistics Backend <https://fast-dds-statistics-backend.readthedocs.io/en/latest/>`_ are included in order to monitor and diagnose the *ROS 2* communication network.
+Also, `ROS 2 Shapes Demo <https://eprosima-shapes-demo.readthedocs.io/en/latest/index.html>`_ is provided as a simple demo to help testing that the communication is successfully established in the system.
 
 .. note::
 
@@ -73,7 +73,7 @@ Vulcanexus Cloud
 ----------------
 
 **Vulcanexus Cloud** is oriented to geographically spaced scenarios, deploying robotic applications through a distributed network.
-To this end, `eProsima DDS Router <https://eprosima-dds-router.readthedocs.io/en/latest/index.html>`_ is installed in this *Vulcanexus* package distribution, allowing DDS communication through different network layers (bridging the local networks through WAN communication).
+To this end, `ROS 2 Router <https://eprosima-dds-router.readthedocs.io/en/latest/index.html>`_ is installed in this *Vulcanexus* package distribution, allowing *ROS 2* communications through different network layers (bridging the local networks through WAN communication).
 
 .. note::
 

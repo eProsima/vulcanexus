@@ -5,8 +5,10 @@ Vulcanexus Overview
 
 *Vulcanexus*, the *ROS 2* all-in-one tool set, expands the *ROS 2* environment improving the developer experience with *ROS 2* providing open source features and tools not available with the current `ROS 2 release <https://www.ros.org/reps/rep-2000.html#release-schedule>`_.
 Consequently, *Vulcanexus* shares the underlying concepts, principles and architecture of :doc:`ROS 2 <../../ros2_documentation/source/index>`.
-For more information about *ROS 2* please refer to the 2022 Science Robotics vol. 7 (May 2022) paper `Robot Operating System 2: Design, architecture, and uses in the wild <https://www.science.org/doi/10.1126/scirobotics.abm6074>`_ by S. Macenski, T. Foote, B. Gerkey, C. Lalancette and W. Woodall.
+For more information about *ROS 2* please refer to the `Robot Operating System 2: Design, architecture, and uses in the wild <https://www.science.org/doi/10.1126/scirobotics.abm6074>`_ [#]_.
 This section will follow and summarize the most important points contained in this paper, pointing out the differences and improvements that *Vulcanexus* provides.
+
+.. [#] S. Macenski, T. Foote, B. Gerkey, C. Lalancette and W. Woodall, "Robot Operating System 2: Design, architecture, and uses in the wild", Science Robotics vol. 7, May 2022
 
 Scope
 -----
@@ -43,10 +45,10 @@ Developer tools
 Finally, *ROS 2* provides several development tools for debugging, logging, visualization, introspection, simulation, etc.
 *Vulcanexus* adds to *ROS 2* toolset including several tools:
 
-- `eProsima Fast DDS Monitor <https://fast-dds-monitor.readthedocs.io/en/latest/>`_: graphical desktop application to monitor DDS communications when using *eProsima Fast DDS*.
-- `eProsima Shapes Demo <https://eprosima-shapes-demo.readthedocs.io/en/latest/index.html>`_: first demo application to understand the most used DDS Quality of Service (QoS) and test DDS and *ROS 2* communication.
+- `ROS 2 DDS Monitor <https://fast-dds-monitor.readthedocs.io/en/latest/>`_: graphical desktop application to monitor *ROS 2* communications.
+- `ROS 2 Shapes Demo <https://eprosima-shapes-demo.readthedocs.io/en/latest/index.html>`_: first demo application to understand the most used *ROS 2* Quality of Service (QoS) and test DDS and *ROS 2* communication.
 - :ref:`micro-ROS <tutorials_micro_introduction_microros>`: default embedded toolkit for *ROS 2* and *Vulcanexus*.
-- `eProsima DDS Router <https://eprosima-dds-router.readthedocs.io/en/latest/index.html>`_: end-user software application enabling the connection of distributed DDS networks.
+- `ROS 2 Router <https://eprosima-dds-router.readthedocs.io/en/latest/index.html>`_: end-user software application enabling the connection of distributed *ROS 2* environments.
 - `Webots <https://cyberbotics.com/doc/guide/foreword>`_: open-source three-dimensional mobile robot simulator.
 
 .. note::
