@@ -1,0 +1,18 @@
+Galactic Gamble (v1.0.1)
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+The following packages have been updated:
+
+.. list-table::
+    :header-rows: 1
+
+    * - Package
+      - Version
+    * - eProsima Fast DDS
+      - `v2.6.1 <https://fast-dds.docs.eprosima.com/en/latest/notes/notes.html#version-2-6-1>`__
+    * - micro-ROS Agent
+      - `v2.0.3 <https://github.com/micro-ROS/micro-ROS-Agent/blob/galactic/micro_ros_agent/CHANGELOG.rst#203-2022-06-13>`__
+
+This release also adds the following :ref:`binary package distributions <vulcanexus_binary_distribution>`:
+
+* Vulcanexus Galactic Simulation: ``vulcanexus-galactic-simulation``
