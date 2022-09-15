@@ -1,7 +1,7 @@
 Galactic Gamble (v1.0.0)
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Initial release extending `ROS 2 Galactic Geochelone <https://docs.ros.org/en/foxy/Releases/Release-Galactic-Geochelone.html#new-features-in-this-ros-2-release>`_ including the following package versions:
+Initial release extending `ROS 2 Galactic Geochelone <https://docs.ros.org/en/galactic/Releases/Release-Galactic-Geochelone.html#new-features-in-this-ros-2-release>`_ including the following package versions:
 
 .. list-table::
     :header-rows: 1
@@ -20,8 +20,6 @@ Initial release extending `ROS 2 Galactic Geochelone <https://docs.ros.org/en/fo
       - `v2.0.2 <https://github.com/micro-ROS/micro-ROS-Agent/blob/galactic/micro_ros_agent/CHANGELOG.rst#202-2022-05-25>`__
     * - micro-ROS Setup
       - `v2.1.0 <https://github.com/micro-ROS/micro_ros_setup/blob/galactic/CHANGELOG.rst#210-2022-05-25>`__
-    * - Vulcanexus Fast DDS RMW
-      - `v5.0.2 <https://github.com/ros2/rmw_fastrtps/blob/galactic/rmw_fastrtps_cpp/CHANGELOG.rst#502-2022-04-28>`__ improved with PKCS #11 support.
     * - ROS 2 Monitor
       - `v1.1.0 <https://fast-dds-monitor.readthedocs.io/en/latest/rst/notes/notes.html#version-v1-1-0>`__
     * - ROS 2 Router
@@ -30,6 +28,8 @@ Initial release extending `ROS 2 Galactic Geochelone <https://docs.ros.org/en/fo
       - `v2.6.1 <https://eprosima-shapes-demo.readthedocs.io/en/latest/notes/notes.html#version-2-6-1>`__
     * - ROS 2 Statistics Backend
       - `v0.6.0 <https://fast-dds-statistics-backend.readthedocs.io/en/latest/rst/notes/notes.html#version-0-6-0>`__
+    * - Vulcanexus Fast DDS RMW
+      - `v5.0.2 <https://github.com/ros2/rmw_fastrtps/blob/galactic/rmw_fastrtps_cpp/CHANGELOG.rst#502-2022-04-28>`__ improved with PKCS #11 support.
 
 This release also includes the following :ref:`binary package distributions <vulcanexus_binary_distribution>`:
 

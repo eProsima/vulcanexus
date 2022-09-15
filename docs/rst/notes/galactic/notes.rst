@@ -23,8 +23,8 @@ The following packages have been updated:
     * - ROS 2 Statistics Backend
       - `v0.7.0 <https://fast-dds-statistics-backend.readthedocs.io/en/latest/rst/notes/notes.html#version-0-7-0>`__
 
-Previous versions
------------------
+Galactic Gamble previous versions
+---------------------------------
 
 .. include:: previous_versions/v1.0.1.rst
 .. include:: previous_versions/v1.0.0.rst
