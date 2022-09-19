@@ -11,10 +11,10 @@ Vulcanexus ROS 2 all-in-one tool set, is officially available in the platforms s
     * - Vulcanexus Version
       - Architecture
       - OS
-    * - :ref:`Galactic Gamble <notes_galactic_latest>`
+    * - :ref:`Galactic Gamble <notes_galactic_latest>` v1
       - amd64
       - Ubuntu Focal (20.04)
-    * - :ref:`Humble Hierro <notes_humble_latest>`
+    * - :ref:`Humble Hierro <notes_humble_latest>` v2
       - amd64
       - Ubuntu Jammy (22.04)
 

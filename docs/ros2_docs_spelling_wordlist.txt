@@ -60,6 +60,7 @@ AssimpLoader
 async
 asyncio
 atm
+attr
 ATX
 Audrow
 Auguste
@@ -315,6 +316,7 @@ empt
 encodings
 encrpyted
 Endres
+entrypoints
 Enum
 enums
 env

@@ -1,10 +1,5 @@
-.. _notes_humble_latest:
-
-Humble Hierro
-=============
-
-Humble Hierro (v2.0.3)
-----------------------
+Humble Hierro (v2.0.2)
+^^^^^^^^^^^^^^^^^^^^^^
 
 This version ships the following packages:
 
@@ -18,8 +13,8 @@ This version ships the following packages:
       - `v1.0.24 <https://github.com/eProsima/Fast-CDR/releases/tag/v1.0.24>`__
       - v2.0.0
     * - eProsima Fast DDS
-      - `v2.7.1 <https://fast-dds.docs.eprosima.com/en/latest/notes/notes.html#version-2-7-1>`__
-      - v2.0.3
+      - `v2.7.0 <https://fast-dds.docs.eprosima.com/en/latest/notes/notes.html#version-2-7-0>`__
+      - v2.0.2
     * - eProsima Fast DDS Gen
       - `v2.1.3 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v2.1.3>`__
       - v2.0.2
@@ -39,18 +34,11 @@ This version ships the following packages:
       - `v0.4.0 <https://eprosima-dds-router.readthedocs.io/en/latest/rst/notes/notes.html#version-v0-4-0>`__
       - v2.0.2
     * - ROS 2 Shapes Demo
-      - `v2.7.1 <https://eprosima-shapes-demo.readthedocs.io/en/latest/notes/notes.html#version-2-7-1>`__
-      - v2.0.3
+      - `v2.7.0 <https://eprosima-shapes-demo.readthedocs.io/en/latest/notes/notes.html#version-2-7-0>`__
+      - v2.0.2
     * - ROS 2 Statistics Backend
       - `v0.7.0 <https://fast-dds-statistics-backend.readthedocs.io/en/latest/rst/notes/notes.html#version-0-7-0>`__
       - v2.0.2
     * - Vulcanexus Fast DDS RMW
-      - Use Fast DDS WaitSets
-      - v2.0.3
-
-Humble Hierro previous versions
--------------------------------
-
-.. include:: previous_versions/v2.0.2.rst
-.. include:: previous_versions/v2.0.1.rst
-.. include:: previous_versions/v2.0.0.rst
+      - `v6.2.1 <https://github.com/eProsima/rmw_fastrtps/blob/humble/rmw_fastrtps_cpp/CHANGELOG.rst#621-2022-03-28>`__ improved with PKCS #11 support.
+      - v2.0.0
