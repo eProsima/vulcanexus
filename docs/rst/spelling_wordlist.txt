@@ -1,9 +1,9 @@
 amd
 architectured
 Arduino
+Backend
 bare-metal
 blinky
-Backend
 combinable
 cryptographic
 cryptosystem
@@ -17,12 +17,13 @@ entrypoint
 eProsima
 Espressif
 filesystem
+foonathan
 Github
 gpg
 Hierro
 interoperability
-kB
 interprocess
+kB
 keyring
 keyrings
 keystore
@@ -31,6 +32,7 @@ MBed
 metatraffic
 middleware
 multicast
+namespace
 NetX
 Nucleo
 NuttX
@@ -38,7 +40,6 @@ Pico
 prebuilt
 Renesas
 repository
-namespace
 ROS
 runtime
 sSL
