@@ -28,7 +28,7 @@ sudo apt install -y \
 
 ```bash
 # Clone repository
-git clone https://github.com/eProsima/vulcanexus.git
+git clone --recursive https://github.com/eProsima/vulcanexus.git
 ```
 
 #### Virtual environment
