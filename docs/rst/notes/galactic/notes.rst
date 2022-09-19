@@ -1,5 +1,8 @@
 .. _notes_galactic_latest:
 
+Galactic Gamble
+===============
+
 Galactic Gamble (v1.0.2)
 ------------------------
 
