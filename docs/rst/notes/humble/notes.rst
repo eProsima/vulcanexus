@@ -11,14 +11,42 @@ The following packages have been updated:
 .. list-table::
     :header-rows: 1
 
-    * - Package
-      - Version
+    * - Package name
+      - Package version
+      - Since Vulcanexus version
+    * - eProsima Fast CDR
+      - `v1.0.24 <https://github.com/eProsima/Fast-CDR/releases/tag/v1.0.24>`__
+      - v2.0.0
     * - eProsima Fast DDS
       - `v2.7.1 <https://fast-dds.docs.eprosima.com/en/latest/notes/notes.html#version-2-7-1>`__
+      - v2.0.3
+    * - eProsima Fast DDS Gen
+      - `v2.1.3 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v2.1.3>`__
+      - v2.0.2
+    * - foonathan_memory_vendor
+      - `v1.2.1 <https://github.com/eProsima/foonathan_memory_vendor/releases/tag/v1.2.1>`__
+      - v2.0.0
+    * - micro-ROS Agent
+      - `v3.0.3 <https://github.com/micro-ROS/micro-ROS-Agent/blob/humble/micro_ros_agent/CHANGELOG.rst#303-2022-06-13>`__
+      - v2.0.1
+    * - micro-ROS Setup
+      - `v3.1.0 <https://github.com/micro-ROS/micro_ros_setup/blob/humble/CHANGELOG.rst#310-2022-05-25>`__
+      - v2.0.0
+    * - ROS 2 Monitor
+      - `v1.2.0 <https://fast-dds-monitor.readthedocs.io/en/latest/rst/notes/notes.html#version-v1-2-0>`__
+      - v2.0.2
+    * - ROS 2 Router
+      - `v0.4.0 <https://eprosima-dds-router.readthedocs.io/en/latest/rst/notes/notes.html#version-v0-4-0>`__
+      - v2.0.2
     * - ROS 2 Shapes Demo
       - `v2.7.1 <https://eprosima-shapes-demo.readthedocs.io/en/latest/notes/notes.html#version-2-7-1>`__
+      - v2.0.3
+    * - ROS 2 Statistics Backend
+      - `v0.7.0 <https://fast-dds-statistics-backend.readthedocs.io/en/latest/rst/notes/notes.html#version-0-7-0>`__
+      - v2.0.2
     * - Vulcanexus Fast DDS RMW
       - Use Fast DDS WaitSets
+      - v2.0.3
 
 Humble Hierro previous versions
 -------------------------------
