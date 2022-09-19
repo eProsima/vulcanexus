@@ -1,5 +1,8 @@
 .. _notes_humble_latest:
 
+Humble Hierro
+=============
+
 Humble Hierro (v2.0.3)
 ----------------------
 
