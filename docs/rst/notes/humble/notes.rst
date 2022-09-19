@@ -6,7 +6,7 @@ Humble Hierro
 Humble Hierro (v2.0.3)
 ----------------------
 
-The following packages have been updated:
+This version ships the following packages:
 
 .. list-table::
     :header-rows: 1
