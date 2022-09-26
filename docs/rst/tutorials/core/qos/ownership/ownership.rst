@@ -80,4 +80,44 @@ For the next section of this tutorial, lets cosider both created XML files are s
 Execute ROS 2 demo nodes with modified QoS
 ------------------------------------------
 
+Open one terminal and source Vulcanexus environment.
+To set `profiles1.xml` to define the profile configuration used on the creation of ROS 2 nodes,
+it is needed to populate the `FASTRTPS_DEFAULT_PROFILES_FILE` environment variable to point out to the file.
+Thus, in the terminal, run the following command:
+
+.. code-block:: bash
+
+    export FASTRTPS_DEFAULT_PROFILES_FILE=/root/profiles1.xml
+
+Then, you can run `ros-demo-nodes-cpp` program to create a listener with `EXCLUSIVE_OWNERSHIP_POLICY` QoS:
+
+.. code-block:: bash
+
+    ros2 run demo_nodes_cpp listener
+
+Open another terminal and source Vulcanexus environment.
+To create `ros-demo-nodes-cpp` talker, run the following commands:
+
+.. code-block:: bash
+
+    export FASTRTPS_DEFAULT_PROFILES_FILE=/root/profiles1.xml
+    ros2 run demo_nodes_cpp talker
+
+Now both terminals should be communicating.
+Can be seen that the `Hellow World` messages that talker sends are being received by listener.
+The number of those messages coincides.
+
+In a third terminal, source Vulcanexus environment.
+To create another `ros-demo-nodes-cpp` talker, but now with greater ownership strength
+(see `Ownership Strength QoS Policy <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/standardQosPolicies.html#ownershipstrengthqospolicy>`),
+this time the `FASTRTPS_DEFAULT_PROFILES_FILE` will point out to `profiles2.xml`:
+
+.. code-block:: bash
+
+    export FASTRTPS_DEFAULT_PROFILES_FILE=/root/profiles2.xml
+    ros2 run demo_nodes_cpp talker
+
+Now it must be seen that the first talker keeps sending messages,
+but the messages being read by listener are those of the newly created talker
+(The number of the message being sent by last talker should be the same as the number of the arraiving message in listener).
 
