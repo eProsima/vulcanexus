@@ -9,7 +9,7 @@ Nodes
     :backlinks: none
 
 ROS 2 nodes are the main participants on ROS 2 ecosystem. They will communicate between each other using publishers, subscriptions, services, etc.
-Further information about ROS 2 nodes can be found on `Understanding nodes <https://docs.ros.org/en/humble/Tutorials/Understanding-ROS2-Nodes.html>`_.
+Further information about ROS 2 nodes can be found on :ref:`Understanding nodes <ROS2Nodes>`.
 
 Initialization
 ^^^^^^^^^^^^^^
@@ -45,7 +45,7 @@ Before a node is created, a ``rclc_support_t`` object needs to be created and in
 - Configure the node ``Domain ID``:
 
   ROS2 allows isolation of nodes through the ``ROS_DOMAIN_ID`` concept. Nodes can only discover and communicate nodes placed on the same domain.
-  Further information about ROS 2 Domain ID can be found on `About Domain ID <https://docs.ros.org/en/humble/Concepts/About-Domain-ID.html>`_
+  Further information about ROS 2 Domain ID can be found on :ref:`About Domain ID <DomainID>`.
 
   A node can be configured using the ``rclc_support_t`` internal ``rcl_init_options_t`` options structure.
   rcl provides the ``rcl_init_options_set_domain_id`` method to set a node domain. Example:

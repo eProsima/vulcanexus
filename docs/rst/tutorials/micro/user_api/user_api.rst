@@ -15,5 +15,3 @@ This API implements the embedded version of the complete ROS 2 communications pa
     user_api_pub_sub.rst
     user_api_services.rst
     user_api_executor_timers.rst
-
-.. TODO(acuadros95): Move ROS2 documentation references to future Vulcanexus tutorials.

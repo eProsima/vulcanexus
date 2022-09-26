@@ -8,7 +8,7 @@ Publishers and subscribers
     :local:
     :backlinks: none
 
-ROS 2 publishers and subscribers are the basic communication mechanism between nodes using topics. Further information about ROS 2 publish-subscribe pattern can be found on `Understanding topics <https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html>`_
+ROS 2 publishers and subscribers are the basic communication mechanism between nodes using topics. Further information about ROS 2 publish-subscribe pattern can be found on :ref:`Understanding topics <ROS2Topics>`.
 
 .. TODO(acuadros95): Refer to getting started tutorial
 
@@ -16,7 +16,7 @@ Ready to use code related to this concepts can be found on micro-ROS-demos `int3
 
 .. note::
 
-  For a better understanding of DDS quality-of-service, check `About Quality of Service settings <https://docs.ros.org/en/humble/Concepts/About-Quality-of-Service-Settings.html>`_.
+  For a better understanding of DDS quality-of-service, check :ref:`About Quality of Service settings <QoSSettings>`.
 
 Publisher
 ---------

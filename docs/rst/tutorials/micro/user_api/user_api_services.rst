@@ -8,7 +8,7 @@ Services
     :local:
     :backlinks: none
 
-ROS 2 services are another communication mechanism between nodes. Services implement a client-server paradigm based on ROS 2 messages and types. Further information about ROS 2 services can be found on `Understanding services <https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Services/Understanding-ROS2-Services.html>`_.
+ROS 2 services are another communication mechanism between nodes. Services implement a client-server paradigm based on ROS 2 messages and types. Further information about ROS 2 services can be found on  :ref:`Understanding services <ROS2Services>`.
 
 Ready to use code related to this concepts can be found on micro-ROS-demos `addtwoints_server <https://github.com/micro-ROS/micro-ROS-demos/tree/humble/rclc/addtwoints_server/main.c>`_ and `addtwoints_client <https://github.com/micro-ROS/micro-ROS-demos/tree/humble/rclc/addtwoints_client/main.c>`_ examples.
 
