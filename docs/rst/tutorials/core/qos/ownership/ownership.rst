@@ -1,4 +1,4 @@
-.. _tutorials_policy_ownership_ownership:
+.. _tutorials_qos_ownership_ownership:
 
 Modifying Ownership and Ownership Strenght QoS Policy
 =====================================================
