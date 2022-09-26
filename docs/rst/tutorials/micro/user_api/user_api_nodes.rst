@@ -21,7 +21,7 @@ Before a node is created, a ``rclc_support_t`` object needs to be created and in
   The ``rclc_support_init`` function will try to establish communication with the Agent and will fail if its not reachable on a configurable time.
   A good practice is to the ping the Agent to check the connection before calling this method.
 
-- Init micro-ROS and create a node with default configuration:
+- Initialize micro-ROS and create a node with default configuration:
 
   .. code-block:: c
 

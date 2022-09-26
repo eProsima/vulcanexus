@@ -66,7 +66,7 @@ To destroy an initialized timer:
   // Destroy timer
   rcl_timer_fini(&timer);
 
-This will deallocate used memory and make the timer invalid
+This will free used memory and make the timer invalid
 
 Executor
 --------
@@ -110,7 +110,7 @@ Removed entities will free the used executor handles and their callback will be 
 Spinning
 ^^^^^^^^
 
-The executor implements the ROS2 spin mechaninsm. During a spin, periodic events and incoming messages will be handle, invoking the respective callbacks for each event.
+The executor implements the ROS2 spin mechanism. During a spin, periodic events and incoming messages will be handle, invoking the respective callbacks for each event.
 The following spin methods are available:
 
 - Spin: Endless spin, will block and check for events using a busy wait approach.
@@ -146,8 +146,8 @@ The following spin methods are available:
 Multithreading
 ^^^^^^^^^^^^^^
 
-Executors are expected to run on a single thread. To use executors on multithreaded environments, a different executor shall be created for each running thread.
-This implies that different entities will be spinned and handled on each thread, which gives opportunities for setting different priorities for a set of entities.
+To use executors on multithreaded environments, a different executor shall be created for each running thread.
+This implies that different entities will spin on each thread, which gives opportunities for setting different priorities for a set of entities.
 
 .. warning::
 
@@ -163,4 +163,4 @@ To destroy an initialized executor:
   // Destroy executor
   rclc_executor_fini(&executor);
 
-This will deallocate used memory and make the executor invalid.
+This will free used memory and make the executor invalid.
