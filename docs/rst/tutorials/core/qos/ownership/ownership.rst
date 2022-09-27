@@ -1,6 +1,6 @@
 .. _tutorials_qos_ownership_ownership:
 
-Modifying Ownership and Ownership Strenght QoS Policy
+Modifying Ownership and Ownership Strength QoS Policy
 =====================================================
 
 .. contents::
@@ -75,7 +75,7 @@ For the `profiles2.xml` file, write down the same code, but changing the value 1
         </data_reader>
     </profiles>
 
-For the next section of this tutorial, lets cosider both created XML files are stored in `~/` path.
+For the next section of this tutorial, lets consider both created XML files are stored in `~/` path.
 
 Execute ROS 2 demo nodes with modified QoS
 ------------------------------------------
@@ -119,6 +119,6 @@ this time the `FASTRTPS_DEFAULT_PROFILES_FILE` will point out to `profiles2.xml`
 
 Now it must be seen that the first talker keeps sending messages,
 but the messages being read by listener are those of the newly created talker
-(The number of the message being sent by last talker should be the same as the number of the arraiving message in listener).
+(The number of the message being sent by last talker should be the same as the number of the arriving message in listener).
 
-If now the second talker process is killed, the messages being reveived by the listener are the ones from the first talker.
+If now the second talker process is killed, the messages being received by the listener are the ones from the first talker.
