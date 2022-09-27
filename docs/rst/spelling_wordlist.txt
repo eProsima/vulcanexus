@@ -30,6 +30,7 @@ keystore
 Kubernetes
 MBed
 metatraffic
+microros
 middleware
 multicast
 multithreaded
@@ -46,6 +47,7 @@ Renesas
 repository
 ROS
 runtime
+src
 sSL
 sudo
 ThreadX
@@ -59,3 +61,4 @@ vulcanexus
 Vulcanexus
 turtlesim
 webpage
+ws
