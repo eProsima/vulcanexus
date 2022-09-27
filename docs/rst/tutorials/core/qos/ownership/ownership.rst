@@ -13,7 +13,7 @@ Background
 
 Fast DDS over Vulcanexus offers the possibility of fully configuring QoS policy through XML profile definition.
 This tutorial provides step-by-step instructions to modify the Ownership QoS within the ROS 2 talker/listener demo
-(see `Ownership QoS Policy <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/standardQosPolicies.html#ownershipqospolicy>`).
+(see `Ownership QoS Policy <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/standardQosPolicies.html#ownershipqospolicy>`_).
 
 This QoS Policy specifies whether it is allowed for multiple DataWriters to update the same instance of data,
 and if so, how these modifications should be arbitrated.
@@ -87,7 +87,7 @@ Thus, in the terminal, run the following command:
 
 .. code-block:: bash
 
-    export FASTRTPS_DEFAULT_PROFILES_FILE=/root/profiles1.xml
+    export FASTRTPS_DEFAULT_PROFILES_FILE=~/profiles1.xml
 
 Then, you can run `ros-demo-nodes-cpp` program to create a listener with `EXCLUSIVE_OWNERSHIP_POLICY` QoS:
 
@@ -100,7 +100,7 @@ To create `ros-demo-nodes-cpp` talker, run the following commands:
 
 .. code-block:: bash
 
-    export FASTRTPS_DEFAULT_PROFILES_FILE=/root/profiles1.xml
+    export FASTRTPS_DEFAULT_PROFILES_FILE=~/profiles1.xml
     ros2 run demo_nodes_cpp talker
 
 Now both terminals should be communicating.
@@ -109,12 +109,12 @@ The number of those messages coincides.
 
 In a third terminal, source Vulcanexus environment.
 To create another `ros-demo-nodes-cpp` talker, but now with greater ownership strength
-(see `Ownership Strength QoS Policy <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/standardQosPolicies.html#ownershipstrengthqospolicy>`),
+(see `Ownership Strength QoS Policy <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/standardQosPolicies.html#ownershipstrengthqospolicy>`_),
 this time the `FASTRTPS_DEFAULT_PROFILES_FILE` will point out to `profiles2.xml`:
 
 .. code-block:: bash
 
-    export FASTRTPS_DEFAULT_PROFILES_FILE=/root/profiles2.xml
+    export FASTRTPS_DEFAULT_PROFILES_FILE=~/profiles2.xml
     ros2 run demo_nodes_cpp talker
 
 Now it must be seen that the first talker keeps sending messages,

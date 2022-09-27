@@ -9,3 +9,4 @@ This section will provide a collection of ROS 2 tutorials, both on the use and a
     :maxdepth: 1
 
     security/security_tutorials
+    qos/qos_tutorials
