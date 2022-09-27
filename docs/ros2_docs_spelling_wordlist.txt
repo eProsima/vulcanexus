@@ -197,6 +197,7 @@ coroutine
 costmap
 cout
 cov
+covariance
 cpp
 cppcheck
 cpplint
@@ -711,6 +712,7 @@ NodeOptions
 Noetic
 noexcept
 Nogar
+nondeterministic
 nonnull
 noreply
 nosetest
@@ -926,6 +928,8 @@ rviz
 RViz
 Saito
 sambrose
+sanitizer
+sanitizers
 Saraiya
 Sarthak
 Sato
@@ -1078,6 +1082,7 @@ tracetools
 tradeoffs
 transfromation
 translational
+transversal
 Traversaro
 travis
 Tully
@@ -1111,6 +1116,7 @@ unicode
 unittest
 unittests
 unknownMacro
+unmaintained
 unmanaged
 unparsed
 unrecognised
@@ -1140,6 +1146,7 @@ vendored
 vendoring
 Vicidel
 Víctor
+viewable
 Vikas
 Vilches
 Vimeo
@@ -1168,6 +1175,7 @@ Wextra
 wg
 wget
 WGs
+whitelist
 whitespace
 wildcarded
 winsock
