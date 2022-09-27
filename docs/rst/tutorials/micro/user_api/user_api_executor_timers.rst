@@ -71,6 +71,8 @@ This will free used memory and make the timer invalid
 Executor
 --------
 
+The rclc executor allows to handle the execution of callbacks of entities such as subscriptions, timers, services and client taking into account the required priorities.
+
 Initialization
 ^^^^^^^^^^^^^^
 
@@ -143,15 +145,17 @@ The following spin methods are available:
     rclc_executor_spin_some(&executor, spin_timeout);
 
 
-Multithreading
-^^^^^^^^^^^^^^
+.. TODO(pgarrido): Reenable when multithreading section is ready
 
-To use executors on multithreaded environments, a different executor shall be created for each running thread.
-This implies that different entities will spin on each thread, which gives opportunities for setting different priorities for a set of entities.
+.. Multithreading
+.. ^^^^^^^^^^^^^^
 
-.. warning::
+.. To use executors on multithreaded environments, a different executor shall be created for each running thread.
+.. This implies that different entities will spin on each thread, which gives opportunities for setting different priorities for a set of entities.
 
-  Entities creation and destruction is not thread safe and shall not occur while the executor is spinning.
+.. .. warning::
+
+..   Entities creation and destruction is not thread safe and shall not occur while the executor is spinning.
 
 Cleaning Up
 ^^^^^^^^^^^

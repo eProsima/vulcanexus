@@ -21,6 +21,8 @@ Before a node is created, a ``rclc_support_t`` object needs to be created and in
   The ``rclc_support_init`` function will try to establish communication with the Agent and will fail if its not reachable on a configurable time.
   A good practice is to the ping the Agent to check the connection before calling this method.
 
+..   TODO(pgarrido): add here a link to the handling reconnection tutorial
+
 - Initialize micro-ROS and create a node with default configuration:
 
   .. code-block:: c
@@ -76,12 +78,12 @@ Before a node is created, a ``rclc_support_t`` object needs to be created and in
 
   .. note::
 
-    The configuration of the node will also be applied to its future elements (Publishers, subscribers, services, ...).
+    The configuration of the node will also be applied to its future elements (publishers, subscribers, services, ...).
 
 Cleaning Up
 ^^^^^^^^^^^^^^
 
-All entities owned by a node (Publishers, subscribers, services, ...) have to be destroyed before the node itself:
+All entities owned by a node (publishers, subscribers, services, ...) have to be destroyed before the node itself:
 
 .. code-block:: c
 

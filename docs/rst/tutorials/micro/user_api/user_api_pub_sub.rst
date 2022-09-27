@@ -16,7 +16,7 @@ Ready to use code related to this concepts can be found on micro-ROS-demos `int3
 
 .. note::
 
-  For a better understanding of DDS quality-of-service, check :ref:`About Quality of Service settings <QoSSettings>`.
+  micro-ROS publishers and subscribers can be configured using quality-of-service. For a better understanding of DDS quality-of-service, check :ref:`About Quality of Service settings <QoSSettings>`.
 
 Publisher
 ---------
@@ -69,11 +69,7 @@ To publish a message on an successfully initialized publisher:
   // Publish message
   rcl_publish(&publisher, &msg, NULL);
 
-For periodic publications, ```rcl_publish``` can be placed inside a timer callback. Check the :ref:`Executor and timers <tutorials_micro_user_api_executors_and_timers>` section for details.
-
-.. note::
-
-  Note: ``rcl_publish`` is thread safe and can be called from multiple threads.
+For periodic publications, ``rcl_publish`` can be placed inside a timer callback. Check the :ref:`Executor and timers <tutorials_micro_user_api_executors_and_timers>` section for details.
 
 Subscription
 ------------
