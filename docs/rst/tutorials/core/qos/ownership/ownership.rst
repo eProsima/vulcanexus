@@ -121,3 +121,4 @@ Now it must be seen that the first talker keeps sending messages,
 but the messages being read by listener are those of the newly created talker
 (The number of the message being sent by last talker should be the same as the number of the arraiving message in listener).
 
+If now the second talker process is killed, the messages being reveived by the listener are the ones from the first talker.
