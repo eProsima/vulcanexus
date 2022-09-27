@@ -47,7 +47,7 @@ Before a node is created, a ``rclc_support_t`` object needs to be created and in
 - Configure the node ``Domain ID``:
 
   ROS2 allows isolation of nodes through the ``ROS_DOMAIN_ID`` concept. Nodes can only discover and communicate nodes placed on the same domain.
-  Further information about ROS 2 Domain ID can be found on :ref:`About Domain ID <DomainID>`.
+  Further information about ROS 2 Domain ID can be found on :ref:`About Domain ID <concepts_domain_id_ros_domain_id>`.
 
   A node can be configured using the ``rclc_support_t`` internal ``rcl_init_options_t`` options structure.
   rcl provides the ``rcl_init_options_set_domain_id`` method to set a node domain. Example:

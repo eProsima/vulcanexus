@@ -16,7 +16,7 @@ Ready to use code related to this concepts can be found on micro-ROS-demos `int3
 
 .. note::
 
-  micro-ROS publishers and subscribers can be configured using quality-of-service. For a better understanding of DDS quality-of-service, check :ref:`About Quality of Service settings <QoSSettings>`.
+  micro-ROS publishers and subscribers can be configured using quality-of-service. For a better understanding of DDS quality-of-service, check :ref:`About Quality of Service settings <concepts_about_qos>`.
 
 Publisher
 ---------
