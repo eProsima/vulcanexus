@@ -14,8 +14,6 @@ Overview
 
 This tutorial provides step-by-step instructions to use Vulcanexus micro tools to build and execute a micro-ROS publisher/subscriber demo.
 
-This demo is compatible with `ROS2 PubSub example <_tutorials_ros2_introduction>`_, demonstrating communication between micro-ROS and ROS 2 apps.
-
 Prerequisites
 -------------
 
@@ -151,7 +149,7 @@ Before building this examples, micro-ROS used headers and tools need to be inclu
 
 1. Open ``package.xml`` on ``microros_ws/src/micro_pubsub`` directory
 
-2. make sure to fill in the ``<description>`, ``<maintainer>``` and ``<license>`` tags:
+2. make sure to fill in the ``<description>``, ``<maintainer>`` and ``<license>`` tags:
 
   .. code-block:: xml
 
