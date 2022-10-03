@@ -1,4 +1,4 @@
-version: v2.0
+version: v3.0
 
 participants:
 
@@ -6,7 +6,7 @@ participants:
     kind: local
 
   - name: Router_Client
-    kind: repeater-client
+    kind: wan
     connection-addresses:
       - ip: 123.123.123.123
         port: 45601

@@ -1,9 +1,9 @@
-version: v2.0
+version: v3.0
 
 participants:
 
   - name: Router_Repeater
-    kind: repeater
+    kind: wan
     repeater: true
     listening-addresses:
       - ip: 123.123.123.123

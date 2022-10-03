@@ -69,8 +69,8 @@ Several key elements can be observed in it:
 Prerequisites
 -------------
 
-This tutorial will require two machines (*Robot 1* and *Cloud Server*) deployed on different networks (*LAN 1* and *Cloud*).
-It is possible to simulate the scenario by deploying everything needed on the same machine and two virtual networks but let's focus on the case of a real deployment.
+This tutorial will require three machines (*Robot 1*, *Controller 1* and *Cloud Server*) deployed on different networks (*LAN 1*, *LAN 2* and *Cloud*).
+It is possible to simulate the scenario by deploying everything needed on the same machine and three virtual networks but let's focus on the case of a real deployment.
 
 It is also necessary to have previously installed Vulcanexus using one of the following installation methods:
 
@@ -160,10 +160,10 @@ Next, the most relevant aspects of this configuration file are explained.
 
 The ``participants`` are the interfaces of the DDS Router to communicate with other networks. In this case, we have two participants:
 
-    *   ``local``: this is a simple participant that communicates with all ROS 2 nodes it finds in domain 0.
+    *   ``ROS_2_LAN_1``: this is a simple participant that communicates with all ROS 2 nodes it finds in domain 0.
         For more information about this participant please refer to the `Simple Participant section <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/participants/simple.html#user-manual-participants-simple>`_ of the DDS Router documentation.
 
-    *   ``repeater-client``: it is a participant designed to communicate with a Repeater Participant.
+    *   ``Router_Client``: it is a participant designed to communicate with a WAN Participant configured as repeater.
         It uses the `Fast DDS Initial Peers discovery mechanism <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/simple.html#initial-peers>`_ to establish a point-to-point communication between two DDS entities, two *DDS Routers* in this case.
 
     For the DDS Router Edge, a connection address shall be defined which must be the same as the one exposed by the Cloud Server.
@@ -177,7 +177,7 @@ The ``participants`` are the interfaces of the DDS Router to communicate with ot
     However, it is important to mention that the ROS 2 topics relayed by the DDS Router can be filtered by configuring the ``allowlist`` and ``blocklist``.
     If this is the case please refer to the `DDS Router documentation <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/configuration.html#topic-filtering>`_ for information on how to do this.
 
-The following figure summarizes the deployment on the edge.
+The following figure summarizes the deployment on the edge 1.
 
 .. figure:: /rst/figures/tutorials/cloud/edge_1_repeater_deployment.png
    :align: center
@@ -289,6 +289,11 @@ Now, run the DDS Router with the configuration file created as an argument.
 .. code-block::
 
     ddsrouter -c <path/to/file>/ddsrouter_edge_2.yaml
+
+The following figure summarizes the deployment on the edge 2.
+
+.. figure:: /rst/figures/tutorials/cloud/edge_2_repeater_deployment.png
+   :align: center
 
 Deployment of Cloud Repeater
 ----------------------------
