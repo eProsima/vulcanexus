@@ -37,7 +37,7 @@ Initiate *ROS 2 Monitor* running the following command:
 
     fastdds_monitor
 
-Once *ROS 2 monitor* is launched, start a monitor in domain :code:`0` (default domain).
+Once *ROS 2 Monitor* is launched, start a monitor in domain :code:`0` (default domain).
 
 .. figure:: /rst/figures/tutorials/tools/monitor_screenshots/init_domain.png
     :align: center
@@ -107,7 +107,7 @@ To show statistical data about the communication between the :code:`vulcanexus-h
 Introspect metatraffic topics
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-*ROS 2 monitor* filters by default the topics used for sharing metatraffic, as well as the endpoints related to them, so users can inspect their network easily.
+*ROS 2 Monitor* filters by default the topics used for sharing metatraffic, as well as the endpoints related to them, so users can inspect their network easily.
 These topics are the ones that ROS 2 uses for discovery and configuration purposes, such as :code:`ros_discovery_info`, as well as those used by Fast DDS to report statistical data.
 
 In order to see these topics in the monitor, click *View->Show Metatraffic* menu button.

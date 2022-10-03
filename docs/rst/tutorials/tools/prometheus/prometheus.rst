@@ -12,8 +12,8 @@ Background
 ----------
 
 Vulcanexus integrates `ROS 2 Monitor <https://fast-dds-monitor.readthedocs.io/en/latest/>`_, which is a useful tool for monitoring and studying a ROS 2 network as ROS 2 relies on the `DDS specification <https://www.omg.org/spec/DDS/1.4/About-DDS/>`_ to communicate the different nodes.
-In a previous :ref:`tutorial <tutorials_tools_fastdds_monitor>`, a demonstration on how to use this powerful tool in a ROS 2 talker/listener scenario was shown.
-However, Vulcanexus Tools offers more possibilities when it comes to statistics visualization; *ROS 2 Monitor* is a frontend application relying on *Fast DDS Statistics Backend*, but the latter may also be leveraged with alternative visualization utilities such as `Prometheus <https://prometheus.io>`_.
+:ref:`This other tutorial <tutorials_tools_fastdds_monitor>` demonstrates how to use this powerful tool in a ROS 2 `demo_nodes_cpp <https://index.ros.org/p/demo_nodes_cpp/>`_ ``talker``/``listener`` scenario.
+However, Vulcanexus Tools offers more possibilities when it comes to statistics visualization; *ROS 2 Monitor* is a frontend application relying on *Fast DDS Statistics Backend*, but the latter may also be leveraged with alternative visualization utilities such as `Prometheus <https://prometheus.io>`_ and `Grafana <https://grafana.com>`_.
 
 This tutorial provides step-by-step instructions on how to monitor a ROS 2 talker/listener in Vulcanexus by using *Fast DDS Statistics Backend* along with *Prometheus*.
 
@@ -43,7 +43,7 @@ Prometheus
 ^^^^^^^^^^
 
 It is recommended (although **not required**) to install *Prometheus* for being able to visualize gathered statistics.
-If not installed, data will still be exported and visible in the terminal, but no graphs will be displayed.
+If not installed, data will still be collected and visible in the terminal, but no graphs will be displayed.
 Follow the installation guide from the `official website <https://prometheus.io>`_.
 The configuration file needed to replicate this demo can be found `here <https://raw.githubusercontent.com/eProsima/Fast-DDS-statistics-backend/main/examples/cpp/ROS2Prometheus/prometheus.yml>`_.
 
@@ -83,7 +83,7 @@ Run the following commands in different terminals (remember to source the Vulcan
 Launch backend application
 --------------------------
 
-Once communication between the talker and listener has been established, we may now launch our application for gathering and exporting statistical data to *Prometheus*.
+Once communication between the talker and listener has been established, launch the application for gathering and exporting statistical data to *Prometheus*.
 
 .. code-block:: bash
 
@@ -113,9 +113,9 @@ Launch *Prometheus* with the given `configuration file <https://raw.githubuserco
 
     If running Vulcanexus in Docker containers, and if *Prometheus* has been installed in the host's system, it is required to pass ``--net=host`` argument to the backend application container in order to enable communication between them.
 
-*Prometheus* is a versatile open source monitoring system offering seamless interoperability with other analytics and visualization applications such as `Graphana <https://grafana.com/>`_.
+*Prometheus* is a versatile open source monitoring system offering seamless interoperability with other analytics and visualization applications such as `Grafana <https://grafana.com/>`_.
 
-.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/graphana_plot.png
+.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/grafana_plot.png
     :align: center
 
 Feel free to further explore the number of possibilities that *Vulcanexus Tools* and *Prometheus* together have to offer.
