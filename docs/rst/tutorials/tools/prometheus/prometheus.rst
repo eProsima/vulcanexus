@@ -113,7 +113,7 @@ Launch *Prometheus* with the given `configuration file <https://raw.githubuserco
 
     If running Vulcanexus in Docker containers, and if *Prometheus* has been installed in the host's system, it is required to pass ``--net=host`` argument to the backend application container in order to enable communication between them.
 
-*Prometheus* is a versatile open source monitoring system offering seamless interoperability with other analytics and visualization applications such as `Grafana <https://grafana.com/>`_.
+*Prometheus* is a versatile open source monitoring system offering seamless interoperability with other analytics and visualization applications such as *Grafana*.
 
 .. figure:: /rst/figures/tutorials/tools/monitor_screenshots/grafana_plot.png
     :align: center
