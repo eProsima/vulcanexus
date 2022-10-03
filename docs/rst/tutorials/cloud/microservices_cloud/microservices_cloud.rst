@@ -131,7 +131,7 @@ Following are the ones used in this example, however the implementation of new a
         * **Server**: subtract 2 integers get in request, and send solution in response.
           Command: ``ros2 run microservers_py server_subtraction``
 
-These files can be found in ``code/microservices`` in |VulcanexusDocsRepo| as a `Colcon <https://colcon.readthedocs.io>`_ python package.
+These files can be found at ``code/microservices`` in |VulcanexusDocsRepo| as a `Colcon <https://colcon.readthedocs.io>`_ python package.
 In order to install these applications, follow these steps:
 
 Start by creating the workspace of this application and downloading the source code:
@@ -196,10 +196,10 @@ Next, the most relevant aspects of this configuration file are explained.
 
 The ``participants`` are the interfaces of the DDS Router to communicate with other networks. In this case, we have two participants:
 
-    *   ``local``: this is a simple participant that communicates with all ROS 2 nodes it finds.
+    *   ``ROS_2_LAN_1``: this is a simple participant that communicates with all ROS 2 nodes it finds.
         For more information about this participant please refer to the `Simple Participant section <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/participants/simple.html#user-manual-participants-simple>`_ of the DDS Router documentation.
 
-    *   ``router``: it is a participant designed for the communication between two *DDS Routers*.
+    *   ``Router_Client``: it is a participant designed for the communication between two *DDS Routers*.
         It uses the |InitialPeersFastDdsDocs| to establish a point-to-point communication between two DDS entities, two *DDS Routers* in this case.
 
     For the DDS Router Edge, a connection address shall be defined which must be the same as the one exposed by the Cloud Server.
@@ -281,11 +281,6 @@ This configuration will depend on your network router, but it should be similar 
 .. figure:: /rst/figures/tutorials/cloud/router_settings.png
    :align: center
 
-.. warning::
-
-    Due to a current limitation of DDS Router, the external port and internal port must match.
-    Stay tuned for new versions of DDS Router that are intended to address this limitation.
-
 Configure the DDS Router Cloud
 ''''''''''''''''''''''''''''''
 
@@ -295,12 +290,12 @@ The DDS Router Cloud configuration file is quite similar to the DDS Router Edge 
 
     .. tab:: WAN
 
-        .. literalinclude:: /resources/tutorials/cloud/wan_edge_cloud/dds_router_cloud_wan.yaml
+        .. literalinclude:: /resources/tutorials/cloud/microservices_cloud/dds_router_cloud_wan.yaml
             :language: yaml
 
     .. tab:: LAN
 
-        .. literalinclude:: /resources/tutorials/cloud/wan_edge_cloud/dds_router_cloud_lan.yaml
+        .. literalinclude:: /resources/tutorials/cloud/microservices_cloud/dds_router_cloud_lan.yaml
             :language: yaml
 
         .. note::
@@ -311,13 +306,8 @@ The DDS Router Cloud configuration file is quite similar to the DDS Router Edge 
 In this case there are also two participants, two communication interfaces for the DDS Router.
 The first one communicates the DDS Router with any ROS 2 node, while the second one enables to establish a communication channel with another DDS Router.
 
-Even so there are some differences in the second participant that are worth mentioning:
-
-#.  The ``id`` of this participant is different from the previous one, ``1`` in this case.
-    This is because, as mentioned above, the ids of this type of participant must be unique in the entire DDS Router network.
-
-#.  This participant sets a listening address (``listening-addresses``), rather than a connection address.
-    This is because it is the participant that waits for incoming communications since it has this network address exposed and accessible from the Internet.
+Although quite similar to the WAN participant in the DDS Router Edge instance, notice that this participant sets a listening address (``listening-addresses``), rather than a connection address.
+This is because it is the participant that waits for incoming communications since it has this network address exposed and accessible from the Internet.
 
 To finish, as done in the previous steps, setup the Vulcanexus environment sourcing the `setup.bash` file and run the DDS Router Cloud with the above configuration.
 
