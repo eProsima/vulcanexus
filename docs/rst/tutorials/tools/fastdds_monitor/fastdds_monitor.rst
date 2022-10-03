@@ -1,7 +1,7 @@
 .. _tutorials_tools_fastdds_monitor:
 
-ROS 2 network statistics using Vulcanexus Tools
-===============================================
+ROS 2 network statistics inspection with ROS 2 Monitor
+======================================================
 
 .. contents::
     :depth: 2
@@ -16,12 +16,12 @@ The automatic discovery of entities in a local network enables to easily identif
 Additionally, it is possible to receive statistical data from every endpoint in the network leveraging the `ROS 2 Statistics Module <https://fast-dds.docs.eprosima.com/en/latest/fastdds/statistics/statistics.html>`_.
 This data is very useful to analyze the DDS network performance and seek possible communication problems in it.
 
-This tutorial provides step-by-step instructions to use Vulcanexus to monitor a ROS 2 talker/listener demo.
+This tutorial provides step-by-step instructions to use Vulcanexus for monitoring a ROS 2 talker/listener demo.
 
 Prerequisites
 -------------
 
-Ensure that the Vulcanexus installation includes the Vulcanexus tools (either ``vulcanexus-humble-desktop``, ``vulcanexus-humble-tools``, or ``vulcanexus-humble-base``).
+Ensure that the Vulcanexus installation includes Vulcanexus Tools (either ``vulcanexus-humble-desktop``, ``vulcanexus-humble-tools``, or ``vulcanexus-humble-base``).
 Also, remember to source the environment in every terminal in this tutorial.
 
 .. code-block:: bash
@@ -31,13 +31,13 @@ Also, remember to source the environment in every terminal in this tutorial.
 Launch ROS 2 Monitor
 -----------------------
 
-Initiate ROS 2 Monitor running the following command:
+Initiate *ROS 2 Monitor* running the following command:
 
 .. code-block:: bash
 
     fastdds_monitor
 
-Once ROS 2 Monitor is launched, start a monitor in domain :code:`0` (default domain).
+Once *ROS 2 Monitor* is launched, start a monitor in domain :code:`0` (default domain).
 
 .. figure:: /rst/figures/tutorials/tools/monitor_screenshots/init_domain.png
     :align: center
@@ -107,7 +107,7 @@ To show statistical data about the communication between the :code:`vulcanexus-h
 Introspect metatraffic topics
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-ROS 2 Monitor filters by default the topics used for sharing metatraffic, as well as the endpoints related to them, so users can inspect their network easily.
+*ROS 2 Monitor* filters by default the topics used for sharing metatraffic, as well as the endpoints related to them, so users can inspect their network easily.
 These topics are the ones that ROS 2 uses for discovery and configuration purposes, such as :code:`ros_discovery_info`, as well as those used by Fast DDS to report statistical data.
 
 In order to see these topics in the monitor, click *View->Show Metatraffic* menu button.

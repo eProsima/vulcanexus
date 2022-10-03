@@ -7,3 +7,4 @@ Vulcanexus Tools Tutorials
     :maxdepth: 1
 
     fastdds_monitor/fastdds_monitor
+    prometheus/prometheus
