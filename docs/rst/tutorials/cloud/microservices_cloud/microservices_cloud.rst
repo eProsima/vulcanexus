@@ -194,12 +194,12 @@ Let's create a DDS Router configuration file as the one shown below.
 
 Next, the most relevant aspects of this configuration file are explained.
 
-The ``participants`` are the interfaces of the DDS Router to communicate with other networks. In this case, we have two participants:
+The ``participants`` are the interfaces of the DDS Router to communicate with other networks. In this case, we have two kinds of participants:
 
-    *   ``ROS_2_LAN_1``: this is a simple participant that communicates with all ROS 2 nodes it finds.
+    *   ``local``: this is a simple participant that communicates with all ROS 2 nodes it finds.
         For more information about this participant please refer to the `Simple Participant section <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/participants/simple.html#user-manual-participants-simple>`_ of the DDS Router documentation.
 
-    *   ``Router_Client``: it is a participant designed for the communication between two *DDS Routers*.
+    *   ``wan``: it is a participant designed for the communication between two *DDS Routers*.
         It uses the |InitialPeersFastDdsDocs| to establish a point-to-point communication between two DDS entities, two *DDS Routers* in this case.
 
     For the DDS Router Edge, a connection address shall be defined which must be the same as the one exposed by the Cloud Server.
