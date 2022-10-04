@@ -1,3 +1,5 @@
+.. include:: ../../../exports/alias.include
+
 .. _tutorials_cloud_wan_edge_cloud_tls_wan_edge_cloud_tls:
 
 
@@ -219,23 +221,18 @@ Let's create a DDS Router configuration file as the one shown below.
 
 Next, the most relevant aspects of this configuration file are explained.
 
-The ``participants`` are the interfaces of the DDS Router to communicate with other networks. In this case, we have two participants:
+The ``participants`` are the interfaces of the DDS Router to communicate with other networks. In this case, we have two kinds of participants:
 
     *   ``local``: this is a simple participant that communicates with all ROS 2 nodes it finds.
         For more information about this participant please refer to the `Simple Participant section <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/participants/simple.html#user-manual-participants-simple>`_ of the DDS Router documentation.
 
-    *   ``router``: it is a participant designed for the communication between two *DDS Routers*.
-        It uses the `Fast DDS Discovery Server discovery mechanism <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery_server.html#discovery-server>`_ to establish a point-to-point communication between two DDS entities, two *DDS Routers* in this case.
-        It is not necessary to know more about this discovery protocol, but it is important to note that each ``router``-type participant must have a unique ``id`` across the entire network, which is configured with the ``discovery-server-guid`` tag.
+    *   ``wan``: it is a participant designed for the communication between two *DDS Routers*.
+        It uses the |InitialPeersFastDdsDocs| to establish a point-to-point communication between two DDS entities, two *DDS Routers* in this case.
 
     For the DDS Router Edge, a connection address shall be defined which must be the same as the one exposed by the Cloud Server.
-    There are some relevant configurations within this connection address:
-
-    * ``discovery-server-guid``: it defines the ``id`` of the ``router``-type participant of the DDS Router Cloud.
-    * ``addresses``: defines the IP (``ip``) and port (``port``) of the network addresses to which it connects, and the transport protocol (``transport``) to be used in the communication, TCP in this case (required for TLS).
-    * ``tls``: defines the TLS configuration parameters to establish a secure connection over TCP.
-      For clients, only the certificate authority (CA) needs to be provided.
-      Please refer to `DDS Router documentation <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/wan_configuration.html#tls>`__ for more details on how to configure TLS in a WAN participant.
+    TLS configuration parameters required to establish a secure connection over TCP are provided under the ``tls`` tag.
+    For clients, only the certificate authority (CA) needs to be provided.
+    Please refer to `DDS Router documentation <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/wan_configuration.html#tls>`_ for more details on how to configure TLS in a WAN participant.
 
 .. note::
 
@@ -356,9 +353,6 @@ In this case there are also two participants, two communication interfaces for t
 The first one communicates the DDS Router with any ROS 2 node, while the second one enables to establish a communication channel with another DDS Router.
 
 Even so there are some differences in the second participant that are worth mentioning:
-
-#.  The ``id`` of this participant is different from the previous one, ``1`` in this case.
-    This is because, as mentioned above, the ids of this type of participant must be unique in the entire DDS Router network.
 
 #.  This participant sets a listening address (``listening-addresses``), rather than a connection address.
     This is because it is the participant that waits for incoming communications since it has this network address exposed and accessible from the Internet.
