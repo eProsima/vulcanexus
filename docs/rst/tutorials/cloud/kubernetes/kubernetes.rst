@@ -36,9 +36,7 @@ Also, remember to source the environment in every terminal in this tutorial.
 Local setup
 -----------
 
-The local instance of *DDS Router* (local router) only requires to have a `Simple Participant <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/participants/simple.html>`_ and a
-`WAN Participant <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/participants/wan.html>`_ that will play the client role in the discovery process of remote participants
-(see |InitialPeersFastDdsDocs|).
+The local instance of *DDS Router* (local router) only requires to have a `Simple Participant <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/participants/simple.html>`_ and a `WAN Participant <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/participants/wan.html>`_ that will play the client role in the discovery process of remote participants (see |InitialPeersFastDdsDocs|).
 
 After having acknowledged each other's existence through `Simple DDS discovery mechanism <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/simple.html>`_ (multicast communication), the local participant will start receiving messages published by the ROS 2 talker node, and will then forward them to the WAN participant.
 Next, these messages will be sent to another participant hosted on a *K8s* cluster to which it connects via WAN communication over UDP/IP.

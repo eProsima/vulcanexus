@@ -1,3 +1,5 @@
+.. include:: ../../../exports/alias.include
+
 .. _tutorials_cloud_edge_edge_repeater_cloud_edge_edge_repeater_cloud:
 
 
@@ -164,12 +166,9 @@ The ``participants`` are the interfaces of the DDS Router to communicate with ot
         For more information about this participant please refer to the `Simple Participant section <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/participants/simple.html#user-manual-participants-simple>`_ of the DDS Router documentation.
 
     *   ``wan``: it is a participant designed to communicate with a WAN Participant configured as server (repeater in this case).
-        It uses the `Fast DDS Initial Peers discovery mechanism <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/simple.html#initial-peers>`_ to establish a point-to-point communication between two DDS entities, two *DDS Routers* in this case.
+        It uses the |InitialPeersFastDdsDocs| to establish a point-to-point communication between two DDS entities, two *DDS Routers* in this case.
 
     For the DDS Router Edge, a connection address shall be defined which must be the same as the one exposed by the Cloud Server.
-    There are some relevant configurations within this connection address:
-
-    * ``connection-addresses``: defines the IP (``ip``) and port (``port``) of the network addresses to which it connects, and the transport protocol (``transport``) to be used in the communication, TCP in this case.
 
 .. note::
 

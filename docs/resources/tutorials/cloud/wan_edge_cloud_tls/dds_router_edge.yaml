@@ -1,4 +1,4 @@
-version: v2.0
+version: v3.0
 
 participants:
 
@@ -6,17 +6,11 @@ participants:
     kind: local
 
   - name: Router_Client
-    kind: router
-
-    discovery-server-guid:
-      id: 0
+    kind: wan
     connection-addresses:
-      - discovery-server-guid:
-          id: 1
-        addresses:
-          - ip: 123.123.123.123
-            port: 45678
-            transport: tcp
+      - ip: 123.123.123.123
+        port: 45678
+        transport: tcp
 
     tls:
       ca: ca.crt

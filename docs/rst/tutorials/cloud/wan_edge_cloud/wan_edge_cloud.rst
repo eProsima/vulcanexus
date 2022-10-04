@@ -145,12 +145,12 @@ Let's create a DDS Router configuration file as the one shown below.
 
 Next, the most relevant aspects of this configuration file are explained.
 
-The ``participants`` are the interfaces of the DDS Router to communicate with other networks. In this case, we have two participants:
+The ``participants`` are the interfaces of the DDS Router to communicate with other networks. In this case, we have two kinds of participants:
 
     *   ``local``: this is a simple participant that communicates with all ROS 2 nodes it finds.
         For more information about this participant please refer to the `Simple Participant section <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/participants/simple.html#user-manual-participants-simple>`_ of the DDS Router documentation.
 
-    *   ``router``: it is a participant designed for the communication between two *DDS Routers*.
+    *   ``wan``: it is a participant designed for the communication between two *DDS Routers*.
         It uses the |InitialPeersFastDdsDocs| to establish a point-to-point communication between two DDS entities, two *DDS Routers* in this case.
 
     For the DDS Router Edge, a connection address shall be defined which must be the same as the one exposed by the Cloud Server.
@@ -287,13 +287,8 @@ The DDS Router Cloud configuration file is quite similar to the DDS Router Edge 
 In this case there are also two participants, two communication interfaces for the DDS Router.
 The first one communicates the DDS Router with any ROS 2 node, while the second one enables to establish a communication channel with another DDS Router.
 
-Even so there are some differences in the second participant that are worth mentioning:
-
-#.  The ``id`` of this participant is different from the previous one, ``1`` in this case.
-    This is because, as mentioned above, the ids of this type of participant must be unique in the entire DDS Router network.
-
-#.  This participant sets a listening address (``listening-addresses``), rather than a connection address.
-    This is because it is the participant that waits for incoming communications since it has this network address exposed and accessible from the Internet.
+Although quite similar to the WAN participant in the DDS Router Edge instance, notice that this participant sets a listening address (``listening-addresses``), rather than a connection address.
+This is because it is the participant that waits for incoming communications since it has this network address exposed and accessible from the Internet.
 
 To finish, as done in the previous steps, setup the Vulcanexus environment sourcing the `setup.bash` file and run the DDS Router Cloud with the above configuration.
 
