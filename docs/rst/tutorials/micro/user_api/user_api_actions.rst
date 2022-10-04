@@ -16,7 +16,7 @@ Ready to use code related to this concepts can be found on micro-ROS demos repos
 Action Server
 -------------
 
-micro-ROS action servers allows the user to accept or reject ROS 2 action clients, send feedback to them and finally
+micro-ROS action servers allows the user to accept or reject ROS 2 action clients goals, send feedback on their execution, and a final result.
 
 Initialization
 ^^^^^^^^^^^^^^
@@ -26,7 +26,7 @@ Action server initialization can be done using the following API:
 .. code-block:: c
 
   // Action name
-  const char * action_name = "test_service";
+  const char * action_name = "fibonacci";
 
   // Get action type support
   const rosidl_action_type_support_t * type_support =
@@ -39,15 +39,14 @@ Action server initialization can be done using the following API:
     &node,
     &support,
     type_support,
-    "fibonacci"
+    action_name
   );
 
 Callbacks
 ^^^^^^^^^
 
-Once an action goal request arrives, the executor will call the configured callback with the goal request and response messages as arguments.
-The goal handle ``goal_handle`` contains the goal request sent by the action client.
-Using this handle, the action server can accept or reject the request returning ``RCL_RET_ACTION_GOAL_REJECTED`` or ``RCL_RET_ACTION_GOAL_ACCEPTED``.
+Once an action goal request arrives, the executor will execute the configured `handle_goal` callback with the received goal request and the configured context as arguments.
+Using the received ``goal_handle``, the action server can accept or reject the request returning ``RCL_RET_ACTION_GOAL_REJECTED`` or ``RCL_RET_ACTION_GOAL_ACCEPTED``.
 
 Using ``Fibonacci.action`` type definition as an example:
 
@@ -91,18 +90,19 @@ If the goal has been accepted, during the processing task the action server can 
 
 .. code-block:: c
 
+  // Generate and fill feedback
   example_interfaces__action__Fibonacci_FeedbackMessage feedback = {};
-  // Fill feedback
+  // Publish feedback message
   rclc_action_publish_feedback(goal_handle, &feedback);
 
-When the action server completes the requested goal, it can send the result to the client using the goal handle and indicating the goal finish state.
-The goal finish state can be ``GOAL_STATE_SUCCEEDED``, ``GOAL_STATE_CANCELED`` or ``GOAL_STATE_ABORTED``.
+When the the requested goal is completed, the action server can send the result to the client using the goal handle and its finished state: ``GOAL_STATE_SUCCEEDED``, ``GOAL_STATE_CANCELED`` or ``GOAL_STATE_ABORTED``.
 
 .. code-block:: c
 
+  // Generate and fill result message
   example_interfaces__action__Fibonacci_GetResult_Response response = {0};
-  // Fill response
   rcl_action_goal_state_t goal_state = GOAL_STATE_SUCCEEDED;
+  // Send result
   rclc_action_send_result(goal_handle, goal_state, &response);
 
 Also, during the goal handling, the action client can request the cancellation of the goal. If the client requests the cancellation, the action server can decide if the goal can be cancelled using a callback:
@@ -127,7 +127,7 @@ Finally, all the callbacks can be added to the executor when the action server i
 
   #define NUMBER_OF_SIMULTANEOUS_HANDLES 10
 
-  // Action message object
+  // Goal request storage
   example_interfaces__action__Fibonacci_SendGoal_Request ros_goal_request[NUMBER_OF_SIMULTANEOUS_HANDLES];
 
   // Add action server to the executor ('executor' and 'action_server' are available and already initialized)
@@ -163,7 +163,7 @@ Action client initialization can be done using the following API:
 .. code-block:: c
 
   // Action name
-  const char * action_name = "test_service";
+  const char * action_name = "fibonacci";
 
   // Get action type support
   const rosidl_action_type_support_t * type_support =
@@ -181,7 +181,7 @@ Action client initialization can be done using the following API:
 Send a request
 ^^^^^^^^^^^^^^
 
-An action client needs to send a goal request to the server and wait for the response.
+An action client can send a goal request to the server and spin the executor to get the response.
 
 Using ``Fibonacci.action`` type definition as an example:
 
@@ -200,10 +200,15 @@ The client request message will contain an integers ``order``:
 
 .. code-block:: c
 
-  // Send goal request
+  // Fill goal request message
   example_interfaces__action__Fibonacci_SendGoal_Request ros_goal_request;
   ros_goal_request.goal.order = 10;
+
+  // Send goal request
   rclc_action_send_goal_request(&action_client, &ros_goal_request, NULL);
+  
+  // Spin the executor to get the response
+  rclc_executor_spin(&executor);
 
 Callbacks
 ^^^^^^^^^
@@ -324,26 +329,12 @@ Finally, all the callbacks shall be exposed to the executor when the action clie
 .. code-block:: c
 
   #define MAX_FIBONACCI_ORDER 50
-  #define NUMBER_OF_SIMULTANEOUS_HANDLES 10
-
-  .. example_interfaces__action__Fibonacci_SendGoal_Request ros_goal_request[NUMBER_OF_SIMULTANEOUS_HANDLES];
-
-  .. // Add action server to the executor ('executor' and 'service' are available and already initialized)
-  .. rclc_executor_add_action_server(
-  ..   &executor,
-  ..   &action_server,
-  ..   NUMBER_OF_SIMULTANEOUS_HANDLES,
-  ..   ros_goal_request,
-  ..   sizeof(example_interfaces__action__Fibonacci_SendGoal_Request),
-  ..   handle_goal,   // Goal request callback
-  ..   handle_cancel, // Goal cancel callback
-  ..   NULL           // Context
-  .. );
 
   // Action message objects
   example_interfaces__action__Fibonacci_FeedbackMessage ros_feedback;
   example_interfaces__action__Fibonacci_GetResult_Response ros_result_response;
 
+  // Init message memory with expected sizes
   ros_feedback.feedback.sequence.capacity = MAX_FIBONACCI_ORDER;
   ros_feedback.feedback.sequence.size = 0;
   ros_feedback.feedback.sequence.data = (int32_t *) malloc(
