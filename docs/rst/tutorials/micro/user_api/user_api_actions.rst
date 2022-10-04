@@ -206,7 +206,7 @@ The client request message will contain an integers ``order``:
 
   // Send goal request
   rclc_action_send_goal_request(&action_client, &ros_goal_request, NULL);
-  
+
   // Spin the executor to get the response
   rclc_executor_spin(&executor);
 
