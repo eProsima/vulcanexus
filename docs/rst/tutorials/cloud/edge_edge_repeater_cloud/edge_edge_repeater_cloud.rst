@@ -1,8 +1,8 @@
-.. _tutorials_cloud_wan_edge_cloud_wan_edge_cloud:
+.. _tutorials_cloud_edge_edge_repeater_cloud_edge_edge_repeater_cloud:
 
 
-Edge-Cloud communication on WAN
-===============================
+Edge-Edge communication via Repeater
+====================================
 
 .. contents::
     :depth: 2
@@ -12,22 +12,34 @@ Edge-Cloud communication on WAN
 Background
 ----------
 
-This tutorial will cover the first steps to setup a distributed network of remotely controlled robots from the Cloud or an edge device.
-More specifically, it will focus on a basic edge-cloud architecture in which there is an edge robot deployed on a :term:`LAN` with access to the Internet, and a server in the Cloud reachable through the Internet.
+This tutorial will move one step further from the previous tutorial :ref:`tutorials_cloud_wan_edge_cloud_wan_edge_cloud`.
+It is recommended to follow these tutorials in order, as some concepts or installations may be already covered.
+It will focus on an edge-edge architecture in which both edge robots are deployed on different networks (WAN) with access to the Internet,
+and communicate through a server hosted in the Cloud.
 
-.. _warning_lan:
+The scenario we are considering in this tutorial is the one where the edges are not directly connected
+(are under different LANs) and each robot does not have access to the other's location and network
+(as they may be behind intermediate NATs or be part of dynamic networks).
+In this scenario, the Cloud server will work as a **TURN** (Traversal Using Relays around NAT), a.k.a **Repeater**.
+This kind of servers are meant to be accessed from every point in the WAN network, and forward the messages received from
+any edge to the rest of devices connected to the server.
+Thus, it creates a bridge between 2 networks that do not have direct access to each other,
+facilitating network configuration aspects such as NATs Traversals and dynamic addresses.
+
+.. _warning_lan_edge_edge:
 
 .. warning::
 
-    This tutorial is intended for :term:`WAN` communication.
-    However, if communication through a LAN is your only option, it is still possible to follow the tutorial by changing the ROS 2 Domain Ids so that each ROS 2 node uses a different Domain (``0`` and ``1``).
+    This tutorial is intended for WAN communication.
+    However, if communication through a LAN is your only option, it is still possible to follow the tutorial by changing the ROS 2 Domain Ids so that each edge uses a different Domain (``0`` and ``1``).
     This way the ROS 2 nodes are logically isolated and will not discover other nodes out of their ROS 2 Domain.
 
-Following, all the elements involved in this architecture will be studied, starting with the edge robot, continuing with the controller hosted in the cloud also built as a ROS 2 node and concluding with the intermediate elements that enable communication over the Internet.
+Following, all the elements involved in this architecture will be studied, starting with the edge robots and continuing with the intermediate elements that enable communication over the Internet between each edge and the Cloud.
+One edge will work as a controller and the other as a robot (as already explained in :ref:`previous tutorial <tutorials_cloud_wan_edge_cloud_wan_edge_cloud>`).
 
 The image below describes the scenario presented in this tutorial.
 
-.. figure:: /rst/figures/tutorials/cloud/edge_cloud_wan.png
+.. figure:: /rst/figures/tutorials/cloud/repeater_wan.png
    :align: center
 
 Several key elements can be observed in it:
@@ -37,10 +49,11 @@ Several key elements can be observed in it:
     *Turtlesim* is a ROS 2 application, first developed for ROS, aimed at teaching the basic concepts of ROS 2 such as publish/subscribe, services and actions.
     The edge robot will then be a ``turtlesim_node``, which is a simulator of a robot making use of these communication methods.
 
-#.  **ROS 2 Device Controller**.
-    This is a ROS 2 application that sends commands to the edge robot.
+#.  **ROS 2 Controller**.
     A basic C++ application has been developed for this tutorial that sends publications under the topic on which the ``turtlesim_node`` listens.
-    By means of these publications (commands) from the controller, and the feedback information that the controller receives from the ``turtlesim_node``, it is possible to control this node automatically without the need for user intervention which facilitates the deployment of the scenario at hand.
+    It has been developed a basic C++ application for this tutorial that sends publications on the topic that the ``turtlesim_node`` listens.
+    By means of these publications (commands) from the controller, and the feedback information that the controller receives from the ``turtlesim_node``,
+    it is possible to control this node automatically without the need for user intervention which facilitates the deployment of the scenario at hand.
     The key feature of the *DDS Router* is that it is easy to configure, allowing to connect different networks with ROS 2 applications without requiring to apply any changes to the developer's software or applications.
 
 #.  **ROS 2 Router / DDS Router**.
@@ -50,14 +63,14 @@ Several key elements can be observed in it:
     This example presents two routers that enable Internet communication:
 
     * *DDS Router Edge*. This is the DDS Router that is deployed on the edge robot side. This way it is possible for the robot to communicate out-of-the-box with an external server.
-    * *DDS Router Cloud*. It plays the server role in the communication. It will expose a public network address to which the nodes connect to establish communication.
+    * *DDS Router Repeater*. It plays the TURN server role in the communication. It will expose some public network addresses to which the edge Routers could establish communication, and will forward the messages from one LAN to the other.
 
 
 Prerequisites
 -------------
 
-This tutorial will require two machines (*Robot 1* and *Cloud Server*) deployed on different networks (*LAN 1* and *Cloud*).
-It is possible to simulate the scenario by deploying everything needed on the same machine and two virtual networks but let's focus on the case of a real deployment.
+This tutorial will require three machines (*Robot 1*, *Controller 1* and *Cloud Server*) deployed on different networks (*LAN 1*, *LAN 2* and *Cloud*).
+It is possible to simulate the scenario by deploying everything needed on the same machine and three virtual networks but let's focus on the case of a real deployment.
 
 It is also necessary to have previously installed Vulcanexus using one of the following installation methods:
 
@@ -70,8 +83,8 @@ Deployment on LAN 1
 
 First, let's deploy the ``turtlesim_node`` and DDS Router Edge on a machine on *LAN 1*.
 
-Running turtlesim_node on the edge
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Running turtlesim_node on Edge 1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Setup the Vulcanexus environment to have the ``turtlesim_node`` available.
 For this, there are two possible options:
@@ -119,8 +132,10 @@ And a popup window like the following should appear:
 As can be seen, it is not necessary to perform any additional configuration in the ROS 2 application.
 
 
-Running DDS Router Edge
-^^^^^^^^^^^^^^^^^^^^^^^
+.. _tutorials_cloud_edge_edge_repeater_cloud_edge_edge_repeater_cloud_running_router_1:
+
+Running DDS Router Edge 1
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Then, to run the DDS Router Edge configure the environment as in the previous step.
 
@@ -136,27 +151,25 @@ Setup the Vulcanexus environment, either in a Docker container or on the local h
 
     source /opt/vulcanexus/humble/setup.bash
 
-Let's create a DDS Router configuration file as the one shown below.
+Let's create a the DDS Router configuration file as the one shown below.
 
-.. literalinclude:: /resources/tutorials/cloud/wan_edge_cloud/dds_router_edge.yaml
+.. literalinclude:: /resources/tutorials/cloud/edge_edge_repeater_cloud/dds_router_edge_1.yaml
     :language: yaml
 
 Next, the most relevant aspects of this configuration file are explained.
 
-The ``participants`` are the interfaces of the DDS Router to communicate with other networks. In this case, we have two participants:
+The ``participants`` are the interfaces of the DDS Router to communicate with other networks. In this case, we have two kinds of participants:
 
-    *   ``local``: this is a simple participant that communicates with all ROS 2 nodes it finds.
+    *   ``local``: this is a simple participant that communicates with all ROS 2 nodes it finds in domain 0.
         For more information about this participant please refer to the `Simple Participant section <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/participants/simple.html#user-manual-participants-simple>`_ of the DDS Router documentation.
 
-    *   ``router``: it is a participant designed for the communication between two *DDS Routers*.
-        It uses the `Fast DDS Discovery Server discovery mechanism <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery_server.html#discovery-server>`_ to establish a point-to-point communication between two DDS entities, two *DDS Routers* in this case.
-        It is not necessary to know more about this discovery protocol, but it is important to note that each ``router``-type participant must have a unique ``id`` across the entire network, which is configured with the ``discovery-server-guid`` tag.
+    *   ``wan``: it is a participant designed to communicate with a WAN Participant configured as server (repeater in this case).
+        It uses the `Fast DDS Initial Peers discovery mechanism <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/simple.html#initial-peers>`_ to establish a point-to-point communication between two DDS entities, two *DDS Routers* in this case.
 
     For the DDS Router Edge, a connection address shall be defined which must be the same as the one exposed by the Cloud Server.
     There are some relevant configurations within this connection address:
 
-    * ``discovery-server-guid``: it defines the ``id`` of the ``router``-type participant of the DDS Router Cloud.
-    * ``addresses``: defines the IP (``ip``) and port (``port``) of the network addresses to which it connects, and the transport protocol (``transport``) to be used in the communication, TCP in this case.
+    * ``connection-addresses``: defines the IP (``ip``) and port (``port``) of the network addresses to which it connects, and the transport protocol (``transport``) to be used in the communication, TCP in this case.
 
 .. note::
 
@@ -164,24 +177,24 @@ The ``participants`` are the interfaces of the DDS Router to communicate with ot
     However, it is important to mention that the ROS 2 topics relayed by the DDS Router can be filtered by configuring the ``allowlist`` and ``blocklist``.
     If this is the case please refer to the `DDS Router documentation <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/configuration.html#topic-filtering>`_ for information on how to do this.
 
-The following figure summarizes the deployment on the edge.
+The following figure summarizes the deployment on the edge 1.
 
-.. figure:: /rst/figures/tutorials/cloud/edge_deployment.png
+.. figure:: /rst/figures/tutorials/cloud/edge_1_repeater_deployment.png
    :align: center
 
 Now, run the DDS Router with the configuration file created as an argument.
 
 .. code-block::
 
-    ddsrouter -c <path/to/file>/ddsrouter_edge.yaml
+    ddsrouter -c <path/to/file>/ddsrouter_edge_1.yaml
 
-Deployment on Cloud
+Deployment of LAN 2
 -------------------
 
-Running the turtlesim_square_move on the Cloud
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Running the turtlesim_square_move on Edge 2
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Run the ``turtlesim_square_move`` in the Cloud Server machine, which is the controller of the edge ``turtlesim_node``.
+Run the ``turtlesim_square_move`` in the Edge 2 machine, which is the controller of the Edge 1 ``turtlesim_node``.
 This will send commands to the ROS 2 application to the edge to move the turtle and receive information about the current state of the turtle at any time.
 
 A ROS 2 application that moves the turtle by drawing a square has been developed for this purpose.
@@ -233,7 +246,7 @@ And finally, run the application:
 
         .. note::
 
-            As stated :ref:`here <warning_lan>`, change the ROS 2 Domain Id if running the edge and cloud applications on the same LAN.
+            As stated :ref:`here <warning_lan_edge_edge>`, change the ROS 2 Domain Id if running the edge and cloud applications on the same LAN.
 
 
 The important points to note in this application are the following:
@@ -245,71 +258,70 @@ The important points to note in this application are the following:
     This topic provides information about the turtle's coordinates (``x`` and ``y``) and the turtle's rotation (``theta``). We can also know its linear and angular velocity (``linear_velocity`` and ``angular_velocity``).
 
 
-Running the DDS Router Cloud
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Running DDS Router Edge 2
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _tutorials_cloud_wan_edge_cloud_wan_edge_cloud_configure_transversal_nat:
-
-Configure transversal NAT on the network router
-'''''''''''''''''''''''''''''''''''''''''''''''
-
-The first thing to do before starting to configure DDS Router is to configure the network router to allow a remote communication from the Internet to reach a specific device on the LAN, more specifically to expose an IP address and a port to the network that will be used by our DDS Router application.
-
-This configuration will depend on your network router, but it should be similar to the one shown in the following image.
-
-.. figure:: /rst/figures/tutorials/cloud/router_settings.png
-   :align: center
-
-.. warning::
-
-    Due to a current limitation of DDS Router, the external port and internal port must match.
-    Stay tuned for new versions of DDS Router that are intended to address this limitation.
-
-Configure the DDS Router Cloud
-''''''''''''''''''''''''''''''
-
-The DDS Router Cloud configuration file is quite similar to the DDS Router Edge configuration file, as can be seen below:
+As the Repeater server is the same for both edges, the configuration of the DDS Router Edge 2 is very similar to
+:ref:`the one for the DDS Router Edge 1 <tutorials_cloud_edge_edge_repeater_cloud_edge_edge_repeater_cloud_running_router_1>`.
+In this example both edges use different ports to communicate with the Repeater, simulating 2 different networks available in the Cloud.
+However this is not needed, and only one address could be used.
+The following snippet shows a configuration file (changing Domain for LAN scenarios):
 
 .. tabs::
 
     .. tab:: WAN
 
-        .. literalinclude:: /resources/tutorials/cloud/wan_edge_cloud/dds_router_cloud_wan.yaml
+        .. literalinclude:: /resources/tutorials/cloud/edge_edge_repeater_cloud/dds_router_edge_2_wan.yaml
             :language: yaml
 
     .. tab:: LAN
 
-        .. literalinclude:: /resources/tutorials/cloud/wan_edge_cloud/dds_router_cloud_lan.yaml
+        .. literalinclude:: /resources/tutorials/cloud/edge_edge_repeater_cloud/dds_router_edge_2_lan.yaml
             :language: yaml
 
         .. note::
 
-            As stated :ref:`here <warning_lan>`, set the ROS 2 Domain Id on the ``local`` participant in order to discover the ``turtlesim_square_move`` ROS 2 node.
+            As stated :ref:`here <warning_lan_edge_edge>`, set the ROS 2 Domain Id on the ``local`` participant in order to discover the ``turtlesim_square_move`` ROS 2 node.
 
 
-In this case there are also two participants, two communication interfaces for the DDS Router.
-The first one communicates the DDS Router with any ROS 2 node, while the second one enables to establish a communication channel with another DDS Router.
+Now, run the DDS Router with the configuration file created as an argument.
 
-Even so there are some differences in the second participant that are worth mentioning:
+.. code-block::
 
-#.  The ``id`` of this participant is different from the previous one, ``1`` in this case.
-    This is because, as mentioned above, the ids of this type of participant must be unique in the entire DDS Router network.
+    ddsrouter -c <path/to/file>/ddsrouter_edge_2.yaml
 
-#.  This participant sets a listening address (``listening-addresses``), rather than a connection address.
-    This is because it is the participant that waits for incoming communications since it has this network address exposed and accessible from the Internet.
+The following figure summarizes the deployment on the edge 2.
 
-To finish, as done in the previous steps, setup the Vulcanexus environment sourcing the `setup.bash` file and run the DDS Router Cloud with the above configuration.
-
-.. code-block:: bash
-
-    source /opt/vulcanexus/humble/setup.bash
-    ddsrouter -c <path/to/file>/ddsrouter_cloud.yaml
-
-The following figure summarizes the deployment on the Cloud.
-
-.. figure:: /rst/figures/tutorials/cloud/cloud_deployment.png
+.. figure:: /rst/figures/tutorials/cloud/edge_2_repeater_deployment.png
    :align: center
 
+Deployment of Cloud Repeater
+----------------------------
+
+In order to communicate both edges, a DDS Router configured as *Repeater* is used, forwarding the messages from one edge to the other.
+This machine should be accessible from the Internet.
+In case this device is working under a NAT, check :ref:`previous tutorial <tutorials_cloud_wan_edge_cloud_wan_edge_cloud_configure_transversal_nat>`
+for more information about how to configure the NAT to be accessible from the outside.
+The following snippet shows the configuration file for this DDS Router:
+
+.. literalinclude:: /resources/tutorials/cloud/edge_edge_repeater_cloud/dds_router_repeater.yaml
+    :language: yaml
+
+In this case, there is only one Participant configured as ``repeater``.
+This Participant will wait for external Participants to communicate via Initial Peers from its ``listening-addresses``.
+Once the discovery of clients occurs, this Repeater will forward the data from one edge to the other.
+
+To run the DDS Router with the configuration file created as an argument, execute the following command after having sourced the Vulcanexus environment:
+
+.. code-block::
+
+    ddsrouter -c <path/to/file>/dds_router_repeater.yaml
+
+.. note::
+
+    The Repeater Participant is not limited by number of listening-addresses, neither by number of edge Routers.
+    It can open as many ports and interfaces as needed, and can forward messages from any number of edges, without
+    re-sending redundant information or sending back any message.
 
 Results
 -------
@@ -335,14 +347,3 @@ and the ``turtlesim_square_move`` should prompt the following traces
     [INFO] [1657870911.985655175] [turtlesim_square_move]: Reached goal
     [INFO] [1657870911.985738726] [turtlesim_square_move]: New goal [5.467175 7.581143, 3.123200]
     [INFO] [1657870914.085652821] [turtlesim_square_move]: Reached goal
-
-Next steps
-----------
-
-Feel free to read the following tutorials extending this one to similar scenarios:
-
-* :ref:`Edge-Cloud TLS communication on WAN <tutorials_cloud_wan_edge_cloud_tls_wan_edge_cloud_tls>`: secure Edge-Cloud communication channel by using TLS protocol.
-
-.. todo:
-
-    * :ref:`Edge-Edge communication via repeater <tutorials_cloud_edge_edge_repeater_cloud_edge_edge_repeater_cloud>`: communicate two edge devices distantly located be means of a third bridging component hosted in the cloud.

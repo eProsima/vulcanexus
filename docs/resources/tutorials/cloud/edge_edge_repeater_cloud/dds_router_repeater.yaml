@@ -1,0 +1,14 @@
+version: v3.0
+
+participants:
+
+  - name: Router_Repeater
+    kind: wan
+    repeater: true
+    listening-addresses:
+      - ip: 123.123.123.123
+        port: 45601
+        transport: tcp
+      - ip: 123.123.123.123
+        port: 45602
+        transport: tcp

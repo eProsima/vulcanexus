@@ -1,0 +1,13 @@
+version: v3.0
+
+participants:
+
+  - name: ROS_2_LAN_1
+    kind: local
+
+  - name: Router_Client
+    kind: wan
+    connection-addresses:
+      - ip: 123.123.123.123
+        port: 45601
+        transport: tcp
