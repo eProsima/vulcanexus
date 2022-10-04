@@ -239,7 +239,7 @@ Running Services on the Cloud
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In order to install and use the MicroServers, follow the instructions in section :ref:`microservices_cloud_edge_robot`
-but use the package ``microservices_py`` instead of ``client_py`` (change these strings in every command).
+but use the package ``microservers_py`` instead of ``client_py`` (change these strings in every command).
 
 Once the whole workspace has been installed and correctly sourced, each server could be run with the following commands:
 
@@ -249,19 +249,19 @@ Once the whole workspace has been installed and correctly sourced, each server c
 
         .. code-block:: bash
 
-            ros2 run microservices_py server_addition # To run Addition (+) Server
+            ros2 run microservers_py server_addition # To run Addition (+) Server
 
             # In different terminal or background
-            ros2 run microservices_py server_subtraction # To run Subtraction (-) Server
+            ros2 run microservers_py server_subtraction # To run Subtraction (-) Server
 
     .. tab:: LAN
 
         .. code-block:: bash
 
-            ROS_DOMAIN_ID=1 ros2 run microservices_py server_addition # To run Addition (+) Server
+            ROS_DOMAIN_ID=1 ros2 run microservers_py server_addition # To run Addition (+) Server
 
             # In different terminal or background
-            ROS_DOMAIN_ID=1 ros2 run microservices_py server_subtraction # To run Subtraction (-) Server
+            ROS_DOMAIN_ID=1 ros2 run microservers_py server_subtraction # To run Subtraction (-) Server
 
         .. note::
 
@@ -338,5 +338,5 @@ While in the server side, messages as the one shown below should be printed:
 
 .. code-block:: bash
 
-    root@dbf79a437eb3:/turtlesim_move_ws# ros2 run microservices_py server_addition
+    root@dbf79a437eb3:/turtlesim_move_ws# ros2 run microservers_py server_addition
     [INFO] [1659078530.288140374] [AdditionMicroServer]: Incoming request { 63 + 40 = 103 }
