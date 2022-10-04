@@ -47,8 +47,10 @@ Renesas
 repository
 ROS
 runtime
+scalable
 src
 sSL
+stdout
 sudo
 ThreadX
 Tiva

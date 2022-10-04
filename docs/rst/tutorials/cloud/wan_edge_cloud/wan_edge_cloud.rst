@@ -1,3 +1,5 @@
+.. include:: ../../../exports/alias.include
+
 .. _tutorials_cloud_wan_edge_cloud_wan_edge_cloud:
 
 
@@ -149,14 +151,9 @@ The ``participants`` are the interfaces of the DDS Router to communicate with ot
         For more information about this participant please refer to the `Simple Participant section <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/participants/simple.html#user-manual-participants-simple>`_ of the DDS Router documentation.
 
     *   ``router``: it is a participant designed for the communication between two *DDS Routers*.
-        It uses the `Fast DDS Discovery Server discovery mechanism <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery_server.html#discovery-server>`_ to establish a point-to-point communication between two DDS entities, two *DDS Routers* in this case.
-        It is not necessary to know more about this discovery protocol, but it is important to note that each ``router``-type participant must have a unique ``id`` across the entire network, which is configured with the ``discovery-server-guid`` tag.
+        It uses the |InitialPeersFastDdsDocs| to establish a point-to-point communication between two DDS entities, two *DDS Routers* in this case.
 
     For the DDS Router Edge, a connection address shall be defined which must be the same as the one exposed by the Cloud Server.
-    There are some relevant configurations within this connection address:
-
-    * ``discovery-server-guid``: it defines the ``id`` of the ``router``-type participant of the DDS Router Cloud.
-    * ``addresses``: defines the IP (``ip``) and port (``port``) of the network addresses to which it connects, and the transport protocol (``transport``) to be used in the communication, TCP in this case.
 
 .. note::
 

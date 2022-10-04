@@ -1,0 +1,14 @@
+version: v3.0
+
+participants:
+
+  - name: ROS_2_Cloud
+    kind: local
+    domain: 1
+
+  - name: Router_Server
+    kind: wan
+    listening-addresses:
+      - ip: 123.123.123.123
+        port: 45678
+        transport: tcp
