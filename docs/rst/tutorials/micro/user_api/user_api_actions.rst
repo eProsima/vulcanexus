@@ -359,7 +359,7 @@ Finally, all the callbacks shall be exposed to the executor when the action clie
     NULL
   );
 
-  // Spin executor to receive requests
+  // Spin executor to handle client
   rclc_executor_spin(&executor);
 
 .. note::
