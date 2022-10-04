@@ -10,7 +10,7 @@ Services
 
 ROS 2 services are another communication mechanism between nodes. Services implement a client-server paradigm based on ROS 2 messages and types. Further information about ROS 2 services can be found on  :ref:`Understanding services <ROS2Services>`.
 
-Ready to use code related to this concepts can be found on micro-ROS-demos `addtwoints_server <https://github.com/micro-ROS/micro-ROS-demos/tree/humble/rclc/addtwoints_server/main.c>`_ and `addtwoints_client <https://github.com/micro-ROS/micro-ROS-demos/tree/humble/rclc/addtwoints_client/main.c>`_ examples.
+Ready to use code related to this concepts can be found on micro-ROS demos repository `addtwoints_server <https://github.com/micro-ROS/micro-ROS-demos/tree/humble/rclc/addtwoints_server/main.c>`_ and `addtwoints_client <https://github.com/micro-ROS/micro-ROS-demos/tree/humble/rclc/addtwoints_client/main.c>`_ examples.
 
 Server
 ------
@@ -213,6 +213,8 @@ Message initialization
 
 Before publishing or receiving a message, it may be necessary to initialize its memory for types with strings or sequences.
 Check the `Handling messages memory tutorial <https://micro.ros.org/docs/tutorials/advanced/handling_type_memory>`_ on micro-ROS webpage for details.
+
+.. TODO(pgarrido): replace this tutorial with the one in vulcanexus when available
 
 Cleaning Up
 -----------
