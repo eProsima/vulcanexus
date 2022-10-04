@@ -155,7 +155,7 @@ Then source the ``clients_ws`` workspace:
 
 .. code-block:: bash
 
-    source clients_ws/install/setup.bash
+    source install/setup.bash
 
 And finally, run the application:
 
