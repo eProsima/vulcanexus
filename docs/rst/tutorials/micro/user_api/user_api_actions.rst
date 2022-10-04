@@ -175,7 +175,7 @@ Action client initialization can be done using the following API:
     &action_client,
     &node,
     type_support,
-    "fibonacci"
+    action_name
   );
 
 Send a request
