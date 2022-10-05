@@ -12,11 +12,9 @@ Background
 ----------
 
 Fast DDS over Vulcanexus offers the possibility of fully configuring QoS policy through XML profile definition.
-This tutorial provides step-by-step instructions to modify the Ownership QoS within the ROS 2 talker/listener demo
-(see `Ownership QoS Policy <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/standardQosPolicies.html#ownershipqospolicy>`_).
+This tutorial provides step-by-step instructions to modify the Ownership QoS within the ROS 2 talker/listener demo (see `Ownership QoS Policy <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/standardQosPolicies.html#ownershipqospolicy>`_).
 
-This QoS Policy specifies whether it is allowed for multiple DataWriters to update the same instance of data,
-and if so, how these modifications should be arbitrated.
+This QoS Policy specifies whether it is allowed for multiple DataWriters to update the same instance of data, and if so, how these modifications should be arbitrated.
 
 Prerequisites
 -------------
@@ -27,18 +25,16 @@ Please, remember to source the environment in every terminal in this tutorial.
 
     source /opt/vulcanexus/humble/setup.bash
 
-In a terminal sourced with the previous line, run the following command to install the ROS 2 demo-nodes-cpp tutorial
-(administrative privileges may be required):
+In a terminal sourced with the previous line, run the following command to install the ROS 2 demo-nodes-cpp tutorial (administrative privileges may be required):
 
 .. code-block:: bash
 
-    apt-get update && install -y ros-humble-demo-nodes-cpp
+    apt-get update && apt install -y ros-humble-demo-nodes-cpp
 
 XML Profile definition
 ----------------------
 
-In order to specify the desired custom configuration for the Ownership QoS policy, it is needed to construct an XML file
-(see `Fast DDS XML profiles <https://fast-dds.docs.eprosima.com/en/latest/fastdds/xml_configuration/xml_configuration.html>`_).
+In order to specify the desired custom configuration for the Ownership QoS policy, it is needed to construct an XML file (see `Fast DDS XML profiles <https://fast-dds.docs.eprosima.com/en/latest/fastdds/xml_configuration/xml_configuration.html>`_).
 In that file, the desired configuration is set.
 
 In any directory, run the following commands to create two files named `profiles1.xml` and `profiles2.xml`:
@@ -81,8 +77,7 @@ Execute ROS 2 demo nodes with modified QoS
 ------------------------------------------
 
 Open one terminal and source Vulcanexus environment.
-To set `profiles1.xml` to define the profile configuration used on the creation of ROS 2 nodes,
-it is needed to populate the `FASTRTPS_DEFAULT_PROFILES_FILE` environment variable to point out to the file.
+To set `profiles1.xml` to define the profile configuration used on the creation of ROS 2 nodes, it is needed to populate the `FASTRTPS_DEFAULT_PROFILES_FILE` environment variable to point out to the file.
 Thus, in the terminal, run the following command:
 
 .. code-block:: bash
@@ -108,17 +103,13 @@ Can be seen that the `Hellow World` messages that talker sends are being receive
 The number of those messages coincides.
 
 In a third terminal, source Vulcanexus environment.
-To create another `ros-demo-nodes-cpp` talker, but now with greater ownership strength
-(see `Ownership Strength QoS Policy <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/standardQosPolicies.html#ownershipstrengthqospolicy>`_),
-this time the `FASTRTPS_DEFAULT_PROFILES_FILE` will point out to `profiles2.xml`:
+To create another `ros-demo-nodes-cpp` talker, but now with greater ownership strength (see `Ownership Strength QoS Policy <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/standardQosPolicies.html#ownershipstrengthqospolicy>`_), this time the `FASTRTPS_DEFAULT_PROFILES_FILE` will point out to `profiles2.xml`:
 
 .. code-block:: bash
 
     export FASTRTPS_DEFAULT_PROFILES_FILE=~/profiles2.xml
     ros2 run demo_nodes_cpp talker
 
-Now it must be seen that the first talker keeps sending messages,
-but the messages being read by listener are those of the newly created talker
-(The number of the message being sent by last talker should be the same as the number of the arriving message in listener).
+Now it must be seen that the first talker keeps sending messages, but the messages being read by listener are those of the newly created talker (The number of the message being sent by last talker should be the same as the number of the arriving message in listener).
 
 If now the second talker process is killed, the messages being received by the listener are the ones from the first talker.
