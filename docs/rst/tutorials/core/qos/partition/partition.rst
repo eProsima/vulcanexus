@@ -1,7 +1,7 @@
 .. _tutorials_qos_partition_partition:
 
-Modifying Partition QoS Policy and Endpoint Partitions Property Policy
-======================================================================
+Modifying Partition QoS Policy
+==============================
 
 .. contents::
     :depth: 2
@@ -12,18 +12,15 @@ Background
 ----------
 
 Fast DDS over Vulcanexus offers the possibility of fully configuring QoS policy through XML profile definition.
-This tutorial provides step-by-step instructions to modify the Partition QoS Policy and Endpoint Partitions Property Policy
-within the ROS 2 talker/listener demo.
-Those conform two ways of uing partitions to configure Fast DDS communication.
-(see `Partition QoS Policy <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/standardQosPolicies.html#partitionqospolicy>`_
-and `Endpoint Partitions Property <https://fast-dds.docs.eprosima.com/en/latest/fastdds/property_policies/non_consolidated_qos.html?highlight=partitions#endpoint-partitions>`_).
+This tutorial provides step-by-step instructions to modify the Partition QoS Policy within the ROS 2 talker/listener demo (see `Partition QoS Policy <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/standardQosPolicies.html#partitionqospolicy>`_).
 
 These two options allow the introduction of a logical partition inside the physical partition introduced by a domain.
-For a DataReader to see the changes made by a DataWriter, not only the Topic must match,
-but also they have to share at least one logical partition.
+For a DataReader to see the changes made by a DataWriter, not only the Topic must match, but also they have to share at least one logical partition.
 
 Prerequisites
 -------------
+
+The first prerequisite is to have Vulcanexus Humble installed (see `Linux binary installation <https://docs.vulcanexus.org/en/latest/rst/installation/linux_binary_installation.html>`_ or `Linux instalation from sources <https://docs.vulcanexus.org/en/latest/rst/installation/linux_source_installation.html>`_)
 
 Please, remember to source the environment in every terminal in this tutorial.
 
@@ -31,28 +28,24 @@ Please, remember to source the environment in every terminal in this tutorial.
 
     source /opt/vulcanexus/humble/setup.bash
 
-In a terminal sourced with the previous line, run the following command to install the ROS 2 demo-nodes-cpp tutorial
-(administrative privileges may be required):
+In a terminal sourced with the previous line, run the following command to install the ROS 2 demo-nodes-cpp tutorial (administrative privileges may be required):
 
 .. code-block:: bash
 
-    apt-get update && apt-get install -y ros-humble-demo-nodes-cpp
+    apt-get update && apt install -y ros-humble-demo-nodes-cpp
 
 XML Profile definition for Partition QoS Policy
 -----------------------------------------------
 
-In order to specify the desired custom configuration for the Partition QoS policy, it is needed to construct an XML file
-(see `Fast DDS XML profiles <https://fast-dds.docs.eprosima.com/en/latest/fastdds/xml_configuration/xml_configuration.html>`_).
-In that file, the desired configuration is set.
-
-In any directory, run the following commands to create two files named `profiles1.xml` and `profiles2.xml`:
+In order to specify the desired custom configuration for the Partition QoS policy, an XML file is required (see `Fast DDS XML profiles <https://fast-dds.docs.eprosima.com/en/latest/fastdds/xml_configuration/xml_configuration.html>`_).
+In any directory, run the following commands to create two files named `corresponding_partition.xml` and `another_partition.xml`:
 
 .. code-block:: bash
 
-    touch profiles1.xml
-    touch profiles2.xml
+    touch corresponding_partition.xml
+    touch another_partition.xml
 
-Open those files with your preferred editor, and write down the following XML code to the `profiles1.xml` file.
+Open those files with your preferred editor, and write down the following XML code to the `corresponding_partition.xml` file.
 
 .. code-block:: xml
 
@@ -81,7 +74,7 @@ Open those files with your preferred editor, and write down the following XML co
         </data_reader>
     </profiles>
 
-Write down the following XML code to the `profiles2.xml` file.
+Write down the following XML code to the `another_partition.xml` file.
 
 .. code-block:: xml
 
@@ -98,24 +91,19 @@ Write down the following XML code to the `profiles2.xml` file.
         </data_writer>
     </profiles>
 
-For the next section of this tutorial, lets consider both created XML files are stored in `~/` path.
+For the next section of this tutorial, let us consider both created XML files are stored in the ``~/`` directory.
 
 Execute ROS 2 demo nodes with modified Partition QoS
 ----------------------------------------------------
 
 Open one terminal and source Vulcanexus environment.
-To set `profiles1.xml` to define the profile configuration used on the creation of ROS 2 nodes,
-it is needed to populate the `FASTRTPS_DEFAULT_PROFILES_FILE` environment variable to point out to the file.
-Thus, in the terminal, run the following command:
-
-.. code-block:: bash
-
-    export FASTRTPS_DEFAULT_PROFILES_FILE=~/profiles1.xml
-
+To set `corresponding_partition.xml` to define the profile configuration used on the creation of ROS 2 nodes, populating the `FASTRTPS_DEFAULT_PROFILES_FILE` environment variable to point out to the file is needed.
 Then, you can run `ros-demo-nodes-cpp` program to create a listener belonging to `part1` and `part4` partitions:
 
 .. code-block:: bash
 
+    source /opt/vulcanexus/humble/setup.bash
+    export FASTRTPS_DEFAULT_PROFILES_FILE=~/corresponding_partition.xml
     ros2 run demo_nodes_cpp listener
 
 Open another terminal and source Vulcanexus environment.
@@ -123,20 +111,25 @@ To create `ros-demo-nodes-cpp` talker belonging to `part1` and `part2`, run the 
 
 .. code-block:: bash
 
-    export FASTRTPS_DEFAULT_PROFILES_FILE=~/profiles1.xml
+    source /opt/vulcanexus/humble/setup.bash
+    export FASTRTPS_DEFAULT_PROFILES_FILE=~/corresponding_partition.xml
     ros2 run demo_nodes_cpp talker
 
-Now both terminals should be communicating, as they belong to at least one same partition, which is `part1` in this case.
-Can be seen that the `Hellow World` messages that talker sends are being received by listener.
+.. note::
+
+    Note that the profile used by the listener is the data_reader profile, and the one used by the talker is the data_writer one.
+
+Now, both nodes should be communicating, as they belong to at least one same partition, which is `part1` in this case.
+It can be seen that, the `Hellow World` messages that the talker sends, are being received by the listener.
 
 Talker process can be killed using `Ctr+C`.
-Then, to create `ros-demo-nodes-cpp` talker belonging to `part3`, run the following commands:
+Then, in the same terminal, to create `ros-demo-nodes-cpp` talker belonging to `part3`, we will set `FASTRTPS_DEFAULT_PROFILES_FILE` to point out to `another_partition.xml`.
+Run the following commands:
 
 .. code-block:: bash
 
-    export FASTRTPS_DEFAULT_PROFILES_FILE=~/profiles2.xml
+    export FASTRTPS_DEFAULT_PROFILES_FILE=~/another_partition.xml
     ros2 run demo_nodes_cpp talker
 
 Now talker and listener are not communicating, as they don't belong to any same partition.
-
-
+Talker and listener are isolated from one another.
