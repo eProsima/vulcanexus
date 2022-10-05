@@ -13,3 +13,4 @@ Listed below are the tutorials for configuring QoS in ROS 2 environments.
     :maxdepth: 1
 
     ownership/ownership
+    partition/partition
