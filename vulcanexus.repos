@@ -66,7 +66,7 @@ repositories:
   eProsima/Vulcanexus-Base:
     type: git
     url: https://github.com/eProsima/vulcanexus.git
-    version: v2.0.3
+    version: v2.0.4
   ros2/ROSIDL-TypeSupport-FastRTPS:
     type: git
     url: https://github.com/ros2/rosidl_typesupport_fastrtps.git
