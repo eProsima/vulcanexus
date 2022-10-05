@@ -19,7 +19,7 @@ This QoS Policy specifies whether it is allowed for multiple DataWriters to upda
 Prerequisites
 -------------
 
-First prerequisite is to have Vulcanexus Humble installed (see `Linux binary installation <https://docs.vulcanexus.org/en/latest/rst/installation/linux_binary_installation.html>`_ or `Linux instalation from sources <https://docs.vulcanexus.org/en/latest/rst/installation/linux_source_installation.html>`_)
+The first prerequisite is to have Vulcanexus Humble installed (see `Linux binary installation <https://docs.vulcanexus.org/en/latest/rst/installation/linux_binary_installation.html>`_ or `Linux instalation from sources <https://docs.vulcanexus.org/en/latest/rst/installation/linux_source_installation.html>`_)
 
 Please, remember to source the environment in every terminal in this tutorial.
 
@@ -37,7 +37,6 @@ XML Profile definition
 ----------------------
 
 In order to specify the desired custom configuration for the Ownership QoS policy, an XML file is required (see `Fast DDS XML profiles <https://fast-dds.docs.eprosima.com/en/latest/fastdds/xml_configuration/xml_configuration.html>`_).
-
 In any directory, run the following commands to create two files named `small_strength.xml` and `large_strength.xml`:
 
 .. code-block:: bash
@@ -72,7 +71,7 @@ For the `large_strength.xml` file, write down the same code, but changing the va
         </data_reader>
     </profiles>
 
-For the next section of this tutorial, let us consider both created XML files are stored in `~/` path.
+For the next section of this tutorial, let us consider both created XML files are stored in the ``~/`` directory.
 
 Execute ROS 2 demo nodes with modified QoS
 ------------------------------------------
@@ -96,12 +95,16 @@ To create `ros-demo-nodes-cpp` talker, run the following commands:
     export FASTRTPS_DEFAULT_PROFILES_FILE=~/small_strength.xml
     ros2 run demo_nodes_cpp talker
 
-Now both nodes should be communicating.
+.. note::
+
+    Note that the profile used by the listener is the data_reader profile, and the one used by the talker is the data_writer one.
+
+Now, both nodes should be communicating.
 It can be seen that, the `Hellow World` messages that the talker sends, are being received by the listener.
 The number of those messages coincides.
 
 In a third terminal, source Vulcanexus environment.
-To create another `ros-demo-nodes-cpp` talker, but now with greater ownership strength (see `Ownership Strength QoS Policy <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/standardQosPolicies.html#ownershipstrengthqospolicy>`_), this time the `FASTRTPS_DEFAULT_PROFILES_FILE` will point out to `large_strength.xml`:
+To create another `ros-demo-nodes-cpp` talker, but now with greater ownership strength (see `Ownership Strength QoS Policy <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/standardQosPolicies.html#ownershipstrengthqospolicy>`_), the `FASTRTPS_DEFAULT_PROFILES_FILE` will point out to `large_strength.xml`:
 
 .. code-block:: bash
 
@@ -109,7 +112,7 @@ To create another `ros-demo-nodes-cpp` talker, but now with greater ownership st
     export FASTRTPS_DEFAULT_PROFILES_FILE=~/large_strength.xml
     ros2 run demo_nodes_cpp talker
 
-Now it must be seen that the first talker keeps sending messages, but the messages being read by listener are those of the newly created talker (The number of the message being sent by last talker should be the same as the number of the arriving message in listener).
-This is happening due to the fact that this last talker has a higher Ownership Strength value, than the first talker.
+Now, it can be seen that, although the first talker keeps sending messages, the messages being read by listener are those of the newly created talker, i.e. the message index sent by second talker matches that of the arriving message in listener.
+This is happening due to the second talker setting a higher Ownership Strength value than the first one.
 
 If now the second talker process is killed, the messages being received by the listener are the ones from the first talker.
