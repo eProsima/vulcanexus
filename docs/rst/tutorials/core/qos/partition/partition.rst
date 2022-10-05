@@ -14,7 +14,7 @@ Background
 Fast DDS over Vulcanexus offers the possibility of fully configuring QoS policy through XML profile definition.
 This tutorial provides step-by-step instructions to modify the Partition QoS Policy within the ROS 2 talker/listener demo (see `Partition QoS Policy <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/standardQosPolicies.html#partitionqospolicy>`_).
 
-These two options allow the introduction of a logical partition inside the physical partition introduced by a domain.
+This QoS Policy allows the introduction of a logical partition inside the physical partition introduced by a domain.
 For a DataReader to see the changes made by a DataWriter, not only the Topic must match, but also they have to share at least one logical partition.
 
 Prerequisites
@@ -34,8 +34,8 @@ In a terminal sourced with the previous line, run the following command to insta
 
     apt-get update && apt install -y ros-humble-demo-nodes-cpp
 
-XML Profile definition for Partition QoS Policy
------------------------------------------------
+XML Profile definition
+----------------------
 
 In order to specify the desired custom configuration for the Partition QoS policy, an XML file is required (see `Fast DDS XML profiles <https://fast-dds.docs.eprosima.com/en/latest/fastdds/xml_configuration/xml_configuration.html>`_).
 In any directory, run the following commands to create two files named `corresponding_partition.xml` and `another_partition.xml`:
@@ -93,8 +93,8 @@ Write down the following XML code to the `another_partition.xml` file.
 
 For the next section of this tutorial, let us consider both created XML files are stored in the ``~/`` directory.
 
-Execute ROS 2 demo nodes with modified Partition QoS
-----------------------------------------------------
+Execute ROS 2 demo nodes with modified QoS
+------------------------------------------
 
 Open one terminal and source Vulcanexus environment.
 To set `corresponding_partition.xml` to define the profile configuration used on the creation of ROS 2 nodes, populating the `FASTRTPS_DEFAULT_PROFILES_FILE` environment variable to point out to the file is needed.
