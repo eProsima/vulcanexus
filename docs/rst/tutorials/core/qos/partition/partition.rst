@@ -20,7 +20,7 @@ For a DataReader to see the changes made by a DataWriter, not only the Topic mus
 Prerequisites
 -------------
 
-The first prerequisite is to have Vulcanexus Humble installed (see `Linux binary installation <https://docs.vulcanexus.org/en/latest/rst/installation/linux_binary_installation.html>`_ or `Linux instalation from sources <https://docs.vulcanexus.org/en/latest/rst/installation/linux_source_installation.html>`_)
+The first prerequisite is to have Vulcanexus Humble installed (see `Linux binary installation <https://docs.vulcanexus.org/en/latest/rst/installation/linux_binary_installation.html>`_ or `Linux instalation from sources <https://docs.vulcanexus.org/en/latest/rst/installation/linux_source_installation.html>`_).
 
 Please, remember to source the environment in every terminal in this tutorial.
 
@@ -132,4 +132,4 @@ Run the following commands:
     ros2 run demo_nodes_cpp talker
 
 Now talker and listener are not communicating, as they don't belong to any same partition.
-Talker and listener are isolated from one another.
+Talker and listener are isolated from one another, as listener reads messages just from `part1` or `part4` partitions, while talker is publishing its messages for `par3` only.
