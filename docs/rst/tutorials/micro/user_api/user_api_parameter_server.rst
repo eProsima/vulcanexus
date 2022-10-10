@@ -147,10 +147,10 @@ Initialization options
 ^^^^^^^^^^^^^^^^^^^^^^
 A parameter server can be configured at configuration time, the following options can be adjusted:
 
-- notify_changed_over_dds: Publish parameter events to other ROS 2 nodes as well.
-- max_params: Maximum number of parameters allowed on the ``rclc_parameter_server_t`` object.
-- allow_undeclared_parameters: Allows creation of parameters from external parameter clients. A new parameter will be created if a ``set`` operation is requested on a non-existing parameter.
-- low_mem_mode: Reduces the memory used by the parameter server, functionality constrains are applied.
+- ``notify_changed_over_dds``: Publish parameter events to other ROS 2 nodes as well.
+- ``max_params``: Maximum number of parameters allowed on the ``rclc_parameter_server_t`` object.
+- ``allow_undeclared_parameters``: Allows creation of parameters from external parameter clients. A new parameter will be created if a ``set`` operation is requested on a non-existing parameter.
+- ``low_mem_mode``: Reduces the memory used by the parameter server, functionality constrains are applied.
 
 .. code-block:: c
 
