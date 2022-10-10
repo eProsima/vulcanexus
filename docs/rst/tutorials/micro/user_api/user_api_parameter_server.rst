@@ -181,6 +181,7 @@ There is a low memory mode that ports the parameter functionality to memory cons
 - Request size limited to one parameter on Set, Get, Get types and Describe operations.
 - List parameter request has no prefixes enabled nor depth.
 - Parameter description strings not allowed, ``rclc_add_parameter_description`` is disabled.
+
 .. note::
 
     Using low memory mode in a STM32F4 with  7 parameters with ``RCLC_PARAMETER_MAX_STRING_LENGTH =         50`` and ``notify_changed_over_dds = true`` the memory usage drops from 11.7 kB to 4.1 kB.
