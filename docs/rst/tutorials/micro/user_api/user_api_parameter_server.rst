@@ -17,7 +17,7 @@ General implementation
 
 Initialization
 ^^^^^^^^^^^^^^
-- Default initialization:
+A micro-ROS parameter server can be initiated using the RCLC parameter server API:
 
     .. code-block:: c
 
@@ -36,7 +36,11 @@ Initialization
 Memory requirements
 ^^^^^^^^^^^^^^^^^^^
 
-The parameter server uses five services and an optional publisher. These need to be taken into account on the rmw-microxrcedds package memory configuration:
+The parameter server uses five services and an optional publisher. These need to be taken into account on the `rmw_microxrcedds` package memory configuration:
+
+.. TODO(pgarrido): Add link to memory conf tutorial when ready
+
+
 
 .. code-block:: python
 
@@ -128,7 +132,7 @@ The micro-ROS parameter server supports the following parameter types:
         // Get parameter value on param_value
         rc = rclc_parameter_get_double(&param_server, parameter_name, &param_value);
 
-Max name size is controlled by the compile-time option `RCLC_PARAMETER_MAX_STRING_LENGTH`, default value is 50.
+The parameter string name size is controlled by the compile-time option ``RCLC_PARAMETER_MAX_STRING_LENGTH``, the default value is 50.
 
 Cleaning up
 ^^^^^^^^^^^
@@ -151,7 +155,7 @@ Initialization options
 
     The following options can be configured:
 
-    - notify_changed_over_dds: Publish parameter e  vents to other ROS 2 nodes as well.
+    - notify_changed_over_dds: Publish parameter events to other ROS 2 nodes as well.
     - max_params: Maximum number of parameters allowed on the ``rclc_parameter_server_t`` object.
     - allow_undeclared_parameters: Allows creation of parameters from external parameter clients. A new parameter will be created if a ``set`` operation is requested on a non-existing parameter.
     - low_mem_mode: Reduces the memory used by the parameter server, functionality constrains are applied.
