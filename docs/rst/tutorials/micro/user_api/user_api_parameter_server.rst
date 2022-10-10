@@ -178,12 +178,12 @@ Low memory mode
 
 There is a low memory mode that ports the parameter functionality to memory constrained devices. The following constrains are applied:
 
-- Request size limited to one parameter on Set, Get, Get types and Describe services.
+- Request size limited to one parameter on Set, Get, Get types and Describe operations.
 - List parameter request has no prefixes enabled nor depth.
 - Parameter description strings not allowed, ``rclc_add_parameter_description`` is disabled.
-- Memory benchmark results on ``STM32F4`` for 7 parameters with ``RCLC_PARAMETER_MAX_STRING_LENGTH = 50`` and ``notify_changed_over_dds = true``:
-- Full mode: 11736 B
-- Low memory mode: 4160 B
+.. note::
+
+    Using low memory mode in a STM32F4 with  7 parameters with ``RCLC_PARAMETER_MAX_STRING_LENGTH =         50`` and ``notify_changed_over_dds = true`` the memory usage drops from 11.7 kB to 4.1 kB.
 
 Callback
 ^^^^^^^^
@@ -303,7 +303,7 @@ For external delete requests, the server callback will be executed, allowing the
 Parameters description
 ^^^^^^^^^^^^^^^^^^^^^^
 
-- Parameter description Adds a description of a parameter and its constrains, which will be returned on a describe parameter requests:
+- Parameter description: Adds a description of a parameter and its constraints, which will be returned on a describe parameter request:
 
     .. code-block:: c
 
@@ -311,7 +311,7 @@ Parameters description
 
     The maximum string size is controlled by the compilation time option ``RCLC_PARAMETER_MAX_STRING_LENGTH``, default value is 50.
 
-- Parameter constraints Informative numeric constraints can be added to int and double parameters, returning this values on describe parameter requests:
+- Parameter constraints: Informative numeric constraints that can be added to int and double parameters, returning these values on describe parameter requests:
     - ``from_value``: Start value for valid values, inclusive.
     - ``to_value``: End value for valid values, inclusive.
     - ``step``: Size of valid steps between the from and to bound.
