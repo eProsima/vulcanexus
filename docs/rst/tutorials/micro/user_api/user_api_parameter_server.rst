@@ -59,7 +59,7 @@ The parameter server uses five services and an optional publisher. These need to
         }
     }
 
-At runtime, the variable ``RCLC_PARAMETER_EXECUTOR_HANDLES_NUMBER`` defines the necessary number of handles required by a parameter server for the rclc Executor:
+At runtime, the variable ``RCLC_EXECUTOR_PARAMETER_SERVER_HANDLES`` defines the necessary number of handles required by a parameter server for the rclc Executor:
 
 .. code-block:: c
 
@@ -67,10 +67,7 @@ At runtime, the variable ``RCLC_PARAMETER_EXECUTOR_HANDLES_NUMBER`` defines the 
     rclc_executor_t executor = rclc_executor_get_zero_initialized_executor();
     rc = rclc_executor_init(
         &executor, &support.context,
-        RCLC_PARAMETER_EXECUTOR_HANDLES_NUMBER, &allocator);
-
-Humble: the variable is ``RCLC_PARAMETER_EXECUTOR_HANDLES_NUMBER`` has been renamed to ``RCLC_EXECUTOR_PARAMETER_SERVER_HANDLES``.
-
+        RCLC_EXECUTOR_PARAMETER_SERVER_HANDLES, &allocator);
 
 
 Add a parameter
@@ -146,51 +143,47 @@ To destroy an initialized parameter server:
 
 This will delete any automatically created infrastructure on the agent (if possible) and deallocate used memory on the parameter server side.
 
-micro-ROS Humble
-----------------
-
 Initialization options
 ^^^^^^^^^^^^^^^^^^^^^^
-- Custom options:
+A parameter server can be configured at configuration time, the following options can be adjusted:
 
-    The following options can be configured:
+- notify_changed_over_dds: Publish parameter events to other ROS 2 nodes as well.
+- max_params: Maximum number of parameters allowed on the ``rclc_parameter_server_t`` object.
+- allow_undeclared_parameters: Allows creation of parameters from external parameter clients. A new parameter will be created if a ``set`` operation is requested on a non-existing parameter.
+- low_mem_mode: Reduces the memory used by the parameter server, functionality constrains are applied.
 
-    - notify_changed_over_dds: Publish parameter events to other ROS 2 nodes as well.
-    - max_params: Maximum number of parameters allowed on the ``rclc_parameter_server_t`` object.
-    - allow_undeclared_parameters: Allows creation of parameters from external parameter clients. A new parameter will be created if a ``set`` operation is requested on a non-existing parameter.
-    - low_mem_mode: Reduces the memory used by the parameter server, functionality constrains are applied.
+.. code-block:: c
 
-    .. code-block:: c
+    // Parameter server object
+    rclc_parameter_server_t param_server;
 
-        // Parameter server object
-        rclc_parameter_server_t param_server;
+    // Initialize parameter server options
+    const rclc_parameter_options_t options = {
+        .notify_changed_over_dds = true,
+        .max_params = 4,
+        .allow_undeclared_parameters = true,
+        .low_mem_mode = false; };
 
-        // Initialize parameter server options
-        const rclc_parameter_options_t options = {
-            .notify_changed_over_dds = true,
-            .max_params = 4,
-            .allow_undeclared_parameters = true,
-            .low_mem_mode = false; };
+    // Initialize parameter server with configured options
+    rcl_ret_t rc = rclc_parameter_server_init_with_option(&param_server, &node, &options);
 
-        // Initialize parameter server with configured options
-        rcl_ret_t rc = rclc_parameter_server_init_with_option(&param_server, &node, &options);
+    if (RCL_RET_OK != rc)
+    {
+        ...     // Handle error
+        return -1;
+    }
 
-        if (RCL_RET_OK != rc)
-        {
-            ...     // Handle error
-            return -1;
-        }
+Low memory mode
+^^^^^^^^^^^^^^^
 
-- Low memory mode:
+There is a low memory mode that ports the parameter functionality to memory constrained devices. The following constrains are applied:
 
-    This mode ports the parameter functionality to memory constrained devices. The following constrains are applied:
-
-    - Request size limited to one parameter on Set, Get, Get types and Describe services.
-    - List parameter request has no prefixes enabled nor depth.
-    - Parameter description strings not allowed, ``rclc_add_parameter_description`` is disabled.
-    - Memory benchmark results on ``STM32F4`` for 7 parameters with ``RCLC_PARAMETER_MAX_STRING_LENGTH = 50`` and ``notify_changed_over_dds = true``:
-    - Full mode: 11736 B
-    - Low memory mode: 4160 B
+- Request size limited to one parameter on Set, Get, Get types and Describe services.
+- List parameter request has no prefixes enabled nor depth.
+- Parameter description strings not allowed, ``rclc_add_parameter_description`` is disabled.
+- Memory benchmark results on ``STM32F4`` for 7 parameters with ``RCLC_PARAMETER_MAX_STRING_LENGTH = 50`` and ``notify_changed_over_dds = true``:
+- Full mode: 11736 B
+- Low memory mode: 4160 B
 
 Callback
 ^^^^^^^^
@@ -261,14 +254,14 @@ Callback parameters:
 
 Parameters modifications are disabled while the callback ``on_parameter_changed`` is executed, causing the following methods to return ``RCLC_PARAMETER_DISABLED_ON_CALLBACK`` if they are invoked:
 
-- rclc_add_parameter
-- rclc_delete_parameter
-- rclc_parameter_set_bool
-- rclc_parameter_set_int
-- rclc_parameter_set_double
-- rclc_set_parameter_read_only
-- rclc_add_parameter_constraint_double
-- rclc_add_parameter_constraint_integer
+- ``rclc_add_parameter``
+- ``rclc_delete_parameter``
+- ``rclc_parameter_set_bool``
+- ``rclc_parameter_set_int``
+- ``rclc_parameter_set_double``
+- ``rclc_set_parameter_read_only``
+- ``rclc_add_parameter_constraint_double``
+- ``rclc_add_parameter_constraint_integer``
 
 Once the parameter server and the executor are initialized, the parameter server must be added to the executor in order to accept parameter commands from ROS 2:
 
@@ -335,7 +328,9 @@ Parameters description
     double double_step = 0.01;
     rclc_add_parameter_constraint_double(&param_server, "param3", double_from, double_to, double_step);
 
-`This constrains will not be applied by the parameter server, leaving values filtering to the user callback`.
+.. note::
+
+    This constrains will not be applied by the parameter server, leaving values filtering to the user callback.
 
 - Read-only parameters: The new API offers a read-only flag. This flag blocks parameter changes from external clients, but allows changes on the server side:
 
