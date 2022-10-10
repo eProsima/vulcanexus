@@ -314,9 +314,9 @@ Parameters description
 
     The maximum string size is controlled by the compilation time option ``RCLC_PARAMETER_MAX_STRING_LENGTH``, default value is 50.
 
-- Parameter constraints Informative numeric constraints can be added to int and double parameters, returning this values on describe parameter requests: 
+- Parameter constraints Informative numeric constraints can be added to int and double parameters, returning this values on describe parameter requests:
     - ``from_value``: Start value for valid values, inclusive.
-    - ``to_value``: End value for valid values, inclusive. 
+    - ``to_value``: End value for valid values, inclusive.
     - ``step``: Size of valid steps between the from and to bound.
 
 .. code-block:: c
@@ -334,7 +334,7 @@ Parameters description
 `This constrains will not be applied by the parameter server, leaving values filtering to the user callback`.
 
 - Read-only parameters: The new API offers a read-only flag. This flag blocks parameter changes from external clients, but allows changes on the server side:
-  
+
     .. code-block:: c
 
         bool read_only = true;
