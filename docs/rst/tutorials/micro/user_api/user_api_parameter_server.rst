@@ -16,19 +16,19 @@ Initialization
 --------------
 A micro-ROS parameter server can be initiated using the RCLC parameter server API:
 
-    .. code-block:: c
+.. code-block:: c
 
-        // Parameter server object
-        rclc_parameter_server_t param_server;
+    // Parameter server object
+    rclc_parameter_server_t param_server;
 
-        // Initialize parameter server with default configuration
-        rcl_ret_t rc = rclc_parameter_server_init_default(&param_server, &node);
+    // Initialize parameter server with default configuration
+    rcl_ret_t rc = rclc_parameter_server_init_default(&param_server, &node);
 
-        if (RCL_RET_OK != rc)
-        {
-            ... // Handle error
-            return -1;
-        }
+    if (RCL_RET_OK != rc)
+    {
+        ... // Handle error
+        return -1;
+    }
 
 Options
 ^^^^^^^
