@@ -10,13 +10,10 @@ Parameter Server
 
 ROS 2 parameters allow the user to create variables on a node and manipulate/read them with different ROS 2 commands. Further information about ROS 2 parameters can be found on :ref:`Understanding parameters <ROS2Params>`.
 
-micro-ROS parameters implementation has been upgraded in the latest micro-ROS Humble distribution this tutorial will focus on micro-ROS Humble and beyond:
-
-General implementation
-----------------------
+Ready to use code related to this concepts can be found on micro-ROS demos repository `parameter_server <https://github.com/micro-ROS/micro-ROS-demos/blob/humble/rclc/parameter_server/main.c>`_ example.
 
 Initialization
-^^^^^^^^^^^^^^
+--------------
 A micro-ROS parameter server can be initiated using the RCLC parameter server API:
 
     .. code-block:: c
@@ -33,118 +30,8 @@ A micro-ROS parameter server can be initiated using the RCLC parameter server AP
             return -1;
         }
 
-Memory requirements
-^^^^^^^^^^^^^^^^^^^
-
-The parameter server uses five services and an optional publisher. These need to be taken into account on the `rmw_microxrcedds` package memory configuration:
-
-.. TODO(pgarrido): Add link to memory conf tutorial when ready
-
-
-
-.. code-block:: python
-
-    # colcon.meta example with memory requirements to use a parameter server
-    {
-        "names": {
-            "rmw_microxrcedds": {
-                "cmake-args": [
-                    "-DRMW_UXRCE_MAX_NODES=1",
-                    "-DRMW_UXRCE_MAX_PUBLISHERS=1",
-                    "-DRMW_UXRCE_MAX_SUBSCRIPTIONS=0",
-                    "-DRMW_UXRCE_MAX_SERVICES=5",
-                    "-DRMW_UXRCE_MAX_CLIENTS=0"
-                ]
-            }
-        }
-    }
-
-At runtime, the variable ``RCLC_EXECUTOR_PARAMETER_SERVER_HANDLES`` defines the necessary number of handles required by a parameter server for the rclc Executor:
-
-.. code-block:: c
-
-    // Executor init example with the minimum RCLC executor handles required
-    rclc_executor_t executor = rclc_executor_get_zero_initialized_executor();
-    rc = rclc_executor_init(
-        &executor, &support.context,
-        RCLC_EXECUTOR_PARAMETER_SERVER_HANDLES, &allocator);
-
-
-Add a parameter
-^^^^^^^^^^^^^^^
-
-The micro-ROS parameter server supports the following parameter types:
-
-- Boolean:
-
-    .. code-block:: c
-
-        const char* parameter_name = "parameter_bool";
-        bool param_value = true;
-
-        // Add parameter to the server
-        rcl_ret_t rc = rclc_add_parameter(&param_server, parameter_name, RCLC_PARAMETER_BOOL);
-
-        // Set parameter value (Triggers `on_parameter_changed` callback, if defined)
-        rc = rclc_parameter_set_bool(&param_server, parameter_name, param_value);
-
-        // Get parameter value and store it in "param_value"
-        rc = rclc_parameter_get_bool(&param_server, "param1", &param_value);
-
-        if (RCL_RET_OK != rc)
-        {
-            ...         // Handle error
-            return -1;
-        }
-
-- Integer:
-
-    .. code-block:: c
-
-        const char* parameter_name = "parameter_int";
-        int param_value = 100;
-
-        // Add parameter to the server
-        rcl_ret_t rc = rclc_add_parameter(&param_server, parameter_name, RCLC_PARAMETER_INT);
-
-        // Set parameter value
-        rc = rclc_parameter_set_int(&param_server, parameter_name, param_value);
-
-        // Get parameter value on param_value
-        rc = rclc_parameter_get_int(&param_server, parameter_name, &param_value);
-
-- Double:
-
-    .. code-block:: c
-
-        const char* parameter_name = "parameter_double";
-        double param_value = 0.15;
-
-        // Add parameter to the server
-        rcl_ret_t rc = rclc_add_parameter(&param_server, parameter_name, RCLC_PARAMETER_DOUBLE);
-
-        // Set parameter value
-        rc = rclc_parameter_set_double(&param_server, parameter_name, param_value);
-
-        // Get parameter value on param_value
-        rc = rclc_parameter_get_double(&param_server, parameter_name, &param_value);
-
-The parameter string name size is controlled by the compile-time option ``RCLC_PARAMETER_MAX_STRING_LENGTH``, the default value is 50.
-
-Cleaning up
-^^^^^^^^^^^
-
-To destroy an initialized parameter server:
-
-.. code-block:: c
-
-    // Delete parameter server
-    rclc_parameter_server_fini(&param_server, &node);
-
-This will delete any automatically created infrastructure on the agent (if possible) and deallocate used memory on the parameter server side.
-
-Initialization options
-^^^^^^^^^^^^^^^^^^^^^^
+Options
+^^^^^^^
 A parameter server can be configured at configuration time, the following options can be adjusted:
 
 - ``notify_changed_over_dds``: Publish parameter events to other ROS 2 nodes as well.
@@ -184,10 +71,10 @@ There is a low memory mode that ports the parameter functionality to memory cons
 
 .. note::
 
-    Using low memory mode in a STM32F4 with  7 parameters with ``RCLC_PARAMETER_MAX_STRING_LENGTH =         50`` and ``notify_changed_over_dds = true`` the memory usage drops from 11.7 kB to 4.1 kB.
+    Using low memory mode in a STM32F4 with  7 parameters with ``RCLC_PARAMETER_MAX_STRING_LENGTH = 50`` and ``notify_changed_over_dds = true`` the memory usage drops from 11.7 kB to 4.1 kB.
 
 Callback
-^^^^^^^^
+--------
 
 When adding the parameter server to the executor, a callback could to be configured. This callback would then be executed on the following events:
 
@@ -286,12 +173,72 @@ Configuration of the callback context:
     rc = rclc_executor_add_parameter_server_with_context(&executor, &param_server, on_parameter_changed, &context);
 
 Add a parameter
-^^^^^^^^^^^^^^^
+---------------
 
-Parameters can also be created by external clients if the ``allow_undeclared_parameters`` flag is set. The client just needs to set a value on a non-existing parameter. Then this parameter will be created if the server has still capacity and the callback allows the operation.
+The micro-ROS parameter server supports the following parameter types:
+
+- Boolean:
+
+    .. code-block:: c
+
+        const char* parameter_name = "parameter_bool";
+        bool param_value = true;
+
+        // Add parameter to the server
+        rcl_ret_t rc = rclc_add_parameter(&param_server, parameter_name, RCLC_PARAMETER_BOOL);
+
+        // Set parameter value (Triggers `on_parameter_changed` callback, if defined)
+        rc = rclc_parameter_set_bool(&param_server, parameter_name, param_value);
+
+        // Get parameter value and store it in "param_value"
+        rc = rclc_parameter_get_bool(&param_server, "param1", &param_value);
+
+        if (RCL_RET_OK != rc)
+        {
+            ...         // Handle error
+            return -1;
+        }
+
+- Integer:
+
+    .. code-block:: c
+
+        const char* parameter_name = "parameter_int";
+        int param_value = 100;
+
+        // Add parameter to the server
+        rcl_ret_t rc = rclc_add_parameter(&param_server, parameter_name, RCLC_PARAMETER_INT);
+
+        // Set parameter value
+        rc = rclc_parameter_set_int(&param_server, parameter_name, param_value);
+
+        // Get parameter value on param_value
+        rc = rclc_parameter_get_int(&param_server, parameter_name, &param_value);
+
+- Double:
+
+    .. code-block:: c
+
+        const char* parameter_name = "parameter_double";
+        double param_value = 0.15;
+
+        // Add parameter to the server
+        rcl_ret_t rc = rclc_add_parameter(&param_server, parameter_name, RCLC_PARAMETER_DOUBLE);
+
+        // Set parameter value
+        rc = rclc_parameter_set_double(&param_server, parameter_name, param_value);
+
+        // Get parameter value on param_value
+        rc = rclc_parameter_get_double(&param_server, parameter_name, &param_value);
+
+The parameter string name size is controlled by the compile-time option ``RCLC_PARAMETER_MAX_STRING_LENGTH``, the default value is 50.
+
+.. note::
+
+    Parameters can also be created by external clients if the ``allow_undeclared_parameters`` flag is set. The client just needs to set a value on a non-existing parameter. Then this parameter will be created if the server has still capacity and the callback allows the operation.
 
 Delete a parameter
-^^^^^^^^^^^^^^^^^^
+------------------
 
 Parameters can be deleted by both, the parameter server and external clients:
 
@@ -302,7 +249,7 @@ Parameters can be deleted by both, the parameter server and external clients:
 For external delete requests, the server callback will be executed, allowing the node to reject the operation.
 
 Parameters description
-^^^^^^^^^^^^^^^^^^^^^^
+----------------------
 
 - Parameter description: Adds a description of a parameter and its constraints, which will be returned on a describe parameter request:
 
@@ -313,29 +260,78 @@ Parameters description
     The maximum string size is controlled by the compilation time option ``RCLC_PARAMETER_MAX_STRING_LENGTH``, default value is 50.
 
 - Parameter constraints: Informative numeric constraints that can be added to int and double parameters, returning these values on describe parameter requests:
+
     - ``from_value``: Start value for valid values, inclusive.
     - ``to_value``: End value for valid values, inclusive.
     - ``step``: Size of valid steps between the from and to bound.
 
-.. code-block:: c
+    .. code-block:: c
 
-    int64_t int_from = 0;
-    int64_t int_to = 20;
-    uint64_t int_step = 2;
-    rclc_add_parameter_constraint_integer(&param_server, "param2", int_from, int_to, int_step);
+        int64_t int_from = 0;
+        int64_t int_to = 20;
+        uint64_t int_step = 2;
+        rclc_add_parameter_constraint_integer(&param_server, "param2", int_from, int_to, int_step);
 
-    double double_from = -0.5;
-    double double_to = 0.5;
-    double double_step = 0.01;
-    rclc_add_parameter_constraint_double(&param_server, "param3", double_from, double_to, double_step);
+        double double_from = -0.5;
+        double double_to = 0.5;
+        double double_step = 0.01;
+        rclc_add_parameter_constraint_double(&param_server, "param3", double_from, double_to, double_step);
 
-.. note::
+    .. note::
 
-    This constrains will not be applied by the parameter server, leaving values filtering to the user callback.
+        This constrains will not be applied by the parameter server, leaving values filtering to the user callback.
 
-- Read-only parameters: The new API offers a read-only flag. This flag blocks parameter changes from external clients, but allows changes on the server side:
+- Read-only parameters: This flag blocks parameter changes from external clients, but allows changes on the server side:
 
     .. code-block:: c
 
         bool read_only = true;
         rclc_set_parameter_read_only(&param_server, "param3", read_only);
+
+Memory requirements
+-------------------
+
+The parameter server uses five services and an optional publisher. These need to be taken into account on the `rmw_microxrcedds` package memory configuration:
+
+.. TODO(pgarrido): Add link to memory conf tutorial when ready
+
+
+
+.. code-block:: python
+
+    # colcon.meta example with memory requirements to use a parameter server
+    {
+        "names": {
+            "rmw_microxrcedds": {
+                "cmake-args": [
+                    "-DRMW_UXRCE_MAX_NODES=1",
+                    "-DRMW_UXRCE_MAX_PUBLISHERS=1",
+                    "-DRMW_UXRCE_MAX_SUBSCRIPTIONS=0",
+                    "-DRMW_UXRCE_MAX_SERVICES=5",
+                    "-DRMW_UXRCE_MAX_CLIENTS=0"
+                ]
+            }
+        }
+    }
+
+At runtime, the variable ``RCLC_EXECUTOR_PARAMETER_SERVER_HANDLES`` defines the necessary number of handles required by a parameter server for the rclc Executor:
+
+.. code-block:: c
+
+    // Executor init example with the minimum RCLC executor handles required
+    rclc_executor_t executor = rclc_executor_get_zero_initialized_executor();
+    rc = rclc_executor_init(
+        &executor, &support.context,
+        RCLC_EXECUTOR_PARAMETER_SERVER_HANDLES, &allocator);
+
+Cleaning up
+-----------
+
+To destroy an initialized parameter server:
+
+.. code-block:: c
+
+    // Delete parameter server
+    rclc_parameter_server_fini(&param_server, &node);
+
+This will delete any automatically created infrastructure on the agent (if possible) and deallocate used memory on the parameter server side.
