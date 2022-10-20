@@ -212,7 +212,7 @@ A secondary API is provided to ping the Agent with a specific rmw configuration.
     }
 
 Continuous serialization
------------------------
+------------------------
 
 ..   TODO(acuadros95): Do we have an example of this?
 
