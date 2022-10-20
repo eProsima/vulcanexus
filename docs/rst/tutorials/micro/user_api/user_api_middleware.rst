@@ -82,15 +82,17 @@ Timeouts
     // Confirmation timeout in milliseconds
     int ack_timeout = 1000;
 
-    // Set reliable publisher timeout
-    rmw_uros_set_publisher_session_timeout(&publisher, ack_timeout);
+    // Get RWM publisher handle and set reliable timeout
+    rmw_publisher_t* rmw_publisher_handle = rcl_publisher_get_rmw_handle(&publisher);
+    rmw_uros_set_publisher_session_timeout(&rmw_publisher_handle, ack_timeout);
 
-    // Set reliable service server timeout
-    rmw_uros_set_service_session_timeout(&service, ack_timeout);
+    // Get RWM service handle and set reliable timeout
+    rmw_service_t* rmw_service_handle = rcl_service_get_rmw_handle(&service);
+    rmw_uros_set_service_session_timeout(rmw_service_handle, ack_timeout);
 
-    // Set reliable service client timeout
-    rmw_uros_set_client_session_timeout(&client, ack_timeout);
-
+    // Get RWM service handle and set reliable timeout
+    rmw_client_t* rmw_client_handle = rcl_client_get_rmw_handle(&client);
+    rmw_uros_set_client_session_timeout(rmw_client_handle, ack_timeout);
 
 - Entity timeouts: Creation and destruction of entities also include a timeout, as they will wait for the Agent confirmation on the operation. This timeout will affect all ``init`` and ``fini`` methods such as ``rclc_node_init_default``, ``rcl_publisher_fini``, etc.
 
@@ -217,19 +219,16 @@ Continuous serialization
 ..   TODO(acuadros95): Do we have an example of this?
 
 This utility allows the client to serialize and send data up to a customized size. The user can set the topic length and then serialize the data within the publish process.
-
-Two callbacks need to be defined and added to the ``rmw``. It is recommended to clean the callbacks after the publication, to avoid interferences with other topics on the same process:
+Two callbacks need to be defined and added to the ``rmw``, targeting an specific publisher:
 
 .. code-block:: c
 
-    // Set serialization callbacks
-    rmw_uros_set_continous_serialization_callbacks(size_cb, serialization_cb);
+    // Get RWM publisher handle and set serialization callbacks for that publisher
+    rmw_publisher_t* rmw_publisher_handle = rcl_publisher_get_rmw_handle(&publisher);
+    rmw_uros_set_continous_serialization_callbacks(rmw_publisher_handle, size_cb, serialization_cb);
 
     // Publish message
     rcl_publish(...);
-
-    // Clean callbacks
-    rmw_uros_set_continous_serialization_callbacks(NULL, NULL);
 
 - Size callback:
 

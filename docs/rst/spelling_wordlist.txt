@@ -21,7 +21,6 @@ foonathan
 Github
 gpg
 Hierro
-interferences
 interoperability
 interprocess
 kB
