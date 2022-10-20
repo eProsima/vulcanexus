@@ -15,7 +15,6 @@ Middleware API
     :backlinks: none
 
 micro-ROS default rmw layer `rmw_microxrcedds_c <https://github.com/micro-ROS/rmw_microxrcedds>`_ offers a set of utilities to directly configure or interact with the underlying middleware.
-
 The exposed API detailed on this documentation can be used with the ``rmw_microxrcedds_c`` public header: ``#include <rmw_microros/rmw_microros.h>``.
 
 Transport configuration
@@ -212,7 +211,7 @@ A secondary API is provided to ping the Agent with a specific rmw configuration.
         ...
     }
 
-Continuos serialization
+Continuous serialization
 -----------------------
 
 ..   TODO(acuadros95): Do we have an example of this?
