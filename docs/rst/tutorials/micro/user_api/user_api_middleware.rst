@@ -1,11 +1,5 @@
 .. _tutorials_micro_user_middleware:
 
-.. TODO: In other tutorials:
-   - Custom allocators API
-   - Set custom transport API
-   - Error handling
-   - Discovery ?
-
 Middleware API
 ========================
 
@@ -14,7 +8,7 @@ Middleware API
     :local:
     :backlinks: none
 
-micro-ROS default rmw layer `rmw_microxrcedds_c <https://github.com/micro-ROS/rmw_microxrcedds>`_ offers a set of utilities to directly configure or interact with the underlying middleware.
+micro-ROS default rmw layer `rmw_microxrcedds_c <https://github.com/micro-ROS/rmw_microxrcedds>`_ offers a set of utilities to directly configure and interact with the underlying middleware.
 The exposed API detailed on this documentation can be used with the ``rmw_microxrcedds_c`` public header: ``#include <rmw_microros/rmw_microros.h>``.
 
 Transport configuration
@@ -64,8 +58,6 @@ This value is set randomly on micro-ROS initialization, but it is also possible 
     // Set RMW client key
     uint32_t client_key = 0xBA5EBA11;
     rmw_uros_options_set_client_key(0xBA5EBA11, rmw_options);
-
-..   TODO(acuadros95): Add tutorial explaining this approach
 
 This feature can be useful for reusing DDS entities already created on the agent side, as explained on this `Micro XRCE-DDS Deployment example <https://micro-xrce-dds.docs.eprosima.com/en/latest/getting_started.html#deployment-example>`_.
 
