@@ -65,6 +65,8 @@ This value is set randomly on micro-ROS initialization, but it is also possible 
     uint32_t client_key = 0xBA5EBA11;
     rmw_uros_options_set_client_key(0xBA5EBA11, rmw_options);
 
+..   TODO(acuadros95): Add tutorial explaining this approach
+
 This feature can be useful for reusing DDS entities already created on the agent side, as explained on this `Micro XRCE-DDS Deployment example <https://micro-xrce-dds.docs.eprosima.com/en/latest/getting_started.html#deployment-example>`_.
 
 Time configuration
@@ -121,7 +123,7 @@ Timeouts
 Time synchronization
 ^^^^^^^^^^^^^^^^^^^^
 
-micro-ROS Clients can synchronize their epoch time with the connected Agent, this can be very useful when working in embedded environments that do not provide any time synchronization mechanism.
+micro-ROS clients can synchronize their epoch time with the connected Agent, this can be very useful when working in embedded environments that do not provide any time synchronization mechanism.
 This utility is based on the NTP protocol, taking into account delays caused by the transport layer.
 
 An usage example can be found on `epoch_synchronization micro-ROS demo <https://github.com/micro-ROS/micro-ROS-demos/blob/humble/rclc/epoch_synchronization/main.c>`_:
@@ -154,7 +156,7 @@ After the session is synchronized, the adjusted timestamp can be retrieved with 
 Ping agent
 ----------
 
-The Client can test the connection with the Agent with the ping utility. This functionality can be used even when the micro-ROS context has not yet been initialized, which is useful to test the connection before trying to connect to the Agent. An example can be found on `ping_uros_agent micro-ROS demo <https://github.com/micro-ROS/micro-ROS-demos/blob/humble/rclc/ping_uros_agent/main.c>`_.
+The client can test the connection with the Agent with the ping utility. This functionality can be used even when the micro-ROS context has not yet been initialized, which is useful to test the connection before trying to connect to the Agent. An example can be found on `ping_uros_agent micro-ROS demo <https://github.com/micro-ROS/micro-ROS-demos/blob/humble/rclc/ping_uros_agent/main.c>`_.
 
 .. code-block:: c
 
@@ -212,68 +214,3 @@ A secondary API is provided to ping the Agent with a specific rmw configuration.
         // micro-ROS Agent is not available
         ...
     }
-
-Continuous serialization
-------------------------
-
-..   TODO(acuadros95): Do we have an example of this?
-
-This utility allows the client to serialize and send data up to a customized size. The user can set the topic length and then serialize the data within the publish process.
-Two callbacks need to be defined and added to the ``rmw``, targeting an specific publisher:
-
-.. code-block:: c
-
-    // Get RWM publisher handle and set serialization callbacks for that publisher
-    rmw_publisher_t* rmw_publisher_handle = rcl_publisher_get_rmw_handle(&publisher);
-    rmw_uros_set_continous_serialization_callbacks(rmw_publisher_handle, size_cb, serialization_cb);
-
-    // Publish message
-    rcl_publish(...);
-
-- Size callback:
-
-  This callback will pass a pointer with the calculated message size. The user is responsible of increase this size to the expected value:
-
-  .. code-block:: c
-
-      // Function prototype
-      void (* rmw_uros_continous_serialization_size)(uint32_t *);
-
-      // Implementation example
-      void size_cb(uint32_t * topic_length)
-      {
-          // Increase message size
-          *topic_length += ucdr_alignment(*topic_length, sizeof(uint32_t)) + sizeof(uint32_t);
-          *topic_length += IMAGE_BYTES;
-      }
-
-- Serialize callback:
-
-  This callback gives the user the message buffer to be completed. The user is responsible of serialize the data up to the length established on the size callback:
-
-  .. code-block:: c
-
-      // Function prototype:
-      void (* rmw_uros_continous_serialization)(ucdrBuffer *);
-
-      // Implementation example
-      void serialization_cb(ucdrBuffer * ucdr)
-      {
-          size_t len = 0;
-          micro_ros_fragment_t fragment;
-
-          // Serialize array size
-          ucdr_serialize_uint32_t(ucdr, IMAGE_BYTES);
-
-          while(len < IMAGE_BYTES)
-          {
-            // Wait for new image "fragment"
-            ...
-
-            // Serialize data fragment
-            ucdr_serialize_array_uint8_t(ucdr, fragment.data, fragment.len);
-            len += fragment.len;
-          }
-      }
-
-  Note that when this callback ends, the message will be published.
