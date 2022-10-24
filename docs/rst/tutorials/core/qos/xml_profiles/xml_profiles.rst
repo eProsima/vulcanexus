@@ -10,12 +10,8 @@ Configuring Fast-DDS QoS via XML profiles
     :local:
     :backlinks: none
 
-XML configuration
------------------
-
-Fast DDS over Vulcanexus offers the possibility of fully configuring QoS policy through XML profile definition.
-This can be done in several ways depending on whether the application used is a native Fast DDS application or a ROS 2 application
-using Fast DDS's RMW implementation.
+Vulcanexus offers the possibility of fully configuring Fast DDS' QoS policies through XML profile definition.
+This can be done in several ways depending on whether the application used is a native Fast DDS application or a ROS 2 application using Fast DDS's RMW implementation.
 This guide will focus on the latter.
 For more information regarding XML profiles in Fast DDS please refer to the
 `XML configuration page <https://fast-dds.docs.eprosima.com/en/latest/fastdds/xml_configuration/xml_configuration.html>`_
@@ -27,15 +23,10 @@ Configuring *Fast DDS* in Vulcanexus for ROS 2 applications
 -----------------------------------------------------------
 
 ROS 2 only allows for the configuration of certain middleware QoS
-(see `ROS 2 QoS policies <https://index.ros.org/doc/ros2/Concepts/About-Quality-of-Service-Settings/#qos-policies>`_).
+(see :ref:`ROS 2 QoS policies <concepts_about_qos>`).
 However, *rmw_fastrtps* offers extended configuration capabilities
-to take full advantage of the features in *Fast DDS*.
+to take full advantage of all the features available in *Fast DDS*.
 This section describes how to specify this extended configuration.
-
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 2
 
 .. _vulcanexus_configure_publication_mode:
 
@@ -43,7 +34,7 @@ Changing publication mode
 -------------------------
 
 *rmw_fastrtps* in ROS 2 uses asynchronous publication by default.
-This can be easily changed setting the environment variable ``RMW_FASTRTPS_PUBLICATION_MODE``
+This can be changed setting the environment variable ``RMW_FASTRTPS_PUBLICATION_MODE``
 to one of the following allowed values:
 
 * **ASYNCHRONOUS**: asynchronous publication mode.
@@ -61,8 +52,7 @@ to one of the following allowed values:
   This implies using the publication mode set in the :ref:`XML file <vulcanexus_configure_xml>`, or otherwise,
   the default value set in Fast DDS (see |PublishModeQosPolicy|).
 
-*rmw_fastrtps* defines two configurable parameters in addition to
-`ROS 2 QoS policies <https://index.ros.org/doc/ros2/Concepts/About-Quality-of-Service-Settings/#qos-policies>`_.
+*rmw_fastrtps* defines two configurable parameters in addition to :ref:`ROS 2 QoS policies <concepts_about_qos>`.
 Said parameters, and their default values under ROS 2, are:
 
 .. list-table::
@@ -90,13 +80,13 @@ Said parameters, and their default values under ROS 2, are:
 XML configuration
 -----------------
 
-To use specific *Fast-DDS* features within a ROS 2 application,
+To use specific *Fast-DDS* features within a Vulcanexus application,
 XML configuration files can be used to configure a wide set of *QoS*.
 Please refer to |XML_profiles| for Fast DDS native applications in Fast DDS's documentation to see the whole list of configuration options available in *Fast DDS*.
 
 When configuring *rmw_fastrtps* using XML files, there are certain points that have to be taken into account:
 
-* ROS 2 QoS contained in `rmw_qos_profile_t <http://docs.ros2.org/latest/api/rmw/structrmw__qos__profile__t.html>`_
+* QoS contained in `rmw_qos_profile_t <http://docs.ros2.org/latest/api/rmw/structrmw__qos__profile__t.html>`_
   are always honored, unless set to ``*_SYSTEM_DEFAULT``.
   In that case, XML values, or Fast DDS default values in the absences of XML ones, are applied.
   This means that if any QoS in ``rmw_qos_profile_t`` is set to something other than ``*_SYSTEM_DEFAULT``,
@@ -104,10 +94,9 @@ When configuring *rmw_fastrtps* using XML files, there are certain points that h
 
 * By default, *rmw_fastrtps* overrides the values for |MemoryManagementPolicy| and |PublishModeQosPolicy|.
   This means that the values configured in the XML for these two parameters will be ignored.
-  Instead, |PREALLOCATED_WITH_REALLOC_MEMORY_MODE-api| and |ASYNCHRONOUS_PUBLISH_MODE-api|
-  are used respectively.
+  Instead, |PREALLOCATED_WITH_REALLOC_MEMORY_MODE-api| and |ASYNCHRONOUS_PUBLISH_MODE-api| are used respectively.
 
-* The override of MemoryManagementPolicy and PublishModeQosPolicy can be avoided
+* The overriding of MemoryManagementPolicy and PublishModeQosPolicy can be avoided
   by setting the environment variable ``RMW_FASTRTPS_USE_QOS_FROM_XML`` to ``1``
   (its default value is ``0``).
   This will make *rmw_fastrtps* use the values defined in the XML for
@@ -115,9 +104,7 @@ When configuring *rmw_fastrtps* using XML files, there are certain points that h
   Bear in mind that setting this environment variable but not setting these policies in the XML
   results in using the default values in *Fast DDS*.
   These are different from the aforementioned *rmw_fastrtps* default values
-  (see |MemoryManagementPolicy| and |PublishModeQosPolicy|).
-
-* Setting ``RMW_FASTRTPS_USE_QOS_FROM_XML`` effectively overrides whatever configuration was set
+  (see |MemoryManagementPolicy| and |PublishModeQosPolicy|). In general, setting ``RMW_FASTRTPS_USE_QOS_FROM_XML`` effectively overrides whatever configuration was set
   with ``RMW_FASTRTPS_PUBLICATION_MODE``, setting the publication mode to the value specified in the XML,
   or to the *Fast DDS* default publication mode if none is set in the XML.
 
@@ -173,7 +160,7 @@ There are two possibilities for providing *Fast DDS* with XML configuration file
 * **Recommended**: Setting the location with environment variable ``FASTRTPS_DEFAULT_PROFILES_FILE``
   to contain the path to the XML configuration file (see `Environment Variables <https://fast-dds.docs.eprosima.com/en/latest/fastdds/env_vars/env_vars.html#env-vars>`_).
 
-  ::
+.. code-block:: bash
 
       export FASTRTPS_DEFAULT_PROFILES_FILE=<path_to_xml_file>
 
