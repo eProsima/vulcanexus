@@ -3,6 +3,7 @@ architectured
 Arduino
 Backend
 bare-metal
+behaviour
 blinky
 combinable
 cryptographic

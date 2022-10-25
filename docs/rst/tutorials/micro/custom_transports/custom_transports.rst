@@ -1,4 +1,4 @@
-.. _tutorials_micro_advanced_custom_transports:
+.. _tutorials_micro_custom_transports:
 
 Custom Transports
 =================
@@ -18,7 +18,7 @@ which enables users to implement their own transports in both the micro-ROS Clie
 Thanks to this, the Micro XRCE-DDS wire protocol can be transmitted over virtually any protocol, network or communication
 mechanism. In order to do so, two general communication modes are provided:
 
-- **Stream-oriented mode**: the communication mechanism implemented does not have the concept of packet. 
+- **Stream-oriented mode**: the communication mechanism implemented does not have the concept of packet.
   `HDLC framing<https://micro-xrce-dds.docs.eprosima.com/en/latest/transport.html?highlight=hdlc#custom-serial-transport>` will be used.
 - **Packet-oriented mode**: the communication mechanism implemented is able to send a whole packet that includes an XRCE message.
 
@@ -66,7 +66,7 @@ Open function
     }
 
 
-This function should open and init the custom transport. It returns a boolean indicating if the opening was successful. 
+This function should open and init the custom transport. It returns a boolean indicating if the opening was successful.
 ``transport->args`` holds the arguments passed through ``uxr_init_custom_transport``.
 
 Close function
@@ -80,7 +80,7 @@ Close function
         ...
     }
 
-This function should close the custom transport. It returns a boolean indicating if closing was successful. 
+This function should close the custom transport. It returns a boolean indicating if closing was successful.
 ``transport->args`` holds the arguments passed through ``uxr_init_custom_transport``.
 
 Write function
@@ -133,7 +133,7 @@ This function should read data from the custom transport. It returns the number 
 micro-ROS Agent
 ---------------
 
-The micro-ROS Agent profile for custom transports is enabled by default. 
+The micro-ROS Agent profile for custom transports is enabled by default.
 
 An example on how to set the external transport callbacks in the micro-ROS Agent API is:
 
@@ -227,7 +227,7 @@ Close function
 ^^^^^^^^^^^^^^
 
 .. code-block:: c
-   
+
     eprosima::uxr::CustomAgent::FiniFunction my_custom_transport_close = [&]() -> bool
     {
         ...
@@ -239,7 +239,7 @@ Write function
 ^^^^^^^^^^^^^^
 
 .. code-block:: c
-    
+
     eprosima::uxr::CustomAgent::SendMsgFunction my_custom_transport_write = [&](
         const eprosima::uxr::CustomEndPoint* destination_endpoint,
         uint8_t* buffer,
@@ -261,7 +261,7 @@ Read function
 ^^^^^^^^^^^^^
 
 .. code-block:: c
-    
+
     eprosima::uxr::CustomAgent::RecvMsgFunction my_custom_transport_read = [&](
         eprosima::uxr::CustomEndPoint* source_endpoint,
         uint8_t* buffer,

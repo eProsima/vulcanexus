@@ -13,4 +13,4 @@ Please, visit `micro-ROS tutorial webpage <https://micro.ros.org/docs/tutorials/
     build_system_components/build_system_components.rst
     getting_started/getting_started.rst
     user_api/user_api.rst
-    advanced/advanced.rst
+    custom_transports/custom_transports.rst
