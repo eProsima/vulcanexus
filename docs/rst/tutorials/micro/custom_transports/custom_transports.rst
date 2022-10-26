@@ -133,7 +133,7 @@ This function should read data from the custom transport. It returns the number 
 micro-ROS Agent
 ---------------
 
-Full example can be found `custom_agent.cpp <https://github.com/eProsima/Micro-XRCE-DDS-Agent/blob/master/examples/custom_agent/custom_agent.cpp>`_.
+A full example can be found on Micro-XRCE-DDS-Agent repository `custom_agent <https://github.com/eProsima/Micro-XRCE-DDS-Agent/blob/master/examples/custom_agent/custom_agent.cpp>`_  example.
 
 The micro-ROS Agent profile for custom transports is enabled by default.
 
