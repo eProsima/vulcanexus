@@ -64,5 +64,6 @@ usr
 vulcanexus
 Vulcanexus
 turtlesim
+XRCE
 webpage
 ws

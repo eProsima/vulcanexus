@@ -125,8 +125,6 @@ Read function
 
 This function should read data from the custom transport. It returns the number of bytes read.
 
-``transport->args`` have the arguments passed through ``rmw_uros_set_custom_transport``.
-
 - **Stream-oriented mode:** The function should retrieve up to ``length`` bytes from the transport and write them into ``buffer`` in ``timeout`` milliseconds.
 - **Packet-oriented mode:** The function should retrieve ``length`` bytes from transport and write them into ``buffer`` in ``timeout`` milliseconds. If less than ``length`` bytes are read, ``errcode`` can be set.
 
