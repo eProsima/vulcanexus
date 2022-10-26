@@ -4,20 +4,20 @@ Custom Transports
 =================
 
 .. contents:: Table of Contents
-    :depth: 2
+    :depth: 1
     :local:
     :backlinks: none
 
 
 This tutorial aims at providing step-by-step guidance for those users interested in creating micro-ROS custom transports, instead of using the ones provided by default in the micro-ROS tools set.
 
-This tutorial starts from a previously created micro-ROS environment. Check the first steps of `First micro-ROS application on an RTOS<../../core/first_application_rtos/>` for instructions on how to create a micro-ROS environment for embedded platforms.
+This tutorial starts from a previously created micro-ROS environment. Check the first steps of `First micro-ROS application on an RTOS <https://docs.vulcanexus.org/en/latest/rst/tutorials/micro/getting_started/getting_started.html>`_ for instructions on how to create a micro-ROS environment for embedded platforms.
 
-The micro-ROS middleware, *eProsima Micro XRCE-DDS*, provides a user API that allows interfacing with the lowest level transport layer at runtime, which enables users to implement their own transports in both the micro-ROS Client and micro-ROS Agent libraries.
+The micro-ROS middleware, **eProsima Micro XRCE-DDS**, provides a user API that allows interfacing with the lowest level transport layer at runtime, which enables users to implement their own transports in both the micro-ROS Client and micro-ROS Agent libraries.
 
 Thanks to this, the Micro XRCE-DDS wire protocol can be transmitted over virtually any protocol, network or communication mechanism. In order to do so, two general communication modes are provided:
 
-- **Stream-oriented mode**: the communication mechanism implemented does not have the concept of packet. `HDLC framing<https://micro-xrce-dds.docs.eprosima.com/en/latest/transport.html?highlight=hdlc#custom-serial-transport>` will be used.
+- **Stream-oriented mode**: the communication mechanism implemented does not have the concept of packet. `HDLC framing <https://micro-xrce-dds.docs.eprosima.com/en/latest/transport.html?highlight=hdlc#custom-serial-transport>`_ will be used.
 - **Packet-oriented mode**: the communication mechanism implemented is able to send a whole packet that includes an XRCE message.
 
 These two modes can be selected by activating and deactivating the ``framing`` parameter in both the micro-ROS Client and the micro-ROS Agent functions.
@@ -37,10 +37,11 @@ An example on how to set these external transport callbacks in the micro-ROS Cli
         ...
     }
 
+
     struct custom_args args;
 
     rmw_uros_set_custom_transport(
-        true, // Framing enabled here. Using Stream-oriented mode.
+        MICROROS_TRANSPORTS_FRAMING_MODE, // Framing enabled here. Using Stream-oriented mode.
         (void *) &args,
         my_custom_transport_open,
         my_custom_transport_close,
@@ -66,7 +67,7 @@ Open function
 
 This function should open and init the custom transport. It returns a boolean indicating if the opening was successful.
 
-``transport->args`` holds the arguments passed through ``uxr_init_custom_transport``.
+``transport->args`` holds the arguments passed through ``rmw_uros_set_custom_transport``.
 
 Close function
 ^^^^^^^^^^^^^^
@@ -81,7 +82,7 @@ Close function
 
 This function should close the custom transport. It returns a boolean indicating if closing was successful.
 
-``transport->args`` holds the arguments passed through ``uxr_init_custom_transport``.
+``transport->args`` holds the arguments passed through ``rmw_uros_set_custom_transport``.
 
 Write function
 ^^^^^^^^^^^^^^
@@ -99,7 +100,7 @@ Write function
 
 This function should write data to the custom transport. It returns the number of bytes written.
 
-``transport->args`` holds the arguments passed through ``uxr_init_custom_transport``.
+``transport->args`` holds the arguments passed through ``rmw_uros_set_custom_transport``.
 
 - **Stream-oriented mode:** The function can send up to ``length`` bytes from ``buffer``.
 - **Packet-oriented mode:** The function should send ``length`` bytes from ``buffer``. If less than ``length`` bytes are written, ``errcode`` can be set.
@@ -121,10 +122,10 @@ Read function
 
 This function should read data from the custom transport. It returns the number of bytes read.
 
-``transport->args`` have the arguments passed through ``uxr_init_custom_transport``.
+``transport->args`` have the arguments passed through ``rmw_uros_set_custom_transport``.
 
 - **Stream-oriented mode:** The function should retrieve up to ``length`` bytes from the transport and write them into ``buffer`` in ``timeout`` milliseconds.
-- **Packet-oriented mode:** The function should retrieve ``length`` Bytes from transport and write them into ``buffer`` in ``timeout`` milliseconds. If less than ``length`` bytes are read, ``errcode`` can be set.
+- **Packet-oriented mode:** The function should retrieve ``length`` bytes from transport and write them into ``buffer`` in ``timeout`` milliseconds. If less than ``length`` bytes are read, ``errcode`` can be set.
 
 
 
@@ -250,8 +251,8 @@ This function should write data to the custom transport. It must use the ``desti
 
 It should set ``transport_rc`` indicating the result of the operation.
 
-- **Stream-oriented mode:** The function can send up to ``length`` Bytes from ``buffer``.
-- **Packet-oriented mode:** The function should send ``length`` Bytes from ``buffer``. If less than ``length`` bytes are written, ``transport_rc`` can be set.
+- **Stream-oriented mode:** The function can send up to ``length`` bytes from ``buffer``.
+- **Packet-oriented mode:** The function should send ``length`` bytes from ``buffer``. If less than ``length`` bytes are written, ``transport_rc`` can be set.
 
 Read function
 ^^^^^^^^^^^^^
