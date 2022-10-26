@@ -31,7 +31,7 @@ These two modes can be selected by activating and deactivating the ``framing`` p
 micro-ROS Client
 ----------------
 
-Full example can be found `here <https://github.com/micro-ROS/micro-ROS-demos/blob/humble/rclc/configuration_example/custom_transports/main.c>`_.
+Full example can be found `main.c <https://github.com/micro-ROS/micro-ROS-demos/blob/humble/rclc/configuration_example/custom_transports/main.c>`_.
 
 An example on how to set these external transport callbacks in the micro-ROS Client API is:
 
@@ -60,7 +60,9 @@ An example on how to set these external transport callbacks in the micro-ROS Cli
 
 It is important to notice that in ``rmw_uros_set_custom_transport`` a pointer to custom arguments is set. This reference will be available on every transport callbacks.
 
-In general, four functions must be implemented. The behaviour of these functions is slightly different, depending on the selected mode:
+
+
+In general, four functions must be implemented. The behaviour of these functions is slightly different, depending on the selected mode, in all of them ``transport->args`` holds the arguments passed through ``rmw_uros_set_custom_transport``:
 
 Open function
 ^^^^^^^^^^^^^
@@ -75,11 +77,8 @@ Open function
 
 This function should open and init the custom transport. It returns a boolean indicating if the opening was successful.
 
-``transport->args`` holds the arguments passed through ``rmw_uros_set_custom_transport``.
-
 Close function
 ^^^^^^^^^^^^^^
-
 
 .. code-block:: c
 
@@ -89,8 +88,6 @@ Close function
     }
 
 This function should close the custom transport. It returns a boolean indicating if closing was successful.
-
-``transport->args`` holds the arguments passed through ``rmw_uros_set_custom_transport``.
 
 Write function
 ^^^^^^^^^^^^^^
@@ -107,8 +104,6 @@ Write function
     }
 
 This function should write data to the custom transport. It returns the number of bytes written.
-
-``transport->args`` holds the arguments passed through ``rmw_uros_set_custom_transport``.
 
 - **Stream-oriented mode:** The function can send up to ``length`` bytes from ``buffer``.
 - **Packet-oriented mode:** The function should send ``length`` bytes from ``buffer``. If less than ``length`` bytes are written, ``errcode`` can be set.
@@ -135,12 +130,10 @@ This function should read data from the custom transport. It returns the number 
 - **Stream-oriented mode:** The function should retrieve up to ``length`` bytes from the transport and write them into ``buffer`` in ``timeout`` milliseconds.
 - **Packet-oriented mode:** The function should retrieve ``length`` bytes from transport and write them into ``buffer`` in ``timeout`` milliseconds. If less than ``length`` bytes are read, ``errcode`` can be set.
 
-
-
 micro-ROS Agent
 ---------------
 
-Full example can be found `here <https://github.com/eProsima/Micro-XRCE-DDS-Agent/blob/master/examples/custom_agent/custom_agent.cpp>`_.
+Full example can be found `custom_agent.cpp <https://github.com/eProsima/Micro-XRCE-DDS-Agent/blob/master/examples/custom_agent/custom_agent.cpp>`_.
 
 The micro-ROS Agent profile for custom transports is enabled by default.
 
@@ -257,9 +250,7 @@ Write function
         ...
     }
 
-This function should write data to the custom transport. It must use the ``destination_endpoint`` members to set the data destination. It returns the number of bytes written.
-
-It should set ``transport_rc`` indicating the result of the operation.
+This function should write data to the custom transport, must use the ``destination_endpoint`` members to set the data destination, returns the number of bytes written and set ``transport_rc`` indicating the result of the operation.
 
 - **Stream-oriented mode:** The function can send up to ``length`` bytes from ``buffer``.
 - **Packet-oriented mode:** The function should send ``length`` bytes from ``buffer``. If less than ``length`` bytes are written, ``transport_rc`` can be set.
@@ -279,11 +270,7 @@ Read function
         ...
     }
 
-This function should read data to the custom transport. It must fill ``source_endpoint`` members with data source.
-
-It returns the number of bytes read.
-
-It should set ``transport_rc`` indicating the result of the operation.
+This function should read data to the custom transport, must fill ``source_endpoint`` members with data source, returns the number of bytes read and set ``transport_rc`` indicating the result of the operation.
 
 - **Stream-oriented mode:** The function should retrieve up to ``length`` bytes from the transport and write them into ``buffer`` in ``timeout`` milliseconds.
 - **Packet-oriented mode:** The function should retrieve ``length`` bytes from the transport and write them into ``buffer`` in ``timeout`` milliseconds. If less than ``length`` bytes are read, ``transport_rc`` can be set.
