@@ -20,10 +20,18 @@ Thanks to this, the Micro XRCE-DDS wire protocol can be transmitted over virtual
 - **Stream-oriented mode**: the communication mechanism implemented does not have the concept of packet. `HDLC framing <https://micro-xrce-dds.docs.eprosima.com/en/latest/transport.html?highlight=hdlc#custom-serial-transport>`_ will be used.
 - **Packet-oriented mode**: the communication mechanism implemented is able to send a whole packet that includes an XRCE message.
 
-These two modes can be selected by activating and deactivating the ``framing`` parameter in both the micro-ROS Client and the micro-ROS Agent functions.
+These two modes can be selected by activating and deactivating the ``framing`` parameter in both the micro-ROS Client and the micro-ROS Agent functions, default defines available:
+
+.. code-block:: c
+
+    #define MICROROS_TRANSPORTS_FRAMING_MODE 1
+    #define MICROROS_TRANSPORTS_PACKET_MODE 0
+
 
 micro-ROS Client
 ----------------
+
+Full example can be found `here <https://github.com/micro-ROS/micro-ROS-demos/blob/humble/rclc/configuration_example/custom_transports/main.c>`_.
 
 An example on how to set these external transport callbacks in the micro-ROS Client API is:
 
@@ -50,7 +58,7 @@ An example on how to set these external transport callbacks in the micro-ROS Cli
     );
 
 
-It is important to notice that in ``rmw_uros_set_custom_transport`` a pointer to custom arguments is set. This reference will be available to every callbacks call.
+It is important to notice that in ``rmw_uros_set_custom_transport`` a pointer to custom arguments is set. This reference will be available on every transport callbacks.
 
 In general, four functions must be implemented. The behaviour of these functions is slightly different, depending on the selected mode:
 
@@ -131,6 +139,8 @@ This function should read data from the custom transport. It returns the number 
 
 micro-ROS Agent
 ---------------
+
+Full example can be found `here <https://github.com/eProsima/Micro-XRCE-DDS-Agent/blob/master/examples/custom_agent/custom_agent.cpp>`_.
 
 The micro-ROS Agent profile for custom transports is enabled by default.
 
