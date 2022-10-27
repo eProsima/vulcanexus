@@ -33,7 +33,7 @@ This section describes how to specify this extended configuration.
 Changing publication mode
 -------------------------
 
-*rmw_fastrtps* in ROS 2 uses asynchronous publication by default.
+*rmw_fastrtps* in Vulcanexus uses asynchronous publication by default.
 This can be changed setting the environment variable ``RMW_FASTRTPS_PUBLICATION_MODE``
 to one of the following allowed values:
 
@@ -385,3 +385,25 @@ dynamically allocated publisher and subscriber histories.
        export FASTRTPS_DEFAULT_PROFILES_FILE=path/to/xml/vulcanexus_example.xml
        export RMW_FASTRTPS_USE_QOS_FROM_XML=1
        ros2 run demo_nodes_cpp listener
+
+The same approach can be used when running the add_two_ints client/service demo application.
+
+#. Open one terminal, run:
+
+   .. code-block:: bash
+
+      # Client
+
+       export FASTRTPS_DEFAULT_PROFILES_FILE=path/to/xml/vulcanexus_example.xml
+       export RMW_FASTRTPS_USE_QOS_FROM_XML=1
+       ros2 run demo_nodes_cpp add_two_ints_client
+
+#. Open another terminal and run:
+
+   .. code-block:: bash
+
+      # Server
+
+       export FASTRTPS_DEFAULT_PROFILES_FILE=path/to/xml/vulcanexus_example.xml
+       export RMW_FASTRTPS_USE_QOS_FROM_XML=1
+       ros2 run demo_nodes_cpp add_two_ints_server
