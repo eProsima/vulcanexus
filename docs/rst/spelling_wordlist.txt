@@ -3,6 +3,7 @@ architectured
 Arduino
 Backend
 bare-metal
+behaviour
 blinky
 combinable
 cryptographic
@@ -63,5 +64,6 @@ unexisting
 usr
 vulcanexus
 Vulcanexus
+XRCE
 webpage
 ws
