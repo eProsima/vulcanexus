@@ -23,4 +23,4 @@
 .. |MemoryManagementPolicy| replace:: `MemoryManagementPolicy <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/eprosimaExtensions.html#memorymanagementpolicy>`__
 .. |PREALLOCATED_WITH_REALLOC_MEMORY_MODE-api| replace:: `PREALLOCATED_WITH_REALLOC_MEMORY_MODE <https://fast-dds.docs.eprosima.com/en/latest/fastdds/api_reference/rtps/resources/MemoryManagementPolicy.html#_CPPv4N8eprosima8fastrtps4rtps22MemoryManagementPolicy37PREALLOCATED_WITH_REALLOC_MEMORY_MODEE>`__
 .. |ASYNCHRONOUS_PUBLISH_MODE-api| replace:: `ASYNCHRONOUS_PUBLISH_MODE <https://fast-dds.docs.eprosima.com/en/latest/fastdds/api_reference/dds_pim/core/policy/publishmodeqospolicykind.html#_CPPv4N8eprosima7fastdds3dds24PublishModeQosPolicyKind25ASYNCHRONOUS_PUBLISH_MODEE>`__
-.. |XML_profiles| replace:: `XML Profiles page <https://fast-dds.docs.eprosima.com/en/latest/fastdds/xml_configuration/xml_configuration.html#xml-profiles>`
+.. |XML_profiles| replace:: `XML Profiles page <https://fast-dds.docs.eprosima.com/en/latest/fastdds/xml_configuration/xml_configuration.html#xml-profiles>`__

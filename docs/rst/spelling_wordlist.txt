@@ -63,6 +63,5 @@ unexisting
 usr
 vulcanexus
 Vulcanexus
-turtlesim
 webpage
 ws
