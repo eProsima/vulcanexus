@@ -12,5 +12,6 @@ Listed below are the tutorials for configuring QoS in ROS 2 environments.
 .. toctree::
     :maxdepth: 1
 
+    xml_profiles/xml_profiles
     ownership/ownership
     partition/partition

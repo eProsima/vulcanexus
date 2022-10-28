@@ -41,6 +41,7 @@ NetX
 Nucleo
 NuttX
 Pico
+preallocates
 prebuilt
 rcl
 rclc
@@ -63,7 +64,6 @@ unexisting
 usr
 vulcanexus
 Vulcanexus
-turtlesim
 XRCE
 webpage
 ws
