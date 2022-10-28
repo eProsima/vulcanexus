@@ -76,8 +76,7 @@ Please refer to |XML_profiles| for Fast DDS native applications in Fast DDS's do
 
 When configuring *rmw_fastrtps* using XML files, there are certain points that have to be taken into account:
 
-* QoS contained in `rmw_qos_profile_t <http://docs.ros2.org/latest/api/rmw/structrmw__qos__profile__t.html>`_
-  are always honored, unless set to ``*_SYSTEM_DEFAULT``.
+* QoS contained in `rmw_qos_profile_t <http://docs.ros2.org/latest/api/rmw/structrmw__qos__profile__t.html>`_are always honored, unless set to ``*_SYSTEM_DEFAULT``.
   In that case, XML values, or Fast DDS default values in the absences of XML ones, are applied.
   This means that if any QoS in ``rmw_qos_profile_t`` is set to something other than ``*_SYSTEM_DEFAULT``, the corresponding value in the XML is ignored.
 
@@ -89,7 +88,7 @@ When configuring *rmw_fastrtps* using XML files, there are certain points that h
   (its default value is ``0``).
   This will make *rmw_fastrtps* use the values defined in the XML for MemoryManagementPolicy and PublishModeQosPolicy.
   Bear in mind that setting this environment variable but not setting these policies in the XML results in using the default values in *Fast DDS*.
-  These are different from the aforementioned *rmw_fastrtps* default values (see |MemoryManagementPolicy| and |PublishModeQosPolicy|). 
+  These are different from the aforementioned *rmw_fastrtps* default values (see |MemoryManagementPolicy| and |PublishModeQosPolicy|).
   In general, setting ``RMW_FASTRTPS_USE_QOS_FROM_XML`` effectively overrides whatever configuration was set with ``RMW_FASTRTPS_PUBLICATION_MODE``, setting the publication mode to the value specified in the XML, or to the *Fast DDS* default publication mode if none is set in the XML.
 
 
@@ -167,8 +166,7 @@ For doing so, *rmw_fastrtps* locates profiles in the XML based on topic names.
 Creating publishers/subscribers with different profiles
 .......................................................
 
-* To configure a publisher, define a ``<data_writer>`` profile
-  with attribute ``profile_name=topic_name``, where ``topic_name`` is the name of the topic prepended by the node namespace (which defaults to "" if not specified), i.e. the node's namespace followed by topic name used to create the publisher.
+* To configure a publisher, define a ``<data_writer>`` profile with attribute ``profile_name=topic_name``, where ``topic_name`` is the name of the topic prepended by the node namespace (which defaults to "" if not specified), i.e. the node's namespace followed by topic name used to create the publisher.
   Mind that topic names always start with ``/`` (it is added when creating the topic if not present), and that namespace and topic name are always separated by one ``/``.
   If such profile is not defined, *rmw_fastrtps* attempts to load the ``<data_writer>`` profile with attribute ``is_default_profile="true"``.
 
@@ -205,18 +203,13 @@ ROS 2 services contain a subscriber for receiving requests, and a publisher to r
 *rmw_fastrtps* allows for configuring each of these endpoints separately in the following manner:
 
 * To configure the request subscriber, define a ``<data_reader>`` profile with attribute ``profile_name=topic_name``, where ``topic_name`` is the name of the service after mangling.
-  For more information on name mangling, please refer to
-  `Topic and Service name mapping to DDS <https://design.ros2.org/articles/topic_and_service_names.html>`_.
-  If such profile is not defined, *rmw_fastrtps* attempts to load a ``<data_reader>`` profile
-  with attribute ``profile_name="service"``.
-  If neither of the previous profiles exist, *rmw_fastrtps* attempts to load the ``<data_reader>`` profile
-  with attribute ``is_default_profile="true"``.
+  For more information on name mangling, please refer to `Topic and Service name mapping to DDS <https://design.ros2.org/articles/topic_and_service_names.html>`_.
+  If such profile is not defined, *rmw_fastrtps* attempts to load a ``<data_reader>`` profile with attribute ``profile_name="service"``.
+  If neither of the previous profiles exist, *rmw_fastrtps* attempts to load the ``<data_reader>`` profile with attribute ``is_default_profile="true"``.
 
 * To configure the reply publisher, define a ``<data_writer>`` profile with attribute ``profile_name=topic_name``, where ``topic_name`` is the name of the service after mangling.
-  If such profile is not defined, *rmw_fastrtps* attempts to load a ``<data_writer>`` profile
-  with ``attribute profile_name="service"``.
-  If neither of the previous profiles exist, *rmw_fastrtps* attempts to load the ``<data_writer>`` profile
-  with attribute ``is_default_profile="true"``.
+  If such profile is not defined, *rmw_fastrtps* attempts to load a ``<data_writer>`` profile with ``attribute profile_name="service"``.
+  If neither of the previous profiles exist, *rmw_fastrtps* attempts to load the ``<data_writer>`` profile with attribute ``is_default_profile="true"``.
 
 
 Creating clients with different profiles
@@ -226,16 +219,12 @@ ROS 2 clients contain a publisher to send requests, and a subscription to receiv
 *rmw_fastrtps* allows for configuring each of these endpoints separately in the following manner:
 
 * To configure the requests publisher, define a ``<data_writer>`` profile with attribute ``profile_name=topic_name``, where ``topic_name`` is the name of the service after mangling.
-  If such profile is not defined, *rmw_fastrtps* attempts to load a ``<data_writer>`` profile
-  with attribute ``profile_name="client"``.
-  If neither of the previous profiles exist, *rmw_fastrtps* attempts to load the ``<data_writer>`` profile
-  with attribute ``is_default_profile="true"``.
+  If such profile is not defined, *rmw_fastrtps* attempts to load a ``<data_writer>`` profile with attribute ``profile_name="client"``.
+  If neither of the previous profiles exist, *rmw_fastrtps* attempts to load the ``<data_writer>`` profile with attribute ``is_default_profile="true"``.
 
 * To configure the reply subscription, define a ``<data_reader>`` profile with ``attribute profile_name=topic_name``, where ``topic_name`` is the name of the service after mangling.
-  If such profile is not defined, *rmw_fastrtps* attempts to load a ``<data_reader>`` profile
-  with attribute ``profile_name="client"``.
-  If neither of the previous profiles exist, *rmw_fastrtps* attempts to load the ``<data_reader>`` profile
-  with attribute ``is_default_profile="true"``.
+  If such profile is not defined, *rmw_fastrtps* attempts to load a ``<data_reader>`` profile with attribute ``profile_name="client"``.
+  If neither of the previous profiles exist, *rmw_fastrtps* attempts to load the ``<data_reader>`` profile with attribute ``is_default_profile="true"``.
 
 
 Creating ROS contexts and nodes
@@ -273,10 +262,9 @@ For example, a profile for a ROS 2 context on *Foxy* and later releases would be
 Example
 -------
 
-The following example uses both the ROS 2 `demo_nodes_cpp` package's talker/listener demo and the cliente/service demo, configuring *Fast DDS* to publish synchronously, and to have
-dynamically allocated publisher and subscriber histories.
+The following example uses both the ROS 2 `demo_nodes_cpp` package's talker/listener demo and the client/service demo, configuring *Fast DDS* to publish synchronously, and to have dynamically allocated publisher and subscriber histories.
 
-#. Create a XML file `vulcanexus_example.xml` and save it in `path/to/xml/`
+Create a XML file `vulcanexus_example.xml` and save it in `path/to/xml/`
 
 .. code-block:: xml
 
