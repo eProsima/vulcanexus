@@ -15,7 +15,7 @@ This tutorial aims at providing step-by-step guidance for those users interested
 
     This tutorial starts from a previously created micro-ROS environment. Check the first steps of `Getting started micro-ROS <https://docs.vulcanexus.org/en/latest/rst/tutorials/micro/getting_started/getting_started.html>`_ for instructions on how to create a micro-ROS environment for embedded platforms.
 
-    For creating custom types in a :ref:`Build System Component <tutorials_micro_build_system_components>`, check the instructions in each components' repository. For example `Renesas e2 Studio Readme <https://github.com/micro-ROS/micro_ros_renesas2estudio_component#adding-custom-packages-to-the-micro-ros-build>`_ or `ST Micro ST Cube IDE/MX <https://github.com/micro-ROS/micro_ros_stm32cubemx_utils#adding-custom-packages>`_
+    For creating custom types in a :ref:`Build System Component <tutorials_micro_build_system_components>`, check the instructions in each component repository. For example `Renesas e2 Studio Readme <https://github.com/micro-ROS/micro_ros_renesas2estudio_component#adding-custom-packages-to-the-micro-ros-build>`_ or `ST Micro ST Cube IDE/MX <https://github.com/micro-ROS/micro_ros_stm32cubemx_utils#adding-custom-packages>`_.
 
 Simple types
 ------------
@@ -102,7 +102,7 @@ Type composition
 
 It is possible to create custom types that compose members from another ROS 2 message type packages. For example a member with type ``Point32`` from the ROS 2 package ``geometry_msgs``.
 
-First of all, the dependency shall be included in  in the ``CMakeLists.txt``:
+First of all, the dependency shall also be included in  in the ``CMakeLists.txt``:
 
 .. code-block:: text
 
@@ -136,7 +136,7 @@ At this point, message definition in ``msg/MyCustomMessage.msg`` can now include
   uint64 uint64_test
   geometry_msgs/Point32 point32_test
 
-And finally, the code can access this new member of in the custom type:
+And finally, the new member can be accessed in the custom type:
 
 .. code-block:: c
 
