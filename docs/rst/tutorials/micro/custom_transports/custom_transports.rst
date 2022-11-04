@@ -11,7 +11,7 @@ Custom Transports
 
 This tutorial aims at providing step-by-step guidance for those users interested in creating micro-ROS custom transports, instead of using the ones provided by default in the micro-ROS tools set.
 
-This tutorial starts from a previously created micro-ROS environment. Check the first steps of `First micro-ROS application on an RTOS <https://docs.vulcanexus.org/en/latest/rst/tutorials/micro/getting_started/getting_started.html>`_ for instructions on how to create a micro-ROS environment for embedded platforms.
+This tutorial starts from a previously created micro-ROS environment. Check the first steps of `Getting started micro-ROS <https://docs.vulcanexus.org/en/latest/rst/tutorials/micro/getting_started/getting_started.html>`_ for instructions on how to create a micro-ROS environment for embedded platforms.
 
 The micro-ROS middleware, **eProsima Micro XRCE-DDS**, provides a user API that allows interfacing with the lowest level transport layer at runtime, which enables users to implement their own transports in both the micro-ROS Client and micro-ROS Agent libraries.
 
