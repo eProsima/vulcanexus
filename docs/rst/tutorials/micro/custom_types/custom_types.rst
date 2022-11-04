@@ -11,6 +11,8 @@ Creating custom types
 
 This tutorial aims at providing step-by-step guidance for those users interested in adding custom message definition to the micro-ROS build. Those instructions can be used to extend the type definition for topics, services and actions provided by ROS 2 and micro-ROS.
 
+Further information can be found in :ref:`Implementing custom interfaces <SinglePkgInterface>`.
+
 .. note::
 
     This tutorial starts from a previously created micro-ROS environment. Check the first steps of `Getting started micro-ROS <https://docs.vulcanexus.org/en/latest/rst/tutorials/micro/getting_started/getting_started.html>`_ for instructions on how to create a micro-ROS environment for embedded platforms.
@@ -93,9 +95,6 @@ Now, the micro-ROS workspace workspace can be built as usual. As explained in `G
   rcl_publish(&publisher, &msg, NULL);
 
   ...
-
-
-Further information can be found in :ref:`Implementing custom interfaces <SinglePkgInterface>`.
 
 Type composition
 ----------------
