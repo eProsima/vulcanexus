@@ -1,9 +1,9 @@
-.. _vulcanexus_binary_distribution:
+.. _vulcanexus_metapackages:
 
-Vulcanexus binary distributions
-===============================
+Vulcanexus Metapackages
+=======================
 
-*Vulcanexus* provides several binary distributions that install specific packages depending on the developer's needs.
+*Vulcanexus* provides several installations with specific packages depending on the developer's needs.
 :ref:`vulcanexus_introduction` table summarizes the different *Vulcanexus* package distributions along with the most important included packages.
 
 Vulcanexus Core
