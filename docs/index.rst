@@ -90,7 +90,10 @@ This documentation is organized into the sections below.
    :hidden:
    :numbered: 5
 
-   /rst/tutorials/tutorials.rst
+   /rst/tutorials/core/ros2_tutorials
+   /rst/tutorials/tools/tools_tutorials
+   /rst/tutorials/cloud/cloud_tutorials
+   /rst/tutorials/micro/micro_tutorials
 
 .. toctree::
    :caption: Support
