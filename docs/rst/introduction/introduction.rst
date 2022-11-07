@@ -37,22 +37,6 @@ Algorithms
 Another category includes robotic application's algorithms.
 *Vulcanexus*, being a *ROS 2* all-in-one tool set, provides the algorithms included in *ROS 2* ecosystem.
 
-Developer tools
-^^^^^^^^^^^^^^^
-
-Finally, *ROS 2* provides several development tools for debugging, logging, visualization, introspection, simulation, etc.
-*Vulcanexus* adds to *ROS 2* toolset including several tools:
-
-- `ROS 2 DDS Monitor <https://fast-dds-monitor.readthedocs.io/en/latest/>`_: graphical desktop application to monitor *ROS 2* communications.
-- `ROS 2 Shapes Demo <https://eprosima-shapes-demo.readthedocs.io/en/latest/index.html>`_: first demo application to understand the most used *ROS 2* Quality of Service (QoS) and test DDS and *ROS 2* communication.
-- :ref:`micro-ROS <tutorials_micro_introduction_microros>`: default embedded toolkit for *ROS 2* and *Vulcanexus*.
-- `ROS 2 Router <https://eprosima-dds-router.readthedocs.io/en/latest/index.html>`_: end-user software application enabling the connection of distributed *ROS 2* environments.
-- `Webots <https://cyberbotics.com/doc/guide/foreword>`_: open-source three-dimensional mobile robot simulator.
-
-.. note::
-
-    This documentation provides several :ref:`tutorials <tutorials_core_ros2_tutorials>` showcasing the capabilities and advantages of *Vulcanexus*
-
 ROS 2 Architecture
 ------------------
 

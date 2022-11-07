@@ -80,6 +80,7 @@ This documentation is organized into the sections below.
    :numbered: 5
 
    /rst/introduction/introduction.rst
+   /rst/introduction/developer_tools.rst
    /rst/introduction/metapackages.rst
    /ros2_documentation/source/index.rst
 
