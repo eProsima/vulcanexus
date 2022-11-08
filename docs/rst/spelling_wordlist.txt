@@ -16,6 +16,7 @@ decrypt
 Diffie
 entrypoint
 eProsima
+externality
 Espressif
 externality
 filesystem
