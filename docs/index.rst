@@ -17,7 +17,34 @@ It allows users to build robotics applications combining the unique *Vulcanexus*
 These open source elements include numerous features and tools, providing *Vulcanexus* users customizable solutions while improving overall system performance.
 With *Vulcanexus*, users have fast access to constantly improving functionalities, such as the latest *Fast DDS* version along with its new features.
 
-*Vulcanexus* collection of downloadable packages are:
+Getting started
+^^^^^^^^^^^^^^^
+
+* :ref:`Installation Manual <linux_binary_installation>`
+
+  - Instructions to set up ROS 2 with Vulcanexus for the first time.
+
+* :ref:`Overview <vulcanexus_global_introduction>`
+
+  - *Vulcanexus* concepts including *ROS 2* Documentation.
+
+* :ref:`Tutorials <tutorials_core_ros2_tutorials>`
+
+  - Collection of step-by-step instructions that help users to get started.
+
+* :ref:`Support <platforms>`
+
+  - Vulcanexus officially supported platforms and releases.
+
+* :ref:`Appendixes <glossary>`
+
+  - Glossary of terms used throughout this documentation.
+
+
+Vulcanexus project
+^^^^^^^^^^^^^^^^^^
+
+*Vulcanexus* is composed of a collection of downloadable packages:
 
 1. **VULCANEXUS-CORE**: a set of software libraries that enables users to build the most comprehensive and straightforward robotics application.
    It consists of eProsima *Fast DDS* as middleware in *ROS 2*.
@@ -50,18 +77,6 @@ Contributing to the documentation
 generation, are most welcomed.
 To make such contributions, please refer to the
 `Contribution Guidelines <https://github.com/eProsima/all-docs/blob/master/CONTRIBUTING.md>`_ hosted in our GitHub repository.
-
-Structure of the documentation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The following documentation includes instructions for installing each *Vulcanexus* packages, *Vulcanexus* concepts including *ROS 2* documentation, some tutorials that help users to get started, and the supported platforms and releases.
-This documentation is organized into the sections below.
-
-* :ref:`Installation Manual <linux_binary_installation>`
-* :ref:`vulcanexus_global_introduction`
-* :ref:`Tutorials <tutorials_core_ros2_tutorials>`
-* :ref:`Support <platforms>`
-* :ref:`Appendixes <glossary>`
 
 .. toctree::
    :caption: Installation Manual
