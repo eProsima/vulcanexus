@@ -13,3 +13,4 @@ For tutorials related to cloud or cloud-edge deployments, please refer :ref:`tut
     :maxdepth: 1
 
     transport/custom_transports
+    external_locators/external_locators
