@@ -99,7 +99,6 @@ Following with the above described example, three XML configuration profiles sho
                             </transport_descriptors>
                             <participant profile_name="container0" is_default_profile="true">
                                 <rtps>
-                                    <useBuiltinTransports>false</useBuiltinTransports>
                                     <!-- Link the Transport Layer to the Participant -->
                                     <userTransports>
                                         <transport_id>MyTransport</transport_id>
@@ -206,7 +205,6 @@ Following with the above described example, three XML configuration profiles sho
                             <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
                                 <participant profile_name="container0" is_default_profile="true">
                                     <rtps>
-                                        <ignore_non_matching_locators>true</ignore_non_matching_locators>
                                         <!-- External locators for user traffic -->
                                         <default_external_unicast_locators>
                                             <udpv4 externality="1" cost="0" mask="24">
@@ -255,7 +253,7 @@ Connecting ROS 2 demo nodes through an external network
 --------------------------------------------------------
 
 This section provides the step-by-step instructions for setting up the example scenario described in the previous Background section.
-Using a terminal, enter the following command in a terminal, on both hosts.
+Using a terminal, enter the following command, on both hosts.
 
 .. tabs::
 
