@@ -65,3 +65,36 @@ Save the following XML configuration file at the desired location, which will be
 
 .. literalinclude:: custom_transports.xml
     :language: xml
+
+.. _tutorials_core_deployment_custom_transports_run:
+
+Run the example
+---------------
+
+This tutorial leverages the `ros-humble-image-tools` package to demonstrate that the aforementioned XML configuration indeed achieves communication over localhost with UDPv4 datagrams smaller than the standard 1500 B MTU.
+To run the tutorial, two shells are required:
+
+.. tabs::
+
+  .. tab:: Shell 1 (Subscription)
+
+    .. code-block:: bash
+
+        source /opt/vulcanexus/humble/setup.bash
+        export FASTRTPS_DEFAULT_PROFILES_FILE=<path_to_xml_config_file>
+        ros2 run image_tools showimage
+
+  .. tab:: Shell 2 (Publisher)
+
+    .. code-block:: bash
+
+        source /opt/vulcanexus/humble/setup.bash
+        export FASTRTPS_DEFAULT_PROFILES_FILE=<path_to_xml_config_file>
+        ros2 run image_tools cam2image --ros-args -p burger_mode:=True
+
+Optionally, as shown in the following video, it is possible to use Wireshark to sniff the RTPS traffic across the localhost interface to corroborate the size of the UDP datagrams containing RTPS fragments:
+
+.. video:: ../../../../../_static/burguer_demo.mp4
+   :width: 100%
+   :height: 100%
+   :autoplay:

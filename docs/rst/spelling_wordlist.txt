@@ -70,5 +70,6 @@ usr
 vulcanexus
 Vulcanexus
 webpage
+Wireshark
 ws
 XRCE

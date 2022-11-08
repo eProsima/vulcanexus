@@ -109,13 +109,14 @@ macros = {
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.todo',
+    'notfound.extension',
+    'sphinx_sitemap',
+    'sphinx_tabs.tabs',
     'sphinx.ext.graphviz',
     'sphinx.ext.ifconfig',
     'sphinx.ext.intersphinx',
-    'sphinx_sitemap',
-    'sphinx_tabs.tabs',
-    'notfound.extension'
+    'sphinx.ext.todo',
+    'sphinxcontrib.video'
 ]
 
 sphinx_tabs_disable_css_loading = False
