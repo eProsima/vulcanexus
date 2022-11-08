@@ -17,6 +17,7 @@ Diffie
 entrypoint
 eProsima
 Espressif
+externality
 filesystem
 foonathan
 Github
@@ -64,6 +65,6 @@ unexisting
 usr
 vulcanexus
 Vulcanexus
-XRCE
 webpage
 ws
+XRCE
