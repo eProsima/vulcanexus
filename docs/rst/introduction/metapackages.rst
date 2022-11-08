@@ -69,6 +69,8 @@ Micro-ROS provides also a set of tools for integration within many build systems
 
             sudo apt install vulcanexus-humble-micro
 
+.. _intro_metapackages_cloud:
+
 Vulcanexus Cloud
 ----------------
 
