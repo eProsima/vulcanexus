@@ -36,3 +36,22 @@ If the RTPS datagrams (which become payloads of UDPv4 datagrams) have the maximu
 In this scenario, losing one of those 44 fragments entails losing the entire UDP datagram, and consequently the entire RTPS datagram.
 If the network's packet drop rate is 1/44 or higher, no UDP datagram will ever be reconstructed, resulting in no RTPS datagram ever received, and therefore the RTPS reliability cannot succeed at all.
 By fragmenting the DDS data into several self-contained, smaller-than-the-MTU UDP datagrams, 43 out of every 44 RTPS fragments will be received at first try (in the considered scenario), and the RTPS reliability will be able to retransmit the missing ones successfully.
+
+.. _tutorials_core_deployment_custom_transports_prerequisites:
+
+Prerequisites
+-------------
+
+The first prerequisite is to have Vulcanexus Humble installed (see `Linux binary installation <https://docs.vulcanexus.org/en/latest/rst/installation/linux_binary_installation.html>`_ or `Linux installation from sources <https://docs.vulcanexus.org/en/latest/rst/installation/linux_source_installation.html>`_).
+
+Please, remember to source the environment in every terminal used during this tutorial.
+
+.. code-block:: bash
+
+    source /opt/vulcanexus/humble/setup.bash
+
+Install the `ROS 2 image demo package <https://github.com/ros2/demos/tree/humble/image_tools>`_ (administrative privileges may be required):
+
+.. code-block:: bash
+
+    apt update && apt install -y ros-humble-image-tools
