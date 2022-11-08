@@ -76,178 +76,115 @@ The following XML tags should be specified in order to correctly configure exter
         </profiles>
     </dds>
 
-Following with the above described example, three XML configuration profiles should be provided, which are detailed below:
+Following with the example above, two XML configuration profiles should be provided (there is no need to specify any profile for the second container in the first host, as it will use the default multicast), which are detailed below:
 
 .. tabs::
 
-    .. tab:: HOST 1
+    .. tab:: HOST 1 - CONTAINER 1
 
-        .. tabs::
+        .. code-block:: xml
 
-            .. tab:: CONTAINER 1
-
-                .. code-block:: xml
-
-                    <?xml version="1.0" encoding="UTF-8" ?>
-                    <dds>
-                        <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
-                        <transport_descriptors>
-                                <transport_descriptor>
-                                    <transport_id>MyTransport</transport_id>
-                                    <type>UDPv4</type>
-                                </transport_descriptor>
-                            </transport_descriptors>
-                            <participant profile_name="container0" is_default_profile="true">
-                                <rtps>
-                                    <!-- Link the Transport Layer to the Participant -->
-                                    <userTransports>
-                                        <transport_id>MyTransport</transport_id>
-                                    </userTransports>
-                                    <ignore_non_matching_locators>true</ignore_non_matching_locators>
-                                    <!-- External locators for user traffic -->
-                                    <default_external_unicast_locators>
-                                        <udpv4 externality="1" cost="0" mask="24">
-                                            <address>192.168.1.11</address>
-                                            <port>11201</port>
+            <?xml version="1.0" encoding="UTF-8" ?>
+            <dds>
+                <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+                    <participant profile_name="container0" is_default_profile="true">
+                        <rtps>
+                            <!-- External locators for user traffic -->
+                            <default_external_unicast_locators>
+                                <udpv4 externality="1" cost="0" mask="24">
+                                    <!-- Host 1 external IP -->
+                                    <address>192.168.1.40</address>
+                                    <port>11201</port>
+                                </udpv4>
+                            </default_external_unicast_locators>
+                            <builtin>
+                                <!-- External locators for discovery traffic -->
+                                <metatraffic_external_unicast_locators>
+                                    <udpv4 externality="1" cost="0" mask="24">
+                                        <!-- Host 1 external IP -->
+                                        <address>192.168.1.40</address>
+                                        <port>11200</port>
+                                    </udpv4>
+                                </metatraffic_external_unicast_locators>
+                                <!-- Locators of remote participants (discovery traffic)-->
+                                <initialPeersList>
+                                    <!--container 1 peer-->
+                                    <locator>
+                                        <udpv4>
+                                            <!-- Host 2 external IP -->
+                                            <address>192.168.1.56</address>
+                                            <port>11200</port>
                                         </udpv4>
-                                    </default_external_unicast_locators>
-
-                                    <builtin>
-                                        <!-- External locators for discovery traffic -->
-                                        <metatraffic_external_unicast_locators>
-                                            <udpv4 externality="1" cost="0" mask="24">
-                                                <address>192.168.1.11</address>
-                                                <port>11200</port>
-                                            </udpv4>
-                                        </metatraffic_external_unicast_locators>
-                                        <!-- Locators of remote participants (discovery traffic)-->
-                                        <initialPeersList>
-                                            <!--container 1 peer-->
-                                            <locator>
-                                                <udpv4>
-                                                    <address>192.168.1.60</address>
-                                                    <port>11200</port>
-                                                </udpv4>
-                                            </locator>
-                                            <!-- local container network multicast-->
-                                            <locator>
-                                                <udpv4>
-                                                    <address>239.255.0.1</address>
-                                                    <port>7400</port>
-                                                </udpv4>
-                                            </locator>
-                                        </initialPeersList>
-                                    </builtin>
-                                </rtps>
-                            </participant>
-                        </profiles>
-                    </dds>
-
-            .. tab:: CONTAINER 2
-
-                .. code-block:: xml
-
-                    <?xml version="1.0" encoding="UTF-8" ?>
-                    <dds>
-                        <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
-                            <participant profile_name="container0" is_default_profile="true">
-                                <rtps>
-                                    <!-- External locators for user traffic -->
-                                    <default_external_unicast_locators>
-                                        <udpv4 externality="1" cost="0" mask="24">
-                                            <address>192.168.1.11</address>
-                                            <port>11201</port>
+                                    </locator>
+                                    <!-- local network multicast-->
+                                    <locator>
+                                        <udpv4>
+                                            <address>239.255.0.1</address>
+                                            <port>7400</port>
                                         </udpv4>
-                                    </default_external_unicast_locators>
+                                    </locator>
+                                </initialPeersList>
+                            </builtin>
+                        </rtps>
+                    </participant>
+                </profiles>
+            </dds>
 
-                                    <builtin>
-                                        <!-- External locators for discovery traffic -->
-                                        <metatraffic_external_unicast_locators>
-                                            <udpv4 externality="1" cost="0" mask="24">
-                                                <address>192.168.1.11</address>
-                                                <port>11200</port>
-                                            </udpv4>
-                                        </metatraffic_external_unicast_locators>
-                                        <!-- Locators of remote participants (discovery traffic)-->
-                                        <initialPeersList>
-                                            <!--container 1 peer-->
-                                            <locator>
-                                                <udpv4>
-                                                    <address>192.168.1.60</address>
-                                                    <port>11200</port>
-                                                </udpv4>
-                                            </locator>
-                                            <!-- local container network multicast-->
-                                            <locator>
-                                                <udpv4>
-                                                    <address>239.255.0.1</address>
-                                                    <port>7400</port>
-                                                </udpv4>
-                                            </locator>
-                                        </initialPeersList>
-                                    </builtin>
-                                </rtps>
-                            </participant>
-                        </profiles>
-                    </dds>
+    .. tab:: HOST 2 - CONTAINER 1
 
+        .. code-block:: xml
 
-    .. tab:: HOST 2
+            <?xml version="1.0" encoding="UTF-8" ?>
+            <dds>
+                <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+                    <participant profile_name="container0" is_default_profile="true">
+                        <rtps>
+                            <!-- External locators for user traffic -->
+                            <default_external_unicast_locators>
+                                <udpv4 externality="1" cost="0" mask="24">
+                                    <!-- Host 2 external IP -->
+                                    <address>192.168.1.56</address>
+                                    <port>11201</port>
+                                </udpv4>
+                            </default_external_unicast_locators>
 
-        .. tabs::
+                            <builtin>
+                                <!-- External locators for discovery traffic -->
+                                <metatraffic_external_unicast_locators>
+                                    <udpv4 externality="1" cost="0" mask="24">
+                                        <!-- Host 2 external IP -->
+                                        <address>192.168.1.56</address>
+                                        <port>11200</port>
+                                    </udpv4>
+                                </metatraffic_external_unicast_locators>
 
-            .. tab:: CONTAINER 1
-
-                    .. code-block:: xml
-
-                        <?xml version="1.0" encoding="UTF-8" ?>
-                        <dds>
-                            <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
-                                <participant profile_name="container0" is_default_profile="true">
-                                    <rtps>
-                                        <!-- External locators for user traffic -->
-                                        <default_external_unicast_locators>
-                                            <udpv4 externality="1" cost="0" mask="24">
-                                                <address>192.168.1.11</address>
-                                                <port>11201</port>
-                                            </udpv4>
-                                        </default_external_unicast_locators>
-
-                                        <builtin>
-                                            <!-- External locators for discovery traffic -->
-                                            <metatraffic_external_unicast_locators>
-                                                <udpv4 externality="1" cost="0" mask="24">
-                                                    <address>192.168.1.11</address>
-                                                    <port>11200</port>
-                                                </udpv4>
-                                            </metatraffic_external_unicast_locators>
-
-                                            <!-- Locators of remote participants (discovery traffic)-->
-                                            <initialPeersList>
-                                                <!--container 1 peer-->
-                                                <locator>
-                                                    <udpv4>
-                                                        <address>192.168.1.60</address>
-                                                        <port>11200</port>
-                                                    </udpv4>
-                                                </locator>
-                                                <!-- local container network multicast-->
-                                                <locator>
-                                                    <udpv4>
-                                                        <address>239.255.0.1</address>
-                                                        <port>7400</port>
-                                                    </udpv4>
-                                                </locator>
-                                            </initialPeersList>
-                                        </builtin>
-                                    </rtps>
-                                </participant>
-                            </profiles>
-                        </dds>
+                                <!-- Locators of remote participants (discovery traffic)-->
+                                <initialPeersList>
+                                    <!--container 1 peer-->
+                                    <locator>
+                                        <udpv4>
+                                            <!-- Host 1 external IP -->
+                                            <address>192.168.1.40</address>
+                                            <port>11200</port>
+                                        </udpv4>
+                                    </locator>
+                                    <!-- local network multicast-->
+                                    <locator>
+                                        <udpv4>
+                                            <address>239.255.0.1</address>
+                                            <port>7400</port>
+                                        </udpv4>
+                                    </locator>
+                                </initialPeersList>
+                            </builtin>
+                        </rtps>
+                    </participant>
+                </profiles>
+            </dds>
 
 .. note::
 
-    Note that the docker network itself does not create another level of externality in this case, as the bridge driver to the host network is used when launching the different containers.
+    Note that the docker network itself does not create another level of externality in this case, as the containers are bridged with the host network.
 
 Connecting ROS 2 demo nodes through an external network
 --------------------------------------------------------
@@ -271,7 +208,7 @@ Using a terminal, enter the following command, on both hosts.
 
                 .. code-block:: bash
 
-                    docker run --rm -it --privileged -p 11202-11203:7412-7413/udp -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix ubuntu-vulcanexus:humbe-desktop
+                    docker run --rm -it --privileged -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix ubuntu-vulcanexus:humbe-desktop
 
 
     .. tab:: HOST 2
@@ -282,12 +219,12 @@ Using a terminal, enter the following command, on both hosts.
 
                 .. code-block:: bash
 
-                    docker run --rm -it --privileged -p 11200-11201:7412-7413/udp -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix ubuntu-vulcanexus:humbe-desktop
+                    docker run --rm -it --privileged -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix ubuntu-vulcanexus:humbe-desktop
 
 
 .. note::
 
-    It is important to specify the port mapping argument for exposing docker internal ports to the host. See `Docker Networking <https://docs.docker.com/config/containers/container-networking/>`_ for further information.
+    It is important to specify the port mapping argument so as to expose docker internal ports to the host. See `Docker Networking <https://docs.docker.com/config/containers/container-networking/>`_ for further information.
 
 The next step is the creation of the XML profiles.
 Inside each one of the three containers, run the following commands and paste the contents of the corresponding XML profile configuration, according to the previous section.
@@ -319,7 +256,6 @@ Finally, export the environment variable pointing to the Profiles file, source V
                 .. code-block:: bash
 
                     source vulcanexus_entrypoint.sh
-                    export FASTRTPS_DEFAULT_PROFILES_FILE=/Profiles.xml
                     ros2 run demo_nodes_cpp listener
 
 
