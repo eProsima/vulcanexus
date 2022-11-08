@@ -55,3 +55,13 @@ Install the `ROS 2 image demo package <https://github.com/ros2/demos/tree/humble
 .. code-block:: bash
 
     apt update && apt install -y ros-humble-image-tools
+
+.. _tutorials_core_deployment_custom_transports_config:
+
+XML Configuration
+-----------------
+
+Save the following XML configuration file at the desired location, which will be referred as ``<path_to_xml_config_file>`` from here onwards.
+
+.. literalinclude:: custom_transports.xml
+    :language: xml
