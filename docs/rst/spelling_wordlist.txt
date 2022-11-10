@@ -1,3 +1,4 @@
+allowlisting
 amd
 architectured
 Arduino
