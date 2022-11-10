@@ -145,6 +145,8 @@ After the session is synchronized, the adjusted timestamp can be retrieved with 
 
     micro-ROS shall be already initialized and connected to the agent to use this functionality.
 
+.. _tutorials_micro_user_middleware_ping:
+
 Ping agent
 ----------
 
