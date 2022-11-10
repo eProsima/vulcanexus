@@ -58,7 +58,7 @@ Vulcanexus project
 
 The table below shows the components included in every one of the previously explained packages:
 
-.. figure:: /rst/figures/intro/vulcanexus_packages_table.svg
+.. figure:: /rst/figures/intro/vulcanexus_packages_table.png
 
 Contacts and Commercial support
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
