@@ -10,7 +10,11 @@ Reconnections and liveliness
 
 This tutorial aims at providing insight on mechanism for handling reconnections between the micro-ROS Agent and Client and assert the connection liveliness.
 
-This includes temporal transport faults, agent or client restarts, client plug and play, etc.
+This features can be useful in multiple situations when the Agent or the Client are no longer available or the communication channel between them is broken. Those situations can be, among others:
+
+- Transport faults: Detect transport fault or disconnections and act accordingly.
+- Agent or Client restarts: Make the system resilient to a possible restart on the MCU or Agent side.
+- Client plug and play: Useful on systems with multiple MCU boards that are attached on demand.
 
 Client side: Ping API
 ---------------------
