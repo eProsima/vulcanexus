@@ -34,7 +34,7 @@ It is also possible to see the physical architecture of the network on which the
 .. raw:: html
 
     <video width=100% height=auto autoplay loop controls>
-        <source src="_static/monitor_vulcanexus.mp4">
+        <source src="../../../_static/monitor_vulcanexus.mp4">
         Your browser does not support the video tag.
     </video>
 
