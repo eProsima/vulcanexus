@@ -104,6 +104,6 @@ Optionally, as shown in the following video, it is possible to use Wireshark to 
 .. raw:: html
 
     <video width=100% height=auto autoplay loop controls>
-        <source src="../../../../../_static/burguer_demo.mp4">
+        <source src="../../../../../_static/resources/tutorials/core/deployment/transport/burger_demo.mp4">
         Your browser does not support the video tag.
     </video>
