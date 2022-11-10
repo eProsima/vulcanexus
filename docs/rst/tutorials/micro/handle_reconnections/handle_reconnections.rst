@@ -8,16 +8,16 @@ Reconnections and liveliness
     :local:
     :backlinks: none
 
-This tutorial aims at providing insight on mechanism for handling reconnections between the micro-ROS agent and the client and assert the connection liveliness.
+This tutorial aims at providing insight on mechanism for handling reconnections between the micro-ROS Agent and Client and assert the connection liveliness.
 
 This includes temporal transport faults, agent or client restarts, client plug and play, etc.
 
 Client side: Ping API
 ---------------------
 
-Reconnections can be handle manually on the client side using the agent ping functionality with the following sequence:
+Reconnections can be handle manually on the micro-ROS Client side using the Agent ping functionality with the following sequence:
 
-1. Wait until agent is reachable.
+1. Wait until Agent is reachable.
 2. Create required micro-ROS entities.
 3. Use the micro-ROS API as usual: spin entities, publish, etc.
 4. When a failure is detected, destroy the created entities and go back to the first step.
@@ -83,29 +83,29 @@ The following code shows an example of this sequence:
         }
     }
 
-This approach allows a micro-ROS client to handle agent restarts or to follow a plug and play approach, where the micro-ROS app will only run when the agent connection is available.
+This approach allows a micro-ROS Client to handle Agent restarts or to follow a plug and play approach, where the micro-ROS app will only run when the Agent connection is available.
 
 A working example with this approach can be found on micro-ROS for Arduino repository `micro-ros_reconnection <https://github.com/micro-ROS/micro_ros_arduino/blob/humble/examples/micro-ros_reconnection_example/micro-ros_reconnection_example.ino>`_ example.
 
 .. note::
-    Details on the Ping API usage can be found in the :ref:`Middleware API: Ping agent <tutorials_micro_user_middleware_ping>` tutorial.
+    Details on the Ping API usage can be found in the :ref:`Middleware API: Ping Agent <tutorials_micro_user_middleware_ping>` tutorial.
 
 Agent side: Hard liveliness check
 ---------------------------------
 
-The main problem with the previous section's method is that entity destruction always happens on micro-ROS client's request. This implies that other ROS 2 entities will not be aware of the micro-ROS client destruction.
+The main problem with the previous section's method is that entity destruction always happens on micro-ROS Client's request. This implies that other ROS 2 entities will not be aware of the micro-ROS Client destruction.
 
-The Hard liveliness check mechanism allows the micro-ROS agent to ping the client periodically. This way, the agent will take care of ensuring that the micro-ROS client is alive and will destroy the created entities if a certain timeout happens without any response from the client side. This means that the nodes, publishers, subscribers (and any other entity) created by the client will be removed from the ROS 2 graph.
+The **Hard Liveliness Check** mechanism allows the micro-ROS Agent to ping the Client periodically. This way, the Agent will take care of ensuring that the micro-ROS client is alive and will destroy the created entities if a certain timeout happens without any response from the Client side. This means that the nodes, publishers, subscribers (and any other entity) created by the Client will be removed from the ROS 2 graph.
 
-Note that the client shall also be aware of the disconnection to create the micro-ROS entities again, this can be achieved by including the previous section approach.
+Note that the Client shall also be aware of the disconnection to create the micro-ROS entities again, this can be achieved by including the previous section approach.
 
 .. note::
-    The micro-ROS client shall spin an executor to give a response to the agent liveliness check messages, a empty executor can be used for this purpose.
+    The micro-ROS Client shall spin an executor to give a response to the Agent liveliness check messages, a empty executor can be used for this purpose.
 
 Configuration
 ^^^^^^^^^^^^^
 
-This feature is enabled by default in the micro-ROS Agent and **must be enabled** by means of `colcon.meta` parameters in the micro-ROS client:
+This feature is enabled by default in the micro-ROS Agent and **must be enabled** by means of `colcon.meta` parameters in the micro-ROS Client:
 
     - ``UCLIENT_HARD_LIVELINESS_CHECK``: Enable hard liveliness check
     - ``UCLIENT_HARD_LIVELINESS_CHECK_TIMEOUT``: Configure connection timeout in milliseconds (Default value: 10000).
