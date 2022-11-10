@@ -84,7 +84,7 @@ Base Install: basic installation without simulation tools, demos, and tutorials.
 
     sudo apt install -y vulcanexus-humble-base
 
-For other Vulcanexus packages, please refer to :ref:`vulcanexus_binary_distribution` for more
+For other Vulcanexus packages, please refer to :ref:`vulcanexus_metapackages` for more
 information.
 
 Environment setup

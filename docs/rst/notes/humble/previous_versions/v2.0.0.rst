@@ -43,7 +43,7 @@ Initial release extending `ROS 2 Humble Hawksbill <https://docs.ros.org/en/humbl
       - `v6.2.1 <https://github.com/eProsima/rmw_fastrtps/blob/humble/rmw_fastrtps_cpp/CHANGELOG.rst#621-2022-03-28>`__ improved with PKCS #11 support.
       - v2.0.0
 
-This release also includes the following :ref:`binary package distributions <vulcanexus_binary_distribution>`:
+This release also includes the following :ref:`binary package distributions <vulcanexus_metapackages>`:
 
 * Vulcanexus Humble Base: ``vulcanexus-humble-base``
 * Vulcanexus Humble Cloud: ``vulcanexus-humble-cloud``
