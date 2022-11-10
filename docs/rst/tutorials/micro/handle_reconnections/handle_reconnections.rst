@@ -15,14 +15,21 @@ This includes temporal transport faults, agent or client restarts, client plug a
 Client side: Ping API
 ---------------------
 
+micro-ROS Client default rmw layer `rmw_microxrcedds_c <https://github.com/micro-ROS/rmw_microxrcedds>`_ offers a ping utility to test the connection with the Agent. This ping utility can be used at any stage of the micro-ROS application, allowing users to check the Agent availability before attempting to initialize a micro-ROS session or create any entities.
+
+Usage details on this utility can be found in the :ref:`Middleware API: Ping Agent <tutorials_micro_user_middleware_ping>` tutorial.
+
+State machine approach
+^^^^^^^^^^^^^^^^^^^^^^
+
 Reconnections can be handle manually on the micro-ROS Client side using the Agent ping functionality with the following sequence:
 
 1. Wait until Agent is reachable.
 2. Create required micro-ROS entities.
 3. Use the micro-ROS API as usual: spin entities, publish, etc.
-4. When a failure is detected, destroy the created entities and go back to the first step.
+4. When a failure is detected in steps 2 or 3, destroy the created entities and go back to the first step.
 
-The following code shows an example of this sequence:
+This approach allows a micro-ROS Client to handle Agent restarts or to follow a plug and play approach, where the micro-ROS app will only run when the Agent connection is available. The following code shows an example of this sequence:
 
 .. code-block:: c
 
@@ -83,12 +90,7 @@ The following code shows an example of this sequence:
         }
     }
 
-This approach allows a micro-ROS Client to handle Agent restarts or to follow a plug and play approach, where the micro-ROS app will only run when the Agent connection is available.
-
 A working example with this approach can be found on micro-ROS for Arduino repository `micro-ros_reconnection <https://github.com/micro-ROS/micro_ros_arduino/blob/humble/examples/micro-ros_reconnection_example/micro-ros_reconnection_example.ino>`_ example.
-
-.. note::
-    Details on the Ping API usage can be found in the :ref:`Middleware API: Ping Agent <tutorials_micro_user_middleware_ping>` tutorial.
 
 Agent side: Hard liveliness check
 ---------------------------------
