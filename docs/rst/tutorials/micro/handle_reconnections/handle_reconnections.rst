@@ -97,10 +97,13 @@ The main problem with the previous section's method is that entity destruction a
 
 The **Hard Liveliness Check** mechanism allows the micro-ROS Agent to ping the Client periodically. This way, the Agent will take care of ensuring that the micro-ROS client is alive and will destroy the created entities if a certain timeout happens without any response from the Client side. This means that the nodes, publishers, subscribers (and any other entity) created by the Client will be removed from the ROS 2 graph.
 
-Note that the Client shall also be aware of the disconnection to create the micro-ROS entities again, this can be achieved by including the previous section approach.
+This mechanism does not have a penalty on the application throughput, as it will avoid sending ping messages if the Agent is receiving data from the Client.
+
+In other cases, the micro-ROS Client shall spin an executor to give a response to the Agent liveliness check messages, an empty executor can be used for this purpose.
 
 .. note::
-    The micro-ROS Client shall spin an executor to give a response to the Agent liveliness check messages, a empty executor can be used for this purpose.
+
+    Note that the Client shall also be aware of the disconnection to create the micro-ROS entities again, this can be achieved by including the previous section approach.
 
 Configuration
 ^^^^^^^^^^^^^
