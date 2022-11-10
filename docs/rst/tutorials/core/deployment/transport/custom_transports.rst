@@ -94,7 +94,9 @@ To run the tutorial, two shells are required:
 
 Optionally, as shown in the following video, it is possible to use Wireshark to sniff the RTPS traffic across the localhost interface to corroborate the size of the UDP datagrams containing RTPS fragments:
 
-.. video:: ../../../../../_static/burguer_demo.mp4
-   :width: 100%
-   :height: 100%
-   :autoplay:
+.. raw:: html
+
+    <video width=100% height=auto autoplay loop controls>
+        <source src="../../../../../_static/burguer_demo.mp4">
+        Your browser does not support the video tag.
+    </video>

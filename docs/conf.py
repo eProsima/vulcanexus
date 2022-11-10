@@ -115,8 +115,7 @@ extensions = [
     'sphinx.ext.graphviz',
     'sphinx.ext.ifconfig',
     'sphinx.ext.intersphinx',
-    'sphinx.ext.todo',
-    'sphinxcontrib.video'
+    'sphinx.ext.todo'
 ]
 
 sphinx_tabs_disable_css_loading = False
