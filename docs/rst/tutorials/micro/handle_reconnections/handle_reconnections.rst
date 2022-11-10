@@ -18,8 +18,8 @@ Client side: Ping API
 Reconnections can be handle manually on the client side using the agent ping functionality with the following sequence:
 
 1. Wait until agent is reachable.
-2. Create needed micro-ROS entities.
-3. Use the entities as usual: Spin, publish, etc.
+2. Create required micro-ROS entities.
+3. Use the micro-ROS API as usual: spin entities, publish, etc.
 4. When a failure is detected, destroy the created entities and go back to the first step.
 
 The following code shows an example of this sequence:
@@ -67,21 +67,35 @@ A full example can be found on micro-ROS for Arduino repository `micro-ros_recon
 Agent side: Hard liveliness check
 ---------------------------------
 
-The main problem with the previous section method is that entities destruction may only happen on the client side. This implies that other ROS2 entities will not be aware of the micro-ROS client destruction.
+The main problem with the previous section's method is that entity destruction always happens on micro-ROS client's request. This implies that other ROS 2 entities will not be aware of the micro-ROS client destruction.
 
 The Hard liveliness check mechanism allows the micro-ROS agent to ping the client periodically. This way, the agent will take care of ensuring that the micro-ROS client is alive and will destroy the created entities if a certain timeout happens without any response from the client side. This means that the nodes, publishers, subscribers (and any other entity) created by the client will be removed from the ROS 2 graph.
 
 Note that the client shall also be aware of the disconnection to create the micro-ROS entities again, this can be achieved by including the previous section approach.
 
 .. note::
-    The micro-ROS client shall shall spin an executor to give a response to the agent ping messages, a empty executor can be used for this purpose.
+    The micro-ROS client shall spin an executor to give a response to the agent liveliness check messages, a empty executor can be used for this purpose.
 
 Configuration
 ^^^^^^^^^^^^^
 
-This feature is enabled by default in the micro-ROS Agent and must be enabled by means of a CMake argument in the micro-ROS client:
+This feature is enabled by default in the micro-ROS Agent and **must be enabled** by means of `colcon.meta` parameters in the micro-ROS client:
 
     - ``UCLIENT_HARD_LIVELINESS_CHECK``: Enable hard liveliness check
     - ``UCLIENT_HARD_LIVELINESS_CHECK_TIMEOUT``: Configure connection timeout in milliseconds (Default value: 10000).
 
-This configured timeout will be passed to the agent once the micro-ROS session is created.
+Example configuration on `colcon.meta` file:
+
+.. code-block:: python
+
+    # colcon.meta example with Hard Liveliness Check configuration
+    {
+        "names": {
+            "microxrcedds_client": {
+                "cmake-args": [
+                    "-DUCLIENT_HARD_LIVELINESS_CHECK=ON",
+                    "-DUCLIENT_HARD_LIVELINESS_CHECK_TIMEOUT=5000"
+                ]
+            }
+        }
+    }
