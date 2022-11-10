@@ -26,40 +26,66 @@ The following code shows an example of this sequence:
 
 .. code-block:: c
 
-    // micro-ROS loop
+    // Timeout for each ping attempt
+    const int timeout_ms = 100;
+
+    // Number of ping attempts
+    const uint8_t attempts = 1;
+
+    // Spin period
+    const unsigned int spin_timeout = RCL_MS_TO_NS(100);
+
+    // Enum with connection status
+    enum states {
+        WAITING_AGENT,
+        AGENT_AVAILABLE,
+        AGENT_CONNECTED,
+        AGENT_DISCONNECTED
+    } state;
+
     while (true)
     {
-        // Timeout for each ping attempt
-        const int timeout_ms = 100;
-
-        // Number of ping attempts
-        const uint8_t attempts = 1;
-
-        // Wait for agent connection
-        while(RMW_RET_OK != rmw_uros_ping_agent(timeout_ms, attempts))
+        switch (state)
         {
-            // sleep, handle other task, etc.
+            case WAITING_AGENT:
+                // Check for agent connection
+                state = (RMW_RET_OK == rmw_uros_ping_agent(timeout_ms, attempts)) ? AGENT_AVAILABLE : WAITING_AGENT;
+                break;
+
+            case AGENT_AVAILABLE:
+                // Create micro-ROS entities
+                state = (true == create_entities()) ? AGENT_CONNECTED : WAITING_AGENT;
+
+                if (state == WAITING_AGENT)
+                {
+                    // Creation failed, release allocated resources
+                    destroy_entities();
+                };
+                break;
+
+            case AGENT_CONNECTED:
+                // Check connection and spin on success
+                state = (RMW_RET_OK == rmw_uros_ping_agent(timeout_ms, attempts)) ? AGENT_CONNECTED : AGENT_DISCONNECTED;
+                if (state == AGENT_CONNECTED)
+                {
+                    rclc_executor_spin_some(&executor, spin_timeout);
+                }
+                break;
+
+            case AGENT_DISCONNECTED:
+                // Connection is lost, destroy entities and go back to first step
+                destroy_entities();
+                state = WAITING_AGENT;
+                break;
+
+            default:
+                break;
         }
-
-        // Create micro-ROS entities
-        create_entities();
-
-        // Spin period
-        const unsigned int spin_timeout = RCL_MS_TO_NS(100);
-
-        // Spin until connection fails
-        while(RMW_RET_OK != rclc_executor_spin_some(&executor, spin_timeout))
-        {
-            // sleep, handle other task, etc.
-        }
-
-        // Connection is lost, destroy entities and go back to first step
-        destroy_entities();
     }
 
 This approach allows a micro-ROS client to handle agent restarts or to follow a plug and play approach, where the micro-ROS app will only run when the agent connection is available.
 
-A full example can be found on micro-ROS for Arduino repository `micro-ros_reconnection <https://github.com/micro-ROS/micro_ros_arduino/blob/humble/examples/micro-ros_reconnection_example/micro-ros_reconnection_example.ino>`_ example.
+A working example with this approach can be found on micro-ROS for Arduino repository `micro-ros_reconnection <https://github.com/micro-ROS/micro_ros_arduino/blob/humble/examples/micro-ros_reconnection_example/micro-ros_reconnection_example.ino>`_ example.
 
 .. note::
     Details on the Ping API usage can be found in the :ref:`Middleware API: Ping agent <tutorials_micro_user_middleware_ping>` tutorial.
