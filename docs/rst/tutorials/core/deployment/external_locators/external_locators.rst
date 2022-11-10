@@ -30,8 +30,11 @@ Prerequisites
 
 For accomplishing this tutorial, two available hosts with Docker and a Vulcanexus image are required.
 Please refer to the installation steps detailed in :ref:`docker_installation`.
+In addition, host's ports 11200, 11201 need to be available (these ports have been selected as an example for this tutorial, but it is up to the user to make a different choice).
 
-/*Extend smth*/
+
+*Fast-DDS* domain participants will require to announce themselves into host's external network(s).
+Net-tools, Network Manager or similar packages need to be installed in the system in order to retrieve the corresponding IPs addresses.
 
 Understanding External Locators
 --------------------------------
