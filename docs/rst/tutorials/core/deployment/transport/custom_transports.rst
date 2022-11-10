@@ -13,16 +13,21 @@ Customizing Network Transports
 Background
 ----------
 
-Vulcanexus applications, by default, enable two different transports; a UDPv4 transport for inter-host communication, and a shared memory transport (SHM) for inter-process communications with other applications running on the same host.
+.. note::
+
+   This documentation assumes basic knowledge of UDP/TCP/IP concepts.
+   However, it is possible to follow it without this knowledge.
+
+Vulcanexus applications, by default, enable two different transports: a UDPv4 transport for inter-host communication, and a shared memory transport (SHM) for inter-process communications with other applications running on the same host.
 Although the default-enabled transports may be suited for most use-cases, they do not intend to cover the entire spectrum of Vulcanexus deployments.
 Among the many use-cases that may benefit from a custom transport layer, there are:
 
-1. Applications communicating over IPv6 networks
-2. NAT traversing communications over TCP (see :ref:`intro_metapackages_cloud`)
-3. No-network deployments
-4. Communications enabling TLS
-5. Limiting Vulcanexus traffic to a subset of the host's network interfaces
-6. Limiting IP fragmentation (specially relevant for reliable data delivery over lossy networks)
+1. Applications communicating over IPv6 networks.
+2. NAT traversing communications over TCP (see :ref:`intro_metapackages_cloud`).
+3. No-network deployments.
+4. Communications enabling TLS.
+5. Limiting Vulcanexus traffic to a subset of the host's network interfaces.
+6. Limiting IP fragmentation (specially relevant for reliable data delivery over lossy networks).
 
 For these reasons, Vulcanexus allows for the configuration of network and SHM transports leveraging Fast DDS capabilities to configure the middleware's `transport layer <https://fast-dds.docs.eprosima.com/en/latest/fastdds/transport/transport.html>`_.
 This is achieved by defining the appropriate transport description in a `Fast DDS XML configuration file <https://fast-dds.docs.eprosima.com/en/latest/fastdds/xml_configuration/xml_configuration.html>`_.
@@ -41,8 +46,6 @@ By fragmenting the DDS data into several self-contained, smaller-than-the-MTU UD
 
 Prerequisites
 -------------
-
-The first prerequisite is to have Vulcanexus Humble installed (see `Linux binary installation <https://docs.vulcanexus.org/en/latest/rst/installation/linux_binary_installation.html>`_ or `Linux installation from sources <https://docs.vulcanexus.org/en/latest/rst/installation/linux_source_installation.html>`_).
 
 Please, remember to source the environment in every terminal used during this tutorial.
 
@@ -63,13 +66,17 @@ XML Configuration
 
 Save the following XML configuration file at the desired location, which will be referred as ``<path_to_xml_config_file>`` from here onwards.
 
-.. literalinclude:: custom_transports.xml
+.. literalinclude:: /resources/tutorials/core/deployment/transport//custom_transports.xml
     :language: xml
 
 .. _tutorials_core_deployment_custom_transports_run:
 
 Run the example
 ---------------
+
+.. note::
+
+    To run this example using a Vulcanexus docker container, GUI capabilities are required (see :ref:`docker_installation`).
 
 This tutorial leverages the `ros-humble-image-tools` package to demonstrate that the aforementioned XML configuration indeed achieves communication over localhost with UDPv4 datagrams smaller than the standard 1500 B MTU.
 To run the tutorial, two shells are required:
