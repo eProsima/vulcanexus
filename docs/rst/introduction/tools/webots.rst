@@ -3,5 +3,5 @@
 Webots
 ======
 
-.. note:
+.. note::
     This page is under maintenance and will be updated soon.

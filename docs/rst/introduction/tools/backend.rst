@@ -3,5 +3,5 @@
 Fast DDS Statistics Backend
 ===========================
 
-.. note:
+.. note::
     This page is under maintenance and will be updated soon.
