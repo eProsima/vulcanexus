@@ -19,10 +19,10 @@ The following diagram depicts the aforementioned scheme.
 
 .. figure:: /rst/figures/tutorials/core/external_locators/network_setup.svg
    :align: center
-   :scale: 75%
+   :scale: 100%
 
 This example case consists on two hosts, the first one maintaining two docker containers running the well-known ROS 2 talker-listener example nodes, and a second one with a ROS 2 listener inside another container.
-In Vulcanexus, the communication among the different nodes can be achieved by means of the use of *External Locators* defined in  `WireProtocolConfigQos <https://fast-dds.docs.eprosima.com/en/latest/fastdds/api_reference/dds_pim/core/policy/wireprotocolconfigqos.html>`_.
+In Vulcanexus, the communication among the different nodes can be achieved by means of Fast DDS' *External Locators* feature defined in  `WireProtocolConfigQos <https://fast-dds.docs.eprosima.com/en/latest/fastdds/api_reference/dds_pim/core/policy/wireprotocolconfigqos.html>`_.
 
 
 Prerequisites
@@ -33,7 +33,7 @@ Please refer to the installation steps detailed in :ref:`docker_installation`.
 In addition, host's ports 11200, 11201 need to be available (these ports have been selected as an example for this tutorial, but it is up to the user to make a different choice).
 
 
-*Fast-DDS* domain participants will require to announce themselves into host's external network(s).
+*Fast DDS* domain participants will require to announce themselves into their host's external network(s).
 Net-tools, Network Manager or similar packages need to be installed in the system in order to retrieve the corresponding IPs addresses.
 
 Understanding External Locators
@@ -50,7 +50,7 @@ Enable External Locators via XML configuration files
 -----------------------------------------------------
 
 In order to define the desired External Locators configuration, an XML profile needs to be provided (see `Fast DDS XML profiles <https://fast-dds.docs.eprosima.com/en/latest/fastdds/xml_configuration/xml_configuration.html>`_).
-External Locators announcement for the different `Communication establishment Phases: <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery.html>`_ Participant Discovery Phase (metatraffic, initial peers tags) and Endpoint Discovery Phase (user traffic tag), should be defined.
+External Locators announcement for the different `Communication phases: <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery.html>`_ participant and endpoint discovery phase (metatraffic, initial peers tags), and user data communication phase (user traffic tag), should be defined.
 
 Following with the example above, two XML configuration profiles should be provided.
 The power of External Locators is the ability to connect to nodes within external networks while still being discovered in the local network.
@@ -69,55 +69,10 @@ The two resultant XML configurations are detailed below:
 
             .. tab:: CONTAINER 1
 
-                .. code-block:: xml
+                .. literalinclude:: /resources/tutorials/core/deployment/external_locators/host1_container1.xml
+                    :language: xml
 
-                    <?xml version="1.0" encoding="UTF-8" ?>
-                    <dds>
-                        <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
-                            <participant profile_name="container0" is_default_profile="true">
-                                <rtps>
-                                    <!-- External locators for user traffic -->
-                                    <default_external_unicast_locators>
-                                        <udpv4 externality="1" cost="0" mask="24">
-                                            <!-- Host 1 external IP -->
-                                            <address>192.168.1.40</address>
-                                            <port>11201</port>
-                                        </udpv4>
-                                    </default_external_unicast_locators>
-                                    <builtin>
-                                        <!-- External locators for discovery traffic -->
-                                        <metatraffic_external_unicast_locators>
-                                            <udpv4 externality="1" cost="0" mask="24">
-                                                <!-- Host 1 external IP -->
-                                                <address>192.168.1.40</address>
-                                                <port>11200</port>
-                                            </udpv4>
-                                        </metatraffic_external_unicast_locators>
-                                        <!-- Locators of remote participants (discovery traffic)-->
-                                        <initialPeersList>
-                                            <!--container 1 peer-->
-                                            <locator>
-                                                <udpv4>
-                                                    <!-- Host 2 external IP -->
-                                                    <address>192.168.1.56</address>
-                                                    <port>11200</port>
-                                                </udpv4>
-                                            </locator>
-                                            <!-- local network multicast. Discover
-                                            other participants in the same LAN,
-                                            using External Locators, or not -->
-                                            <locator>
-                                                <udpv4>
-                                                    <address>239.255.0.1</address>
-                                                    <port>7400</port>
-                                                </udpv4>
-                                            </locator>
-                                        </initialPeersList>
-                                    </builtin>
-                                </rtps>
-                            </participant>
-                        </profiles>
-                    </dds>
+
 
     .. tab:: HOST 2
 
@@ -125,61 +80,13 @@ The two resultant XML configurations are detailed below:
 
             .. tab:: CONTAINER 1
 
-                .. code-block:: xml
-
-                    <?xml version="1.0" encoding="UTF-8" ?>
-                    <dds>
-                        <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
-                            <participant profile_name="container0" is_default_profile="true">
-                                <rtps>
-                                    <!-- External locators for user traffic -->
-                                    <default_external_unicast_locators>
-                                        <udpv4 externality="1" cost="0" mask="24">
-                                            <!-- Host 2 external IP -->
-                                            <address>192.168.1.56</address>
-                                            <port>11201</port>
-                                        </udpv4>
-                                    </default_external_unicast_locators>
-                                    <builtin>
-                                        <!-- External locators for discovery traffic -->
-                                        <metatraffic_external_unicast_locators>
-                                            <udpv4 externality="1" cost="0" mask="24">
-                                                <!-- Host 2 external IP -->
-                                                <address>192.168.1.56</address>
-                                                <port>11200</port>
-                                            </udpv4>
-                                        </metatraffic_external_unicast_locators>
-                                        <!-- Locators of remote participants (discovery traffic)-->
-                                        <initialPeersList>
-                                            <!-- Container 1 peer-->
-                                            <locator>
-                                                <udpv4>
-                                                    <!-- Host 1 external IP -->
-                                                    <address>192.168.1.40</address>
-                                                    <port>11200</port>
-                                                </udpv4>
-                                            </locator>
-                                            <!-- local network multicast. Discover
-                                            other participants in the same LAN,
-                                            using External Locators, or not -->
-                                            <locator>
-                                                <udpv4>
-                                                    <address>239.255.0.1</address>
-                                                    <port>7400</port>
-                                                </udpv4>
-                                            </locator>
-                                        </initialPeersList>
-                                    </builtin>
-                                </rtps>
-                            </participant>
-                        </profiles>
-                    </dds>
-
+                .. literalinclude:: /resources/tutorials/core/deployment/external_locators/host2_container1.xml
+                    :language: xml
 
 Run the example
 ----------------
 
-This section provides with step-by-step instructions for setting up the example scenario described in the previous Background section.
+This section provides with step-by-step instructions for setting up the example scenario described in previous sections.
 On both hosts, open a shell and run:
 
 .. tabs::
@@ -232,7 +139,7 @@ On both hosts, open a shell and run:
 The next step is the creation of the XML profiles.
 Inside each one of the three containers, create a Profiles.xml file and paste the contents of the corresponding XML profile configuration, according to the previous section.
 
-Finally, export the environment variable pointing to the Profiles file, source Vulcanexus environment and run the ros2 example nodes.
+Finally, export the environment variable pointing to the Profiles.xml file, source Vulcanexus environment and run the ros2 example nodes.
 
 .. tabs::
 
@@ -245,7 +152,7 @@ Finally, export the environment variable pointing to the Profiles file, source V
                 .. code-block:: bash
 
                     source vulcanexus_entrypoint.sh
-                    export FASTRTPS_DEFAULT_PROFILES_FILE=/Profiles.xml #Or the Profiles.xml file location
+                    export FASTRTPS_DEFAULT_PROFILES_FILE=/Profiles.xml # Or the Profiles.xml file location
                     ros2 run demo_nodes_cpp talker
 
             .. tab:: CONTAINER 2
@@ -265,16 +172,16 @@ Finally, export the environment variable pointing to the Profiles file, source V
                     .. code-block:: bash
 
                         source vulcanexus_entrypoint.sh
-                        export FASTRTPS_DEFAULT_PROFILES_FILE=/Profiles.xml #Or the Profiles.xml file location
+                        export FASTRTPS_DEFAULT_PROFILES_FILE=/Profiles.xml # Or the Profiles.xml file location
                         ros2 run demo_nodes_cpp listener
 
 
 At this point, nodes should be communicating with each other as expected.
-A message `Hellow World: [count]` should start printing in the talker's container terminal while both listeners keep receiving it, in their respective container consoles, as follows:
+A message `Hello World: [count]` should start printing in the talker's container terminal while both listeners keep receiving it, in their respective container consoles, as follows:
 
 .. raw:: html
 
-    <video width=100% height=auto autoplay loop controls>
+    <video width=100% height=auto autoplay loop controls muted>
         <source src="../../../../../_static/resources/tutorials/core/deployment/external_locators/external_locators.mp4">
         Your browser does not support the video tag.
     </video>
