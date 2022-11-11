@@ -19,7 +19,7 @@ This QoS Policy specifies whether it is allowed for multiple DataWriters to upda
 Prerequisites
 -------------
 
-The first prerequisite is to have Vulcanexus Humble installed (see `Linux binary installation <https://docs.vulcanexus.org/en/latest/rst/installation/linux_binary_installation.html>`_ or `Linux instalation from sources <https://docs.vulcanexus.org/en/latest/rst/installation/linux_source_installation.html>`_)
+The first prerequisite is to have Vulcanexus Humble installed (see `Linux binary installation <https://docs.vulcanexus.org/en/latest/rst/installation/linux_binary_installation.html>`_ or `Linux installation from sources <https://docs.vulcanexus.org/en/latest/rst/installation/linux_source_installation.html>`_)
 
 Please, remember to source the environment in every terminal in this tutorial.
 

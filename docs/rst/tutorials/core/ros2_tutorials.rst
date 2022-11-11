@@ -10,3 +10,4 @@ This section will provide a collection of ROS 2 tutorials, both on the use and a
 
     security/security_tutorials
     qos/qos_tutorials
+    deployment/deployment_tutorials

@@ -8,6 +8,7 @@ BUILDDIR      = build
 # Internal variables.
 SOURCEDIR      = .
 HTMLDIR        = $(BUILDDIR)/html
+LATEXDIR       = $(BUILDDIR)/latex
 SPELLINGDIR    = $(BUILDDIR)/spelling
 ALLSPHINXOPTS  = -d $(BUILDDIR)/doctrees $(SPHINXOPTS)
 
@@ -22,6 +23,7 @@ help:
 	@echo "    help         Print this help"
 	@echo "    clean        Remove $(BUILDDIR) directory"
 	@echo "    html         Generate HTML documentation in $(HTMLDIR) directory"
+	@echo "    latex        Generate Latex documentation in $(LATEXDIR) directory"
 	@echo "    test         Run all documentation tests"
 	@echo "    list-tests   List documentation test"
 
@@ -36,6 +38,13 @@ html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(SOURCEDIR) $(HTMLDIR)
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html"
+
+# Generate Latex documentation in $(BUILDDIR)/latex
+.PHONY: latex
+latex:
+	$(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) $(SOURCEDIR) $(LATEXDIR)
+	@echo
+	@echo "Build finished. The Latex pages are in $(LATEXDIR)"
 
 .PHONY: list-tests
 list-tests:

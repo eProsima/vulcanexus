@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds>
+    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+        <transport_descriptors>
+            <!-- Create a custom transport descriptor -->
+            <transport_descriptor>
+                <transport_id>custom_udpv4_transport</transport_id>
+                <type>UDPv4</type>
+                <!-- Limit the RTPS datagrams to 1400 B -->
+                <maxMessageSize>1400</maxMessageSize>
+                <!-- Limit communication to localhost -->
+                <interfaceWhiteList>
+                    <address>127.0.0.1</address>
+                </interfaceWhiteList>
+            </transport_descriptor>
+        </transport_descriptors>
+        <participant profile_name="participant_profile" is_default_profile="true">
+            <rtps>
+                <!-- Disable builtin transports -->
+                <useBuiltinTransports>false</useBuiltinTransports>
+                <!-- Enable custom transport -->
+                <userTransports>
+                    <transport_id>custom_udpv4_transport</transport_id>
+                </userTransports>
+            </rtps>
+        </participant>
+    </profiles>
+</dds>

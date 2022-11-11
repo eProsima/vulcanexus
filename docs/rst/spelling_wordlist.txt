@@ -17,6 +17,7 @@ Diffie
 entrypoint
 eProsima
 Espressif
+externality
 filesystem
 foonathan
 Github
@@ -28,11 +29,13 @@ kB
 keyring
 keyrings
 keystore
+kiB
 Kubernetes
 MBed
 metatraffic
 microros
 middleware
+MTU
 multicast
 multithreaded
 Multithreading
@@ -48,6 +51,7 @@ rclc
 Renesas
 reconnections
 repository
+retransmit
 ROS
 runtime
 scalable
@@ -60,11 +64,13 @@ Tiva
 toolchain
 toolchains
 toolset
+topologies
 turtlesim
 unexisting
 usr
 vulcanexus
 Vulcanexus
-XRCE
 webpage
+Wireshark
 ws
+XRCE
