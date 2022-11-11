@@ -174,6 +174,8 @@ In another terminal source the setup file and then run a Python ``listener``:
     . ~/vulcanexus_humble/install/local_setup.bash
     ros2 run demo_nodes_py listener
 
-You should see the ``talker`` saying that it is ``Publishing`` messages and the ``listener`` saying ``I heard`` those messages. This verifies both the C++ and Python APIs are working properly. Hooray!
+At this point, the ``talker`` should prompt ``Publishing: Hello World: <id>`` messages while the ``listener`` echoes ``I heard: [Hello World: <id>]``.
+This verifies both the C++ and Python APIs are working properly.
+Hooray!
 
 

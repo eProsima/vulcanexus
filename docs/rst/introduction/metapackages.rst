@@ -1,9 +1,9 @@
 .. _vulcanexus_metapackages:
 
-Vulcanexus Metapackages
+Vulcanexus metapackages
 =======================
 
-*Vulcanexus* provides several installations with specific packages depending on the developer's needs.
+*Vulcanexus* provides several binary distributions that install specific packages depending on the developer's needs.
 :ref:`vulcanexus_introduction` table summarizes the different *Vulcanexus* package distributions along with the most important included packages.
 
 Vulcanexus Core
@@ -31,7 +31,7 @@ Vulcanexus Tools
 ----------------
 
 **Vulcanexus Tools** is focused on helping developers with the introspection and debugging of their system.
-Thus, the :ref:`ROS 2 Monitor <vulcanexus_monitor>` and the `ROS 2 Statistics Backend <https://fast-dds-statistics-backend.readthedocs.io/en/latest/>`_ are included in order to monitor and diagnose the *ROS 2* communication network.
+Thus, the :ref:`ROS 2 Monitor <vulcanexus_monitor>` and the :ref:`ROS 2 Statistics Backend <fastdds_statistics_backend>` are included in order to monitor and diagnose the *ROS 2* communication network.
 Also, :ref:`ROS 2 Shapes Demo <vulcanexus_shapes_demo>` is provided as a simple demo to help testing that the communication is successfully established in the system.
 
 .. note::

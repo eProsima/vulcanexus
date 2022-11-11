@@ -46,14 +46,14 @@ Vulcanexus project
 
 *Vulcanexus* is composed of a collection of downloadable packages:
 
-1. **VULCANEXUS-CORE**: a set of software libraries that enables users to build the most comprehensive and straightforward robotics application.
-   It consists of eProsima *Fast DDS* as middleware in *ROS 2*.
-2. **VULCANEXUS-TOOLS**: a set of features and applications which allows users to test, improve and configure the performance of *Vulcanexus* in their systems.
-3. **VULCANEXUS-MICRO**: provides access for resource constrained devices (micro-controllers) to the DDS world, bridging the gap between them and *ROS 2*.
-4. **VULCANEXUS-CLOUD**: scales and integrates *ROS 2* networks located in geographically spaced environments, and enables the deployment of DDS entities in the cloud in a quick and easy way.
-5. **VULCANEXUS-SIMULATION**: enables users to design robotic simulations, providing an end-to-end development environment to model, program, and simulate robots.
-6. **VULCANEXUS-BASE**: includes within the same installation *Vulcanexus* tools, micro and cloud features.
-7. **VULCANEXUS-DESKTOP**: includes *ROS 2* desktop installation as well as every available *Vulcanexus* package.
+1. **Vulcanexus Core**: a set of software libraries that enables users to build the most comprehensive and straightforward robotics application.
+   It consists of *eProsima Fast DDS* latest version as the *ROS 2* middleware.
+2. **Vulcanexus Tools**: a set of features and applications which allows users to test, improve and configure the performance of *Vulcanexus* in their systems.
+3. **Vulcanexus Micro**: provides access for resource constrained devices (micro-controllers) to the DDS world, bridging the gap between them and *ROS 2*.
+4. **Vulcanexus Cloud**: scales and integrates *ROS 2* networks located in geographically spaced environments, and enables the deployment of DDS entities in the cloud in a quick and easy way.
+5. **Vulcanexus Simulation**: enables users to design robotic simulations, providing an end-to-end development environment to model, program, and simulate robots.
+6. **Vulcanexus Base**: includes within the same installation *Vulcanexus* tools, micro and cloud features.
+7. **Vulcanexus Desktop**: includes *ROS 2* desktop installation as well as every available *Vulcanexus* package.
    It is the more complete *Vulcanexus* installation.
 
 The table below shows the components included in every one of the previously explained packages:
@@ -95,7 +95,6 @@ To make such contributions, please refer to the
    :numbered: 5
 
    /rst/introduction/introduction.rst
-   /rst/introduction/developer_tools.rst
    /rst/introduction/metapackages.rst
    /ros2_documentation/source/index.rst
 
