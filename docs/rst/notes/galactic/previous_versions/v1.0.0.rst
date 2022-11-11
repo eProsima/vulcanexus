@@ -43,7 +43,7 @@ Initial release extending `ROS 2 Galactic Geochelone <https://docs.ros.org/en/ga
       - `v5.0.2 <https://github.com/ros2/rmw_fastrtps/blob/galactic/rmw_fastrtps_cpp/CHANGELOG.rst#502-2022-04-28>`__ improved with PKCS #11 support.
       - v1.0.0
 
-This release also includes the following :ref:`binary package distributions <vulcanexus_binary_distribution>`:
+This release also includes the following :ref:`binary package distributions <vulcanexus_metapackages>`:
 
 * Vulcanexus Galactic Base: ``vulcanexus-galactic-base``
 * Vulcanexus Galactic Cloud: ``vulcanexus-galactic-cloud``

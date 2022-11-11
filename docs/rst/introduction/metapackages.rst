@@ -1,7 +1,7 @@
-.. _vulcanexus_binary_distribution:
+.. _vulcanexus_metapackages:
 
-Vulcanexus binary distributions
-===============================
+Vulcanexus Metapackages
+=======================
 
 *Vulcanexus* provides several binary distributions that install specific packages depending on the developer's needs.
 :ref:`vulcanexus_introduction` table summarizes the different *Vulcanexus* package distributions along with the most important included packages.
@@ -31,8 +31,8 @@ Vulcanexus Tools
 ----------------
 
 **Vulcanexus Tools** is focused on helping developers with the introspection and debugging of their system.
-Thus, the `ROS 2 Monitor <https://fast-dds-monitor.readthedocs.io/en/latest/>`_ and the `ROS 2 Statistics Backend <https://fast-dds-statistics-backend.readthedocs.io/en/latest/>`_ are included in order to monitor and diagnose the *ROS 2* communication network.
-Also, `ROS 2 Shapes Demo <https://eprosima-shapes-demo.readthedocs.io/en/latest/index.html>`_ is provided as a simple demo to help testing that the communication is successfully established in the system.
+Thus, the :ref:`ROS 2 Monitor <vulcanexus_monitor>` and the :ref:`ROS 2 Statistics Backend <fastdds_statistics_backend>` are included in order to monitor and diagnose the *ROS 2* communication network.
+Also, :ref:`ROS 2 Shapes Demo <vulcanexus_shapes_demo>` is provided as a simple demo to help testing that the communication is successfully established in the system.
 
 .. note::
 
@@ -75,7 +75,7 @@ Vulcanexus Cloud
 ----------------
 
 **Vulcanexus Cloud** is oriented to geographically spaced scenarios, deploying robotic applications through a distributed network.
-To this end, `ROS 2 Router <https://eprosima-dds-router.readthedocs.io/en/latest/index.html>`_ is installed in this *Vulcanexus* package distribution, allowing *ROS 2* communications through different network layers (bridging the local networks through WAN communication).
+To this end, :ref:`ROS 2 Router <vulcanexus_router>` is installed in this *Vulcanexus* package distribution, allowing *ROS 2* communications through different network layers (bridging the local networks through WAN communication).
 
 .. note::
 
@@ -94,7 +94,7 @@ To this end, `ROS 2 Router <https://eprosima-dds-router.readthedocs.io/en/latest
 Vulcanexus Simulation
 ---------------------
 
-**Vulcanexus Simulation** installs the open-source robot simulator `Webots <https://cyberbotics.com/doc/guide/foreword>`_.
+**Vulcanexus Simulation** installs the open-source robot simulator :ref:`Webots <webots>`.
 Webots allows to simulate real robotic environments providing examples of robot models and controllers
 
 .. note::

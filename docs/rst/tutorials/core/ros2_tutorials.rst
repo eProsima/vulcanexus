@@ -3,7 +3,10 @@
 Vulcanexus Core Tutorials
 ==========================
 
-This section will provide a collection of ROS 2 tutorials, both on the use and application of the basic functionality, as well as on the exploitation of ROS 2 for more advanced users.
+A set of :doc:`ROS 2 tutorials <../../../ros2_documentation/source/Tutorials>` are provided in the *ROS 2* Documentation.
+*Vulcanexus* documentation includes additional *ROS 2* tutorials, along with middleware specific user features only available in *Fast DDS*.
+
+This section will provide a collection of tutorials both on the use and application of the basic functionality, as well as on the exploitation of *ROS 2* for more advanced users.
 
 .. toctree::
     :maxdepth: 1

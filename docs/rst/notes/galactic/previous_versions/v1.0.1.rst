@@ -43,6 +43,6 @@ This version ships the following packages:
       - `v5.0.2 <https://github.com/ros2/rmw_fastrtps/blob/galactic/rmw_fastrtps_cpp/CHANGELOG.rst#502-2022-04-28>`__ improved with PKCS #11 support.
       - v1.0.0
 
-This release also adds the following :ref:`binary package distributions <vulcanexus_binary_distribution>`:
+This release also adds the following :ref:`binary package distributions <vulcanexus_metapackages>`:
 
 * Vulcanexus Galactic Simulation: ``vulcanexus-galactic-simulation``

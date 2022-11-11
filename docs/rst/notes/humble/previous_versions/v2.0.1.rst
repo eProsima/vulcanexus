@@ -43,6 +43,6 @@ This version ships the following packages:
       - `v6.2.1 <https://github.com/eProsima/rmw_fastrtps/blob/humble/rmw_fastrtps_cpp/CHANGELOG.rst#621-2022-03-28>`__ improved with PKCS #11 support.
       - v2.0.0
 
-This release also adds the following :ref:`binary package distributions <vulcanexus_binary_distribution>`:
+This release also adds the following :ref:`binary package distributions <vulcanexus_metapackages>`:
 
 * Vulcanexus Humble Simulation: ``vulcanexus-humble-simulation``
