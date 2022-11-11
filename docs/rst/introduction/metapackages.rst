@@ -1,6 +1,6 @@
 .. _vulcanexus_metapackages:
 
-Vulcanexus metapackages
+Vulcanexus Metapackages
 =======================
 
 *Vulcanexus* provides several binary distributions that install specific packages depending on the developer's needs.

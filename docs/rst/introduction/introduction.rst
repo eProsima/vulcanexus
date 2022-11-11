@@ -37,21 +37,8 @@ Algorithms
 Another category includes robotic application's algorithms.
 *Vulcanexus*, being a *ROS 2* all-in-one tool set, provides the algorithms included in *ROS 2* ecosystem.
 
-.. _vulcanexus_developer_tools:
-
 Developer Tools
 ^^^^^^^^^^^^^^^
-
-.. toctree::
-   :titlesonly:
-   :maxdepth: 1
-   :hidden:
-
-   tools/monitor.rst
-   tools/backend.rst
-   tools/shapes_demo.rst
-   tools/router.rst
-   tools/webots.rst
 
 *ROS 2* provides several development tools for debugging, logging, visualization, introspection, simulation, etc.
 *Vulcanexus* adds to *ROS 2* toolset the following tools:
