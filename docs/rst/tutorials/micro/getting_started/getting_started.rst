@@ -1,5 +1,5 @@
 
-.. micro_ros_getting_started:
+.. _micro_ros_getting_started:
 
 Getting started micro-ROS
 =========================
