@@ -99,20 +99,15 @@ On both hosts, open a shell and run:
 
                 .. code-block:: bash
 
-                    xhost local:root
-                    docker run --rm -it --privileged `# Cleanup, interactive terminal` \
+                    docker run --rm -it `# Cleanup, interactive terminal` \
                         -p 11200-11201:7412-7413/udp `# Expose default internal ports to host` \
-                        -e DISPLAY=$DISPLAY `# Set DISPLAY environment variable` \
-                        -v /tmp/.X11-unix:/tmp/.X11-unix `# Bind to tmp volume` \
                         ubuntu-vulcanexus:humble-desktop `# Image name`
 
             .. tab:: TERMINAL 2
 
                 .. code-block:: bash
 
-                    docker run --rm -it --privileged `# Cleanup, interactive terminal` \
-                        -e DISPLAY=$DISPLAY `# Set DISPLAY environment variable` \
-                        -v /tmp/.X11-unix:/tmp/.X11-unix `# Bind to tmp volume` \
+                    docker run --rm -it `# Cleanup, interactive terminal` \
                         ubuntu-vulcanexus:humble-desktop `# Image name`
 
 
@@ -124,11 +119,8 @@ On both hosts, open a shell and run:
 
                 .. code-block:: bash
 
-                    xhost local:root
-                    docker run --rm -it --privileged `# Cleanup, interactive terminal` \
+                    docker run --rm -it `# Cleanup, interactive terminal` \
                         -p 11200-11201:7412-7413/udp `# Expose default internal ports to host` \
-                        -e DISPLAY=$DISPLAY `# Set DISPLAY environment variable` \
-                        -v /tmp/.X11-unix:/tmp/.X11-unix `# Bind to tmp volume` \
                         ubuntu-vulcanexus:humble-desktop `# Image name`
 
 
@@ -151,7 +143,7 @@ Finally, export the environment variable pointing to the Profiles.xml file, sour
 
                 .. code-block:: bash
 
-                    source vulcanexus_entrypoint.sh
+                    source /vulcanexus_entrypoint.sh
                     export FASTRTPS_DEFAULT_PROFILES_FILE=/Profiles.xml # Or the Profiles.xml file location
                     ros2 run demo_nodes_cpp talker
 
@@ -159,7 +151,7 @@ Finally, export the environment variable pointing to the Profiles.xml file, sour
 
                 .. code-block:: bash
 
-                    source vulcanexus_entrypoint.sh
+                    source /vulcanexus_entrypoint.sh
                     ros2 run demo_nodes_cpp listener
 
 
@@ -171,7 +163,7 @@ Finally, export the environment variable pointing to the Profiles.xml file, sour
 
                     .. code-block:: bash
 
-                        source vulcanexus_entrypoint.sh
+                        source /vulcanexus_entrypoint.sh
                         export FASTRTPS_DEFAULT_PROFILES_FILE=/Profiles.xml # Or the Profiles.xml file location
                         ros2 run demo_nodes_cpp listener
 
