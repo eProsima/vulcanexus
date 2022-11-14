@@ -1,13 +1,11 @@
-.. _tutorials_micro_introduction:
+.. _vulcanexus_microros:
 
 .. figure:: /rst/figures/tutorials/micro/biglogo.png
     :width: 500px
     :align: center
 
-.. _tutorials_micro_introduction_microros:
-
-Introduction to micro-ROS
-==========================
+micro-ROS
+=========
 
 .. contents::
     :depth: 2
@@ -28,6 +26,11 @@ micro-ROS also targets **hard real-time** environments, giving the user control 
 
 micro-ROS is **transport agnostic**.
 With its default middleware (`eProsima Micro XRCE-DDS <https://micro-xrce-dds.docs.eprosima.com/en/latest/>`_) it is possible to run micro-ROS on top of almost any transport layer that supports a package or stream communication paradigm: TCP/IP or UDP/IP stacks, UART devices, CAN/FD buses, SPI, radio links, etc.
+
+.. note::
+
+    For getting started with micro-ROS check :ref:`Getting started micro-ROS<micro_ros_getting_started>`.
+
 
 .. _tutorials_micro_architecture:
 
