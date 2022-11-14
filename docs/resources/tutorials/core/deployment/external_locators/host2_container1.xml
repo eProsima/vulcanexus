@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds>
+    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+        <participant profile_name="container0" is_default_profile="true">
+            <rtps>
+                <!-- External locators for user traffic -->
+                <default_external_unicast_locators>
+                    <udpv4 externality="1" cost="0" mask="24">
+                        <!-- Host 2 external IP -->
+                        <address>192.168.1.56</address>
+                        <port>11201</port>
+                    </udpv4>
+                </default_external_unicast_locators>
+                <builtin>
+                    <!-- External locators for discovery traffic -->
+                    <metatraffic_external_unicast_locators>
+                        <udpv4 externality="1" cost="0" mask="24">
+                            <!-- Host 2 external IP -->
+                            <address>192.168.1.56</address>
+                            <port>11200</port>
+                        </udpv4>
+                    </metatraffic_external_unicast_locators>
+                    <!-- Locators of remote participants (discovery traffic)-->
+                    <initialPeersList>
+                        <!-- Container 1 peer-->
+                        <locator>
+                            <udpv4>
+                                <!-- Host 1 external IP -->
+                                <address>192.168.1.40</address>
+                                <port>11200</port>
+                            </udpv4>
+                        </locator>
+                        <!--
+                            Local network DDS default multicast to discover
+                            other participants in the same LAN,
+                            using External Locators, or not
+                        -->
+                        <locator>
+                            <udpv4>
+                                <address>239.255.0.1</address>
+                                <port>7400</port>
+                            </udpv4>
+                        </locator>
+                    </initialPeersList>
+                </builtin>
+            </rtps>
+        </participant>
+    </profiles>
+</dds>
