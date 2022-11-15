@@ -98,6 +98,7 @@ To make such contributions, please refer to the
    /rst/introduction/developer_tools.rst
    /rst/introduction/metapackages.rst
    /ros2_documentation/source/index.rst
+   /rst/microros_documentation/index.rst
 
 .. toctree::
    :caption: Tutorials

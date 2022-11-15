@@ -1,4 +1,4 @@
-.. _tutorials_micro_user_api_actions:
+.. _micro_user_api_actions:
 
 Actions
 =======

@@ -120,7 +120,7 @@ After the workspace is ready and sourced, micro-ROS applications can be added, b
 
 .. note::
 
-  Certain topics as message memory handling or micro-ROS API details are not covered on this tutorial. Check the `micro-ROS User API <_tutorials_micro_user_api>`_ tutorial for more details.
+  Certain topics as message memory handling or micro-ROS API details are not covered on this tutorial. Check the `micro-ROS User API <_micro_user_api>`_ tutorial for more details.
 
 Write the micro-ROS publisher
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -129,7 +129,7 @@ On this example app, a publisher will send a periodic string message using a con
 
 Add the publisher source code on ``micro_pubsub/src/micro_publisher.c``:
 
-.. literalinclude:: /resources/tutorials/micro/getting_started/micro_publisher.c
+.. literalinclude:: /resources/micro/getting_started/micro_publisher.c
     :language: c
 
 Write the micro-ROS subscriber
@@ -139,7 +139,7 @@ This subscriber example is very similar to the publisher, but here the message r
 
 Add the subscriber source code on ``micro_pubsub/src/micro_subscriber.c``:
 
-.. literalinclude:: /resources/tutorials/micro/getting_started/micro_subscriber.c
+.. literalinclude:: /resources/micro/getting_started/micro_subscriber.c
     :language: c
 
 Add dependencies
@@ -168,7 +168,7 @@ Before building this examples, micro-ROS used headers and tools need to be inclu
 
 4. Add the dependencies to the `CMakeLists.txt` file, the following example can be used:
 
-  .. literalinclude:: /resources/tutorials/micro/getting_started/CMakeLists.txt
+  .. literalinclude:: /resources/micro/getting_started/CMakeLists.txt
 
 Build
 -----

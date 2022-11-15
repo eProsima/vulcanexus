@@ -14,7 +14,6 @@ Developer Tools
    tools/monitor.rst
    tools/backend.rst
    tools/shapes_demo.rst
-   tools/microros.rst
    tools/router.rst
    tools/webots.rst
 
