@@ -26,7 +26,7 @@ Getting started
 
 * :ref:`Overview <vulcanexus_global_introduction>`
 
-  - *Vulcanexus* concepts including *ROS 2* Documentation.
+  - *Vulcanexus* concepts including *ROS 2* and *micro-ROS* Documentation.
 
 * :ref:`Tutorials <tutorials_core_ros2_tutorials>`
 
