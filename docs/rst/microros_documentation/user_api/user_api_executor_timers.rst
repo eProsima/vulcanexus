@@ -1,4 +1,4 @@
-.. _tutorials_micro_user_api_executors_and_timers:
+.. _micro_user_api_executors_and_timers:
 
 Executor and timers
 =======================

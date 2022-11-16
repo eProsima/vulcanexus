@@ -1,4 +1,4 @@
-.. _tutorials_micro_user_api_parameter_server:
+.. _micro_user_api_parameter_server:
 
 Parameter Server
 =======================

@@ -17,7 +17,7 @@ Further information can be found in :ref:`Implementing custom interfaces <Single
 
     This tutorial starts from a previously created micro-ROS environment. Check the first steps of `Getting started micro-ROS <https://docs.vulcanexus.org/en/latest/rst/tutorials/micro/getting_started/getting_started.html>`_ for instructions on how to create a micro-ROS environment for embedded platforms.
 
-    For creating custom types in a :ref:`Build System Component <tutorials_micro_build_system_components>`, check the instructions in each component repository. For example `Renesas e2 Studio Readme <https://github.com/micro-ROS/micro_ros_renesas2estudio_component#adding-custom-packages-to-the-micro-ros-build>`_ or `ST Micro ST Cube IDE/MX <https://github.com/micro-ROS/micro_ros_stm32cubemx_utils#adding-custom-packages>`_.
+    For creating custom types in a :ref:`Build System Component <micro_build_system_components>`, check the instructions in each component repository. For example `Renesas e2 Studio Readme <https://github.com/micro-ROS/micro_ros_renesas2estudio_component#adding-custom-packages-to-the-micro-ros-build>`_ or `ST Micro ST Cube IDE/MX <https://github.com/micro-ROS/micro_ros_stm32cubemx_utils#adding-custom-packages>`_.
 
 Simple types
 ------------
@@ -74,7 +74,7 @@ The content of the ``msg/MyCustomMessage.msg`` file contains the message definit
 
 .. note::
 
-    Same approach can be taken with ``.srv`` and ``.action`` files for creating types for micro-ROS :ref:`services<tutorials_micro_user_api_services>` and :ref:`actions <tutorials_micro_user_api_actions>`.
+    Same approach can be taken with ``.srv`` and ``.action`` files for creating types for micro-ROS :ref:`services<micro_user_api_services>` and :ref:`actions <micro_user_api_actions>`.
 
 Now, the micro-ROS workspace workspace can be built as usual. As explained in `Getting started micro-ROS <https://docs.vulcanexus.org/en/latest/rst/tutorials/micro/getting_started/getting_started.html>`_, the ``ros2 run micro_ros_setup build_firmware.sh`` command will build all packages located inside ``mcu_ws``. In the micro-ROS application code the new message type can be used as usual:
 

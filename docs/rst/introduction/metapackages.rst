@@ -51,7 +51,7 @@ Also, :ref:`ROS 2 Shapes Demo <vulcanexus_shapes_demo>` is provided as a simple 
 Vulcanexus Micro
 ----------------
 
-**Vulcanexus Micro** installs Micro-ROS toolkit oriented to the development and deployment of embedded *ROS 2* applications.
+**Vulcanexus Micro** installs :ref:`micro-ROS <vulcanexus_microros>` toolkit oriented to the development and deployment of embedded *ROS 2* applications.
 Thus, `eProsima Micro XRCE-DDS <https://micro-xrce-dds.docs.eprosima.com/en/latest/>`_, the protocol that enables a resource constrained, low-powered device to communicate with a DDS network through the `micro-ROS Agent <https://micro-xrce-dds.docs.eprosima.com/en/latest/agent.html>`_, and the Agent itself are installed.
 Micro-ROS provides also a set of tools for integration within many build systems, toolchains and embedded development frameworks.
 

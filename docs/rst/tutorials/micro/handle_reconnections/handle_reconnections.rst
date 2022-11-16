@@ -21,7 +21,7 @@ Client side: Ping API
 
 micro-ROS Client default rmw layer `rmw_microxrcedds_c <https://github.com/micro-ROS/rmw_microxrcedds>`_ offers a ping utility to test the connection with the Agent. This ping utility can be used at any stage of the micro-ROS application, allowing users to check the Agent availability before attempting to initialize a micro-ROS session or create any entities.
 
-Usage details on this utility can be found in the :ref:`Middleware API: Ping Agent <tutorials_micro_user_middleware_ping>` tutorial.
+Usage details on this utility can be found in the :ref:`Middleware API: Ping Agent <micro_user_middleware_ping>` tutorial.
 
 State machine approach
 ^^^^^^^^^^^^^^^^^^^^^^

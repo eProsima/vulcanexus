@@ -1,4 +1,4 @@
-.. _tutorials_micro_user_api_publishers_and_subscribers:
+.. _micro_user_api_publishers_and_subscribers:
 
 Publishers and subscribers
 ==========================
@@ -69,7 +69,7 @@ To publish a message on an successfully initialized publisher:
   // Publish message
   rcl_publish(&publisher, &msg, NULL);
 
-For periodic publications, ``rcl_publish`` can be placed inside a timer callback. Check the :ref:`Executor and timers <tutorials_micro_user_api_executors_and_timers>` section for details.
+For periodic publications, ``rcl_publish`` can be placed inside a timer callback. Check the :ref:`Executor and timers <micro_user_api_executors_and_timers>` section for details.
 
 Subscription
 ------------

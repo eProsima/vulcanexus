@@ -1,18 +1,11 @@
-.. _tutorials_micro_introduction:
+.. _vulcanexus_microros:
 
-.. figure:: /rst/figures/tutorials/micro/biglogo.png
+.. figure:: /rst/figures/micro/biglogo.png
     :width: 500px
     :align: center
 
-.. _tutorials_micro_introduction_microros:
-
-Introduction to micro-ROS
-==========================
-
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
+micro-ROS Documentation
+=======================
 
 **micro-ROS** is the default embedded toolkit for ROS 2 and Vulcanexus.
 It provides a complete set of tools, frameworks and APIs for deploying applications in *microcontrollers (MCU)* with full support for ROS 2 communications paradigms: Nodes, Publication/Subscription, Services, etc.
@@ -29,10 +22,22 @@ micro-ROS also targets **hard real-time** environments, giving the user control 
 micro-ROS is **transport agnostic**.
 With its default middleware (`eProsima Micro XRCE-DDS <https://micro-xrce-dds.docs.eprosima.com/en/latest/>`_) it is possible to run micro-ROS on top of almost any transport layer that supports a package or stream communication paradigm: TCP/IP or UDP/IP stacks, UART devices, CAN/FD buses, SPI, radio links, etc.
 
-.. _tutorials_micro_architecture:
 
-Architecture
-------------
+This documentation is structured as follows:
+
+.. toctree::
+    :maxdepth: 1
+
+    getting_started/getting_started.rst
+    build_system_components/build_system_components.rst
+    user_api/user_api.rst
+
+Tutorials about micro-ROS can be found at :ref:`micro-ROS tutorials <tutorials_micro_micro_tutorials>`.
+
+.. raw:: html
+
+   <h2>Architecture</h2>
+
 
 micro-ROS follows an architecture that is based on ROS 2, but also has significant differences that allows the embedded integration.
 In order to ease the use, it also provides tools for handling the integration in embedded platforms.
@@ -44,10 +49,9 @@ With respect to user APIs, micro-ROS provides a **C99 API named RCLC** that allo
 **Compatibility with ROS 2 type support** is also granted, meaning that any message definition used in ROS 2 can be used seamlessly in micro-ROS.
 By means of the micro-ROS build systems, any `.msg`, `.srv` or `.action` definition file can be integrated in the micro-ROS build in order to achieve a type interoperability with ROS 2.
 
-.. _tutorials_micro_middleware:
+.. raw:: html
 
-Middleware
-----------
+   <h2>Middleware</h2>
 
 In the case of micro-ROS, the default middleware layer is `eProsima Micro XRCE-DDS <https://micro-xrce-dds.docs.eprosima.com/en/latest/>`_, a **lightweight**, **portable**,  with **minimal overhead** middleware based on the `OMG DDS-XRCE <https://www.omg.org/spec/DDS-XRCE/1.0/About-DDS-XRCE/>`_ standard.
 
@@ -62,13 +66,12 @@ The `eProsima Micro XRCE-DDS <https://micro-xrce-dds.docs.eprosima.com/en/latest
 In the same way as ROS 2, micro-ROS has a **pluggable middleware interface** so other middleware implementations can be used at the bottom layer of the stack.
 
 
-.. figure:: /rst/figures/tutorials/micro/microros_stack.png
+.. figure:: /rst/figures/micro/microros_stack.png
     :align: center
 
-.. _tutorials_micro_build_systems:
+.. raw:: html
 
-Build Systems
--------------
+   <h2>Build Systems</h2>
 
 micro-ROS provides a set of tools for integrating it in many build systems, toolchains and embedded development frameworks.
 Those packages are heterogeneous due to the diversity of tools used by different vendors.
@@ -82,4 +85,5 @@ Check the `installation tutorial <https://docs.vulcanexus.org/en/latest/rst/inst
 
 .. note::
 
-    For the full understanding of this build system approach please refer to the :ref:`Build System Components reference<tutorials_micro_build_system_components>`.
+    For the full understanding of this build system approach please refer to the :ref:`Build System Components reference<micro_build_system_components>`.
+

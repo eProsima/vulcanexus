@@ -1,4 +1,4 @@
-.. _tutorials_micro_build_system_components:
+.. _micro_build_system_components:
 
 
 Build System Components
@@ -10,7 +10,7 @@ Build System Components
     :backlinks: none
 
 
-.. figure:: /rst/figures/tutorials/micro/platforms_logos/renesas_e2_studio.png
+.. figure:: /rst/figures/micro/platforms_logos/renesas_e2_studio.png
     :align: center
 
 .. _micro_ros_renesas_e2_studio:
@@ -36,7 +36,7 @@ Also, a wide range of transport layers are available: UART, UDP/IP, TCP/IP, USB-
         source /opt/vulcanexus/humble/setup.bash
         ros2 run micro_ros_setup component renesas_e2_studio
 
-.. figure:: /rst/figures/tutorials/micro/platforms_logos/esp_idf.png
+.. figure:: /rst/figures/micro/platforms_logos/esp_idf.png
     :align: center
 
 .. _micro_ros_esp_idf:
@@ -59,7 +59,7 @@ Most of the ESP32 versions are supported: ESP32, ESP32-S2, ESP32-S3 and even the
         source /opt/vulcanexus/humble/setup.bash
         ros2 run micro_ros_setup component esp_idf
 
-.. figure:: /rst/figures/tutorials/micro/platforms_logos/zephyr_rtos.png
+.. figure:: /rst/figures/micro/platforms_logos/zephyr_rtos.png
     :align: center
 
 .. _micro_ros_zephyr_rtos:
@@ -83,7 +83,7 @@ This module support a considerable part of the list of `supported boards by Zeph
         source /opt/vulcanexus/humble/setup.bash
         ros2 run micro_ros_setup component zephyr_rtos
 
-.. figure:: /rst/figures/tutorials/micro/platforms_logos/mbed_rtos.png
+.. figure:: /rst/figures/micro/platforms_logos/mbed_rtos.png
     :align: center
 
 .. _micro_ros_mbed_rtos:
@@ -103,7 +103,7 @@ A basic UART transport is provided for version v6.8 and beyond.
         source /opt/vulcanexus/humble/setup.bash
         ros2 run micro_ros_setup component mbed_rtos
 
-.. figure:: /rst/figures/tutorials/micro/platforms_logos/nuttx_rtos.png
+.. figure:: /rst/figures/micro/platforms_logos/nuttx_rtos.png
     :align: center
 
 .. _micro_ros_nuttx_rtos:
@@ -127,7 +127,7 @@ micro-ROS component for NuttX provides an example application environment where 
         source /opt/vulcanexus/humble/setup.bash
         ros2 run micro_ros_setup component nuttx_rtos
 
-.. figure:: /rst/figures/tutorials/micro/platforms_logos/azure_rtos.png
+.. figure:: /rst/figures/micro/platforms_logos/azure_rtos.png
     :align: center
 
 .. _micro_ros_azure_rtos:
@@ -149,7 +149,7 @@ By means of this module, micro-ROS is integrated in ThreadX (the Azure RTOS sche
         source /opt/vulcanexus/humble/setup.bash
         ros2 run micro_ros_setup component azure_rtos
 
-.. figure:: /rst/figures/tutorials/micro/platforms_logos/tiva_c_series.png
+.. figure:: /rst/figures/micro/platforms_logos/tiva_c_series.png
     :align: center
 
 .. _micro_ros_tiva_c_series:
@@ -169,7 +169,7 @@ micro-ROS provides support for this platform and a basic USB-CDC transport.
         source /opt/vulcanexus/humble/setup.bash
         ros2 run micro_ros_setup component tiva_c_series
 
-.. figure:: /rst/figures/tutorials/micro/platforms_logos/stm32cube.png
+.. figure:: /rst/figures/micro/platforms_logos/stm32cube.png
     :align: center
 
 .. _micro_ros_stm32cube:
@@ -193,7 +193,7 @@ By using this module the micro-ROS user will find it easy to port micro-ROS to i
         source /opt/vulcanexus/humble/setup.bash
         ros2 run micro_ros_setup component stm32cube
 
-.. figure:: /rst/figures/tutorials/micro/platforms_logos/platformio.png
+.. figure:: /rst/figures/micro/platforms_logos/platformio.png
     :align: center
 
 .. _micro_ros_platformio:
@@ -218,7 +218,7 @@ Also, the micro-ROS user will find easy to port micro-ROS to the large list of `
         source /opt/vulcanexus/humble/setup.bash
         ros2 run micro_ros_setup component platformio
 
-.. figure:: /rst/figures/tutorials/micro/platforms_logos/arduino.png
+.. figure:: /rst/figures/micro/platforms_logos/arduino.png
     :align: center
 
 .. _micro_ros_arduino:
@@ -242,7 +242,7 @@ Also, for advanced users, instructions for customizing the installation and reco
         ros2 run micro_ros_setup component arduino
 
 
-.. figure:: /rst/figures/tutorials/micro/platforms_logos/raspberry_pi_pico.png
+.. figure:: /rst/figures/micro/platforms_logos/raspberry_pi_pico.png
     :align: center
 
 .. _micro_ros_raspberry_pi_pico:

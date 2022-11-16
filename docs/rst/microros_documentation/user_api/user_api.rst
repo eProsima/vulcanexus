@@ -1,4 +1,4 @@
-.. _tutorials_micro_user_api:
+.. _micro_user_api:
 
 micro-ROS User API
 =======================
