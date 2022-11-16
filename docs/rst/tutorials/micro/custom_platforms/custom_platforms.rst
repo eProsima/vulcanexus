@@ -213,7 +213,7 @@ Integrating a custom build system
 
 At this point, the generated ``.a`` and ``include`` folder generated in the previous step shall be linked against a micro-ROS application.
 
-This procedure highly depends on the platform and the build system used but some approachs can be:
+This procedure highly depends on the platform and the build system used but some approaches can be:
 
 Bare gcc approach
 ^^^^^^^^^^^^^^^^^
@@ -304,13 +304,13 @@ An example on how to set custom allocators at runtime when using RCUTILS API is:
 
 .. code-block:: c
 
-	allocator = rcutils_get_zero_initialized_allocator();
-	allocator.allocate = custom_allocate;
-	allocator.deallocate = custom_deallocate;
-	allocator.reallocate = custom_reallocate;
-	allocator.zero_allocate = custom_zero_allocate;
+  allocator = rcutils_get_zero_initialized_allocator();
+  allocator.allocate = custom_allocate;
+  allocator.deallocate = custom_deallocate;
+  allocator.reallocate = custom_reallocate;
+  allocator.zero_allocate = custom_zero_allocate;
 
-  	rcutils_set_default_allocator(&allocator);
+  rcutils_set_default_allocator(&allocator);
 
 A reference implementation of those allocators is:
 
