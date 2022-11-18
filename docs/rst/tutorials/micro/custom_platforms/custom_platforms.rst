@@ -140,7 +140,12 @@ Creating a custom build script
 The procedure for creating a custom script to generate a micro-ROS Client library highly depends on the approach taken.
 
 A basic understanding on how to proceed can be extracted analyzing the code of the `custom library generation script <https://github.com/micro-ROS/micro_ros_setup/blob/humble/config/generate_lib/generic/build.sh>`_ explained above.
+
 But in general the following points shall be taken into account:
+
+.. note::
+
+    When following this instructions sourcing a ROS 2 environment shall be avoided in order to avoid mixing the ROS 2 build system with the micro-ROS build system.
 
 1. Create a micro-ROS development environment with the following packages in the correct branch:
 
