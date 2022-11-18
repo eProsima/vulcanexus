@@ -190,7 +190,7 @@ But in general the following points shall be taken into account:
   - ``rclc/rclc_examples``
   - ``rcl/rcl_yaml_param_parser``
 
-6. Build the micro-ROS workspace using colcon, your required ``colcon.meta`` and your custom compiler flags (using a CMake toolchain):
+6. Build the micro-ROS workspace using colcon, your required ``colcon.meta`` and your custom compiler flags using a CMake toolchain file ``my_toolchain.cmake``:
 
 .. code-block::
 
