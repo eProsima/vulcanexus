@@ -137,8 +137,6 @@ Once both files are ready, the micro-ROS library can be generated and built usin
 Creating a custom build script
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The procedure for creating a custom script to generate a micro-ROS Client library highly depends on the approach taken.
-
 A basic understanding on how to proceed can be extracted analyzing the code of the `custom library generation script <https://github.com/micro-ROS/micro_ros_setup/blob/humble/config/generate_lib/generic/build.sh>`_ explained above.
 
 But in general the following points shall be taken into account:
@@ -218,7 +216,7 @@ Integrating a custom build system
 
 At this point, the generated ``.a`` and ``include`` folder generated in the previous step shall be linked against a micro-ROS application.
 
-This procedure highly depends on the platform and the build system used but some approaches can be:
+Some approaches for integrating micro-ROS Client library on a platform build system can be:
 
 Bare gcc approach
 ^^^^^^^^^^^^^^^^^
