@@ -293,7 +293,7 @@ Details on how to implement this transports can be found in :ref:`Custom Transpo
 
     This tutorial explains how to implement custom transports in both micro-ROS Client and Agent side.
     In the most common use case both parts are communicated using serial ports or UDP sockets.
-    This means that in the Client side, transport shall be provided using platform specific code at runtime, and in Agent side the built-in transports for ``serial`` and ``udp`` can be used.
+    That means that only Client side transport shall be implemented and the Agent side transport can be used as it is provided.
 
 Allocators
 ^^^^^^^^^^
