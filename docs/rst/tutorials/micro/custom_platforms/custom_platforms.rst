@@ -10,7 +10,7 @@ This tutorial aims to go beyond those modules and provide some ideas on how to i
 This task can be divided in two main parts: generating the micro-ROS Client library and header directory and linking it against the target embedded application.
 
 It is important to note that micro-ROS Client library is designed to be platform independent.
-This means that the library can be built with independently from the libraries of the target platform, but with the same toolchain and an ``libc`` implementation.
+This means that the library can be built as a standalone library with the only requirement of using the toolchain and ``libc`` implementation of the target platform.
 
 This tutorial will cover the former topics along these sections:
 
@@ -30,7 +30,7 @@ The micro-ROS Client library, in most cases, is compound of:
 
 Given that, most of common build system tools such as CMake or Make will be able to link against the static library and use the include folder to compile the application.
 
-So in order to generate those two components, two approaches are provided: using a micro-ROS tool for generating them or creating a custom script for handling this build.
+In order to generate those two components, two approaches are provided: using a micro-ROS tool for generating them or creating a custom script for handling this build.
 
 micro-ROS generate_lib script
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -41,7 +41,7 @@ micro-ROS generate_lib script
 
 The ``micro_ros_setup`` tool provides a script for generating and building the micro-ROS Client library according to a specific configuration and build parameters.
 
-The following command will download all the required packages.
+The following command will download all the required packages:
 
 .. code-block:: bash
 
@@ -137,7 +137,7 @@ Once both files are ready, the micro-ROS library can be generated and built usin
 Creating a custom build script
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The procedure of creating a custom script that is able to generate a micro-ROS Client library highly depends on the approach taken.
+The procedure for creating a custom script to generate a micro-ROS Client library highly depends on the approach taken.
 
 A basic understanding on how to proceed can be extracted analyzing the code of the `custom library generation script <https://github.com/micro-ROS/micro_ros_setup/blob/humble/config/generate_lib/generic/build.sh>`_ explained above.
 But in general the following points shall be taken into account:
@@ -206,7 +206,7 @@ But in general the following points shall be taken into account:
       -DCMAKE_TOOLCHAIN_FILE=my_toolchain.cmake \
       -DCMAKE_VERBOSE_MAKEFILE=ON;
 
-7. (Optional) Merge the generated ``.a`` libraries in a single one using `ar <https://man7.org/linux/man-pages/man1/ar.1.html>`_ utility.
+7. (Optional) Merge the generated ``.a`` libraries using `ar <https://man7.org/linux/man-pages/man1/ar.1.html>`_ utility.
 
 Integrating a custom build system
 ---------------------------------
@@ -244,14 +244,14 @@ micro-ROS system dependencies
 
 There are three points where micro-ROS Client library needs to use functionality of the target platform beyond the ``libc`` implementation:
 
-- when obtaining a time reference
-- when configuring the transport layer
-- when dealing with memory allocators
+- Obtaining a time reference
+- Configuring the transport layer
+- Dealing with memory allocation
 
 Time reference
 ^^^^^^^^^^^^^^
 
-In order to operate in a time-based approach, the micro-ROS library will need at link time an implementation of the function `int clock_gettime(clockid_t, struct timespec *)` from the `POSIX specification <https://man7.org/linux/man-pages/man3/clock_gettime.3.html>`_ .
+In order to operate in a time-based approach, the micro-ROS library will need at link time an implementation of the function ``int clock_gettime(clockid_t, struct timespec *)`` from the `POSIX specification <https://man7.org/linux/man-pages/man3/clock_gettime.3.html>`_ .
 
 This function will need to fill ``struct timespec *`` input argument implement with a monotonic time reference.
 In the case that the target platform does not provide this function, it is possible to implement it at application level and let the linker to resolve the symbol when linking the micro-ROS Client library.
