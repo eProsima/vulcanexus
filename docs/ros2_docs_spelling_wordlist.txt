@@ -43,6 +43,7 @@ ansi
 Apalone
 api
 apis
+aravis
 arbitraty
 aren
 arg
@@ -65,6 +66,7 @@ ATX
 Audrow
 Auguste
 autoapprove
+autocompleted
 autodetection
 autodoc
 automerge
@@ -85,6 +87,7 @@ Balke
 basename
 Bastian
 bayer
+Bazel
 bcd
 Bedard
 beggining
@@ -143,6 +146,7 @@ cd
 cdf
 cdr
 Centos
+certifiability
 cfg
 changelog
 changelogs
@@ -189,6 +193,7 @@ Connext
 connextdds
 connextddsmicro
 const
+Containerising
 convienent
 Cordero
 cornder
@@ -202,6 +207,7 @@ cpp
 cppcheck
 cpplint
 cpu
+Crazyflie
 Crean
 crossposting
 cstddef
@@ -258,6 +264,7 @@ deserialize
 destoryed
 destructor
 destructors
+deterministically
 dev
 devel
 Dhiman
@@ -340,6 +347,7 @@ extensibility
 extern
 extrememly
 failes
+Failover
 Farzan
 Fastdds
 fastforwarding
@@ -408,6 +416,7 @@ GPL
 GraphCache
 graphviz
 grayscale
+Greengrass
 Grupp
 gtest
 GTest
@@ -483,6 +492,7 @@ installable
 instantiation
 instatiation
 instrospection
+interdependencies
 interoperate
 interprocess
 intra
@@ -617,6 +627,7 @@ Macenski
 macos
 macOS
 maintainance
+maintainership
 Makefile
 malloc
 managment
@@ -647,6 +658,7 @@ metdata
 mfpu
 Miaofei
 Michal
+microcontroller
 microcontrollers
 MiddleButton
 migrator
@@ -672,6 +684,7 @@ Montesino
 Mostafa
 mousewheel
 Movidius
+mROS
 msg
 msgs
 Muddukrishna
@@ -892,6 +905,7 @@ rgb
 Ridely
 Ridley
 Rivero
+RMF
 rmw
 roadmap
 roadmaps
@@ -972,6 +986,7 @@ Silvio
 simulacrus
 siposcsaba
 sizeof
+Smac
 Sobhy
 soe
 Sojka
@@ -1132,6 +1147,7 @@ urdfdom
 uri
 url
 urls
+userspace
 usestl
 utils
 Vahl
@@ -1151,6 +1167,7 @@ Vikas
 Vilches
 Vimeo
 vineet
+Volatiles
 Vollprecht
 vrabaud
 vsnprintf
@@ -1216,6 +1233,7 @@ Yoan
 Yossi
 Youtube
 yuv
+Zenoh
 zero
 zero'th
 Zhang
