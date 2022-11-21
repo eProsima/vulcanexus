@@ -17,7 +17,7 @@ Background
 *eProsima ROS 2 Router*, a.k.a `DDS Router <https://github.com/eProsima/DDS-Router>`_, is an end-user software application that enables the connection of distributed ROS 2 networks (see *ROS 2 Router* documentation :ref:`here <vulcanexus_router>`).
 That is, ROS 2 nodes such as publishers and subscriptions, or clients and services, deployed in one geographic location and using a dedicated local network will be able to communicate with other ROS 2 nodes deployed in different geographic areas on their own dedicated local networks as if they were all on the same network through the use of *ROS 2 Router*.
 
-This tutorial explains how to debug the *ROS 2 Router* to detect errors in the network configuration that may cause the discovery of the ROS 2 nodes and the deployed *ROS 2 Routers* to not be discovered and start communicating automatically.
+This tutorial explains how to debug the *ROS 2 Router* to detect errors in the network configuration that may cause the discovery of the ROS 2 nodes and the deployed *ROS 2 Routers* to not be discovered, preventing the correct behaviour of automatic data routing.
 
 To accomplish this task, this tutorial introduces a simple use case that configures the DDS Router to obtain as much information as possible from its execution.
 Thus, the user will be able to apply the configuration that best suits his needs when debugging the DDS Router and understanding its behavior.
@@ -32,12 +32,12 @@ As already mentioned, the approach of this tutorial is straightforward and is il
 This tutorial will use the ``demo_nodes_cpp`` package, available in the Vulcanexus Desktop distribution.
 First, a ROS 2 ``talker`` is launched and then a ``listener`` node is started in a different ROS 2 Domain.
 This will prevent the two from communicating.
-At this point, the ROS 2 Router will be deployed as a bridge between the two Domains and will enable the ``talker``-``listener`` communication.
-Please take into account that a specific configuration will be applied to the ROS 2 Router in order to see its status and operation at runtime.
+At this point, the *ROS 2 Router* will be deployed as a bridge between the two Domains and will enable the ``talker``-``listener`` communication.
+Please take into account that a specific configuration will be applied to the *ROS 2 Router* in order to see its status and operation at runtime.
 
 .. warning::
 
-    It is important to mention that the performance of the ROS 2 Router will be affected due to the generation of extra code to present this information so it is not recommended to compile the *ROS 2 Router* following this tutorial in critical or production environments.
+    It is important to mention that the performance of the *ROS 2 Router* will be affected due to the generation of extra code to present this information so it is not recommended to compile the *ROS 2 Router* following this tutorial in critical or production environments.
 
 
 Prerequisites
@@ -106,7 +106,7 @@ If not, please go again through the previous steps.
 Deploy ROS 2 Router
 -------------------
 
-Then, create the ROS 2 Router configuration file as the one shown below.
+Then, create the *ROS 2 Router* configuration file as the one shown below.
 
 .. note::
 
@@ -123,13 +123,13 @@ This type of participant, specific for debugging purposes, is explained in detai
 Echo Participant
 ^^^^^^^^^^^^^^^^
 
-The `Echo Participant` is a participant/interface of the *ROS 2 Router* that prints in ``stdout`` all discovery information and/or user data that is received by the *ROS 2 Router*. Therefore, this participant does not perform any discovery o data reception functionality.
+The `Echo Participant` is a participant/interface of the *ROS 2 Router* that prints in ``stdout`` all discovery information and/or user data that is received by the *ROS 2 Router*. Therefore, this participant does not perform any discovery or data reception functionality.
 
 In the case of discovery traces, messages such as the following will be displayed:
 
 .. code-block:: bash
 
-    New endpoint discovered: Endpoint{<endpoint_guid>;<endpoint_kind>;<topic>}.
+    New endpoint discovered: Endpoint{<endpoint_guid>;<endpoint_kind>;<topic_info>}.
 
 For data reception messages, the traces show the following information:
 
@@ -137,9 +137,8 @@ For data reception messages, the traces show the following information:
 
     Received data in Participant: <participant_id> in topic: <topic>.
 
-These logs contain the `Participant Name` of the participant that has originally received the message, and the
-`Topic` where this message has been received.
-Additionally, extra information such as the data `Payload` (in hexadecimal format) and source `Endpoint` `Guid` is displayed in verbose mode:
+These logs contain the `Participant Name` of the participant that has originally received the message, and the `Topic Information` where this message has been received. The `Topic Information` shown the `Topic Name`, `Topic Data Type Name` and the `QoS`.
+Additionally, extra information such as the data `Payload` (in hexadecimal format) and source `Endpoint` `Guid` is displayed in ``verbose`` mode:
 
 .. code-block:: bash
 
@@ -149,14 +148,14 @@ Additionally, extra information such as the data `Payload` (in hexadecimal forma
 Running ROS 2 Router
 ^^^^^^^^^^^^^^^^^^^^
 
-Now, run the DDS Router with the configuration file created as an argument.
+Now, run the *ROS 2 Router* with the configuration file created as an argument.
 
 .. code-block:: bash
 
     ddsrouter -c <path/to/file>/echo.yaml
 
 At this point you should see some information like the one shown below.
-This indicates that the ROS 2 Router has discovered the deployed ROS 2 nodes, their topics, the QoS of each topic and is relaying the information coming from the ``talker`` to the ``listener`` (from Domain ``0`` to Domain ``1``).
+This indicates that the *ROS 2 Router* has discovered the deployed ROS 2 nodes, their topics, the QoS of each topic and is relaying the information coming from the ``talker`` to the ``listener`` (from Domain ``0`` to Domain ``1``).
 
 .. code-block:: bash
 
@@ -182,19 +181,19 @@ For example, if you just want to show which nodes the *ROS 2 Router* is discover
 Advance debugging
 -----------------
 
-The ROS 2 Router can be built with the built-in debug traces so that the internal behavior of the software can be fully monitored.
-To do so, the user/developer should recompile the ROS 2 Router package that comes with Vulcanexus by adding the required compilation options that enable the debug operation mode.
+The *ROS 2 Router* can be built with the built-in debug traces so that the internal behavior of the software can be fully monitored.
+To do so, the user/developer should recompile the *ROS 2 Router* package that comes with Vulcanexus by adding the required compilation options that enable the debug operation mode.
 
-This provides some additional options to filter the debug information shown by the ROS 2 Router. We will explain this in detail below.
+This provides some additional options to filter the debug information shown by the *ROS 2 Router*. We will explain this in detail below.
 
 .. note::
 
-    Do not mistake the debug mode of ROS 2 Router with the ``Debug`` compilation of C++ code, since ROS 2 Router is still compiled in ``Release`` mode but with debug traces.
+    Do not mistake the debug mode of *ROS 2 Router* with the ``Debug`` compilation of C++ code, since *ROS 2 Router* is still compiled in ``Release`` mode but with debug traces.
 
 Building ROS 2 Router from sources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Building the ROS 2 Router from sources in Vulcanexus is straightforward as Vulcanexus ships with all the necessary tools for this task, so there is no prerequisite other than the one already shown in this tutorial.
+Building the *ROS 2 Router* from sources in Vulcanexus is straightforward as Vulcanexus ships with all the necessary tools for this task, so there is no prerequisite other than the one already shown in this tutorial.
 
 The steps to follow are described below:
 
@@ -212,7 +211,7 @@ The steps to follow are described below:
 
             source /opt/vulcanexus/humble/setup.bash
 
-1.  Create the development workspace, download the ROS 2 Router from GitHub, and build it by executing the following commands:
+1.  Create the development workspace, download the *ROS 2 Router* from GitHub, and build it by executing the following commands:
 
     .. code-block:: bash
 
@@ -224,7 +223,7 @@ The steps to follow are described below:
 Running ROS 2 Router
 ^^^^^^^^^^^^^^^^^^^^
 
-Update the environment setup to use the built ROS 2 Router instead of the one delivered in Vulcanexus.
+Update the environment setup to use the built *ROS 2 Router* instead of the one delivered in Vulcanexus.
 
 .. code-block:: bash
 
@@ -233,7 +232,7 @@ Update the environment setup to use the built ROS 2 Router instead of the one de
 Monitor ROS 2 Router internal operation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-ROS 2 Router offers several input arguments to configure the information displayed when it is built with the internal debug traces.
+*ROS 2 Router* offers several input arguments to configure the information displayed when it is built with the internal debug traces.
 These are:
 
 -   ``--log-verbosity <info|warning|error>``: set the verbosity level so only log messages with equal or higher importance level are shown.
@@ -241,8 +240,27 @@ These are:
     Only log messages with a category that matches this regex will be printed (``ERROR`` messages will be always shown unless ``log-verbosity`` argument is set to ``ERROR``).
 -   ``--debug``: set ``log-verbosity`` to ``info`` and ``log-filter`` to ``DDSROUTER``.
 
-Thus, ROS 2 Router can be run as follows:
+Thus, *ROS 2 Router* can be run as follows:
 
-.. code-block::
+.. code-block:: bash
 
     ddsrouter -c <path/to/file>/echo.yaml --log-verbosity warning --log-filer DDSROUTER_DISCOVERY_DATABASE
+
+The *ROS 2 Router* should prompt some information like the one show below.
+
+.. code-block:: bash
+
+    2022-11-21 12:52:35.912 [DDSROUTER_DISCOVERY_DATABASE Info] Inserting a new discovered Endpoint Endpoint{01.0f.3a.59.2c.00.41.5f.02.00.00.00|0.0.6.4;reader;DdsTopic{rq/slam_toolbox/get_parameter_typesRequest;rcl_interfaces::srv::dds_::GetParameterTypes_Request_;Fuzzy{Level(20) TopicQoS{VOLATILE;RELIABLE;SHARED;depth(5000)}}};SpecificEndpointQoS{Partitions{};OwnershipStrength{0}};Active;ParticipantId{SimpleParticipant_Domain_1}}. -> Function add_endpoint_
+
+    New endpoint discovered: Endpoint{01.0f.3a.59.2c.00.41.5f.02.00.00.00|0.0.6.4;reader;DdsTopic{rq/slam_toolbox/get_parameter_typesRequest;rcl_interfaces::srv::dds_::GetParameterTypes_Request_;Fuzzy{Level(20) TopicQoS{VOLATILE;RELIABLE;SHARED;depth(5000)}}};SpecificEndpointQoS{Partitions{};OwnershipStrength{0}};Active;ParticipantId{SimpleParticipant_Domain_1}}.
+
+    2022-11-21 12:52:35.921 [DDSROUTER_DISCOVERY_DATABASE Info] Inserting a new discovered Endpoint Endpoint{01.0f.3a.59.2c.00.41.5f.02.00.00.00|0.0.8.4;reader;DdsTopic{rq/slam_toolbox/set_parametersRequest;rcl_interfaces::srv::dds_::SetParameters_Request_;Fuzzy{Level(20) TopicQoS{VOLATILE;RELIABLE;SHARED;depth(5000)}}};
+    SpecificEndpointQoS{Partitions{};OwnershipStrength{0}};Active;ParticipantId{SimpleParticipant_Domain_1}}. -> Function add_endpoint_
+
+    New endpoint discovered: Endpoint{01.0f.3a.59.2c.00.41.5f.02.00.00.00|0.0.8.4;reader;DdsTopic{rq/slam_toolbox/set_parametersRequest;rcl_interfaces::srv::dds_::SetParameters_Request_;Fuzzy{Level(20) TopicQoS{VOLATILE;RELIABLE;SHARED;depth(5000)}}};SpecificEndpointQoS{Partitions{};OwnershipStrength{0}};Active;ParticipantId{SimpleParticipant_Domain_1}}.
+
+    2022-11-21 12:52:35.933 [DDSROUTER_DISCOVERY_DATABASE Info] Inserting a new discovered Endpoint Endpoint{01.0f.3a.59.2c.00.41.5f.02.00.00.00|0.0.a.4;reader;DdsTopic{rq/slam_toolbox/set_parameters_atomicallyRequest;rcl_interfaces::srv::dds_::SetParametersAtomically_Request_;Fuzzy{Level(20) TopicQoS{VOLATILE;RELIABLE;SHARED;depth(5000)}}};SpecificEndpointQoS{Partitions{};OwnershipStrength{0}};Active;ParticipantId{SimpleParticipant_Domain_1}}. -> Function add_endpoint_
+
+    New endpoint discovered: Endpoint{01.0f.3a.59.2c.00.41.5f.02.00.00.00|0.0.a.4;reader;DdsTopic{rq/slam_toolbox/set_parameters_atomicallyRequest;rcl_interfaces::srv::dds_::SetParametersAtomically_Request_;Fuzzy{Level(20) TopicQoS{VOLATILE;RELIABLE;SHARED;depth(5000)}}};SpecificEndpointQoS{Partitions{};OwnershipStrength{0}};Active;ParticipantId{SimpleParticipant_Domain_1}}.
+
+
