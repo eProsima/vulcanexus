@@ -8,20 +8,20 @@ Micro ROS Utilities
     :local:
     :backlinks: none
 
-`micro_ros_utilities <https://github.com/micro-ROS/micro_ros_utilities>`_ it is a package that provides utilities for easing the use of micro-ROS on different platforms. Currently it has two `API <https://micro.ros.org/docs/api/utils/>`_:
+`micro_ros_utilities <https://github.com/micro-ROS/micro_ros_utilities>`_ is a package that provides a set of tools for easing the use of micro-ROS on different platforms. Currently, it has two `APIs <https://micro.ros.org/docs/api/utils/>`_:
 
-- ``micro-ROS`` type initializer based on :ref:`rosidl_typesupport_introspection_c <docs/ros2_documentation/source/Concepts/About-Internal-Interfaces.rst>_`.
-- ``micro-ROS`` string type wrapper that reduces dynamic memory operations.
+- micro-ROS type utils.
+- micro-ROS ``rosidl_runtime_c__String`` wrapper that reduces dynamic memory operations.
 
 micro-ROS String Utilities
 --------------------------
 
-API that helps developer to manage ROS strings in micro-ROS, full example can be found `here <https://github.com/micro-ROS/micro_ros_arduino/blob/humble/examples/micro-ros_types_handling/micro-ros_types_handling.ino>`_
+This API helps developers to manage strings in micro-ROS by means of providing a set of methods that allow initialization, destruction, set, and other common operations.
 
 micro_ros_string_utilities_init
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Create a ``rosidl_runtime_c__String`` from a char pointer.
+Create a ``rosidl_runtime_c__String`` from a ``char`` pointer.
 
 .. code-block:: c
 
@@ -31,7 +31,7 @@ Create a ``rosidl_runtime_c__String`` from a char pointer.
 micro_ros_string_utilities_init_with_size
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Create a ``rosidl_runtime_c__String from a size.`` from a size.
+Create a ``rosidl_runtime_c__String`` from a size.
 
 .. code-block:: c
 
@@ -41,7 +41,7 @@ Create a ``rosidl_runtime_c__String from a size.`` from a size.
 micro_ros_string_utilities_set
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Create a ``rosidl_runtime_c__String`` from a char pointer reallocating an actual ``rosidl_runtime_c__String``.
+Create a ``rosidl_runtime_c__String`` from a ``char`` pointer reallocating an actual ``rosidl_runtime_c__String``.
 
 .. code-block:: c
 
@@ -78,7 +78,7 @@ Appends a char pointer to the end of a ``rosidl_runtime_c__String``.
 micro_ros_string_utilities_remove_tail_chars
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Removes characters from the end of a string.
+Removes characters from the end of a ``rosidl_runtime_c__String``.
 
 .. code-block:: c
 
@@ -103,7 +103,7 @@ Destroys a ``rosidl_runtime_c__String``.
 micro-ROS Types Utilities
 -------------------------
 
-API that helps developer to manage ROS types in micro-ROS, full example can be found `here <https://github.com/micro-ROS/micro_ros_arduino/blob/humble/examples/micro-ros_types_handling/micro-ros_types_handling.ino>`_
+This API helps developers to manage ROS types in micro-ROS. It handles the types structures recursively in order to initialize each member with the required memory size.
 
 micro_ros_utilities_memory_conf_t
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -112,7 +112,7 @@ micro_ros_utilites provides a functionality to instntiate sequences and strings 
 
 Memory configuration struct:
 
-- max_string_capacity: Maximum string capacity to use for msg fields in case they don’t have a custom rule assigned to them.
+- max_string_capacity: Maximum string capacity to use for message fields in case they don’t have a custom rule assigned to them.
 - max_ros2_type_sequence_capacity: Maximum capacity to use for sequence type msg fields (ie: unbounded arrays and lists) which contain ROS 2 msg types, in case they don’t have a custom rule assigned to them.
 - max_basic_type_sequence_capacity: Maximum capacity to use for sequence type msg fields (ie: unbounded arrays and lists) which contain basic types (ie: primitive field types), in case they don’t have a custom rule assigned to them.
 
@@ -128,7 +128,7 @@ Memory configuration struct:
 micro_ros_utilities_type_info
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Returns a string with the type introspection data.
+Returns a ``rosidl_runtime_c__String`` with the type introspection data.
 
 .. code-block:: c
 
@@ -160,7 +160,7 @@ Returns the static memory size that will be used for a type.
 micro_ros_utilities_create_message_memory
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Allocates the dynamic memory required for a message.
+Allocates dynamic memory for a message.
 
 .. code-block:: c
 
@@ -184,7 +184,7 @@ Allocates the dynamic memory required for a message.
 micro_ros_utilities_create_static_message_memory
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Allocates the memory required for a message in a user-provided buffer.
+Allocates memory for a message in a user-provided buffer.
 
 .. code-block:: c
 
