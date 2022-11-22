@@ -31,6 +31,7 @@ This documentation is structured as follows:
     getting_started/getting_started.rst
     build_system_components/build_system_components.rst
     user_api/user_api.rst
+    utilities/utilities.rst
 
 Tutorials about micro-ROS can be found at :ref:`micro-ROS tutorials <tutorials_micro_micro_tutorials>`.
 

@@ -18,6 +18,14 @@ micro-ROS String Utilities
 
 This API helps developers to manage strings in micro-ROS by means of providing a set of methods that allow initialization, destruction, set, and other common operations.
 
+.. note::
+
+    A full example can be found on how to use this API can be found `here <https://github.com/micro-ROS/micro_ros_arduino/blob/humble/examples/micro-ros_types_handling/micro-ros_types_handling.ino>`_
+
+.. warning::
+
+    It is important to note that, unlike in ROS 2 rclcpp, in micro-ROS rclc memory in types is not initialized by default. It is required that the user initializes the memory for each type that is used in any micro-ROS procedure.
+
 micro_ros_string_utilities_init
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -28,6 +36,18 @@ Create a ``rosidl_runtime_c__String`` from a ``char`` pointer.
     const char * str = "Hello World";
     rosidl_runtime_c__String ros_str = micro_ros_string_utilities_init(str);
 
+.. list-table::
+   :header-rows: 1
+
+   * - Operation
+     - Action
+   * - Allocate
+     - Yes
+   * - Reallocate
+     - No
+   * - Free
+     - No
+
 micro_ros_string_utilities_init_with_size
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -37,6 +57,18 @@ Create a ``rosidl_runtime_c__String`` from a size.
 
     size_t size = 10;
     rosidl_runtime_c__String ros_str = micro_ros_string_utilities_init_with_size(size);
+
+.. list-table::
+   :header-rows: 1
+
+   * - Operation
+     - Action
+   * - Allocate
+     - Yes
+   * - Reallocate
+     - No
+   * - Free
+     - No
 
 micro_ros_string_utilities_set
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -50,6 +82,18 @@ Create a ``rosidl_runtime_c__String`` from a ``char`` pointer reallocating an ac
 
     rosidl_runtime_c__String ros_str = micro_ros_string_utilities_init_with_size(size);
     ros_str = micro_ros_string_utilities_set(ros_str, str);
+
+.. list-table::
+   :header-rows: 1
+
+   * - Operation
+     - Action
+   * - Allocate
+     - No
+   * - Reallocate
+     - Yes
+   * - Free
+     - No
 
 micro_ros_string_utilities_get_c_str
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -75,6 +119,18 @@ Appends a char pointer to the end of a ``rosidl_runtime_c__String``.
 
     ros_str = micro_ros_string_utilities_append(ros_str, "!");
 
+.. list-table::
+   :header-rows: 1
+
+   * - Operation
+     - Action
+   * - Allocate
+     - No
+   * - Reallocate
+     - Yes
+   * - Free
+     - No
+
 micro_ros_string_utilities_remove_tail_chars
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -86,6 +142,18 @@ Removes characters from the end of a ``rosidl_runtime_c__String``.
     rosidl_runtime_c__String ros_str = micro_ros_string_utilities_init(str);
 
     ros_str = micro_ros_string_utilities_remove_tail_chars(ros_str, 5);
+
+.. list-table::
+   :header-rows: 1
+
+   * - Operation
+     - Action
+   * - Allocate
+     - No
+   * - Reallocate
+     - Yes
+   * - Free
+     - No
 
 micro_ros_string_utilities_destroy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -99,22 +167,43 @@ Destroys a ``rosidl_runtime_c__String``.
 
     micro_ros_string_utilities_destroy(ros_str);
 
+.. list-table::
+   :header-rows: 1
+
+   * - Operation
+     - Action
+   * - Allocate
+     - No
+   * - Reallocate
+     - No
+   * - Free
+     - yes
+
 
 micro-ROS Types Utilities
 -------------------------
 
 This API helps developers to manage ROS types in micro-ROS. It handles the types structures recursively in order to initialize each member with the required memory size.
 
+.. note::
+
+    A full example can be found on how to use this API can be found `here <https://github.com/micro-ROS/micro_ros_arduino/blob/humble/examples/micro-ros_types_handling/micro-ros_types_handling.ino>`_
+
 micro_ros_utilities_memory_conf_t
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-micro_ros_utilites provides a functionality to instntiate sequences and strings of fixed sizes.
+``micro_ros_utilites`` provides a functionality to instantiate sequences and strings of fixed sizes.
+
+Memory can be allocated in two ways:
+
+- statically
+- dinamycally
 
 Memory configuration struct:
 
-- max_string_capacity: Maximum string capacity to use for message fields in case they don’t have a custom rule assigned to them.
-- max_ros2_type_sequence_capacity: Maximum capacity to use for sequence type msg fields (ie: unbounded arrays and lists) which contain ROS 2 msg types, in case they don’t have a custom rule assigned to them.
-- max_basic_type_sequence_capacity: Maximum capacity to use for sequence type msg fields (ie: unbounded arrays and lists) which contain basic types (ie: primitive field types), in case they don’t have a custom rule assigned to them.
+- ``max_string_capacity``: Maximum string capacity to use for message fields in case they don’t have a custom rule assigned to them.
+- ``max_ros2_type_sequence_capacity``: Maximum capacity to use for sequence type msg fields (ie: unbounded arrays and lists) which contain ROS 2 msg types, in case they don’t have a custom rule assigned to them.
+- ``max_basic_type_sequence_capacity``: Maximum capacity to use for sequence type msg fields (ie: unbounded arrays and lists) which contain basic types (ie: primitive field types), in case they don’t have a custom rule assigned to them.
 
 .. code-block:: c
 
@@ -137,6 +226,18 @@ Returns a ``rosidl_runtime_c__String`` with the type introspection data.
     control_msgs__msg__JointJog msg;
     rosidl_runtime_c__String ros_str = micro_ros_utilities_type_info(ROSIDL_GET_MSG_TYPE_SUPPORT(control_msgs, msg, JointJog));
 
+.. list-table::
+   :header-rows: 1
+
+   * - Operation
+     - Action
+   * - Allocate
+     - Yes
+   * - Reallocate
+     - No
+   * - Free
+     - No
+
 
 micro_ros_utilities_get_static_size
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -156,6 +257,18 @@ Returns the static memory size that will be used for a type.
 
     control_msgs__msg__JointJog msg;
     rosidl_runtime_c__String ros_str = micro_ros_utilities_get_static_size(ROSIDL_GET_MSG_TYPE_SUPPORT(control_msgs, msg, JointJog) conf);
+
+.. list-table::
+   :header-rows: 1
+
+   * - Operation
+     - Action
+   * - Allocate
+     - No
+   * - Reallocate
+     - No
+   * - Free
+     - No
 
 micro_ros_utilities_create_message_memory
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -180,6 +293,17 @@ Allocates dynamic memory for a message.
         conf
     );
 
+.. list-table::
+   :header-rows: 1
+
+   * - Operation
+     - Action
+   * - Allocate
+     - Yes
+   * - Reallocate
+     - No
+   * - Free
+     - No
 
 micro_ros_utilities_create_static_message_memory
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -206,6 +330,18 @@ Allocates memory for a message in a user-provided buffer.
         my_buffer,
         sizeof(my_buffer)
     );
+
+.. list-table::
+   :header-rows: 1
+
+   * - Operation
+     - Action
+   * - Allocate
+     - On buffer
+   * - Reallocate
+     - No
+   * - Free
+     - No
 
 micro_ros_utilities_destroy_message_memory
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -236,3 +372,15 @@ Deallocates the dynamic memory of a message.
         &msg,
         conf
     );
+
+.. list-table::
+   :header-rows: 1
+
+   * - Operation
+     - Action
+   * - Allocate
+     - Yes
+   * - Reallocate
+     - No
+   * - Free
+     - No

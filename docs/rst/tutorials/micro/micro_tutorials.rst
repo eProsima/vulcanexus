@@ -13,4 +13,3 @@ Please, visit `micro-ROS tutorial webpage <https://micro.ros.org/docs/tutorials/
     custom_types/custom_types.rst
     handle_reconnections/handle_reconnections.rst
     custom_platforms/custom_platforms.rst
-    utilities/utilities.rst
