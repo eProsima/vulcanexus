@@ -1,5 +1,5 @@
 #include <rclcpp/rclcpp.hpp>
-#include <turtlesim/msg/pose.hpp>
+#include <turtlesim_square_move/msg/pose.hpp>
 #include <geometry_msgs/msg/twist.hpp>
 #include <std_srvs/srv/empty.hpp>
 #include <math.h>
@@ -17,7 +17,7 @@ public:
         , first_goal_set_(false)
     {
         // Create subscription on the turtle1/pose topic to keep track of the turtle pose
-        pose_subscription_ = this->create_subscription<turtlesim::msg::Pose>(
+        pose_subscription_ = this->create_subscription<turtlesim_square_move::msg::Pose>(
             "turtle1/pose",
             1, std::bind(&SquareMove::pose_callback_, this, std::placeholders::_1));
 
@@ -43,7 +43,7 @@ private:
     };
 
     void pose_callback_(
-            const turtlesim::msg::Pose& pose)
+            const turtlesim_square_move::msg::Pose& pose)
     {
         // Update the turtle pose
         pose_ = pose;
@@ -212,16 +212,16 @@ private:
     // Set the firts goal of the turtle
     bool first_goal_set_;
     // Current pose of the turtle
-    turtlesim::msg::Pose pose_;
+    turtlesim_square_move::msg::Pose pose_;
     // Current goal of the turtle
-    turtlesim::msg::Pose goal_;
+    turtlesim_square_move::msg::Pose goal_;
 
     // Timer to check the goal and perform some actions
     rclcpp::TimerBase::SharedPtr timer_;
     // Publisher in the Twist topic
     rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr twist_publisher_;
     // Subscription on the turtle pose topic
-    rclcpp::Subscription<turtlesim::msg::Pose>::SharedPtr pose_subscription_;
+    rclcpp::Subscription<turtlesim_square_move::msg::Pose>::SharedPtr pose_subscription_;
     // Client to reset the state of the turtlesim_node
     rclcpp::Client<std_srvs::srv::Empty>::SharedPtr reset_client_;
 };

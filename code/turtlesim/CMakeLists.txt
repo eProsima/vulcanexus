@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(turtlesim)
+project(docs_turtlesim)
 
 if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 14)
@@ -18,13 +18,13 @@ rosidl_generate_interfaces(${PROJECT_NAME}
 
 rosidl_get_typesupport_target(cpp_typesupport_target "${PROJECT_NAME}" "rosidl_typesupport_cpp")
 
-add_executable(turtlesim_square_move src/SquareMove.cpp)
+add_executable(square_move src/SquareMove.cpp)
 
-ament_target_dependencies(turtlesim_square_move "ament_index_cpp" "geometry_msgs" "rclcpp" "std_msgs" "std_srvs")
+ament_target_dependencies(square_move "ament_index_cpp" "geometry_msgs" "rclcpp" "std_msgs" "std_srvs")
 
-target_link_libraries(turtlesim_square_move "${cpp_typesupport_target}")
+target_link_libraries(square_move "${cpp_typesupport_target}")
 
-install(TARGETS turtlesim_square_move
+install(TARGETS square_move
   DESTINATION lib/${PROJECT_NAME})
 
 ament_package()

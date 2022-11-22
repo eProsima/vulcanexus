@@ -190,10 +190,10 @@ Now, run the DDS Router with the configuration file created as an argument.
 Deployment of LAN 2
 -------------------
 
-Running the turtlesim_square_move on Edge 2
+Running the square_move on Edge 2
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Run the ``turtlesim_square_move`` in the Edge 2 machine, which is the controller of the Edge 1 ``turtlesim_node``.
+Run the ``square_move`` in the Edge 2 machine, which is the controller of the Edge 1 ``turtlesim_node``.
 This will send commands to the ROS 2 application to the edge to move the turtle and receive information about the current state of the turtle at any time.
 
 A ROS 2 application that moves the turtle by drawing a square has been developed for this purpose.
@@ -209,7 +209,7 @@ Then, start by creating the workspace of this application and downloading the so
     rm -rf vulcanexus
     cd ..
 
-Once created the workspace, source the Vulcanexus environment and build the ``turtlesim_square_move`` application.
+Once created the workspace, source the Vulcanexus environment and build the ``square_move`` application.
 
 .. code-block:: bash
 
@@ -235,13 +235,13 @@ And finally, run the application:
 
         .. code-block:: bash
 
-            ros2 run turtlesim turtlesim_square_move
+            ros2 run docs_turtlesim square_move
 
     .. tab:: LAN
 
         .. code-block:: bash
 
-            ROS_DOMAIN_ID=1 ros2 run turtlesim turtlesim_square_move
+            ROS_DOMAIN_ID=1 ros2 run docs_turtlesim square_move
 
         .. note::
 
@@ -280,7 +280,7 @@ The following snippet shows a configuration file (changing Domain for LAN scenar
 
         .. note::
 
-            As stated :ref:`here <warning_lan_edge_edge>`, set the ROS 2 Domain Id on the ``local`` participant in order to discover the ``turtlesim_square_move`` ROS 2 node.
+            As stated :ref:`here <warning_lan_edge_edge>`, set the ROS 2 Domain Id on the ``local`` participant in order to discover the ``square_move`` ROS 2 node.
 
 
 Now, run the DDS Router with the configuration file created as an argument.
@@ -331,18 +331,18 @@ If all the steps in this tutorial have been followed, the turtle in the ``turtle
    :scale: 75%
    :align: center
 
-and the ``turtlesim_square_move`` should prompt the following traces
+and the ``square_move`` should prompt the following traces
 
 .. code-block:: bash
 
-    root@dbf79a437eb3:/turtlesim_move_ws# ros2 run turtlesim turtlesim_square_move
-    [INFO] [1657870899.585667136] [turtlesim_square_move]: New goal [7.544445 5.544445, 0.000000]
-    [INFO] [1657870901.585656311] [turtlesim_square_move]: Reached goal
-    [INFO] [1657870901.585767260] [turtlesim_square_move]: New goal [7.448444 5.544445, 1.570796]
-    [INFO] [1657870905.685637930] [turtlesim_square_move]: Reached goal
-    [INFO] [1657870905.685753714] [turtlesim_square_move]: New goal [7.466837 7.544360, 1.561600]
-    [INFO] [1657870907.885655744] [turtlesim_square_move]: Reached goal
-    [INFO] [1657870907.885742857] [turtlesim_square_move]: New goal [7.466837 7.544360, 3.132396]
-    [INFO] [1657870911.985655175] [turtlesim_square_move]: Reached goal
-    [INFO] [1657870911.985738726] [turtlesim_square_move]: New goal [5.467175 7.581143, 3.123200]
-    [INFO] [1657870914.085652821] [turtlesim_square_move]: Reached goal
+    root@dbf79a437eb3:/turtlesim_move_ws# ros2 run turtlesim square_move
+    [INFO] [1657870899.585667136] [square_move]: New goal [7.544445 5.544445, 0.000000]
+    [INFO] [1657870901.585656311] [square_move]: Reached goal
+    [INFO] [1657870901.585767260] [square_move]: New goal [7.448444 5.544445, 1.570796]
+    [INFO] [1657870905.685637930] [square_move]: Reached goal
+    [INFO] [1657870905.685753714] [square_move]: New goal [7.466837 7.544360, 1.561600]
+    [INFO] [1657870907.885655744] [square_move]: Reached goal
+    [INFO] [1657870907.885742857] [square_move]: New goal [7.466837 7.544360, 3.132396]
+    [INFO] [1657870911.985655175] [square_move]: Reached goal
+    [INFO] [1657870911.985738726] [square_move]: New goal [5.467175 7.581143, 3.123200]
+    [INFO] [1657870914.085652821] [square_move]: Reached goal
