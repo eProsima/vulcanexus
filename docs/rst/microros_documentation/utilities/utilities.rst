@@ -42,7 +42,7 @@ Create a ``rosidl_runtime_c__String`` from a ``char`` pointer.
    * - Operation
      - Action
    * - Allocate
-     - Yes
+     - Yes, it does not take ownership of ``char*``
    * - Reallocate
      - No
    * - Free
@@ -91,7 +91,7 @@ Create a ``rosidl_runtime_c__String`` from a ``char`` pointer reallocating an ac
    * - Allocate
      - No
    * - Reallocate
-     - Yes
+     - Reallocates input ``rosidl_runtime_c__String``, does not take ownership of ``char*``
    * - Free
      - No
 
@@ -196,8 +196,8 @@ micro_ros_utilities_memory_conf_t
 
 Memory can be allocated in two ways:
 
-- statically
-- dinamycally
+- statically: in an user provided buffer.
+- dynamically: using ros2 allocators
 
 Memory configuration struct:
 
@@ -372,15 +372,3 @@ Deallocates the dynamic memory of a message.
         &msg,
         conf
     );
-
-.. list-table::
-   :header-rows: 1
-
-   * - Operation
-     - Action
-   * - Allocate
-     - Yes
-   * - Reallocate
-     - No
-   * - Free
-     - No

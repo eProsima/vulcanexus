@@ -6,6 +6,7 @@ Backend
 bare-metal
 behaviour
 blinky
+conf
 combinable
 cryptographic
 cryptosystem
@@ -13,11 +14,11 @@ curl
 customizable
 dataflow
 dataspace
+Deallocates
 decrypt
 Diffie
 entrypoint
 eProsima
-externality
 Espressif
 externality
 filesystem
@@ -35,6 +36,7 @@ kiB
 Kubernetes
 MBed
 metatraffic
+micro_ros_utilities_memory_conf_t
 microros
 middleware
 MTU
@@ -50,8 +52,8 @@ preallocates
 prebuilt
 rcl
 rclc
-Renesas
 reconnections
+Renesas
 repository
 retransmit
 ROS
