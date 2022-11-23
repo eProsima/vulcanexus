@@ -1,6 +1,6 @@
 .. _tutorials_micro_utilities:
 
-Micro ROS Utilities
+micro-ROS Utilities
 ===================
 
 .. contents:: Table of Contents
@@ -127,7 +127,7 @@ Appends a char pointer to the end of a ``rosidl_runtime_c__String``.
    * - Allocate
      - No
    * - Reallocate
-     - Yes
+     - Yes if input ``rosidl_runtime_c__String`` is not big enough
    * - Free
      - No
 
@@ -151,7 +151,7 @@ Removes characters from the end of a ``rosidl_runtime_c__String``.
    * - Allocate
      - No
    * - Reallocate
-     - Yes
+     - No
    * - Free
      - No
 
@@ -177,7 +177,7 @@ Destroys a ``rosidl_runtime_c__String``.
    * - Reallocate
      - No
    * - Free
-     - yes
+     - Yes
 
 
 micro-ROS Types Utilities
@@ -196,10 +196,10 @@ micro_ros_utilities_memory_conf_t
 
 Memory can be allocated in two ways:
 
-- statically: in an user provided buffer.
-- dynamically: using ros2 allocators
+- *statically*: in an user provided buffer.
+- *dynamically*: using ROS 2 allocators
 
-Memory configuration struct:
+Memory allocation can be configured using configuration structure that has the following members:
 
 - ``max_string_capacity``: Maximum string capacity to use for message fields in case they don’t have a custom rule assigned to them.
 - ``max_ros2_type_sequence_capacity``: Maximum capacity to use for sequence type msg fields (ie: unbounded arrays and lists) which contain ROS 2 msg types, in case they don’t have a custom rule assigned to them.
@@ -226,19 +226,6 @@ Returns a ``rosidl_runtime_c__String`` with the type introspection data.
     control_msgs__msg__JointJog msg;
     rosidl_runtime_c__String ros_str = micro_ros_utilities_type_info(ROSIDL_GET_MSG_TYPE_SUPPORT(control_msgs, msg, JointJog));
 
-.. list-table::
-   :header-rows: 1
-
-   * - Operation
-     - Action
-   * - Allocate
-     - Yes
-   * - Reallocate
-     - No
-   * - Free
-     - No
-
-
 micro_ros_utilities_get_static_size
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -257,18 +244,6 @@ Returns the static memory size that will be used for a type.
 
     control_msgs__msg__JointJog msg;
     rosidl_runtime_c__String ros_str = micro_ros_utilities_get_static_size(ROSIDL_GET_MSG_TYPE_SUPPORT(control_msgs, msg, JointJog) conf);
-
-.. list-table::
-   :header-rows: 1
-
-   * - Operation
-     - Action
-   * - Allocate
-     - No
-   * - Reallocate
-     - No
-   * - Free
-     - No
 
 micro_ros_utilities_create_message_memory
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -292,18 +267,6 @@ Allocates dynamic memory for a message.
         &msg,
         conf
     );
-
-.. list-table::
-   :header-rows: 1
-
-   * - Operation
-     - Action
-   * - Allocate
-     - Yes
-   * - Reallocate
-     - No
-   * - Free
-     - No
 
 micro_ros_utilities_create_static_message_memory
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -330,18 +293,6 @@ Allocates memory for a message in a user-provided buffer.
         my_buffer,
         sizeof(my_buffer)
     );
-
-.. list-table::
-   :header-rows: 1
-
-   * - Operation
-     - Action
-   * - Allocate
-     - On buffer
-   * - Reallocate
-     - No
-   * - Free
-     - No
 
 micro_ros_utilities_destroy_message_memory
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
