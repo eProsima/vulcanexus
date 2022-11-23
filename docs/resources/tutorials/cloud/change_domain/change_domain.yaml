@@ -1,0 +1,11 @@
+version: v3.0
+
+participants:
+
+  - name: ROS_2_Domain_0
+    kind: local
+    domain: 0
+
+  - name: ROS_2_Domain_1
+    kind: local
+    domain: 1

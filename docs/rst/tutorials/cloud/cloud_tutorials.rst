@@ -12,6 +12,7 @@ The following are the tutorials that make up this course on communication in dis
 .. toctree::
     :maxdepth: 1
 
+    change_domain/change_domain
     debug_ros2_router/debug_ros2_router
     kubernetes/kubernetes
     wan_edge_cloud/wan_edge_cloud
