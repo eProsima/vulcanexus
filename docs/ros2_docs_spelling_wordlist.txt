@@ -436,6 +436,7 @@ happend
 hardcoded
 Hassold
 Hawksbill
+headshot
 Hemal
 Henttinen
 Hernández
@@ -954,6 +955,7 @@ Schettler
 Schornak
 Schulte
 Schwarz
+sd
 Segrelles
 selectable
 Selectable
