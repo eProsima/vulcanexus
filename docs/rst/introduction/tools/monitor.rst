@@ -10,9 +10,8 @@ They can also choose from a wide variety of communication parameters to be measu
 Furthermore, the user can check the status of the deployed *ROS 2* network at any time, i.e. see for each DDS Domain which DomainParticipants are instantiated, as well as their publishers and subscribers and the topics under which they publish or to which they subscribe respectively.
 It is also possible to see the physical architecture of the network on which the *ROS 2* applications are running.
 
-########
 Overview
-########
+--------
 
 *ROS 2 Monitor* is designed to meet the following criteria:
 
@@ -24,7 +23,7 @@ Overview
 .. warning::
 
     If having explicitly enabled statistics and statistical data are still not correctly received, only few data arrive or even none, configure the *ROS 2* nodes publishing statistics data with a less restrictive memory constraints.
-    Please check the following `documentation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/statistics/dds_layer/troubleshooting.html#troubleshooting>`_ for more details on how to do this.
+    Please check the following `documentation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/statistics/dds_layer/troubleshooting.html-troubleshooting>`_ for more details on how to do this.
 
 .. raw:: html
 
@@ -34,9 +33,8 @@ Overview
     </video>
     <br></br>
 
-##########
 Next Steps
-##########
+----------
 
 Visit `eProsima Fast DDS Monitor Documentation <https://fast-dds-monitor.readthedocs.io/en/latest/>`_ for more information on how to use this application.
 A hands-on example is also available in this :ref:`link <tutorials_tools_fastdds_monitor>`, which provides step-by-step instructions on how to use *Vulcanexus Tools* for monitoring a *ROS 2* talker/listener demo.

@@ -9,9 +9,8 @@ This is achieved by deploying a *ROS 2 Router* on an edge device of each local n
 
 Furthermore, *ROS 2 Router* is a software designed for various forms of distributed networks, such as mesh networks in which nodes are deployed in different private local networks that are auto-discovered without any centralized network node, or cloud-based networks where there is a data processing cloud and multiple geographically distributed edge devices.
 
-########
 Overview
-########
+--------
 
 Following are some of the key features of *ROS 2 Router*:
 
@@ -27,9 +26,8 @@ Following are some of the key features of *ROS 2 Router*:
 
 .. figure:: /rst/figures/intro/tools/router/ddsrouter_cloud.png
 
-##########
 Next Steps
-##########
+----------
 
 Visit `eProsima DDS Router Documentation <https://eprosima-dds-router.readthedocs.io/en/latest>`_ for more information on how to configure and deploy a *ROS 2 Router* instance.
 Also feel free to review :ref:`Vulcanexus Cloud Tutorials <tutorials_cloud_cloud_tutorials>` to discover the possibilities that this tool has to offer in different scenarios.
