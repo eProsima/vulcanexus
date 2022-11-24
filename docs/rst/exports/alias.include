@@ -11,6 +11,7 @@
 .. |vulcanexus| replace:: *Vulcanexus*
 
 .. |eddsrouter| replace:: *eProsima DDS Router*
+.. |rosrouter| replace:: *ROS 2 Router*
 .. |efastdds| replace:: *eProsima Fast DDS*
 
 .. |k8s| replace:: *K8s*
