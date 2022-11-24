@@ -129,7 +129,7 @@ Now, run the |rosrouter| with the configuration file created as an argument.
 
 .. code-block:: bash
 
-    ddsrouter --config-path <path/to/file>/echo.yaml
+    ddsrouter --config-path <path/to/file>/change_domain.yaml
 
 At this point you should see some information like the one shown below.
 This indicates that the |rosrouter| has started correctly and it is currently running.
