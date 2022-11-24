@@ -43,7 +43,7 @@ After the executable is launched, a window similar to the one presented in the f
 Publishing a Topic
 ^^^^^^^^^^^^^^^^^^
 
-The Publish button allow the users to define the Shape (topic) and Quality of Service (QoS) for their publication.
+The Publish button allow the users to define the Shape (topic) and Quality of Service for their publication.
 The following image shows an example of the Publication menu.
 
 .. figure:: /rst/figures/intro/tools/shapes_demo/publish.png
@@ -132,6 +132,8 @@ The following image shows the Options Menu.
 -   **Statistics**: The user can activate *Fast DDS Statistics module* so different instrumentation data could be
     collected and analyzed by the *Fast DDS Statistics Backend*, or be represented by *Fast DDS Monitor*.
     This module requires to have compiled *Fast DDS* with Statistics Module ON (see `Fast DDS Statistics Module Documentation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/statistics/statistics.html>`_).
+
+-   **ROS**: By activating *"Use ROS 2 Topics"*, *ROS 2 Shapes Demo* automatically renames the topic name and the topic data type according to the mangling used in ROS 2.
 
 In case that the Participant is already running, it should be stopped in order to change its configuration.
 This will drop every endpoint already created.
