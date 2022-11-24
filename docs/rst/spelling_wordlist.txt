@@ -25,6 +25,7 @@ filesystem
 foonathan
 Github
 gpg
+Hemisson
 Hierro
 interoperability
 interprocess
@@ -57,6 +58,7 @@ reconnections
 Renesas
 repository
 retransmit
+Robotstadium
 ROS
 runtime
 scalable

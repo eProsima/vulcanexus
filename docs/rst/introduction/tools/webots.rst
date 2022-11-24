@@ -7,8 +7,7 @@ Webots
 It was originally developed as a research tool to investigate various control algorithms in mobile robotics.
 Since December 2018, Webots is released as an open source software under the `Apache 2.0 license <https://www.apache.org/licenses/LICENSE-2.0>`_. `Cyberbotics Ltd. <https://cyberbotics.com/>`_ maintains Webots as its main product continuously since 1998.
 
-This documentation is based on the `Webots Documnetation <https://cyberbotics.com/doc/guide/getting-started-with-webots/>`_.
-For more details, please refer to it.
+Please, refer to the original `Webots User Guide Documetation <https://cyberbotics.com/doc/guide/getting-started-with-webots/>`_ for more details on how to setup and get started with Webots.
 
 Webots offers a rapid prototyping environment, that allows the user to create 3D virtual worlds with physics properties such as mass, joints, friction coefficients, etc.
 The user can add simple passive objects or active objects called mobile robots. These robots can have different locomotion schemes (wheeled robots, legged robots, or flying robots).
@@ -57,4 +56,4 @@ Visit `Webots Documentation <https://cyberbotics.com/doc/guide/getting-started-w
 
 .. note::
 
-    © 2022 Cyberbotics Ltd. - Open Source Robot Simulator -
+    Copyright © 2022 Cyberbotics Ltd.
