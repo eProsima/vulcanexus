@@ -20,7 +20,7 @@ That is, ROS 2 nodes such as publishers and subscriptions, or clients and servic
 This tutorial explains how to use the |rosrouter| to communicate ROS 2 nodes in different Domain Ids.
 The DDS protocol define Domain Id as a parameter for every *DomainParticipant*.
 Different entities in different Domain Ids will never discover each other, and thus they will not communicate to each other.
-Using the |rosrouter| a bridge can be created between any *N* number of Domains so every node communicate with any other independing on the Domain Id they are from.
+Using the |rosrouter| as a bridge between ROS 2 Domains, every node will be able to communicate with any other node independent of the Domain where they are deployed.
 
 As already mentioned, the approach of this tutorial is straightforward and is illustrated in the following figure:
 
@@ -32,12 +32,6 @@ First, a ROS 2 ``talker`` is launched and then a ``listener`` node is started in
 This will prevent the two from communicating.
 At this point, the |rosrouter| will be deployed as a bridge between the two Domains and will enable the ``talker``-``listener`` communication.
 Please take into account that a specific configuration will be applied to the |rosrouter| in order to see its status and operation at runtime.
-
-.. note::
-
-    Communicating ROS 2 through the |rosrouter| does directly communicate the nodes in different Domains, but create a bridge to redirect all the traffic from one to the other.
-    This implies losses of performance in data communication.
-
 
 Prerequisites
 -------------
@@ -109,9 +103,17 @@ Then, create the |rosrouter| configuration file as the one shown below.
 
 .. note::
 
-    If deploying Vulcanexus from the Docker image, note that you will need to have a configuration file (config.yaml) for the DDS Router Edge accessible from your Docker container.
+    There is an available `configuration file <https://github.com/eProsima/DDS-Router/blob/main/resources/configurations/examples/change_domain.yaml>`__ in |ddsrouter| repository.
 
+.. note::
+
+    If deploying Vulcanexus from the Docker image, note that you will need to have a configuration file (config.yaml) for the |rosrouter| Edge accessible from your Docker container.
     This can be achieved by mounting a shared volume when launching the container, by copying the file from the local host to the container in case it is already running, or by editing a file from the Docker container itself.
+
+.. todo:
+
+..     Vulcanexus come already with a configuration file for changing domain from ``0`` to ``1`` installed in ``/opt/vulcanexus/humble/share/ddsrouter_tool/resources/configurations/examples/change_domain.yaml``.
+..     This file can be used in :code:`ddsrouter` command with :code:`--config-path` argument.
 
 .. literalinclude:: /resources/tutorials/cloud/change_domain/change_domain.yaml
     :language: yaml
@@ -127,7 +129,7 @@ Now, run the |rosrouter| with the configuration file created as an argument.
 
 .. code-block:: bash
 
-    ddsrouter -c <path/to/file>/echo.yaml
+    ddsrouter --config-path <path/to/file>/echo.yaml
 
 At this point you should see some information like the one shown below.
 This indicates that the |rosrouter| has started correctly and it is currently running.
