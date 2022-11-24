@@ -59,8 +59,8 @@ There are multiple parameters that the user can define in this menu:
 *   **Size**: This parameter allows to control the size of the shape.
     The size can vary between ``1`` and ``99``.
 *   **Partition**: The user can select different partitions to differentiate groups of publishers and subscribers.
-    The user can select between four partitions (``A``, ``B``, ``C`` and ``D``).
-    Additionally the user can select the ``*`` partition, that will be matched against all other partitions (see `Fast DDS Partitions Documentation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/domain/domainParticipant/partition.html?#partitions>`_).
+    The user can select *no particion* or any combination between four partitions (``A``, ``B``, ``C`` and ``D``).
+    Additionally the user can select the ``*`` partition, that will be matched against all other partitions (not only the four given here) (see `Fast DDS Partitions Documentation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/domain/domainParticipant/partition.html?#partitions>`_).
 
     .. note::
 
@@ -85,7 +85,7 @@ There are multiple parameters that the user can define in this menu:
 
 .. note::
 
-    Using Lifespan QoS will not have any visual effect.
+    Using Deadline and Lifespan QoS will not have any visual effect.
 
 Subscribing to a Topic
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -104,10 +104,6 @@ This menu is highly similar to the Publication menu but the user cannot change t
 *   **Content Based Filter**: This filter draws a rectangle in the instances window.
     Only the shapes that are included in this rectangle are accepted while the rest of them are ignored.
     The user can dynamically resize and move this content filter.
-
-.. note::
-
-    Using Lifespan QoS will not have any visual effect.
 
 Participant configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^
