@@ -6,7 +6,6 @@ Webots
 *Webots* is an open-source three-dimensional mobile robot simulator.
 It was originally developed as a research tool to investigate various control algorithms in mobile robotics.
 Since December 2018, Webots is released as an open source software under the `Apache 2.0 license <https://www.apache.org/licenses/LICENSE-2.0>`_. `Cyberbotics Ltd. <https://cyberbotics.com/>`_ maintains Webots as its main product continuously since 1998.
-
 Please, refer to the original `Webots User Guide Documetation <https://cyberbotics.com/doc/guide/getting-started-with-webots/>`_ for more details on how to setup and get started with Webots.
 
 Webots offers a rapid prototyping environment, that allows the user to create 3D virtual worlds with physics properties such as mass, joints, friction coefficients, etc.
