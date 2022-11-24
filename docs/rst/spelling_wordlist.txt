@@ -6,6 +6,7 @@ Backend
 bare-metal
 behaviour
 blinky
+conf
 combinable
 cryptographic
 cryptosystem
@@ -14,6 +15,7 @@ customizable
 Cyberbotics
 dataflow
 dataspace
+Deallocates
 decrypt
 Diffie
 entrypoint
@@ -37,6 +39,7 @@ kiB
 Kubernetes
 MBed
 metatraffic
+micro_ros_utilities_memory_conf_t
 microros
 middleware
 MTU
