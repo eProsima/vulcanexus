@@ -13,14 +13,14 @@ micro-ROS Utilities
 - micro-ROS type utils.
 - micro-ROS ``rosidl_runtime_c__String`` wrapper that reduces dynamic memory operations.
 
+.. note::
+
+    A full example can be found on how to use this API can be found `here <https://github.com/micro-ROS/micro_ros_arduino/blob/humble/examples/micro-ros_types_handling/micro-ros_types_handling.ino>`_
+
 micro-ROS String Utilities
 --------------------------
 
 This API helps developers to manage strings in micro-ROS by means of providing a set of methods that allow initialization, destruction, set, and other common operations.
-
-.. note::
-
-    A full example can be found on how to use this API can be found `here <https://github.com/micro-ROS/micro_ros_arduino/blob/humble/examples/micro-ros_types_handling/micro-ros_types_handling.ino>`_
 
 .. warning::
 
@@ -78,7 +78,7 @@ Create a ``rosidl_runtime_c__String`` from a ``char`` pointer reallocating an ac
 .. code-block:: c
 
     const char * str = "Hello World";
-    size_t size = strlen(str);
+    size_t size = strlen(str) + 1;  // Add null terminator
 
     rosidl_runtime_c__String ros_str = micro_ros_string_utilities_init_with_size(size);
     ros_str = micro_ros_string_utilities_set(ros_str, str);
@@ -185,10 +185,6 @@ micro-ROS Types Utilities
 
 This API helps developers to manage ROS types in micro-ROS. It handles the types structures recursively in order to initialize each member with the required memory size.
 
-.. note::
-
-    A full example can be found on how to use this API can be found `here <https://github.com/micro-ROS/micro_ros_arduino/blob/humble/examples/micro-ros_types_handling/micro-ros_types_handling.ino>`_
-
 micro_ros_utilities_memory_conf_t
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -201,18 +197,19 @@ Memory can be allocated in two ways:
 
 Memory allocation can be configured using configuration structure that has the following members:
 
-- ``max_string_capacity``: Maximum string capacity to use for message fields in case they don’t have a custom rule assigned to them.
-- ``max_ros2_type_sequence_capacity``: Maximum capacity to use for sequence type msg fields (ie: unbounded arrays and lists) which contain ROS 2 msg types, in case they don’t have a custom rule assigned to them.
-- ``max_basic_type_sequence_capacity``: Maximum capacity to use for sequence type msg fields (ie: unbounded arrays and lists) which contain basic types (ie: primitive field types), in case they don’t have a custom rule assigned to them.
+- ``max_string_capacity``: Maximum string capacity to use for message fields.
+- ``max_ros2_type_sequence_capacity``: Maximum capacity to use for sequence type msg fields (ie: unbounded arrays and lists) which contain ROS 2 msg types.
+- ``max_basic_type_sequence_capacity``: Maximum capacity to use for sequence type msg fields (ie: unbounded arrays and lists) which contain basic types (ie: primitive field types).
 
 .. code-block:: c
 
     static micro_ros_utilities_memory_conf_t conf = {0};
-
     // OPTIONALLY this struct can configure the default size of strings, basic sequences and composed sequences
     conf.max_string_capacity = 50;
     conf.max_ros2_type_sequence_capacity = 5;
     conf.max_basic_type_sequence_capacity = 5;
+
+All message members will follow this configuration, unless they have a custom rule assigned to them.
 
 micro_ros_utilities_type_info
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -223,13 +220,12 @@ Returns a ``rosidl_runtime_c__String`` with the type introspection data.
 
     #include <control_msgs/msg/joint_jog.h>
 
-    control_msgs__msg__JointJog msg;
     rosidl_runtime_c__String ros_str = micro_ros_utilities_type_info(ROSIDL_GET_MSG_TYPE_SUPPORT(control_msgs, msg, JointJog));
 
 micro_ros_utilities_get_static_size
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Returns the static memory size that will be used for a type.
+Returns the static memory size that will be used for a type with a given memory configuration.
 
 .. code-block:: c
 
@@ -303,7 +299,6 @@ Deallocates the dynamic memory of a message.
 
     #include <control_msgs/msg/joint_jog.h>
 
-    uint8_t my_buffer[1000];
     static micro_ros_utilities_memory_conf_t conf = {0};
 
     // OPTIONALLY this struct can configure the default size of strings, basic sequences and composed sequences
