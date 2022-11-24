@@ -9,6 +9,14 @@ A single instance of the *ROS 2 Shapes Demo* can publish on or subscribe to seve
 
 It demonstrates the capabilities of eProsima Fast DDS or as a proof of interoperability with other RTPS-compliant implementations.
 
+.. raw:: html
+
+    <video width=100% height=auto autoplay loop controls>
+        <source src="../../../_static/interoperability.mp4">
+        Your browser does not support the video tag.
+    </video>
+    <br></br>
+
 Using ROS 2 Shapes Demo
 --------------------------
 
