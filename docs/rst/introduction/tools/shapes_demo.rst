@@ -88,7 +88,7 @@ The user can customize several aspects of Shapes Demo operation:
 * Speed: This scroll bar allows the user to change how much the Shape moves between two write calls.
 
 Endpoints and Output tabs
-^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^
 .. note::
     This is under maintenance and will be updated soon.
 
