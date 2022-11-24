@@ -17,8 +17,21 @@ It demonstrates the capabilities of eProsima Fast DDS or as a proof of interoper
     </video>
     <br></br>
 
-Using ROS 2 Shapes Demo
---------------------------
+
+Running ROS 2 Shapes Demo
+-------------------------
+
+*ROS 2 Shapes Demo* application is available in the **Vulcaenxus Tools**, **Vulcanexus Base** and **Vulcanexus Desktop** packages.
+Regardless of the installation method used, to run *ROS 2 Shapes Demo*, load the Vulcanexus environment first, and then run ``shapesdemo``.
+
+.. code-block:: bash
+
+    source /opt/vulcanexus/humble/setup.bash
+    shapesdemo
+
+
+Getting started
+---------------
 
 After the executable is launched, a window similar to the one presented in the following image should be displayed.
 
