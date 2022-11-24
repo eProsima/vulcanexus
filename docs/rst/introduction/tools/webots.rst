@@ -4,17 +4,25 @@ Webots
 ======
 
 *Webots* is an open-source three-dimensional mobile robot simulator.
-It was originally developed as a research tool to investigate various control algorithms in mobile robotics. Since December 2018, Webots is released as an open source software under the `Apache 2.0 license <https://www.apache.org/licenses/LICENSE-2.0>`_. `Cyberbotics Ltd. <https://cyberbotics.com/>`_ maintains Webots as its main product continuously since 1998.
+It was originally developed as a research tool to investigate various control algorithms in mobile robotics.
+Since December 2018, Webots is released as an open source software under the `Apache 2.0 license <https://www.apache.org/licenses/LICENSE-2.0>`_. `Cyberbotics Ltd. <https://cyberbotics.com/>`_ maintains Webots as its main product continuously since 1998.
 
-This documentation is based on the `Webots Documnetation <https://cyberbotics.com/doc/guide/getting-started-with-webots/>`_. For more details, please refer to it.
+This documentation is based on the `Webots Documnetation <https://cyberbotics.com/doc/guide/getting-started-with-webots/>`_.
+For more details, please refer to it.
 
-Webots offers a rapid prototyping environment, that allows the user to create 3D virtual worlds with physics properties such as mass, joints, friction coefficients, etc. The user can add simple passive objects or active objects called mobile robots. These robots can have different locomotion schemes (wheeled robots, legged robots, or flying robots). Moreover, they may be equipped with a number of sensor and actuator devices, such as distance sensors, drive wheels, cameras, motors, touch sensors, emitters, receivers, etc. Finally, the user can program each robot individually to exhibit the desired behavior. Webots contains a large number of robot models and controller program examples to help users get started.
-Webots also contains a number of interfaces to real mobile robots, so that once your simulated robot behaves as expected, you can transfer its control program to a real robot like e-puck, DARwIn-OP, Nao, etc. Adding new interfaces is possible through the related system.
+Webots offers a rapid prototyping environment, that allows the user to create 3D virtual worlds with physics properties such as mass, joints, friction coefficients, etc.
+The user can add simple passive objects or active objects called mobile robots. These robots can have different locomotion schemes (wheeled robots, legged robots, or flying robots).
+Moreover, they may be equipped with a number of sensor and actuator devices, such as distance sensors, drive wheels, cameras, motors, touch sensors, emitters, receivers, etc.
+Finally, the user can program each robot individually to exhibit the desired behavior.
+Webots contains a large number of robot models and controller program examples to help users get started.
+Webots also contains a number of interfaces to real mobile robots, so that once your simulated robot behaves as expected, you can transfer its control program to a real robot like e-puck, DARwIn-OP, Nao, etc.
+Adding new interfaces is possible through the related system.
 
 What can I do with Webots?
 --------------------------
 
-Webots is well suited for research and educational projects related to mobile robotics. Many mobile robotics projects have relied on Webots for years in the following areas:
+Webots is well suited for research and educational projects related to mobile robotics.
+Many mobile robotics projects have relied on Webots for years in the following areas:
 
 * Mobile robot prototyping (academic research, the automotive industry, aeronautics, the vacuum cleaner industry, the toy industry, hobbyists, etc.).
 * Robot locomotion research (legged, humanoids, quadrupeds robots, etc.).
