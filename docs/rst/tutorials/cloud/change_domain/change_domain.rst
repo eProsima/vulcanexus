@@ -20,7 +20,7 @@ That is, ROS 2 nodes such as publishers and subscriptions, or clients and servic
 This tutorial explains how to use the |rosrouter| to communicate ROS 2 nodes in different Domain Ids.
 The DDS protocol define Domain Id as a parameter for every *DomainParticipant*.
 Different entities in different Domain Ids will never discover each other, and thus they will not communicate to each other.
-Using the |rosrouter| as a bridge between ROS 2 Domains, every node will be able to communicate with any other node independent of the Domain where they are deployed.
+Using the |rosrouter| as a bridge between ROS 2 Domains, every node will be able to communicate with any other node independently of the Domain where they are deployed.
 
 As already mentioned, the approach of this tutorial is straightforward and is illustrated in the following figure:
 
@@ -31,7 +31,6 @@ This tutorial will use the ``demo_nodes_cpp`` package, available in the Vulcanex
 First, a ROS 2 ``talker`` is launched and then a ``listener`` node is started in a different ROS 2 Domain.
 This will prevent the two from communicating.
 At this point, the |rosrouter| will be deployed as a bridge between the two Domains and will enable the ``talker``-``listener`` communication.
-Please take into account that a specific configuration will be applied to the |rosrouter| in order to see its status and operation at runtime.
 
 Prerequisites
 -------------
