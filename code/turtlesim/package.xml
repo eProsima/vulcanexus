@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>turtlesim_square_move</name>
+  <name>docs_turtlesim</name>
   <version>1.4.2</version>
   <description>
     turtlesim is a tool made for teaching ROS and ROS packages.
