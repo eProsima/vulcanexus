@@ -13,6 +13,7 @@ The following are the tutorials that make up this course on communication in dis
     :maxdepth: 1
 
     change_domain/change_domain
+    change_domain_discovery_server/change_domain_discovery_server
     debug_ros2_router/debug_ros2_router
     kubernetes/kubernetes
     wan_edge_cloud/wan_edge_cloud

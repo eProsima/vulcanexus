@@ -1,0 +1,22 @@
+version: v3.0
+
+participants:
+
+  - name: ROS_2_Domain_0
+    kind: local
+    domain: 0
+
+  - name: ROS_2_ds_client
+    kind: local-discovery-server
+
+    discovery-server-guid:
+      ros-discovery-server: true
+      id: 2
+
+    connection-addresses:
+      - discovery-server-guid:
+          ros-discovery-server: true
+          id: 1
+        addresses:
+          - domain: localhost
+            port: 11666
