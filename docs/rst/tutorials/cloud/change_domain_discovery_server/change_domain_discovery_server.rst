@@ -56,7 +56,7 @@ Discovery Server
 Some networks do not support multicast, or are so big that discovering the whole network implies high amount of time.
 In this cases, a new *Discovery Mechanism* specific of |fastdds| can be used, called **Discovery Server Discovery Mechanism**.
 This mechanisms uses a *Server* or network of *Servers* that centralize the discovery traffic and distributes it to only the required entities, while the communication still occurs *Peer to Peer*.
-In order to know more about *Discovery Server*, please refer to `Fast DDS Documentation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery_server.html>`__ or check :ref:`this tutorial <internal ref>` about how to configure and use *Discovery Server*.
+In order to know more about *Discovery Server*, please refer to `Fast DDS Documentation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery_server.html>`__ or check :doc:`this tutorial <../../../../ros2_documentation/source/Tutorials/Advanced/Discovery-Server/Discovery-Server>` about how to configure and use *Discovery Server*.
 
 
 Prerequisites
