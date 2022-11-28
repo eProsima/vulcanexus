@@ -12,19 +12,15 @@ find_package(rclcpp REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(std_srvs REQUIRED)
+find_package(turtlesim REQUIRED)
 
-rosidl_generate_interfaces(${PROJECT_NAME}
-  "msg/Pose.msg")
+add_executable(turtlesim_square_move src/SquareMove.cpp)
 
-rosidl_get_typesupport_target(cpp_typesupport_target "${PROJECT_NAME}" "rosidl_typesupport_cpp")
+ament_target_dependencies(turtlesim_square_move "ament_index_cpp" "geometry_msgs" "rclcpp" "std_msgs" "std_srvs" "turtlesim")
 
-add_executable(square_move src/SquareMove.cpp)
+target_link_libraries(turtlesim_square_move "${cpp_typesupport_target}")
 
-ament_target_dependencies(square_move "ament_index_cpp" "geometry_msgs" "rclcpp" "std_msgs" "std_srvs")
-
-target_link_libraries(square_move "${cpp_typesupport_target}")
-
-install(TARGETS square_move
+install(TARGETS turtlesim_square_move
   DESTINATION lib/${PROJECT_NAME})
 
 ament_package()

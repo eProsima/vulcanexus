@@ -13,6 +13,10 @@
   <license>BSD</license>
   <license file="LICENSE">Apache 2.0</license>
 
+  <author email="dthomas@osrfoundation.org">Dirk Thomas</author>
+  <author>Josh Faust</author>
+  <author email="mabel@openrobotics.org">Mabel Zhang</author>
+  <author email="sloretz@openrobotics.org">Shane Loretz</author>
   <author email="raul@eprosima.com">Raúl Sánchez-Mateos</author>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
