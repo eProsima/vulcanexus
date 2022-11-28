@@ -235,13 +235,13 @@ And finally, run the application:
 
         .. code-block:: bash
 
-            ros2 run turtlesim turtlesim_square_move
+            ros2 run docs_turtlesim turtlesim_square_move
 
     .. tab:: LAN
 
         .. code-block:: bash
 
-            ROS_DOMAIN_ID=1 ros2 run turtlesim turtlesim_square_move
+            ROS_DOMAIN_ID=1 ros2 run docs_turtlesim turtlesim_square_move
 
         .. note::
 
