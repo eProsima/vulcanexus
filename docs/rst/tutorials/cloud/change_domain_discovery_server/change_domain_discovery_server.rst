@@ -17,9 +17,9 @@ Background
 *eProsima ROS 2 Router*, a.k.a `DDS Router <https://github.com/eProsima/DDS-Router>`__, is an end-user software application that enables the connection of distributed ROS 2 networks (see |rosrouter| documentation :ref:`here <vulcanexus_router>`).
 That is, ROS 2 nodes such as publishers and subscriptions, or clients and services, deployed in one geographic location and using a dedicated local network will be able to communicate with other ROS 2 nodes deployed in different geographic areas on their own dedicated local networks as if they were all on the same network through the use of |rosrouter|.
 
-This tutorial explains how to connect ROS 2 nodes using :ref:`Simple Discovery <tutorials_router_change_domain_to_discovery_server_simple_discovery>` with other nodes that are connected vua :ref:`Discovery Server <tutorials_router_change_domain_to_discovery_server_discovery_server>`.
+This tutorial explains how to connect ROS 2 nodes using :ref:`Simple Discovery <tutorials_router_change_domain_to_discovery_server_simple_discovery>` with other nodes that are connected via :ref:`Discovery Server <tutorials_router_change_domain_to_discovery_server_discovery_server>`.
 These entities are unable to discover each other if using different discovery mechanisms, and thus they will not communicate to each other.
-Using the |rosrouter| as a bridge between these 2 mechanisms, every node will be able to communicate with any other node independently of the Domain where they are deployed.
+Using the |rosrouter| as a bridge between these 2 discovery mechanisms, every node will be able to communicate with any other node independently of the Domain where they are deployed or the Discovery Server to which they connect.
 
 As already mentioned, the approach of this tutorial is straightforward and is illustrated in the following figure:
 
@@ -33,15 +33,15 @@ This will prevent the two from communicating.
 At this point, the |rosrouter| will be deployed as a bridge between the two discovery mechanisms and will enable the ``talker``-``listener`` communication.
 
 DDS Discovery Mechanisms
-------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^
 
-The *DDS* protocol define different `Discovery Mechanisms <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery.html#discovery-mechanisms>`__ so *Domain Participants* will discover each other automatically.
+The *DDS* protocol define different `Discovery Mechanisms <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery.html#discovery-mechanisms>`__ in order to DDS Participants discover each other automatically.
 This mechanism can be configured by the user.
 
 .. _tutorials_router_change_domain_to_discovery_server_simple_discovery:
 
 Simple Discovery
-^^^^^^^^^^^^^^^^
+""""""""""""""""
 
 This mechanism is the standard behavior of DDS and it uses multicast capabilities so every Node discovers any other node in the network and all its *Endpoints*.
 This is the mechanism used by default in ROS 2.
@@ -51,12 +51,12 @@ Please, check the following :ref:`tutorial <tutorials_router_change_domain>` to 
 .. _tutorials_router_change_domain_to_discovery_server_discovery_server:
 
 Discovery Server
-^^^^^^^^^^^^^^^^
+""""""""""""""""
 
 Some networks do not support multicast, or are so big that discovering the whole network implies high amount of time.
 In this cases, a new *Discovery Mechanism* specific of |fastdds| can be used, called **Discovery Server Discovery Mechanism**.
-This mechanisms uses a *Server* or network of *Servers* that centralize the discovery traffic and distributes it to only the required Nodes, while the communication still occurs *Peer to Peer*.
-In order to know more about *Discovery Server*, please refer to `Fast DDS Documentation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery_server.html>`__ or check a tutorial on how to use it `<https://docs.vulcanexus.org/en/latest/ros2_documentation/source/Tutorials/Advanced/Discovery-Server/Discovery-Server.html>`__ .
+This mechanisms uses a *Server* or network of *Servers* that centralize the discovery traffic and distributes it to only the required entities, while the communication still occurs *Peer to Peer*.
+In order to know more about *Discovery Server*, please refer to `Fast DDS Documentation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery_server.html>`__ or check :ref:`this tutorial <internal ref>` about how to configure and use *Discovery Server*.
 
 
 Prerequisites
@@ -71,7 +71,7 @@ It is required to have previously installed Vulcanexus using one of the followin
 Deploy ROS 2 nodes
 ------------------
 
-First let's run the ROS 2 ``Discoery Server`` and afterwards the ``talker`` and ``listener`` nodes.
+First let's run the ROS 2 ``Discovery Server`` and afterwards the ``talker`` and ``listener`` nodes.
 
 Environment setup
 ^^^^^^^^^^^^^^^^^
@@ -129,7 +129,7 @@ Once the environment has been setup using one of the above options, run the ROS 
     ros2 run demo_nodes_cpp talker
 
 Then, on another terminal, run the ROS 2 ``listener`` node in ROS 2 using ``ROS_DISCOVERY_SERVER`` environment variable to connect it with the server.
-The IP and port must coincide with the ones set in the server :ref:`this step <tutorials_router_change_domain_to_discovery_server_run_discovery_server>`.
+The IP and port must match with the ones set in the server (:ref:`check here <tutorials_router_change_domain_to_discovery_server_run_discovery_server>`).
 
 .. code-block:: bash
 
@@ -144,7 +144,7 @@ Deploy ROS 2 Router
 -------------------
 
 Then, create the |rosrouter| configuration file as the one shown below.
-The IP and port of the connection of the |rosrouter| participant configured in this configuration file must coincide with the ones set in the server :ref:`this step <tutorials_router_change_domain_to_discovery_server_run_discovery_server>`.
+The IP and port of the connection of the |rosrouter| participant configured in this configuration file must match with the ones set in the server (:ref:`check here <tutorials_router_change_domain_to_discovery_server_run_discovery_server>`).
 
 .. note::
 
@@ -157,8 +157,10 @@ The IP and port of the connection of the |rosrouter| participant configured in t
 
 .. todo:
 
-..     Vulcanexus come already with a configuration file for this use case ``/opt/vulcanexus/humble/share/ddsrouter_tool/resources/configurations/examples/ros_discovery_client.yaml``.
+..     Vulcanexus comes already with a configuration file for this use case ``/opt/vulcanexus/humble/share/ddsrouter_tool/resources/configurations/examples/ros_discovery_client.yaml``.
 ..     This file can be used in :code:`ddsrouter` command with :code:`--config-path` argument.
+
+..     When using this, be careful with the DS ids. They should match this tutorial.
 
 .. literalinclude:: /resources/tutorials/cloud/change_domain_to_ds/change_domain_client.yaml
     :language: yaml
@@ -174,7 +176,7 @@ Now, run the |rosrouter| with the configuration file created as an argument.
 
 .. code-block:: bash
 
-    ddsrouter --config-path <path/to/file>/change_domain_client.yaml
+    ddsrouter --config-path <path/to/file>/simple_ds_bridge.yaml
 
 At this point you should see some information like the one shown below.
 This indicates that the |rosrouter| has started correctly and it is currently running.
@@ -184,14 +186,14 @@ This indicates that the |rosrouter| has started correctly and it is currently ru
     Starting DDS Router Tool execution.
     DDS Router running.
 
-In order to close the execution, just press ^C or send a signal (:code:`SIGINT 2` or :code:`SIGTERM 15`) to close it.
+In order to close the execution, just press ``Ctrl`` + ``C`` or send a signal (:code:`SIGINT 2` or :code:`SIGTERM 15`) to close it.
 
-Deploy ROS 2 Router as Discovery Server
----------------------------------------
+Alternative deployment: ROS 2 Router as DS Server
+-------------------------------------------------
 
 The |rosrouter| can also work as the *Discovery Server* itself, working as a reliable stable node in the network that distribute discovery traffic and communicate multiple networks.
-Just adding ``listening-addresses`` to a discovery server |rosrouter| Participant will make it behave as a Discovery Server.
-In the following figure we could see the use case and the configuration required for communicating 4 different Domains.
+Just adding ``listening-addresses`` to a discovery server |rosrouter| Participant will make it behave as a *Discovery Server*.
+In the following figure shows this specific use case and the configuration required for communicating a ROS 2 Domain with a Discovery Server network established by the |rosrouter|.
 
 .. figure:: /rst/figures/tutorials/cloud/change_domain_server.png
    :align: center
