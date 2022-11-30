@@ -370,9 +370,10 @@ Message initialization
 ----------------------
 
 Before using any of the types involved in goal request, cancel or feedback, it may be necessary to initialize its memory for types with strings or sequences.
-Check the `Handling messages memory tutorial <https://micro.ros.org/docs/tutorials/advanced/handling_type_memory>`_ on micro-ROS webpage for details.
 
-.. TODO(pgarrido): replace this tutorial with the one in vulcanexus when available
+.. note::
+
+    Check the :ref:`Handling messages memory tutorial <tutorials_micro_memory_management_message_memory>` for details.
 
 Cleaning Up
 -----------

@@ -293,8 +293,9 @@ Memory requirements
 
 The parameter server uses five services and an optional publisher. These need to be taken into account on the `rmw_microxrcedds` package memory configuration:
 
-.. TODO(pgarrido): Add link to memory conf tutorial when ready
+.. note::
 
+    Check :ref:`micro-ROS memory management for entity creating tutorial <tutorials_micro_memory_management_middleware_entity_creation>` for more information.
 
 
 .. code-block:: python

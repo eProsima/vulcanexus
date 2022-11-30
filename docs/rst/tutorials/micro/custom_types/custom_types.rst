@@ -154,5 +154,7 @@ And finally, the new member can be accessed in the custom type:
 
   ...
 
-.. TODO(pgarrido): add link here to memory handling tutorial and a reference for initializing the created types
+.. note::
+
+    More details on how to handle micro-ROS types memory can be found on :ref:`Handling messages memory tutorial <tutorials_micro_memory_management_message_memory>`.
 
