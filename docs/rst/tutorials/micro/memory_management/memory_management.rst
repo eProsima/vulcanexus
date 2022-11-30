@@ -11,13 +11,13 @@ Memory management
 micro-ROS Client provides a full control over the memory usage during build, configuration and runtime.
 This is one the most important requisites in order to fit in low resources system and also in order to guarantee a hard real-time operation.
 
-The memory management in micro-ROS Client can be tunned at multiple levels so the user can use different mechanisms for fitting its requirements within the micro-ROS environment.
+The memory management in micro-ROS Client can be configured at multiple levels so the user can use different mechanisms for fitting its requirements within the micro-ROS environment.
 
 In general, micro-ROS by default will use:
 
 * Static allocated memory in **build time**
 * A bounded stack memory consumption
-* A bounded ammount of **dynamic memory** during entity creation and destruction (configuration time)
+* A bounded amount of **dynamic memory** during entity creation and destruction (configuration time)
 * Zero **dynamic memory** during runtime
 
 
@@ -127,7 +127,7 @@ One example implementation of the most basic allocator that targets platforms wh
         size = align_size(size);
         size_t p = current_pointer;
         current_pointer += size;
-        // Careful! pointer have less than size memory, garbage is can be copied!
+        // Careful! pointer may have less than size memory, garbage can be copied!
         memcpy(&heap[p], pointer, size);
         assert_position();
         return (void *) &heap[p];
@@ -196,16 +196,16 @@ Middleware related memory
 
 By means of the following build flags, the user can configure the behavior of communication buffers:
 
-- ``RMW_UXRCE_STREAM_HISTORY``: Maximum number of buffers of size ``UCLIENT_[XXX]_TRANSPORT_MTU`` that the XRCE-DDS layer is privided with. **It shall be power of 2**. Default value: 4.
+- ``RMW_UXRCE_STREAM_HISTORY``: Maximum number of buffers of size ``UCLIENT_[XXX]_TRANSPORT_MTU`` that the XRCE-DDS layer is provided with. **It shall be power of 2**. Default value: 4.
 - ``RMW_UXRCE_STREAM_HISTORY_INPUT``: Override for ``RMW_UXRCE_STREAM_HISTORY`` for input buffers. Default value: ``RMW_UXRCE_STREAM_HISTORY``.
 - ``RMW_UXRCE_STREAM_HISTORY_OUTPUT``: Override for ``RMW_UXRCE_STREAM_HISTORY`` for output buffers. Default value: ``RMW_UXRCE_STREAM_HISTORY``.
 - ``RMW_UXRCE_MAX_HISTORY``: Maximum number of slots for storing incoming data between ``wait()`` and ``take()`` operations at RMW layer. It size is ``UCLIENT_[XXX]_TRANSPORT_MTU * RMW_UXRCE_STREAM_HISTORY[_INPUT]``  Default value: 8.
 
 .. note::
 
-    When using Best Effort entities, the maximum serialized size of a topic shall fit in ``UCLIENT_[XXX]_TRANSPORT_MTU`` both for outcoming and incoming data.
+    When using Best Effort entities, the maximum serialized size of a topic shall fit in ``UCLIENT_[XXX]_TRANSPORT_MTU`` both for outgoing and incoming data.
 
-    When using Reliable entities, the maximum serialized size of a topic shall fit in ``UCLIENT_[XXX]_TRANSPORT_MTU * RMW_UXRCE_STREAM_HISTORY`` both for outcoming and incoming data.
+    When using Reliable entities, the maximum serialized size of a topic shall fit in ``UCLIENT_[XXX]_TRANSPORT_MTU * RMW_UXRCE_STREAM_HISTORY`` both for outgoing and incoming data.
 
     When receiving data, and all ``RMW_UXRCE_MAX_HISTORY`` are occupied, the reception entity behavior is determined by History QoS.
 
@@ -226,7 +226,7 @@ Message memory
 
 Message memory handling is an important part of the micro-ROS Client memory handling due to the fact that **micro-ROS Client does not initialized by default the type memory**.
 This means that the user must initialize the type memory before using it.
-This consideration needs to be taken into account both for outcoming and incoming messages.
+This consideration needs to be taken into account both for outgoing and incoming messages.
 
 .. warning::
 
