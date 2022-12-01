@@ -295,50 +295,10 @@ Details on how to implement this transports can be found in :ref:`Custom Transpo
     In the most common use case both parts are communicated using serial ports or UDP sockets.
     That means that only Client side transport shall be implemented and the Agent side transport can be used as it is provided.
 
+.. _tutorials_micro_custom_platforms_allocators:
+
 Allocators
 ^^^^^^^^^^
 
-As in the ROS 2 stack, in the micro-ROS stack the dynamic memory allocators can be customized at runtime.
-By default those allocators relies on the ``libc`` implementation of ``malloc``, ``calloc``, ``realloc`` and ``free`` functions.
-However, in some platforms those functions are not available or not encouraged to be used and they can be replaced by platform specific functions.
-One example of this situation is `FreeRTOS allocators <https://www.freertos.org/a00111.html>`_.
-
-An example on how to set custom allocators at runtime when using RCUTILS API is:
-
-.. code-block:: c
-
-  allocator = rcutils_get_zero_initialized_allocator();
-  allocator.allocate = custom_allocate;
-  allocator.deallocate = custom_deallocate;
-  allocator.reallocate = custom_reallocate;
-  allocator.zero_allocate = custom_zero_allocate;
-
-  rcutils_set_default_allocator(&allocator);
-
-A reference implementation of those allocators is:
-
-.. code-block:: c
-
-  void * custom_allocate(size_t size, void * state)
-  {
-    // Allocate and return a memory chunk of `size` bytes.
-  }
-
-  void custom_deallocate(void * pointer, void * state)
-  {
-    // Deallocate memory chunk pointed by `pointer`.
-  }
-
-  void * custom_reallocate(void * pointer, size_t size, void * state)
-  {
-    // Reallocate memory chunk pointed by `pointer` to `size` bytes.
-  }
-
-  void * custom_zero_allocate(size_t number_of_elements, size_t size_of_element, void * state)
-  {
-    // Allocate and return a memory chunk of `number_of_elements * size_of_element` bytes, filled with zeros.
-  }
-
-
-.. TODO(pgarrido): reference here the handling memory section
+More details about micro-ROS allocators are provided at :ref:`Memory management allocators tutorial <tutorials_micro_memory_management_allocators>`.
 

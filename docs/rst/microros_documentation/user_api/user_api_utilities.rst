@@ -180,6 +180,8 @@ Destroys a ``rosidl_runtime_c__String``.
      - Yes
 
 
+.. _tutorials_micro_utilities_type_utilities:
+
 micro-ROS Types Utilities
 -------------------------
 

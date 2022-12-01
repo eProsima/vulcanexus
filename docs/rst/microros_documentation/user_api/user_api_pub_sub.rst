@@ -155,9 +155,10 @@ Message initialization
 ----------------------
 
 Before publishing or receiving a message, it may be necessary to initialize its memory for types with strings or sequences.
-Check the `Handling messages memory tutorial <https://micro.ros.org/docs/tutorials/advanced/handling_type_memory>`_ on micro-ROS web page for details.
 
-.. TODO(acuadros95): Add reference to future "Handling messages memory" tutorial
+.. note::
+
+    Check the :ref:`Handling messages memory tutorial <tutorials_micro_memory_management_message_memory>` for details.
 
 Cleaning Up
 -----------
