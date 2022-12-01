@@ -9,9 +9,9 @@ Memory management
     :backlinks: none
 
 micro-ROS Client provides a full control over the memory usage during build, configuration and runtime.
-This is one the most important requisites in order to fit in low resources system and also in order to guarantee a hard real-time operation.
+This is one of the most important requisites in order to fit in low resources system and to guarantee a hard real-time behaviour.
 
-The memory management in micro-ROS Client can be configured at multiple levels so the user can use different mechanisms for fitting its requirements within the micro-ROS environment.
+Memory management in micro-ROS Client can be configured at multiple levels so the user can use different mechanisms for fitting its requirements within the micro-ROS environment.
 
 In general, micro-ROS by default will use:
 
