@@ -8,7 +8,7 @@ Memory management
     :local:
     :backlinks: none
 
-micro-ROS Client provides a full control over the memory usage during build, configuration and runtime.
+micro-ROS Client provides full control over the memory usage during build, configuration and runtime.
 This is one of the most important requisites in order to fit in low resources system and to guarantee a hard real-time behaviour.
 
 Memory management in micro-ROS Client can be configured at multiple levels so the user can use different mechanisms for fitting its requirements within the micro-ROS environment.
@@ -24,7 +24,7 @@ In general, micro-ROS by default will use:
 .. TODO(pgarrido): Link to profiling article
 
 
-During a micro-ROS Client application development the user is able configure the memory at multiple level.
+During a micro-ROS Client application development the user is able to configure the memory at multiple levels.
 Along the following sections, those levels are analyzed in detail.
 
 .. _tutorials_micro_memory_management_allocators:
@@ -32,7 +32,7 @@ Along the following sections, those levels are analyzed in detail.
 Allocators
 ----------
 
-As in the ROS 2 stack, in the micro-ROS stack the dynamic memory allocators can be customized at runtime.
+As in the ROS 2 stack, micro-ROS dynamic memory allocators can be customized at runtime.
 By default those allocators relies on the ``libc`` implementation of ``malloc``, ``calloc``, ``realloc`` and ``free`` functions.
 However, in some platforms those functions are not available or not encouraged to be used and they can be replaced by platform specific functions.
 One example of this situation is `FreeRTOS allocators <https://www.freertos.org/a00111.html>`_.
@@ -105,6 +105,7 @@ One example implementation of the most basic allocator that targets platforms wh
         if (size % SYSTEM_ALIGNMENT != 0) {
             size += SYSTEM_ALIGNMENT - (size % SYSTEM_ALIGNMENT);
         }
+        return size;
     }
 
     void * custom_allocate(size_t size, void * state)
@@ -319,7 +320,7 @@ In that sense, a developer that instantiate a ``mypackage__msg__MyType mymsg;`` 
 
     // Filling some data
     for(int32_t i = 0; i < 3; i++){
-        mymsg.values.data = i;
+        mymsg.values.data[i] = i;
         mymsg.values.size++;
     }
 
@@ -390,11 +391,11 @@ In this case, the generated structure will be:
 
     typedef struct mypackage__msg__MyComplexType
     {
-    std_msgs__msg__Header__Sequence multiheaders;
-    rosidl_runtime_c__int32__Sequence values;
-    double duration;
-    int8 coefficients[10];
-    rosidl_runtime_c__String name;  // equal to rosidl_runtime_c__char__Sequence
+        std_msgs__msg__Header__Sequence multiheaders;
+        rosidl_runtime_c__int32__Sequence values;
+        double duration;
+        int8 coefficients[10];
+        rosidl_runtime_c__String name;  // equal to rosidl_runtime_c__char__Sequence
     } mypackage__msg__MyComplexType;
 
 In this case ``multiheaders`` is a **sequence type of compound type member**.
@@ -411,7 +412,7 @@ It shall be handled correctly and recursively by the user, as in the following e
 
     // Filling some data
     for(int32_t i = 0; i < 3; i++){
-        mymsg.values.data = i;
+        mymsg.values.data[i] = i;
 
         // Add memory to this sequence element frame_id
         mymsg.multiheaders.data[i].frame_id.capacity = 100;
@@ -420,7 +421,7 @@ It shall be handled correctly and recursively by the user, as in the following e
 
         // Assigning value to the frame_id char sequence
         strcpy(mymsg.multiheaders.data[i].frame_id.data, "Hello World");
-        mymsg.multiheaders.data[i].frame_id.size = strlen(mymsg.multiheaders.data[i].frame_id.data);
+        mymsg.multiheaders.data[i].frame_id.size = strlen(mymsg.multiheaders.data[i].frame_id.data) + 1;
 
         // Assigning value to other members
         mymsg.multiheaders.data[i].stamp.sec = 10;
