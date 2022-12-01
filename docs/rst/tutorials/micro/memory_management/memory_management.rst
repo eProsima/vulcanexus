@@ -75,11 +75,6 @@ A reference implementation of those allocators is:
 
 One example implementation of the most basic allocator that targets platforms where no ``libc`` allocators are available is:
 
-.. note::
-
-  This is a naive implementation of an allocator that does not allows memory deallocation.
-  User shall be aware of using `free_all_heap()` when the micro-ROS entities are no longer required.
-
 .. code-block:: c
 
     static uint8_t heap[HEAP_SIZE];
@@ -144,6 +139,11 @@ One example implementation of the most basic allocator that targets platforms wh
         assert_position();
         return (void *) &heap[p];
     }
+
+.. note::
+
+  This is a naive implementation of an allocator that does not allows memory deallocation.
+  User shall be aware of using `free_all_heap()` when the micro-ROS entities are no longer required.
 
 Middleware memory
 -----------------
@@ -229,7 +229,7 @@ Message memory handling is an important part of the micro-ROS Client memory hand
 This means that the user must initialize the type memory before using it.
 This consideration needs to be taken into account both for outgoing and incoming messages.
 
-.. warning::
+.. note::
 
     micro-ROS provides an API for initializing the type memory that can be found in :ref:`micro-ROS Types Utilities<tutorials_micro_utilities_type_utilities>`.
 
