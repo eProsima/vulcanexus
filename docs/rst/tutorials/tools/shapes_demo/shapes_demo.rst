@@ -1,7 +1,7 @@
 .. _tutorials_tools_shapes_demo:
 
-ROS 2 Shapes Demo Tutorials
-===========================
+Functionalities of ROS 2 Shapes Demo
+====================================
 
 .. contents::
     :depth: 2
@@ -61,7 +61,7 @@ Initiate *ROS 2 Shapes Demo* running the following command:
 Tutorials
 ---------
 
-This tutorials present step-by-step instructions to test the funcionality provided by ROS 2 Shapes demo.
+This tutorials present step-by-step instructions to test the functionalities provided by ROS 2 Shapes demo.
 
 Discovery and basic connectivity
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -239,6 +239,7 @@ First, launch two instances and create a publisher and a subscriber:
    - Select SQUARE option for Shape and RED for Color.
    - Select ``AUTOMATIC`` for liveliness kind.
    - Set Lease Duration to 150. (The default write rate is 75 ms)
+   - Set Announcement Period to 140.
 
 2. Create a square subscriber:
 
@@ -249,8 +250,8 @@ First, launch two instances and create a publisher and a subscriber:
    - Set a value for the Lease Duration higher or equal to the one stated for the publisher.
      (If the value of subscriber lease duration is lower the entities do not match)
 
-.. note::
-    Add figure.
+.. figure:: /rst/figures/tutorials/tools/shapes_demo/liveliness_1.png
+    :align: center
 
 The *Output Tab* of Instance2 shows that the subscriber has recovered the liveliness once it
 matches with the publisher.
@@ -258,8 +259,8 @@ matches with the publisher.
 Then, kill the process corresponding to the publisher (Instance1).
 As a result, the subscriber reported that liveliness was lost, as the publisher did not terminate cleanly.
 
-.. note::
-    Add figure.
+.. figure:: /rst/figures/tutorials/tools/shapes_demo/liveliness_2.png
+    :align: center
 
 Content Based Filter
 ^^^^^^^^^^^^^^^^^^^^
