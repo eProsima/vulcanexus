@@ -69,17 +69,17 @@ public:
             return false;
         }
 
-        type_.register_type(participant_);
-
-        subscriber_ = participant_->create_subscriber(eprosima::fastdds::dds::SUBSCRIBER_QOS_DEFAULT);
-        if (subscriber_ == nullptr)
-        {
-            return false;
-        }
+        participant_->register_type(type_);
 
         topic_ = participant_->create_topic("rt/HelloWorld",
                         type_.get_type_name(), eprosima::fastdds::dds::TOPIC_QOS_DEFAULT);
         if (topic_ == nullptr)
+        {
+            return false;
+        }
+
+        subscriber_ = participant_->create_subscriber(eprosima::fastdds::dds::SUBSCRIBER_QOS_DEFAULT);
+        if (subscriber_ == nullptr)
         {
             return false;
         }

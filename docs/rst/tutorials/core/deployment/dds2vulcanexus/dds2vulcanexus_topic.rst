@@ -127,7 +127,7 @@ Inspecting the `CMakeLists.txt` file downloaded in :ref:`dds2vulcanexus_topic_pr
     :language: CMake
     :lines: 30-57
 
-In particular, the type related code is generated in
+In particular, the type related code is generated in:
 
 .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/CMakeLists.txt
     :language: CMake
@@ -158,12 +158,14 @@ To use the type generated from the IDL, three things are done:
         .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/vulcanexus_app/publisher.cpp
                 :language: c++
                 :lines: 50
+                :dedent: 2
 
     2. Then, upon construction, it instantiates the publisher, assigning it to the shared pointer class data member:
 
         .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/vulcanexus_app/publisher.cpp
                 :language: c++
                 :lines: 35
+                :dedent: 4
 
 3. Publish data on the topic.
    In this case, the ``HelloWorldPublisher`` is using a wall timer to have periodic publications:
@@ -173,17 +175,105 @@ To use the type generated from the IDL, three things are done:
             .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/vulcanexus_app/publisher.cpp
                 :language: c++
                 :lines: 51
+                :dedent: 2
 
         2. ``HelloWorldPublisher``, upon construction, creates said wall timer, which is used to publish data:
 
             .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/vulcanexus_app/publisher.cpp
                 :language: c++
                 :lines: 37-45
+                :dedent: 4
 
 .. _dds2vulcanexus_topic_fastdds:
 
 Fast DDS Application
 --------------------
+
+Much like the Vulcanexus application, the native Fast DDS one consists on two parts:
+
+1. The generated type related code (a.k.a type support).
+2. The application code
+
+.. _dds2vulcanexus_topic_fastdds_generation:
+
+Fast DDS Application - Type generation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In the case of Fast DDS, the type support is generated from the `HelloWorld.idl` file using `*Fast DDS-Gen* <https://fast-dds.docs.eprosima.com/en/latest/fastddsgen/introduction/introduction.html>`_.
+
+In this tutorial, the Fast DDS type support is generated within the `CMakeLists.txt` file for the sake of completion and simplicity, but it can be generated as a pre-build step instead.
+Inspecting the `CMakeLists.txt` file downloaded in :ref:`dds2vulcanexus_topic_prerequisites`, the following CMake code pertains the native Fast DDS subscriber:
+
+.. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/CMakeLists.txt
+    :language: CMake
+    :lines: 59-93
+
+In particular, the type generation related code is:
+
+.. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/CMakeLists.txt
+    :language: CMake
+    :lines: 65-82
+
+The call to *Fast DDS-Gen* within ``add_custom_command`` will generate the type support in the `fastdds_app` directory, leaving the file names in a convenient ``GENERATED_TYPE_SUPPORT_FILES`` CMake variable that is later used to add the source files to the executable.
+It is important to note the *Fast DDS-Gen* is called with the `-typeros2` flag, so it generates ROS 2 compatible type names.
+
+.. _dds2vulcanexus_topic_fastdds_c++:
+
+Fast DDS Application - C++
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The native Fast DDS subscriber is as follows:
+
+.. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/fastdds_app/subscriber.cpp
+    :language: c++
+
+There are several things to unpack in this application:
+
+1. ``HelloWorldSubscriber`` holds both a reference to the type support, to create the topic, and a ``HelloWorld`` sample instance for reusing it upon reception.
+
+    .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/fastdds_app/subscriber.cpp
+        :language: c++
+        :lines: 115-116
+        :dedent: 4
+
+    1. The type support is instantiated upon construction:
+
+        .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/fastdds_app/subscriber.cpp
+            :language: c++
+            :lines: 37-42
+            :dedent: 4
+
+    2. Then, it is registered in the ``DomainParticipant`` for further use:
+
+        .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/fastdds_app/subscriber.cpp
+            :language: c++
+            :lines: 72
+            :dedent: 8
+
+2. The topic is created with name ``rt/HelloWorld``.
+   Mind that this topic name is different from the one set in the Vulcanexus publisher (``HelloWorld``).
+   This is because Vulcanexus appends ``rt/`` to the topic name passed when creating a ``Publisher`` or ``Subscription``, where ``rt`` stands for *ROS Topic*, as services and actions have different prefixes.
+   Another important detail is the type name, which in this example is extracted from the type support directly, as the type as generated with ROS 2 naming compatibility (see :ref:`dds2vulcanexus_topic_fastdds_generation`).
+
+       .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/fastdds_app/subscriber.cpp
+            :language: c++
+            :lines: 74-79
+            :dedent: 8
+
+
+3. A ``DataReader`` is created in the topic, setting the very ``HelloWorldSubscriber`` as listener, since it inherits from ``DataReaderListener``, overriding the ``on_data_available`` callback:
+
+    .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/fastdds_app/subscriber.cpp
+        :language: c++
+        :lines: 81-91
+        :dedent: 8
+
+4. Finally, when a new sample arrives, Fast DDS calls the implementation of ``on_data_available``, which print the data to the ``STDOUT``:
+
+    .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/fastdds_app/subscriber.cpp
+        :language: c++
+        :lines: 96-107
+        :dedent: 4
 
 .. _dds2vulcanexus_topic_run:
 
