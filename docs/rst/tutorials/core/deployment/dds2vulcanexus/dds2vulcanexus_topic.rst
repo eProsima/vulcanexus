@@ -280,3 +280,33 @@ There are several things to unpack in this application:
 Run the demo
 ------------
 
+Once the Docker image is built, running the demo simple require two terminals.
+The image can be run in each of them with:
+
+.. code-block:: bash
+
+    docker run -it --rm dds2vulcanexus
+
+Then, run the publisher on one of the containers and the subscriber on the other:
+
+.. tabs::
+
+  .. tab:: Publisher
+
+    .. code-block::
+
+        vulcanexus_publisher
+
+
+  .. tab:: Subscriber
+
+    .. code-block::
+
+        fastdds_subscriber
+
+.. raw:: html
+
+    <video width=100% height=auto autoplay loop controls>
+        <source src="../../../../../_static/resources/tutorials/core/deployment/dds2vulcanexus/dds2vulcanexus.mp4">
+        Your browser does not support the video tag.
+    </video>
