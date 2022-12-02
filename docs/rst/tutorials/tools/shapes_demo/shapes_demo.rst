@@ -11,7 +11,7 @@ Functionalities of ROS 2 Shapes Demo
 Background
 ----------
 
-Vulcanexus integrates `ROS 2 Shapes Demo <https://docs.vulcanexus.org/en/latest/rst/introduction/tools/shapes_demo.html/>`_, which is a useful application for showing the capabilities of `eProsima Fast DDS <https://fast-dds.docs.eprosima.com/en/latest/>`_ or as a proof of interoperability with other RTPS-compliant implementations.
+Vulcanexus integrates :ref:`vulcanexus_shapes_demo`, which is a useful application for showing the capabilities of `eProsima Fast DDS <https://fast-dds.docs.eprosima.com/en/latest/>`_ or as a proof of interoperability with other RTPS-compliant implementations.
 
 Prerequisites
 -------------
