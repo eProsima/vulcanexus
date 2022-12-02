@@ -186,8 +186,130 @@ The eProsima Shapes Demo environment should look similar to the following figure
 Liveliness
 ^^^^^^^^^^
 
+The Liveliness QoS can be used to ensure whether specific entities are alive or not.
+There are three values to specify the liveliness' kind: ``AUTOMATIC``, ``MANUAL_BY_PARTICIPANT`` or ``MANUAL_BY_TOPIC``
+liveliness.
+If any of the first two is selected, a value for the lease duration and announcement period can be set.
+However, if ``MANUAL_BY_TOPIC`` is selected, only the lease duration can be configured, as the announcement period is
+not used with this configuration.
+With the ``AUTOMATIC`` liveliness kind, the service takes the responsibility for renewing the timer associated to the
+lease duration, and as long as the remote participant keeps running and remains connected, all the entities within that
+participant will be considered alive.
+The other two kinds (``MANUAL_BY_PARTICIPANT`` and ``MANUAL_BY_TOPIC``) need a periodic assertion to consider the remote
+participants as alive.
+Please refer to
+`Fast DDS LivelinessQosPolicy Documentation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/standardQosPolicies.html#livelinessqospolicy>`_
+for more information on Liveliness QoS.
+
+In this test, a publisher and subscriber using ``AUTOMATIC`` liveliness will be created, and a lease duration value
+higher than the write rate of the publisher will be set.
+
+Step-by-step example implementation
+"""""""""""""""""""""""""""""""""""
+
+First, launch two instances and create a publisher and a subscriber:
+
+1. Create a red square publisher:
+
+   - Start eProsima Shapes Demo. (We will refer to this instance as Instance1)
+   - Click on Publish.
+   - Select SQUARE option for Shape and RED for Color.
+   - Select ``AUTOMATIC`` for liveliness kind.
+   - Set Lease Duration to 150. (The default write rate is 75 ms)
+
+2. Create a square subscriber:
+
+   - Start eProsima Shapes Demo. (We will refer to this instance as Instance2)
+   - Click on Subscribe.
+   - Select SQUARE option for Shape.
+   - Select ``AUTOMATIC`` for liveliness kind.
+   - Set a value for the Lease Duration higher or equal to the one stated for the publisher.
+     (If the value of subscriber lease duration is lower the entities do not match)
+
+.. note::
+    Add figure.
+
+The *Output Tab* of Instance2 shows that the subscriber has recovered the liveliness once it
+matches with the publisher.
+
+Then, kill the process corresponding to the publisher (Instance1).
+As a result, the subscriber reported that liveliness was lost, as the publisher did not terminate cleanly.
+
+.. note::
+    Add figure.
+
 Content Based Filter
 ^^^^^^^^^^^^^^^^^^^^
+
+In *Fast DDS*, the data available to the subscriber can be restricted to control network and CPU usage.
+The Content Based Filter can be checked when a new subscriber is deployed.
+This filter draws a shaded region in the instance windows.
+Only the samples that are covered by the shade will be available to the subscriber.
+This region can be resized and moved dynamically.
+
+In this test, two Publishers and two subscriber will be created, one of the latter with Content Based.
+
+Step-by-step example implementation
+"""""""""""""""""""""""""""""""""""
+
+First, you have to launch two instances and create a Publisher in each of them:
+
+1. Create a red square publisher:
+
+   - Start eProsima Shapes Demo (this instance will be referred to as *Instance1*).
+   - Click on Publish.
+   - Select SQUARE option for Shape and RED for Color.
+   - Change the History field from 6 to 1.
+
+2. Create an orange circle publisher:
+
+   - Start eProsima Shapes Demo (this instance will be referred to as *Instance2*).
+   - Click on Publish.
+   - Select CIRCLE option for Shape and ORANGE for Color.
+   - Change the History field from 6 to 1.
+
+Your windows should look similar to the following image.
+
+.. note::
+
+   The Instance3 shown in the image below creates a circle subscriber. Its creation will be explained later.
+
+.. note::
+    Add figure.
+
+Then, create two subscribers:
+
+3. Create a circle subscriber:
+
+   - Start eProsima Shapes Demo (this instance will be referred to as *Instance3*).
+   - Click on Subscribe.
+   - Select CIRCLE option for Shape.
+   - Change the History field from 6 to 1.
+   - Check Content Based.
+
+4. Create a square subscriber:
+
+   - Click on Subscribe in Instance3.
+   - Select SQUARE option for Shape.
+   - Change the History field from 6 to 1.
+
+In the following figure, a shaded rectangle in Instance3 is shown.
+This is the filter for the samples of the Circle Shape.
+If the circle is out of the rectangle, it is not available for the subscriber.
+
+.. note::
+    Add figure.
+
+However, if the instance is in the rectangle, it is available for the subscriber..
+
+.. note::
+    Add figure.
+
+The rectangle is configurable, i.e. it can be resized and moved dynamically.
+The following images show examples of the content filter.
+
+.. note::
+    Add figure.
 
 Next Steps
 ----------
