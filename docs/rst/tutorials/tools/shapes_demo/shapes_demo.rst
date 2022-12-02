@@ -1,7 +1,7 @@
 .. _tutorials_tools_shapes_demo:
 
-ROS 2 Shapes Demo
-=================
+ROS 2 Shapes Demo Tutorials
+===========================
 
 .. contents::
     :depth: 2
@@ -11,8 +11,7 @@ ROS 2 Shapes Demo
 Background
 ----------
 
-.. note::
-    This is under maintenance and will be updated soon.
+Vulcanexus integrates `ROS 2 Shapes Demo <https://docs.vulcanexus.org/en/latest/rst/introduction/tools/shapes_demo.html/>`_, which is a useful application for showing the capabilities of `eProsima Fast DDS <https://fast-dds.docs.eprosima.com/en/latest/>`_ or as a proof of interoperability with other RTPS-compliant implementations.
 
 Prerequisites
 -------------
@@ -62,8 +61,7 @@ Initiate *ROS 2 Shapes Demo* running the following command:
 Tutorials
 ---------
 
-.. note::
-    This is under maintenance and will be updated soon.
+This tutorials present step-by-step instructions to test the funcionality provided by ROS 2 Shapes demo.
 
 Discovery and basic connectivity
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
