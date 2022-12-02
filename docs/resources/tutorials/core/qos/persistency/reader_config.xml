@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dds>
+  <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <participant is_default_profile="true" profile_name="persistence_service_participant">
+      <rtps>
+        <propertiesPolicy>
+          <properties>
+            <!-- Select persistence plugin -->
+            <property>
+              <name>dds.persistence.plugin</name>
+              <value>builtin.SQLITE3</value>
+            </property>
+            <!-- Database file name -->
+            <property>
+              <name>dds.persistence.sqlite3.filename</name>
+              <value>reader_database.db</value>
+            </property>
+          </properties>
+        </propertiesPolicy>
+      </rtps>
+    </participant>
+    <data_reader profile_name="/persistency_test">
+      <qos>
+        <!-- Set durability to TRANSIENT_DURABILITY_QOS -->
+        <durability>
+          <kind>TRANSIENT</kind>
+        </durability>
+      </qos>
+      <propertiesPolicy>
+        <properties>
+          <!-- Persistence GUID -->
+          <property>
+            <name>dds.persistence.guid</name>
+            <value>56.55.4C.43.41.4E.45.58.55.53.5F.50|53.5F.44.52</value>
+          </property>
+        </properties>
+      </propertiesPolicy>
+    </data_reader>
+  </profiles>
+</dds>
