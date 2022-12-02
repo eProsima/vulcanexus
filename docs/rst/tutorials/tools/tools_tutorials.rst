@@ -8,3 +8,4 @@ Vulcanexus Tools Tutorials
 
     fastdds_monitor/fastdds_monitor
     prometheus/prometheus
+    shapes_demo/shapes_demo
