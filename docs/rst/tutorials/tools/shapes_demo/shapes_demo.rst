@@ -17,13 +17,38 @@ Background
 Prerequisites
 -------------
 
+It is required to have previously installed Vulcanexus using one of the following installation methods:
+
+* :ref:`linux_binary_installation`
+* :ref:`linux_source_installation`
+* :ref:`docker_installation`
+
 Ensure that the Vulcanexus installation includes Vulcanexus Tools (either ``vulcanexus-humble-desktop``, ``vulcanexus-humble-tools``, or ``vulcanexus-humble-base``).
-Also, remember to source the environment in every terminal in this tutorial.
+
+Run Vulcanexus Docker image with:
+
+.. code-block:: bash
+
+    xhost local:root
+    docker run \
+        -it \
+        --privileged \
+        -e DISPLAY=$DISPLAY \
+        -v /tmp/.X11-unix:/tmp/.X11-unix \
+        ubuntu-vulcanexus:humble-desktop
+
+To run more than one session within the same container, *Vulcanexus* installation must be sourced.
+Given a running container, you can open another session by:
+
+.. code-block:: bash
+
+    docker exec -it <running-container-id> bash
+
+Then, within the container, source the *Vulcanexus* installation with:
 
 .. code-block:: bash
 
     source /opt/vulcanexus/humble/setup.bash
-
 
 Launch ROS 2 Shapes Demo
 ------------------------
@@ -80,8 +105,8 @@ First, three publishers must be created.
 
 The current setting should be similar to that shown in the figure below.
 
-.. note::
-    Add figure.
+.. figure:: /rst/figures/tutorials/tools/shapes_demo/discovery_1.png
+    :align: center
 
 Then, three subscribers must be created.
 
@@ -102,8 +127,8 @@ Then, three subscribers must be created.
 
 The eProsima Shapes Demo windows should look similar to the following image.
 
-.. note::
-    Add figure.
+.. figure:: /rst/figures/tutorials/tools/shapes_demo/discovery_2.png
+    :align: center
 
 History and Durability
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -158,8 +183,8 @@ First, three instances are launched and a publisher is created in each of them:
 
 The eProsima Shapes Demo environment should look similar to the following figure.
 
-.. note::
-    Add figure.
+.. figure:: /rst/figures/tutorials/tools/shapes_demo/history_durability_1.png
+    :align: center
 
 Then, subscriber in each instance is created.
 
@@ -180,8 +205,8 @@ Then, subscriber in each instance is created.
 
 The eProsima Shapes Demo environment should look similar to the following figure.
 
-.. note::
-    Add figure.
+.. figure:: /rst/figures/tutorials/tools/shapes_demo/history_durability_2.png
+    :align: center
 
 Liveliness
 ^^^^^^^^^^
@@ -270,12 +295,8 @@ First, you have to launch two instances and create a Publisher in each of them:
 
 Your windows should look similar to the following image.
 
-.. note::
-
-   The Instance3 shown in the image below creates a circle subscriber. Its creation will be explained later.
-
-.. note::
-    Add figure.
+.. figure:: /rst/figures/tutorials/tools/shapes_demo/content_1.png
+    :align: center
 
 Then, create two subscribers:
 
@@ -297,19 +318,19 @@ In the following figure, a shaded rectangle in Instance3 is shown.
 This is the filter for the samples of the Circle Shape.
 If the circle is out of the rectangle, it is not available for the subscriber.
 
-.. note::
-    Add figure.
+.. figure:: /rst/figures/tutorials/tools/shapes_demo/content_2.png
+    :align: center
 
 However, if the instance is in the rectangle, it is available for the subscriber..
 
-.. note::
-    Add figure.
+.. figure:: /rst/figures/tutorials/tools/shapes_demo/content_3.png
+    :align: center
 
 The rectangle is configurable, i.e. it can be resized and moved dynamically.
 The following images show examples of the content filter.
 
-.. note::
-    Add figure.
+.. figure:: /rst/figures/tutorials/tools/shapes_demo/content_4.png
+    :align: center
 
 Next Steps
 ----------
