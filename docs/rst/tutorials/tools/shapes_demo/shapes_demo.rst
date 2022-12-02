@@ -87,19 +87,19 @@ First, three publishers must be created.
 
 1. Create a red square publisher:
 
-   - Start eProsima Shapes Demo (this instance will be referred to as *Instance1*).
+   - Start ROS 2 Shapes Demo (this instance will be referred to as *Instance1*).
    - Click on Publish.
    - Select SQUARE option for Shape and RED for Color.
 
 2. Create a blue square publisher:
 
-   - Start eProsima Shapes Demo (this instance will be referred to as *Instance2*).
+   - Start ROS 2 Shapes Demo (this instance will be referred to as *Instance2*).
    - Click on Publish.
    - Select SQUARE option for Shape and BLUE for Color.
 
 3. Create a black square publisher:
 
-   - Start eProsima Shapes Demo (this instance will be referred to as *Instance3*).
+   - Start ROS 2 Shapes Demo (this instance will be referred to as *Instance3*).
    - Click on Publish.
    - Select SQUARE option for Shape and BLACK for Color.
 
@@ -125,7 +125,7 @@ Then, three subscribers must be created.
    - Select SQUARE option for Shape.
    - Change the History field from 6 to 1.
 
-The eProsima Shapes Demo windows should look similar to the following image.
+The ROS 2 Shapes Demo windows should look similar to the following image.
 
 .. figure:: /rst/figures/tutorials/tools/shapes_demo/discovery_2.png
     :align: center
@@ -159,7 +159,7 @@ First, three instances are launched and a publisher is created in each of them:
 
 1 - Create a red square publisher:
 
-   - Start eProsima Shapes Demo (this instance will be referred to as *Instance1*).
+   - Start ROS 2 Shapes Demo (this instance will be referred to as *Instance1*).
    - Click on Publish.
    - Select SQUARE option for Shape and RED for Color.
    - Change the History field from 6 to 100.
@@ -167,7 +167,7 @@ First, three instances are launched and a publisher is created in each of them:
 
 2 - Create an orange square publisher:
 
-   - Start eProsima Shapes Demo (this instance will be referred to as *Instance2*).
+   - Start ROS 2 Shapes Demo (this instance will be referred to as *Instance2*).
    - Click on Publish.
    - Select SQUARE option for Shape and ORANGE for Color.
    - Change the History field from 6 to 100.
@@ -175,13 +175,13 @@ First, three instances are launched and a publisher is created in each of them:
 
 3 - Create a black square publisher:
 
-   - Start eProsima Shapes Demo (this instance will be referred to as *Instance3*).
+   - Start ROS 2 Shapes Demo (this instance will be referred to as *Instance3*).
    - Click on Publish.
    - Select SQUARE option for Shape and BLACK for Color.
    - Change the History field from 6 to 100.
    - Select TRANSIENT_LOCAL.
 
-The eProsima Shapes Demo environment should look similar to the following figure.
+The ROS 2 Shapes Demo environment should look similar to the following figure.
 
 .. figure:: /rst/figures/tutorials/tools/shapes_demo/history_durability_1.png
     :align: center
@@ -203,7 +203,7 @@ Then, subscriber in each instance is created.
    - Select SQUARE option for Shape.
    - Change the History field from 6 to 100.
 
-The eProsima Shapes Demo environment should look similar to the following figure.
+The ROS 2 Shapes Demo environment should look similar to the following figure.
 
 .. figure:: /rst/figures/tutorials/tools/shapes_demo/history_durability_2.png
     :align: center
@@ -236,7 +236,7 @@ First, launch two instances and create a publisher and a subscriber:
 
 1. Create a red square publisher:
 
-   - Start eProsima Shapes Demo. (We will refer to this instance as Instance1)
+   - Start ROS 2 Shapes Demo. (We will refer to this instance as Instance1)
    - Click on Publish.
    - Select SQUARE option for Shape and RED for Color.
    - Select ``AUTOMATIC`` for liveliness kind.
@@ -244,7 +244,7 @@ First, launch two instances and create a publisher and a subscriber:
 
 2. Create a square subscriber:
 
-   - Start eProsima Shapes Demo. (We will refer to this instance as Instance2)
+   - Start ROS 2 Shapes Demo. (We will refer to this instance as Instance2)
    - Click on Subscribe.
    - Select SQUARE option for Shape.
    - Select ``AUTOMATIC`` for liveliness kind.
@@ -281,14 +281,14 @@ First, you have to launch two instances and create a Publisher in each of them:
 
 1. Create a red square publisher:
 
-   - Start eProsima Shapes Demo (this instance will be referred to as *Instance1*).
+   - Start ROS 2 Shapes Demo (this instance will be referred to as *Instance1*).
    - Click on Publish.
    - Select SQUARE option for Shape and RED for Color.
    - Change the History field from 6 to 1.
 
 2. Create an orange circle publisher:
 
-   - Start eProsima Shapes Demo (this instance will be referred to as *Instance2*).
+   - Start ROS 2 Shapes Demo (this instance will be referred to as *Instance2*).
    - Click on Publish.
    - Select CIRCLE option for Shape and ORANGE for Color.
    - Change the History field from 6 to 1.
@@ -302,7 +302,7 @@ Then, create two subscribers:
 
 3. Create a circle subscriber:
 
-   - Start eProsima Shapes Demo (this instance will be referred to as *Instance3*).
+   - Start ROS 2 Shapes Demo (this instance will be referred to as *Instance3*).
    - Click on Subscribe.
    - Select CIRCLE option for Shape.
    - Change the History field from 6 to 1.
