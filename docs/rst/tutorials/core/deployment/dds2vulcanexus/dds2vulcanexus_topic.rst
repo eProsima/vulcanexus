@@ -77,6 +77,38 @@ Finally, the Docker image can be built with:
     cd ~/vulcanexus_dds_ws
     docker build -f Dockerfile -t dds2vulcanexus .
 
+.. _dds2vulcanexus_topic_idl:
+
+IDL type definition
+-------------------
+
+Although the ``msg`` format used to be the preferred way to describe topic types in ROS 2 (just to ease the migration from ROS types), they get converted into ``IDL`` under the hood before the actual topic type related code is generated on the CMake call to ``rosidl_generate_interfaces``.
+This means that the topic type definitions can be written as ``IDL`` files directly, allowing for a straight forward type compatibility with native DDS applications, since the standardized type definition format in DDS is in fact ``IDL``.
+For a complete correspondence matrix between ``msg`` and ``IDL`` types (referred as `DDS Types` in the table), please refer to :ref:`message_descriptions_field_types`.
+
+This tutorial leverages ROS 2 capabilities of describing types in ``IDL`` to define a `HelloWorld.idl` that will be used by both the Vulcanexus and native Fast DDS applications.
+The `HelloWorld.idl`, and its ``msg`` equivalent is as follows:
+
+.. tabs::
+
+  .. tab:: HelloWorld.idl
+
+        .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/idl/HelloWorld.idl
+            :language: IDL
+
+
+  .. tab:: HelloWorld.msg
+
+    .. code-block::
+
+        uint32 index
+        string message
+
+It is important to note that ``rosidl_generate_interfaces`` converts the simple `HelloWorld.msg` into and ``IDL`` containing the structure (which is named after the ``msg`` file name) within 2 nested modules, the outermost being the package name (in this case `dds2vulcanexus`), and the innermost being the name of the directory in which the file is located.
+Mind that in the aforementioned directory structure, the ``IDL`` file is placed within an `idl` directory, hence the name of the innermost module.
+
+The following sections detail how to incorporate the ``IDL`` message definition into both the Vulcanexus and native Fast DDS applications, covering both the C++ and CMake sides.
+
 .. _dds2vulcanexus_topic_vulcanexus:
 
 Vulcanexus Application
