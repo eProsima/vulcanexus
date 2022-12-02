@@ -114,6 +114,72 @@ The following sections detail how to incorporate the ``IDL`` message definition 
 Vulcanexus Application
 ----------------------
 
+On this tutorial, the Vulcanexus application consists on a simple publisher node which will publish messages to the ``HelloWorld`` topic once a second.
+
+.. _dds2vulcanexus_topic_vulcanexus_generation:
+
+Vulcanexus Application - Type generation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Inspecting the `CMakeLists.txt` file downloaded in :ref:`dds2vulcanexus_topic_prerequisites`, the following CMake code pertains the Vulcanexus publisher:
+
+.. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/CMakeLists.txt
+    :language: CMake
+    :lines: 30-57
+
+In particular, the type related code is generated in
+
+.. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/CMakeLists.txt
+    :language: CMake
+    :lines: 38-43
+
+.. _dds2vulcanexus_topic_vulcanexus_c++:
+
+Vulcanexus Application - C++
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The simple Vulcanexus publisher node is as follows:
+
+.. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/vulcanexus_app/publisher.cpp
+    :language: c++
+
+To use the type generated from the IDL, three things are done:
+
+1. Include the generated type header:
+
+    .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/vulcanexus_app/publisher.cpp
+        :language: c++
+        :lines: 22
+
+2. Create a publisher in a ``HelloWorld`` topic which uses the generated type.
+
+    1. First, the ``HelloWorldPublisher`` ``Node`` class stores a shared pointer to the publisher:
+
+        .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/vulcanexus_app/publisher.cpp
+                :language: c++
+                :lines: 50
+
+    2. Then, upon construction, it instantiates the publisher, assigning it to the shared pointer class data member:
+
+        .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/vulcanexus_app/publisher.cpp
+                :language: c++
+                :lines: 35
+
+3. Publish data on the topic.
+   In this case, the ``HelloWorldPublisher`` is using a wall timer to have periodic publications:
+
+        1. ``HelloWorldPublisher`` has a data member for reusing the sample:
+
+            .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/vulcanexus_app/publisher.cpp
+                :language: c++
+                :lines: 51
+
+        2. ``HelloWorldPublisher``, upon construction, creates said wall timer, which is used to publish data:
+
+            .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/vulcanexus_app/publisher.cpp
+                :language: c++
+                :lines: 37-45
+
 .. _dds2vulcanexus_topic_fastdds:
 
 Fast DDS Application
