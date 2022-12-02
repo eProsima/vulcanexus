@@ -26,7 +26,7 @@ Also, remember to source the environment in every terminal in this tutorial.
 
 
 Launch ROS 2 Shapes Demo
------------------------
+------------------------
 
 Initiate *ROS 2 Shapes Demo* running the following command:
 
