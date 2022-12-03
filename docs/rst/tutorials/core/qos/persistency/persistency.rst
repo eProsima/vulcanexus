@@ -68,7 +68,7 @@ To create a subscriber node from ROS 2 command line:
 .. note::
 
     The *ros2 topic* command line interface provides convenient parameters to specify node QoS as ``--qos-durability``. |br|
-    Specificing those on ROS 2 packages requires modifying the sources to set appropiately
+    Specifying those on ROS 2 packages requires modifying the sources to set appropriately
     :ref:`ROS 2 client library <ROS-2-Client-Libraries>` QoS structures as
     `rclcpp::QoS <https://docs.ros2.org/latest/api/rclcpp/classrclcpp_1_1QoS.html>`_ or
     `rclpy.qos <https://docs.ros2.org/latest/api/rclpy/api/qos.html#rclpy.qos.QoSProfile>`_.
