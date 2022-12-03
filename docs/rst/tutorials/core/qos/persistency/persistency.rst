@@ -43,7 +43,7 @@ The images are available for download on *Vulcanexus* `website <https://vulcanex
 
     $ docker load -i .\ubuntu-vulcanexus-{DISTRO}-micro.tar
     1$ docker run -ti --name persistence_testing ubuntu-vulcanexus:humble-micro
-    2$ docker exec -ti persistence_testing /vulcanexus_entrypoint.sh /bin/bash 
+    2$ docker exec -ti persistence_testing /vulcanexus_entrypoint.sh /bin/bash
 
 This tutorial requires two terminals: one for the data writer (1) and the other for the reader (2).
 Note that for user convenience the the terminal (1) that launches the container has the overlay loaded in the
@@ -84,19 +84,19 @@ writer and reader) in order to show persistency advantages.
 
 In the working directory of choice (henceforth */home/tutorial/*) create two files:
 
-* A publisher node configuration file: ``writer_config.xml`` 
+* A publisher node configuration file: ``writer_config.xml``
 
 .. literalinclude:: /resources/tutorials/core/qos/persistency/writer_config.xml
     :language: xml
 
-* A subscriber node configuration file: ``reader_config.xml`` 
+* A subscriber node configuration file: ``reader_config.xml``
 
 .. literalinclude:: /resources/tutorials/core/qos/persistency/reader_config.xml
     :language: xml
 
 For each node is specified:
 
-* A database filename as the ``dds.persistence.sqlite3.filename`` property in the default participant profile. 
+* A database filename as the ``dds.persistence.sqlite3.filename`` property in the default participant profile.
 
 * An endpoint (``data_writer`` or ``data_reader``) profile, which is associated to the node endpoint using the
   *topic name* as ``profile_name`` attribute.
@@ -133,7 +133,7 @@ when a publisher crashes.
 
    Note that we must specify *system_default* as durability in order to enforce the use of the xml file provided value.
 
-#. Relaunch the publisher again and check the subscriber is able to receive the samples. 
+#. Relaunch the publisher again and check the subscriber is able to receive the samples.
 
     .. code-block:: bash
 
