@@ -29,6 +29,11 @@ Regardless of the installation method used, to run *ROS 2 Shapes Demo*, load the
     source /opt/vulcanexus/humble/setup.bash
     shapesdemo
 
+.. warning::
+
+    Please verify that you are running the ROS 2 Shapes Demo version.
+    To check this simply verify that the Vulcanexus banner is displayed in the background of the main box.
+    If the eProsima logo appears instead, activate the ROS 2 version in *Options > Participant Configuration > Use ROS 2 Topics*.
 
 Getting started
 ---------------
