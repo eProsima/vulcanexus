@@ -1,7 +1,7 @@
 .. _tutorials_tools_shapes_demo:
 
 Hand-on *ROS 2 Shapes Demo*
-=========================
+===========================
 
 .. contents::
     :depth: 2
