@@ -1,7 +1,7 @@
 .. _tutorials_tools_shapes_demo:
 
-Functionalities of ROS 2 Shapes Demo
-====================================
+Hand-on *ROS 2 Shapes Demo*
+=========================
 
 .. contents::
     :depth: 2
@@ -11,7 +11,7 @@ Functionalities of ROS 2 Shapes Demo
 Background
 ----------
 
-Vulcanexus integrates :ref:`vulcanexus_shapes_demo`, which is a useful application for showing the capabilities of `eProsima Fast DDS <https://fast-dds.docs.eprosima.com/en/latest/>`_ or as a proof of interoperability with other RTPS-compliant implementations.
+Vulcanexus integrates :ref:`vulcanexus_shapes_demo`, which is a useful application for learning the capabilities of DDS or as a proof of `eProsima Fast DDS <https://fast-dds.docs.eprosima.com/en/latest/>`_ interoperability with other DDS-compliant implementations.
 
 Prerequisites
 -------------
@@ -49,8 +49,8 @@ Then, within the container, source the *Vulcanexus* installation with:
 
     source /opt/vulcanexus/humble/setup.bash
 
-Launch ROS 2 Shapes Demo
-------------------------
+Launch *ROS 2 Shapes Demo*
+--------------------------
 
 Initiate *ROS 2 Shapes Demo* running the following command:
 
@@ -58,10 +58,10 @@ Initiate *ROS 2 Shapes Demo* running the following command:
 
     shapesdemo
 
-Tutorials
----------
+Learning DDS capabilities
+-------------------------
 
-This tutorials present step-by-step instructions to test the functionalities provided by ROS 2 Shapes demo.
+This tutorials present step-by-step instructions to test the functionalities provided by DDS thought the *ROS 2 Shapes Demo* application.
 
 Discovery and basic connectivity
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -78,26 +78,23 @@ At the end, two additional squares will be displayed in each window, reflecting 
 real time.
 That is, subscribers subscribing to the "Square" topics are matched with the publishers of the other instances.
 
-Step-by-step example implementation
-"""""""""""""""""""""""""""""""""""
-
 First, three publishers must be created.
 
 1. Create a red square publisher:
 
-   - Start ROS 2 Shapes Demo (this instance will be referred to as *Instance1*).
+   - Start *ROS 2 Shapes Demo* (this instance will be referred to as *Instance1*).
    - Click on Publish.
    - Select SQUARE option for Shape and RED for Color.
 
 2. Create a blue square publisher:
 
-   - Start ROS 2 Shapes Demo (this instance will be referred to as *Instance2*).
+   - Start *ROS 2 Shapes Demo* (this instance will be referred to as *Instance2*).
    - Click on Publish.
    - Select SQUARE option for Shape and BLUE for Color.
 
 3. Create a black square publisher:
 
-   - Start ROS 2 Shapes Demo (this instance will be referred to as *Instance3*).
+   - Start *ROS 2 Shapes Demo* (this instance will be referred to as *Instance3*).
    - Click on Publish.
    - Select SQUARE option for Shape and BLACK for Color.
 
@@ -123,7 +120,7 @@ Then, three subscribers must be created.
    - Select SQUARE option for Shape.
    - Change the History field from 6 to 1.
 
-The ROS 2 Shapes Demo windows should look similar to the following image.
+The *ROS 2 Shapes Demo* windows should look similar to the following image.
 
 .. figure:: /rst/figures/tutorials/tools/shapes_demo/discovery_2.png
     :align: center
@@ -150,14 +147,11 @@ In this example, one hundred red squares will be displayed in *Instance2* and *I
 the red square of the publisher from *Instance1*.
 The leading square indicates the current position of the published square.
 
-Step-by-step example implementation
-"""""""""""""""""""""""""""""""""""
-
 First, three instances are launched and a publisher is created in each of them:
 
 1 - Create a red square publisher:
 
-   - Start ROS 2 Shapes Demo (this instance will be referred to as *Instance1*).
+   - Start *ROS 2 Shapes Demo* (this instance will be referred to as *Instance1*).
    - Click on Publish.
    - Select SQUARE option for Shape and RED for Color.
    - Change the History field from 6 to 100.
@@ -165,7 +159,7 @@ First, three instances are launched and a publisher is created in each of them:
 
 2 - Create an orange square publisher:
 
-   - Start ROS 2 Shapes Demo (this instance will be referred to as *Instance2*).
+   - Start *ROS 2 Shapes Demo* (this instance will be referred to as *Instance2*).
    - Click on Publish.
    - Select SQUARE option for Shape and ORANGE for Color.
    - Change the History field from 6 to 100.
@@ -173,13 +167,13 @@ First, three instances are launched and a publisher is created in each of them:
 
 3 - Create a black square publisher:
 
-   - Start ROS 2 Shapes Demo (this instance will be referred to as *Instance3*).
+   - Start *ROS 2 Shapes Demo* (this instance will be referred to as *Instance3*).
    - Click on Publish.
    - Select SQUARE option for Shape and BLACK for Color.
    - Change the History field from 6 to 100.
    - Select TRANSIENT_LOCAL.
 
-The ROS 2 Shapes Demo environment should look similar to the following figure.
+The *ROS 2 Shapes Demo* environment should look similar to the following figure.
 
 .. figure:: /rst/figures/tutorials/tools/shapes_demo/history_durability_1.png
     :align: center
@@ -201,7 +195,7 @@ Then, subscriber in each instance is created.
    - Select SQUARE option for Shape.
    - Change the History field from 6 to 100.
 
-The ROS 2 Shapes Demo environment should look similar to the following figure.
+The *ROS 2 Shapes Demo* environment should look similar to the following figure.
 
 .. figure:: /rst/figures/tutorials/tools/shapes_demo/history_durability_2.png
     :align: center
@@ -227,14 +221,11 @@ for more information on Liveliness QoS.
 In this test, a publisher and subscriber using ``AUTOMATIC`` liveliness will be created, and a lease duration value
 higher than the write rate of the publisher will be set.
 
-Step-by-step example implementation
-"""""""""""""""""""""""""""""""""""
-
 First, launch two instances and create a publisher and a subscriber:
 
 1. Create a red square publisher:
 
-   - Start ROS 2 Shapes Demo. (We will refer to this instance as Instance1)
+   - Start *ROS 2 Shapes Demo*. (We will refer to this instance as Instance1)
    - Click on Publish.
    - Select SQUARE option for Shape and RED for Color.
    - Select ``AUTOMATIC`` for liveliness kind.
@@ -243,7 +234,7 @@ First, launch two instances and create a publisher and a subscriber:
 
 2. Create a square subscriber:
 
-   - Start ROS 2 Shapes Demo. (We will refer to this instance as Instance2)
+   - Start *ROS 2 Shapes Demo*. (We will refer to this instance as Instance2)
    - Click on Subscribe.
    - Select SQUARE option for Shape.
    - Select ``AUTOMATIC`` for liveliness kind.
@@ -273,21 +264,18 @@ This region can be resized and moved dynamically.
 
 In this test, two Publishers and two subscriber will be created, one of the latter with Content Based.
 
-Step-by-step example implementation
-"""""""""""""""""""""""""""""""""""
-
 First, you have to launch two instances and create a Publisher in each of them:
 
 1. Create a red square publisher:
 
-   - Start ROS 2 Shapes Demo (this instance will be referred to as *Instance1*).
+   - Start *ROS 2 Shapes Demo* (this instance will be referred to as *Instance1*).
    - Click on Publish.
    - Select SQUARE option for Shape and RED for Color.
    - Change the History field from 6 to 1.
 
 2. Create an orange circle publisher:
 
-   - Start ROS 2 Shapes Demo (this instance will be referred to as *Instance2*).
+   - Start *ROS 2 Shapes Demo* (this instance will be referred to as *Instance2*).
    - Click on Publish.
    - Select CIRCLE option for Shape and ORANGE for Color.
    - Change the History field from 6 to 1.
@@ -301,7 +289,7 @@ Then, create two subscribers:
 
 3. Create a circle subscriber:
 
-   - Start ROS 2 Shapes Demo (this instance will be referred to as *Instance3*).
+   - Start *ROS 2 Shapes Demo* (this instance will be referred to as *Instance3*).
    - Click on Subscribe.
    - Select CIRCLE option for Shape.
    - Change the History field from 6 to 1.
