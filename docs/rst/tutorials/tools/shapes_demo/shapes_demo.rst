@@ -1,7 +1,7 @@
 .. _tutorials_tools_shapes_demo:
 
-Hand-on *ROS 2 Shapes Demo*
-===========================
+Hand-on ROS 2 Shapes Demo
+=========================
 
 .. contents::
     :depth: 2
@@ -49,14 +49,20 @@ Then, within the container, source the *Vulcanexus* installation with:
 
     source /opt/vulcanexus/humble/setup.bash
 
-Launch *ROS 2 Shapes Demo*
---------------------------
+Launch ROS 2 Shapes Demo
+------------------------
 
 Initiate *ROS 2 Shapes Demo* running the following command:
 
 .. code-block:: bash
 
     shapesdemo
+
+.. warning::
+
+    Please verify that you are running the ROS 2 Shapes Demo version.
+    To check this simply verify that the Vulcanexus banner is displayed in the background of the main box.
+    If the eProsima logo appears instead, activate the ROS 2 version in *Options > Participant Configuration > Use ROS 2 Topics*.
 
 Learning DDS capabilities
 -------------------------
