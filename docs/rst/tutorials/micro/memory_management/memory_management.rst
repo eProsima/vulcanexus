@@ -192,6 +192,8 @@ This dynamic memory usage uses micro-ROS allocators.
 
 - ``RMW_UXRCE_ALLOW_DYNAMIC_ALLOCATIONS``: Allow dynamic memory allocations when creating micro-ROS entities. Default value: ``OFF``.
 
+.. _micro_ros_middleware_memory:
+
 Middleware related memory
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
