@@ -39,10 +39,9 @@ For more information on the middleware configuration, check the :ref:`Memory man
 
 .. note::
 
-    .. TODO(acuadros95): Should we explain somewhere the max capacity of a topic regarding MTU, reliability, etc?
-    .. TODO(acuadros95): When is this statement false?
-
     There are no differences on memory usage between different topic sizes and the reliability kind used, as the topic size plus reliability and/or middleware overhead shall fit in the static buffers pre-allocated by the program at compile-time, defined by the history configuration.
+
+    In general, the topic size will only affect data throughput as it is directly related to the size of the messages exchanged by the middleware.
 
 Meanwhile, to measure the different types of memory:
 
@@ -50,7 +49,7 @@ Meanwhile, to measure the different types of memory:
 
 - **Stack memory**: The stack consumed during the program execution is taken into account by means of a FreeRTOS specific function involved in the `memory management capabilities offered by this RTOS <https://www.freertos.org/2020/09/micro-ros-on-freertos.html>`__, the `uxTaskGetStackHighWaterMark() <https://www.freertos.org/uxTaskGetStackHighWaterMark.html>`__ function. This function returns the amount of stack that remains unused when the stack consumed by the program is at its greatest value. By subtracting this figure to the total stack available, which is known, one can obtain the stack peak used by the app.
 
-- **Dynamic Memory**: This is the memory dynamically allocated by the program by calls to ``calloc()`` and ``malloc()`` functions in the C language. To measure it we have hijacked the call to dynamic memory related functions since the ROS 2 stack allows users to feed the program with custom memory allocators.
+- **Dynamic Memory**: This is the memory dynamically allocated by the program by calls to ``calloc()`` and ``malloc()`` functions in the C language. The call to dynamic memory have been override with custom memory allocators to measure the total requested memory.
 
 Pub/Sub applications
 ^^^^^^^^^^^^^^^^^^^^
@@ -119,7 +118,7 @@ The tested stream oriented transports and their configuration are:
 .. figure:: /rst/figures/micro/benchmarking/stream_transports.png
     :align: center
 
-As expected, USB is the clear winner versus a slower Serial UART and the TCP protocol over a PMOD WiFi module.
+As expected, USB shows the higher throughput due to the fact that has the higher bandwidth, followed by TCP over WiFi and Serial.
 There is also a great improvement on the throughput as the payload is increased, caused by the overhead added by the `HDLC framing <https://micro-xrce-dds.docs.eprosima.com/en/latest/transport.html?highlight=hdlc#custom-serial-transport>`_ protocol.
 
 Packet-oriented transports
