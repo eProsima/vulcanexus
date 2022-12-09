@@ -170,17 +170,17 @@ To calculate the results, the timestamp of the board is synchronized with the Ag
      - 3.77 ms
      - 5.04 ms
      - 8.81 ms
-   * - UDP ThreadX
+   * - UDP (ThreadX + NetX)
      - 0.54 ms
      - 0.72 ms
      - 1.26 ms
-   * - UDP FreeRTOS
+   * - UDP (FreeRTOS + TCP)
      - 0.52 ms
      - 0.70 ms
      - 1.22 ms
-   * - TCP
+   * - TCP (PMOD WiFi)
      - 1.55 ms
      - 2.04 ms
      - 3.59 ms
 
-As expected, the latency and RTT is directly related to the transport latency.
+As expected, the latency and RTT is directly related to the transport latency and throughput.
