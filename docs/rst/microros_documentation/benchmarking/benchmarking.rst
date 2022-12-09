@@ -88,7 +88,7 @@ As concluded on the previous section, the memory used is almost identical for a 
 RMW History
 ^^^^^^^^^^^
 
-As explained before, the topic memory comes from the RMW history, which is formed by static memory pools defined on compilation time. 
+As explained before, the topic memory comes from the RMW history, which is formed by static memory pools defined on compilation time.
 For a varying ``RMW_UXRCE_MAX_HISTORY`` between 1 and 10:
 
 .. figure:: /rst/figures/micro/benchmarking/rmw_history.png
