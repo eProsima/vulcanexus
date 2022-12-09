@@ -112,6 +112,8 @@ Timeouts
 
     To avoid waiting for agent confirmation ``timeout = 0`` can be used, allowing the release of local resources if the agent is not present.
 
+.. _micro_ros_api_time_sync:
+
 Time synchronization
 ^^^^^^^^^^^^^^^^^^^^
 

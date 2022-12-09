@@ -30,10 +30,12 @@ Profiling methodology
 The memory profile has been performed with the following configuration:
 
 - Reliable entities with a fixed topic size.
-- UDP transport (FreeRTOS + TCP).
+- UDP transport (`FreeRTOS + TCP <https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/index.html>`_).
 - Transport MTU: 512 B.
-- XRCE-DDS history: 4 slots.
+- Micro XRCE-DDS Client history: 4 slots.
 - RMW History: 4 slots (Except for RMW History section).
+
+For more information on the middleware configuration, check the :ref:`Memory management tutorial <micro_ros_middleware_memory>`.
 
 .. note::
 
@@ -44,11 +46,11 @@ The memory profile has been performed with the following configuration:
 
 Meanwhile, to measure the different types of memory:
 
-- Static memory: The static memory has been calculated as the difference between the memory occupied by the .bss and .data sections with a non-zero number of entities, and the memory occupied by the same sections when no micro-ROS application is running, that is, the memory occupied by the rest of components of the RTOS and libraries.
+- **Static memory**: The static memory has been calculated as the difference between the memory occupied by the `.bss <https://en.wikipedia.org/wiki/.bss>`__ and `.data <https://en.wikipedia.org/wiki/Data_segment>`__ sections with a non-zero number of entities, and the memory occupied by the same sections when no micro-ROS application is running, that is, the memory occupied by the rest of components of the RTOS and libraries.
 
-- Stack memory: The stack consumed during the program execution is taken into account by means of a FreeRTOS specific function involved in the `memory management capabilities offered by this RTOS <https://www.freertos.org/2020/09/micro-ros-on-freertos.html>`__, the `uxTaskGetStackHighWaterMark() <https://www.freertos.org/uxTaskGetStackHighWaterMark.html>`__ function. This function returns the amount of stack that remains unused when the stack consumed by the program is at its greatest value. By subtracting this figure to the total stack available, which is known, one can obtain the stack peak used by the app.
+- **Stack memory**: The stack consumed during the program execution is taken into account by means of a FreeRTOS specific function involved in the `memory management capabilities offered by this RTOS <https://www.freertos.org/2020/09/micro-ros-on-freertos.html>`__, the `uxTaskGetStackHighWaterMark() <https://www.freertos.org/uxTaskGetStackHighWaterMark.html>`__ function. This function returns the amount of stack that remains unused when the stack consumed by the program is at its greatest value. By subtracting this figure to the total stack available, which is known, one can obtain the stack peak used by the app.
 
-- Dynamic Memory: This is the memory dynamically allocated by the program by calls to ``calloc()`` and ``malloc()`` functions in the C language. To measure it we have hijacked the call to dynamic memory related functions since the ROS 2 stack allows users to feed the program with custom memory allocators.
+- **Dynamic Memory**: This is the memory dynamically allocated by the program by calls to ``calloc()`` and ``malloc()`` functions in the C language. To measure it we have hijacked the call to dynamic memory related functions since the ROS 2 stack allows users to feed the program with custom memory allocators.
 
 Pub/Sub applications
 ^^^^^^^^^^^^^^^^^^^^
@@ -64,7 +66,7 @@ The total memory (static plus stack plus dynamic) occupied is summarized in the 
 .. figure:: /rst/figures/micro/benchmarking/pub_sub_total.png
     :align: center
 
-From this data, its concluded that a publisher takes a total of ~ 550 B meanwhile a subscriber uses ~ 600 B. There is virtually no difference between these two entities, as the memory pools of micro-ROS RMW are shared among all the entities participating in a given application.
+From this data, its concluded that a publisher takes a total of **~ 550 B** meanwhile a subscriber uses **~ 600 B**. There is virtually no difference between these two entities, as the memory pools of micro-ROS RMW are shared among all the entities participating in a given application.
 
 To get a better understanding of the memory usage, the same is provided data but broken down into its the different memory types used:
 
@@ -82,7 +84,7 @@ Notice that this time the total memory is shown along its individual types:
 .. figure:: /rst/figures/micro/benchmarking/client_service.png
     :align: center
 
-As concluded on the previous section, the memory used is almost identical for a ~ 500 B usage by both entity kinds. Note that it is also virtually identical to the memory used by a publisher or subscriber application.
+As concluded on the previous section, the memory used is almost identical for a **~ 500 B** usage by both entity kinds. Note that it is also virtually identical to the memory used by a publisher or subscriber application.
 
 RMW History
 ^^^^^^^^^^^
@@ -92,8 +94,9 @@ For a varying ``RMW_UXRCE_MAX_HISTORY`` between 1 and 10:
 
 .. figure:: /rst/figures/micro/benchmarking/rmw_history.png
     :align: center
+    :width: 550px
 
-As expected, the static memory used by each history slot equals the ``MTU * RMW_UXRCE_STREAM_HISTORY`` formula, which for this scenario: ``512 * 4 = 2048 B``. For more details on the middleware memory usage, check the :ref:`memory management tutorial <micro_ros_middleware_memory>`.
+As expected, the static memory used by each history slot equals the ``MTU * RMW_UXRCE_STREAM_HISTORY`` formula, which for this scenario: ``512 * 4 = 2048 B``. For more details on the middleware memory usage, check the :ref:`Memory management tutorial <micro_ros_middleware_memory>`.
 
 Throughput
 ----------
@@ -107,11 +110,11 @@ Stream-oriented transports
 
 The tested stream oriented transports and their configuration are:
 
-- USB-CDC: 115200 baudrate.
-- Serial UART: 115200 baudrate.
+- USB-CDC: 115200 bauds per second.
+- Serial UART: 115200 bauds per second.
 - TCP (AWS Secure Sockets) based on `Wi-Fi-Pmod-Expansion-Board <https://www.renesas.com/eu/en/products/microcontrollers-microprocessors/ra-cortex-m-mcus/wi-fi-pmod-expansion-board-80211bgn-24g-wi-fi-pmod-expansion-board>`_.
 
-  - PMOD baudrate: 460800 bauds.
+  - PMOD bauds per second: 460800 bauds.
 
 .. figure:: /rst/figures/micro/benchmarking/stream_transports.png
     :align: center
