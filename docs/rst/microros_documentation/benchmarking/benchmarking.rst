@@ -143,27 +143,42 @@ This data shows how variable is micro-ROS data throughput regarding the used RTO
 Latency
 -------
 
-MCK_RA6T2 RTT/0: CAN_TRANSPORT
-	Client publish time: 1.29 ms
-	Agent publish time: 2.41 ms
-	RTT: 3.70 ms
-EK_RA6M5 RTT/1: USB_TRANSPORT
-    Client publish time: 1.09 ms
-	Agent publish time: 1.45 ms
-	RTT: 2.55 ms
-MCK_RA6T2 RTT/2: SERIAL_TRANSPORT
-	Client publish time: 3.77 ms
-	Agent publish time: 5.04 ms
-	RTT: 8.81 ms
-EK_RA6M5 RTT/3: UDP_THREADX_TRANSPORT
-	Client publish time: 0.54 ms
-	Agent publish time: 0.72 ms
-	RTT: 1.26 ms
-EK_RA6M5 RTT/4: UDP_FREERTOS_TRANSPORT
-	Client publish time: 0.52 ms
-	Agent publish time: 0.70 ms
-	RTT: 1.22 ms
-EK_RA6M5 RTT/4: TCP_FREERTOS_TRANSPORT
-	Client publish time: 1.55 ms
-	Agent publish time: 2.04 ms
-	RTT: 3.59 ms
+Latency and round trip time (RTT) has been measured with a pub/sub application were timestamps are exchanged using ``std_msgs/msg/Int64`` messages.
+
+To calculate the results, the timestamp of the board is synchronized with the Agent using the :ref:`time synchronization API <micro_ros_api_time_sync>`.
+
+.. list-table::
+   :widths: 15 15 15 10
+   :header-rows: 1
+   :align: center
+
+   * - Transport
+     - Client publish time
+     - Agent publish time
+     - RTT
+   * - CAN-FD
+     - 1.29 ms
+     - 2.41 ms
+     - 3.70 ms
+   * - USB-CDC
+     - 1.09 ms
+     - 1.45 ms
+     - 2.55 ms
+   * - Serial UART
+     - 3.77 ms
+     - 5.04 ms
+     - 8.81 ms
+   * - UDP ThreadX
+     - 0.54 ms
+     - 0.72 ms
+     - 1.26 ms
+   * - UDP FreeRTOS
+     - 0.52 ms
+     - 0.70 ms
+     - 1.22 ms
+   * - TCP
+     - 1.55 ms
+     - 2.04 ms
+     - 3.59 ms
+
+As expected, the latency and RTT is directly related to the transport latency.
