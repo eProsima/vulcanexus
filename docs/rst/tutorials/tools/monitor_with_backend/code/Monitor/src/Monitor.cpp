@@ -35,8 +35,6 @@
 using namespace eprosima::statistics_backend;
 using namespace eprosima::fastdds::dds;
 
-std::atomic<bool> Monitor::stop_(false);
-
 class Monitor
 {
 public:
@@ -51,12 +49,11 @@ public:
     {
     }
 
-    virtual ~Monitor()
+    ~Monitor()
     {
         StatisticsBackend::stop_monitor(monitor_id_);
     }
 
-    //! Initialize monitor
     bool init()
     {
         monitor_id_ = StatisticsBackend::init_monitor(domain_);
@@ -71,7 +68,6 @@ public:
         return true;
     }
 
-    //! Run the monitor
     void run()
     {
         stop_.store(false);
@@ -92,7 +88,6 @@ public:
         }
     }
 
-    //! Stop the monitor
     static void stop()
     {
         stop_.store(true);
