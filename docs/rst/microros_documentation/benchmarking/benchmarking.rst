@@ -113,7 +113,7 @@ The tested stream oriented transports and their configuration are:
 - Serial UART: 115200 bauds per second.
 - TCP (AWS Secure Sockets) based on `Wi-Fi-Pmod-Expansion-Board <https://www.renesas.com/eu/en/products/microcontrollers-microprocessors/ra-cortex-m-mcus/wi-fi-pmod-expansion-board-80211bgn-24g-wi-fi-pmod-expansion-board>`_.
 
-  - PMOD bauds per second: 460800 bauds.
+  - PMOD: 460800 bauds per second.
 
 .. figure:: /rst/figures/micro/benchmarking/stream_transports.png
     :align: center
