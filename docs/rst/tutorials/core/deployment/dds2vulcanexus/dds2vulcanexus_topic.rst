@@ -199,7 +199,7 @@ Much like the Vulcanexus application, the native Fast DDS one consists on two pa
 Fast DDS Application - Type generation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In the case of Fast DDS, the type support is generated from the `HelloWorld.idl` file using `*Fast DDS-Gen* <https://fast-dds.docs.eprosima.com/en/latest/fastddsgen/introduction/introduction.html>`_.
+In the case of Fast DDS, the type support is generated from the `HelloWorld.idl` file using `Fast DDS-Gen <https://fast-dds.docs.eprosima.com/en/latest/fastddsgen/introduction/introduction.html>`_.
 
 In this tutorial, the Fast DDS type support is generated within the `CMakeLists.txt` file for the sake of completion and simplicity, but it can be generated as a pre-build step instead.
 Inspecting the `CMakeLists.txt` file downloaded in :ref:`dds2vulcanexus_topic_prerequisites`, the following CMake code pertains the native Fast DDS subscriber:
@@ -252,8 +252,8 @@ There are several things to unpack in this application:
 
 2. The topic is created with name ``rt/HelloWorld``.
    Mind that this topic name is different from the one set in the Vulcanexus publisher (``HelloWorld``).
-   This is because Vulcanexus appends ``rt/`` to the topic name passed when creating a ``Publisher`` or ``Subscription``, where ``rt`` stands for *ROS Topic*, as services and actions have different prefixes.
-   Another important detail is the type name, which in this example is extracted from the type support directly, as the type as generated with ROS 2 naming compatibility (see :ref:`dds2vulcanexus_topic_fastdds_generation`).
+   This is because Vulcanexus appends ``rt/`` to the topic name passed when creating a ``Publisher`` or ``Subscription``, where ``rt`` stands for *ROS Topic*, as services and actions have different prefixes (please refer to ROS 2 design documentation regarding `Topic and Service name mapping to DDS <https://design.ros2.org/articles/topic_and_service_names.html>`_).
+   Another important detail is the type name, which in this example is extracted from the type support directly, as the type is generated with ROS 2 naming compatibility (see :ref:`dds2vulcanexus_topic_fastdds_generation`).
 
        .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/fastdds_app/subscriber.cpp
             :language: c++
@@ -280,7 +280,7 @@ There are several things to unpack in this application:
 Run the demo
 ------------
 
-Once the Docker image is built, running the demo simple require two terminals.
+Once the Docker image is built, running the demo simply require two terminals.
 The image can be run in each of them with:
 
 .. code-block:: bash

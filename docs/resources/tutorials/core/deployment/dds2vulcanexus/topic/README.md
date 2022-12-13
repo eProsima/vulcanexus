@@ -1,7 +1,7 @@
 # Fast DDS - Vulcanexus Topic Intercommunication Demo
 
 This project contains code for demonstrating intercommunication between Vulcanexus and Fast DDS applications.
-It provides a Vulcanexus application which instantiates a publisher on a `HelloWorld` topic, and a Fast DDS subscriber application that subscriber to it.
+It provides a Vulcanexus application which instantiates a publisher on a `HelloWorld` topic, and a Fast DDS subscriber application that subscribes to it.
 Furthermore, it provides a Dockerfile to ease the building and showcasing process.
 
 ## Build the Docker image
