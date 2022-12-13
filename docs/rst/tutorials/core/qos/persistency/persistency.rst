@@ -71,8 +71,8 @@ To create a subscriber node from ROS 2 command line:
 
 .. note::
 
-    The *ros2 topic* command line interface provides convenient parameters to specify node QoS as ``--qos-durability``. |br|
-    Specifying those on ROS 2 packages requires modifying the sources to set appropriately
+    The *ros2 topic* command line interface provides convenient parameters for defining node QoS' as ``--qos-durability``. |br|
+    Specifying those on ROS 2 packages requires modifying the sources to appropriately set
     :ref:`ROS 2 client library <ROS-2-Client-Libraries>` QoS structures as
     `rclcpp::QoS <https://docs.ros2.org/latest/api/rclcpp/classrclcpp_1_1QoS.html>`_ or
     `rclpy.qos <https://docs.ros2.org/latest/api/rclpy/api/qos.html#rclpy.qos.QoSProfile>`_.
@@ -84,7 +84,7 @@ In order to specify the desired custom configuration for the Durability QoS poli
 DDS XML profiles <https://fast-dds.docs.eprosima.com/en/{FASTDDS_BRANCH}/fastdds/xml_configuration/xml_configuration.html>`_).
 
 Usually a single configuration file is enough but this tutorial requires two independent persistent databases (for
-writer and reader) in order to show persistency advantages.
+writer and reader) in order to show the persistency advantages.
 
 In the working directory of choice (henceforth */home/tutorial/*) create two files:
 
@@ -102,7 +102,7 @@ For each node is specified:
 
 * A database filename as the ``dds.persistence.sqlite3.filename`` property in the default participant profile.
 
-* An endpoint (``data_writer`` or ``data_reader``) profile, which is associated to the node endpoint using the
+* An endpoint (``data_writer`` or ``data_reader``) profile, which is associated to the node using the
   *topic name* as ``profile_name`` attribute.
   In this tutorial the *topic name* will be **persistency_test**. |br|
   The endpoint requires a `GUID <https://en.wikipedia.org/wiki/Universally_unique_identifier>`_ specified as the
@@ -129,11 +129,13 @@ when a publisher crashes.
 
     .. code-block:: bash
 
-        1$ export FASTRTPS_DEFAULT_PROFILES_FILE=/home/tutorial/writer_config.xml
-        1$ ros2 topic pub --times 5 --qos-durability system_default /persistency_test std_msgs/String "{data: 'Hello'}"
+        # Terminal 1
+        export FASTRTPS_DEFAULT_PROFILES_FILE=/home/tutorial/writer_config.xml
+        ros2 topic pub --times 5 --qos-durability system_default /persistency_test std_msgs/String "{data: 'Hello'}"
 
-        2$ export FASTRTPS_DEFAULT_PROFILES_FILE=/home/tutorial/reader_config.xml
-        2$ ros2 topic echo --qos-durability system_default /persistency_test std_msgs/String
+        # Terminal 2
+        export FASTRTPS_DEFAULT_PROFILES_FILE=/home/tutorial/reader_config.xml
+        ros2 topic echo --qos-durability system_default /persistency_test std_msgs/String
 
    Note that we must specify *system_default* as durability in order to enforce the use of the xml file provided value.
 
@@ -141,15 +143,17 @@ when a publisher crashes.
 
     .. code-block:: bash
 
-        1$ ros2 topic pub --times 5 --qos-durability system_default /persistency_test std_msgs/String "{data: 'Hello'}"
+        # Terminal 1
+        ros2 topic pub --times 5 --qos-durability system_default /persistency_test std_msgs/String "{data: 'Hello'}"
 
 #. Delete the publisher database. Now the publisher state is reset. Relaunch the publisher and check the first 10 samples are
    discarded by the subscriber because they were already received.
 
     .. code-block:: bash
 
-        1$ rm writer_database.db
-        1$ ros2 topic pub --times 11 --qos-durability system_default /persistency_test std_msgs/String "{data: 'Hello'}"
+        # Terminal 1
+        rm writer_database.db
+        ros2 topic pub --times 11 --qos-durability system_default /persistency_test std_msgs/String "{data: 'Hello'}"
 
 Testing Subscriber Persistency
 ------------------------------
@@ -161,19 +165,22 @@ when the subscriber crashes and it's relaunched.
 
     .. code-block:: bash
 
-        1$ export FASTRTPS_DEFAULT_PROFILES_FILE=/home/tutorial/writer_config.xml
-        1$ ros2 topic pub --times 5 --qos-durability system_default /persistency_test std_msgs/String "{data: 'Hello'}"
+        # Terminal 1
+        export FASTRTPS_DEFAULT_PROFILES_FILE=/home/tutorial/writer_config.xml
+        ros2 topic pub --times 5 --qos-durability system_default /persistency_test std_msgs/String "{data: 'Hello'}"
 
-        2$ export FASTRTPS_DEFAULT_PROFILES_FILE=/home/tutorial/reader_config.xml
-        2$ ros2 topic echo --qos-durability system_default /persistency_test std_msgs/String
+        # Terminal 2
+        export FASTRTPS_DEFAULT_PROFILES_FILE=/home/tutorial/reader_config.xml
+        ros2 topic echo --qos-durability system_default /persistency_test std_msgs/String
 
 #. Delete the publisher database. Relaunch the publisher and check the first 5 samples are
    discarded by the subscriber because they were already received.
 
     .. code-block:: bash
 
-        1$ rm writer_database.db
-        1$ ros2 topic pub --times 10 --qos-durability system_default /persistency_test std_msgs/String "{data: 'Hello'}"
+        # Terminal 1
+        rm writer_database.db
+        ros2 topic pub --times 10 --qos-durability system_default /persistency_test std_msgs/String "{data: 'Hello'}"
 
 #. Delete the publisher database. Restart the subscriber node. Relaunch the publisher and check the first 10 samples are
    discarded by the subscriber because they were already received. Note the new subscriber deduced it from its
@@ -181,8 +188,10 @@ when the subscriber crashes and it's relaunched.
 
     .. code-block:: bash
 
-        1$ rm writer_database.db
-        1$ ros2 topic pub --times 11 --qos-durability system_default /persistency_test std_msgs/String "{data: 'Hello'}"
+        # Terminal 1
+        rm writer_database.db
+        ros2 topic pub --times 11 --qos-durability system_default /persistency_test std_msgs/String "{data: 'Hello'}"
 
-        2 <CTRL-C>
-        2$ ros2 topic echo --qos-durability system_default /persistency_test std_msgs/String
+        # Terminal 2
+        <CTRL-C>
+        ros2 topic echo --qos-durability system_default /persistency_test std_msgs/String
