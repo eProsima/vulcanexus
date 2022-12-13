@@ -41,7 +41,7 @@ The images are available for download on *Vulcanexus* `website <https://vulcanex
 
 .. code-block:: bash
 
-    docker load -i .\ubuntu-vulcanexus-{DISTRO}-micro.tar
+    docker load -i ./ubuntu-vulcanexus-{DISTRO}-micro.tar
 
     # Terminal 1
     docker run -ti --name persistence_testing ubuntu-vulcanexus:humble-micro
