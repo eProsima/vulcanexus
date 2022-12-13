@@ -4,8 +4,8 @@
 
 .. _tutorials_qos_persistency_persistency:
 
-Persistent Endpoints using TRANSIENT Durability QoS Policy
-==========================================================
+Persistent Data using Durability QoS
+====================================
 
 .. contents::
     :depth: 2
@@ -17,41 +17,45 @@ Background
 
 The DDS `Durability QoS Policy
 <https://fast-dds.docs.eprosima.com/en/{FASTDDS_BRANCH}/fastdds/dds_layer/core/policy/standardQosPolicies.html#durabilityqospolicy>`_
-specify how much importance ROS 2 nodes give to the data been exchanged. The possible options are explained :ref:`here
-<concepts_about_qos>` basically:
+specifies how much importance ROS 2 nodes give to the exchanged data. The
+possible options are briefly explained :ref:`here <concepts_about_qos>`:
 
 * Durability
 
-  * *Volatile*: Old data values are considered worthless. Any new node will not received any previous data.
+  * *Volatile*: Old data values are ignored. Any new node will not receive any previous data.
   * *Transient local*: Old data values are important. Any new node will receive data generated before its creation.
-  * *Transient*: Data is so important it is backed up or persisted by a database file. This will guarantee that if a
+  * *Transient*: Data is so important that it is backed up or persisted into a database file. This will guarantee that if a
     node crashes it can be reenacted and keep operating without data losses.
 
-Only the *Volatile* and *Transient Local* durability options are ROS 2 builtins. In order set up *Transient* nodes xml
-configuration files are required as explained in :ref:`this tutorial <tutorials_xml_profiles_intro>`.
-This tutorial provides guidelines on how to set up persistent nodes.
+Only *Volatile* and *Transient Local* durability options are ROS 2 builtins. In order to set up *Transient* nodes, xml
+configuration files are required as explained in :ref:`the XML profiles tutorial <tutorials_xml_profiles_intro>`. This tutorial
+provides guidelines on how to set up persistent nodes.
 
 Prerequisites
 -------------
 
 Vulcanexus Humble should be installed (:ref:`follow the steps here <linux_binary_installation>`).
-For testing sake using a docker container is often a more convenient approach (:ref:`docker setup <docker_installation>`).
-In order to test this feature a *Vulcanexus* lightweight docker image (as *core* or *micro*) is enough.
+For testing sake, using a docker container is often a more convenient approach (:ref:`docker setup <docker_installation>`).
+In order to test this feature, a *Vulcanexus* lightweight docker image (as *core* or *micro*) is enough.
 The images are available for download on *Vulcanexus* `website <https://vulcanexus.org/download>`_.
 
 .. code-block:: bash
 
-    $ docker load -i .\ubuntu-vulcanexus-{DISTRO}-micro.tar
-    1$ docker run -ti --name persistence_testing ubuntu-vulcanexus:humble-micro
-    2$ docker exec -ti persistence_testing /vulcanexus_entrypoint.sh /bin/bash
+    docker load -i .\ubuntu-vulcanexus-{DISTRO}-micro.tar
+
+    # Terminal 1
+    docker run -ti --name persistence_testing ubuntu-vulcanexus:humble-micro
+
+    # Terminal 2
+    docker exec -ti persistence_testing /vulcanexus_entrypoint.sh /bin/bash
 
 This tutorial requires two terminals: one for the data writer (1) and the other for the reader (2).
-Note that for user convenience the the terminal (1) that launches the container has the overlay loaded in the
+Note that for user convenience, the the terminal that launches the container (1) has the overlay loaded in the
 *entrypoint* but any other terminal that connects to it (2) must explicitly load the overlay calling the
 ``vulcanexus_entripoint.sh`` script.
 
 The concepts introduced here are applied to any ROS 2 nodes and the tutorial will not use a specific package but rely on
-the ROS 2 cli :ref:`capabilities <ROS2Topics>`.
+the ROS 2 :ref:`CLI capabilities <ROS2Topics>`.
 
 To create a publisher node from the ROS 2 command line that sends *TIMES* samples:
 
