@@ -270,6 +270,7 @@ devel
 Dhiman
 Diademata
 dialogs
+dicoverable
 didn
 Dima
 dir
