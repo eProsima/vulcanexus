@@ -1,0 +1,11 @@
+module dds2vulcanexus
+{
+    module idl
+    {
+        struct HelloWorld
+        {
+            unsigned long index;
+            string message;
+        };
+    };
+};

@@ -115,7 +115,8 @@ extensions = [
     'sphinx.ext.graphviz',
     'sphinx.ext.ifconfig',
     'sphinx.ext.intersphinx',
-    'sphinx.ext.todo'
+    'sphinx.ext.todo',
+    'sphinxcontrib.plantuml'
 ]
 
 sphinx_tabs_disable_css_loading = False
@@ -136,6 +137,8 @@ try:
 except ImportError:
     pass
 
+plantuml = '/usr/bin/plantuml -Djava.awt.headless=true '
+plantuml_output_format = "svg"
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['rst/_templates']
