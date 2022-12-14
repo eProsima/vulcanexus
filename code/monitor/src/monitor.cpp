@@ -18,22 +18,19 @@
 */
 
 #include <chrono>
-#include <csignal>
-#include <iomanip>
 #include <iostream>
+#include <iomanip>
 #include <sstream>
 #include <string>
 #include <thread>
 #include <vector>
 
-#include <fastdds/dds/domain/DomainParticipantFactory.hpp>
 #include <fastdds_statistics_backend/listener/DomainListener.hpp>
 #include <fastdds_statistics_backend/StatisticsBackend.hpp>
 #include <fastdds_statistics_backend/types/EntityId.hpp>
 #include <fastdds_statistics_backend/types/types.hpp>
 
 using namespace eprosima::statistics_backend;
-using namespace eprosima::fastdds::dds;
 
 class Monitor
 {
@@ -46,6 +43,8 @@ public:
         : domain_(domain)
         , n_bins_(n_bins)
         , t_interval_(t_interval)
+        , monitor_id_(EntityId::invalid())
+        , topic_id_(EntityId::invalid())
     {
     }
 
@@ -70,143 +69,134 @@ public:
 
     void run()
     {
-        stop_.store(false);
-        std::cout << "Monitor running. Please press CTRL+C to stop the Monitor at any time." << std::endl;
-        signal(SIGINT, [](int signum)
-                {
-                    std::cout << "\nSIGINT received, stopping Monitor execution." << std::endl;
-                    static_cast<void>(signum);
-                    Monitor::stop();
-                });
-
-        while (!stop_.load())
+        while (true)
         {
-            stop_.load();
+            if (!topic_id_.is_valid())
+            {
+                topic_id_ = get_topic_id("rt/chatter", "std_msgs::msg::dds_::String_");
+            }
+            else
+            {
+                get_fastdds_latency_mean();
+                get_publication_throughput_mean();
+            }
 
-            get_fastdds_latency_mean();
-            get_publication_throughput_mean();
+            std::this_thread::sleep_for(std::chrono::milliseconds(t_interval_*1000));
         }
     }
 
-    static void stop()
+    //! Get the id of the topic searching by topic_name and data_type
+    EntityId get_topic_id(
+            std::string topic_name,
+            std::string data_type)
     {
-        stop_.store(true);
+        // Get the list of all topics available
+        std::vector<EntityId> topics = StatisticsBackend::get_entities(EntityKind::TOPIC);
+        Info topic_info;
+        // Iterate over all topic searching for the one with specified topic_name and data_type
+        for (auto topic_id : topics)
+        {
+            topic_info = StatisticsBackend::get_info(topic_id);
+            if (topic_info["name"] == topic_name && topic_info["data_type"] == data_type)
+            {
+                return topic_id;
+            }
+        }
+
+
+        return EntityId::invalid();
     }
 
-
-    std::vector<StatisticsData> get_fastdds_latency_mean()
+    // Get communications latency mean
+    void get_fastdds_latency_mean()
     {
+        // Vector of Statistics Data to store the latency data
         std::vector<StatisticsData> latency_data{};
 
-        std::vector<EntityId> topics = StatisticsBackend::get_entities(EntityKind::TOPIC);
-        EntityId chatter_topic_id = -1;
-        Info topic_info;
-        for (auto topic_id : topics)
-        {
-            topic_info = StatisticsBackend::get_info(topic_id);
-            if (topic_info["name"] == "rt/chatter" && topic_info["data_type"] == "std_msgs::msg::dds_::String_")
-            {
-                chatter_topic_id = topic_id;
-                break;
-            }
-        }
-
-        if (chatter_topic_id < 0)
-        {
-            return latency_data;
-        }
-
-        std::vector<EntityId> topic_datawriters = StatisticsBackend::get_entities(
+        // Publishers on a specific topic
+        std::vector<EntityId> publishers = StatisticsBackend::get_entities(
             EntityKind::DATAWRITER,
-            chatter_topic_id);
-        std::vector<EntityId> topic_datareaders = StatisticsBackend::get_entities(
-            EntityKind::DATAREADER,
-            chatter_topic_id);
+            topic_id_);
 
+        // Subscriptions on a specific topic
+        std::vector<EntityId> subscriptions = StatisticsBackend::get_entities(
+            EntityKind::DATAREADER,
+            topic_id_);
+
+        // Get current time
         std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
 
+        /*
+        * Get the mean of the FASTDDS_LATENCY of the last time interval
+        * between the Publishers and Subscriptions publishing in and subscribed to a given topic
+        */
         latency_data = StatisticsBackend::get_data(
-            DataKind::FASTDDS_LATENCY,                                   // DataKind
-            topic_datawriters,                                           // Source entities
-            topic_datareaders,                                           // Target entities
-            n_bins_,                                                     // Number of bins
-            now - std::chrono::seconds(t_interval_),                     // t_from
-            now,                                                         // t_to
-            StatisticKind::MEAN);                                        // Statistic
+            DataKind::FASTDDS_LATENCY,                  // DataKind
+            publishers,                                 // Source entities
+            subscriptions,                              // Target entities
+            n_bins_,                                    // Number of bins
+            now - std::chrono::seconds(t_interval_),    // t_from
+            now,                                        // t_to
+            StatisticKind::MEAN);                       // Statistic
 
+        // Iterate over the retrieve data
         for (auto latency : latency_data)
         {
+            // Check if there are meningful values in retrieved vector
             if (std::isnan(latency.second))
             {
-                return latency_data;
+                return;
             }
 
-            std::int64_t timestamp_ms = std::chrono::duration_cast<std::chrono::milliseconds>(
-                latency.first.time_since_epoch()).count();
-            fastdds_latency_mean_->Set(latency.second / 1000, timestamp_ms);
-
-            std::cout << "ROS 2 Latency in topic " << topic_info["name"] << ": ["
+            // Print the latency data
+            std::cout << "ROS 2 Latency in topic " << StatisticsBackend::get_info(topic_id_)["name"] << ": ["
                     << timestamp_to_string(latency.first) << ", " << latency.second / 1000 << " μs]" << std::endl;
         }
-
-        return latency_data;
     }
 
-    std::vector<StatisticsData> get_publication_throughput_mean()
+    //! Get publication thougput mean
+    void get_publication_throughput_mean()
     {
+        // Vector of Statistics Data to store the publication throughput data
         std::vector<StatisticsData> publication_throughput_data{};
 
-        std::vector<EntityId> topics = StatisticsBackend::get_entities(EntityKind::TOPIC);
-        EntityId chatter_topic_id = -1;
-        Info topic_info;
-        for (auto topic_id : topics)
-        {
-            topic_info = StatisticsBackend::get_info(topic_id);
-            if (topic_info["name"] == "rt/chatter" && topic_info["data_type"] == "std_msgs::msg::dds_::String_")
-            {
-                chatter_topic_id = topic_id;
-                break;
-            }
-        }
-
-        if (chatter_topic_id < 0)
-        {
-            return publication_throughput_data;
-        }
-
-        std::vector<EntityId> chatter_datawriters = StatisticsBackend::get_entities(
+        // Publishers on a specific topic
+        std::vector<EntityId> publishers = StatisticsBackend::get_entities(
             EntityKind::DATAWRITER,
-            chatter_topic_id);
+            topic_id_);
 
+        // Get current time
         std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
 
+        /*
+        * Get the mean of the PUBLICATION_THROUGHPUT of the last time interval
+        * of the Publishers publishing in a given topic
+        */
         publication_throughput_data = StatisticsBackend::get_data(
-            DataKind::PUBLICATION_THROUGHPUT,                            // DataKind
-            chatter_datawriters,                                         // Source entities
-            n_bins_,                                                     // Number of bins
-            now - std::chrono::seconds(t_interval_),                     // t_from
-            now,                                                         // t_to
-            StatisticKind::MEAN);                                        // Statistic
+            DataKind::PUBLICATION_THROUGHPUT,           // DataKind
+            publishers,                                 // Source entities
+            n_bins_,                                    // Number of bins
+            now - std::chrono::seconds(t_interval_),    // t_from
+            now,                                        // t_to
+            StatisticKind::MEAN);                       // Statistic
 
+        // Iterate over the retrieve data
         for (auto publication_throughput : publication_throughput_data)
         {
+            // Check if there are meningful values in retrieved vector
             if (std::isnan(publication_throughput.second))
             {
-                return publication_throughput_data;
+                return;
             }
 
-            std::int64_t timestamp_ms = std::chrono::duration_cast<std::chrono::milliseconds>(
-                publication_throughput.first.time_since_epoch()).count();
-            publication_throughput_mean_->Set(publication_throughput.second, timestamp_ms);
-
-            std::cout << "Publication throughput in topic " << topic_info["name"] << ": ["
+            // Print the publication througput data
+            std::cout << "Publication throughput in topic " << StatisticsBackend::get_info(topic_id_)["name"] << ": ["
                     << timestamp_to_string(publication_throughput.first) << ", "
                     << publication_throughput.second << " B/s]" << std::endl;
         }
-
-        return publication_throughput_data;
     }
 
+    //! Convert timestamp to string
     std::string timestamp_to_string(
             const Timestamp timestamp)
     {
@@ -246,7 +236,7 @@ protected:
             }
             else
             {
-                std::cout << "Host " << std::string(host_info["name"]) << " update info." << std::endl;
+                std::cout << "Host " << std::string(host_info["name"]) << " updated info." << std::endl;
             }
         }
 
@@ -262,7 +252,7 @@ protected:
             }
             else
             {
-                std::cout << "User " << std::string(user_info["name"]) << " update info." << std::endl;
+                std::cout << "User " << std::string(user_info["name"]) << " updated info." << std::endl;
             }
         }
 
@@ -278,23 +268,7 @@ protected:
             }
             else
             {
-                std::cout << "Process " << std::string(process_info["name"]) << " update info." << std::endl;
-            }
-        }
-
-        void on_locator_discovery(
-                EntityId locator_id,
-                const DomainListener::Status& status) override
-        {
-            Info locator_info = StatisticsBackend::get_info(locator_id);
-
-            if (status.current_count_change == 1)
-            {
-                std::cout << "Locator " << std::string(locator_info["name"]) << " discovered." << std::endl;
-            }
-            else
-            {
-                std::cout << "Locator " << std::string(locator_info["name"]) << " update info." << std::endl;
+                std::cout << "Process " << std::string(process_info["name"]) << " updated info." << std::endl;
             }
         }
 
@@ -334,7 +308,7 @@ protected:
             }
             else
             {
-                std::cout << "Participant with GUID " << std::string(participant_info["guid"]) << " update info." << std::endl;
+                std::cout << "Participant with GUID " << std::string(participant_info["guid"]) << " updated info." << std::endl;
             }
         }
 
@@ -352,7 +326,7 @@ protected:
             }
             else
             {
-                std::cout << "DataReader with GUID " << std::string(datareader_info["guid"]) << " update info." << std::endl;
+                std::cout << "DataReader with GUID " << std::string(datareader_info["guid"]) << " updated info." << std::endl;
             }
         }
 
@@ -370,39 +344,27 @@ protected:
             }
             else
             {
-                std::cout << "DataWriter with GUID " << std::string(datawriter_info["guid"]) << " update info." << std::endl;
+                std::cout << "DataWriter with GUID " << std::string(datawriter_info["guid"]) << " updated info." << std::endl;
             }
         }
 
-    }
-    physical_listener_;
+    } physical_listener_;
 
     DomainId domain_;
-
     uint32_t n_bins_;
-
     uint32_t t_interval_;
 
     EntityId monitor_id_;
-
-    static std::atomic<bool> stop_;
+    EntityId topic_id_;
 };
 
-int main(
-        int argc,
-        char** argv)
+int main()
 {
-    int columns;
-
-    columns = getenv("COLUMNS") ? atoi(getenv("COLUMNS")) : 80;
-
     int domain = 0;
     int n_bins = 1;
     int t_interval = 5;
 
-
-    Monitor monitor(static_cast<uint32_t>(domain), static_cast<uint32_t>(n_bins),
-            static_cast<uint32_t>(t_interval));
+    Monitor monitor(domain, n_bins, t_interval);
 
     if (monitor.init())
     {
