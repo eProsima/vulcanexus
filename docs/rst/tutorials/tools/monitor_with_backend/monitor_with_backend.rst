@@ -1,7 +1,7 @@
 .. _tutorials_tools_monitor_with_backend:
 
-ROS 2 Monitor example with statistics backend
-=============================================
+Monitoring ROS 2 with Fast DDS Statistics Backend
+=================================================
 
 .. contents::
     :depth: 2
@@ -11,9 +11,10 @@ ROS 2 Monitor example with statistics backend
 Background
 ----------
 
-Vulcanexus integrates :ref:`vulcanexus_monitor`, which is a useful tool for monitoring and studying a ROS 2 network as ROS 2 relies on the `DDS specification <https://www.omg.org/spec/DDS/1.4/About-DDS/>`_ to communicate the different nodes.
+Vulcanexus integrates :ref:`fastdds_statistics_backend`, which is a useful tool for monitoring and studying a ROS 2 network since ROS 2 relies on the `DDS specification <https://www.omg.org/spec/DDS/1.4/About-DDS/>`_ to communicate the different nodes.
+:ref:`This other tutorial <tutorials_tools_fastdds_monitor>` shows how to use this tool with the ROS 2 Monitor application, here can be seen how to implement it in a ROS 2 package.
 
-This tutorial provides an explanation of the ROS 2 Monitor code.
+This tutorial provides a step by step tutorial on how to create your first application as a ROS 2 package to monitor your ROS 2 deployment.
 
 Prerequisites
 -------------
@@ -33,19 +34,21 @@ The application workspace will have the following structure at the end of the pr
 
 .. code-block:: shell-session
 
-    .
-    └── monitor
-        ├── include
-        │   ├── monitor
-        └── src
-            └── monitor.cpp
-        ├── CMakeLists.txt
-        └── package.xml
+    ros2_ws
+    └── src
+        └── monitor
+            ├── include
+            │   ├── monitor
+            └── src
+                └── monitor.cpp
+            ├── CMakeLists.txt
+            └── package.xml
 
-Let's create the ROS 2 package by running the command:
+Let's create the ROS 2 workspace and package by running the commands:
 
 .. code-block:: bash
-
+    mkdir -p ros2_ws/src
+    cd ros2_ws/src
     ros2 pkg create --build-type ament_cmake monitor --dependencies fastcdr fastrtps fastdds_statistics_backend
 
 You will now have a new folder within your workspace ``src`` directory called ``monitor``.
@@ -54,17 +57,14 @@ Import linked libraries and its dependencies
 --------------------------------------------
 
 The DDS application requires the Fast DDS and Fast CDR libraries.
-Depending on the installation procedure followed the process of making these libraries available for our DDS application
-will be slightly different.
+Depending on the installation procedure followed the process of making these libraries available for our DDS application will be slightly different.
 
 Installation from binaries and manual installation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If we have followed the installation from binaries or the manual installation, these libraries are already accessible
-from the workspace.
-On Linux, the header files can be found in directories `/usr/include/fastrtps/` and
-`/usr/include/fastcdr/` for Fast DDS and Fast CDR respectively. The compiled libraries of both can be found in
-the directory `/usr/lib/`.
+If we have followed the installation from binaries or the manual installation, these libraries are already accessible from the workspace.
+On Linux, the header files can be found in directories `/usr/include/fastrtps/` and `/usr/include/fastcdr/` for Fast DDS and Fast CDR respectively.
+The compiled libraries of both can be found in the directory `/usr/lib/`.
 
 Colcon installation
 ^^^^^^^^^^^^^^^^^^^
@@ -76,8 +76,7 @@ If the libraries need to be available just for the current session, run the foll
 
     source <path/to/Fast-DDS/workspace>/install/setup.bash
 
-They can be made accessible from any session by adding the Fast DDS installation directory to your ``$PATH``
-variable in the shell configuration files for the current user running the following command.
+They can be made accessible from any session by adding the Fast DDS installation directory to your ``$PATH`` variable in the shell configuration files for the current user running the following command.
 
 .. code-block:: bash
 
@@ -88,6 +87,13 @@ This will set up the environment after each of this user's logins.
 Write the Monitor
 -----------------
 
+From the `src` directory in the workspace, run the following command to download the monitor.cpp file.
+
+.. code-block:: bash
+
+    wget -O monitor.cpp \
+        https://raw.githubusercontent.com/eProsima/vulcanexus/main/docs/rst/tutorials/tools/monitor_with_backend/code/monitor/src/monitor.cpp
+
 This is the C++ source code for the application.
 
 .. literalinclude:: ./code/monitor/src/monitor.cpp
@@ -97,8 +103,7 @@ This is the C++ source code for the application.
 Examining the code
 ------------------
 
-At the beginning of the file we have a Doxygen style comment block with the ``@file`` field that tells us the name of
-the file.
+At the beginning of the file we have a Doxygen style comment block with the ``@file`` field that tells us the name of the file.
 
 .. literalinclude:: ./code/monitor/src/monitor.cpp
     :language: C++
@@ -130,8 +135,7 @@ The class destructor stop the monitor.
     :language: C++
     :lines: 42-55
 
-Continuing with the public member functions of the :class:`Monitor` class, the next snippet of code defines
-the public initialization member function.
+Continuing with the public member functions of the :class:`Monitor` class, the next snippet of code defines the public initialization member function.
 This function performs several actions:
 
 1.  Initializes the monitor.
@@ -141,7 +145,8 @@ This function performs several actions:
     :language: C++
     :lines: 57-69
 
-To run the monitor, the public member function ``run()`` is implemented. It called the public member functions ``get_fastdds_latency_mean()`` and ``get_publication_throughput_mean()`` explained below.
+To run the monitor, the public member function ``run()`` is implemented.
+It called the public member functions ``get_fastdds_latency_mean()`` and ``get_publication_throughput_mean()`` explained below.
 
 .. literalinclude:: ./code/monitor/src/monitor.cpp
     :language: C++
@@ -177,7 +182,7 @@ The last public member function is ``timestamp_to_string()`` which is in charge 
     :language: C++
     :lines: 210-221
 
-Finally, the ROS 2 Monitor is initialized and run in main.
+Finally, the monitor application is initialized and run in main.
 
 .. literalinclude:: ./code/monitor/src/monitor.cpp
     :language: C++
@@ -186,8 +191,8 @@ Finally, the ROS 2 Monitor is initialized and run in main.
 CMakeLists.txt
 --------------
 
-Include at the end of the CMakeList.txt file you created earlier the following code snippet. This adds all the source
-files needed to build the executable, and links the executable and the library together.
+Include at the end of the CMakeList.txt file you created earlier the following code snippet.
+This adds all the source files needed to build the executable, and links the executable and the library together.
 
 .. literalinclude:: ./code/monitor/CMakeLists.txt
     :language: cmake

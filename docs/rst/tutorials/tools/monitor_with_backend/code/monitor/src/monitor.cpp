@@ -129,8 +129,8 @@ public:
             DataKind::FASTDDS_LATENCY,                                   // DataKind
             topic_datawriters,                                           // Source entities
             topic_datareaders,                                           // Target entities
-            n_bins_,                                                           // Number of bins
-            now - std::chrono::seconds(t_interval_),                               // t_from
+            n_bins_,                                                     // Number of bins
+            now - std::chrono::seconds(t_interval_),                     // t_from
             now,                                                         // t_to
             StatisticKind::MEAN);                                        // Statistic
 
@@ -183,8 +183,8 @@ public:
         publication_throughput_data = StatisticsBackend::get_data(
             DataKind::PUBLICATION_THROUGHPUT,                            // DataKind
             chatter_datawriters,                                         // Source entities
-            n_bins_,                                                           // Number of bins
-            now - std::chrono::seconds(t_interval_),                               // t_from
+            n_bins_,                                                     // Number of bins
+            now - std::chrono::seconds(t_interval_),                     // t_from
             now,                                                         // t_to
             StatisticKind::MEAN);                                        // Statistic
 
