@@ -47,6 +47,7 @@ The application workspace will have the following structure at the end of the pr
 Let's create the ROS 2 workspace and package by running the commands:
 
 .. code-block:: bash
+
     mkdir -p ros2_ws/src
     cd ros2_ws/src
     ros2 pkg create --build-type ament_cmake monitor --dependencies fastcdr fastrtps fastdds_statistics_backend
