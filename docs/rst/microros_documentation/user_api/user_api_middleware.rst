@@ -1,7 +1,7 @@
 .. _micro_user_middleware:
 
 Middleware API
-========================
+==============
 
 .. contents:: Table of Contents
     :depth: 2
@@ -210,3 +210,83 @@ A secondary API is provided to ping the Agent with a specific rmw configuration.
         // micro-ROS Agent is not available
         ...
     }
+
+Middleware error handling
+-------------------------
+
+micro-ROS RMW can be configured to report middleware error to user space using custom callbacks.
+This option is disabled by default and needs to be enabled at compile time via ``RMW_UROS_ERROR_HANDLING`` CMake argument.
+
+An example ``colcon.meta`` is:
+
+.. code-block:: json
+
+  {
+      "names": {
+          "rmw_microxrcedds": {
+              "cmake-args": [
+                  "-DRMW_UROS_ERROR_HANDLING=ON"
+              ]
+          }
+      }
+  }
+
+Once enabled, the user can register a callback to be called when an error is detected, using the following API:
+
+.. code-block:: c
+
+    void rmw_uros_set_error_handling_callback(
+        rmw_uros_error_handling error_cb);
+
+An example callback of type ``rmw_uros_error_handling`` is:
+
+.. code-block:: c
+
+    void error_handler(
+        const rmw_uros_error_entity_type_t entity,
+        const rmw_uros_error_source_t source,
+        const rmw_uros_error_context_t context,
+        const char * file,
+        const int line)
+    {
+        // Do something with the error
+        ...
+    }
+
+``rmw_uros_error_entity_type_t`` represent with entity is triggering the error.
+It can be one of the following:
+
+ - ``RMW_UROS_ERROR_ON_UNKNOWN``: Generic entity.
+ - ``RMW_UROS_ERROR_ON_NODE``: Node entity.
+ - ``RMW_UROS_ERROR_ON_SERVICE``: Service server entity.
+ - ``RMW_UROS_ERROR_ON_CLIENT``: Service client entity.
+ - ``RMW_UROS_ERROR_ON_SUBSCRIPTION``: Subscription entity.
+ - ``RMW_UROS_ERROR_ON_PUBLISHER``: Publisher entity.
+ - ``RMW_UROS_ERROR_ON_GRAPH``: Graph manager.
+ - ``RMW_UROS_ERROR_ON_GUARD_CONDITION``: Guard condition entity.
+ - ``RMW_UROS_ERROR_ON_TOPIC``: Topic memory.
+
+``rmw_uros_error_source_t`` represent the source of the error.
+It can be one of the following:
+
+ - ``RMW_UROS_ERROR_ENTITY_CREATION``: Error on entity creation.
+ - ``RMW_UROS_ERROR_ENTITY_DESTRUCTION``: Error on entity destruction.
+ - ``RMW_UROS_ERROR_CHECK``: Error on a check.
+ - ``RMW_UROS_ERROR_NOT_IMPLEMENTED``: Feature not implemented.
+ - ``RMW_UROS_ERROR_MIDDLEWARE_ALLOCATION``: Memory error.
+
+``rmw_uros_error_context_t`` represent the context of the error and contains, one or more of the following members:
+
+ - ``node``: Name of the node of type ``const char *``.
+ - ``node_namespace``: Namespace of the node of type ``const char *``.
+ - ``topic_name``: Name of the topic of type ``const char *``.
+ - ``ucdr``: Pointer to the ``ucdrBuffer`` of type ``const ucdrBuffer *``.
+ - ``size``: Size of the buffer of type ``size_t``.
+ - ``type_support``: Pointer to the type support of type ``const message_type_support_callbacks_t *`` or ``const service_type_support_callbacks_t *``.
+ - ``description``: Description of the error of type ``const char *``.
+
+Also, this callback function gets the file name and line number where the error was detected.
+This information can be accessed using:
+
+ - ``file``: File name of type ``const char *``.
+ - ``line``: Line number of type ``int``.
