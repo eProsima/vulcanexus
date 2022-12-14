@@ -102,12 +102,15 @@ For each node is specified:
 
 * A database filename as the ``dds.persistence.sqlite3.filename`` property in the default participant profile.
 
-* An endpoint (``data_writer`` or ``data_reader``) profile, which is associated to the node using the
-  *topic name* as ``profile_name`` attribute.
-  In this tutorial the *topic name* will be **persistency_test**. |br|
-  The endpoint requires a `GUID <https://en.wikipedia.org/wiki/Universally_unique_identifier>`_ specified as the
-  ``dds.persistence.guid`` property. |br|
-  The endpoint Durability QoS must be set to *transient*.
+* An endpoint (``data_writer`` or ``data_reader``) profile which:
+
+  + is associated to the node using the *topic name* as ``profile_name`` attribute. In this tutorial the
+    *topic name* will be **persistency_test**.
+
+  + The endpoint requires a `GUID <https://en.wikipedia.org/wiki/Universally_unique_identifier>`_ specified as
+    the ``dds.persistence.guid`` property.
+
+  + The endpoint Durability QoS must be set to *transient*.
 
 Environment variables set up
 ----------------------------
