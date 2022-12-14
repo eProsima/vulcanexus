@@ -97,6 +97,7 @@ macros = {
     'DISTRO_TITLE': 'Humble',
     'DISTRO_TITLE_FULL': 'Humble Hawksbill',
     'REPOS_FILE_BRANCH': 'humble',
+    'FASTDDS_BRANCH': 'v2.8.1',
 }
 
 # -- General configuration ------------------------------------------------

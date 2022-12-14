@@ -15,3 +15,4 @@ Listed below are the tutorials for configuring QoS in ROS 2 environments.
     xml_profiles/xml_profiles
     ownership/ownership
     partition/partition
+    persistency/persistency
