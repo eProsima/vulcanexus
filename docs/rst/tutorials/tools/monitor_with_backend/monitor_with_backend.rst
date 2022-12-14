@@ -182,11 +182,60 @@ The last public member function is ``timestamp_to_string()`` which is in charge 
     :language: C++
     :lines: 210-221
 
+Then, the protected :class:`Listener` class is defined by inheriting from the `PhysicalListener <https://fast-dds-statistics-backend.readthedocs.io/en/latest/rst/api-reference/listener/physicallistener.html>`_ class.
+This class overrides the default PhysicalListener callbacks, which allows the execution of routines in case of an event.
+
+.. literalinclude:: ./code/monitor/src/monitor.cpp
+    :language: C++
+    :lines: 223-235
+
+The overridden callback ``on_host_discovery()`` allows the definition of a series of actions when a new host is detected.
+
+.. literalinclude:: ./code/monitor/src/monitor.cpp
+    :language: C++
+    :lines: 237-251
+
+Then comes the overridden callback ``on_user_discovery()`` that detects when a new user is discovered.
+
+.. literalinclude:: ./code/monitor/src/monitor.cpp
+    :language: C++
+    :lines: 253-267
+
+Next, the overridden callback ``on_process_discovery()`` involves when a new process is discovered.
+
+.. literalinclude:: ./code/monitor/src/monitor.cpp
+    :language: C++
+    :lines: 269-283
+
+The overridden callback ``on_locator_discovery()`` when a new locator is discovered.
+
+.. literalinclude:: ./code/monitor/src/monitor.cpp
+    :language: C++
+    :lines: 285-299
+
+The overridden callback ``on_topic_discovery()`` when a new Topic is discovered.
+
+.. literalinclude:: ./code/monitor/src/monitor.cpp
+    :language: C++
+    :lines: 301-321
+
+The overridden callback ``on_participant_discovery()`` when a new participant is discovered.
+
+.. literalinclude:: ./code/monitor/src/monitor.cpp
+    :language: C++
+    :lines: 323-339
+
+And the overridden callbacks ``on_datareader_discovery()`` and ``on_datawriter_discovery()`` involves when a new DataReader or DataWriter respectively is discovered.
+
+.. literalinclude:: ./code/monitor/src/monitor.cpp
+    :language: C++
+    :lines: 341-375
+
 Finally, the monitor application is initialized and run in main.
 
 .. literalinclude:: ./code/monitor/src/monitor.cpp
     :language: C++
-    :lines: 399-421
+    :lines: 391-413
 
 CMakeLists.txt
 --------------

@@ -234,7 +234,6 @@ protected:
         {
         }
 
-        //! Callback when a new Host is discovered
         void on_host_discovery(
                 EntityId host_id,
                 const DomainListener::Status& status) override
@@ -251,7 +250,6 @@ protected:
             }
         }
 
-        //! Callback when a new User is discovered
         void on_user_discovery(
                 EntityId user_id,
                 const DomainListener::Status& status) override
@@ -268,7 +266,6 @@ protected:
             }
         }
 
-        //! Callback when a new Process is discovered
         void on_process_discovery(
                 EntityId process_id,
                 const DomainListener::Status& status) override
@@ -285,7 +282,6 @@ protected:
             }
         }
 
-        //! Callback when a new Locator is discovered
         void on_locator_discovery(
                 EntityId locator_id,
                 const DomainListener::Status& status) override
@@ -302,7 +298,6 @@ protected:
             }
         }
 
-        //! Callback when a new Topic is discovered
         void on_topic_discovery(
                 EntityId domain_id,
                 EntityId topic_id,
@@ -325,7 +320,6 @@ protected:
             }
         }
 
-        //! Callback when a new Participant is discovered
         void on_participant_discovery(
                 EntityId domain_id,
                 EntityId participant_id,
@@ -344,7 +338,6 @@ protected:
             }
         }
 
-        //! Callback when a new DataReader is discovered
         void on_datareader_discovery(
                 EntityId domain_id,
                 EntityId datareader_id,
@@ -363,7 +356,6 @@ protected:
             }
         }
 
-        //! Callback when a new DataWriter is discovered
         void on_datawriter_discovery(
                 EntityId domain_id,
                 EntityId datawriter_id,
