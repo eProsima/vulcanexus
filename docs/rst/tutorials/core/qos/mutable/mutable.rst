@@ -48,6 +48,8 @@ We recomend to first complete the following tutorials:
 
     * :ref:`Modifying Ownership and Ownership Strength QoS Policy <tutorials_qos_ownership_ownership>`
 
+    * `Writing a simple publisher and subscriber (C++) <https://docs.vulcanexus.org/en/latest/ros2_documentation/source/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html>`_
+
     * `Understanding parameters <https://docs.vulcanexus.org/en/latest/ros2_documentation/source/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Parameters/Understanding-ROS2-Parameters.html>`_
 
     * `Using parameters in a class (C++) <https://docs.vulcanexus.org/en/latest/ros2_documentation/source/Tutorials/Beginner-Client-Libraries/Using-Parameters-In-A-Class-CPP.html>`_
@@ -322,7 +324,107 @@ Inside the `ros2_ws/src/cpp_parameter_event_handler/src` directory, create a new
 Explaining the source code
 --------------------------
 
-[EXPLANATION]
+In the case of the Publishers, the code is analogous, so here the code is going to be explained just for Publisher 1.
+For the case of the Subscriber, this tutorial is not going to explain it, as it is just the minimal subscriber, listening on the topic `/chatter`, already explained in the `Writing a simple publisher and subscriber (C++) <https://docs.vulcanexus.org/en/latest/ros2_documentation/source/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html>`_ tutorial.
+
+For the Publisher, here not all the code is going to be explained, as the referred tutorials of the prerequisites section explain big part of it.
+For instance, the `/chatter` temporized publisher is explained in the `Writing a simple publisher and subscriber (C++) <https://docs.vulcanexus.org/en/latest/ros2_documentation/source/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html>`_
+
+.. code-block:: c++
+
+    // Chatter publisher callback
+        auto publish =
+        [this]() -> void
+        {
+            msg_ = std::make_unique<std_msgs::msg::String>();
+            msg_->data = "Hello World: " + std::to_string(count_++);
+            RCLCPP_INFO(this->get_logger(), "PUB1 Publishing: '%s'", msg_->data.c_str());
+            pub_->publish(std::move(msg_));
+
+            eprosima::fastdds::dds::DataWriterQos dw_qos;
+            dw->get_qos(dw_qos);
+
+            eprosima::fastdds::dds::OwnershipStrengthQosPolicy dw_os_qos;
+            dw_os_qos = dw_qos.ownership_strength();
+
+
+            RCLCPP_INFO(this->get_logger(), "Ownership Strength: '%d'", dw_os_qos.value);
+        };
+        // Chatter publisher timer
+        timer_ = create_wall_timer(500ms, publish);
+        // Chatter publisher creation
+        pub_ = create_publisher<std_msgs::msg::String>("chatter", 10);
+
+
+, and the mechanism to respond by means of a user callback to a change in a node's parameter is explained in `Monitoring for parameter changes (C++) <https://docs.vulcanexus.org/en/latest/ros2_documentation/source/Tutorials/Intermediate/Monitoring-For-Parameter-Changes-CPP.html>`_.
+
+.. code-block:: c++
+
+    // Declare ROS parameter
+        this->declare_parameter("pub1_ownership_strength", 100); // This is the parameter initialization. 100 is only to state it is int type
+
+        // Create a parameter subscriber that can be used to monitor parameter changes
+        param_subscriber_ = std::make_shared<rclcpp::ParameterEventHandler>(this);
+
+        // Set a callback for this node's integer parameter, "pub1_ownership_strength"
+        auto cb = [this](const rclcpp::Parameter & p) {
+            RCLCPP_INFO(
+            this->get_logger(), "cb: Received an update to parameter \"%s\" of type %s: \"%ld\"",
+            p.get_name().c_str(),
+            p.get_type_name().c_str(),
+            p.as_int());
+
+            eprosima::fastdds::dds::DataWriterQos dw_qos;
+            dw->get_qos(dw_qos);
+
+            eprosima::fastdds::dds::OwnershipStrengthQosPolicy dw_os_qos;
+            dw_os_qos = dw_qos.ownership_strength();
+            dw_os_qos.value = p.as_int();
+            dw_qos.ownership_strength(dw_os_qos);
+
+            dw->set_qos(dw_qos);
+        };
+        cb_handle_ = param_subscriber_->add_parameter_callback("pub1_ownership_strength", cb);
+
+
+The `demo_nodes_cpp_native <https://github.com/ros2/demos/tree/master/demo_nodes_cpp_native>`_ shows how to access inner RMW and Fast DDS entities, although it is not actually explained.
+In this tutorial, that same mechanism is used.
+In the private section of the `Node_ChangeMutableQoS_PubX` class, the pointers to the native handlers are declared:
+
+.. code-block:: c++
+
+    // Pointers to RMW and Fast DDS inner object handles
+    rcl_publisher_t * rcl_pub;
+    rmw_publisher_t * rmw_pub;
+    eprosima::fastdds::dds::DataWriter * dw;
+
+
+In the constructor, the pointers are popuated by calling the APIs provided by the rmw and rmw_fastrtps_cpp, until obtaining the `eprosima::fastdds::dds::DataWriter` handle:
+
+.. code-block:: c++
+
+    // Access RMW and Fast DDS inner object handles
+    rcl_pub = pub_->get_publisher_handle().get();
+    rmw_pub = rcl_publisher_get_rmw_handle(rcl_pub);
+    dw = rmw_fastrtps_cpp::get_datawriter(rmw_pub);
+
+
+When the `pubX_ownership_strength` is updated (for instance, via command line using `ros2 param set` command), the `cb` parameter callback is raised, and the `eprosima::fastdds::dds::DataWriter` handle is used to update its ownership strength.
+
+.. code-block:: c++
+
+    eprosima::fastdds::dds::DataWriterQos dw_qos;
+    dw->get_qos(dw_qos);
+
+    eprosima::fastdds::dds::OwnershipStrengthQosPolicy dw_os_qos;
+    dw_os_qos = dw_qos.ownership_strength();
+    dw_os_qos.value = p.as_int();
+    dw_qos.ownership_strength(dw_os_qos);
+
+    dw->set_qos(dw_qos);
+
+In this case, as in the current version of Fast DDS the builtin statistics are enabled by default (see `DomainParticipantQos <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/domain/domainParticipant/domainParticipant.html#domainparticipantqos>`_), it is needed to retrieve the internal QoS by menas of `::get_qos()`, then perform the modifications and update the QoS by means of `::set_qos()`:
+The value of the ownership strength is set from the value of the updated parameter.
 
 Update CMakeLists.txt and package.xml
 -------------------------------------
