@@ -211,10 +211,10 @@ A secondary API is provided to ping the Agent with a specific rmw configuration.
         ...
     }
 
-Middleware error handling
+Error handling
 -------------------------
 
-micro-ROS RMW can be configured to report middleware error to user space using custom callbacks.
+micro-ROS RMW can be configured to report middleware errors to user space using custom callbacks.
 This option is disabled by default and needs to be enabled at compile time via ``RMW_UROS_ERROR_HANDLING`` CMake argument.
 
 The behavior of this flag is:
