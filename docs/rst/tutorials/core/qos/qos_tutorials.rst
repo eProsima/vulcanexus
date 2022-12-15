@@ -17,3 +17,4 @@ Listed below are the tutorials for configuring QoS in ROS 2 environments.
     partition/partition
     persistency/persistency
     initial_peers/initial_peers
+    mutable/mutable
