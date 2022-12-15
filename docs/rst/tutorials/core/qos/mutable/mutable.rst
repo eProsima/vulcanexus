@@ -114,7 +114,7 @@ Inside the `ros2_ws/src/cpp_parameter_event_handler/src` directory, create a new
 
             eprosima::fastdds::dds::OwnershipStrengthQosPolicy dw_os_qos;
             dw_os_qos = dw_qos.ownership_strength();
-            
+
 
             RCLCPP_INFO(this->get_logger(), "Ownership strenght: '%d'", dw_os_qos.value);
         };
@@ -149,7 +149,7 @@ Inside the `ros2_ws/src/cpp_parameter_event_handler/src` directory, create a new
             dw_os_qos = dw_qos.ownership_strength();
             dw_os_qos.value = p.as_int();
             dw_qos.ownership_strength(dw_os_qos);
-            
+
             dw->set_qos(dw_qos);
         };
         cb_handle_ = param_subscriber_->add_parameter_callback("pub1_ownership_strenght", cb);
@@ -216,7 +216,7 @@ Inside the `ros2_ws/src/cpp_parameter_event_handler/src` directory, create a new
 
             eprosima::fastdds::dds::OwnershipStrengthQosPolicy dw_os_qos;
             dw_os_qos = dw_qos.ownership_strength();
-            
+
 
             RCLCPP_INFO(this->get_logger(), "Ownership strenght: '%d'", dw_os_qos.value);
         };
@@ -251,7 +251,7 @@ Inside the `ros2_ws/src/cpp_parameter_event_handler/src` directory, create a new
             dw_os_qos = dw_qos.ownership_strength();
             dw_os_qos.value = p.as_int();
             dw_qos.ownership_strength(dw_os_qos);
-            
+
             dw->set_qos(dw_qos);
         };
         cb_handle_ = param_subscriber_->add_parameter_callback("pub2_ownership_strenght", cb);
@@ -389,7 +389,7 @@ To do that, create a new xml file in the oot of the workspace:
 
     cd ~/ros2_ws
     touch profiles1.xml
-    
+
 Open the newly created file with your preferred editor and paste the following xml code:
 
 .. code-block:: xml
