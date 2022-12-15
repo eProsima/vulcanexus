@@ -13,7 +13,7 @@
 # limitations under the License.
 
 cmake_minimum_required(VERSION 3.8)
-project(monitor)
+project(monitor_backend_tutorial)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     add_compile_options(-Wall -Wextra -Wpedantic)
@@ -37,21 +37,14 @@ if(BUILD_TESTING)
     ament_lint_auto_find_test_dependencies()
 endif()
 
-message(STATUS "Configuring Monitor example...")
-file(GLOB MONITOR_EXAMPLE_SOURCES_CPP "*.cpp")
+# Compile executable and link with dependencies
+add_executable(monitor_backend_tutorial src/monitor.cpp)
+ament_target_dependencies(monitor_backend_tutorial fastrtps fastcdr fastdds_statistics_backend)
 
-add_executable(monitor src/monitor.cpp ${DDS_HELLOWORLD_SOURCES_CPP})
-target_link_libraries(monitor fastrtps fastcdr fastdds_statistics_backend)
-
-target_compile_definitions(monitor PRIVATE
-    $<$<AND:$<NOT:$<BOOL:${WIN32}>>,$<STREQUAL:"${CMAKE_BUILD_TYPE}","Debug">>:__DEBUG>
-    $<$<BOOL:${INTERNAL_DEBUG}>:__INTERNALDEBUG> # Internal debug activated.
-)
-install(TARGETS
-    monitor
-    ARCHIVE DESTINATION lib
-    LIBRARY DESTINATION lib
-    RUNTIME DESTINATION lib/${PROJECT_NAME}
+# Install executable
+install(
+    TARGETS monitor_backend_tutorial
+    DESTINATION lib/${PROJECT_NAME}
 )
 
 ament_package()
