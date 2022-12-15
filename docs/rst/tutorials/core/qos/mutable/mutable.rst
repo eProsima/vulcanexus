@@ -27,9 +27,9 @@ The following list shows all the mutable QoS within Fast DDS.
 | |ParticipantRes
 +--------------------------------+----------------------------------------------+----------+
 
-Another :ref:`tutorial <tutorials_qos_ownership_ownership>` explained the use of the Ownership and Ownership Strenght QoS (see `Ownership QoS Policy <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/standardQosPolicies.html#ownershipqospolicy>`_) and how to configure it within the ROS 2 talker/listener demo.
-This tutorial will show how to change Ownership Strenght QoS in runtime, after all nodes have been already deployed.
-We will see how three nodes (one subscriber and two publishers) interact: After creation the subscriber will only be receiving data from the publisher with bigger ownership strenght (corresponding to exclusive ownership QoS), and after that we will change the ownership strenght of the other one to become bigger, thus the subscriber will start to show the data of the latter.
+Another :ref:`tutorial <tutorials_qos_ownership_ownership>` explained the use of the Ownership and Ownership Strength QoS (see `Ownership QoS Policy <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/standardQosPolicies.html#ownershipqospolicy>`_) and how to configure it within the ROS 2 talker/listener demo.
+This tutorial will show how to change Ownership Strength QoS in runtime, after all nodes have been already deployed.
+We will see how three nodes (one subscriber and two publishers) interact: After creation the subscriber will only be receiving data from the publisher with bigger ownership strength (corresponding to exclusive ownership QoS), and after that we will change the ownership strength of the other one to become bigger, thus the subscriber will start to show the data of the latter.
 
 This will be done creating a custom package, following similar steps as in this `ROS 2 tutorial <https://docs.vulcanexus.org/en/latest/ros2_documentation/source/Tutorials/Intermediate/Monitoring-For-Parameter-Changes-CPP.html>`_ to be able to change a node's parameter, and respond to that change by changing the Partition QoS of the publisher.
 
@@ -116,7 +116,7 @@ Inside the `ros2_ws/src/cpp_parameter_event_handler/src` directory, create a new
             dw_os_qos = dw_qos.ownership_strength();
 
 
-            RCLCPP_INFO(this->get_logger(), "Ownership strenght: '%d'", dw_os_qos.value);
+            RCLCPP_INFO(this->get_logger(), "Ownership Strength: '%d'", dw_os_qos.value);
         };
         // Chatter publisher timer
         timer_ = create_wall_timer(500ms, publish);
@@ -129,12 +129,12 @@ Inside the `ros2_ws/src/cpp_parameter_event_handler/src` directory, create a new
         dw = rmw_fastrtps_cpp::get_datawriter(rmw_pub);
 
         // Declare ROS parameter
-        this->declare_parameter("pub1_ownership_strenght", 100); // This is the parameter initialization. 100 is only to state it is int type
+        this->declare_parameter("pub1_ownership_strength", 100); // This is the parameter initialization. 100 is only to state it is int type
 
         // Create a parameter subscriber that can be used to monitor parameter changes
         param_subscriber_ = std::make_shared<rclcpp::ParameterEventHandler>(this);
 
-        // Set a callback for this node's integer parameter, "pub1_ownership_strenght"
+        // Set a callback for this node's integer parameter, "pub1_ownership_strength"
         auto cb = [this](const rclcpp::Parameter & p) {
             RCLCPP_INFO(
             this->get_logger(), "cb: Received an update to parameter \"%s\" of type %s: \"%ld\"",
@@ -152,7 +152,7 @@ Inside the `ros2_ws/src/cpp_parameter_event_handler/src` directory, create a new
 
             dw->set_qos(dw_qos);
         };
-        cb_handle_ = param_subscriber_->add_parameter_callback("pub1_ownership_strenght", cb);
+        cb_handle_ = param_subscriber_->add_parameter_callback("pub1_ownership_strength", cb);
     }
 
     private:
@@ -218,7 +218,7 @@ Inside the `ros2_ws/src/cpp_parameter_event_handler/src` directory, create a new
             dw_os_qos = dw_qos.ownership_strength();
 
 
-            RCLCPP_INFO(this->get_logger(), "Ownership strenght: '%d'", dw_os_qos.value);
+            RCLCPP_INFO(this->get_logger(), "Ownership strength: '%d'", dw_os_qos.value);
         };
         // Chatter publisher timer
         timer_ = create_wall_timer(500ms, publish);
@@ -231,12 +231,12 @@ Inside the `ros2_ws/src/cpp_parameter_event_handler/src` directory, create a new
         dw = rmw_fastrtps_cpp::get_datawriter(rmw_pub);
 
         // Declare ROS parameter
-        this->declare_parameter("pub2_ownership_strenght", 1); // This is the parameter initialization. 100 is only to state it is int type
+        this->declare_parameter("pub2_ownership_strength", 1); // This is the parameter initialization. 100 is only to state it is int type
 
         // Create a parameter subscriber that can be used to monitor parameter changes
         param_subscriber_ = std::make_shared<rclcpp::ParameterEventHandler>(this);
 
-        // Set a callback for this node's integer parameter, "pub2_ownership_strenght"
+        // Set a callback for this node's integer parameter, "pub2_ownership_strength"
         auto cb = [this](const rclcpp::Parameter & p) {
             RCLCPP_INFO(
             this->get_logger(), "cb: Received an update to parameter \"%s\" of type %s: \"%ld\"",
@@ -254,7 +254,7 @@ Inside the `ros2_ws/src/cpp_parameter_event_handler/src` directory, create a new
 
             dw->set_qos(dw_qos);
         };
-        cb_handle_ = param_subscriber_->add_parameter_callback("pub2_ownership_strenght", cb);
+        cb_handle_ = param_subscriber_->add_parameter_callback("pub2_ownership_strength", cb);
     }
 
     private:
@@ -382,7 +382,7 @@ Inside package.xml file, make sure that the <depend> tags, are the following, so
 Configure initial QoS
 ---------------------
 
-Ownership Strenght Policy is mutable, but Ownership Policy is not. Then, we need to configure EXCLUSIVE_OWNERSHIP_POLICY to all participants before running the ROS nodes.
+Ownership Strength Policy is mutable, but Ownership Policy is not. Then, we need to configure EXCLUSIVE_OWNERSHIP_POLICY to all participants before running the ROS nodes.
 To do that, create a new xml file in the oot of the workspace:
 
 .. code-block:: bash
@@ -417,9 +417,9 @@ Open the newly created file with your preferred editor and paste the following x
     </profiles>
 
 
-This xml includes one profile for a publisher (data writer) and one profile for a subscriber (data reader), and sets them to exclusive ownership, and ownership strenght of value 10 for the publisher.
+This xml includes one profile for a publisher (data writer) and one profile for a subscriber (data reader), and sets them to exclusive ownership, and ownership strength of value 10 for the publisher.
 This will be applied to the Publisher 1 and to the Subscriber.
-We need anoher profile in a separate file to assign a different ownership strenght to the Publisher 2:
+We need anoher profile in a separate file to assign a different ownership strength to the Publisher 2:
 
 .. code-block:: bash
 
@@ -442,7 +442,7 @@ We need anoher profile in a separate file to assign a different ownership streng
         </data_writer>
 
 
-This will assign an ownership strenghth of value 2 to the Publisher 2.
+This will assign an ownership strength of value 2 to the Publisher 2.
 
 Build
 -----
@@ -475,7 +475,7 @@ First, in the first terminal, run the subscriber node, configured with the profi
 
 
 Then, in another terminal, run the first publisher, configured also with the profiles1.xml file.
-This Publisher will then be configured with ownership strenght value of 10.
+This Publisher will then be configured with ownership strength value of 10.
 
 .. code-block:: bash
 
@@ -488,7 +488,7 @@ This Publisher will then be configured with ownership strenght value of 10.
 At this point you will be able to see that both nodes are comunicating, and the messages from Publisher 1 can be seen in the Subscriber.
 
 In the third terminal, run the second publisher, configured with the profiles2.xml file.
-This Publisher will then be configured with ownership strenght value of 2.
+This Publisher will then be configured with ownership strength value of 2.
 
 .. code-block:: bash
 
@@ -500,22 +500,22 @@ This Publisher will then be configured with ownership strenght value of 2.
 
 This Publisher 2 starts sending messages (you could see that the number of the message starts from 1 while the messages from Publisher 1 are already in a higher number), and the Subscriber is still receiving messages from Publisher 1 and not from Publisher 2.
 This is because of the exclusive ownership.
-Publisher 1 has higher ownership strenght than Publisher 2.
+Publisher 1 has higher ownership strength than Publisher 2.
 
 Change mutable QoS via command line
 -----------------------------------
 
 Here we are going to use the ROS command `param set` to change the value of the node's parameter we have created earlier.
-The parameter change will cause the parameter-change callback to be called, and then resulting in a change in the ownership strenght.
+The parameter change will cause the parameter-change callback to be called, and then resulting in a change in the ownership strength.
 In another terminal, try the following code:
 
 .. code-block:: bash
 
     source /opt/vulcanexus/humble/setup.bash
-    ros2 param set /node2_change_mutable_qos pub2_ownership_strenght 50
+    ros2 param set /node2_change_mutable_qos pub2_ownership_strength 50
 
 
-With that execution, we have changed the ownership strenght of the Publisher 2 to become bigger than that of the Publisher 1.
+With that execution, we have changed the ownership strength of the Publisher 2 to become bigger than that of the Publisher 1.
 You now should be watching the Subscriber receiving the messages from the Publisher 2 and not from the Publisher 1.
 
 [VIDEO]
