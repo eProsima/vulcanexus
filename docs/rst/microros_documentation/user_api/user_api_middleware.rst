@@ -219,7 +219,7 @@ This option is disabled by default and needs to be enabled at compile time via `
 
 The behavior of this flag is:
 
- - ``RMW_UROS_ERROR_HANDLING=OFF``: Error handling is disabled. This is the default behavior.
+ - ``RMW_UROS_ERROR_HANDLING=OFF``: Error handling is disabled. This is the default behavior. **Errors are not reported to user space**.
  - ``RMW_UROS_ERROR_HANDLING=ON`` and **callback not set**: Error handling is enabled. Default ROS 2 RMW macros are used to report errors.
  - ``RMW_UROS_ERROR_HANDLING=ON`` and **callback set**: Error handling is enabled. User callback and default ROS 2 RMW macros are used to report errors.
 
