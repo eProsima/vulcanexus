@@ -15,7 +15,10 @@ Vulcanexus integrates :ref:`fastdds_statistics_backend`, which is a useful tool 
 This tool will be used to create a monitoring application tailored to the user's needs.
 Therefore, this tutorial provides a step by step tutorial on how to create your first application as a ROS 2 package to monitor your ROS 2 deployment.
 
-This tutorial will use the `demo_nodes_cpp` package, available in the Vulcanexus Desktop distribution. First, a ROS 2 `talker` is launched and then a `listener` node is started in the same machine. At this point, the monitor application created using the *Fast DDS Statistics Backend* library will be deployed to record and present the overall communication performance.
+.. figure:: /rst/figures/tutorials/tools/monitor_backend/monitor_talker_listener_summary.png
+
+This tutorial will use the ``demo_nodes_cpp`` package, available in the Vulcanexus Desktop distribution. First, a ROS 2 ``talker`` is launched and then a ``listener`` node is started in the same machine.
+At this point, the monitor application created using the *Fast DDS Statistics Backend* library will be deployed to record and present the overall communication performance.
 
 Prerequisites
 -------------
@@ -251,7 +254,7 @@ Then, in one of them run a ``talker`` and in the other one a ``listener`` of the
 
 You should be able to see something similar to the following image.
 
-.. figure:: /rst/figures/tutorials/tools/monitor_backend/monitor_talker_listener.png
+.. figure:: /rst/figures/tutorials/tools/monitor_backend/monitor_talker_listener_terminal.png
 
 Next steps
 ----------

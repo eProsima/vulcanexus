@@ -7,6 +7,6 @@ Vulcanexus Tools Tutorials
     :maxdepth: 1
 
     fastdds_monitor/fastdds_monitor
-    prometheus/prometheus
-    shapes_demo/shapes_demo
     monitor_backend/monitor_backend
+    shapes_demo/shapes_demo
+    prometheus/prometheus
