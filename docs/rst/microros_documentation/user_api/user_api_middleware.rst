@@ -217,6 +217,12 @@ Middleware error handling
 micro-ROS RMW can be configured to report middleware error to user space using custom callbacks.
 This option is disabled by default and needs to be enabled at compile time via ``RMW_UROS_ERROR_HANDLING`` CMake argument.
 
+The behavior of this flag is:
+
+ - ``RMW_UROS_ERROR_HANDLING=OFF``: Error handling is disabled. This is the default behavior.
+ - ``RMW_UROS_ERROR_HANDLING=ON`` and **callback not set**: Error handling is enabled. Default ROS 2 RMW macros are used to report errors.
+ - ``RMW_UROS_ERROR_HANDLING=ON`` and **callback set**: Error handling is enabled. User callback and default ROS 2 RMW macros are used to report errors.
+
 An example ``colcon.meta`` is:
 
 .. code-block:: json
