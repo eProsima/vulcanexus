@@ -71,7 +71,7 @@ From the `src` directory in the workspace, run the following command to download
     wget -O monitor.cpp \
         https://raw.githubusercontent.com/eProsima/vulcanexus/main/code/monitor_backend_tutorial/src/monitor.cpp
 
-This is the C++ source code for the application. This source code can also be found `here <https://github.com/eProsima/vulcanexus/blob/main/code/monitor_backend_tutorial/src/monitor.cpp>`_.
+This is the C++ source code for the application. This source code can also be found `here <https://github.com/eProsima/vulcanexus/blob/main/code/monitor_tutorial/src/monitor.cpp>`_.
 
 .. literalinclude:: /../code/monitor_tutorial/src/monitor.cpp
     :language: C++
@@ -261,7 +261,7 @@ Then, in one of them run a ``talker`` and in the other one a ``listener`` of the
 .. note::
 
     In order to monitor other *statistics topics*, add them to environment variable :code:`FASTDDS_STATISTICS`.
-    Check the *statistics topics* available in the `Fast DDS Documentation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/statistics/dds_layer/topic_names.html#statistics-topic-names>`
+    Check the *statistics topics* available in the `Fast DDS Documentation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/statistics/dds_layer/topic_names.html#statistics-topic-names>`_.
 
 You should be able to see something similar to the following image.
 
