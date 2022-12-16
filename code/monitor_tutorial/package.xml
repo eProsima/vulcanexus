@@ -1,10 +1,11 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>monitor_backend_tutorial</name>
+  <name>monitor_tutorial</name>
   <version>0.0.0</version>
   <description>First application as a ROS 2 package to monitor your ROS 2 deployment.</description>
-  <maintainer email="irenebandera@eprosima.com">irenebm</maintainer>
+  <maintainer email="irenebandera@eprosima.com">Irene Bandera</maintainer>
+  <maintainer email="raul@eprosima.com">Raul Sanchez-Mateos Lizano</maintainer>
   <license>Apache License, Version 2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
