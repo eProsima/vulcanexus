@@ -14,12 +14,12 @@ Background
 Fast DDS over Vulcanexus offers the possibility of not only configuring the QoS policy when creating ROS nodes, but it is also possible to modify them (some of them) after having created the ROS node.
 The QoS that allow their modification after that, are called mutable QoS.
 
-`Here <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/policy.html>`_ you can find reference of all supported QoS Policy, and you can check wether any QoS is mutable in theese links:
+`Here <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/policy.html>`_ you can find reference of all supported QoS Policy, and you can check wether any QoS is mutable in these links:
 
     * `DataReader QoS <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/subscriber/dataReader/dataReader.html?highlight=mutable#datareaderqos>`_
     * `DataWriter QoS <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/publisher/dataWriter/dataWriter.html?highlight=mutable#datawriterqos>`_
     * `Topic QoS <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/topic/topic/topic.html?highlight=mutable#topicqos>`_
-    * `DomainPartiipant QoS <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/domain/domainParticipant/domainParticipant.html?highlight=mutable#domainparticipantqos>`_
+    * `DomainParticipant QoS <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/domain/domainParticipant/domainParticipant.html?highlight=mutable#domainparticipantqos>`_
     * `Publisher QoS <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/publisher/publisher/publisher.html?highlight=mutable#publisherqos>`_
     * `Subscriber QoS <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/subscriber/subscriber/subscriber.html?highlight=mutable#subscriberqos>`_
 
@@ -40,7 +40,7 @@ Prerequisites
 The first prerequisite is to have Vulcanexus Humble installed (see `Linux binary installation <https://docs.vulcanexus.org/en/latest/rst/installation/linux_binary_installation.html>`_ or `Linux installation from sources <https://docs.vulcanexus.org/en/latest/rst/installation/linux_source_installation.html>`_).
 
 Also before starting this tutorial, you should be familiar with creating a workspace and creating a package, as well as familiar with parameters and their function in a ROS 2 system.
-We recomend to first complete the following tutorials:
+We recommend to first complete the following tutorials:
 
     * :ref:`Modifying Ownership and Ownership Strength QoS Policy <tutorials_qos_ownership_ownership>`
 
@@ -70,7 +70,7 @@ We will create a package in a new workspace folder named `ros2_ws` in `~/`.
     ros2 pkg create --build-type ament_cmake vulcanexus_change_mutable_qos --dependencies rclcpp
 
 
-Make sure to add the description, maintainer email and name, and license information to the `package.xml` file of the created package, as explained in the aformentioned tutorials.
+Make sure to add the description, maintainer email and name, and license information to the `package.xml` file of the created package, as explained in the aforementioned tutorials.
 
 Write sources
 -------------
@@ -395,7 +395,7 @@ In the private section of the `Node_ChangeMutableQoS_PubX` class, the pointers t
     eprosima::fastdds::dds::DataWriter * dw;
 
 
-In the constructor, the pointers are popuated by calling the APIs provided by the rmw and rmw_fastrtps_cpp, until obtaining the `eprosima::fastdds::dds::DataWriter` handle:
+In the constructor, the pointers are populated by calling the APIs provided by the rmw and rmw_fastrtps_cpp, until obtaining the `eprosima::fastdds::dds::DataWriter` handle:
 
 .. code-block:: c++
 
@@ -419,7 +419,7 @@ When the `pubX_ownership_strength` is updated (for instance, via command line us
 
     dw->set_qos(dw_qos);
 
-In this case, as in the current version of Fast DDS the builtin statistics are enabled by default (see `DomainParticipantQos <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/domain/domainParticipant/domainParticipant.html#domainparticipantqos>`_), it is needed to retrieve the internal QoS by menas of `::get_qos()`, then perform the modifications and update the QoS by means of `::set_qos()`:
+In this case, as in the current version of Fast DDS the builtin statistics are enabled by default (see `DomainParticipantQos <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/domain/domainParticipant/domainParticipant.html#domainparticipantqos>`_), it is needed to retrieve the internal QoS by means of `::get_qos()`, then perform the modifications and update the QoS by means of `::set_qos()`:
 The value of the ownership strength is set from the value of the updated parameter.
 
 Update CMakeLists.txt and package.xml
@@ -481,7 +481,7 @@ Configure initial QoS
 ---------------------
 
 Ownership Strength Policy is mutable, but Ownership Policy is not. Then, we need to configure EXCLUSIVE_OWNERSHIP_POLICY to all participants before running the ROS nodes.
-To do that, create a new xml file in the oot of the workspace:
+To do that, create a new xml file in the root of the workspace:
 
 .. code-block:: bash
 
@@ -517,7 +517,7 @@ Open the newly created file with your preferred editor and paste the following x
 
 This xml includes one profile for a publisher (data writer) and one profile for a subscriber (data reader), and sets them to exclusive ownership, and ownership strength of value 10 for the publisher.
 This will be applied to the Publisher 1 and to the Subscriber.
-We need anoher profile in a separate file to assign a different ownership strength to the Publisher 2:
+We need another profile in a separate file to assign a different ownership strength to the Publisher 2:
 
 .. code-block:: bash
 
@@ -583,7 +583,7 @@ This Publisher will then be configured with ownership strength value of 10.
     ros2 run vulcanexus_change_mutable_qos change_mutable_qos_pub1
 
 
-At this point you will be able to see that both nodes are comunicating, and the messages from Publisher 1 can be seen in the Subscriber.
+At this point you will be able to see that both nodes are communicating, and the messages from Publisher 1 can be seen in the Subscriber.
 
 In the third terminal, run the second publisher, configured with the profiles2.xml file.
 This Publisher will then be configured with ownership strength value of 2.
