@@ -14,18 +14,14 @@ Background
 Fast DDS over Vulcanexus offers the possibility of not only configuring the QoS policy when creating ROS nodes, but it is also possible to modify them (some of them) after having created the ROS node.
 The QoS that allow their modification after that, are called mutable QoS.
 
-The following list shows all the mutable QoS within Fast DDS.
+`Here <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/policy.html>`_ you can find reference of all supported QoS Policy, and you can check wether any QoS is mutable in theese links:
 
-[TABLE]
-+--------------------------------+----------------------------------------------+----------+
-| QosPolicy class                | Accessor/Mutator                             | Mutable  |
-+================================+==============================================+==========+
-| |UserDataQosPolicy|            | |DomainParticipantQos::user_data-api|        | Yes      |
-+--------------------------------+----------------------------------------------+----------+
-| |EntityFactoryQosPolicy|       | |DomainParticipantQos::entity_factory-api|   | Yes      |
-+--------------------------------+----------------------------------------------+----------+
-| |ParticipantRes
-+--------------------------------+----------------------------------------------+----------+
+    * `DataReader QoS <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/subscriber/dataReader/dataReader.html?highlight=mutable#datareaderqos>`_
+    * `DataWriter QoS <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/publisher/dataWriter/dataWriter.html?highlight=mutable#datawriterqos>`_
+    * `Topic QoS <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/topic/topic/topic.html?highlight=mutable#topicqos>`_
+    * `DomainPartiipant QoS <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/domain/domainParticipant/domainParticipant.html?highlight=mutable#domainparticipantqos>`_
+    * `Publisher QoS <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/publisher/publisher/publisher.html?highlight=mutable#publisherqos>`_
+    * `Subscriber QoS <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/subscriber/subscriber/subscriber.html?highlight=mutable#subscriberqos>`_
 
 Another :ref:`tutorial <tutorials_qos_ownership_ownership>` explained the use of the Ownership and Ownership Strength QoS (see `Ownership QoS Policy <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/standardQosPolicies.html#ownershipqospolicy>`_) and how to configure it within the ROS 2 talker/listener demo.
 This tutorial will show how to change Ownership Strength QoS in runtime, after all nodes have been already deployed.
@@ -619,5 +615,3 @@ In another terminal, try the following code:
 
 With that execution, we have changed the ownership strength of the Publisher 2 to become bigger than that of the Publisher 1.
 You now should be watching the Subscriber receiving the messages from the Publisher 2 and not from the Publisher 1.
-
-[VIDEO]
