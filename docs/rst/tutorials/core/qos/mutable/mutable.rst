@@ -435,7 +435,6 @@ Make sure that the find_package lines in the CMakeLists.txt are the following, s
     find_package(rclcpp REQUIRED)
     find_package(rmw_fastrtps_cpp REQUIRED)
     find_package(std_msgs REQUIRED)
-    find_package(fastrtps REQUIRED)
 
 
 Then add the following lines to compile and install each node:
@@ -443,7 +442,7 @@ Then add the following lines to compile and install each node:
 .. code-block:: cmake
 
     add_executable(change_mutable_qos_pub1 src/change_mutable_qos_pub1.cpp)
-    ament_target_dependencies(change_mutable_qos_pub1 rclcpp rmw rmw_fastrtps_cpp std_msgs fastrtps)
+    ament_target_dependencies(change_mutable_qos_pub1 rclcpp rmw rmw_fastrtps_cpp std_msgs)
 
     install(TARGETS
     change_mutable_qos_pub1
@@ -451,7 +450,7 @@ Then add the following lines to compile and install each node:
     )
 
     add_executable(change_mutable_qos_pub2 src/change_mutable_qos_pub2.cpp)
-    ament_target_dependencies(change_mutable_qos_pub2 rclcpp rmw rmw_fastrtps_cpp std_msgs fastrtps)
+    ament_target_dependencies(change_mutable_qos_pub2 rclcpp rmw rmw_fastrtps_cpp std_msgs)
 
     install(TARGETS
     change_mutable_qos_pub2
@@ -550,6 +549,7 @@ Change your directory to the workspace folder and build using colcon:
 
 .. code-block:: bash
 
+    source /opt/vulcanexus/humble/setup.bash
     cd ~/ros2_ws
     colcon build
 
@@ -567,6 +567,7 @@ First, in the first terminal, run the subscriber node, configured with the profi
 .. code-block:: bash
 
     source /opt/vulcanexus/humble/setup.bash
+    cd ~/ros2_ws
     . install/setup.bash
     export FASTRTPS_DEFAULT_PROFILES_FILE=./profiles1.xml
     ros2 run vulcanexus_change_mutable_qos change_mutable_qos_sub
@@ -578,6 +579,7 @@ This Publisher will then be configured with ownership strength value of 10.
 .. code-block:: bash
 
     source /opt/vulcanexus/humble/setup.bash
+    cd ~/ros2_ws
     . install/setup.bash
     export FASTRTPS_DEFAULT_PROFILES_FILE=./profiles1.xml
     ros2 run vulcanexus_change_mutable_qos change_mutable_qos_pub1
@@ -591,6 +593,7 @@ This Publisher will then be configured with ownership strength value of 2.
 .. code-block:: bash
 
     source /opt/vulcanexus/humble/setup.bash
+    cd ~/ros2_ws
     . install/setup.bash
     export FASTRTPS_DEFAULT_PROFILES_FILE=./profiles2.xml
     ros2 run vulcanexus_change_mutable_qos change_mutable_qos_pub2
@@ -599,6 +602,14 @@ This Publisher will then be configured with ownership strength value of 2.
 This Publisher 2 starts sending messages (you could see that the number of the message starts from 1 while the messages from Publisher 1 are already in a higher number), and the Subscriber is still receiving messages from Publisher 1 and not from Publisher 2.
 This is because of the exclusive ownership.
 Publisher 1 has higher ownership strength than Publisher 2.
+
+.. raw:: html
+
+    <video width=100% height=auto autoplay loop controls muted>
+        <source src="../../../../../_static/resources/tutorials/core/qos/mutable/first_launch.mp4">
+        Your browser does not support the video tag.
+    </video>
+
 
 Change mutable QoS via command line
 -----------------------------------
@@ -610,8 +621,17 @@ In another terminal, try the following code:
 .. code-block:: bash
 
     source /opt/vulcanexus/humble/setup.bash
+    cd ~/ros2_ws
+    . install/setup.bash
     ros2 param set /node2_change_mutable_qos pub2_ownership_strength 50
 
 
 With that execution, we have changed the ownership strength of the Publisher 2 to become bigger than that of the Publisher 1.
 You now should be watching the Subscriber receiving the messages from the Publisher 2 and not from the Publisher 1.
+
+.. raw:: html
+
+    <video width=100% height=auto autoplay loop controls muted>
+        <source src="../../../../../_static/resources/tutorials/core/qos/mutable/param_change.mp4">
+        Your browser does not support the video tag.
+    </video>
