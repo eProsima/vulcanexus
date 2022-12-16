@@ -45,7 +45,7 @@ The application workspace will have the following structure at the end of the pr
 
     ros2_ws
     └── src
-        └── monitor
+        └── monitor_tutorial
             ├── src
                 └── monitor.cpp
             ├── CMakeLists.txt
@@ -57,14 +57,14 @@ Let's create the ROS 2 workspace and package by running the following commands:
 
     mkdir -p ros2_ws/src
     cd ros2_ws/src
-    ros2 pkg create --build-type ament_cmake monitor --dependencies fastcdr fastrtps fastdds_statistics_backend
+    ros2 pkg create --build-type ament_cmake monitor_tutorial --dependencies fastcdr fastrtps fastdds_statistics_backend
 
-You will now have a new folder within your workspace `src` directory called `monitor`.
+You will now have a new folder within your workspace `src` directory called `monitor_tutorial`.
 
 Writing the monitor application
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-From the `ros_ws/src/monitor/src` directory in the workspace, run the following command to download the `monitor.cpp` file.
+From the `ros_ws/src/monitor_tutorial/src` directory in the workspace, run the following command to download the `monitor.cpp` file.
 
 .. code-block:: bash
 
@@ -219,7 +219,7 @@ This adds all the source files needed to build the executable, and links the exe
     :language: cmake
     :lines: 40-49
 
-This file can also be downloaded with this command in `ros_ws/src/monitor` directory:
+This file can also be downloaded with this command in `ros_ws/src/monitor_tutorial` directory:
 
 .. code-block:: bash
 
@@ -237,7 +237,7 @@ From the base workspace directory (`ros_ws`), run the following commands.
 
     colcon build
     source install/setup.bash
-    ros2 run monitor monitor
+    ros2 run monitor_tutorial monitor_tutorial
 
 Then open two more terminals and load the Vulcanexus environment.
 Then, in one of them run a ``talker`` and in the other one a ``listener`` of the ``demo_nodes_cpp`` ROS 2 package, available in the Vulcanexus Desktop distribution.

@@ -13,7 +13,7 @@
 # limitations under the License.
 
 cmake_minimum_required(VERSION 3.8)
-project(monitor)
+project(monitor_tutorial)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -37,9 +37,9 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-
 # Compile executable and link with dependencies
 add_executable(${PROJECT_NAME} src/monitor.cpp)
+# Do not use ament as dependencies are not linked with ament
 target_link_libraries(${PROJECT_NAME} fastrtps fastcdr fastdds_statistics_backend)
 
 # Install executable
