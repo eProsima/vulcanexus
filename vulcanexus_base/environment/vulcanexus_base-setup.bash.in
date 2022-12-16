@@ -19,7 +19,6 @@ export VULCANEXUS_HOME="@VULCANEXUS_HOME@"
 # Functions for enabling and disabling Fast DDS Statistics' Topics
 enable_all_fastdds_statistics()
 {
-    echo "Enabling Fast DDS Statistics' Topics"
     export FASTDDS_STATISTICS="HISTORY_LATENCY_TOPIC;NETWORK_LATENCY_TOPIC;PUBLICATION_THROUGHPUT_TOPIC;\
 SUBSCRIPTION_THROUGHPUT_TOPIC;RTPS_SENT_TOPIC;RTPS_LOST_TOPIC;\
 HEARTBEAT_COUNT_TOPIC;ACKNACK_COUNT_TOPIC;NACKFRAG_COUNT_TOPIC;\
@@ -29,6 +28,5 @@ PDP_PACKETS_TOPIC;EDP_PACKETS_TOPIC;DISCOVERY_TOPIC;PHYSICAL_DATA_TOPIC"
 
 disable_all_fastdds_statistics()
 {
-    echo "Disabling Fast DDS Statistics' Topics"
-    export FASTDDS_STATISTICS=""
+    unset FASTDDS_STATISTICS
 }
