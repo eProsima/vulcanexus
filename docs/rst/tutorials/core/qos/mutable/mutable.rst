@@ -71,245 +71,24 @@ Write sources
 -------------
 
 First the source file of the first publisher will be created, the Publisher 1.
-Inside the `vulcanexus_ws/src/cpp_parameter_event_handler/src` directory, create a new file called `change_mutable_qos_pub1.cpp` and paste the following code within:
+Inside the `vulcanexus_ws/src/vulcanexus_change_mutable_qos/src` directory, create a new file called `change_mutable_qos_pub1.cpp` and paste the following code within:
 
-.. code-block:: c++
-
-	#include <memory>
-
-	#include "rclcpp/rclcpp.hpp"
-	#include "std_msgs/msg/string.hpp"
-
-	#include "rmw_fastrtps_cpp/get_participant.hpp"
-	#include "rmw_fastrtps_cpp/get_publisher.hpp"
-
-	#include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
-
-	using namespace std::chrono_literals;
-
-	class Node_ChangeMutableQoS_Pub1 : public rclcpp::Node
-	{
-	public:
-	Node_ChangeMutableQoS_Pub1()
-	: Node("node1_change_mutable_qos")
-	{
-		// Chatter publisher callback
-		auto publish =
-		[this]() -> void
-		{
-			msg_ = std::make_unique<std_msgs::msg::String>();
-			msg_->data = "Hello World: " + std::to_string(count_++);
-			RCLCPP_INFO(this->get_logger(), "PUB1 Publishing: '%s'", msg_->data.c_str());
-			pub_->publish(std::move(msg_));
-
-			eprosima::fastdds::dds::DataWriterQos dw_qos;
-			dw->get_qos(dw_qos);
-
-			eprosima::fastdds::dds::OwnershipStrengthQosPolicy dw_os_qos;
-			dw_os_qos = dw_qos.ownership_strength();
-
-
-			RCLCPP_INFO(this->get_logger(), "Ownership Strength: '%d'", dw_os_qos.value);
-		};
-		// Chatter publisher timer
-		timer_ = create_wall_timer(500ms, publish);
-		// Chatter publisher creation
-		pub_ = create_publisher<std_msgs::msg::String>("chatter", 10);
-
-		// Access RMW and Fast DDS inner object handles
-		rcl_pub = pub_->get_publisher_handle().get();
-		rmw_pub = rcl_publisher_get_rmw_handle(rcl_pub);
-		dw = rmw_fastrtps_cpp::get_datawriter(rmw_pub);
-
-		// Declare ROS parameter
-		this->declare_parameter("pub1_ownership_strength", 100); // This is the parameter initialization. 100 is only to state it is int type
-
-		// Create a parameter subscriber that can be used to monitor parameter changes
-		param_subscriber_ = std::make_shared<rclcpp::ParameterEventHandler>(this);
-
-		// Set a callback for this node's integer parameter, "pub1_ownership_strength"
-		auto cb = [this](const rclcpp::Parameter & p) {
-			RCLCPP_INFO(
-			this->get_logger(), "cb: Received an update to parameter \"%s\" of type %s: \"%ld\"",
-			p.get_name().c_str(),
-			p.get_type_name().c_str(),
-			p.as_int());
-
-			eprosima::fastdds::dds::DataWriterQos dw_qos;
-			dw->get_qos(dw_qos);
-
-			eprosima::fastdds::dds::OwnershipStrengthQosPolicy dw_os_qos;
-			dw_os_qos = dw_qos.ownership_strength();
-			dw_os_qos.value = p.as_int();
-			dw_qos.ownership_strength(dw_os_qos);
-
-			dw->set_qos(dw_qos);
-		};
-		cb_handle_ = param_subscriber_->add_parameter_callback("pub1_ownership_strength", cb);
-	}
-
-	private:
-		size_t count_ = 1;
-		std::unique_ptr<std_msgs::msg::String> msg_;
-		std::shared_ptr<rclcpp::ParameterEventHandler> param_subscriber_;
-		rclcpp::Publisher<std_msgs::msg::String>::SharedPtr pub_;
-		std::shared_ptr<rclcpp::ParameterCallbackHandle> cb_handle_;
-		rclcpp::TimerBase::SharedPtr timer_;
-
-		// Pointers to RMW and Fast DDS inner object handles
-		rcl_publisher_t * rcl_pub;
-		rmw_publisher_t * rmw_pub;
-		eprosima::fastdds::dds::DataWriter * dw;
-	};
-
-	int main(int argc, char ** argv)
-	{
-		rclcpp::init(argc, argv);
-		rclcpp::spin(std::make_shared<Node_ChangeMutableQoS_Pub1>());
-		rclcpp::shutdown();
-
-		return 0;
-	}
+.. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_pub1.cpp
+    :language: c++
 
 
 The code for the Publisher 2 is the same, just changing the Publisher 1 names for Publisher 2 names.
-Inside the `vulcanexus_ws/src/cpp_parameter_event_handler/src` directory, create a new file called `change_mutable_qos_pub2.cpp` and paste the following code within:
+Inside the `vulcanexus_ws/src/vulcanexus_change_mutable_qos/src` directory, create a new file called `change_mutable_qos_pub2.cpp` and paste the following code within:
 
-.. code-block:: c++
-
-	#include <memory>
-
-	#include "rclcpp/rclcpp.hpp"
-	#include "std_msgs/msg/string.hpp"
-
-	#include "rmw_fastrtps_cpp/get_participant.hpp"
-	#include "rmw_fastrtps_cpp/get_publisher.hpp"
-
-	#include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
-
-	using namespace std::chrono_literals;
-
-	class Node_ChangeMutableQoS_Pub1 : public rclcpp::Node
-	{
-	public:
-	Node_ChangeMutableQoS_Pub1()
-	: Node("node2_change_mutable_qos")
-	{
-		// Chatter publisher callback
-		auto publish =
-		[this]() -> void
-		{
-			msg_ = std::make_unique<std_msgs::msg::String>();
-			msg_->data = "Hello World: " + std::to_string(count_++);
-			RCLCPP_INFO(this->get_logger(), "PUB2 Publishing: '%s'", msg_->data.c_str());
-			pub_->publish(std::move(msg_));
-
-			eprosima::fastdds::dds::DataWriterQos dw_qos;
-			dw->get_qos(dw_qos);
-
-			eprosima::fastdds::dds::OwnershipStrengthQosPolicy dw_os_qos;
-			dw_os_qos = dw_qos.ownership_strength();
-
-
-			RCLCPP_INFO(this->get_logger(), "Ownership strength: '%d'", dw_os_qos.value);
-		};
-		// Chatter publisher timer
-		timer_ = create_wall_timer(500ms, publish);
-		// Chatter publisher creation
-		pub_ = create_publisher<std_msgs::msg::String>("chatter", 10);
-
-		// Access RMW and Fast DDS inner object handles
-		rcl_pub = pub_->get_publisher_handle().get();
-		rmw_pub = rcl_publisher_get_rmw_handle(rcl_pub);
-		dw = rmw_fastrtps_cpp::get_datawriter(rmw_pub);
-
-		// Declare ROS parameter
-		this->declare_parameter("pub2_ownership_strength", 1); // This is the parameter initialization. 100 is only to state it is int type
-
-		// Create a parameter subscriber that can be used to monitor parameter changes
-		param_subscriber_ = std::make_shared<rclcpp::ParameterEventHandler>(this);
-
-		// Set a callback for this node's integer parameter, "pub2_ownership_strength"
-		auto cb = [this](const rclcpp::Parameter & p) {
-			RCLCPP_INFO(
-			this->get_logger(), "cb: Received an update to parameter \"%s\" of type %s: \"%ld\"",
-			p.get_name().c_str(),
-			p.get_type_name().c_str(),
-			p.as_int());
-
-			eprosima::fastdds::dds::DataWriterQos dw_qos;
-			dw->get_qos(dw_qos);
-
-			eprosima::fastdds::dds::OwnershipStrengthQosPolicy dw_os_qos;
-			dw_os_qos = dw_qos.ownership_strength();
-			dw_os_qos.value = p.as_int();
-			dw_qos.ownership_strength(dw_os_qos);
-
-			dw->set_qos(dw_qos);
-		};
-		cb_handle_ = param_subscriber_->add_parameter_callback("pub2_ownership_strength", cb);
-	}
-
-	private:
-		size_t count_ = 1;
-		std::unique_ptr<std_msgs::msg::String> msg_;
-		std::shared_ptr<rclcpp::ParameterEventHandler> param_subscriber_;
-		rclcpp::Publisher<std_msgs::msg::String>::SharedPtr pub_;
-		std::shared_ptr<rclcpp::ParameterCallbackHandle> cb_handle_;
-		rclcpp::TimerBase::SharedPtr timer_;
-
-		// Pointers to RMW and Fast DDS inner object handles
-		rcl_publisher_t * rcl_pub;
-		rmw_publisher_t * rmw_pub;
-		eprosima::fastdds::dds::DataWriter * dw;
-	};
-
-	int main(int argc, char ** argv)
-	{
-		rclcpp::init(argc, argv);
-		rclcpp::spin(std::make_shared<Node_ChangeMutableQoS_Pub1>());
-		rclcpp::shutdown();
-
-		return 0;
-	}
+.. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_pub2.cpp
+    :language: c++
 
 
 The case of the subscriber is easier, as it is only need a minimal subscriber for this tutorial.
-Inside the `vulcanexus_ws/src/cpp_parameter_event_handler/src` directory, create a new file called `change_mutable_qos_sub.cpp` and paste the following code within:
+Inside the `vulcanexus_ws/src/vulcanexus_change_mutable_qos/src` directory, create a new file called `change_mutable_qos_sub.cpp` and paste the following code within:
 
-.. code-block:: c++
-
-	#include <memory>
-
-	#include "rclcpp/rclcpp.hpp"
-	#include "std_msgs/msg/string.hpp"
-	using std::placeholders::_1;
-
-	class Node_ChangeMutableQoS_Sub : public rclcpp::Node
-	{
-	public:
-		Node_ChangeMutableQoS_Sub()
-		: Node("minimal_subscriber")
-		{
-		subscription_ = this->create_subscription<std_msgs::msg::String>(
-		"chatter", 10, std::bind(&Node_ChangeMutableQoS_Sub::topic_callback, this, _1));
-		}
-
-	private:
-		void topic_callback(const std_msgs::msg::String & msg) const
-		{
-		RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg.data.c_str());
-		}
-		rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
-	};
-
-	int main(int argc, char * argv[])
-	{
-	rclcpp::init(argc, argv);
-	rclcpp::spin(std::make_shared<Node_ChangeMutableQoS_Sub>());
-	rclcpp::shutdown();
-	return 0;
-	}
+.. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_sub.cpp
+    :language: c++
 
 
 Explaining the source code
@@ -321,98 +100,44 @@ For the case of the Subscriber, this tutorial is not going to explain it, as it 
 For the Publisher, here not all the code is going to be explained, as the referred tutorials of the prerequisites section explain big part of it.
 For instance, the `/chatter` temporized publisher is explained in the :ref:`Writing a simple publisher and subscriber (C++) <CppPubSub>`
 
-.. code-block:: c++
-
-	// Chatter publisher callback
-		auto publish =
-		[this]() -> void
-		{
-			msg_ = std::make_unique<std_msgs::msg::String>();
-			msg_->data = "Hello World: " + std::to_string(count_++);
-			RCLCPP_INFO(this->get_logger(), "PUB1 Publishing: '%s'", msg_->data.c_str());
-			pub_->publish(std::move(msg_));
-
-			eprosima::fastdds::dds::DataWriterQos dw_qos;
-			dw->get_qos(dw_qos);
-
-			eprosima::fastdds::dds::OwnershipStrengthQosPolicy dw_os_qos;
-			dw_os_qos = dw_qos.ownership_strength();
-
-
-			RCLCPP_INFO(this->get_logger(), "Ownership Strength: '%d'", dw_os_qos.value);
-		};
-		// Chatter publisher timer
-		timer_ = create_wall_timer(500ms, publish);
-		// Chatter publisher creation
-		pub_ = create_publisher<std_msgs::msg::String>("chatter", 10);
+.. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_pub1.cpp
+	:language: c++
+	:lines: 19-40
+	:dedent: 4
 
 
 , and the mechanism to respond by means of a user callback to a change in a node's parameter is explained in :ref:`Monitoring for parameter changes (C++) <MonitorParams>`.
 
-.. code-block:: c++
-
-	// Declare ROS parameter
-		this->declare_parameter("pub1_ownership_strength", 100); // This is the parameter initialization. 100 is only to state it is int type
-
-		// Create a parameter subscriber that can be used to monitor parameter changes
-		param_subscriber_ = std::make_shared<rclcpp::ParameterEventHandler>(this);
-
-		// Set a callback for this node's integer parameter, "pub1_ownership_strength"
-		auto cb = [this](const rclcpp::Parameter & p) {
-			RCLCPP_INFO(
-			this->get_logger(), "cb: Received an update to parameter \"%s\" of type %s: \"%ld\"",
-			p.get_name().c_str(),
-			p.get_type_name().c_str(),
-			p.as_int());
-
-			eprosima::fastdds::dds::DataWriterQos dw_qos;
-			dw->get_qos(dw_qos);
-
-			eprosima::fastdds::dds::OwnershipStrengthQosPolicy dw_os_qos;
-			dw_os_qos = dw_qos.ownership_strength();
-			dw_os_qos.value = p.as_int();
-			dw_qos.ownership_strength(dw_os_qos);
-
-			dw->set_qos(dw_qos);
-		};
-		cb_handle_ = param_subscriber_->add_parameter_callback("pub1_ownership_strength", cb);
+.. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_pub1.cpp
+	:language: c++
+	:lines: 47-71
+	:dedent: 4
 
 
 The `demo_nodes_cpp_native <https://github.com/ros2/demos/tree/master/demo_nodes_cpp_native>`_ shows how to access inner RMW and Fast DDS entities, although it is not actually explained.
 In this tutorial, that same mechanism is used.
 In the private section of the `Node_ChangeMutableQoS_PubX` class, the pointers to the native handlers are declared:
 
-.. code-block:: c++
-
-	// Pointers to RMW and Fast DDS inner object handles
-	rcl_publisher_t * rcl_pub;
-	rmw_publisher_t * rmw_pub;
-	eprosima::fastdds::dds::DataWriter * dw;
+.. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_pub1.cpp
+	:language: c++
+	:lines: 82-85
+	:dedent: 4
 
 
 In the constructor, the pointers are populated by calling the APIs provided by the rmw and rmw_fastrtps_cpp, until obtaining the `eprosima::fastdds::dds::DataWriter` handle:
 
-.. code-block:: c++
-
-	// Access RMW and Fast DDS inner object handles
-	rcl_pub = pub_->get_publisher_handle().get();
-	rmw_pub = rcl_publisher_get_rmw_handle(rcl_pub);
-	dw = rmw_fastrtps_cpp::get_datawriter(rmw_pub);
+.. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_pub1.cpp
+	:language: c++
+	:lines: 42-45
+	:dedent: 4
 
 
 When the `pubX_ownership_strength` is updated (for instance, via command line using `ros2 param set` command), the `cb` parameter callback is raised, and the `eprosima::fastdds::dds::DataWriter` handle is used to update its ownership strength.
 
-.. code-block:: c++
-
-	eprosima::fastdds::dds::DataWriterQos dw_qos;
-	dw->get_qos(dw_qos);
-
-	eprosima::fastdds::dds::OwnershipStrengthQosPolicy dw_os_qos;
-	dw_os_qos = dw_qos.ownership_strength();
-	dw_os_qos.value = p.as_int();
-	dw_qos.ownership_strength(dw_os_qos);
-
-	dw->set_qos(dw_qos);
+.. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_pub1.cpp
+	:language: c++
+	:lines: 61-70
+	:dedent: 8
 
 In this case, as in the current version of Fast DDS the builtin statistics are enabled by default (see `DomainParticipantQos <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/domain/domainParticipant/domainParticipant.html#domainparticipantqos>`_), it is needed to retrieve the internal QoS by means of `::get_qos()`, then perform the modifications and update the QoS by means of `::set_qos()`:
 The value of the ownership strength is set from the value of the updated parameter.
@@ -424,51 +149,23 @@ We need to add the instructions to compile the new source files, and to account 
 
 Make sure that the find_package lines in the CMakeLists.txt are the following, so substitute what you have for the following lines:
 
-.. code-block:: cmake
-
-	find_package(ament_cmake REQUIRED)
-	find_package(rclcpp REQUIRED)
-	find_package(rmw_fastrtps_cpp REQUIRED)
-	find_package(std_msgs REQUIRED)
+.. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/CMakeLists.txt
+	:language: ccmake
+	:lines: 9-12
 
 
 Then add the following lines to compile and install each node:
 
-.. code-block:: cmake
-
-	add_executable(change_mutable_qos_pub1 src/change_mutable_qos_pub1.cpp)
-	ament_target_dependencies(change_mutable_qos_pub1 rclcpp rmw rmw_fastrtps_cpp std_msgs)
-
-	install(TARGETS
-	change_mutable_qos_pub1
-	DESTINATION lib/${PROJECT_NAME}
-	)
-
-	add_executable(change_mutable_qos_pub2 src/change_mutable_qos_pub2.cpp)
-	ament_target_dependencies(change_mutable_qos_pub2 rclcpp rmw rmw_fastrtps_cpp std_msgs)
-
-	install(TARGETS
-	change_mutable_qos_pub2
-	DESTINATION lib/${PROJECT_NAME}
-	)
-
-	add_executable(change_mutable_qos_sub src/change_mutable_qos_sub.cpp)
-	ament_target_dependencies(change_mutable_qos_sub rclcpp rmw rmw_fastrtps_cpp std_msgs)
-
-	install(TARGETS
-	change_mutable_qos_sub
-	DESTINATION lib/${PROJECT_NAME}
-	)
+.. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/CMakeLists.txt
+	:language: ccmake
+	:lines: 14-36
 
 
 Inside package.xml file, make sure that the <depend> tags, are the following, so substitute what you have for the following lines:
 
-.. code-block:: xml
-
-	<depend>rclcpp</depend>
-	<depend>rmw_fastrtps_cpp</depend>
-	<depend>fastrtps</depend>
-	<depend>std_msgs</depend>
+.. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/package.xml
+	:language: xml
+	:lines: 12-14
 
 
 Configure initial QoS
@@ -484,29 +181,8 @@ To do that, create a new xml file in the root of the workspace:
 
 Open the newly created file with your preferred editor and paste the following xml code:
 
-.. code-block:: xml
-
-	<?xml version="1.0" encoding="UTF-8" ?>
-	<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
-		<data_writer profile_name="/chatter">
-			<qos>
-				<ownership>
-					<kind>EXCLUSIVE</kind>
-				</ownership>
-				<ownershipStrength>
-					<value>10</value>
-				</ownershipStrength>
-			</qos>
-		</data_writer>
-
-		<data_reader profile_name="/chatter">
-			<qos>
-				<ownership>
-					<kind>EXCLUSIVE</kind>
-				</ownership>
-			</qos>
-		</data_reader>
-	</profiles>
+.. literalinclude:: /resources/tutorials/core/qos/mutable/profiles1.xml
+	:language: xml
 
 
 This xml includes one profile for a publisher (data writer) and one profile for a subscriber (data reader), and sets them to exclusive ownership, and ownership strength of value 10 for the publisher.
@@ -518,20 +194,8 @@ We need another profile in a separate file to assign a different ownership stren
 	touch profiles2.xml
 
 
-.. code-block:: xml
-
-	<?xml version="1.0" encoding="UTF-8" ?>
-	<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
-		<data_writer profile_name="/chatter">
-			<qos>
-				<ownership>
-					<kind>EXCLUSIVE</kind>
-				</ownership>
-				<ownershipStrength>
-					<value>2</value>
-				</ownershipStrength>
-			</qos>
-		</data_writer>
+.. literalinclude:: /resources/tutorials/core/qos/mutable/profiles2.xml
+	:language: xml
 
 
 This will assign an ownership strength of value 2 to the Publisher 2.
