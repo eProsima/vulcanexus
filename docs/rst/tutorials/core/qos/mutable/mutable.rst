@@ -22,29 +22,29 @@ This will be done through the interaction of three nodes (one subscriber and two
 After creation, the subscriber will only be receiving data from the publisher with bigger ownership strength (corresponding to exclusive ownership QoS).
 After that, the ownership strength of the other one will be changed to become bigger, thus the subscriber will start to show the data of the latter.
 
-This will be done creating a custom package, following similar steps as in this `ROS 2 tutorial <https://docs.vulcanexus.org/en/latest/ros2_documentation/source/Tutorials/Intermediate/Monitoring-For-Parameter-Changes-CPP.html>`_ to be able to change a node's parameter, and respond to that change by changing the Partition QoS of the publisher.
+This will be done creating a custom package, following similar steps as in this :ref:`ROS 2 tutorial <MonitorParams>` to be able to change a node's parameter, and respond to that change by changing the Partition QoS of the publisher.
 
-The ROS 2 middleware layer (see `ROS 2 RMW <https://docs.vulcanexus.org/en/latest/ros2_documentation/source/Concepts/About-Different-Middleware-Vendors.html?highlight=RMW#default-rmw-implementation>`_) provides APIs to get handles to the objects of the inner DDS implementation, which is needed to be able to change the mutable Qos.
+The ROS 2 middleware layer (see :ref:`ROS 2 RMW <RO2Vendors>`) provides APIs to get handles to the objects of the inner DDS implementation, which is needed to be able to change the mutable Qos.
 Thus, this tutorial will also show how to use that powerful tool.
 For another demo on how to access inner RMW entities, see `demo_nodes_cpp_native <https://github.com/ros2/demos/tree/master/demo_nodes_cpp_native>`_.
 
 Prerequisites
 -------------
 
-The first prerequisite is to have Vulcanexus Humble installed (see `Linux binary installation <https://docs.vulcanexus.org/en/latest/rst/installation/linux_binary_installation.html>`_ or `Linux installation from sources <https://docs.vulcanexus.org/en/latest/rst/installation/linux_source_installation.html>`_).
+The first prerequisite is to have Vulcanexus Humble installed (see :ref:`Linux binary installation <linux_binary_installation>` or :ref:`Linux installation from sources <linux_source_installation>`).
 
 Also, before starting this tutorial, user should be familiar with creating a workspace and creating a package, as well as familiar with parameters and their function in a ROS 2 system.
 The recommendation is to first complete the following tutorials:
 
 	* :ref:`Modifying Ownership and Ownership Strength QoS Policy <tutorials_qos_ownership_ownership>`
 
-	* `Writing a simple publisher and subscriber (C++) <https://docs.vulcanexus.org/en/latest/ros2_documentation/source/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html>`_
+	* :ref:`Writing a simple publisher and subscriber (C++) <CppPubSub>`
 
-	* `Understanding parameters <https://docs.vulcanexus.org/en/latest/ros2_documentation/source/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Parameters/Understanding-ROS2-Parameters.html>`_
+	* :ref:`Understanding parameters <ROS2Params>`
 
-	* `Using parameters in a class (C++) <https://docs.vulcanexus.org/en/latest/ros2_documentation/source/Tutorials/Beginner-Client-Libraries/Using-Parameters-In-A-Class-CPP.html>`_
+	* :ref:`Using parameters in a class (C++) <CppParamNode>`
 
-	* `Monitoring for parameter changes (C++) <https://docs.vulcanexus.org/en/latest/ros2_documentation/source/Tutorials/Intermediate/Monitoring-For-Parameter-Changes-CPP.html>`_
+	* :ref:`Monitoring for parameter changes (C++) <MonitorParams>`
 
 Create a package
 ----------------
@@ -316,10 +316,10 @@ Explaining the source code
 --------------------------
 
 In the case of the Publishers, the code is analogous, so here the code is going to be explained just for Publisher 1.
-For the case of the Subscriber, this tutorial is not going to explain it, as it is just the minimal subscriber, listening on the topic `/chatter`, already explained in the `Writing a simple publisher and subscriber (C++) <https://docs.vulcanexus.org/en/latest/ros2_documentation/source/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html>`_ tutorial.
+For the case of the Subscriber, this tutorial is not going to explain it, as it is just the minimal subscriber, listening on the topic `/chatter`, already explained in the :ref:`Writing a simple publisher and subscriber (C++) <CppPubSub>` tutorial.
 
 For the Publisher, here not all the code is going to be explained, as the referred tutorials of the prerequisites section explain big part of it.
-For instance, the `/chatter` temporized publisher is explained in the `Writing a simple publisher and subscriber (C++) <https://docs.vulcanexus.org/en/latest/ros2_documentation/source/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html>`_
+For instance, the `/chatter` temporized publisher is explained in the :ref:`Writing a simple publisher and subscriber (C++) <CppPubSub>`
 
 .. code-block:: c++
 
@@ -347,7 +347,7 @@ For instance, the `/chatter` temporized publisher is explained in the `Writing a
 		pub_ = create_publisher<std_msgs::msg::String>("chatter", 10);
 
 
-, and the mechanism to respond by means of a user callback to a change in a node's parameter is explained in `Monitoring for parameter changes (C++) <https://docs.vulcanexus.org/en/latest/ros2_documentation/source/Tutorials/Intermediate/Monitoring-For-Parameter-Changes-CPP.html>`_.
+, and the mechanism to respond by means of a user callback to a change in a node's parameter is explained in :ref:`Monitoring for parameter changes (C++) <MonitorParams>`.
 
 .. code-block:: c++
 
