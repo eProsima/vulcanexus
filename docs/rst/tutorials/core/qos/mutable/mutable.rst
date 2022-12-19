@@ -70,7 +70,7 @@ Make sure to add the description, maintainer email and name, and license informa
 Write sources
 -------------
 
-First the source file of the first publisher will be created, the Publisher 1.
+First, the source file of the first publisher will be created, the Publisher 1.
 Inside the `vulcanexus_ws/src/vulcanexus_change_mutable_qos/src` directory, create a new file called `change_mutable_qos_pub1.cpp` and paste the following code within:
 
 .. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_pub1.cpp
