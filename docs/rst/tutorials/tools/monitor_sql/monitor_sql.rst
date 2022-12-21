@@ -12,15 +12,17 @@ Background
 ----------
 
 Vulcanexus integrates :ref:`fastdds_statistics_backend`, which is a useful tool for monitoring and studying a ROS 2 network since ROS 2 relies on the `DDS specification <https://www.omg.org/spec/DDS/1.4/About-DDS/>`_ to communicate the different nodes.
-The interaction with this tool is through a C++ API.
-This could be done to create powerful monitoring tools specialized by the user.
-In this tutorial we show how to create an application of a :ref:`fastdds_statistics_backend` connected with a SQL in-disk database.
+The interaction with this tool is through a C++ API, which could be leveraged to create powerful monitoring tools developed by the user.
+In this tutorial we show how to create an application consisting of a :ref:`fastdds_statistics_backend` connected with a SQL in-disk database.
 
 .. figure:: /rst/figures/tutorials/tools/sql_monitor_backend/summary.png
 
-This tutorial assumes that the user has already finished :ref:`previous tutorial <tutorials_tools_monitor_with_backend>`
-and understand how the *Fast DDS Statistics Backend* works and how to interact with it.
-The final application created will store latency and throughput data of :code:`chatter` topic in an in-disk relation SQL database.
+.. note::
+
+    This tutorial assumes the reader has already reviewed :ref:`previous tutorial <tutorials_tools_monitor_with_backend>` and understands how *Fast DDS Statistics Backend* works and how to interact with it.
+
+Within this tutorial we explain how to create an application using the *Fast DDS Statistics Backend* to store instrumentation data.
+The final application created will store latency and throughput data of :code:`chatter` topic in an in-disk relational SQL database.
 
 Prerequisites
 -------------
@@ -36,34 +38,32 @@ Ensure that the Vulcanexus installation includes Vulcanexus Tools (either ``vulc
 .. note::
 
     This tutorial uses SQLite3 as SQL library to connect with an in-disk database.
-    This SQLite3 is already installed in ROS2 environment.
+    This SQLite3 is already installed in Vulcanexus environment.
 
 
 Resultant Database
 ------------------
 
-This tutorial executable :code:`monitor_sql_tutorial` produces a database stored with name :code:`vulcanexus_monitor.db` in the workspace where executed.
+This tutorial executable :code:`monitor_sql_tutorial` produces a database stored with name :code:`vulcanexus_monitor.db` in the workspace where launched.
 This database contains one table called :code:`data` with 3 columns:
 
-* **timestamp [key]** *milliseconds since epoch* Time since epoch in milliseconds
-* **latency_median** *nanoseconds* Median of Latency in the interval :code:`timestamp - 5000 : timestamp`
-* **throughput_median** *MB/second* Median of Throughput in the interval :code:`timestamp - 5000 : timestamp`
+* **timestamp [key]** Time since linux based time in milliseconds
+* **latency_median** Median of Latency in the interval :code:`timestamp - 5000 : timestamp` in nanoseconds.
+* **throughput_mean** Median of Throughput in the interval :code:`timestamp - 5000 : timestamp` in MB/second.
 
-Each 5000 ms the program calls the *Statistics Backend* API and store the results for latency median and
-throughput mean for all Nodes using :code:`chatter` topic.
+Every 5000 ms the program calls the *Statistics Backend* API and stores the results for latency median and throughput mean for all Nodes using :code:`chatter` topic.
 The :code:`timestamp` column is the **key** of the table as it cannot be repeated.
-It is stored as a number and not a string or timestamp to simplify the tutorial.
+It is stored as a number and not as string or timestamp to simplify the tutorial.
 
-There is a useful browser application to see the data inside a database file: `<http://inloop.github.io/sqlite-viewer/>`__.
-The resultant database will look like this:
+There exists a useful browser application to visualize the data inside a database file: `<http://inloop.github.io/sqlite-viewer/>`__.
+The resultant database should look similar to the following one:
 
 .. figure:: /rst/figures/tutorials/tools/sql_monitor_backend/database.png
 
 .. warning::
 
     It is possible that some data is not available because it is not being published from the entities.
-    In these cases *Statistics Backend* returns :code:`NaN`
-    This is parsed as a :code:`0` when inserted in the database to avoid format issues.
+    In these cases *Statistics Backend* returns :code:`NaN`, which is parsed as a :code:`0` when inserted in the database to avoid format issues.
 
 Creating the monitor package and application
 --------------------------------------------
@@ -75,7 +75,7 @@ However, some code is reused from :ref:`previous tutorial <tutorials_tools_monit
 Creating the application workspace
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The application workspace will have the following structure at the end of the project.
+The application workspace will have the following structure at the end of the tutorial.
 
 .. code-block:: shell-session
 
@@ -95,7 +95,8 @@ Let's create the ROS 2 workspace and package by running the following commands:
     cd ros2_ws/src
     ros2 pkg create --build-type ament_cmake monitor_sql_tutorial --dependencies fastcdr fastrtps fastdds_statistics_backend sqlite3_vendor
 
-You will now have a new folder within your workspace `src` directory called `monitor_sql_tutorial`.
+You should now see a new folder within your workspace `src` directory called `monitor_sql_tutorial`.
+This command also creates an :code:`include` folder that is not needed for this tutorial.
 
 Writing the monitor application
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -142,14 +143,14 @@ data in the database. This is similar to :ref:`previous tutorial <tutorials_tool
 
 The database is opened if exists, or created otherwise.
 It is initialized with the table :code:`data`.
-In case open or creating the table fails, the execution will finish.
+In case opening or creating the table fails, the execution will finish.
 In exit, it closes the database.
 
 .. literalinclude:: /../code/monitor_sql_tutorial/src/sql_monitor.cpp
     :language: C++
     :lines: 176-197
 
-The routine to store new data in the database firstly call the *Statistics Bakend*.
+The routine to store new data in the database firstly calls the *Statistics Bakend*.
 Then it loads the data received in a query previously written.
 Finally it executes the query to insert the data.
 
@@ -178,7 +179,7 @@ This adds all the source files needed to build the executable, and links the exe
 
 .. literalinclude:: /../code/monitor_sql_tutorial/CMakeLists.txt
     :language: cmake
-    :lines: 40-49
+    :lines: 42-52
 
 This file can also be downloaded with this command in `ros_ws/src/monitor_sql_tutorial` directory:
 
@@ -200,8 +201,8 @@ From the base workspace directory (`ros_ws`), run the following commands.
     source install/setup.bash
     ros2 run monitor_sql_tutorial monitor_sql_tutorial
 
-Then open two more terminals and load the Vulcanexus environment.
-Then, in one of them run a ``talker`` and in the other one a ``listener`` of the ``demo_nodes_cpp`` ROS 2 package, available in the Vulcanexus Desktop distribution.
+Now open two more terminals and load the Vulcanexus environment.
+Then, run a ``talker`` and a ``listener`` of the ``demo_nodes_cpp`` ROS 2 package, available in the Vulcanexus Desktop distribution, in a different terminal each.
 
 *   Terminal 1:
 
@@ -228,6 +229,6 @@ Next steps
 ----------
 
 Now you can develop more functionalities in your application, such as collecting more performance data or monitoring other topics.
-You can check also :ref:`this tutorial <tutorials_tools_prometheus>` explaining how to connect an application developed with the *Fast DDS Statistics Backend* to a visualization tool like *Grafana*.
+You may also check :ref:`this tutorial <tutorials_tools_prometheus>` explaining how to connect an application developed with the *Fast DDS Statistics Backend* to a visualization tool like *Grafana*.
 
 For more information about *Fast DDS Statistics Backend* features please refer to the `project's documentation <https://fast-dds-statistics-backend.readthedocs.io/en/latest/>`_.

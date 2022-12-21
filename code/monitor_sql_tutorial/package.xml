@@ -4,8 +4,8 @@
   <name>monitor_sql_tutorial</name>
   <version>0.0.0</version>
   <description>Store Fast DDS Statistics Backend data in SQL.</description>
-  <maintainer email="irenebandera@eprosima.com">Irene Bandera</maintainer>
-  <maintainer email="raul@eprosima.com">Raul Sanchez-Mateos Lizano</maintainer>
+  <maintainer email="javierparis@eprosima.com">Javier Paris</maintainer>
+  <maintainer email="juanlopez@eprosima.com">Juan Lopez</maintainer>
   <license>Apache License, Version 2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>

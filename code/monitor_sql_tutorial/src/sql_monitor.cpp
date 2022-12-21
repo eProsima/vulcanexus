@@ -13,7 +13,7 @@
 // limitations under the License.
 
 /**
-* @file monitor.cpp
+* @file sql_monitor.cpp
 *
 */
 
@@ -113,7 +113,7 @@ public:
         return EntityId::invalid();
     }
 
-    // Get communications latency mean
+    // Get communications latency median
     StatisticsData get_latency_data()
     {
         // Publishers on a specific topic
@@ -130,7 +130,7 @@ public:
         std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
 
         /*
-        * Get the mean of the FASTDDS_LATENCY of the last time interval
+        * Get the median of the FASTDDS_LATENCY of the last time interval
         * between the Publishers and Subscriptions publishing in and subscribed to a given topic
         */
         auto data = StatisticsBackend::get_data(

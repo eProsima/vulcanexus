@@ -26,7 +26,6 @@ find_package(fastrtps REQUIRED)
 find_package(fastdds_statistics_backend REQUIRED)
 # Use ROS2 sqlite3 vendor to find SQLite
 find_package(sqlite3_vendor REQUIRED)
-find_package(SQLite3 REQUIRED)  # provided by sqlite3_vendor
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -40,6 +39,7 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+find_package(SQLite3 REQUIRED)  # provided by sqlite3_vendor
 # Compile executable and link with dependencies
 add_executable(${PROJECT_NAME} src/sql_monitor.cpp)
 # Do not use ament as dependencies are not linked with ament
