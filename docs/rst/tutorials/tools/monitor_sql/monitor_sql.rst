@@ -174,7 +174,7 @@ Finally, the monitor application is initialized and run in ``main`` function.
 CMakeLists.txt
 ^^^^^^^^^^^^^^
 
-Include at the end of the `CMakeList.txt` file you created earlier the following code snippet.
+Include at the end of the `CMakeLists.txt` file you created earlier the following code snippet.
 This adds all the source files needed to build the executable, and links the executable and the library together.
 
 .. literalinclude:: /../code/monitor_sql_tutorial/CMakeLists.txt
