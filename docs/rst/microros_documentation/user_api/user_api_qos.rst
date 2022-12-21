@@ -38,14 +38,11 @@ This ``rmw_qos_profile_t`` structure is provided by ROS 2 RMW headers: `rmw_qos_
     - Default Service/client: `rmw_qos_profile_services_default <https://github.com/ros2/rmw/blob/humble/rmw/include/rmw/qos_profiles./h#L64>`__.
     - Best effort Service/client: `rmw_qos_profile_services_default <https://github.com/ros2/rmw/blob/humble/rmw/include/rmw/qos_profiles.h#L64>`__ with ``reliability = RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT``
 
-Behaviour
-^^^^^^^^^
+History behaviour
+^^^^^^^^^^^^^^^^^
 
 When micro-ROS history slots are complete and new data arrives, the behaviour is determined by the configured ``history`` kind and ``depth``.
 More details about memory configuration can be found on the :ref:`Middleware related memory tutorial <micro_ros_middleware_memory>`.
-
-History
--------
 
 - ``RMW_QOS_POLICY_HISTORY_KEEP_LAST``: New data will be stored on free history slots up to the configured depth value. If the entity already owns up to depth slots, a the oldest message will be freed and use for the received data.
 
@@ -53,16 +50,7 @@ History
 
 - There is a special case for ``depth = 0``, where the history kind will be ignored and history slots wont be reused before they are released, following the keep all approach.
 
-
 .. note::
 
   History kind types not listed on this section are treated as ``RMW_QOS_POLICY_HISTORY_KEEP_LAST``.
 
-Lifespan
---------
-
-To free history slots, micro-ROS will check the lifespan of the stored data against the configured qos value.
-When the Lifespan period is reached, the history slot will be freed to be used on incoming data.
-
-.. TODO(acuadros95): Published data is handle by Fast-DDS side?
-   Should we explain History kind, depth and Lifespan configuration on that side?
