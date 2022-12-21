@@ -25,7 +25,7 @@ As shown in the initialization API of each entity, a ``rmw_qos_profile_t`` can b
   custom_qos.depth = 100;
   rclc_publisher_init(
       &custom_publisher, &node,
-      &type_support, &topic_name, &rmw_qos_profile_default);
+      &type_support, &topic_name, &custom_qos);
 
 This ``rmw_qos_profile_t`` structure is provided by ROS 2 RMW headers: `rmw_qos_profile_t <http://docs.ros2.org/latest/api/rmw/structrmw__qos__profile__t.html>`_. A list with predefined qos profiles is also available: `qos_profiles.h <https://github.com/ros2/rmw/blob/humble/rmw/include/rmw/qos_profiles.h>`__.
 
@@ -42,6 +42,7 @@ Behaviour
 ^^^^^^^^^
 
 When micro-ROS history slots are complete and new data arrives, the behaviour is determined by the configured ``history`` kind and ``depth``.
+More details about memory configuration can be found on the :ref:`Middleware related memory tutorial <micro_ros_middleware_memory>`.
 
 History
 -------
