@@ -12,21 +12,21 @@ Background
 ----------
 
 Fast DDS over Vulcanexus offers the possibility of not only configuring the QoS policy when creating ROS nodes, but also to modify the mutable ones after the node/publisher/subscription creation.
-The QoS that allow their modification after that, are called mutable QoS.
+The QoS that allow their modification after entity creation, are called mutable QoS.
 Please refer to `Fast DDS QoS Policy documentation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/policy.html>`_ to get a list of all supported QoS and whether they are mutable.
 
 :ref:`tutorials_qos_ownership_ownership` explained the use of the Ownership and Ownership Strength QoS (see `Ownership QoS Policy <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/standardQosPolicies.html#ownershipqospolicy>`_) and how to configure them within the ROS 2 talker/listener demo.
 
 This tutorial will show how to change Ownership Strength QoS in runtime, after all nodes have been already deployed.
 This will be done through the interaction of three nodes (one subscriber and two publishers):
-After creation, the subscriber will only be receiving data from the publisher with bigger ownership strength (corresponding to exclusive ownership QoS).
-After that, the ownership strength of the other one will be changed to become bigger, thus the subscriber will start to show the data of the latter.
+After creation, the subscriber will only be receiving data from the publisher with the largest ownership strength (corresponding to exclusive ownership QoS).
+After that, the ownership strength of the other publisher will be changed to become larger than that of the first one, thus making the subscriber to start showing the data of the latter publisher.
 
-This will be done creating a custom package, following similar steps as in this :ref:`ROS 2 tutorial <MonitorParams>` to be able to change a node's parameter, and respond to that change by changing the Partition QoS of the publisher.
+This will be done creating a custom package, following similar steps as in :ref:`<intermediate_monitor_parameters>` to be able to change a node's parameter, and respond to that change by changing the Partition QoS of the publisher.
 
-The ROS 2 middleware layer (see :ref:`ROS 2 RMW <RO2Vendors>`) provides APIs to get handles to the objects of the inner DDS implementation, which is needed to be able to change the mutable Qos.
+The ROS 2 middleware layer (see :ref:`<concepts_ros2_vendors>`) provides APIs to get handles to the objects of the inner DDS implementation, which is needed to be able to change the mutable Qos.
 Thus, this tutorial will also show how to use that powerful tool.
-For another demo on how to access inner RMW entities, see `demo_nodes_cpp_native <https://github.com/ros2/demos/tree/master/demo_nodes_cpp_native>`_.
+For another demo on how to access inner RMW entities, see `demo_nodes_cpp_native <https://github.com/ros2/demos/tree/humble/demo_nodes_cpp_native>`_.
 
 Prerequisites
 -------------
@@ -36,15 +36,15 @@ The first prerequisite is to have Vulcanexus Humble installed (see :ref:`Linux b
 Also, before starting this tutorial, user should be familiar with creating a workspace and creating a package, as well as familiar with parameters and their function in a ROS 2 system.
 The recommendation is to first complete the following tutorials:
 
-    * :ref:`Modifying Ownership and Ownership Strength QoS Policy <tutorials_qos_ownership_ownership>`
+    * :ref:`tutorials_qos_ownership_ownership`
 
-    * :ref:`Writing a simple publisher and subscriber (C++) <CppPubSub>`
+    * :ref:`CppPubSub`
 
-    * :ref:`Understanding parameters <ROS2Params>`
+    * :ref:`intermediate_monitor_parameters`
 
-    * :ref:`Using parameters in a class (C++) <CppParamNode>`
+    * :ref:`CppParamNode`
 
-    * :ref:`Monitoring for parameter changes (C++) <MonitorParams>`
+    * :ref:`intermediate_monitor_parameters`
 
 Create a package
 ----------------
