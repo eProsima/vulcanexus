@@ -185,7 +185,7 @@ This file can also be downloaded with this command in `ros_ws/src/monitor_sql_tu
 
 .. code-block:: bash
 
-    wget -O CMakeList.txt \
+    wget -O CMakeLists.txt \
         https://raw.githubusercontent.com/eProsima/vulcanexus/main/code/monitor_sql_tutorial/CMakeLists.txt
 
 
