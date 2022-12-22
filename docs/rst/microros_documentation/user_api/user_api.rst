@@ -19,3 +19,4 @@ This API implements an lightweight embedded version of the complete ROS 2 commun
     user_api_parameter_server.rst
     user_api_middleware.rst
     user_api_utilities.rst
+    user_api_qos.rst
