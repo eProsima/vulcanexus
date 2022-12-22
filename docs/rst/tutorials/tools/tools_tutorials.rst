@@ -8,5 +8,6 @@ Vulcanexus Tools Tutorials
 
     fastdds_monitor/fastdds_monitor
     monitor_backend/monitor_backend
+    monitor_sql/monitor_sql
     shapes_demo/shapes_demo
     prometheus/prometheus
