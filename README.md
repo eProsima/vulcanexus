@@ -1,5 +1,5 @@
-[![docs-rolling](https://img.shields.io/github/workflow/status/eProsima/vulcanexus/docs/main?label=docs-rolling&logo=github&style=flat)](https://github.com/eProsima/vulcanexus/actions/workflows/docs.yaml?query=branch%3Amain)
-[![docs-galactic](https://img.shields.io/github/workflow/status/eProsima/vulcanexus/docs/galactic?label=docs-galactic&logo=github&style=flat)](https://github.com/eProsima/vulcanexus/actions/workflows/docs.yaml?query=branch%3Agalactic)
+[![docs-rolling](https://github.com/eProsima/vulcanexus/actions/workflows/docs.yaml/badge.svg?branch=main)](https://github.com/eProsima/vulcanexus/actions/workflows/docs.yaml)
+[![docs-galactic](https://github.com/eProsima/vulcanexus/actions/workflows/docs.yaml/badge.svg?branch=galactic)](https://github.com/eProsima/vulcanexus/actions/workflows/docs.yaml)
 
 # Vulcanexus
 
