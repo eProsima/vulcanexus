@@ -51,7 +51,7 @@ In one of the docker instances, create a XML file, and complete it with the foll
 .. literalinclude:: /resources/tutorials/core/qos/initial_peers/initial_peers_config.xml
     :language: xml
 
-According to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (Section 9.6.1.1), the RTPSParticipants' discovery traffic unicast listening ports are calculated using the following equation: 7400 + 250 * `domainID` + 10 + 2 *  participantID`.
+According to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (Section 9.6.1.1), the RTPSParticipants' discovery traffic unicast listening ports are calculated using the following equation: 7400 + 250 * `domainID` + 10 + 2 *  `participantID`.
 Thus, if for example a RTPSParticipant operates in Domain 0 (default domain) and its ID is 1, its discovery traffic unicast  listening port would be: 7400 + 250 * 0 + 10 + 2 * 1 = 7412.
 By default *eProsima Fast DDS* uses as initial peers the Metatraffic Multicast Locators.
 
@@ -84,13 +84,13 @@ Open a terminal, and list the Vulcanexus docker instances.
 
 The output should look like the following table:
 
-+--------------+----------------------------------+------------------------+---------------+--------------+-------+------------+
-| CONTAINER ID | IMAGE                            | COMMAND                | CREATED       | STATUS       | PORTS | NAMES      |
-+==============+==================================+========================+===============+==============+=======+============+
-| eb81bc8d3a20 | ubuntu-vulcanexus:humble-desktop | "/bin/bash /vulcanex…" | 2 minutes ago | Up 2 minutes |       | keen_jones |
-+--------------+----------------------------------+------------------------+---------------+--------------+-------+------------+
-| 69ceb36bbacf | ubuntu-vulcanexus:humble-desktop | "/bin/bash /vulcanex…" | 2 minutes ago | Up 2 minutes |       | eager_pike |
-+--------------+----------------------------------+------------------------+---------------+--------------+-------+------------+
++-----------------+----------------------------------+----------------+---------------+--------------+-------+------------+
+| CONTAINER ID    | IMAGE                            | COMMAND        | CREATED       | STATUS       | PORTS | NAMES      |
++=================+==================================+================+===============+==============+=======+============+
+| <container ID1> | ubuntu-vulcanexus:humble-desktop | "…vulcanexus…" | 2 minutes ago | Up 2 minutes |       | keen_john  |
++-----------------+----------------------------------+----------------+---------------+--------------+-------+------------+
+| <container ID2> | ubuntu-vulcanexus:humble-desktop | "…vulcanexus…" | 2 minutes ago | Up 2 minutes |       | eager_pike |
++-----------------+----------------------------------+----------------+---------------+--------------+-------+------------+
 
 .. important::
 
@@ -172,8 +172,8 @@ If unicast is required instead of multicast, the following profile should be upd
                         <initialPeersList>
                             <locator>
                                 <udpv4>
-                                    <address>172.17.0.3</address> <!-- "keen_jones" IP address -->
-                                    <port>7777</port>             <!-- "keen_jones" port       -->
+                                    <address>172.17.0.3</address> <!-- "keen_john"  IP address -->
+                                    <port>7777</port>             <!-- "keen_john"  port       -->
                                 </udpv4>
                             </locator>
                         </initialPeersList>

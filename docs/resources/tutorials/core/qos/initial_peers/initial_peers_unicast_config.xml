@@ -14,8 +14,8 @@
                 <metatrafficUnicastLocatorList>
                     <locator>
                         <udpv4>
-                            <address>172.17.0.3</address> <!-- "keen_jones" IP address -->
-                            <port>7777</port>             <!-- "keen_jones" port       -->
+                            <address>172.17.0.3</address> <!-- "keen_john"  IP address -->
+                            <port>7777</port>             <!-- "keen_john"  port       -->
                         </udpv4>
                     </locator>
                 </metatrafficUnicastLocatorList>
