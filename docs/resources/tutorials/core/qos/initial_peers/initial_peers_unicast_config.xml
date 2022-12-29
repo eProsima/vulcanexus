@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <participant profile_name="initial_peers_unicast_example_profile" is_default_profile="true">
+        <rtps>
+            <builtin>
+                <initialPeersList>
+                    <locator>
+                        <udpv4>
+                            <address>172.17.0.2</address> <!-- "eager_pike" IP address -->
+                            <port>7666</port>             <!-- "eager_pike" port       -->
+                        </udpv4>
+                    </locator>
+                </initialPeersList>
+                <metatrafficUnicastLocatorList>
+                    <locator>
+                        <udpv4>
+                            <address>172.17.0.3</address> <!-- "keen_jones" IP address -->
+                            <port>7777</port>             <!-- "keen_jones" port       -->
+                        </udpv4>
+                    </locator>
+                </metatrafficUnicastLocatorList>
+            </builtin>
+        </rtps>
+    </participant>
+</profiles>
