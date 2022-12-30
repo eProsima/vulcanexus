@@ -97,10 +97,10 @@ Explaining the source code
 --------------------------
 
 In the case of the Publishers, the code is analogous, so here the code is going to be explained just for Publisher 1.
-For the case of the Subscriber, this tutorial is not going to explain it, as it is just the minimal subscriber, listening on the topic `/chatter`, already explained in the :ref:`Writing a simple publisher and subscriber (C++) <CppPubSub>` tutorial.
+For the case of the Subscriber, this tutorial is not going to explain it, as it is just the minimal subscriber, listening on the topic `/chatter`, already explained in the :ref:`CppPubSub` tutorial.
 
 For the Publisher, here not all the code is going to be explained, as the referred tutorials of the prerequisites section explain big part of it.
-For instance, the `/chatter` temporized publisher is explained in the :ref:`Writing a simple publisher and subscriber (C++) <CppPubSub>`, and the mechanism to respond by means of a user callback to a change in a node's parameter is explained in :ref:`Monitoring for parameter changes (C++) <MonitorParams>`.
+For instance, the `/chatter` temporized publisher is explained in the :ref:`CppPubSub`, and the mechanism to respond by means of a user callback to a change in a node's parameter is explained in :ref:`intermediate_monitor_parameters`.
 
 The `demo_nodes_cpp_native <https://github.com/ros2/demos/tree/master/demo_nodes_cpp_native>`_ shows how to access inner RMW and Fast DDS entities, although it is not actually explained.
 In this tutorial, that same mechanism is used.
@@ -138,14 +138,14 @@ We need to add the instructions to compile the new source files, and to account 
 Make sure that the find_package lines in the CMakeLists.txt are the following, so substitute what you have for the following lines:
 
 .. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/CMakeLists.txt
-    :language: ccmake
+    :language: cmake
     :lines: 9-12
 
 
 Then add the following lines to compile and install each node:
 
 .. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/CMakeLists.txt
-    :language: ccmake
+    :language: cmake
     :lines: 14-36
 
 
