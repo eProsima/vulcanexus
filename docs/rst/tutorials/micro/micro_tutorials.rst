@@ -14,3 +14,4 @@ Please, visit `micro-ROS tutorial webpage <https://micro.ros.org/docs/tutorials/
     handle_reconnections/handle_reconnections.rst
     custom_platforms/custom_platforms.rst
     memory_management/memory_management.rst
+    discovery_server/discovery_server.rst
