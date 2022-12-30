@@ -100,21 +100,7 @@ In the case of the Publishers, the code is analogous, so here the code is going 
 For the case of the Subscriber, this tutorial is not going to explain it, as it is just the minimal subscriber, listening on the topic `/chatter`, already explained in the :ref:`Writing a simple publisher and subscriber (C++) <CppPubSub>` tutorial.
 
 For the Publisher, here not all the code is going to be explained, as the referred tutorials of the prerequisites section explain big part of it.
-For instance, the `/chatter` temporized publisher is explained in the :ref:`Writing a simple publisher and subscriber (C++) <CppPubSub>`
-
-.. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_pub1.cpp
-    :language: c++
-    :lines: 19-40
-    :dedent: 4
-
-
-, and the mechanism to respond by means of a user callback to a change in a node's parameter is explained in :ref:`Monitoring for parameter changes (C++) <MonitorParams>`.
-
-.. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_pub1.cpp
-    :language: c++
-    :lines: 47-71
-    :dedent: 4
-
+For instance, the `/chatter` temporized publisher is explained in the :ref:`Writing a simple publisher and subscriber (C++) <CppPubSub>`, and the mechanism to respond by means of a user callback to a change in a node's parameter is explained in :ref:`Monitoring for parameter changes (C++) <MonitorParams>`.
 
 The `demo_nodes_cpp_native <https://github.com/ros2/demos/tree/master/demo_nodes_cpp_native>`_ shows how to access inner RMW and Fast DDS entities, although it is not actually explained.
 In this tutorial, that same mechanism is used.
