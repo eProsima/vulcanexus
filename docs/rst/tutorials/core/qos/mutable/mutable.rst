@@ -46,50 +46,52 @@ The recommendation is to first complete the following tutorials:
 
     * :ref:`intermediate_monitor_parameters`
 
-Create a package
-----------------
+This tutorial focuses on the explanations regarding mutable QoS change in runtime and regarding access to innerobjects of DDS middleware implementation, and for that reason not all the code is going to be explained, as it is already explained in the aforementioned tutorials.
+Create a clean workspace and download the Vulcanexus - Change Mutable QoS Through get_native API project:
 
-First, open a new terminal and source your Vulcanexus installation.
+.. code-block:: bash
+
+    # Create directory structure
+    mkdir ~/vulcanexus_ws
+    mkdir ~/vulcanexus_ws/src
+    mkdir ~/vulcanexus_ws/src/vulcanexus_change_mutable_qos
+    mkdir ~/vulcanexus_ws/src/vulcanexus_change_mutable_qos/src
+
+    # Download profile config files for Fast DDS participants
+    wget -O large_ownership_strength.xml https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/large_ownership_strength.xml
+    wget -O small_ownership_strength.xml https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/small_ownership_strength.xml
+    
+    # Download project source code
+    cd ~/vulcanexus_ws/src/vulcanexus_change_mutable_qos
+    wget -O CMakeLists.txt https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/CMakeLists.txt
+    wget -O package.xml https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/package.xml
+
+    cd ~/vulcanexus_ws/src/vulcanexus_change_mutable_qos/src
+    wget -O change_mutable_qos_pub https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_pub.cpp
+    wget -O change_mutable_qos_sub https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_sub.cpp
+
+The resulting directory structure should be:
+
+.. code-block:: bash
+
+    ~/vulcanexus_ws/
+    ├── large_ownership_strength.xml
+    ├── small_ownership_strength.xml
+    └── src
+        └── vulcanexus_change_mutable_qos
+            ├── CMakeLists.txt
+            ├── package.xml
+            └── src
+                ├── change_mutable_qos_pub.cpp
+                └── change_mutable_qos_sub.cpp
+
+Finally, the package can be built.
 
 .. code-block:: bash
 
     source /opt/vulcanexus/humble/setup.bash
-
-
-Next lines will create a package in a new workspace folder named `vulcanexus_ws` in `~/`.
-
-.. code-block:: bash
-
-    mkdir ~/vulcanexus_ws && mkdir ~/vulcanexus_ws/src && cd ~/vulcanexus_ws/src
-    ros2 pkg create --build-type ament_cmake \
-        vulcanexus_change_mutable_qos --dependencies rclcpp
-
-
-Make sure to add the description, maintainer email and name, and license information to the `package.xml` file of the created package, as explained in the aforementioned tutorials.
-
-Write sources
--------------
-
-First, the source file of the first publisher will be created, the Publisher 1.
-Inside the `vulcanexus_ws/src/vulcanexus_change_mutable_qos/src` directory, create a new file called `change_mutable_qos_pub1.cpp` and paste the following code within:
-
-.. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_pub1.cpp
-    :language: c++
-
-
-The code for the Publisher 2 is the same, just changing the Publisher 1 names for Publisher 2 names.
-Inside the `vulcanexus_ws/src/vulcanexus_change_mutable_qos/src` directory, create a new file called `change_mutable_qos_pub2.cpp` and paste the following code within:
-
-.. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_pub2.cpp
-    :language: c++
-
-
-The case of the subscriber is easier, as it is only need a minimal subscriber for this tutorial.
-Inside the `vulcanexus_ws/src/vulcanexus_change_mutable_qos/src` directory, create a new file called `change_mutable_qos_sub.cpp` and paste the following code within:
-
-.. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_sub.cpp
-    :language: c++
-
+    cd ~/vulcanexus_ws
+    colcon build
 
 Explaining the source code
 --------------------------
