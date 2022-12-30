@@ -205,9 +205,8 @@ Run
 ---
 
 Open three terminals in the workspace folder.
-On each, you need to source Vulcanexus installation, as well as the package installation.
-Then, export the `FASTRTPS_DEFAULT_PROFILES_FILE` environment variable to point out to the corresponding profiles file.
-And run the ROS 2 node.
+On each, it is needed to source Vulcanexus installation, as well as the package installation.
+Then, export the `FASTRTPS_DEFAULT_PROFILES_FILE` environment variable to point out to the corresponding profiles file and run the node.
 
 First, in the first terminal, run the subscriber node, configured with the profiles1.xml file:
 
@@ -248,7 +247,7 @@ This Publisher will then be configured with ownership strength value of 2.
 
 This Publisher 2 starts sending messages (it can be seen that the number of the message starts from 1 while the messages from Publisher 1 are already in a higher number), and the Subscriber is still receiving messages from Publisher 1 and not from Publisher 2.
 This is because of the exclusive ownership.
-Publisher 1 has higher ownership strength than Publisher 2.
+**Publisher 1 has higher ownership strength than Publisher 2**.
 
 .. raw:: html
 
@@ -261,8 +260,8 @@ Publisher 1 has higher ownership strength than Publisher 2.
 Change mutable QoS via command line
 -----------------------------------
 
-In this last section the ROS command `param set` will be used to change the value of the node's parameter created earlier.
-The parameter change will cause the parameter-change callback to be called, and then resulting in a change in the ownership strength.
+In this last section the `param set` command will be used to change the value of the node's parameter created earlier.
+The parameter change will cause the parameter-changed callback to be called, which then results in a change in the ownership strength.
 In another terminal, try the following code:
 
 .. code-block:: bash
@@ -273,8 +272,8 @@ In another terminal, try the following code:
     ros2 param set /node2_change_mutable_qos pub2_ownership_strength 50
 
 
-With that execution, the ownership strength of the Publisher 2 has changed to become bigger than that of the Publisher 1.
-You now should be watching the Subscriber receiving the messages from the Publisher 2 and not from the Publisher 1.
+With that execution, the ownership strength of the Publisher 2 has changed to become larger than that of the Publisher 1.
+**Now the Subscriber should be receiving the messages from the Publisher 2 and not from the Publisher 1**.
 
 .. raw:: html
 
