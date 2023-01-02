@@ -113,7 +113,7 @@ In the private section of the `Node_ChangeMutableQoS_Publisher` class, the point
 
 .. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_publisher.cpp
     :language: c++
-    :lines: 83-86
+    :lines: 89-92
     :dedent: 4
 
 
@@ -121,7 +121,7 @@ In the constructor, the pointers are populated by calling the APIs provided by t
 
 .. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_publisher.cpp
     :language: c++
-    :lines: 42-45
+    :lines: 52-55
     :dedent: 4
 
 
@@ -129,7 +129,7 @@ When the `Publisher_X_ownership_strength` is updated (for instance, via command 
 
 .. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_publisher.cpp
     :language: c++
-    :lines: 54-72
+    :lines: 64-78
     :dedent: 8
 
 

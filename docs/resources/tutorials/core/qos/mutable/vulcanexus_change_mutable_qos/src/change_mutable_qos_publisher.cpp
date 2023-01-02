@@ -1,6 +1,22 @@
-#include <memory>
+// Copyright 2016 Proyectos y Sistemas de Mantenimiento SL (eProsima).
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
-#include "rclcpp/rclcpp.hpp"
+/**
+ * @file change_mutable_qos_publisher.cpp
+ */
+ 
+ #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
 
 #include "rmw_fastrtps_cpp/get_participant.hpp"
@@ -26,13 +42,7 @@ public:
         RCLCPP_INFO(this->get_logger(), "'%s' Publishing: '%s'", node_name_.c_str(), message_->data.c_str());
         publisher_->publish(std::move(message_));
 
-        eprosima::fastdds::dds::DataWriterQos dw_qos;
-        data_writer_->get_qos(dw_qos);
-
-        eprosima::fastdds::dds::OwnershipStrengthQosPolicy dw_os_qos;
-        dw_os_qos = dw_qos.ownership_strength();
-
-        RCLCPP_INFO(this->get_logger(), "Ownership strength: '%d'", dw_os_qos.value);
+        RCLCPP_INFO(this->get_logger(), "Ownership strength: '%d'", data_writer_->get_qos().ownership_strength().value);
       };
     // Chatter publisher timer
     timer_ = create_wall_timer(500ms, publish);
@@ -44,14 +54,14 @@ public:
     rmw_publisher_ = rcl_publisher_get_rmw_handle(rcl_publisher_);
     data_writer_ = rmw_fastrtps_cpp::get_datawriter(rmw_publisher_);
 
-    // Declare ROS parameter
+    // Declare parameter
     std::string parameter_name = node_name_prefix + "_ownership_strength";
     this->declare_parameter(parameter_name, 100); // This is the parameter initialization. 100 is only to state it is int type
 
     // Create a parameter subscriber that can be used to monitor parameter changes
     param_subscriber_ = std::make_shared<rclcpp::ParameterEventHandler>(this);
 
-    // Set a callback for this node's integer parameter, "pub1_ownership_strength"
+    // Set a callback for this node's integer parameter, "Publisher_X_ownership_strength"
     auto cb = [this](const rclcpp::Parameter & p) {
         RCLCPP_INFO(
           this->get_logger(), "cb: Received an update to parameter \"%s\" of type %s: \"%ld\"",
@@ -61,12 +71,8 @@ public:
 
         eprosima::fastdds::dds::DataWriterQos dw_qos;
         data_writer_->get_qos(dw_qos);
-
-        eprosima::fastdds::dds::OwnershipStrengthQosPolicy dw_os_qos;
-        dw_os_qos = dw_qos.ownership_strength();
-        dw_os_qos.value = p.as_int();
-        dw_qos.ownership_strength(dw_os_qos);
         
+        dw_qos.ownership_strength().value = p.as_int();
         data_writer_->set_qos(dw_qos);
       };
     callback_handle_ = param_subscriber_->add_parameter_callback(parameter_name, cb);
@@ -95,12 +101,11 @@ int main(int argc, char ** argv)
     {
         node_name_prefix = *(argv + 1);
     }
-    else node_name_prefix = "Publisher_1";
+    else node_name_prefix = "Publisher_X";
     std::string node_name = node_name_prefix + "_change_mutable_qos";
 
     rclcpp::init(argc, argv);
     rclcpp::spin(std::make_shared<Node_ChangeMutableQoS_Publisher>(node_name_prefix, node_name));
     rclcpp::shutdown();
-
     return 0;
 }
