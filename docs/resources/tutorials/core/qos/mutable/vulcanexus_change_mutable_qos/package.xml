@@ -4,7 +4,7 @@
   <name>vulcanexus_change_mutable_qos</name>
   <version>0.1.0</version>
   <description>Package to change mutable ownership strenght QoS on runtime</description>
-  <maintainer email="mikelrico@eprosima.com">MRICO</maintainer>
+  <maintainer email="vulcanexus_user@eprosima.com">Vulcanexus_USER</maintainer>
   <license>Apache License 2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>

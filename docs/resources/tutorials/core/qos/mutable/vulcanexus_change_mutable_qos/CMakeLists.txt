@@ -11,27 +11,19 @@ find_package(rclcpp REQUIRED)
 find_package(rmw_fastrtps_cpp REQUIRED)
 find_package(std_msgs REQUIRED)
 
-add_executable(change_mutable_qos_pub1 src/change_mutable_qos_pub1.cpp)
-ament_target_dependencies(change_mutable_qos_pub1 rclcpp rmw rmw_fastrtps_cpp std_msgs)
+add_executable(change_mutable_qos_publisher src/change_mutable_qos_publisher.cpp)
+ament_target_dependencies(change_mutable_qos_publisher rclcpp rmw rmw_fastrtps_cpp std_msgs)
 
 install(TARGETS
-change_mutable_qos_pub1
+change_mutable_qos_publisher
   DESTINATION lib/${PROJECT_NAME}
 )
 
-add_executable(change_mutable_qos_pub2 src/change_mutable_qos_pub2.cpp)
-ament_target_dependencies(change_mutable_qos_pub2 rclcpp rmw rmw_fastrtps_cpp std_msgs)
+add_executable(change_mutable_qos_subscriber src/change_mutable_qos_subscriber.cpp)
+ament_target_dependencies(change_mutable_qos_subscriber rclcpp rmw rmw_fastrtps_cpp std_msgs)
 
 install(TARGETS
-change_mutable_qos_pub2
-  DESTINATION lib/${PROJECT_NAME}
-)
-
-add_executable(change_mutable_qos_sub src/change_mutable_qos_sub.cpp)
-ament_target_dependencies(change_mutable_qos_sub rclcpp rmw rmw_fastrtps_cpp std_msgs)
-
-install(TARGETS
-change_mutable_qos_sub
+change_mutable_qos_subscriber
   DESTINATION lib/${PROJECT_NAME}
 )
 

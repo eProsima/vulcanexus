@@ -10,42 +10,43 @@
 
 using namespace std::chrono_literals;
 
-class Node_ChangeMutableQoS_Pub1 : public rclcpp::Node
+class Node_ChangeMutableQoS_Publisher : public rclcpp::Node
 {
 public:
-  Node_ChangeMutableQoS_Pub1()
-  : Node("node1_change_mutable_qos")
+  Node_ChangeMutableQoS_Publisher(std::string node_name_prefix, std::string node_name)
+  : Node(node_name),
+    node_name_(node_name)
   {
     // Chatter publisher callback
     auto publish =
       [this]() -> void
       {
-        msg_ = std::make_unique<std_msgs::msg::String>();
-        msg_->data = "Hello World: " + std::to_string(count_++);
-        RCLCPP_INFO(this->get_logger(), "PUB1 Publishing: '%s'", msg_->data.c_str());
-        pub_->publish(std::move(msg_));
+        message_ = std::make_unique<std_msgs::msg::String>();
+        message_->data = "Hello World: " + std::to_string(count_++);
+        RCLCPP_INFO(this->get_logger(), "'%s' Publishing: '%s'", node_name_.c_str(), message_->data.c_str());
+        publisher_->publish(std::move(message_));
 
         eprosima::fastdds::dds::DataWriterQos dw_qos;
-        dw->get_qos(dw_qos);
+        data_writer_->get_qos(dw_qos);
 
         eprosima::fastdds::dds::OwnershipStrengthQosPolicy dw_os_qos;
         dw_os_qos = dw_qos.ownership_strength();
-        
 
         RCLCPP_INFO(this->get_logger(), "Ownership strength: '%d'", dw_os_qos.value);
       };
     // Chatter publisher timer
     timer_ = create_wall_timer(500ms, publish);
     // Chatter publisher creation
-    pub_ = create_publisher<std_msgs::msg::String>("chatter", 10);
+    publisher_ = create_publisher<std_msgs::msg::String>("chatter", 10);
 
     // Access RMW and Fast DDS inner object handles
-    rcl_pub = pub_->get_publisher_handle().get();
-    rmw_pub = rcl_publisher_get_rmw_handle(rcl_pub);
-    dw = rmw_fastrtps_cpp::get_datawriter(rmw_pub);
+    rcl_publisher_ = publisher_->get_publisher_handle().get();
+    rmw_publisher_ = rcl_publisher_get_rmw_handle(rcl_publisher_);
+    data_writer_ = rmw_fastrtps_cpp::get_datawriter(rmw_publisher_);
 
     // Declare ROS parameter
-    this->declare_parameter("pub1_ownership_strength", 100); // This is the parameter initialization. 100 is only to state it is int type
+    std::string parameter_name = node_name_prefix + "_ownership_strength";
+    this->declare_parameter(parameter_name, 100); // This is the parameter initialization. 100 is only to state it is int type
 
     // Create a parameter subscriber that can be used to monitor parameter changes
     param_subscriber_ = std::make_shared<rclcpp::ParameterEventHandler>(this);
@@ -58,38 +59,47 @@ public:
           p.get_type_name().c_str(),
           p.as_int());
 
-        // Get and modify ownership strength
         eprosima::fastdds::dds::DataWriterQos dw_qos;
-        dw->get_qos(dw_qos);
+        data_writer_->get_qos(dw_qos);
 
         eprosima::fastdds::dds::OwnershipStrengthQosPolicy dw_os_qos;
         dw_os_qos = dw_qos.ownership_strength();
         dw_os_qos.value = p.as_int();
         dw_qos.ownership_strength(dw_os_qos);
         
-        dw->set_qos(dw_qos);
+        data_writer_->set_qos(dw_qos);
       };
-    cb_handle_ = param_subscriber_->add_parameter_callback("pub1_ownership_strength", cb);
+    callback_handle_ = param_subscriber_->add_parameter_callback(parameter_name, cb);
   }
 
 private:
     size_t count_ = 1;
-    std::unique_ptr<std_msgs::msg::String> msg_;
+    std::unique_ptr<std_msgs::msg::String> message_;
     std::shared_ptr<rclcpp::ParameterEventHandler> param_subscriber_;
-    rclcpp::Publisher<std_msgs::msg::String>::SharedPtr pub_;
-    std::shared_ptr<rclcpp::ParameterCallbackHandle> cb_handle_;
+    rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
+    std::shared_ptr<rclcpp::ParameterCallbackHandle> callback_handle_;
     rclcpp::TimerBase::SharedPtr timer_;
 
     // Pointers to RMW and Fast DDS inner object handles
-    rcl_publisher_t * rcl_pub;
-    rmw_publisher_t * rmw_pub;
-    eprosima::fastdds::dds::DataWriter * dw;
+    rcl_publisher_t * rcl_publisher_;
+    rmw_publisher_t * rmw_publisher_;
+    eprosima::fastdds::dds::DataWriter * data_writer_;
+
+    std::string node_name_;
 };
 
 int main(int argc, char ** argv)
 {
+    std::string node_name_prefix;
+    if (argc == 2)
+    {
+        node_name_prefix = *(argv + 1);
+    }
+    else node_name_prefix = "Publisher_1";
+    std::string node_name = node_name_prefix + "_change_mutable_qos";
+
     rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<Node_ChangeMutableQoS_Pub1>());
+    rclcpp::spin(std::make_shared<Node_ChangeMutableQoS_Publisher>(node_name_prefix, node_name));
     rclcpp::shutdown();
 
     return 0;
