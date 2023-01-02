@@ -57,10 +57,6 @@ Create a clean workspace and download the Vulcanexus - Change Mutable QoS Throug
     mkdir ~/vulcanexus_ws/src/vulcanexus_change_mutable_qos
     mkdir ~/vulcanexus_ws/src/vulcanexus_change_mutable_qos/src
 
-    # Download profile config files for Fast DDS participants
-    wget -O large_ownership_strength.xml https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/large_ownership_strength.xml
-    wget -O small_ownership_strength.xml https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/small_ownership_strength.xml
-    
     # Download project source code
     cd ~/vulcanexus_ws/src/vulcanexus_change_mutable_qos
     wget -O CMakeLists.txt https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/CMakeLists.txt
@@ -70,20 +66,26 @@ Create a clean workspace and download the Vulcanexus - Change Mutable QoS Throug
     wget -O change_mutable_qos_pub https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_pub.cpp
     wget -O change_mutable_qos_sub https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_sub.cpp
 
+    # Download profile config files for Fast DDS participants
+    wget -O large_ownership_strength.xml https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/large_ownership_strength.xml
+    wget -O small_ownership_strength.xml https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/small_ownership_strength.xml
+    wget -O subscriber_exclusive_ownership.xml https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/subscriber_exclusive_ownership.xml
+
 The resulting directory structure should be:
 
 .. code-block:: bash
 
     ~/vulcanexus_ws/
-    ├── large_ownership_strength.xml
-    ├── small_ownership_strength.xml
     └── src
         └── vulcanexus_change_mutable_qos
             ├── CMakeLists.txt
             ├── package.xml
             └── src
                 ├── change_mutable_qos_pub.cpp
-                └── change_mutable_qos_sub.cpp
+                ├── change_mutable_qos_sub.cpp
+                ├── large_ownership_strength.xml
+                ├── small_ownership_strength.xml
+                └── subscriber_exclusive_ownership.xml
 
 Finally, the package can be built.
 
@@ -130,63 +132,34 @@ When the `pubX_ownership_strength` is updated (for instance, via command line us
 In this case, as in the current version of Fast DDS the builtin statistics are enabled by default (see `DomainParticipantQos <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/domain/domainParticipant/domainParticipant.html#domainparticipantqos>`_), it is needed to retrieve the internal QoS by means of `::get_qos()`, then perform the modifications and update the QoS by means of `::set_qos()`:
 The value of the ownership strength is set from the value of the updated parameter.
 
-Update CMakeLists.txt and package.xml
--------------------------------------
-
-We need to add the instructions to compile the new source files, and to account for its dependencies both in CMakeLists.txt and package.xml files.
-
-Make sure that the find_package lines in the CMakeLists.txt are the following, so substitute what you have for the following lines:
-
-.. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/CMakeLists.txt
-    :language: cmake
-    :lines: 9-12
-
-
-Then add the following lines to compile and install each node:
-
-.. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/CMakeLists.txt
-    :language: cmake
-    :lines: 14-36
-
-
-Inside package.xml file, make sure that the <depend> tags, are the following, so substitute what you have for the following lines:
-
-.. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/package.xml
-    :language: xml
-    :lines: 12-14
-
-
-Configure initial QoS
+Configuration of initial QoS
 ---------------------
 
 Ownership Strength Policy is mutable, but Ownership Policy is not. Then, it is needed to configure EXCLUSIVE_OWNERSHIP_POLICY to all participants before running the ROS nodes.
-To do that, create a new xml file in the root of the workspace:
+To do that, inside our package, we have three xml files.
+Each one of them defines a profile for a publisher with a "large" ownership strength, another with a "small" ownership strength and a subscriber (that does not need an ownership strength definition).
+For the three of them, exclusive ownership is defined.
 
-.. code-block:: bash
+.. tabs::
 
-    cd ~/vulcanexus_ws
-    touch profiles1.xml
+    .. tab:: large_ownership_strength.xml
 
-Open the newly created file with your preferred editor and paste the following xml code:
+        .. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/large_ownership_strength.xml
+            :language: xml
+            :dedent: 8
 
-.. literalinclude:: /resources/tutorials/core/qos/mutable/profiles1.xml
-    :language: xml
+    .. tab:: small_ownership_strength.xml
 
+        .. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/small_ownership_strength.xml
+            :language: xml
+            :dedent: 8
 
-This xml includes one profile for a publisher (data writer) and one profile for a subscriber (data reader), and sets them to exclusive ownership, and ownership strength of value 10 for the publisher.
-This will be applied to the Publisher 1 and to the Subscriber.
-We need another profile in a separate file to assign a different ownership strength to the Publisher 2:
+    .. tab:: subscriber_exclusive_ownership.xml
 
-.. code-block:: bash
+        .. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/subscriber_exclusive_ownership.xml
+            :language: xml
+            :dedent: 8
 
-    touch profiles2.xml
-
-
-.. literalinclude:: /resources/tutorials/core/qos/mutable/profiles2.xml
-    :language: xml
-
-
-This will assign an ownership strength of value 2 to the Publisher 2.
 
 Build
 -----
@@ -208,45 +181,51 @@ Open three terminals in the workspace folder.
 On each, it is needed to source Vulcanexus installation, as well as the package installation.
 Then, export the `FASTRTPS_DEFAULT_PROFILES_FILE` environment variable to point out to the corresponding profiles file and run the node.
 
-First, in the first terminal, run the subscriber node, configured with the profiles1.xml file:
-
-.. code-block:: bash
-
-    source /opt/vulcanexus/humble/setup.bash
-    cd ~/vulcanexus_ws
-    . install/setup.bash
-    export FASTRTPS_DEFAULT_PROFILES_FILE=./profiles1.xml
-    ros2 run vulcanexus_change_mutable_qos change_mutable_qos_sub
-
+First, in the first terminal, run the subscriber node, configured with the profiles1.xml file.
 
 Then, in another terminal, run the first publisher, configured also with the profiles1.xml file.
 This Publisher will then be configured with ownership strength value of 10.
-
-.. code-block:: bash
-
-    source /opt/vulcanexus/humble/setup.bash
-    cd ~/vulcanexus_ws
-    . install/setup.bash
-    export FASTRTPS_DEFAULT_PROFILES_FILE=./profiles1.xml
-    ros2 run vulcanexus_change_mutable_qos change_mutable_qos_pub1
-
-
 At this point you will be able to see that both nodes are communicating, and the messages from Publisher 1 can be seen in the Subscriber.
 
 In the third terminal, run the second publisher, configured with the profiles2.xml file.
 This Publisher will then be configured with ownership strength value of 2.
-
-.. code-block:: bash
-
-    source /opt/vulcanexus/humble/setup.bash
-    cd ~/vulcanexus_ws
-    . install/setup.bash
-    export FASTRTPS_DEFAULT_PROFILES_FILE=./profiles2.xml
-    ros2 run vulcanexus_change_mutable_qos change_mutable_qos_pub2
-
-
 This Publisher 2 starts sending messages (it can be seen that the number of the message starts from 1 while the messages from Publisher 1 are already in a higher number), and the Subscriber is still receiving messages from Publisher 1 and not from Publisher 2.
 This is because of the exclusive ownership.
+
+The code to execute in each terminal can be found in the tabs below:
+
+.. tabs::
+
+    .. tab:: First terminal
+
+        .. code-block:: bash
+
+            source /opt/vulcanexus/humble/setup.bash
+            cd ~/vulcanexus_ws
+            . install/setup.bash
+            export FASTRTPS_DEFAULT_PROFILES_FILE=./install/vulcanexus_change_mutable_qos/profiles/subscriber_exclusive_ownership.xml  `# Using profile to set exclusive ownership`
+            ros2 run vulcanexus_change_mutable_qos change_mutable_qos_sub  `# Run Subscriber`
+
+    .. tab:: Second terminal
+        
+        .. code-block:: bash
+
+            source /opt/vulcanexus/humble/setup.bash
+            cd ~/vulcanexus_ws
+            . install/setup.bash
+            export FASTRTPS_DEFAULT_PROFILES_FILE=./install/vulcanexus_change_mutable_qos/profiles/large_ownership_strength.xml    `# Using profile to set large strenght value`
+            ros2 run vulcanexus_change_mutable_qos change_mutable_qos_pub1     `# Run Publisher 1`
+
+    .. tab:: Third terminal
+
+        .. code-block:: bash
+
+            source /opt/vulcanexus/humble/setup.bash
+            cd ~/vulcanexus_ws
+            . install/setup.bash
+            export FASTRTPS_DEFAULT_PROFILES_FILE=./install/vulcanexus_change_mutable_qos/profiles/small_ownership_strength.xml    `# Using profile to set small strenght value`
+            ros2 run vulcanexus_change_mutable_qos change_mutable_qos_pub2     `# Run Publisher 2`
+
 **Publisher 1 has higher ownership strength than Publisher 2**.
 
 .. raw:: html

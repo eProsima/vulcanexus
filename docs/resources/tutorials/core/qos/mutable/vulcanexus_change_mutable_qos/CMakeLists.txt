@@ -35,4 +35,11 @@ change_mutable_qos_sub
   DESTINATION lib/${PROJECT_NAME}
 )
 
+install(FILES
+src/large_ownership_strength.xml
+src/small_ownership_strength.xml
+src/subscriber_exclusive_ownership.xml
+  DESTINATION profiles/
+)
+
 ament_package()
