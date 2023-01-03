@@ -1,15 +1,15 @@
-    <?xml version="1.0" encoding="UTF-8" ?>
-    <dds>
-        <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
-            <data_writer profile_name="/chatter">
-                <qos>
-                    <ownership>
-                        <kind>EXCLUSIVE</kind>
-                    </ownership>
-                    <ownershipStrength>
-                        <value>10</value>
-                    </ownershipStrength>
-                </qos>
-            </data_writer>
-        </profiles>
-    </dds>
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds>
+    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+        <data_writer profile_name="/chatter">
+            <qos>
+                <ownership>
+                    <kind>EXCLUSIVE</kind>
+                </ownership>
+                <ownershipStrength>
+                    <value>10</value>
+                </ownershipStrength>
+            </qos>
+        </data_writer>
+    </profiles>
+</dds>

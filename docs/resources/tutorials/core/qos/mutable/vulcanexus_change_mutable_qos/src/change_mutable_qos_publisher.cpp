@@ -62,9 +62,9 @@ public:
     param_subscriber_ = std::make_shared<rclcpp::ParameterEventHandler>(this);
 
     // Set a callback for this node's integer parameter, "Publisher_X_ownership_strength"
-    auto cb = [this](const rclcpp::Parameter & p) {
+    auto callback = [this](const rclcpp::Parameter & p) {
         RCLCPP_INFO(
-          this->get_logger(), "cb: Received an update to parameter \"%s\" of type %s: \"%ld\"",
+          this->get_logger(), "Callback: Received an update to parameter \"%s\" of type %s: \"%ld\"",
           p.get_name().c_str(),
           p.get_type_name().c_str(),
           p.as_int());
@@ -75,7 +75,7 @@ public:
         dw_qos.ownership_strength().value = p.as_int();
         data_writer_->set_qos(dw_qos);
       };
-    callback_handle_ = param_subscriber_->add_parameter_callback(parameter_name, cb);
+    callback_handle_ = param_subscriber_->add_parameter_callback(parameter_name, callback);
   }
 
 private:

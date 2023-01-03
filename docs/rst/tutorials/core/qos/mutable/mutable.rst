@@ -22,11 +22,11 @@ This will be done through the interaction of three nodes (one subscriber and two
 After creation, the subscriber will only be receiving data from the publisher with the largest ownership strength (corresponding to exclusive ownership QoS).
 After that, the ownership strength of the other publisher will be changed to become larger than that of the first one, thus making the subscriber to start showing the data of the latter publisher.
 
-This will be done creating a custom package, following similar steps as in :ref:`<intermediate_monitor_parameters>` to be able to change a node's parameter, and respond to that change by changing the Partition QoS of the publisher.
+This will be done creating a custom package, following similar steps as in :ref:`intermediate_monitor_parameters` to be able to change a node's parameter, and respond to that change by changing the Partition QoS of the publisher.
 
-The ROS 2 middleware layer (see :ref:`<concepts_ros2_vendors>`) provides APIs to get handles to the objects of the inner DDS implementation, which is needed to be able to change the mutable Qos.
+The ROS 2 middleware layer (see :ref:`concepts_ros2_vendors`) provides APIs to get handles to the objects of the inner DDS implementation, which is needed to be able to change the mutable Qos.
 Thus, this tutorial will also show how to use that powerful tool.
-For another demo on how to access inner RMW entities, see `demo_nodes_cpp_native <https://github.com/ros2/demos/tree/humble/demo_nodes_cpp_native>`_.
+For another demo on how to access inner RMW entities, see `demo_nodes_cpp_native <https://github.com/ros2/demos/tree/humble/demo_nodes_cpp_native>`__.
 
 Prerequisites
 -------------
@@ -107,7 +107,7 @@ In the case of the Publishers, the package is using only one executable, which t
 Here not all the code is going to be explained, as the referred tutorials of the prerequisites section explain big part of it.
 For instance, the `/chatter` temporized publisher is explained in the :ref:`CppPubSub`, and the mechanism to respond by means of a user callback to a change in a node's parameter is explained in :ref:`intermediate_monitor_parameters`.
 
-The `demo_nodes_cpp_native <https://github.com/ros2/demos/tree/master/demo_nodes_cpp_native>`_ shows how to access inner RMW and Fast DDS entities, although it is not actually explained.
+The `demo_nodes_cpp_native <https://github.com/ros2/demos/tree/master/demo_nodes_cpp_native>`__ shows how to access inner RMW and Fast DDS entities, although it is not actually explained.
 In this tutorial, that same mechanism is used.
 In the private section of the `Node_ChangeMutableQoS_Publisher` class, the pointers to the native handlers are declared:
 
@@ -130,14 +130,14 @@ When the `Publisher_X_ownership_strength` is updated (for instance, via command 
 .. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_publisher.cpp
     :language: c++
     :lines: 64-78
-    :dedent: 8
+    :dedent: 4
 
 
 In this case, as in the current version of Fast DDS the builtin statistics are enabled by default (see `DomainParticipantQos <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/domain/domainParticipant/domainParticipant.html#domainparticipantqos>`_), it is needed to retrieve the internal QoS by means of `::get_qos()`, then perform the modifications and update the QoS by means of `::set_qos()`:
 The value of the ownership strength is set from the value of the updated parameter.
 
 Configuration of initial QoS
----------------------
+----------------------------
 
 Ownership Strength Policy is mutable, but Ownership Policy is not. Then, it is needed to configure EXCLUSIVE_OWNERSHIP_POLICY to all participants before running the ROS nodes.
 To do that, inside our package, we have three xml files.
@@ -150,19 +150,16 @@ For the three of them, exclusive ownership is defined.
 
         .. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/large_ownership_strength.xml
             :language: xml
-            :dedent: 8
 
     .. tab:: small_ownership_strength.xml
 
         .. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/small_ownership_strength.xml
             :language: xml
-            :dedent: 8
 
     .. tab:: subscriber_exclusive_ownership.xml
 
         .. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/subscriber_exclusive_ownership.xml
             :language: xml
-            :dedent: 8
 
 
 Build
