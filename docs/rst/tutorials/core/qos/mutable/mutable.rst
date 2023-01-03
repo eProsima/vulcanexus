@@ -166,7 +166,7 @@ Build
 -----
 
 Now the package is ready to be built.
-Change your directory to the workspace folder and build using colcon:
+Change the directory to the workspace folder and build using colcon:
 
 .. code-block:: bash
 
@@ -186,7 +186,7 @@ First, in the first terminal, run the subscriber node, configured with the profi
 
 Then, in another terminal, run the first publisher, configured also with the profiles1.xml file.
 This Publisher will then be configured with ownership strength value of 10.
-At this point you will be able to see that both nodes are communicating, and the messages from Publisher 1 can be seen in the Subscriber.
+At this point both nodes should be communicating, and the messages from Publisher 1 should be shown in the Subscriber.
 
 In the third terminal, run the second publisher, configured with the profiles2.xml file.
 This Publisher will then be configured with ownership strength value of 2.
