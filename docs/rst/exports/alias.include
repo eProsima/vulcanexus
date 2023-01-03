@@ -2,7 +2,6 @@
 .. |DDSSpecification| replace:: `DDS specification <https://www.omg.org/spec/DDS/1.4/About-DDS/>`__
 
 .. |DiscServerFastDdsDocs| replace:: `Fast DDS Discovery Server discovery mechanism <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery_server.html#discovery-server>`__
-.. |RTPSParticipant-api| replace:: :cpp:class:`RTPSParticipant <eprosima::fastrtps::rtps::RTPSParticipant>`
 .. |InitialPeersFastDdsDocs| replace:: `Initial Peers discovery mechanism <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/simple.html#initial-peers>`__
 
 .. |VulcanexusDocsRepo| replace:: `Vulcanexus Documentation Repository <https://github.com/eProsima/vulcanexus>`__
