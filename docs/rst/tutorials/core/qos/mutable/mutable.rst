@@ -46,7 +46,7 @@ The recommendation is to first complete the following tutorials:
 
     * :ref:`intermediate_monitor_parameters`
 
-This tutorial focuses on the explanations regarding mutable QoS change in runtime and regarding access to innerobjects of DDS middleware implementation, and for that reason not all the code is going to be explained, as it is already explained in the aforementioned tutorials.
+This tutorial focuses on the explanations regarding mutable QoS change in runtime and regarding access to inner objects of DDS middleware implementation, and for that reason, not all the code is going to be explained, as it is already explained in the aforementioned tutorials.
 Create a clean workspace and download the Vulcanexus - Change Mutable QoS Through get_native API project:
 
 .. code-block:: bash
@@ -209,7 +209,7 @@ The code to execute in each terminal can be found in the tabs below:
             ros2 run vulcanexus_change_mutable_qos change_mutable_qos_subscriber  `# Run Subscriber`
 
     .. tab:: Second terminal
-        
+
         .. code-block:: bash
 
             source /opt/vulcanexus/humble/setup.bash
