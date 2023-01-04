@@ -18,16 +18,15 @@ As most ROS 2 developers already know, Fast DDS is the default middleware of ROS
 Vulcanexus offers the possibility of fully configuring Fast DDS' QoS policies through XML profile definition (see :ref:`ROS 2 QoS policies <concepts_about_qos>`).
 For more information on how to configure ROS 2 through XML profiles please refer to :ref:`Configuring Fast-DDS QoS via XML profiles <tutorials_xml_profiles_intro>` tutorial.
 
-This section describes how to specify this extended policies, in particular the initial peers configuration.
-For this purpose, it is important to take into consideration the mapping between ROS 2 entities and DDS Participants (see `Node to Participant mapping <https://design.ros2.org/articles/Node_to_Participant_mapping.html>`_).
-In order to avoid the creation of one DDS Domain Participant per ROS 2 Node, it is recommended to use one Participant per ROS 2 Context (see `Creating ROS context <https://docs.vulcanexus.org/en/latest/rst/tutorials/core/qos/xml_profiles/xml_profiles.html#creating-ros-contexts-and-nodes>`_).
-In that way, more than one Participant can be declared in a single ROS 2 application.
-Therefore, this tutorial only make sense if the user has more than one ROS 2 Context.
+This section describes how to specify this extended policies, in particular the initial peers configuration, which applies to the DDS DomainParticipant QoS.
+For this purpose, it is important to take into consideration the mapping between ROS 2 entities and DDS DomainParticipants (see `Node to Participant mapping <https://design.ros2.org/articles/Node_to_Participant_mapping.html>`_).
+In short, a ROS 2 Context is equivalent to a DDS DomainParticipant, so a DDS DomainParticipant can contain multiple ROS 2 Nodes (see :ref:`Creating ROS contexts and nodes <vulcanexus_configure_xml_creatingROScontext_nodes>`).
+Therefore, this tutorial only applies to deployments with more than one ROS 2 Context.
 
 According to the DDS standard, each DomainParticipant must listen for incoming DomainParticipant discovery metatraffic in two different ports, one linked with a multicast address, and another one linked to a unicast address.
-Vulcanexus, together with *Fast DDS*, allows configuring an initial peers list, which contains one or more such IP-port address pairs corresponding to remote DomainParticipants discovery listening resources, so that the local DomainParticipant will not only send its PDP traffic to the default multicast network address, but also to all the IP-port address pairs specified in the initial peers list.
+Vulcanexus, together with *Fast DDS*, allows configuring an initial peers list, which contains one or more such IP-port address pairs corresponding to remote DomainParticipants discovery listening resources, so that the local DomainParticipant will not only send its PDP traffic to the default multicast network address, but also to all the IP-port pairs specified in the initial peers list.
 
-A complete description of the initial peers list and its configuration can be found in Initial peers |InitialPeersFastDdsDocs|.
+A complete description of the initial peers list and its configuration can be found in |InitialPeersFastDdsDocs| in *Fast DDS* documentation.
 
 .. _initial_peers_prerequisites:
 
@@ -37,17 +36,24 @@ Prerequisites
 First of all, make sure that Vulcanexus Humble is installed.
 The docker installation is required for this tutorial (see :ref:`Docker installation <docker_installation>`).
 
-Also, complete the :ref:`Configuring Fast-DDS QoS via XML profiles <tutorials_xml_profiles_intro>` tutorial to ensure the execution of the XML profile configuration.
-
 Open two terminals, and run the Vulcanexus Humble image in each one with the following command:
 
-.. code-block:: bash
+*   Terminal 1:
 
-      docker run \
-        -it \
-        --name ros2_context_1 \ #rename ros2_context_2 in the second case
-        ubuntu-vulcanexus:humble-desktop
+    .. code-block:: bash
 
+        docker run -it --name ros2_context_1 ubuntu-vulcanexus:humble-desktop
+
+
+*   Terminal 2:
+
+    .. code-block:: bash
+
+        docker run -it --name ros2_context_2 ubuntu-vulcanexus:humble-desktop
+
+.. note::
+
+    It is highly recommended to complete the :ref:`Configuring Fast-DDS QoS via XML profiles <tutorials_xml_profiles_intro>` tutorial to learn how to configure ROS 2 via XML configuration files.
 
 .. _initial_peers_add_qos:
 
@@ -61,14 +67,11 @@ In the docker container named ``ros2_context_1``, create a XML file, and complet
 
 .. note::
 
-    For advanced users, and according to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (Section 9.6.1.1), the participant discovery traffic unicast listening ports are defined in the `Well Known Ports <https://fast-dds.docs.eprosima.com/en/latest/fastdds/transport/listening_locators.html?highlight=well%20known#well-known-ports>`_ section of the Fast DDS documentation.
+    (Advanced users) According to the `RTPS standard <https://www.omg.org/spec/DDSI-RTPS/2.2/PDF>`_ (Section 9.6.1.1), the participant discovery traffic unicast listening ports are defined in the `Well Known Ports <https://fast-dds.docs.eprosima.com/en/latest/fastdds/transport/listening_locators.html?highlight=well%20known#well-known-ports>`_ section of the Fast DDS documentation.
     Thus, in this example, the Participant operates in Domain 0 (default domain) and its ID is 1, so its discovery traffic unicast listening port is 7412.
     By default *eProsima Fast DDS* uses as initial peers the metatraffic multicast locators (network addresses).
 
-    In the last part of the example it is described how to avoid multicast, using unicast and initial peers simultaneously.
-
-It is required to include the XML file in at least one of the Vulcanexus docker containers.
-As long as they are using multicast to discover each other, the participant with the initial peer set would let the other participant know the address and port through which they will communicate.
+It is required to include the XML file in at least one of the Vulcanexus docker containers, as the participant with the initial peer set would let the other participant know the address and port through which they will communicate.
 
 .. _initial_peers_ip_address:
 
@@ -102,15 +105,15 @@ The following command also filters the output to obtain only the container IP ad
 
 
 Edit the previously XML file created in the ``ros2_context_1`` container, and include the IP address of the ``ros2_context_2`` container.
-Make sure the IP address set in the xml document is NOT the container's own IP address.
+Make sure the IP address set in the xml file is NOT the container's own IP address.
 
 .. _initial_peers_xml_location:
 
 XML configuration file location
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In order to use the profiles, it is required to let the application know it.
-There are two possibilities for providing *Fast DDS* with XML configuration files:
+In order to use the profiles loaded from XML configuration files, it is required to let the application know it.
+There are two possibilities for providing ROS 2 with XML configuration files:
 
 *   **Recommended**: Setting the location in ``FASTRTPS_DEFAULT_PROFILES_FILE`` environment variable, which may contain the path to the XML configuration file (see `Environment Variables <https://fast-dds.docs.eprosima.com/en/latest/fastdds/env_vars/env_vars.html#env-vars>`_).
 
@@ -164,11 +167,11 @@ Replace the content of the existing XML configuration file in the ``ros2_context
 .. literalinclude:: /resources/tutorials/core/qos/initial_peers/initial_peers_unicast_config_context1.xml
     :language: xml
 
-In this case, by defining a meta-traffic unicast locator, the Participant creates a unicast meta traffic receiving resource (communication status data and discovery protocol data) for each address-port pair specified (see `Disabling all Multicast Traffic <https://fast-dds.docs.eprosima.com/en/latest/fastdds/transport/disabling_multicast.html?highlight=meta%20traffic#disabling-all-multicast-traffic>`_).
+In this case, by defining a meta-traffic unicast locator, the Participant creates a unicast meta-traffic receiving resource (communication status and discovery protocol data) for each address-port pair specified (see `Disabling all Multicast Traffic <https://fast-dds.docs.eprosima.com/en/latest/fastdds/transport/disabling_multicast.html?highlight=meta%20traffic#disabling-all-multicast-traffic>`_).
 In that way, and by setting a custom port as initial peer, both ROS 2 context would communicate exclusively by each specified network address and ports (avoiding multicast and the usage of any default ports).
 
 
-Create a new XML file and complete it with the following example in the ``ros2_context_2`` container:
+Then, create a new XML file and complete it with the following example in the ``ros2_context_2`` container:
 
 .. literalinclude:: /resources/tutorials/core/qos/initial_peers/initial_peers_unicast_config_context2.xml
     :language: xml
