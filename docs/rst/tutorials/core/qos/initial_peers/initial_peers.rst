@@ -137,13 +137,13 @@ Example
 
 Once the ROS 2 context running in ``ros2_context_1`` Vulcanexus container has been configured, run a demo application in each container.
 
-* ``ros2_context_1`` container (terminal 1):
+*   ``ros2_context_1`` container (terminal 1):
 
     .. code-block:: bash
 
         ros2 run demo_nodes_cpp talker
 
-* ``ros2_context_2`` container (terminal 2):
+*   ``ros2_context_2`` container (terminal 2):
 
     .. code-block:: bash
 
