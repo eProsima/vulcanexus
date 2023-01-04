@@ -227,6 +227,8 @@ ROS 2 clients contain a publisher to send requests, and a subscription to receiv
   If neither of the previous profiles exist, *rmw_fastrtps* attempts to load the ``<data_reader>`` profile with attribute ``is_default_profile="true"``.
 
 
+.. _vulcanexus_configure_xml_creatingROScontext_nodes:
+
 Creating ROS contexts and nodes
 ...............................
 
