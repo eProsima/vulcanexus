@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds>
+    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+        <transport_descriptors>
+            <transport_descriptor>
+                <transport_id>udp_transport</transport_id>
+                <type>UDPv4</type>
+            </transport_descriptor>
+        </transport_descriptors>
+
+        <participant profile_name="talker_participant_profile" is_default_profile="true">
+            <rtps>
+                <name>talker</name>
+                <userTransports>
+                    <transport_id>udp_transport</transport_id>
+                </userTransports>
+                <useBuiltinTransports>false</useBuiltinTransports>
+                <builtin>
+                    <discovery_config>
+                        <EDP>STATIC</EDP>
+                        <static_edp_xml_config>file://static_edp_info.xml</static_edp_xml_config>
+                    </discovery_config>
+                </builtin>
+            </rtps>
+        </participant>
+
+        <data_writer profile_name="/chatter">
+            <userDefinedID>101</userDefinedID>
+        </data_writer>
+        <!-->ROS 2 Internal Endpoints<-->
+        <data_writer profile_name="/parameter_events">
+            <userDefinedID>201</userDefinedID>
+        </data_writer>
+        <data_writer profile_name="ros_discovery_info">
+            <userDefinedID>202</userDefinedID>
+        </data_writer>
+        <data_writer profile_name="/rosout">
+            <userDefinedID>203</userDefinedID>
+        </data_writer>
+        <data_writer profile_name="rr/talker/describe_parametersReply">
+            <userDefinedID>204</userDefinedID>
+        </data_writer>
+        <data_writer profile_name="rr/talker/list_parametersReply">
+            <userDefinedID>205</userDefinedID>
+        </data_writer>
+        <data_writer profile_name="rr/talker/get_parametersReply">
+            <userDefinedID>206</userDefinedID>
+        </data_writer>
+        <data_writer profile_name="rr/talker/get_parameter_typesReply">
+            <userDefinedID>207</userDefinedID>
+        </data_writer>
+        <data_writer profile_name="rr/talker/set_parametersReply">
+            <userDefinedID>208</userDefinedID>
+        </data_writer>
+        <data_writer profile_name="rr/talker/set_parameters_atomicallyReply">
+            <userDefinedID>209</userDefinedID>
+        </data_writer>
+
+        <data_reader profile_name="/parameter_events">
+            <userDefinedID>210</userDefinedID>
+        </data_reader>
+        <data_reader profile_name="ros_discovery_info">
+            <userDefinedID>211</userDefinedID>
+        </data_reader>
+        <data_reader profile_name="rq/talker/set_parametersRequest">
+            <userDefinedID>212</userDefinedID>
+        </data_reader>
+        <data_reader profile_name="rq/talker/get_parametersRequest">
+            <userDefinedID>213</userDefinedID>
+        </data_reader>
+        <data_reader profile_name="rq/talker/get_parameter_typesRequest">
+            <userDefinedID>214</userDefinedID>
+        </data_reader>
+        <data_reader profile_name="rq/talker/set_parameters_atomicallyRequest">
+            <userDefinedID>215</userDefinedID>
+        </data_reader>
+        <data_reader profile_name="rq/talker/describe_parametersRequest">
+            <userDefinedID>216</userDefinedID>
+        </data_reader>
+        <data_reader profile_name="rq/talker/list_parametersRequest">
+            <userDefinedID>217</userDefinedID>
+        </data_reader>
+    </profiles>
+</dds>

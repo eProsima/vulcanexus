@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds>
+    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+        <transport_descriptors>
+            <transport_descriptor>
+                <transport_id>udp_transport</transport_id>
+                <type>UDPv4</type>
+            </transport_descriptor>
+        </transport_descriptors>
+
+        <participant profile_name="listener_participant_profile" is_default_profile="true">
+            <rtps>
+                <name>listener</name>
+                <userTransports>
+                    <transport_id>udp_transport</transport_id>
+                </userTransports>
+                <useBuiltinTransports>false</useBuiltinTransports>
+                <builtin>
+                    <discovery_config>
+                        <EDP>STATIC</EDP>
+                        <static_edp_xml_config>file://static_edp_info.xml</static_edp_xml_config>
+                    </discovery_config>
+                </builtin>
+            </rtps>
+        </participant>
+
+        <data_reader profile_name="/chatter">
+            <userDefinedID>102</userDefinedID>
+        </data_reader>
+        <!-->ROS 2 Internal Endpoints<-->
+        <data_reader profile_name="/parameter_events">
+            <userDefinedID>1</userDefinedID>
+        </data_reader>
+        <data_reader profile_name="ros_discovery_info">
+            <userDefinedID>2</userDefinedID>
+        </data_reader>
+        <data_reader profile_name="rq/listener/get_parametersRequest">
+            <userDefinedID>3</userDefinedID>
+        </data_reader>
+        <data_reader profile_name="rq/listener/get_parameter_typesRequest">
+            <userDefinedID>4</userDefinedID>
+        </data_reader>
+        <data_reader profile_name="rq/listener/set_parametersRequest">
+            <userDefinedID>5</userDefinedID>
+        </data_reader>
+        <data_reader profile_name="rq/listener/set_parameters_atomicallyRequest">
+            <userDefinedID>6</userDefinedID>
+        </data_reader>
+        <data_reader profile_name="rq/listener/describe_parametersRequest">
+            <userDefinedID>7</userDefinedID>
+        </data_reader>
+        <data_reader profile_name="rq/listener/list_parametersRequest">
+            <userDefinedID>8</userDefinedID>
+        </data_reader>
+
+        <data_writer profile_name="/parameter_events">
+            <userDefinedID>9</userDefinedID>
+        </data_writer>
+        <data_writer profile_name="ros_discovery_info">
+            <userDefinedID>10</userDefinedID>
+        </data_writer>
+        <data_writer profile_name="/rosout">
+            <userDefinedID>11</userDefinedID>
+        </data_writer>
+        <data_writer profile_name="rr/listener/describe_parametersReply">
+            <userDefinedID>12</userDefinedID>
+        </data_writer>
+        <data_writer profile_name="rr/listener/get_parametersReply">
+            <userDefinedID>13</userDefinedID>
+        </data_writer>
+        <data_writer profile_name="rr/listener/get_parameter_typesReply">
+            <userDefinedID>14</userDefinedID>
+        </data_writer>
+        <data_writer profile_name="rr/listener/set_parametersReply">
+            <userDefinedID>15</userDefinedID>
+        </data_writer>
+        <data_writer profile_name="rr/listener/set_parameters_atomicallyReply">
+            <userDefinedID>16</userDefinedID>
+        </data_writer>
+        <data_writer profile_name="rr/listener/list_parametersReply">
+            <userDefinedID>17</userDefinedID>
+        </data_writer>
+    </profiles>
+</dds>
