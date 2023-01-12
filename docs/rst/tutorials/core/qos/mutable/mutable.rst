@@ -20,7 +20,14 @@ Please refer to `Fast DDS QoS Policy documentation <https://fast-dds.docs.eprosi
 This tutorial will show how to change Ownership Strength QoS in runtime, after all nodes have been already deployed.
 This will be done through the interaction of three nodes (one subscriber and two publishers):
 After creation, the subscriber will only be receiving data from the publisher with the largest ownership strength (corresponding to exclusive ownership QoS).
+
+.. figure:: /rst/figures/tutorials/core/qos/mutable/publication_graph_before.png
+   :align: center
+
 After that, the ownership strength of the other publisher will be changed to become larger than that of the first one, thus making the subscriber to start showing the data of the latter publisher.
+
+.. figure:: /rst/figures/tutorials/core/qos/mutable/publication_graph_after.png
+   :align: center
 
 This will be done creating a custom package, following similar steps as in :ref:`intermediate_monitor_parameters` to be able to change a node's parameter, and respond to that change by changing the Partition QoS of the publisher.
 
@@ -40,7 +47,7 @@ The recommendation is to first complete the following tutorials:
 
     * :ref:`CppPubSub`
 
-    * :ref:`intermediate_monitor_parameters`
+    * :ref:`ROS2Params`
 
     * :ref:`CppParamNode`
 
@@ -63,8 +70,8 @@ Create a clean workspace and download the Vulcanexus - Change Mutable QoS Throug
     wget -O package.xml https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/package.xml
 
     cd ~/vulcanexus_ws/src/vulcanexus_change_mutable_qos/src
-    wget -O change_mutable_qos_publisher https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_publisher.cpp
-    wget -O change_mutable_qos_subscriber https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_subscriber.cpp
+    wget -O change_mutable_qos_publisher.cpp https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_publisher.cpp
+    wget -O change_mutable_qos_subscriber.cpp https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_subscriber.cpp
 
     # Download profile config files for Fast DDS participants
     wget -O large_ownership_strength.xml https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/large_ownership_strength.xml
@@ -244,7 +251,7 @@ The code to execute in each terminal can be found in the tabs below:
 Change mutable QoS via command line
 -----------------------------------
 
-In this last section the `param set` command will be used to change the value of the node's parameter created earlier.
+In this last section, the `param set` command will be used to change the value of the node's parameter created earlier.
 The parameter change will cause the parameter-changed callback to be called, which then results in a change in the ownership strength.
 In another terminal, try the following code:
 
