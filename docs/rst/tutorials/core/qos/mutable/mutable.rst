@@ -111,23 +111,24 @@ In the private section of the :class:`Node_ChangeMutableQoS_Publisher` class, th
 
 .. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_publisher.cpp
     :language: c++
-    :lines: 89-92
-    :dedent: 4
+    :lines: 93-96
+    :dedent: 2
 
 
 In the constructor, the pointers are populated by calling the APIs provided by the rmw and rmw_fastrtps_cpp, until obtaining the :class:`eprosima::fastdds::dds::DataWriter` handle:
 
 .. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_publisher.cpp
     :language: c++
-    :lines: 52-55
+    :lines: 56-59
     :dedent: 4
 
 
 When the `Publisher_X_ownership_strength` is updated (for instance, via command line using `ros2 param set` command), the parameter callback is raised, and the `eprosima::fastdds::dds::DataWriter` handle is used to update its ownership strength.
+Below, a snippet of code from the contructor of the node, where the parameter is declared, the subscription to its changes is registered, and the callback to be run on the parameter change event is defined.
 
 .. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_publisher.cpp
     :language: c++
-    :lines: 64-78
+    :lines: 61-82
     :dedent: 4
 
 
