@@ -18,7 +18,7 @@ This mechanism is performed in two phases as explained in `Fast DDS documentatio
   Usually done sending periodic announcements to well-known multicast addresses and ports defined in the specification.
 * **Endpoint Discovery Phase (EDP)**: each DDS DomainParticipant send information about its own endpoints (DataWriters and DataReaders) through the communication channels established in the previous phase.
 
-Standard discovery has its caveats like the required multicast traffic being sent periodically that can saturate the network bandwidth in constraint network architectures with a large number of DDS DomainParticipants.
+Standard discovery has its caveats, like the required multicast traffic being sent periodically, that can saturate the network bandwidth in constraint network architectures with a large number of DDS DomainParticipants.
 Vulcanexus leverages latest *eProsima Fast DDS* release to improve ROS 2 middleware layer.
 Being aware of the standard discovery mechanism caveats, *eProsima Fast DDS* provides alternative discovery mechanisms:
 
@@ -66,7 +66,7 @@ Standard discovery
 With this configuration, PDP discovery metatraffic will always be performed through the UDP transport.
 However, if the SHM transport requirements are met, EDP discovery metatraffic and user data traffic will be sent through this transport.
 In order to capture the traffic and analyze it, the SHM transport is going to be disabled.
-Save the following XML configuration file at the desired location, which will be referred as ``path_to_xml_config_file>`` from here onwards, with ``vulcanexus_disable_shm.xml`` name.
+Save the following XML configuration file at the desired location, which will be referred as ``<path_to_xml_config_file>`` from here onwards, with ``vulcanexus_disable_shm.xml`` name.
 
 .. literalinclude:: /resources/tutorials/core/deployment/static_edp//vulcanexus_disable_shm.xml
     :language: xml
@@ -168,11 +168,13 @@ Full-fledged Static EDP discovery
 ---------------------------------
 
 ROS 2 provides several introspection tools like ``ros2 topic list`` or ``ros2 node list``.
-Running these commands with the previous example will shown only the default ROS 2 topics (``/parameter_events`` and ``/rosout``) and no node.
+Running these commands with the previous example will show only the default ROS 2 topics (``/parameter_events`` and ``/rosout``) and no node.
 The ``/chatter`` topic and the ``/talker`` and ``/listener`` nodes would not appear even though they are up and running and communicating.
 The issue is related to the internal endpoints that ROS 2 ecosystem, and by extension Vulcanexus, launch within each node to ensure these tools work as expected.
 Also, the vast majority of these tools depend on another DomainParticipant known as the ROS 2 Daemon.
 This section will complete the previous XML files so a full-fledged communication within Vulcanexus ecosystem is achieved, with working introspection tools.
+Information about every internal ROS 2 endpoint has been included.
+These endpoints are related to topic and node discovery, ROS 2 logging module, and parameters services and events.
 
 Below, the complete XML files are shown.
 Please, replaced the previous XML configuration files with these ones and the new one required to configure the ROS 2 daemon DomainParticipant.
