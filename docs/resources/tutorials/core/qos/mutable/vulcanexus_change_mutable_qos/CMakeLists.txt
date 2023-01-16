@@ -33,14 +33,6 @@ change_mutable_qos_publisher
   DESTINATION lib/${PROJECT_NAME}
 )
 
-add_executable(change_mutable_qos_subscriber src/change_mutable_qos_subscriber.cpp)
-ament_target_dependencies(change_mutable_qos_subscriber rclcpp rmw rmw_fastrtps_cpp std_msgs)
-
-install(TARGETS
-change_mutable_qos_subscriber
-  DESTINATION lib/${PROJECT_NAME}
-)
-
 install(FILES
 src/large_ownership_strength.xml
 src/small_ownership_strength.xml

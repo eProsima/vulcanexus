@@ -71,7 +71,6 @@ Create a clean workspace and download the Vulcanexus - Change Mutable QoS Throug
 
     cd ~/vulcanexus_ws/src/vulcanexus_change_mutable_qos/src
     wget -O change_mutable_qos_publisher.cpp https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_publisher.cpp
-    wget -O change_mutable_qos_subscriber.cpp https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_subscriber.cpp
 
     # Download profile config files for Fast DDS participants
     wget -O large_ownership_strength.xml https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/large_ownership_strength.xml
@@ -90,7 +89,6 @@ The resulting directory structure should be:
             ├── package.xml
             └── src
                 ├── change_mutable_qos_publisher.cpp
-                ├── change_mutable_qos_subscriber.cpp
                 ├── large_ownership_strength.xml
                 ├── small_ownership_strength.xml
                 └── subscriber_exclusive_ownership.xml
@@ -99,7 +97,9 @@ The resulting directory structure should be:
 Explaining the source code
 --------------------------
 
-For the case of the Subscriber, this tutorial is not going to explain it, as it is just the minimal subscriber, listening on the topic `/chatter`, already explained in the :ref:`CppPubSub` tutorial.
+In the case of the Subscriber, this tutorial only needs a minimal subscriber listening on the topic `/chatter`.
+For convenience, the `listener` node from `demo_nodes_cpp` package will be used, as it is just a minimal subscriber listening for the aforementioned topic.
+For more information on how to create a minimal subscriber, :ref:`CppPubSub` tutorial shows hoy to write one.
 
 In the case of the Publishers, the package is using only one executable, which takes an argument to assign the name of the Node.
 Here not all the code is going to be explained, as the referred tutorials of the prerequisites section explain big part of it.
@@ -180,13 +180,13 @@ Open three terminals in the workspace folder.
 On each of them, Vulcanexus installation, as well as the package installation is needed.
 Then, export the `FASTRTPS_DEFAULT_PROFILES_FILE` environment variable to point out to the corresponding profiles file and run the node.
 
-    * First, in the first terminal, run the subscriber node, configured with the profiles1.xml file.
+    * In the first terminal, run the `listener` node from the `demo_nodes_cpp`, configured with the `subscriber_exclusive_ownership.xml` file.
 
-    * | Then, in another terminal, run the first publisher, configured also with the profiles1.xml file.
+    * | Then, in another terminal, run the first publisher, configured also with the `large_ownership_strength.xml` file.
       | This Publisher will then be configured with ownership strength value of 10.
       | At this point both nodes should be communicating, and the messages from Publisher 1 should be shown in the Subscriber.
 
-    * | In the third terminal, run the second publisher, configured with the profiles2.xml file.
+    * | In the third terminal, run the second publisher, configured with the `small_ownership_strength.xml` file.
       | This Publisher will then be configured with ownership strength value of 2.
       | This Publisher 2 starts sending messages (it can be seen that the number of the message starts from 1 while the messages from Publisher 1 are already in a higher number), and the Subscriber is still receiving messages from Publisher 1 and not from Publisher 2.
       | This is because of the exclusive ownership.
@@ -201,10 +201,9 @@ The code to execute in each terminal can be found in the tabs below:
 
             source /opt/vulcanexus/humble/setup.bash
             cd ~/vulcanexus_ws
-            source install/setup.bash
             `# Using profile to set exclusive ownership`
             export FASTRTPS_DEFAULT_PROFILES_FILE=./install/vulcanexus_change_mutable_qos/profiles/subscriber_exclusive_ownership.xml
-            ros2 run vulcanexus_change_mutable_qos change_mutable_qos_subscriber  `# Run Subscriber`
+            ros2 run demo_nodes_cpp listener  `# Run minimal subscriber`
 
     .. tab:: Second terminal
 
