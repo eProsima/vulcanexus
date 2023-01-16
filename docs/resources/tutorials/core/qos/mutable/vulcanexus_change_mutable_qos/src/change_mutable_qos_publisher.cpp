@@ -1,4 +1,4 @@
-// Copyright 2016 Proyectos y Sistemas de Mantenimiento SL (eProsima).
+// Copyright 2023 Proyectos y Sistemas de Mantenimiento SL (eProsima).
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
  * @file change_mutable_qos_publisher.cpp
  */
  
- #include "rclcpp/rclcpp.hpp"
+#include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
 
 #include "rmw_fastrtps_cpp/get_participant.hpp"
@@ -26,10 +26,10 @@
 
 using namespace std::chrono_literals;
 
-class Node_ChangeMutableQoS_Publisher : public rclcpp::Node
+class NodeChangeMutableQoSPublisher : public rclcpp::Node
 {
 public:
-  Node_ChangeMutableQoS_Publisher(std::string node_name_prefix, std::string node_name)
+  NodeChangeMutableQoSPublisher(std::string node_name_prefix, std::string node_name)
   : Node(node_name),
     node_name_(node_name)
   {
@@ -105,7 +105,7 @@ int main(int argc, char ** argv)
     std::string node_name = node_name_prefix + "_change_mutable_qos";
 
     rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<Node_ChangeMutableQoS_Publisher>(node_name_prefix, node_name));
+    rclcpp::spin(std::make_shared<NodeChangeMutableQoSPublisher>(node_name_prefix, node_name));
     rclcpp::shutdown();
     return 0;
 }

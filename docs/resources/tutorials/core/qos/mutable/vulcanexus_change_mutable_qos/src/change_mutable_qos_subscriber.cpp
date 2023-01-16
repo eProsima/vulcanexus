@@ -1,4 +1,4 @@
-// Copyright 2016 Proyectos y Sistemas de Mantenimiento SL (eProsima).
+// Copyright 2023 Proyectos y Sistemas de Mantenimiento SL (eProsima).
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,14 +20,14 @@
 #include "std_msgs/msg/string.hpp"
 using std::placeholders::_1;
 
-class Node_ChangeMutableQoS_Sub : public rclcpp::Node
+class NodeChangeMutableQosSubscriber : public rclcpp::Node
 {
   public:
-    Node_ChangeMutableQoS_Sub()
+    NodeChangeMutableQosSubscriber()
     : Node("minimal_subscriber")
     {
       subscription_ = this->create_subscription<std_msgs::msg::String>(
-      "chatter", 10, std::bind(&Node_ChangeMutableQoS_Sub::topic_callback, this, _1));
+      "chatter", 10, std::bind(&NodeChangeMutableQosSubscriber::topic_callback, this, _1));
     }
 
   private:
@@ -41,7 +41,7 @@ class Node_ChangeMutableQoS_Sub : public rclcpp::Node
 int main(int argc, char * argv[])
 {
   rclcpp::init(argc, argv);
-  rclcpp::spin(std::make_shared<Node_ChangeMutableQoS_Sub>());
+  rclcpp::spin(std::make_shared<NodeChangeMutableQosSubscriber>());
   rclcpp::shutdown();
   return 0;
 }

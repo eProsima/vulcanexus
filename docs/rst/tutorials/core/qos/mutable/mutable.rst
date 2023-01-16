@@ -96,15 +96,6 @@ The resulting directory structure should be:
                 └── subscriber_exclusive_ownership.xml
 
 
-Finally, the package can be built.
-
-.. code-block:: bash
-
-    source /opt/vulcanexus/humble/setup.bash
-    cd ~/vulcanexus_ws
-    colcon build
-
-
 Explaining the source code
 --------------------------
 
@@ -116,7 +107,7 @@ For instance, the `/chatter` temporized publisher is explained in the :ref:`CppP
 
 The `demo_nodes_cpp_native <https://github.com/ros2/demos/tree/master/demo_nodes_cpp_native>`__ shows how to access inner RMW and Fast DDS entities, although it is not actually explained.
 In this tutorial, that same mechanism is used.
-In the private section of the `Node_ChangeMutableQoS_Publisher` class, the pointers to the native handlers are declared:
+In the private section of the :class:`Node_ChangeMutableQoS_Publisher` class, the pointers to the native handlers are declared:
 
 .. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_publisher.cpp
     :language: c++
@@ -124,7 +115,7 @@ In the private section of the `Node_ChangeMutableQoS_Publisher` class, the point
     :dedent: 4
 
 
-In the constructor, the pointers are populated by calling the APIs provided by the rmw and rmw_fastrtps_cpp, until obtaining the `eprosima::fastdds::dds::DataWriter` handle:
+In the constructor, the pointers are populated by calling the APIs provided by the rmw and rmw_fastrtps_cpp, until obtaining the :class:`eprosima::fastdds::dds::DataWriter` handle:
 
 .. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_publisher.cpp
     :language: c++
@@ -132,7 +123,7 @@ In the constructor, the pointers are populated by calling the APIs provided by t
     :dedent: 4
 
 
-When the `Publisher_X_ownership_strength` is updated (for instance, via command line using `ros2 param set` command), the `cb` parameter callback is raised, and the `eprosima::fastdds::dds::DataWriter` handle is used to update its ownership strength.
+When the `Publisher_X_ownership_strength` is updated (for instance, via command line using `ros2 param set` command), the parameter callback is raised, and the `eprosima::fastdds::dds::DataWriter` handle is used to update its ownership strength.
 
 .. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_publisher.cpp
     :language: c++
@@ -146,8 +137,8 @@ The value of the ownership strength is set from the value of the updated paramet
 Configuration of initial QoS
 ----------------------------
 
-Ownership Strength Policy is mutable, but Ownership Policy is not. Then, it is needed to configure EXCLUSIVE_OWNERSHIP_POLICY to all participants before running the ROS nodes.
-To do that, inside our package, we have three xml files.
+Ownership Strength Policy is mutable, but Ownership Policy is not, so configuring EXCLUSIVE_OWNERSHIP_POLICY to all participants before running the ROS nodes is needed.
+To do that, inside the package, there are three xml files.
 Each one of them defines a profile for a publisher with a "large" ownership strength, another with a "small" ownership strength and a subscriber (that does not need an ownership strength definition).
 For the three of them, exclusive ownership is defined.
 
@@ -186,19 +177,19 @@ Run
 ---
 
 Open three terminals in the workspace folder.
-On each, it is needed to source Vulcanexus installation, as well as the package installation.
+On each of them, Vulcanexus installation, as well as the package installation is needed.
 Then, export the `FASTRTPS_DEFAULT_PROFILES_FILE` environment variable to point out to the corresponding profiles file and run the node.
 
-First, in the first terminal, run the subscriber node, configured with the profiles1.xml file.
+    * First, in the first terminal, run the subscriber node, configured with the profiles1.xml file.
 
-Then, in another terminal, run the first publisher, configured also with the profiles1.xml file.
-This Publisher will then be configured with ownership strength value of 10.
-At this point both nodes should be communicating, and the messages from Publisher 1 should be shown in the Subscriber.
+    * | Then, in another terminal, run the first publisher, configured also with the profiles1.xml file.
+      | This Publisher will then be configured with ownership strength value of 10.
+      | At this point both nodes should be communicating, and the messages from Publisher 1 should be shown in the Subscriber.
 
-In the third terminal, run the second publisher, configured with the profiles2.xml file.
-This Publisher will then be configured with ownership strength value of 2.
-This Publisher 2 starts sending messages (it can be seen that the number of the message starts from 1 while the messages from Publisher 1 are already in a higher number), and the Subscriber is still receiving messages from Publisher 1 and not from Publisher 2.
-This is because of the exclusive ownership.
+    * | In the third terminal, run the second publisher, configured with the profiles2.xml file.
+      | This Publisher will then be configured with ownership strength value of 2.
+      | This Publisher 2 starts sending messages (it can be seen that the number of the message starts from 1 while the messages from Publisher 1 are already in a higher number), and the Subscriber is still receiving messages from Publisher 1 and not from Publisher 2.
+      | This is because of the exclusive ownership.
 
 The code to execute in each terminal can be found in the tabs below:
 
@@ -210,7 +201,7 @@ The code to execute in each terminal can be found in the tabs below:
 
             source /opt/vulcanexus/humble/setup.bash
             cd ~/vulcanexus_ws
-            . install/setup.bash
+            source install/setup.bash
             `# Using profile to set exclusive ownership`
             export FASTRTPS_DEFAULT_PROFILES_FILE=./install/vulcanexus_change_mutable_qos/profiles/subscriber_exclusive_ownership.xml
             ros2 run vulcanexus_change_mutable_qos change_mutable_qos_subscriber  `# Run Subscriber`
@@ -221,7 +212,7 @@ The code to execute in each terminal can be found in the tabs below:
 
             source /opt/vulcanexus/humble/setup.bash
             cd ~/vulcanexus_ws
-            . install/setup.bash
+            source install/setup.bash
             `# Using profile to set large strenght value`
             export FASTRTPS_DEFAULT_PROFILES_FILE=./install/vulcanexus_change_mutable_qos/profiles/large_ownership_strength.xml
             ros2 run vulcanexus_change_mutable_qos change_mutable_qos_publisher Publisher_1     `# Run Publisher 1`
@@ -232,7 +223,7 @@ The code to execute in each terminal can be found in the tabs below:
 
             source /opt/vulcanexus/humble/setup.bash
             cd ~/vulcanexus_ws
-            . install/setup.bash
+            source install/setup.bash
             `# Using profile to set small strenght value`
             export FASTRTPS_DEFAULT_PROFILES_FILE=./install/vulcanexus_change_mutable_qos/profiles/small_ownership_strength.xml
             ros2 run vulcanexus_change_mutable_qos change_mutable_qos_publisher Publisher_2     `# Run Publisher 2`
@@ -259,7 +250,7 @@ In another terminal, try the following code:
 
     source /opt/vulcanexus/humble/setup.bash
     cd ~/vulcanexus_ws
-    . install/setup.bash
+    source install/setup.bash
     ros2 param set /Publisher_2_change_mutable_qos Publisher_2_ownership_strength 50
 
 
