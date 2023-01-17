@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds>
+    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+        <transport_descriptors>
+            <transport_descriptor>
+                <transport_id>udp_transport</transport_id>
+                <type>UDPv4</type>
+            </transport_descriptor>
+        </transport_descriptors>
+
+        <participant profile_name="listener_participant_profile" is_default_profile="true">
+            <rtps>
+                <name>listener</name>
+                <userTransports>
+                    <transport_id>udp_transport</transport_id>
+                </userTransports>
+                <useBuiltinTransports>false</useBuiltinTransports>
+                <builtin>
+                    <discovery_config>
+                        <EDP>STATIC</EDP>
+                        <static_edp_xml_config>file://static_edp_info.xml</static_edp_xml_config>
+                    </discovery_config>
+                </builtin>
+            </rtps>
+        </participant>
+
+        <data_reader profile_name="/chatter">
+            <userDefinedID>102</userDefinedID>
+        </data_reader>
+    </profiles>
+</dds>

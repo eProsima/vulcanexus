@@ -1,0 +1,22 @@
+<staticdiscovery>
+    <participant>
+        <name>talker</name>
+        <writer>
+            <userId>101</userId>
+            <topicName>rt/chatter</topicName>
+            <topicDataType>std_msgs::msg::dds_::String_</topicDataType>
+            <reliabilityQos>RELIABLE_RELIABILITY_QOS</reliabilityQos>
+            <durabilityQos>VOLATILE_DURABILITY_QOS</durabilityQos>
+        </writer>
+    </participant>
+    <participant>
+        <name>listener</name>
+        <reader>
+            <userId>102</userId>
+            <topicName>rt/chatter</topicName>
+            <topicDataType>std_msgs::msg::dds_::String_</topicDataType>
+            <reliabilityQos>RELIABLE_RELIABILITY_QOS</reliabilityQos>
+            <durabilityQos>VOLATILE_DURABILITY_QOS</durabilityQos>
+        </reader>
+    </participant>
+</staticdiscovery>
