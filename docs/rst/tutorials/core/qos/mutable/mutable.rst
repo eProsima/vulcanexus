@@ -182,15 +182,13 @@ On each of them, Vulcanexus installation, as well as the package installation is
 Then, export the `FASTRTPS_DEFAULT_PROFILES_FILE` environment variable to point out to the corresponding profiles file and run the node.
 
     * In the first terminal, run the `listener` node from the `demo_nodes_cpp`, configured with the `subscriber_exclusive_ownership.xml` file.
-
-    * | Then, in another terminal, run the first publisher, configured also with the `large_ownership_strength.xml` file.
-      | This Publisher will then be configured with ownership strength value of 10.
-      | At this point both nodes should be communicating, and the messages from Publisher 1 should be shown in the Subscriber.
-
-    * | In the third terminal, run the second publisher, configured with the `small_ownership_strength.xml` file.
-      | This Publisher will then be configured with ownership strength value of 2.
-      | This Publisher 2 starts sending messages (it can be seen that the number of the message starts from 1 while the messages from Publisher 1 are already in a higher number), and the Subscriber is still receiving messages from Publisher 1 and not from Publisher 2.
-      | This is because of the exclusive ownership.
+    * Then, in another terminal, run the first publisher, configured also with the `large_ownership_strength.xml` file.
+      This Publisher will then be configured with ownership strength value of 10.
+      At this point both nodes should be communicating, and the messages from Publisher 1 should be shown in the Subscriber.
+    * In the third terminal, run the second publisher, configured with the `small_ownership_strength.xml` file.
+      This Publisher will then be configured with ownership strength value of 2.
+      This Publisher 2 starts sending messages (it can be seen that the number of the message starts from 1 while the messages from Publisher 1 are already in a higher number), and the Subscriber is still receiving messages from Publisher 1 and not from Publisher 2.
+      This is because of the exclusive ownership.
 
 The code to execute in each terminal can be found in the tabs below:
 
