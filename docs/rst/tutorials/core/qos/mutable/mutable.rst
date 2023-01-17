@@ -99,7 +99,7 @@ Explaining the source code
 
 In the case of the Subscriber, this tutorial only needs a minimal subscriber listening on the topic `/chatter`.
 For convenience, the `listener` node from `demo_nodes_cpp` package will be used, as it is just a minimal subscriber listening for the aforementioned topic.
-For more information on how to create a minimal subscriber, :ref:`CppPubSub` tutorial shows hoy to write one.
+For more information on how to create a minimal subscriber, :ref:`CppPubSub` tutorial shows how to write one.
 
 In the case of the Publishers, the package is using only one executable, which takes an argument to assign the name of the Node.
 Here not all the code is going to be explained, as the referred tutorials of the prerequisites section explain big part of it.
@@ -124,7 +124,7 @@ In the constructor, the pointers are populated by calling the APIs provided by t
 
 
 When the `Publisher_X_ownership_strength` is updated (for instance, via command line using `ros2 param set` command), the parameter callback is raised, and the `eprosima::fastdds::dds::DataWriter` handle is used to update its ownership strength.
-Below, a snippet of code from the contructor of the node, where the parameter is declared, the subscription to its changes is registered, and the callback to be run on the parameter change event is defined.
+Below, a snippet of code from the constructor of the node, where the parameter is declared, the subscription to its changes is registered, and the callback to be run on the parameter change event is defined.
 
 .. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_publisher.cpp
     :language: c++
