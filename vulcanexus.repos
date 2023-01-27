@@ -2,27 +2,27 @@ repositories:
   eProsima/DDS-Router:
     type: git
     url: https://github.com/eProsima/DDS-Router.git
-    version: v1.0.0  
+    version: v1.1.0  
   eProsima/dev-utils:
     type: git
     url: https://github.com/eProsima/dev-utils.git
-    version: v0.1.0
+    version: v0.2.0
   eProsima/Fast-CDR:
     type: git
     url: https://github.com/eProsima/Fast-CDR.git
-    version: v1.0.25
+    version: v1.0.26
   eProsima/Fast-DDS:
     type: git
     url: https://github.com/eProsima/Fast-DDS.git
-    version: v2.8.0
+    version: v2.9.1
   eProsima/Fast-DDS-Gen:
     type: git
     url: https://github.com/eProsima/Fast-DDS-Gen.git
-    version: v2.2.0
+    version: v2.3.0
   eProsima/Fast-DDS-Monitor:
     type: git
     url: https://github.com/eProsima/Fast-DDS-monitor.git
-    version: v1.2.1
+    version: v1.3.0
   eProsima/Fast-DDS-Python:
     type: git
     url: https://github.com/eProsima/Fast-DDS-python.git
@@ -30,11 +30,11 @@ repositories:
   eProsima/Fast-DDS-Statistics-Backend:
     type: git
     url: https://github.com/eProsima/Fast-DDS-statistics-backend.git
-    version: v0.7.1
+    version: v0.8.0
   eProsima/Foonathan-Memory-Vendor:
     type: git
     url: https://github.com/eProsima/foonathan_memory_vendor.git
-    version: v1.2.1
+    version: v1.2.2
   eProsima/Micro-ROS-Agent:
     type: git
     url: https://github.com/micro-ROS/micro-ROS-Agent.git
@@ -50,7 +50,7 @@ repositories:
   eProsima/Micro-XRCE-DDS-Agent:
     type: git
     url: https://github.com/eProsima/Micro-XRCE-DDS-Agent
-    version: v2.2.1
+    version: v2.3.0
   eProsima/RMW-Fast-DDS:
     type: git
     url: https://github.com/eProsima/rmw_fastrtps.git
@@ -58,7 +58,7 @@ repositories:
   eProsima/Shapes-Demo:
     type: git
     url: https://github.com/eProsima/ShapesDemo.git
-    version: v2.8.0
+    version: v2.9.1
   eProsima/Shapes-Demo-TypeSupport:
     type: git
     url: https://github.com/eProsima/ShapesDemo-TypeSupport.git
@@ -66,7 +66,7 @@ repositories:
   eProsima/Vulcanexus-Base:
     type: git
     url: https://github.com/eProsima/vulcanexus.git
-    version: v1.0.3
+    version: v1.0.4
   ros2/ROSIDL-TypeSupport-FastRTPS:
     type: git
     url: https://github.com/ros2/rosidl_typesupport_fastrtps.git
