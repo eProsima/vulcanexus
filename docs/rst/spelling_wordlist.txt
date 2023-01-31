@@ -6,6 +6,7 @@ Backend
 bare-metal
 behaviour
 blinky
+centric
 conf
 combinable
 cryptographic
@@ -54,11 +55,13 @@ NuttX
 Persistency
 persistency
 Pico
+pluggable
 preallocates
 prebuilt
 proto
 rcl
 rclc
+reconfigurations
 reconnections
 Renesas
 repository
