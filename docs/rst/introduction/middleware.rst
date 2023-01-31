@@ -6,6 +6,7 @@ Vulcanexus MiddleWare
 Vulcanexus supports *eProsima Fast DDS* as the official middleware.
 *Fast DDS* provides many features of interest to the development of robotics applications, providing also custom solutions to well-known problems as, for instance, discovery issues for large deployments.
 This section provides an introduction to *Fast DDS* and its main advantages.
+More information can be found in `Fast DDS documentation <https://fast-dds.docs.eprosima.com/en/latest/>`_.
 
 .. _vulcanexus_fastdds:
 
