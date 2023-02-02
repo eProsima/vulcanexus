@@ -21,7 +21,7 @@ Middleware
 The middleware layer is charged with the communication between components.
 After considering several communication protocols the `Object Management Group (OMG) <https://www.omg.org/>`_ `DDS (Data Distribution Service) <https://www.omg.org/spec/DDS/About-DDS/>`_ protocol was selected for being an open standard with a security extension, having a distributed dynamic discovery and being highly customizable for every kind of application.
 Several DDS vendors, both open source and licensed, are available within the *ROS 2* environment.
-However, *Vulcanexus* supports `eProsima's Fast DDS <vulcanexus_fastdds>`_ open source implementation.
+However, *Vulcanexus* supports :ref:`eProsima's Fast DDS <vulcanexus_fastdds>` open source implementation.
 The main advantage being that *Vulcanexus* releases are not tied to a specific *Fast DDS* version which is enforced by the `ROS 2 ROS Enhancement Proposal (REP) 2004 <https://ros.org/reps/rep-2004.html#package-requirements>`_ 1.vi. requirement:
 
     *Must have a policy that keeps API and ABI stability within a released ROS distribution.*

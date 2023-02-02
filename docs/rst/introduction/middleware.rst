@@ -1,6 +1,6 @@
 .. _vulcanexus_middleware:
 
-Vulcanexus MiddleWare
+Vulcanexus Middleware
 =====================
 
 Vulcanexus supports *eProsima Fast DDS* as the official middleware.
@@ -26,18 +26,23 @@ Main Features
 * **Built-in Discovery Server:** *eProsima Fast DDS* is based on the dynamical discovery of existing publishers and subscribers, and performs this task continuously without the need to contacting or setting any servers.
   However, a Client-Server discovery as well as other discovery paradigms can also be configured.
   See :ref:`vulcanexus_discovery_server` for more information.
+  Several tutorials are available showcasing different discovery mechanisms and strategies: :ref:`discovery server <ros2-advanced-tutorial-fastdds-discovery-server>`, :ref:`initial peers <tutorials_initial_peers_intro>`, and :ref:`static EDP discovery <tutorials_deployment_static_edp>`.
 
 * **Sync and Async publication modes:** *eProsima Fast DDS* supports both synchronous and asynchronous data publication.
+  See :ref:`vulcanexus_configure_publication_mode` and :ref:`ros2_tutorials_fastdds_sync_async` tutorials for more information.
 
 * **Best effort and reliable communication:** *eProsima Fast DDS* supports an optional reliable communication paradigm over *Best Effort* communications protocols such as UDP.
   Furthermore, another way of setting a reliable communication is to use the also supported TCP transport.
 
 * **Transport layers:** *eProsima Fast DDS* implements an architecture of pluggable transports: UDPv4, UDPv6, TCPv4, TCPv6 and SHM (shared memory).
+  See :ref:`tutorials_core_deployment_custom_transports` tutorial for more information.
 
 * **Security:** *eProsima Fast DDS* can be configured to provide secure communications.
   For this purpose, it implements pluggable security at three levels: authentication of remote participants, access control of entities and encryption of data.
+  *Fast DDS* also supports hardware secure modules implementing PKCS#11 as it is showcased in :ref:`tutorials_security_pkcs11_pkcs11` tutorial.
 
 * **Statistics Module:** *eProsima Fast DDS* can be configured to gather and provide information about the data being exchanged by the user application.
+  Several tutorials are available showcasing different options to obtain the statistics within Vulcanexus ecosystem: :ref:`ROS 2 Monitor <tutorials_tools_fastdds_monitor>`, :ref:`Fast DDS Statistics Backend <tutorials_tools_monitor_with_backend>`, :ref:`SQL <tutorials_tools_monitor_sql>`, and :ref:`Prometheus <tutorials_tools_prometheus>`.
 
 * **Plug-and-play Connectivity:** New applications and services are automatically discovered, and can join and leave the network at any time without the need for reconfiguration.
 
@@ -51,10 +56,12 @@ Main Features
 
 * **Configurability and Modularity:** *eProsima Fast DDS* provides an intuitive way to be configured, either through code or XML profiles.
   Modularity allows simple devices to implement a subset of the protocol and still participate in the network.
+  See :ref:`tutorials_xml_profiles_intro` tutorial for more information.
 
 * **High performance:** *eProsima Fast DDS* uses a static low-level serialization library, `Fast CDR <https://github.com/eProsima/Fast-CDR>`__, a C++ library that serializes according to the standard CDR serialization mechanism defined in the `RTPS Specification <https://www.omg.org/spec/DDSI-RTPS/>`__ (see the Data Encapsulation chapter as a reference).
 
 * **Easy to use:** The interactive demo :ref:`vulcanexus_shapes_demo` is available for the user to dive into the DDS world.
+  See :ref:`tutorials_tools_shapes_demo` tutorial for more information.
 
 * **Low resources consumption:** *eProsima Fast DDS*:
 
@@ -66,7 +73,7 @@ Main Features
   Users may easily implement platform modules using the *eProsima Fast DDS* library on their target platforms.
   By default, the project can run over Linux, Windows and MacOS.
 
-* **Free and Open Source:** *eProsima Fast DDS*, the internal dependencies (such as *eProsima Fast CDR*) and the external ones (such as the *foonathan* library) are free and open source.
+* **Free and Open Source:** Both *eProsima Fast DDS*, its internal dependencies (such as *eProsima Fast CDR*), and its external ones (such as the *foonathan* library) are free and open source.
 
 .. _vulcanexus_discovery_server:
 
