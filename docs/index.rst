@@ -95,6 +95,7 @@ To make such contributions, please refer to the
    :numbered: 5
 
    /rst/introduction/introduction.rst
+   /rst/introduction/middleware.rst
    /rst/introduction/developer_tools.rst
    /rst/introduction/metapackages.rst
    /ros2_documentation/source/index.rst

@@ -21,7 +21,7 @@ Middleware
 The middleware layer is charged with the communication between components.
 After considering several communication protocols the `Object Management Group (OMG) <https://www.omg.org/>`_ `DDS (Data Distribution Service) <https://www.omg.org/spec/DDS/About-DDS/>`_ protocol was selected for being an open standard with a security extension, having a distributed dynamic discovery and being highly customizable for every kind of application.
 Several DDS vendors, both open source and licensed, are available within the *ROS 2* environment.
-However, *Vulcanexus* supports `eProsima's Fast DDS <https://fast-dds.docs.eprosima.com/en/latest/>`_ open source implementation.
+However, *Vulcanexus* supports :ref:`eProsima's Fast DDS <vulcanexus_fastdds>` open source implementation.
 The main advantage being that *Vulcanexus* releases are not tied to a specific *Fast DDS* version which is enforced by the `ROS 2 ROS Enhancement Proposal (REP) 2004 <https://ros.org/reps/rep-2004.html#package-requirements>`_ 1.vi. requirement:
 
     *Must have a policy that keeps API and ABI stability within a released ROS distribution.*
@@ -29,7 +29,7 @@ The main advantage being that *Vulcanexus* releases are not tied to a specific *
 Consequently, only patch releases that fix bugs without modifying API and ABI are considered for updates in the *ROS 2* environment.
 *Vulcanexus*, on the other hand, updates the middleware layer any time *eProsima Fast DDS* releases a new version in order to benefit from the latest features and fixes.
 *Vulcanexus* takes charge of releasing a new binary stable distribution that is compatible with the potential ABI breaks so the *Vulcanexus* user has only to update its *Vulcanexus* distro to benefit from the latest *Fast DDS* release.
-For instance, *Vulcanexus* provides :ref:`PKCS #11 security support <tutorials_security_pkcs11_pkcs11>` whereas *ROS 2* does not support it (as of September 2022).
+For instance, *Vulcanexus* provides :ref:`PKCS #11 security support <tutorials_security_pkcs11_pkcs11>` whereas *ROS 2* does not support it (as of January 2023).
 
 Algorithms
 ^^^^^^^^^^
