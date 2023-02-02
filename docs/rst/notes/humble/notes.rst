@@ -18,7 +18,7 @@ This version ships the following packages:
       - `v1.0.26 <https://github.com/eProsima/Fast-CDR/releases/tag/v1.0.26>`__
       - v2.1.0
     * - eProsima Fast DDS
-      - `v2.9.1 <https://fast-dds.docs.eprosima.com/en/latest/notes/notes.html#version-2-9-0>`__
+      - `v2.9.1 <https://fast-dds.docs.eprosima.com/en/latest/notes/notes.html#version-2-9-1>`__
       - v2.1.0
     * - eProsima Fast DDS Gen
       - `v2.3.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v2.3.0>`__
@@ -39,7 +39,7 @@ This version ships the following packages:
       - `v1.1.0 <https://eprosima-dds-router.readthedocs.io/en/latest/rst/notes/notes.html#version-v1-1-0>`__
       - v2.1.0
     * - ROS 2 Shapes Demo
-      - `v2.9.0 <https://eprosima-shapes-demo.readthedocs.io/en/latest/notes/notes.html#version-2-9-0>`__
+      - `v2.9.1 <https://eprosima-shapes-demo.readthedocs.io/en/latest/notes/notes.html#version-2-9-1>`__
       - v2.1.0
     * - ROS 2 Statistics Backend
       - `v0.8.0 <https://fast-dds-statistics-backend.readthedocs.io/en/latest/rst/notes/notes.html#version-0-8-0>`__
