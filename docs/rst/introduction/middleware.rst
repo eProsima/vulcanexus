@@ -80,6 +80,26 @@ Main Features
 ROS 2 Discovery Server
 ----------------------
 
-.. note::
-    This section is under maintenance and will be updated soon.
+:ref:`ROS 2 Discovery Server <ros2-advanced-tutorial-fastdds-discovery-server>` is a Fast DDS enabled feature that procures an alternative discovery mechanism to the default ROS 2 discovery mechanism, `Simple Discovery Protocol (SDP) <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/simple.html#simple-disc-settings>`_, which is served by the DDS implementations according to the DDS specification.
+Whereas SDP provides automatic out-of-the-box discovery by leveraging multicast, ROS 2 Discovery Server provides a centralized hub for managing discovery which drastically reduces network bandwidth utilization when compared to SDP, since the nodes, publishers, and subscribers, only discovered those remote ROS 2 entities with which they need to communication (as opposed to the SDP model where everyone knows about each other).
+Furthermore, it does not relay on multicast, which makes this mechanism more robust over WiFi, and simplifies ROS 2 deployments in managed networks, where the use of multicast is often restricted.
+Its main features are:
 
+* **Ease of use**: Vulcanexus (through Fast DDS) provides a CLI to instantiate Discovery Servers with one command.
+  To connect a node (Client) to the Discovery Server, a simple environment variable is used (much like in ROS 1).
+
+* **Scalability**: The discovery related network traffic can be reduced by more than an 85 % margin when compared to SDP.
+
+* **Robustness**: ROS 2 Discovery Server supports redundant servers, effectively removing the single point of failure that its ROS 1 counterpart (ROS Master) entailed.
+
+* **Run-time mutability**: It is possible to change the Server to which a node (Client) connects on run-time.
+
+* **Ease of deployment**: All that is necessary to get rid of all ROS 2 discovery related problems during deployment (WiFi, multicast, bandwidth exhaustion, etc.) is a process to run the Discovery Server, and an environment variable to configure the Clients.
+
+.. figure:: /rst/figures/intro/discovery-server.svg
+    :align: center
+    :width: 50%
+
+.. note::
+
+    Please refer to the `Discovery Server documentation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery_server.html>`_ for more information on all possible Discovery Server configuration options and use-cases.
