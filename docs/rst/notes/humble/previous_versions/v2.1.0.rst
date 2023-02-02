@@ -1,9 +1,4 @@
-.. _notes_humble_latest:
-
-Humble Hierro
-=============
-
-Humble Hierro (v2.1.1)
+Humble Hierro (v2.1.0)
 ----------------------
 
 This version ships the following packages:
@@ -18,7 +13,7 @@ This version ships the following packages:
       - `v1.0.26 <https://github.com/eProsima/Fast-CDR/releases/tag/v1.0.26>`__
       - v2.1.0
     * - eProsima Fast DDS
-      - `v2.9.1 <https://fast-dds.docs.eprosima.com/en/latest/notes/notes.html#version-2-9-0>`__
+      - `v2.9.0 <https://fast-dds.docs.eprosima.com/en/latest/notes/notes.html#version-2-9-0>`__
       - v2.1.0
     * - eProsima Fast DDS Gen
       - `v2.3.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v2.3.0>`__
@@ -54,7 +49,6 @@ This version ships the following packages:
 Humble Hierro previous versions
 -------------------------------
 
-.. include:: previous_versions/v2.1.0.rst
 .. include:: previous_versions/v2.0.5.rst
 .. include:: previous_versions/v2.0.4.rst
 .. include:: previous_versions/v2.0.3.rst
