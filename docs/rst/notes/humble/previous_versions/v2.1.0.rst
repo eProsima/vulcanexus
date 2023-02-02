@@ -45,13 +45,3 @@ This version ships the following packages:
     * - eProsima Dev Utils
       - `v0.2.0 <https://github.com/eProsima/dev-utils/releases/tag/v0.2.0>`__
       - v2.1.0
-
-Humble Hierro previous versions
--------------------------------
-
-.. include:: previous_versions/v2.0.5.rst
-.. include:: previous_versions/v2.0.4.rst
-.. include:: previous_versions/v2.0.3.rst
-.. include:: previous_versions/v2.0.2.rst
-.. include:: previous_versions/v2.0.1.rst
-.. include:: previous_versions/v2.0.0.rst
