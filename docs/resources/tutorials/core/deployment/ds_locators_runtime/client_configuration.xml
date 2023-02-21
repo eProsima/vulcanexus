@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <participant profile_name="discovery_server_example">
+       <rtps>
+            <builtin>
+                <discovery_config>
+                    <!-- Set participant as CLIENT -->
+                    <discoveryProtocol>CLIENT</discoveryProtocol>
+                    <!--
+                        Set list of remote servers. This list may contain one or
+                        more <RemoteServer> tags
+                    -->
+                    <discoveryServersList>
+                        <!--
+                            Set remote server configuration:
+                                - Prefix
+                                - PDP listening locator
+                        -->
+                        <!-- server_0 GUID prefix -->
+                        <RemoteServer prefix="44.53.00.5f.45.50.52.4f.53.49.4d.41">
+                            <metatrafficUnicastLocatorList>
+                                <locator>
+                                    <udpv4>
+                                        <!-- server_0 address -->
+                                        <address>172.17.0.5</address>
+                                        <port>11811</port>
+                                    </udpv4>
+                                </locator>
+                            </metatrafficUnicastLocatorList>
+                        </RemoteServer>
+                        <!-- server_1 GUID prefix -->
+                        <RemoteServer prefix="44.53.01.5f.45.50.52.4f.53.49.4d.41">
+                            <metatrafficUnicastLocatorList>
+                                <locator>
+                                    <udpv4>
+                                        <!-- server_1 address -->
+                                        <address>172.17.0.6</address>
+                                        <port>11811</port>
+                                    </udpv4>
+                                </locator>
+                            </metatrafficUnicastLocatorList>
+                        </RemoteServer>
+                    </discoveryServersList>
+                    <!-- Set ping period to 250 ms -->
+                    <clientAnnouncementPeriod>
+                        <nanosec>250000000</nanosec>
+                    </clientAnnouncementPeriod>
+                </discovery_config>
+            </builtin>
+        </rtps>
+    </participant>
+    <!-- ROS2 pubsub profiles with profile name as topic_id -->
+    <data_reader profile_name="discovery_server_example" is_default_profile="true">
+        <historyMemoryPolicy>PREALLOCATED_WITH_REALLOC</historyMemoryPolicy>
+    </data_reader>
+    <data_writer profile_name="discovery_server_example" is_default_profile="true">
+        <historyMemoryPolicy>PREALLOCATED_WITH_REALLOC</historyMemoryPolicy>
+    </data_writer>
+</profiles>
+
