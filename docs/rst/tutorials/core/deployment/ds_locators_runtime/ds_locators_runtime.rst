@@ -215,12 +215,7 @@ Create a XML configuration file in each *client* container, and complete it with
 .. literalinclude:: /resources/tutorials/core/deployment/ds_locators_runtime/client_configuration.xml
     :language: xml
 
-The entities need to be configured to use the created profile.
-To do so, make sure the document name is ``DEFAULT_FASTRTPS_PROFILES.xml``, and set the following environment variable in all *clients*:
-
-.. code-block:: bash
-
-    export RMW_FASTRTPS_USE_QOS_FROM_XML=1
+The nodes would load the created profile automatically by setting the XML configuration file name as ``DEFAULT_FASTRTPS_PROFILES.xml``.
 
 ``FASTDDS_ENVIRONMENT_FILE``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
