@@ -65,9 +65,9 @@ The aim of the tutorial is to add a *client* context running a ``listener`` node
     s1 -[hidden]right- s0
     p1 -[hidden]right- p0
     p1 -[hidden]-> s0
-    s -[dotted]-> s1
+    s -[hidden]-> s1
 
-To do so, the isolated ``Client talker B`` node discovery servers list would be updated on run-time, so the ``Client listener`` node would be able to receive the new publications.
+To do so, the ``Client listener`` node discovery servers list would be updated on run-time to include the ``Server B``, so the ``Client listener`` node would be able to receive the new publications from the ``Client talker B`` node.
 
 Prerequisites
 -------------
@@ -130,7 +130,7 @@ Open five terminals, and run the Vulcanexus Humble image in each one with the fo
 Configure the discovery entities
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The *servers* configuration is really simple, the *server* ``discovery id`` would be set as ``0`` in the first discovery server network, and ``1`` in the other one.
+The *servers* configuration is really simple: by using the `Fast DDS Discovery CLI <https://fast-dds.docs.eprosima.com/en/latest/fastddscli/cli/cli.html#discovery>`_, the *server* ``discovery id`` would be set as ``0`` in the ``Discovery Server Network A``, and ``1`` in the ``Discovery Server Network B``.
 
 .. tabs::
 
@@ -235,13 +235,12 @@ The nodes would load the created profile automatically by setting the XML config
 ``FASTDDS_ENVIRONMENT_FILE``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Finally, each *client* node needs to know which discovery server should connect to.
-In order to update that information on run-time, the environment variable ``FASTDDS_ENVIRONMENT_FILE`` must be set to an existing ``json`` file.
-In that way, the environment variable that sets the discovery server information would be loaded from a file instead of from the environment.
+Finally, each *client* needs to know which *server* should connect to.
+In order to update that information on run-time, the environment variable ``FASTDDS_ENVIRONMENT_FILE`` must be set to an existing ``json`` file (see `Fast DDS Environment variables <https://fast-dds.docs.eprosima.com/en/latest/fastdds/env_vars/env_vars.html#fastdds-environment-file>`_).
+In that way, the environment variable that sets the *server* information would be loaded from a file instead of from the environment.
 This allows to change the discovery servers information by simply modifying the ``json`` file.
 
 Create a ``json`` file for each *client* and introduce the *server* IP address and port.
-Make sure the talker in the discovery server network 1 only contains its discovery server data.
 
 .. note::
    As long as the default port has been used in the tutorial, it could be omitted in the ``json`` configuration.
@@ -283,7 +282,7 @@ Set up the environment file:
 Run the example
 ---------------
 
-After all the configuration has been set, run the discovery servers, and the talker and listener *clients*:
+After all the configuration has been set, run the *discovery servers*, and the ``talker`` and ``listener`` *client* nodes:
 
 .. tabs::
 
@@ -328,46 +327,47 @@ After all the configuration has been set, run the discovery servers, and the tal
                     export FASTDDS_ENVIRONMENT_FILE="discovery_servers.json"
                     ros2 run demo_nodes_cpp talker
 
-The expect output is that the listener would only receive the publications from the talker in the same discovery server network.
-Now, let's add the other *server* as a discovery server in the ``talker_A`` talker on run-time to let the listener receive its publications.
+The expected output is that the ``Client listener`` node would only receive the publications from the ``Client talker A`` node.
+Now, let's add the ``Server B`` as a discovery server in the ``Client listener`` on run-time to receive the ``Client talker B`` publications.
 
 Discovery Server on run-time
 ----------------------------
 
-During execution, modify the listener ``json`` file to include the other *server* data, as follows:
+During execution, modify the ``Client listener`` node ``json`` file to include the ``Server B`` data, as follows:
 
 .. literalinclude:: /resources/tutorials/core/deployment/ds_locators_runtime/discovery_servers_both_networks.json
     :language: xml
 
-After saving the file, the listener would discover the remain talker through the discovery server just set.
+After saving the file, the ``Client listener`` would discover the ``Client talker B`` through the discovery server just set.
+Then, the ``Client listener`` would start receiving ``Client talker B`` publications.
 
 .. uml::
     :align: center
 
     hide empty members
 
-    package "Discovery Server Network 0" as de0{
-        (Server 0) as s0
-        (Client pub 0) as p0
-        (Client sub) as s
+    package de0 as "Discovery Server Network A"{
+        (Server A) as s0
+        (Client talker A) as p0
+        (Client listener) as s
         s <-[dashed]right- p0
         s0 <-down- s
         s0 <-down- p0
         p0 -[hidden]left- s0
     }
 
-    package "Discovery Server Network 1" as de1{
-        (Server 1) as s1
-        (Client pub 1) as p1
+    package de1 as "Discovery Server Network B"{
+        (Server B) as s1
+        (Client talker B) as p1
         p1 -up-> s1
     }
 
     de1 -[hidden]right- de0
     s1 -[hidden]right- s0
     p1 -[hidden]right- p0
+    p1 -[hidden]-> s0
     s -[dotted]-> s1
-    p1 -[dotted]-> s0
-    p1 -[dashed]-> s
+    s <-[dashed]- p1
 
 
 .. raw:: html
