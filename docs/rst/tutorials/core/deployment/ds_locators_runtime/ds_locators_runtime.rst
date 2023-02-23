@@ -172,11 +172,11 @@ The outputs should look similar to the followings:
             Server Addresses:   UDPv4:[0.0.0.0]:11811
 
 The output displays the ``server ID`` set, followed by the server GUID prefix.
-Server addresses ``0.0.0.0`` net mask allows all addresses to be set, but we need each server specific address.
+Server address ``0.0.0.0`` tells *Fast DDS* to listen on all available interfaces.
 Finally, the ``11811`` default port would be necessary for further configuration.
 
-In order to set-up the *clients* to discover each other through the *server*, we need to set the *server* data (IP address, port and prefix) in all *clients*.
-The port and prefix are already known, and each specific *server* IP address can be obtained introducing the container names in the following command:
+In order to set-up the *clients* to discover each other through the *server*, it is needed to set the *server* data (IP address, port and prefix) in all *clients*.
+The port and prefix have just been obtained in the previous step, and each specific *server* IP address can be obtained introducing the *servers* container name in the following command:
 
 .. tabs::
 
