@@ -82,7 +82,7 @@ The docker installation is required for this tutorial (see :ref:`Docker installa
 
 
 Set up the discovery server networks
----------------------------------
+------------------------------------
 
 Open five terminals, and run the Vulcanexus Humble image in each one with the following commands:
 
@@ -96,19 +96,19 @@ Open five terminals, and run the Vulcanexus Humble image in each one with the fo
 
                 .. code-block:: bash
 
-                    docker run -it --name server_0 ubuntu-vulcanexus:humble-desktop
+                    docker run -it --rm --name server_0 ubuntu-vulcanexus:humble-desktop
 
             .. tab:: Client_talker_0
 
                 .. code-block:: bash
 
-                    docker run -it --name client_pub_0 ubuntu-vulcanexus:humble-desktop
+                    docker run -it --rm --name client_pub_0 ubuntu-vulcanexus:humble-desktop
 
             .. tab:: Client_listener
 
                 .. code-block:: bash
 
-                    docker run -it --name client_sub ubuntu-vulcanexus:humble-desktop
+                    docker run -it --rm --name client_sub ubuntu-vulcanexus:humble-desktop
 
     .. tab:: Discovery Server Network 1
 
@@ -118,13 +118,13 @@ Open five terminals, and run the Vulcanexus Humble image in each one with the fo
 
                 .. code-block:: bash
 
-                    docker run -it --name server_1 ubuntu-vulcanexus:humble-desktop
+                    docker run -it --rm --name server_1 ubuntu-vulcanexus:humble-desktop
 
             .. tab:: Client_talker_1
 
                 .. code-block:: bash
 
-                    docker run -it --name client_pub_1 ubuntu-vulcanexus:humble-desktop
+                    docker run -it --rm --name client_pub_1 ubuntu-vulcanexus:humble-desktop
 
 
 
@@ -171,7 +171,7 @@ The outputs should look similar to the followings:
             Server GUID prefix: 44.53.01.5f.45.50.52.4f.53.49.4d.41
             Server Addresses:   UDPv4:[0.0.0.0]:11811
 
-The output displays the ``server id`` set, followed by the server GUID prefix.
+The output displays the ``server ID`` set, followed by the server GUID prefix.
 Server addresses ``0.0.0.0`` net mask allows all addresses to be set, but we need each server specific address.
 Finally, the ``11811`` default port would be necessary for further configuration.
 
