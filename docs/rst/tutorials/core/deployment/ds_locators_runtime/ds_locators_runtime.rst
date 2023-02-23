@@ -235,12 +235,12 @@ Make sure the talker in the discovery server network 1 only contains its discove
 
     .. tab:: Discovery Server Network 0
 
-        .. literalinclude:: /resources/tutorials/core/deployment/ds_locators_runtime/environment_file_complete.json
+        .. literalinclude:: /resources/tutorials/core/deployment/ds_locators_runtime/discovery_servers_both_networks.json
             :language: xml
 
     .. tab:: Discovery Server Network 1
 
-        .. literalinclude:: /resources/tutorials/core/deployment/ds_locators_runtime/environment_file.json
+        .. literalinclude:: /resources/tutorials/core/deployment/ds_locators_runtime/discovery_servers_network1.json
             :language: xml
 
 The environment value can be either an absolute or relative path.
@@ -248,7 +248,7 @@ Set up the environment file:
 
 .. code-block:: bash
 
-    export FASTDDS_ENVIRONMENT_FILE="environment_file.json"
+    export FASTDDS_ENVIRONMENT_FILE="discovery_servers.json"
 
 
 Run the example
@@ -304,7 +304,7 @@ Discovery Server on run-time
 
 During execution, modify the listener ``json`` file to include the other *server* data, as follows:
 
-.. literalinclude:: /resources/tutorials/core/deployment/ds_locators_runtime/environment_file_complete.json
+.. literalinclude:: /resources/tutorials/core/deployment/ds_locators_runtime/discovery_servers_both_networks.json
     :language: xml
 
 After saving the file, the listener would discover the remain talker through the discovery server just set.
