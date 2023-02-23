@@ -83,7 +83,13 @@ The docker installation is required for this tutorial (see :ref:`Docker installa
 Set up the discovery server networks
 ------------------------------------
 
-Open five terminals, and run the Vulcanexus Humble image in each one with the following commands:
+Set a specific interface pool for this implementation by running the following command.
+
+.. code-block:: bash
+
+    docker network create --subnet=113.11.3.0/16 vulcanexus_tutorial
+
+Then, open five terminals, and run the Vulcanexus Humble image in each one with the following commands with the specific IP addresses:
 
 .. tabs::
 
@@ -95,19 +101,19 @@ Open five terminals, and run the Vulcanexus Humble image in each one with the fo
 
                 .. code-block:: bash
 
-                    docker run -it --rm --name server_A ubuntu-vulcanexus:humble-desktop
+                    docker run -it --rm --name server_A --net vulcanexus_tutorial --ip 113.11.3.0 ubuntu-vulcanexus:humble-desktop
 
             .. tab:: Client talker A
 
                 .. code-block:: bash
 
-                    docker run -it --rm --name talker_A ubuntu-vulcanexus:humble-desktop
+                    docker run -it --rm --name talker_A --net vulcanexus_tutorial --ip 113.11.3.2 ubuntu-vulcanexus:humble-desktop
 
             .. tab:: Client listener
 
                 .. code-block:: bash
 
-                    docker run -it --rm --name listener ubuntu-vulcanexus:humble-desktop
+                    docker run -it --rm --name listener --net vulcanexus_tutorial --ip 113.11.3.3 ubuntu-vulcanexus:humble-desktop
 
     .. tab:: Discovery Server Network B
 
@@ -117,13 +123,13 @@ Open five terminals, and run the Vulcanexus Humble image in each one with the fo
 
                 .. code-block:: bash
 
-                    docker run -it --rm --name server_B ubuntu-vulcanexus:humble-desktop
+                    docker run -it --rm --name server_B --net vulcanexus_tutorial --ip 113.11.3.1 ubuntu-vulcanexus:humble-desktop
 
             .. tab:: Client talker B
 
                 .. code-block:: bash
 
-                    docker run -it --rm --name talker_B ubuntu-vulcanexus:humble-desktop
+                    docker run -it --rm --name talker_B --net vulcanexus_tutorial --ip 113.11.3.4 ubuntu-vulcanexus:humble-desktop
 
 
 
@@ -190,52 +196,10 @@ The output displays the ``server ID`` set, followed by the server GUID prefix.
 Server address ``0.0.0.0`` tells *Fast DDS* to listen on all available interfaces.
 Finally, the ``11811`` default port would be necessary for further configuration.
 
-In order to set-up the *clients* to discover each other through the *server*, it is needed to set the *server* data (IP address, port and prefix) in all *clients*.
-The port and prefix have just been obtained in the previous step, and each specific *server* IP address can be obtained introducing the *servers* container name in the following command:
-
-.. tabs::
-
-    .. tab:: Discovery Server Network A
-
-        .. code-block:: bash
-
-            docker inspect --format '{{ .NetworkSettings.IPAddress }}' server_A
-
-    .. tab:: Discovery Server Network B
-
-        .. code-block:: bash
-
-            docker inspect --format '{{ .NetworkSettings.IPAddress }}' server_B
-
-.. note::
-
-    For this example, these are the used IP addresses for each entity.
-
-    +----------------+------------+
-    | CONTAINER NAME | IP ADDRESS |
-    +================+============+
-    | client_sub     | 172.17.0.2 |
-    +----------------+------------+
-    | client_pub_0   | 172.17.0.3 |
-    +----------------+------------+
-    | client_pub_1   | 172.17.0.4 |
-    +----------------+------------+
-    | server_0       | 172.17.0.5 |
-    +----------------+------------+
-    | server_1       | 172.17.0.6 |
-    +----------------+------------+
-
-Create a XML configuration file in each *client* container, and complete it with the following XML profile, including the *server* data obtained (IP address, port and GUID prefix).
-
-.. literalinclude:: /resources/tutorials/core/deployment/ds_locators_runtime/client_configuration.xml
-    :language: xml
-
-The nodes would load the created profile automatically by setting the XML configuration file name as ``DEFAULT_FASTRTPS_PROFILES.xml``.
-
 ``FASTDDS_ENVIRONMENT_FILE``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Finally, each *client* needs to know which *server* should connect to.
+Each *client* needs to know which *server* should connect to.
 In order to update that information on run-time, the environment variable ``FASTDDS_ENVIRONMENT_FILE`` must be set to an existing ``json`` file (see `Fast DDS Environment variables <https://fast-dds.docs.eprosima.com/en/latest/fastdds/env_vars/env_vars.html#fastdds-environment-file>`_).
 In that way, the environment variable that sets the *server* information would be loaded from a file instead of from the environment.
 This allows to change the discovery servers information by simply modifying the ``json`` file.
