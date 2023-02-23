@@ -26,7 +26,7 @@ ease Discovery Server setup and testing.
     :backlinks: none
     :depth: 1
 
-.. figure:: /resources/tutorials/core/deployment/ds_locators_runtime/discovery-server.svg
+.. figure:: /rst/figures/intro/discovery-server.svg
     :align: center
     :width: 50%
 
