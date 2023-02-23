@@ -220,13 +220,12 @@ The nodes would load the created profile automatically by setting the XML config
 ``FASTDDS_ENVIRONMENT_FILE``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Finally, each *client* needs to start a discovery client.
-To do so, and this is the key of the tutorial, the environment variable ``FASTDDS_ENVIRONMENT_FILE`` must be set.
+Finally, each *client* node needs to know which discovery server should connect to.
+In order to update that information on run-time, the environment variable ``FASTDDS_ENVIRONMENT_FILE`` must be set to an existing ``json`` file.
+In that way, the environment variable that sets the discovery server information would be loaded from a file instead of from the environment.
+This allows to change the discovery servers information by simply modifying the ``json`` file.
 
-Setting this environment variable to an existing ``json`` file allows to load the environment variables from a file instead of from the environment.
-This allows to change the value of some environment variables at run time with just modifying and saving the changes to the file.
-
-Create a json file for each *client* and introduce the *server* IP address and port.
+Create a ``json`` file for each *client* and introduce the *server* IP address and port.
 Make sure the talker in the discovery server network 1 only contains its discovery server data:
 
 .. tabs::
