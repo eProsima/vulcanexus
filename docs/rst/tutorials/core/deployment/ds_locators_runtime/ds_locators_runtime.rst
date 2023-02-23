@@ -13,13 +13,8 @@ Modify Discovery Server locators on run-time
 Background
 ----------
 
-The `Discovery Server <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery_server.html>`_ mechanism
-is based on a client-server discovery paradigm, i.e. the metatraffic (message exchange among domain participants to
-identify each other) is managed by one or several server DomainParticipants (left figure), as opposed to simple
-discovery (right figure), where metatraffic is exchanged using a message broadcast mechanism like an IP multicast
-protocol.
-A `Discovery-Server tool <https://eprosima-discovery-server.readthedocs.io/en/latest/index.html>`_ is available to
-ease Discovery Server setup and testing.
+The `Discovery Server <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery_server.html>`_ mechanism is based on a client-server discovery paradigm, i.e. the metatraffic (message exchange among domain participants to identify each other) is managed by one or several server DomainParticipants (left figure), as opposed to simple discovery (right figure), where metatraffic is exchanged using a message broadcast mechanism like an IP multicast protocol.
+A `Discovery-Server tool <https://eprosima-discovery-server.readthedocs.io/en/latest/index.html>`_ is available to ease Discovery Server setup and testing.
 
 .. contents::
     :local:
@@ -33,20 +28,15 @@ ease Discovery Server setup and testing.
     Comparison of Discovery Server and Simple discovery mechanisms
 
 A *server* is a participant to which the *clients* (and maybe other *servers*) send their discovery information.
-The role of the *server* is to re-distribute the *clients* (and *servers*) discovery information to their known
-*clients* and *servers*.
+The role of the *server* is to re-distribute the *clients* (and *servers*) discovery information to their known *clients* and *servers*.
 
-A *client* is a participant that connects to one or more *servers* from which it receives only the discovery
-information they require to establish communication with matching endpoints.
+A *client* is a participant that connects to one or more *servers* from which it receives only the discovery information they require to establish communication with matching endpoints.
 
 Overview
 --------
 
-This tutorial will use ROS 2 ``demo_nodes_cpp`` ``talker`` and ``listener`` applications to establish the communication
-between *clients* through the *servers*.
-
-In this case, two different discovery environments would be set. The first discovery server would allow the reader
-participant to listen the writer participant publications.
+This tutorial will use ROS 2 ``demo_nodes_cpp`` ``talker`` and ``listener`` applications to establish the communication between *clients* through the *servers*.
+In this case, two different discovery environments would be set. The first discovery server would allow the reader participant to listen the writer participant publications.
 The other discovery server would connect the previous entities with the remain writer.
 
 .. uml::
@@ -77,8 +67,7 @@ The other discovery server would connect the previous entities with the remain w
     p0 -[dotted]-> s1
     s -[dotted]-> s1
 
-On run-time, the remain writer remote servers list would be updated, so the reader would be able to listen its
-publications.
+On run-time, the remain writer remote servers list would be updated, so the reader would be able to listen its publications.
 
 Prerequisites
 -------------
@@ -88,8 +77,7 @@ The docker installation is required for this tutorial (see :ref:`Docker installa
 
 .. note::
 
-    It is highly recommended to complete the :ref:`Configuring Fast-DDS QoS via XML profiles <tutorials_xml_profiles_intro>`
-    tutorial to learn how to configure ROS 2 via XML configuration files.
+    It is highly recommended to complete the :ref:`Configuring Fast-DDS QoS via XML profiles <tutorials_xml_profiles_intro>` tutorial to learn how to configure ROS 2 via XML configuration files.
 
 
 Set up the discovery environments
@@ -186,10 +174,8 @@ The output displays the ``server id`` set, followed by the server GUID prefix.
 Server addresses ``0.0.0.0`` net mask allows all addresses to be set, but we need each server specific address.
 Finally, the ``11811`` default port would be necessary for further configuration.
 
-In order to set-up the *clients* to discover each other through the *server*, we need to set the *server* data (IP
-address, port and prefix) in all *clients*.
-The port and prefix are already known, and each specific *server* IP address can be obtained introducing the container
-names in the following command:
+In order to set-up the *clients* to discover each other through the *server*, we need to set the *server* data (IP address, port and prefix) in all *clients*.
+The port and prefix are already known, and each specific *server* IP address can be obtained introducing the container names in the following command:
 
 .. tabs::
 
@@ -223,8 +209,7 @@ names in the following command:
     | server_1       | 172.17.0.6 |
     +----------------+------------+
 
-Create a XML configuration file in each *client* container, and complete it with the following XML profile, including
-the *server* data obtained (IP address, port and GUID prefix).
+Create a XML configuration file in each *client* container, and complete it with the following XML profile, including the *server* data obtained (IP address, port and GUID prefix).
 
 .. literalinclude:: /resources/tutorials/core/deployment/ds_locators_runtime/client_configuration.xml
     :language: xml
@@ -242,10 +227,8 @@ To do so, make sure the document name is ``DEFAULT_FASTRTPS_PROFILES.xml``, and 
 Finally, each *client* needs to start a discovery client.
 To do so, and this is the key of the tutorial, the environment variable ``FASTDDS_ENVIRONMENT_FILE`` must be set.
 
-Setting this environment variable to an existing ``json`` file allows to load the environment variables from a file
-instead of from the environment.
-This allows to change the value of some environment variables at run time with just modifying and saving the changes
-to the file.
+Setting this environment variable to an existing ``json`` file allows to load the environment variables from a file instead of from the environment.
+This allows to change the value of some environment variables at run time with just modifying and saving the changes to the file.
 
 Create a json file for each *client* and introduce the *server* IP address and port.
 Make sure the talker in the discovery environment 1 only contains its discovery server data:
@@ -315,10 +298,8 @@ After all the configuration has been set, run the discovery servers, and the tal
 
                     ros2 run demo_nodes_cpp talker
 
-The expect output is that the listener would only receive the publications from the talker in the same discovery
-environment.
-Now, let's add the other *server* as a discovery server in the ``client_pub_1`` talker on run-time to let the listener
-receive its publications.
+The expect output is that the listener would only receive the publications from the talker in the same discovery environment.
+Now, let's add the other *server* as a discovery server in the ``client_pub_1`` talker on run-time to let the listener receive its publications.
 
 Discovery Server on run-time
 ----------------------------
