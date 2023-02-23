@@ -13,8 +13,8 @@ Modify Discovery Server locators on run-time
 Background
 ----------
 
-The `Discovery Server <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery_server.html>`_ mechanism is based on a client-server discovery paradigm, i.e. the metatraffic (message exchange among domain participants to identify each other) is managed by one or several server DomainParticipants (left figure), as opposed to simple discovery (right figure), where metatraffic is exchanged using a message broadcast mechanism like an IP multicast protocol.
-A `Discovery-Server tool <https://eprosima-discovery-server.readthedocs.io/en/latest/index.html>`_ is available to ease Discovery Server setup and testing.
+The :ref:`Discovery Server <vulcanexus_discovery_server>` is a Fast DDS enabled feature that procures an alternative discovery mechanism to the default ROS 2 discovery mechanism, `Simple Discovery Protocol (SDP) <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/simple.html#simple-disc-settings>`_, which is served by the DDS implementations according to the DDS specification.
+Whereas SDP (right figure) provides automatic out-of-the-box discovery by leveraging multicast, ROS 2 Discovery Server (left figure) provides a centralized hub for managing discovery which drastically reduces network bandwidth utilization when compared to SDP, since the nodes, publishers, and subscribers, only discovered those remote ROS 2 entities with which they need to communication (as opposed to the SDP model where everyone knows about each other).
 
 .. contents::
     :local:
@@ -23,41 +23,41 @@ A `Discovery-Server tool <https://eprosima-discovery-server.readthedocs.io/en/la
 
 .. figure:: /rst/figures/intro/discovery-server.svg
     :align: center
-    :width: 50%
+    :width: 70%
 
-    Comparison of Discovery Server and Simple discovery mechanisms
+    Comparison of Discovery Server and Simple Discovery Protocol mechanisms
 
-A *server* is a participant to which the *clients* (and maybe other *servers*) send their discovery information.
+A *server* is a context to which the *clients* (and maybe other *servers*) send their discovery information.
 The role of the *server* is to re-distribute the *clients* (and *servers*) discovery information to their known *clients* and *servers*.
 
-A *client* is a participant that connects to one or more *servers* from which it receives only the discovery information they require to establish communication with matching endpoints.
+A *client* is a context that connects to one or more *servers* from which it receives only the discovery information they require to establish communication with matching endpoints.
 
 Overview
 --------
 
 This tutorial will use ROS 2 ``demo_nodes_cpp`` ``talker`` and ``listener`` applications to establish the communication between *clients* through the *servers*.
 Two different discovery server networks would be set.
-Each of them would have at least one discovery server, and one discovery client, which would be running a ``talker`` node.
-The aim of the tutorial is to add a discovery client running a ``listener`` node that receives the ``talker`` node publications coming from the same discovery server network, and on run-time, update the discovery server list to make it receive also the ``talker`` node publications coming from the other discovery server network.
+Each of them would have at least one discovery *server*, and one *client* context, which would be running a ``talker`` node.
+The aim of the tutorial is to add a *client* context running a ``listener`` node that receives the ``talker`` node publications coming from the same discovery server network, and on run-time, update the discovery server list to make allow the ``listener`` node to receive also the publications coming from the other discovery server network ``talker`` node.
 
 .. uml::
     :align: center
 
     hide empty members
 
-    package "Discovery Server Network 0" as de0{
-        (Server 0) as s0
-        (Client pub 0) as p0
-        (Client sub) as s
+    package de0 as "Discovery Server Network A"{
+        (Server A) as s0
+        (Client talker A) as p0
+        (Client listener) as s
         s <-[dashed]right- p0
         s0 <-down- s
         s0 <-down- p0
         p0 -[hidden]left- s0
     }
 
-    package "Discovery Server Network 1" as de1{
-        (Server 1) as s1
-        (Client pub 1) as p1
+    package de1 as "Discovery Server Network B"{
+        (Server B) as s1
+        (Client talker B) as p1
         p1 -up-> s1
     }
 
@@ -65,10 +65,9 @@ The aim of the tutorial is to add a discovery client running a ``listener`` node
     s1 -[hidden]right- s0
     p1 -[hidden]right- p0
     p1 -[hidden]-> s0
-    p0 -[dotted]-> s1
     s -[dotted]-> s1
 
-To do so, the isolated ``talker`` client node discovery servers list would be updated on run-time, so the ``listener`` would be able to receive the new publications.
+To do so, the isolated ``Client talker B`` node discovery servers list would be updated on run-time, so the ``Client listener`` node would be able to receive the new publications.
 
 Prerequisites
 -------------
@@ -88,43 +87,43 @@ Open five terminals, and run the Vulcanexus Humble image in each one with the fo
 
 .. tabs::
 
-    .. tab:: Discovery Server Network 0
+    .. tab:: Discovery Server Network A
 
         .. tabs::
 
-            .. tab:: Server_0
+            .. tab:: Server A
 
                 .. code-block:: bash
 
-                    docker run -it --rm --name server_0 ubuntu-vulcanexus:humble-desktop
+                    docker run -it --rm --name server_A ubuntu-vulcanexus:humble-desktop
 
-            .. tab:: Client_talker_0
-
-                .. code-block:: bash
-
-                    docker run -it --rm --name client_pub_0 ubuntu-vulcanexus:humble-desktop
-
-            .. tab:: Client_listener
+            .. tab:: Client talker A
 
                 .. code-block:: bash
 
-                    docker run -it --rm --name client_sub ubuntu-vulcanexus:humble-desktop
+                    docker run -it --rm --name talker_A ubuntu-vulcanexus:humble-desktop
 
-    .. tab:: Discovery Server Network 1
+            .. tab:: Client listener
+
+                .. code-block:: bash
+
+                    docker run -it --rm --name listener ubuntu-vulcanexus:humble-desktop
+
+    .. tab:: Discovery Server Network B
 
         .. tabs::
 
-            .. tab:: Server_1
+            .. tab:: Server B
 
                 .. code-block:: bash
 
-                    docker run -it --rm --name server_1 ubuntu-vulcanexus:humble-desktop
+                    docker run -it --rm --name server_B ubuntu-vulcanexus:humble-desktop
 
-            .. tab:: Client_talker_1
+            .. tab:: Client talker B
 
                 .. code-block:: bash
 
-                    docker run -it --rm --name client_pub_1 ubuntu-vulcanexus:humble-desktop
+                    docker run -it --rm --name talker_B ubuntu-vulcanexus:humble-desktop
 
 
 
@@ -135,35 +134,35 @@ The *servers* configuration is really simple, the *server* ``discovery id`` woul
 
 .. tabs::
 
-    .. tab:: Discovery Server Network 0
+    .. tab:: Discovery Server Network A
 
         .. tabs::
 
-            .. tab:: Server 0
+            .. tab:: Server A
 
                 .. code-block:: bash
 
                     fastdds discovery --server-id 0
 
-    .. tab:: Discovery Server Network 1
+    .. tab:: Discovery Server Network B
 
         .. tabs::
 
-            .. tab:: Server 1
+            .. tab:: Server B
 
                 .. code-block:: bash
 
                     fastdds discovery --server-id 1
 
-        The outputs should look similar to the followings:
+The outputs should look similar to the followings:
 
 .. tabs::
 
-    .. tab:: Discovery Server Network 0
+    .. tab:: Discovery Server Network A
 
         .. tabs::
 
-            .. tab:: Server 0
+            .. tab:: Server A
 
                 .. code-block:: bash
 
@@ -173,11 +172,11 @@ The *servers* configuration is really simple, the *server* ``discovery id`` woul
                     Server GUID prefix: 44.53.00.5f.45.50.52.4f.53.49.4d.41
                     Server Addresses:   UDPv4:[0.0.0.0]:11811
 
-    .. tab:: Discovery Server Network 1
+    .. tab:: Discovery Server Network B
 
         .. tabs::
 
-            .. tab:: Server 1
+            .. tab:: Server B
 
                 .. code-block:: bash
 
@@ -196,17 +195,17 @@ The port and prefix have just been obtained in the previous step, and each speci
 
 .. tabs::
 
-    .. tab:: Discovery Server Network 0
+    .. tab:: Discovery Server Network A
 
         .. code-block:: bash
 
-            docker inspect --format '{{ .NetworkSettings.IPAddress }}' server_0
+            docker inspect --format '{{ .NetworkSettings.IPAddress }}' server_A
 
-    .. tab:: Discovery Server Network 1
+    .. tab:: Discovery Server Network B
 
         .. code-block:: bash
 
-            docker inspect --format '{{ .NetworkSettings.IPAddress }}' server_1
+            docker inspect --format '{{ .NetworkSettings.IPAddress }}' server_B
 
 .. note::
 
@@ -250,27 +249,27 @@ Make sure the talker in the discovery server network 1 only contains its discove
 
 .. tabs::
 
-    .. tab:: Discovery Server Network 0
+    .. tab:: Discovery Server Network A
 
         .. tabs::
 
-            .. tab:: Client_talker_0
+            .. tab:: Client talker A
 
-                .. literalinclude:: /resources/tutorials/core/deployment/ds_locators_runtime/discovery_servers_both_networks.json
+                .. literalinclude:: /resources/tutorials/core/deployment/ds_locators_runtime/discovery_servers_networkA.json
                     :language: xml
 
-            .. tab:: Client_listener
+            .. tab:: Client listener
 
-                .. literalinclude:: /resources/tutorials/core/deployment/ds_locators_runtime/discovery_servers_both_networks.json
+                .. literalinclude:: /resources/tutorials/core/deployment/ds_locators_runtime/discovery_servers_networkA.json
                     :language: xml
 
-    .. tab:: Discovery Server Network 1
+    .. tab:: Discovery Server Network B
 
         .. tabs::
 
-            .. tab:: Client_talker_1
+            .. tab:: Client talker B
 
-                .. literalinclude:: /resources/tutorials/core/deployment/ds_locators_runtime/discovery_servers_network1.json
+                .. literalinclude:: /resources/tutorials/core/deployment/ds_locators_runtime/discovery_servers_networkB.json
                     :language: xml
 
 The environment value can be either an absolute or relative path.
@@ -288,41 +287,41 @@ After all the configuration has been set, run the discovery servers, and the tal
 
 .. tabs::
 
-    .. tab:: Discovery Server Network 0
+    .. tab:: Discovery Server Network A
 
         .. tabs::
 
-            .. tab:: Server_0
+            .. tab:: Server A
 
                 .. code-block:: bash
 
                     fastdds discovery --server-id 0
 
-            .. tab:: Client_talker_0
+            .. tab:: Client talker A
 
                 .. code-block:: bash
 
                     export FASTDDS_ENVIRONMENT_FILE="discovery_servers.json"
                     ros2 run demo_nodes_cpp talker
 
-            .. tab:: Client_listener
+            .. tab:: Client listener
 
                 .. code-block:: bash
 
                     export FASTDDS_ENVIRONMENT_FILE="discovery_servers.json"
                     ros2 run demo_nodes_cpp listener
 
-    .. tab:: Discovery Server Network 1
+    .. tab:: Discovery Server Network B
 
         .. tabs::
 
-            .. tab:: Server_1
+            .. tab:: Server B
 
                 .. code-block:: bash
 
                     fastdds discovery --server-id 1
 
-            .. tab:: Client_talker_1
+            .. tab:: Client talker B
 
                 .. code-block:: bash
 
@@ -330,7 +329,7 @@ After all the configuration has been set, run the discovery servers, and the tal
                     ros2 run demo_nodes_cpp talker
 
 The expect output is that the listener would only receive the publications from the talker in the same discovery server network.
-Now, let's add the other *server* as a discovery server in the ``client_pub_1`` talker on run-time to let the listener receive its publications.
+Now, let's add the other *server* as a discovery server in the ``talker_A`` talker on run-time to let the listener receive its publications.
 
 Discovery Server on run-time
 ----------------------------
@@ -366,7 +365,6 @@ After saving the file, the listener would discover the remain talker through the
     de1 -[hidden]right- de0
     s1 -[hidden]right- s0
     p1 -[hidden]right- p0
-    p0 -[dotted]-> s1
     s -[dotted]-> s1
     p1 -[dotted]-> s0
     p1 -[dashed]-> s
