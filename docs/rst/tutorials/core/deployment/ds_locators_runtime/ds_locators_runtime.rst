@@ -226,7 +226,10 @@ In that way, the environment variable that sets the discovery server information
 This allows to change the discovery servers information by simply modifying the ``json`` file.
 
 Create a ``json`` file for each *client* and introduce the *server* IP address and port.
-Make sure the talker in the discovery server network 1 only contains its discovery server data:
+Make sure the talker in the discovery server network 1 only contains its discovery server data.
+
+.. note::
+   As long as the default port has been used in the tutorial, it could be omitted in the ``json`` configuration.
 
 .. tabs::
 
