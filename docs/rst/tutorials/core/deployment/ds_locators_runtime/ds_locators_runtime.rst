@@ -36,16 +36,16 @@ Overview
 --------
 
 This tutorial will use ROS 2 ``demo_nodes_cpp`` ``talker`` and ``listener`` applications to establish the communication between *clients* through the *servers*.
-Two different discovery environments would be set.
+Two different discovery server networks would be set.
 Each of them would have at least one discovery server, and one discovery client, which would be running a ``talker`` node.
-The aim of the tutorial is to add a discovery client running a ``listener`` node that receives the ``talker`` node publications coming from the same discovery environment, and on run-time, update the discovery server list to make it receive also the ``talker`` node publications coming from the other discovery environment.
+The aim of the tutorial is to add a discovery client running a ``listener`` node that receives the ``talker`` node publications coming from the same discovery server network, and on run-time, update the discovery server list to make it receive also the ``talker`` node publications coming from the other discovery server network.
 
 .. uml::
     :align: center
 
     hide empty members
 
-    package "Discovery Environment 0" as de0{
+    package "Discovery Server Network 0" as de0{
         (Server 0) as s0
         (Client pub 0) as p0
         (Client sub) as s
@@ -55,7 +55,7 @@ The aim of the tutorial is to add a discovery client running a ``listener`` node
         p0 -[hidden]left- s0
     }
 
-    package "Discovery Environment 1" as de1{
+    package "Discovery Server Network 1" as de1{
         (Server 1) as s1
         (Client pub 1) as p1
         p1 -up-> s1
@@ -81,14 +81,14 @@ The docker installation is required for this tutorial (see :ref:`Docker installa
     It is highly recommended to complete the :ref:`Configuring Fast-DDS QoS via XML profiles <tutorials_xml_profiles_intro>` tutorial to learn how to configure ROS 2 via XML configuration files.
 
 
-Set up the discovery environments
+Set up the discovery server networks
 ---------------------------------
 
 Open five terminals, and run the Vulcanexus Humble image in each one with the following commands:
 
 .. tabs::
 
-    .. tab:: Discovery Environment 0
+    .. tab:: Discovery Server Network 0
 
         .. tabs::
 
@@ -110,7 +110,7 @@ Open five terminals, and run the Vulcanexus Humble image in each one with the fo
 
                     docker run -it --name client_sub ubuntu-vulcanexus:humble-desktop
 
-    .. tab:: Discovery Environment 1
+    .. tab:: Discovery Server Network 1
 
         .. tabs::
 
@@ -131,7 +131,7 @@ Open five terminals, and run the Vulcanexus Humble image in each one with the fo
 Configure the discovery entities
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The *servers* configuration is really simple, the *server* ``discovery id`` would be set as ``0`` in the first discovery environment, and ``1`` in the other one.
+The *servers* configuration is really simple, the *server* ``discovery id`` would be set as ``0`` in the first discovery server network, and ``1`` in the other one.
 
 .. tabs::
 
@@ -180,13 +180,13 @@ The port and prefix are already known, and each specific *server* IP address can
 
 .. tabs::
 
-    .. tab:: Discovery Environment 0
+    .. tab:: Discovery Server Network 0
 
         .. code-block:: bash
 
             docker inspect --format '{{ .NetworkSettings.IPAddress }}' server_0
 
-    .. tab:: Discovery Environment 1
+    .. tab:: Discovery Server Network 1
 
         .. code-block:: bash
 
@@ -232,16 +232,16 @@ Setting this environment variable to an existing ``json`` file allows to load th
 This allows to change the value of some environment variables at run time with just modifying and saving the changes to the file.
 
 Create a json file for each *client* and introduce the *server* IP address and port.
-Make sure the talker in the discovery environment 1 only contains its discovery server data:
+Make sure the talker in the discovery server network 1 only contains its discovery server data:
 
 .. tabs::
 
-    .. tab:: Discovery Environment 0
+    .. tab:: Discovery Server Network 0
 
         .. literalinclude:: /resources/tutorials/core/deployment/ds_locators_runtime/environment_file_complete.json
             :language: xml
 
-    .. tab:: Discovery Environment 1
+    .. tab:: Discovery Server Network 1
 
         .. literalinclude:: /resources/tutorials/core/deployment/ds_locators_runtime/environment_file.json
             :language: xml
@@ -261,7 +261,7 @@ After all the configuration has been set, run the discovery servers, and the tal
 
 .. tabs::
 
-    .. tab:: Discovery Environment 0
+    .. tab:: Discovery Server Network 0
 
         .. tabs::
 
@@ -283,7 +283,7 @@ After all the configuration has been set, run the discovery servers, and the tal
 
                     ros2 run demo_nodes_cpp listener
 
-    .. tab:: Discovery Environment 1
+    .. tab:: Discovery Server Network 1
 
         .. tabs::
 
@@ -299,7 +299,7 @@ After all the configuration has been set, run the discovery servers, and the tal
 
                     ros2 run demo_nodes_cpp talker
 
-The expect output is that the listener would only receive the publications from the talker in the same discovery environment.
+The expect output is that the listener would only receive the publications from the talker in the same discovery server network.
 Now, let's add the other *server* as a discovery server in the ``client_pub_1`` talker on run-time to let the listener receive its publications.
 
 Discovery Server on run-time
@@ -317,7 +317,7 @@ After saving the file, the listener would discover the remain talker through the
 
     hide empty members
 
-    package "Discovery Environment 0" as de0{
+    package "Discovery Server Network 0" as de0{
         (Server 0) as s0
         (Client pub 0) as p0
         (Client sub) as s
@@ -327,7 +327,7 @@ After saving the file, the listener would discover the remain talker through the
         p0 -[hidden]left- s0
     }
 
-    package "Discovery Environment 1" as de1{
+    package "Discovery Server Network 1" as de1{
         (Server 1) as s1
         (Client pub 1) as p1
         p1 -up-> s1
