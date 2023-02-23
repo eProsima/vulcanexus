@@ -36,8 +36,9 @@ Overview
 --------
 
 This tutorial will use ROS 2 ``demo_nodes_cpp`` ``talker`` and ``listener`` applications to establish the communication between *clients* through the *servers*.
-In this case, two different discovery environments would be set. The first discovery server would allow the reader participant to listen the writer participant publications.
-The other discovery server would connect the previous entities with the remain writer.
+Two different discovery environments would be set.
+Each of them would have at least one discovery server, and one discovery client, which would be running a ``talker`` node.
+The aim of the tutorial is to add a discovery client running a ``listener`` node that receives the ``talker`` node publications coming from the same discovery environment, and on run-time, update the discovery server list to make it receive also the ``talker`` node publications coming from the other discovery environment.
 
 .. uml::
     :align: center
@@ -67,7 +68,7 @@ The other discovery server would connect the previous entities with the remain w
     p0 -[dotted]-> s1
     s -[dotted]-> s1
 
-On run-time, the remain writer remote servers list would be updated, so the reader would be able to listen its publications.
+To do so, the isolated ``talker`` client node discovery servers list would be updated on run-time, so the ``listener`` would be able to receive the new publications.
 
 Prerequisites
 -------------
