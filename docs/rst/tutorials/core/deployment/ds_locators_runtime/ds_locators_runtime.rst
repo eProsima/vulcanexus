@@ -135,41 +135,57 @@ The *servers* configuration is really simple, the *server* ``discovery id`` woul
 
 .. tabs::
 
-    .. tab:: Server 0
+    .. tab:: Discovery Server Network 0
 
-        .. code-block:: bash
+        .. tabs::
 
-            fastdds discovery --server-id 0
+            .. tab:: Server 0
 
-    .. tab:: Server 1
+                .. code-block:: bash
 
-        .. code-block:: bash
+                    fastdds discovery --server-id 0
 
-            fastdds discovery --server-id 1
+    .. tab:: Discovery Server Network 1
 
-The outputs should look similar to the followings:
+        .. tabs::
+
+            .. tab:: Server 1
+
+                .. code-block:: bash
+
+                    fastdds discovery --server-id 1
+
+        The outputs should look similar to the followings:
 
 .. tabs::
 
-    .. tab:: Server 0
+    .. tab:: Discovery Server Network 0
 
-        .. code-block:: bash
+        .. tabs::
 
-            ### Server is running ###
-            Participant Type:   SERVER
-            Server ID:          0
-            Server GUID prefix: 44.53.00.5f.45.50.52.4f.53.49.4d.41
-            Server Addresses:   UDPv4:[0.0.0.0]:11811
+            .. tab:: Server 0
 
-    .. tab:: Server 1
+                .. code-block:: bash
 
-        .. code-block:: bash
+                    ### Server is running ###
+                    Participant Type:   SERVER
+                    Server ID:          0
+                    Server GUID prefix: 44.53.00.5f.45.50.52.4f.53.49.4d.41
+                    Server Addresses:   UDPv4:[0.0.0.0]:11811
 
-            ### Server is running ###
-            Participant Type:   SERVER
-            Server ID:          1
-            Server GUID prefix: 44.53.01.5f.45.50.52.4f.53.49.4d.41
-            Server Addresses:   UDPv4:[0.0.0.0]:11811
+    .. tab:: Discovery Server Network 1
+
+        .. tabs::
+
+            .. tab:: Server 1
+
+                .. code-block:: bash
+
+                    ### Server is running ###
+                    Participant Type:   SERVER
+                    Server ID:          1
+                    Server GUID prefix: 44.53.01.5f.45.50.52.4f.53.49.4d.41
+                    Server Addresses:   UDPv4:[0.0.0.0]:11811
 
 The output displays the ``server ID`` set, followed by the server GUID prefix.
 Server address ``0.0.0.0`` tells *Fast DDS* to listen on all available interfaces.
@@ -231,17 +247,31 @@ Make sure the talker in the discovery server network 1 only contains its discove
 .. note::
    As long as the default port has been used in the tutorial, it could be omitted in the ``json`` configuration.
 
+
 .. tabs::
 
     .. tab:: Discovery Server Network 0
 
-        .. literalinclude:: /resources/tutorials/core/deployment/ds_locators_runtime/discovery_servers_both_networks.json
-            :language: xml
+        .. tabs::
+
+            .. tab:: Client_talker_0
+
+                .. literalinclude:: /resources/tutorials/core/deployment/ds_locators_runtime/discovery_servers_both_networks.json
+                    :language: xml
+
+            .. tab:: Client_listener
+
+                .. literalinclude:: /resources/tutorials/core/deployment/ds_locators_runtime/discovery_servers_both_networks.json
+                    :language: xml
 
     .. tab:: Discovery Server Network 1
 
-        .. literalinclude:: /resources/tutorials/core/deployment/ds_locators_runtime/discovery_servers_network1.json
-            :language: xml
+        .. tabs::
+
+            .. tab:: Client_talker_1
+
+                .. literalinclude:: /resources/tutorials/core/deployment/ds_locators_runtime/discovery_servers_network1.json
+                    :language: xml
 
 The environment value can be either an absolute or relative path.
 Set up the environment file:
@@ -272,12 +302,14 @@ After all the configuration has been set, run the discovery servers, and the tal
 
                 .. code-block:: bash
 
+                    export FASTDDS_ENVIRONMENT_FILE="discovery_servers.json"
                     ros2 run demo_nodes_cpp talker
 
             .. tab:: Client_listener
 
                 .. code-block:: bash
 
+                    export FASTDDS_ENVIRONMENT_FILE="discovery_servers.json"
                     ros2 run demo_nodes_cpp listener
 
     .. tab:: Discovery Server Network 1
@@ -294,6 +326,7 @@ After all the configuration has been set, run the discovery servers, and the tal
 
                 .. code-block:: bash
 
+                    export FASTDDS_ENVIRONMENT_FILE="discovery_servers.json"
                     ros2 run demo_nodes_cpp talker
 
 The expect output is that the listener would only receive the publications from the talker in the same discovery server network.
