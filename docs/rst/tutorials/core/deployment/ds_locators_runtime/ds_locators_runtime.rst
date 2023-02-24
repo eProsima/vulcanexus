@@ -46,7 +46,7 @@ The aim of the tutorial is to add a *client* context running a ``listener`` node
     hide empty members
 
     package de0 as "Discovery Server Network A"{
-        (Server A) as s0
+        cloud "Server A" as s0
         (Client talker A) as p0
         (Client listener) as s
         s <-[dashed]right- p0
@@ -56,7 +56,7 @@ The aim of the tutorial is to add a *client* context running a ``listener`` node
     }
 
     package de1 as "Discovery Server Network B"{
-        (Server B) as s1
+        cloud "Server B" as s1
         (Client talker B) as p1
         p1 -up-> s1
     }
@@ -311,7 +311,7 @@ Then, the ``Client listener`` would start receiving ``Client talker B`` publicat
     hide empty members
 
     package de0 as "Discovery Server Network A"{
-        (Server A) as s0
+        cloud "Server A" as s0
         (Client talker A) as p0
         (Client listener) as s
         s <-[dashed]right- p0
@@ -321,7 +321,7 @@ Then, the ``Client listener`` would start receiving ``Client talker B`` publicat
     }
 
     package de1 as "Discovery Server Network B"{
-        (Server B) as s1
+        cloud "Server B" as s1
         (Client talker B) as p1
         p1 -up-> s1
     }
