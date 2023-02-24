@@ -199,12 +199,12 @@ Finally, the ``11811`` default port would be necessary for further configuration
 ``FASTDDS_ENVIRONMENT_FILE``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Each *client* needs to know which *server* should connect to.
+Each *client* needs to know to which *server* it should connect.
 In order to update that information on run-time, the environment variable ``FASTDDS_ENVIRONMENT_FILE`` must be set to an existing ``json`` file (see `Fast DDS Environment variables <https://fast-dds.docs.eprosima.com/en/latest/fastdds/env_vars/env_vars.html#fastdds-environment-file>`_).
 In that way, the environment variable that sets the *server* information would be loaded from a file instead of from the environment.
 This allows to change the discovery servers information by simply modifying the ``json`` file.
 
-Create a ``json`` file for each *client* and introduce the *server* IP address and port.
+Create a ``discovery_servers.json`` ``json`` file for each *client* and introduce the *server* IP address and port.
 
 .. note::
    As long as the default port has been used in the tutorial, it could be omitted in the ``json`` configuration.
@@ -254,12 +254,6 @@ After all the configuration has been set, run the *discovery servers*, and the `
 
         .. tabs::
 
-            .. tab:: Server A
-
-                .. code-block:: bash
-
-                    fastdds discovery --server-id 0
-
             .. tab:: Client talker A
 
                 .. code-block:: bash
@@ -277,12 +271,6 @@ After all the configuration has been set, run the *discovery servers*, and the `
     .. tab:: Discovery Server Network B
 
         .. tabs::
-
-            .. tab:: Server B
-
-                .. code-block:: bash
-
-                    fastdds discovery --server-id 1
 
             .. tab:: Client talker B
 
