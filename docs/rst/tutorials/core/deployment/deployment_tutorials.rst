@@ -16,3 +16,4 @@ For tutorials related to cloud or cloud-edge deployments, please refer :ref:`tut
     external_locators/external_locators
     dds2vulcanexus/dds2vulcanexus_topic
     static_edp/static_edp
+    ds_locators_runtime/ds_locators_runtime
