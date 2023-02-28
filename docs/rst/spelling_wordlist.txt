@@ -52,6 +52,7 @@ Nao
 NetX
 Nucleo
 NuttX
+Posix
 Persistency
 persistency
 Pico
@@ -69,6 +70,7 @@ retransmit
 Robotstadium
 ROS
 runtime
+spinned
 scalable
 src
 sSL

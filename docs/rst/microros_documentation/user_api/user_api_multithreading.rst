@@ -62,7 +62,7 @@ Restrictions
 
 1. **Entity creation and destruction methods are not thread safe**: Any other micro-ROS related execution shall be halted until this steps are completed.
 2. The :ref:`parameter server API <micro_user_api_parameter_server>` is not thread safe, this include modifications coming from a triggered callback.
-3. The executor callbacks will run within the same thread where the executor is spined.
+3. The executor callbacks will run within the same thread where the executor is spinned.
 
 Architecture tips
 ^^^^^^^^^^^^^^^^^
