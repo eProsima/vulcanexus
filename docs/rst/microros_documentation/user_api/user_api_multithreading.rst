@@ -44,7 +44,7 @@ This functionality is not available on all platforms, as specific Mutex implemen
 
 For other platforms, a compilation error will be triggered with the following message: ``XRCE multithreading not supported for this platform.``
 
-In order to allow the micro-ROS library to be built againt the locking APIs of these RTOSes, the required include folders shall be added in the :ref:`CMake Toolchain <tutorials_micro_generating_lib_script>` used to build the library.
+In order to allow the micro-ROS library to be built against the locking APIs of these RTOSes, the required include folders shall be added in the :ref:`CMake Toolchain <tutorials_micro_generating_lib_script>` used to build the library.
 
 If support for other environment is required, a contribution to the `multithread <https://github.com/eProsima/Micro-XRCE-DDS-Client/blob/master/src/c/profile/multithread/multithread.c>`_ support in Micro XRCE-DDS client shall be done.
 
