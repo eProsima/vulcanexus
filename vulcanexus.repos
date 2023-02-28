@@ -59,10 +59,6 @@ repositories:
     type: git
     url: https://github.com/eProsima/ShapesDemo.git
     version: v2.9.0
-  eProsima/Shapes-Demo-TypeSupport:
-    type: git
-    url: https://github.com/eProsima/ShapesDemo-TypeSupport.git
-    version: v1.0.0
   eProsima/Vulcanexus-Base:
     type: git
     url: https://github.com/eProsima/vulcanexus.git
