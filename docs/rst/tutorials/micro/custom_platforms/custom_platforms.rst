@@ -32,6 +32,8 @@ Given that, most of common build system tools such as CMake or Make will be able
 
 In order to generate those two components, two approaches are provided: using a micro-ROS tool for generating them or creating a custom script for handling this build.
 
+.. _tutorials_micro_generating_lib_script:
+
 micro-ROS generate_lib script
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

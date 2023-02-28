@@ -14,12 +14,6 @@ With this feature, micro-ROS entities such as publishers, subscribers or service
 
 Ready to use code related to this concept can be found on micro-ROS demos repository `multithread_publisher_subscriber <https://github.com/micro-ROS/micro-ROS-demos/blob/humble/rclc/multithread_publisher_subscriber/main.c>`_ example.
 
-.. TODO(acuadros95): Add explanation on mutex protection levels (Stream, transport, session?)
-
-.. note::
-
-   This feature is not supported on micro-ROS experimental middleware `embeddedRTPS <https://discourse.ros.org/t/embeddedrtps-the-new-experimental-middleware-for-micro-ros/22741>`_.
-
 Configuration
 -------------
 
@@ -44,13 +38,15 @@ Supported platforms
 
 This functionality is not available on all platforms, as specific Mutex implementations are provided by each system. Support for the following platforms is provided:
 
-.. TODO(acuadros95): Add some explanation, link to build system or whatever here
-
 - FreeRTOS
 - Zephyr
-- Posix
+- POSIX
 
 For other platforms, a compilation error will be triggered with the following message: ``XRCE multithreading not supported for this platform.``
+
+In order to allow the micro-ROS library to be built againt the locking APIs of these RTOSes, the required include folders shall be added in the :ref:`CMake Toolchain <tutorials_micro_generating_lib_script>` used to build the library.
+
+If support for other environment is required, a contribution to the `multithread <https://github.com/eProsima/Micro-XRCE-DDS-Client/blob/master/src/c/profile/multithread/multithread.c>`_ support in Micro XRCE-DDS client shall be done.
 
 API usage
 ---------
@@ -77,6 +73,6 @@ Architecture tips
   - Executor callbacks can be distributed on multiple threads by using a unique executor instance per thread.
   - This means that its expected to have a executor instance for each thread where callbacks shall be processed.
 
-3. Publishers are thread safe and can be called from multiple threads as long as the publisher object is not destroyed.
+3. Publishers' publish methods are thread safe and can be called from multiple threads as long as the publisher object is not destroyed.
 4. Parameter server local API shall be used within the same thread as its related executor is spinned.
 5. Action servers goal execution is expected to run on its own thread, being ``rclc_action_send_result`` thread safe.
