@@ -16,6 +16,8 @@ This features can be useful in multiple situations when the Agent or the Client 
 - Agent or Client restarts: Make the system resilient to a possible restart on the MCU or Agent side.
 - Client plug and play: Useful on systems with multiple MCU boards that are attached on demand.
 
+.. _tutorials_micro_handle_reconnections_ping:
+
 Client side: Ping API
 ---------------------
 

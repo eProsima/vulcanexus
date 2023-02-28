@@ -105,6 +105,10 @@ When the the requested goal is completed, the action server can send the result 
   // Send result
   rclc_action_send_result(goal_handle, goal_state, &response);
 
+.. note::
+
+  The executor related to the action server shall spin to complete a successful `rclc_action_send_result` call.
+
 Also, during the goal handling, the action client can request the cancellation of the goal. If the client requests the cancellation, the action server can decide if the goal can be cancelled using a callback:
 
 .. code-block:: c
