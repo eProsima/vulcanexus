@@ -113,6 +113,14 @@ To make such contributions, please refer to the
    /rst/tutorials/micro/micro_tutorials
 
 .. toctree::
+   :caption: Use cases
+   :maxdepth: 2
+   :hidden:
+   :numbered: 5
+
+   /rst/use_cases/use_cases
+
+.. toctree::
    :caption: Support
    :maxdepth: 2
    :hidden:
