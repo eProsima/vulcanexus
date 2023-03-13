@@ -11,7 +11,7 @@ Mapping Webots environment with ROSbot2R teleoperation
 Background
 ----------
 
-This document explain how to map a webots environment with a `ROSbot2R` robot from Husarion.
+This document explain how to map a webots environment with the teleoperation of a `ROSbot2R` robot from Husarion.
 
 Prerequisites
 -------------
