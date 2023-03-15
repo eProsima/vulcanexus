@@ -209,7 +209,3 @@ Now you can move around the environment with the keyboard and create a map!
 
 .. figure:: /rst/figures/use_cases/rosbot2r/webots_rviz_map.png
     :align: center
-
-.. note::
-
-    This execution follow the steps explained in the `GitHub repository <https://github.com/husarion/rosbot-mapping>`_ from Husarion.
