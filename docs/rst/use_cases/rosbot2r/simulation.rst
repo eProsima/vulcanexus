@@ -39,6 +39,9 @@ It allows the display of ROS 2 Topics and the extension of its capabilities thro
 `rosbot-mapping <https://github.com/husarion/rosbot-mapping>`_ is the GitHub repository from Husarion where you can find the Docker compose and configuration used in this demo.
 All its contents are explained below.
 
+.. figure:: /rst/figures/use_cases/rosbot2r/rosbot_mapping_repository.png
+    :align: center
+
 Prerequisites
 -------------
 
@@ -81,15 +84,15 @@ Environment review
 The Docker Compose used for the simulation is ``compose.sim.webots.yaml``.
 You can find it `here <https://github.com/husarion/rosbot-mapping/blob/master/compose.sim.webots.yaml>`_.
 
-The following containers will be launched:
+The Docker Compose launches the following containers:
 
-* rviz: is the container that is responsible for starting up RViz2 with the appropriate configurations.
+* **rviz**: is the container that is responsible for starting up RViz2 with the appropriate configurations.
 
-* rosbot: start the environment and the robot in webots.
+* **rosbot**: start the environment and the robot in Webots.
 
-* mapping: will be the one in charge of the localisation of the robot and the creation of a map using the odometry and LIDAR data received from the sensors.
+* **mapping**: will be responsible for locating the robot and creating a map using the odometry and LIDAR data received from the sensors.
 
-* map-saver: is responsible for saving the previously created map.
+* **map-saver**: is responsible for the storage of the map that was previously created.
 
 The following lines apply to all containers and mean that everything is running in host.
 
@@ -114,11 +117,12 @@ Below are the GPU configurations that apply to ``RViz2`` and ``Webots``, as they
             - NVIDIA_DRIVER_CAPABILITIES=all
 
 Then start the container definition.
-The first thing you can see is the rviz container, which is started with the configuration file found `here <https://github.com/husarion/rosbot-mapping/blob/master/config/rosbot.rviz>`_.
+
+The first thing you can see is the ``rviz`` container, which is started with the configuration file found `here <https://github.com/husarion/rosbot-mapping/blob/master/config/rosbot.rviz>`_.
 The plugins used are defined in the configuration file.
-Among them, for example, we find the plugin from the navigation stack,2D Goal Pose , which allows the user to send a target by setting a desired pose for the robot to achieve.
+Among them, for example, we find the plugin from the navigation stack ``2D Goal Pose``, which allows the user to send a target by setting a desired pose for the robot to achieve.
 For the purposes of this tutorial, however, we need only pay attention to the ``Displays`` and familiarise ourselves with the information they provide.
-Among these, you can see the display of the map created and the information from the Lidar.
+Between them you can see the display of the map created in ``static_map`` and the information from the LIDAR in ``scan``.
 
 .. code-block:: yaml
 
@@ -149,7 +153,7 @@ It also starts the nodes responsible for publishing the robot's state, as ``robo
 
 Next, the ``mapping`` container.
 It will start up the slam_toolbox node with the configuration file, which can be found `here <https://github.com/husarion/rosbot-mapping/blob/master/config/slam_toolbox_webots.yaml>`_.
-`use_sim_time` set to `True` define that must use Webots clock.
+``use_sim_time`` set to ``True`` define that must use Webots clock.
 
 .. code-block:: yaml
 
