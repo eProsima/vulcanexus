@@ -1,6 +1,6 @@
 .. _uses_cases_rosbot_2r_simulation:
 
-Mapping Webots environment with ROSbot2R teleoperation
+Mapping Webots environment with ROSbot 2R teleoperation
 ======================================================
 
 .. contents::
@@ -11,12 +11,11 @@ Mapping Webots environment with ROSbot2R teleoperation
 Background
 ----------
 
-This document explain how to map a Webots environment with the teleoperation of a `ROSbot2R` robot from Husarion.
+This document explain how to map a Webots environment with the teleoperation of a `ROSbot 2R` robot from Husarion.
 
-`ROSbot2R` simulation is the robot used in this demo.
-It is a robot platform from `Husarion <https://husarion.com/manuals/rosbot/>`_ powered by ROS with a Raspberry Pi 4.
-It is an autonomous mobile robot with sensors as RPLIDAR A2 laser scan, RGB-D Orbbec Astra camera or IMU.
-It is an affordable robot for development and can be used for service or inspection robots among others.
+In this demo we will use the simulation of `ROSbot 2R` - an autonomous mobile robot by `Husarion <https://husarion.com/manuals/rosbot/>`_, designed for learning ROS and for research and development purposes.
+It is an affordable platform that can serve as a base for a variety of robotic applications, including inspection robots and custom service robots.
+The robot features a solid aluminum frame and is equipped with a Raspberry Pi 4 with 4GB of RAM, distance sensors, an RPLIDAR A2 laser scanner, and an RGB-D Orbbec Astra camera.
 
 .. figure:: /rst/figures/use_cases/rosbot2r/rosbot2r.png
     :align: center
@@ -45,7 +44,7 @@ All its contents are explained below.
 Prerequisites
 -------------
 
-This tutorial covers the first steps of setting up a ROSbot2R simulation in Webots.
+This tutorial covers the first steps of setting up a ROSbot 2R simulation in Webots.
 For this task, we will use the Docker Compose from the repository mentioned above.
 Therefore, it is necessary to have Docker and Docker Compose installed.
 If you do not have them installed, please follow `Install Docker on Ubuntu <https://docs.docker.com/engine/install/ubuntu/>`_ and `Getting Docker Compose <https://docs.docker.com/compose/install/>`_.
