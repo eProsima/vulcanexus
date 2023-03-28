@@ -119,7 +119,7 @@ Then start the container definition.
 The first thing you can see is the ``rviz`` container, which is started with the configuration file found `here <https://github.com/husarion/rosbot-mapping/blob/master/config/rosbot.rviz>`__.
 The plugins used are defined in the configuration file.
 Among them, for example, we find the plugin from the navigation stack ``2D Goal Pose``, which allows the user to send a target by setting a desired pose for the robot to achieve.
-For the purposes of this tutorial, however, we need only pay attention to the ``Displays`` and familiarise ourselves with the information they provide.
+For the purposes of this tutorial, however, we need only pay attention to the ``Displays`` and familiarize ourselves with the information they provide.
 Between them you can see the display of the map created in ``static_map`` and the information from the LIDAR in ``scan``.
 
 .. code-block:: yaml
@@ -135,7 +135,7 @@ Between them you can see the display of the map created in ``static_map`` and th
             - ./config/rosbot.rviz:/root/.rviz2/default.rviz
 
 The following service defines the ``rosbot`` container.
-It launches webots with the robot and environment of choice.
+It launches Webots with the robot and environment of choice.
 It also starts the nodes responsible for publishing the robot's state, as ``robot_localisation`` or ``robot_state_publisher``.
 
 
