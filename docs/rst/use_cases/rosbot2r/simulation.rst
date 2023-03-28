@@ -1,7 +1,7 @@
 .. _uses_cases_rosbot_2r_simulation:
 
 Mapping Webots environment with ROSbot 2R teleoperation
-======================================================
+=======================================================
 
 .. contents::
     :depth: 2
@@ -23,7 +23,6 @@ The robot features a solid aluminum frame and is equipped with a Raspberry Pi 4 
 `Webots` is an open-source three-dimensional mobile robot simulator.
 It is the simulator selected for simulating the Husarion environment and the ROSbot.
 It is based in Qt, a physics engine (ODE fork) and an OpenGL 3.3 rendering engine.
-
 Please, refer to :ref:`Webots <webots>` for more information.
 
 .. figure:: /rst/figures/use_cases/rosbot2r/webots.png
@@ -47,12 +46,12 @@ Prerequisites
 This tutorial covers the first steps of setting up a ROSbot 2R simulation in Webots.
 For this task, we will use the Docker Compose from the repository mentioned above.
 Therefore, it is necessary to have Docker and Docker Compose installed.
-If you do not have them installed, please follow `Install Docker on Ubuntu <https://docs.docker.com/engine/install/ubuntu/>`_ and `Getting Docker Compose <https://docs.docker.com/compose/install/>`_.
+If you do not have them installed, please follow `Install Docker on Ubuntu <https://docs.docker.com/engine/install/ubuntu/>`_ and `Getting Docker Compose <https://docs.docker.com/compose/install/>`_ installation guides.
 
 High-performance computing is needed for the simulation.
 It is necessary to process such a large amount of data and to perform complex calculations at high speed.
 This requires to use NVIDIA Container Runtime.
-Ensure that you have NVIDIA GPU and NVIDIA Container Toolkit installed, otherwise, follow the installation steps `here <https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html>`_.
+Ensure that you have NVIDIA GPU and NVIDIA Container Toolkit installed, otherwise, follow the installation steps `here <https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html>`__.
 
 Add the `rosbot-mapping <https://github.com/husarion/rosbot-mapping>`_  GitHub repository into your workspace directory with the following command:
 
@@ -81,7 +80,7 @@ Environment review
 ------------------
 
 The Docker Compose used for the simulation is ``compose.sim.webots.yaml``.
-You can find it `here <https://github.com/husarion/rosbot-mapping/blob/master/compose.sim.webots.yaml>`_.
+You can find it `here <https://github.com/husarion/rosbot-mapping/blob/master/compose.sim.webots.yaml>`__.
 
 The Docker Compose launches the following containers:
 
@@ -117,7 +116,7 @@ Below are the GPU configurations that apply to ``RViz2`` and ``Webots``, as they
 
 Then start the container definition.
 
-The first thing you can see is the ``rviz`` container, which is started with the configuration file found `here <https://github.com/husarion/rosbot-mapping/blob/master/config/rosbot.rviz>`_.
+The first thing you can see is the ``rviz`` container, which is started with the configuration file found `here <https://github.com/husarion/rosbot-mapping/blob/master/config/rosbot.rviz>`__.
 The plugins used are defined in the configuration file.
 Among them, for example, we find the plugin from the navigation stack ``2D Goal Pose``, which allows the user to send a target by setting a desired pose for the robot to achieve.
 For the purposes of this tutorial, however, we need only pay attention to the ``Displays`` and familiarise ourselves with the information they provide.
@@ -135,7 +134,7 @@ Between them you can see the display of the map created in ``static_map`` and th
             - /tmp/.X11-unix:/tmp/.X11-unix:rw
             - ./config/rosbot.rviz:/root/.rviz2/default.rviz
 
-The following is the ``rosbot`` container.
+The following service defines the ``rosbot`` container.
 It launches webots with the robot and environment of choice.
 It also starts the nodes responsible for publishing the robot's state, as ``robot_localisation`` or ``robot_state_publisher``.
 
@@ -150,8 +149,7 @@ It also starts the nodes responsible for publishing the robot's state, as ``robo
             - /tmp/.X11-unix:/tmp/.X11-unix:rw
             command: ros2 launch webots_ros2_husarion robot_launch.py robot_name:=rosbot
 
-Next, the ``mapping`` container.
-It will start up the slam_toolbox node with the configuration file, which can be found `here <https://github.com/husarion/rosbot-mapping/blob/master/config/slam_toolbox_webots.yaml>`_.
+Next, the ``mapping`` container will start up the slam_toolbox node with the configuration file, which can be found `here <https://github.com/husarion/rosbot-mapping/blob/master/config/slam_toolbox_webots.yaml>`__.
 ``use_sim_time`` set to ``True`` define that must use Webots clock.
 
 .. code-block:: yaml
