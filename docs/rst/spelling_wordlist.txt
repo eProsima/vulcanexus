@@ -2,6 +2,7 @@ allowlisting
 amd
 architectured
 Arduino
+Astra
 Backend
 bare-metal
 behaviour
@@ -30,6 +31,7 @@ Github
 gpg
 Hemisson
 Hierro
+Husarion
 interoperability
 interprocess
 kB
@@ -52,6 +54,7 @@ Nao
 NetX
 Nucleo
 NuttX
+Orbbec
 Posix
 Persistency
 persistency
@@ -76,6 +79,8 @@ src
 sSL
 stdout
 sudo
+teleoperate
+teleoperation
 ThreadX
 Tiva
 toolchain
