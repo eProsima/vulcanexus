@@ -11,6 +11,7 @@ Developer Tools
    :maxdepth: 1
    :hidden:
 
+   tools/qos_profiles_manager.rst
    tools/monitor.rst
    tools/backend.rst
    tools/shapes_demo.rst
