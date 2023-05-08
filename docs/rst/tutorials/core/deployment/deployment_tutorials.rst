@@ -17,3 +17,4 @@ For tutorials related to cloud or cloud-edge deployments, please refer :ref:`tut
     dds2vulcanexus/dds2vulcanexus_topic
     static_edp/static_edp
     ds_locators_runtime/ds_locators_runtime
+    ds_wan_tcp/ds_wan_tcp
