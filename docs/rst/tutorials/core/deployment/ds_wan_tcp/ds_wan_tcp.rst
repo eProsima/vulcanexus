@@ -27,20 +27,20 @@ TCP: Transmission Control Protocol
 
 The Transmission Control Protocol is a Internet Protocol which provides mainly reliability in the communication process.
 As it is connection-oriented, this protocol has several features that ensures the delivery, order and error check of the packages.
-Despite the latency is higher than other Internet Protocols as UDP, it use has several advantages for determined scenarios when the importance of the reliability is bigger than the latency cost.
+Despite the fact that the latency is higher than other Internet Protocols such as UDP, its use has several advantages in particular scenarios where reliability has greater importance than the latency cost.
 
 WAN: Wide Area Network
 ^^^^^^^^^^^^^^^^^^^^^^
 
 A Wide Area Network is a telecommunication network extended over a large geographic area.
 It usually involves a large number of nodes and redundancy, to ensure the reliability of the network.
-Internet could be considered a WAN itself.
+The Internet could be considered as a WAN itself.
 
 Discovery Server
 ^^^^^^^^^^^^^^^^
 
 The :ref:`Discovery Server <vulcanexus_discovery_server>` is a Fast DDS enabled feature that procures an alternative discovery mechanism to the default ROS 2 discovery mechanism, `Simple Discovery Protocol (SDP) <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/simple.html#simple-disc-settings>`_, which is served by the DDS implementations according to the DDS specification.
-Whereas SDP (right figure) provides automatic out-of-the-box discovery by leveraging multicast, ROS 2 Discovery Server (left figure) provides a centralized hub for managing discovery which drastically reduces network bandwidth utilization when compared to SDP, since the nodes, publishers, and subscribers, only discovered those remote ROS 2 entities with which they need to communication (as opposed to the SDP model where everyone knows about each other).
+Whereas SDP (right figure) provides automatic out-of-the-box discovery by leveraging multicast, the ROS 2 Discovery Server (left figure) provides a centralized hub for managing discovery which drastically reduces network bandwidth utilization when compared to SDP, since the nodes, publishers, and subscribers, only discover those remote ROS 2 entities with which they need to communicate with, as opposed to the SDP model where everyone knows each other.
 
 .. contents::
     :local:
@@ -64,9 +64,9 @@ Overview
 This tutorial will use ROS 2 ``demo_nodes_cpp`` ``talker`` and ``listener`` applications to establish the communication between *clients* through the *server*.
 Each node would be deployed in a docker container, in different networks.
 
-The discovery *server*, would be deployed also in it's own docker container, but it will be part of two networks: the WAN and the same network as the ``talker`` node.
-That would make the discovery *server* perform the routing tasks as a usual router does in a LAN (having a private IP which would be in the ``talker`` LAN IP, and a public IP which would be the WAN IP).
-Additionally, the same routing element is required in the ``listener`` LAN. A *router* container is included as the as a intermediary between the WAN and the ``listener`` node network.
+The discovery *server*, would be deployed also in its own docker container, but it will be part of two networks: the WAN and the same network as the ``talker`` node.
+This setup allows the discovery *server* to perform routing tasks as a regular router does in a LAN (having a private IP which would be in the ``talker`` LAN IP, and a public IP, which would be in the WAN IP).
+Additionally, the same routing element is required in the ``listener`` LAN. A *router* container is included as the intermediary between the WAN and the ``listener`` node network.
 
 Within these defined scenario, the following diagram describes the network setup for deploying the simulation.
 
@@ -95,7 +95,7 @@ First of all, make sure that Vulcanexus Humble is installed.
 The docker installation is required for this tutorial (see :ref:`Docker installation <docker_installation>`).
 
 In addition, `docker-compose <https://docs.docker.com/compose/>`_ is used to simplify the example deployment, and ``iptables`` is required to update the network configuration.
-They can be installed by running:
+These can be installed by running:
 
 .. code-block:: bash
 
@@ -138,30 +138,30 @@ This set of commands is enabling both *input* (``-i``) and *output* (``-o``) tab
 XML configuration files
 -----------------------
 
-It is mandatory to set the discovery *server* and the *client* nodes with the following configuration fields to enable the TCP communication, regardless if the deployment is over docker networks or WAN.
+It is mandatory to set the discovery *server* and the *client* nodes with the following configuration options in order to enable the TCP communication, regardless of whether the deployment is over Docker networks or WAN.
 
 The following XML configuration describes the discovery *server* TCP configuration required.
-Create a workspace to run the tutorial, and include a XML configuration file named ``server_configuration.xml`` with the below code.
+Create a workspace to run the tutorial, and include an XML configuration file named ``server_configuration.xml`` with the below code.
 
-Note that in the discovery configuration section, the profile is described as *server*, with specific ``GUID prefix``, and listening locator.
-This locator is configured with the IP ``10.1.1.1``, which belongs to the ``talker`` node LAN, and its locator physical port is included in transports descriptor as a known listening port.
+Note that in the discovery configuration section, the profile is described as *server*, with a specific ``GUID prefix``, and listening locator.
+This locator is configured with the IP ``10.1.1.1``, which belongs to the ``talker`` node LAN, and its locator physical port is included in the ``transport_descriptors`` as a known listening port.
 This is crucial to ensure the TCP communication.
 
 .. literalinclude:: /../code/ds_wan_tcp_tutorial/server_configuration.xml
     :language: XML
 
-Then, include also the next XML configuration in the workspace, and set the file name as ``node_configuration.xml``.
-It describes the *client* configuration of the EDP phase, which includes setting the profile as *client* in the  discovery configuration section, adding the discovery *server* ``GUID prefix`` and listening locator, and the TCP transport descriptor with the *server* locator physical port which ensures the TCP communication.
+Then, also include the following XML configuration in the workspace, and name the file as ``node_configuration.xml``.
+This former configuration describes the *client* configuration for the EDP phase, which involves setting the profile as *client* in the  discovery configuration section, adding the discovery *server* ``GUID prefix`` and listening locator, and the TCP transport descriptor with the *server* locator physical port which ensures the TCP communication.
 
 .. literalinclude:: /../code/ds_wan_tcp_tutorial/node_configuration.xml
     :language: XML
 
-The two XML configuration files would be used by the ``docker-compose`` instructions to perform the containers deployment.
+Both XML configuration files will be later used in the ``docker-compose`` instructions to perform the containers deployment.
 
-Docker compose the example containers
--------------------------------------
+Create the Docker compose file
+------------------------------
 
-Once the XML configuration files have been included in the workspace, include also the following ``Dockerfile``.
+Once the XML configuration files have been included in the workspace, also include the following ``Dockerfile``.
 It configures a new docker image based on `ROS2 Humble <https://docs.ros.org/en/humble/index.html>`_, including some dependencies and the recently created XML configuration files.
 
 .. literalinclude:: /../code/ds_wan_tcp_tutorial/Dockerfile
@@ -184,13 +184,13 @@ Finally, the ``compose.yml`` is where all the containers and their configuration
   The default gateway of this container is redirected to the *router* container.
   The ``iptables`` has been configured to redirect any traffic from any network and interface.
 
-* ``router``: the container is included in both created ``listener_net`` and ``wan_net``.
-  The IP addresses has been set manually as ``10.2.1.1`` in the ``listener_net``, and ``10.3.2.1`` in the ``wan_net``.
+* ``router``: the container is included in both ``listener_net`` and ``wan_net`` networks.
+  The IP addresses has been manually set as ``10.2.1.1`` in the ``listener_net``, and ``10.3.2.1`` in the ``wan_net``.
   The default gateway of this container is redirected to the discovery *server* container.
-  The ``iptables`` has been configured to redirect any traffic from any network and interface.
+  The ``iptables`` has been configured to redirect traffic from any network and interface.
 
 
-Please, include the below ``compose.yml`` file in the workspace.
+Please, include the following ``compose.yml`` file in the workspace.
 
 .. literalinclude:: /../code/ds_wan_tcp_tutorial/compose.yml
     :language: yaml
@@ -215,12 +215,12 @@ Run the example:
 .. code-block:: bash
 
     cd <workspace>
-    docker-compose -f compose.yml up --build
+    docker compose -f compose.yml up --build
 
 .. note::
 
-    The requirements to meet the TCP communication over WAN with Discovery Server as EDP with a real deployment are just launching the three elements of the communication (``talker``, ``listener`` and discovery *server*) with their XML configuration applied.
-    The remain ``iptables`` and docker configuration and deployment have been set to simulate WAN scenario locally.
+    The requirements to achieve TCP communication over WAN with Discovery Server as EDP in a real deployment are simply launching the three elements of the communication (``talker``, ``listener`` and discovery *server*) with their corresponding XML configurations applied.
+    The remaining ``iptables`` and docker configuration and deployment have been defined to simulate WAN scenario locally.
 
 Clean workspace
 ---------------
@@ -229,7 +229,7 @@ Stop the example by pressing ``Ctrl + C``, and stop the containers by running:
 
 .. code-block:: bash
 
-    docker-compose -f compose.yml down
+    docker compose -f compose.yml down
 
 The docker networks and docker containers can be removed using the docker ``prune`` argument, but using the ``rm`` argument plus the identifiers would remove only the ones created for this tutorial:
 
