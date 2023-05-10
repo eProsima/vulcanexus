@@ -8,8 +8,6 @@ TCP over WAN with Discovery Server
     :local:
     :backlinks: none
 
-.. _tutorials_deployment_ds_wan_tcp_background:
-
 Background
 ----------
 
@@ -92,6 +90,8 @@ The role of the *server* is to re-distribute the *clients* (and *servers*) disco
 
 A *client* is a context that connects to one or more *servers* from which it receives only the discovery information they require to establish communication with matching endpoints.
 
+.. _tutorials_deployment_ds_wan_tcp_overview:
+
 Overview
 --------
 
@@ -115,6 +115,7 @@ The expected behavior is that both ``talker`` and ``listener`` are able to conne
 .. important::
 
     All the communication, including EDP phase, would be performed using TCP.
+    See the `Fast DDS discovery phases documentation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery.html>`_ for further information.
 
 .. note::
 
@@ -195,8 +196,9 @@ Both XML configuration files will be later used in the ``docker-compose`` instru
 Create the Docker compose file
 ------------------------------
 
-Once the XML configuration files have been included in the workspace, also include the following ``Dockerfile``.
-It configures a new docker image based on `ROS2 Humble <https://docs.ros.org/en/humble/index.html>`_, including some dependencies and the recently created XML configuration files.
+Once the XML configuration files have been included in the workspace, create a new file named ``Dockerfile`` and paste the following code.
+It contains the required commands to assemble a docker image based on `ROS2 Humble <https://docs.ros.org/en/humble/index.html>`_.
+That includes some dependencies, and the recently created XML configuration files.
 
 .. literalinclude:: /../code/ds_wan_tcp_tutorial/Dockerfile
     :language: Dockerfile
@@ -242,7 +244,7 @@ Make sure that the workspace has been set with all the previous files, and the d
     ·  ├ node_configuration.xml
     ·  └ server_configuration.xml
 
-As explained in the overview, the expected behavior is that both ``talker`` and ``listener`` are able to connect to the discovery *server*, discover each other, and send and receive (respectively) the *HelloWorld* example messages over the WAN simulation using TCP.
+As explained in the :ref:`tutorials_deployment_ds_wan_tcp_overview`, the expected behavior is that both ``talker`` and ``listener`` are able to connect to the discovery *server*, discover each other, and send and receive (respectively) the *HelloWorld* example messages over the WAN simulation using TCP.
 
 Run the example:
 
@@ -265,12 +267,13 @@ Stop the example by pressing ``Ctrl + C``, and stop the containers by running:
 
     docker compose -f compose.yml down
 
-The docker networks and docker containers can be removed using the docker ``prune`` argument, but using the ``rm`` argument plus the identifiers would remove only the ones created for this tutorial:
+The docker networks, containers and images can be removed using the docker ``prune`` argument, but using the ``rm`` argument plus the identifiers would remove only the ones created for this tutorial:
 
 .. code-block:: bash
 
-    docker container rm <workspace_name>_fast_dds_discovery_server_1 <workspace_name>_router_1 <workspace_name>_ros_listener_1 <workspace_name>_ros_talker_1
     docker network rm listener_net talker_net wan_net
+    docker container rm <workspace_name>_fast_dds_discovery_server_1 <workspace_name>_router_1 <workspace_name>_ros_listener_1 <workspace_name>_ros_talker_1
+    docker image rm <workspace_name>_fast_dds_discovery_server:latest <workspace_name>_router:latest <workspace_name>_ros_listener:latest <workspace_name>_ros_talker:latest
 
 .. note::
 
