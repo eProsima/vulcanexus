@@ -182,13 +182,13 @@ Note that in the discovery configuration section, the profile is described as *s
 This locator is configured with the IP ``10.1.1.1``, which belongs to the ``talker`` node LAN, and its locator physical port is included in the ``transport_descriptors`` as a known listening port.
 This is crucial to ensure the TCP communication.
 
-.. literalinclude:: /../code/ds_wan_tcp_tutorial/server_configuration.xml
+.. literalinclude:: /resources/tutorials/core/deployment/ds_wan_tcp_tutorial/server_configuration.xml
     :language: XML
 
 Then, also include the following XML configuration in the workspace, and name the file as ``node_configuration.xml``.
 This former configuration describes the *client* configuration for the EDP phase, which involves setting the profile as *client* in the  discovery configuration section, adding the discovery *server* ``GUID prefix`` and listening locator, and the TCP transport descriptor with the *server* locator physical port which ensures the TCP communication.
 
-.. literalinclude:: /../code/ds_wan_tcp_tutorial/node_configuration.xml
+.. literalinclude:: /resources/tutorials/core/deployment/ds_wan_tcp_tutorial/node_configuration.xml
     :language: XML
 
 Both XML configuration files will be later used in the ``docker-compose`` instructions to perform the containers deployment.
@@ -200,7 +200,7 @@ Once the XML configuration files have been included in the workspace, create a n
 It contains the required commands to assemble a docker image based on `ROS2 Humble <https://docs.ros.org/en/humble/index.html>`_.
 That includes some dependencies, and the recently created XML configuration files.
 
-.. literalinclude:: /../code/ds_wan_tcp_tutorial/Dockerfile
+.. literalinclude:: /resources/tutorials/core/deployment/ds_wan_tcp_tutorial/Dockerfile
     :language: Dockerfile
 
 Finally, the ``compose.yml`` is where all the containers and their configuration are described:
@@ -228,7 +228,7 @@ Finally, the ``compose.yml`` is where all the containers and their configuration
 
 Please, include the following ``compose.yml`` file in the workspace.
 
-.. literalinclude:: /../code/ds_wan_tcp_tutorial/compose.yml
+.. literalinclude:: /resources/tutorials/core/deployment/ds_wan_tcp_tutorial/compose.yml
     :language: yaml
 
 Run the example
