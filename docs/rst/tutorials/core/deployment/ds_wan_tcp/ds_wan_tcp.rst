@@ -42,16 +42,50 @@ Discovery Server
 The :ref:`Discovery Server <vulcanexus_discovery_server>` is a Fast DDS enabled feature that procures an alternative discovery mechanism to the default ROS 2 discovery mechanism, `Simple Discovery Protocol (SDP) <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/simple.html#simple-disc-settings>`_, which is served by the DDS implementations according to the DDS specification.
 Whereas SDP (right figure) provides automatic out-of-the-box discovery by leveraging multicast, the ROS 2 Discovery Server (left figure) provides a centralized hub for managing discovery which drastically reduces network bandwidth utilization when compared to SDP, since the nodes, publishers, and subscribers, only discover those remote ROS 2 entities with which they need to communicate with, as opposed to the SDP model where everyone knows each other.
 
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 1
-
-.. figure:: /rst/figures/intro/discovery-server.svg
+.. uml::
     :align: center
-    :width: 70%
 
-    Comparison of Discovery Server and Simple Discovery Protocol mechanisms
+    hide empty members
+
+    package ds as "Discovery Server"{
+        cloud "Server(s)" as s
+        (Client 1) as c1
+        (Client 2) as c2
+        (Client 3) as c3
+        (Client 4) as c4
+
+        c1 -[hidden]right- c3
+        c2 -[hidden]right- c4
+        c1 -[hidden]down- c2
+        c3 -[hidden]down- c4
+
+        s -[hidden]up- c1
+        s -[hidden]up- c3
+        c2 -[hidden]up- s
+        c4 -[hidden]up- s
+
+        c1 <--> s
+        c3 <--> s
+        s <--> c2
+        s <--> c4
+    }
+
+    package sd as "Simple Discovery"{
+        (Context 1) as x1
+        (Context 2) as x2
+        (Context 3) as x3
+        (Context 4) as x4
+
+        x1 <-right-> x3
+        x1 <-down-> x2
+        x2 <-right-> x4
+        x3 <-down-> x4
+
+        x1 <--> x4
+        x3 <--> x2
+    }
+
+    sd -[hidden]right- ds
 
 A *server* is a context to which the *clients* (and maybe other *servers*) send their discovery information.
 The role of the *server* is to re-distribute the *clients* (and *servers*) discovery information to their known *clients* and *servers*.
