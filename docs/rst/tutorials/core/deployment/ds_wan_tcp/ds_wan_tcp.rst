@@ -206,17 +206,17 @@ That includes some dependencies, and the recently created XML configuration file
 Finally, the ``compose.yml`` is where all the containers and their configuration are described:
 
 * ``ros_talker``: the container is included in the created ``talker_net``.
-  The IP address has not been set manually, but the IP assigned by default would be ``10.1.0.2``.
+  The IP address has not been manually set, but the IP assigned by default would be ``10.1.0.2``.
   The environment variable ``FASTRTPS_DEFAULT_PROFILES_FILE`` is set with the ``node_configuration.xml`` and ``ROS_DISCOVERY_SERVER`` is set with the discovery *server* information ``"TCPv4:[10.1.1.1]:10111"``.
   The default gateway of this container is redirected to the discovery *server*, which would behave as a router too.
 
 * ``ros_listener``: the container is included in the created ``listener_net``.
-  The IP address has not been set manually, but the IP assigned by default would be ``10.2.0.2``.
+  The IP address has not been manually set, but the IP assigned by default would be ``10.2.0.2``.
   As the previous container, the environment variable ``FASTRTPS_DEFAULT_PROFILES_FILE`` is set with the ``node_configuration.xml`` and ``ROS_DISCOVERY_SERVER`` is set with the discovery *server* information ``"TCPv4:[10.1.1.1]:10111"``.
   The default gateway of this container is redirected to the *router* container.
 
 * ``fast_dds_discovery_server``: the container is included in both created ``talker_net`` and ``wan_net``.
-  The IP addresses has been set manually as ``10.1.1.1`` in the ``talker_net``, and ``10.3.1.1`` in the ``wan_net``.
+  The IP addresses has been manually set as ``10.1.1.1`` in the ``talker_net``, and ``10.3.1.1`` in the ``wan_net``.
   The default gateway of this container is redirected to the *router* container.
   The ``iptables`` has been configured to redirect any traffic from any network and interface.
 
@@ -256,7 +256,8 @@ Run the example:
 .. note::
 
     The requirements to achieve TCP communication over WAN with Discovery Server as EDP in a real deployment are simply launching the three elements of the communication (``talker``, ``listener`` and discovery *server*) with their corresponding XML configurations applied.
-    The remaining ``iptables`` and docker configuration and deployment have been defined to simulate WAN scenario locally.
+    To do so in a real scenario, setting the proper firewall or router configuration rules should be considered.
+    The remaining ``iptables``, and docker configuration and deployment have been defined to simulate the WAN scenario locally.
 
 Clean workspace
 ---------------
