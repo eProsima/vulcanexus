@@ -257,6 +257,8 @@ Run the example:
 
     The requirements to achieve TCP communication over WAN with Discovery Server as EDP in a real deployment are simply launching the three elements of the communication (``talker``, ``listener`` and discovery *server*) with their corresponding XML configurations applied.
     To do so in a real scenario, setting the proper firewall or router configuration rules should be considered.
+    See the `Configure transversal NAT on the network router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/use_cases/wan_tcp.html#configure-transversal-nat-on-the-network-router>`_ section from *WAN communication over TCP* Fast DDS Router tutorial for further information.
+
     The remaining ``iptables``, and docker configuration and deployment have been defined to simulate the WAN scenario locally.
 
 Clean workspace
