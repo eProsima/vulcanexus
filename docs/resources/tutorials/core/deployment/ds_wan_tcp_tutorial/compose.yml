@@ -13,12 +13,13 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
     environment:
       DISPLAY: ":1"
-      FASTRTPS_DEFAULT_PROFILES_FILE: "node_configuration.xml"
+      FASTRTPS_DEFAULT_PROFILES_FILE: "talker_configuration.xml"
       ROS_DISCOVERY_SERVER: "TCPv4:[10.1.1.1]:10111"
     cap_add:
       - ALL
     networks:
-      - talker_net
+      talker_net:
+        ipv4_address: 10.1.0.2
 
   ros_listener:
     build:
@@ -34,10 +35,11 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
     environment:
       DISPLAY: ":1"
-      FASTRTPS_DEFAULT_PROFILES_FILE: "node_configuration.xml"
+      FASTRTPS_DEFAULT_PROFILES_FILE: "listener_configuration.xml"
       ROS_DISCOVERY_SERVER: "TCPv4:[10.1.1.1]:10111"
     networks:
-      - listener_net
+      listener_net:
+        ipv4_address: 10.2.0.2
 
   fast_dds_discovery_server:
     build:

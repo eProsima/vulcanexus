@@ -127,14 +127,19 @@ Prerequisites
 -------------
 
 First of all, make sure that Vulcanexus Humble is installed.
-The docker installation is required for this tutorial (see :ref:`Docker installation <docker_installation>`).
-
-In addition, `docker-compose <https://docs.docker.com/compose/>`_ is used to simplify the example deployment, and ``iptables`` is required to update the network configuration.
-These can be installed by running:
+The docker installation is required for this tutorial (see :ref:`Docker installation <docker_installation>`), together with the `eProsima Vulcanexus docker image <https://hub.docker.com/r/eprosima/vulcanexus>`_.
+The :ref:`Vulcanexus Humble <notes_humble_latest>` image can be downloaded by running:
 
 .. code-block:: bash
 
-    sudo apt install docker-compose iptables
+    docker pull eprosima/vulcanexus:humble
+
+In addition, docker `compose <https://docs.docker.com/compose/>`_ is used to simplify the example deployment, and ``iptables`` is required to update the network configuration.
+Follow `docker compose installation guide <https://docs.docker.com/compose/install/>`_, and install the ``iptables`` dependency by running:
+
+.. code-block:: bash
+
+    sudo apt install iptables
 
 .. note::
 
@@ -175,29 +180,48 @@ XML configuration files
 
 It is mandatory to set the discovery *server* and the *client* nodes with the following configuration options in order to enable the TCP communication, regardless of whether the deployment is over Docker networks or WAN.
 
+Both XML configuration files will be later used in the :ref:`docker compose <tutorials_deployment_ds_wan_tcp_docker_compose>` instructions to perform the containers deployment.
+
+Server side
+^^^^^^^^^^^
+
 The following XML configuration describes the discovery *server* TCP configuration required.
 Create a workspace to run the tutorial, and include an XML configuration file named ``server_configuration.xml`` with the below code.
-
-Note that in the discovery configuration section, the profile is described as *server*, with a specific ``GUID prefix``, and listening locator.
-This locator is configured with the IP ``10.1.1.1``, which belongs to the ``talker`` node LAN, and its locator physical port is included in the ``transport_descriptors`` as a known listening port.
-This is crucial to ensure the TCP communication.
 
 .. literalinclude:: /resources/tutorials/core/deployment/ds_wan_tcp_tutorial/server_configuration.xml
     :language: XML
 
-Then, also include the following XML configuration in the workspace, and name the file as ``node_configuration.xml``.
-This former configuration describes the *client* configuration for the EDP phase, which involves setting the profile as *client* in the  discovery configuration section, adding the discovery *server* ``GUID prefix`` and listening locator, and the TCP transport descriptor with the *server* locator physical port which ensures the TCP communication.
+Note that in the discovery configuration section, the profile is described as *server*, with a specific GUID prefix, and listening locator.
+This listening locator is configured with the IP ``10.1.1.1``, which belongs to the ``talker`` node LAN, and its physical port is included in the transport descriptor as a known listening port.
+This, along setting the wan address with the previously mentioned IP address, and setting the transport descriptor and locator types as ``TCPv4``, is crucial to ensure the TCP communication.
 
-.. literalinclude:: /resources/tutorials/core/deployment/ds_wan_tcp_tutorial/node_configuration.xml
+Client side
+^^^^^^^^^^^
+
+Include the following XML configuration in the workspace, and name the file as ``talker_configuration.xml``.
+This former configuration describes the ``talker`` node configuration for the EDP phase, and transport layer.
+
+.. literalinclude:: /resources/tutorials/core/deployment/ds_wan_tcp_tutorial/talker_configuration.xml
     :language: XML
 
-Both XML configuration files will be later used in the ``docker-compose`` instructions to perform the containers deployment.
+It involves setting the profile as *client* in the  discovery configuration section, and adding the discovery *server* GUID prefix and listening locator.
+The ``talker`` TCP transport descriptor must be configured with the wan address and physical port described.
+Note that the listening port configured must be different from the set in the discovery *server*.
+
+Then, also include the following ``listener`` XML configuration in the workspace, and name the file as ``listener_configuration.xml``.
+
+.. literalinclude:: /resources/tutorials/core/deployment/ds_wan_tcp_tutorial/listener_configuration.xml
+    :language: XML
+
+Note that the discovery *server* configuration is exactly the same as in the previous ``talker`` XML configuration, but the only difference are the WAN IP address and the listening port.
+
+.. _tutorials_deployment_ds_wan_tcp_docker_compose:
 
 Create the Docker compose file
 ------------------------------
 
 Once the XML configuration files have been included in the workspace, create a new file named ``Dockerfile`` and paste the following code.
-It contains the required commands to assemble a docker image based on `ROS2 Humble <https://docs.ros.org/en/humble/index.html>`_.
+It contains the required commands to assemble a docker image based on Vulcanexus Humble.
 That includes some dependencies, and the recently created XML configuration files.
 
 .. literalinclude:: /resources/tutorials/core/deployment/ds_wan_tcp_tutorial/Dockerfile
@@ -206,13 +230,13 @@ That includes some dependencies, and the recently created XML configuration file
 Finally, the ``compose.yml`` is where all the containers and their configuration are described:
 
 * ``ros_talker``: the container is included in the created ``talker_net``.
-  The IP address has not been manually set, but the IP assigned by default would be ``10.1.0.2``.
-  The environment variable ``FASTRTPS_DEFAULT_PROFILES_FILE`` is set with the ``node_configuration.xml`` and ``ROS_DISCOVERY_SERVER`` is set with the discovery *server* information ``"TCPv4:[10.1.1.1]:10111"``.
+  The IP address has been manually set as ``10.1.0.2``.
+  The environment variable ``FASTRTPS_DEFAULT_PROFILES_FILE`` is set with the ``talker_configuration.xml`` and ``ROS_DISCOVERY_SERVER`` is set with the discovery *server* information ``"TCPv4:[10.1.1.1]:10111"``.
   The default gateway of this container is redirected to the discovery *server*, which would behave as a router too.
 
 * ``ros_listener``: the container is included in the created ``listener_net``.
-  The IP address has not been manually set, but the IP assigned by default would be ``10.2.0.2``.
-  As the previous container, the environment variable ``FASTRTPS_DEFAULT_PROFILES_FILE`` is set with the ``node_configuration.xml`` and ``ROS_DISCOVERY_SERVER`` is set with the discovery *server* information ``"TCPv4:[10.1.1.1]:10111"``.
+  The IP address has been manually set as ``10.2.0.2``.
+  As the previous container, the environment variable ``FASTRTPS_DEFAULT_PROFILES_FILE`` is set with the ``listener_configuration.xml`` and ``ROS_DISCOVERY_SERVER`` is set with the discovery *server* information ``"TCPv4:[10.1.1.1]:10111"``.
   The default gateway of this container is redirected to the *router* container.
 
 * ``fast_dds_discovery_server``: the container is included in both created ``talker_net`` and ``wan_net``.
@@ -241,8 +265,9 @@ Make sure that the workspace has been set with all the previous files, and the d
     ├ <workspace>
     ·  ├ compose.yml
     ·  ├ Dockerfile
-    ·  ├ node_configuration.xml
-    ·  └ server_configuration.xml
+    ·  ├ listener_configuration.xml
+    ·  ├ server_configuration.xml
+    ·  └ talker_configuration.xml
 
 As explained in the :ref:`tutorials_deployment_ds_wan_tcp_overview`, the expected behavior is that both ``talker`` and ``listener`` are able to connect to the discovery *server*, discover each other, and send and receive (respectively) the *HelloWorld* example messages over the WAN simulation using TCP.
 
@@ -255,8 +280,8 @@ Run the example:
 
 .. note::
 
-    The requirements to achieve TCP communication over WAN with Discovery Server as EDP in a real deployment are simply launching the three elements of the communication (``talker``, ``listener`` and discovery *server*) with their corresponding XML configurations applied.
-    To do so in a real scenario, setting the proper firewall or router configuration rules should be considered.
+    The requirements to achieve TCP communication over WAN with Discovery Server as EDP in a real deployment are launching the three elements of the communication (``talker``, ``listener`` and discovery *server*) with their corresponding XML configurations applied, and setting the proper firewall or router configuration rules.
+    This should be considered only for the discovery *server* and each ``talker`` node.
     See the `Configure transversal NAT on the network router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/use_cases/wan_tcp.html#configure-transversal-nat-on-the-network-router>`_ section from *WAN communication over TCP* Fast DDS Router tutorial for further information.
 
     The remaining ``iptables``, and docker configuration and deployment have been defined to simulate the WAN scenario locally.

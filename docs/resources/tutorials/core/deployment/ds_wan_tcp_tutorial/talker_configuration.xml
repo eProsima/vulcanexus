@@ -4,21 +4,28 @@
     <!-- TCP transport descriptor -->
     <transport_descriptors>
         <transport_descriptor>
-            <transport_id>TCPtransport</transport_id>
+            <!-- Transport descriptor identifier -->
+            <transport_id>TCP_talker_transport</transport_id>
+
+            <!-- TCP transport -->
             <type>TCPv4</type>
-            <TTL>10</TTL>
+
+            <!-- Talker listening (physical) port -->
             <listening_ports>
-                <port>11101</port>
+                <port>10102</port>
             </listening_ports>
+
+            <!-- Talker WAN address -->
+            <wan_addr>10.1.0.2</wan_addr>
         </transport_descriptor>
     </transport_descriptors>
 
     <!-- Participant profile -->
-    <participant profile_name="TCPexample_profile" is_default_profile="true">
+    <participant profile_name="TCP_talker_profile" is_default_profile="true">
         <rtps>
             <!-- Use declared TCP transport descriptor -->
             <userTransports>
-                <transport_id>TCPtransport</transport_id>
+                <transport_id>TCP_talker_transport</transport_id>
             </userTransports>
 
             <!-- Do not use default builtin transports -->
@@ -40,7 +47,7 @@
                                     <tcpv4>
                                         <address>10.1.1.1</address>
                                         <port>10111</port>
-                                        <physical_port>11101</physical_port>
+                                        <physical_port>10111</physical_port>
                                     </tcpv4>
                                 </locator>
                             </metatrafficUnicastLocatorList>
