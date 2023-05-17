@@ -170,11 +170,6 @@ In order to enable the communication between networks, it is mandatory to update
 
 This set of commands is enabling both *input* (``-i``) and *output* (``-o``) tables to allow both sides communication between the three networks.
 
-.. note::
-
-    This step is only necessary in this simulation example.
-    In a real WAN deployment, this is not needed.
-
 XML configuration files
 -----------------------
 
@@ -213,7 +208,7 @@ Then, also include the following ``listener`` XML configuration in the workspace
 .. literalinclude:: /resources/tutorials/core/deployment/ds_wan_tcp_tutorial/listener_configuration.xml
     :language: XML
 
-Note that the discovery *server* configuration is exactly the same as in the previous ``talker`` XML configuration, but the only difference are the WAN IP address and the listening port.
+Note that the ``listener`` discovery *server* configuration is exactly the same as ``talker`` discovery *server* configuration, but the WAN IP address and the listening port set in the transport descriptor configuration are different according to each LAN.
 
 .. _tutorials_deployment_ds_wan_tcp_docker_compose:
 
@@ -229,24 +224,22 @@ That includes some dependencies, and the recently created XML configuration file
 
 Finally, the ``compose.yml`` is where all the containers and their configuration are described:
 
-* ``ros_talker``: the container is included in the created ``talker_net``.
-  The IP address has been manually set to ``10.1.0.2``.
-  The environment variable ``FASTRTPS_DEFAULT_PROFILES_FILE`` is set with the ``talker_configuration.xml`` and ``ROS_DISCOVERY_SERVER`` is set with the discovery *server* information ``"TCPv4:[10.1.1.1]:10111"``.
-  The default gateway of this container is redirected to the discovery *server*, which would behave as a router too.
-
-* ``ros_listener``: the container is included in the created ``listener_net``.
-  The IP address has been manually set to ``10.2.0.2``.
-  As the previous container, the environment variable ``FASTRTPS_DEFAULT_PROFILES_FILE`` is set with the ``listener_configuration.xml`` and ``ROS_DISCOVERY_SERVER`` is set with the discovery *server* information ``"TCPv4:[10.1.1.1]:10111"``.
-  The default gateway of this container is redirected to the *router* container.
-
 * ``fast_dds_discovery_server``: the container is included in both created ``talker_net`` and ``wan_net``.
   The IP addresses has been manually set to ``10.1.1.1`` in the ``talker_net``, and ``10.3.1.1`` in the ``wan_net``.
-  The default gateway of this container is redirected to the *router* container.
+  This container's default gateway is redirected to the *router* container.
   The ``iptables`` has been configured to redirect any traffic from any network and interface.
+
+* ``ros_listener``: the container is included in the created ``listener_net``.
+  The IP address has been manually set to ``10.2.0.2``, and the environment variables ``FASTRTPS_DEFAULT_PROFILES_FILE``  and ``ROS_DISCOVERY_SERVER`` are set with the XML configuration ``listener_configuration.xml`` and the discovery *server* information ``TCPv4:[10.1.1.1]:10111``, respectively.
+  This container's default gateway is redirected to the *router* container.
+
+* ``ros_talker``: the container is included in the created ``talker_net``.
+  The IP address has been manually set to ``10.1.0.2``, and the environment variables ``FASTRTPS_DEFAULT_PROFILES_FILE``  and ``ROS_DISCOVERY_SERVER`` are set with the XML configuration ``talker_configuration.xml`` and the discovery *server* information ``TCPv4:[10.1.1.1]:10111``, respectively.
+  This container's default gateway is redirected to the discovery *server*, which would behave as a router too.
 
 * ``router``: the container is included in both ``listener_net`` and ``wan_net`` networks.
   The IP addresses has been manually set to ``10.2.1.1`` in the ``listener_net``, and ``10.3.2.1`` in the ``wan_net``.
-  The default gateway of this container is redirected to the discovery *server* container.
+  This container's default gateway is redirected to the discovery *server*.
   The ``iptables`` has been configured to redirect traffic from any network and interface.
 
 
@@ -278,14 +271,6 @@ Run the example:
     cd <workspace>
     docker compose -f compose.yml up --build
 
-.. note::
-
-    The requirements to achieve TCP communication over WAN with Discovery Server as EDP in a real deployment are launching the three elements of the communication (``talker``, ``listener`` and discovery *server*) with their corresponding XML configurations applied, and setting the proper firewall or router configuration rules.
-    It is necessary to configure one port forwarding rule for the discovery *server*, and another port per every pair of *clients* communicating over the WAN, in either one of the sides.
-    See the `Configure transversal NAT on the network router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/use_cases/wan_tcp.html#configure-transversal-nat-on-the-network-router>`_ section from *WAN communication over TCP* Fast DDS Router tutorial for further information.
-
-    The remaining ``iptables``, and docker configuration and deployment have been defined to simulate the WAN scenario locally.
-
 Clean workspace
 ---------------
 
@@ -306,3 +291,10 @@ The docker networks, containers and images can be removed using the docker ``pru
 .. note::
 
     The ``iptables`` configuration would be removed automatically each time the system gets rebooted.
+
+TCP over real WAN with Discovery Server
+---------------------------------------
+
+The requirements to achieve TCP communication over WAN with Discovery Server as EDP in a real deployment are launching the three elements of the communication (``talker``, ``listener`` and discovery *server*) with their corresponding XML configurations applied, and setting the proper firewall or router configuration rules.
+It is necessary to configure one port forwarding rule for the discovery *server*, and another port per every pair of *clients* communicating over the WAN, in either one of the sides.
+See the `Configure transversal NAT on the network router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/use_cases/wan_tcp.html#configure-transversal-nat-on-the-network-router>`_ section from *WAN communication over TCP* Fast DDS Router tutorial for further information.
