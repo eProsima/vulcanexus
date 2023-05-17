@@ -230,22 +230,22 @@ That includes some dependencies, and the recently created XML configuration file
 Finally, the ``compose.yml`` is where all the containers and their configuration are described:
 
 * ``ros_talker``: the container is included in the created ``talker_net``.
-  The IP address has been manually set as ``10.1.0.2``.
+  The IP address has been manually set to ``10.1.0.2``.
   The environment variable ``FASTRTPS_DEFAULT_PROFILES_FILE`` is set with the ``talker_configuration.xml`` and ``ROS_DISCOVERY_SERVER`` is set with the discovery *server* information ``"TCPv4:[10.1.1.1]:10111"``.
   The default gateway of this container is redirected to the discovery *server*, which would behave as a router too.
 
 * ``ros_listener``: the container is included in the created ``listener_net``.
-  The IP address has been manually set as ``10.2.0.2``.
+  The IP address has been manually set to ``10.2.0.2``.
   As the previous container, the environment variable ``FASTRTPS_DEFAULT_PROFILES_FILE`` is set with the ``listener_configuration.xml`` and ``ROS_DISCOVERY_SERVER`` is set with the discovery *server* information ``"TCPv4:[10.1.1.1]:10111"``.
   The default gateway of this container is redirected to the *router* container.
 
 * ``fast_dds_discovery_server``: the container is included in both created ``talker_net`` and ``wan_net``.
-  The IP addresses has been manually set as ``10.1.1.1`` in the ``talker_net``, and ``10.3.1.1`` in the ``wan_net``.
+  The IP addresses has been manually set to ``10.1.1.1`` in the ``talker_net``, and ``10.3.1.1`` in the ``wan_net``.
   The default gateway of this container is redirected to the *router* container.
   The ``iptables`` has been configured to redirect any traffic from any network and interface.
 
 * ``router``: the container is included in both ``listener_net`` and ``wan_net`` networks.
-  The IP addresses has been manually set as ``10.2.1.1`` in the ``listener_net``, and ``10.3.2.1`` in the ``wan_net``.
+  The IP addresses has been manually set to ``10.2.1.1`` in the ``listener_net``, and ``10.3.2.1`` in the ``wan_net``.
   The default gateway of this container is redirected to the discovery *server* container.
   The ``iptables`` has been configured to redirect traffic from any network and interface.
 
@@ -281,7 +281,7 @@ Run the example:
 .. note::
 
     The requirements to achieve TCP communication over WAN with Discovery Server as EDP in a real deployment are launching the three elements of the communication (``talker``, ``listener`` and discovery *server*) with their corresponding XML configurations applied, and setting the proper firewall or router configuration rules.
-    This should be considered only for the discovery *server* and each ``talker`` node.
+    It is necessary to configure one port forwarding rule for the discovery *server*, and another port per every pair of *clients* communicating over the WAN, in either one of the sides.
     See the `Configure transversal NAT on the network router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/use_cases/wan_tcp.html#configure-transversal-nat-on-the-network-router>`_ section from *WAN communication over TCP* Fast DDS Router tutorial for further information.
 
     The remaining ``iptables``, and docker configuration and deployment have been defined to simulate the WAN scenario locally.
