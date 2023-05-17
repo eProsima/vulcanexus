@@ -114,7 +114,7 @@ The expected behavior is that both ``talker`` and ``listener`` are able to conne
 
 .. important::
 
-    All the communication, including EDP phase, would be performed using TCP.
+    All the communication, including discovery phase, would be performed using TCP.
     See the `Fast DDS discovery phases documentation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery.html>`_ for further information.
 
 .. note::
@@ -194,7 +194,7 @@ Client side
 ^^^^^^^^^^^
 
 Include the following XML configuration in the workspace, and name the file as ``talker_configuration.xml``.
-This former configuration describes the ``talker`` node configuration for the EDP phase, and transport layer.
+This former configuration describes the ``talker`` node configuration for the discovery phase, and transport layer.
 
 .. literalinclude:: /resources/tutorials/core/deployment/ds_wan_tcp_tutorial/talker_configuration.xml
     :language: XML
@@ -230,11 +230,11 @@ Finally, the ``compose.yml`` is where all the containers and their configuration
   The ``iptables`` has been configured to redirect any traffic from any network and interface.
 
 * ``ros_listener``: the container is included in the created ``listener_net``.
-  The IP address has been manually set to ``10.2.0.2``, and the environment variables ``FASTRTPS_DEFAULT_PROFILES_FILE``  and ``ROS_DISCOVERY_SERVER`` are set with the XML configuration ``listener_configuration.xml`` and the discovery *server* information ``TCPv4:[10.1.1.1]:10111``, respectively.
+  The IP address has been manually set to ``10.2.0.2``, and the environment variable ``FASTRTPS_DEFAULT_PROFILES_FILE`` is set with the XML configuration ``listener_configuration.xml``.
   This container's default gateway is redirected to the *router* container.
 
 * ``ros_talker``: the container is included in the created ``talker_net``.
-  The IP address has been manually set to ``10.1.0.2``, and the environment variables ``FASTRTPS_DEFAULT_PROFILES_FILE``  and ``ROS_DISCOVERY_SERVER`` are set with the XML configuration ``talker_configuration.xml`` and the discovery *server* information ``TCPv4:[10.1.1.1]:10111``, respectively.
+  The IP address has been manually set to ``10.1.0.2``, and the environment variable ``FASTRTPS_DEFAULT_PROFILES_FILE`` is set with the XML configuration ``talker_configuration.xml``.
   This container's default gateway is redirected to the discovery *server*, which would behave as a router too.
 
 * ``router``: the container is included in both ``listener_net`` and ``wan_net`` networks.
@@ -296,7 +296,7 @@ TCP over real WAN with Discovery Server
 ---------------------------------------
 
 The configuration of the docker networks and the ``iptables`` has been performed to simulate the WAN scenario locally.
-The requirements to achieve TCP communication over WAN with Discovery Server as EDP in a real deployment are launching the three elements of the communication (``talker``, ``listener`` and discovery *server*) with their corresponding XML configurations applied, and setting the proper firewall or router configuration rules.
+The requirements to achieve TCP communication over WAN with Discovery Server in a real deployment are launching the three elements of the communication (``talker``, ``listener`` and discovery *server*) with their corresponding XML configurations applied, and setting the proper firewall or router configuration rules.
 
 .. figure:: /rst/figures/tutorials/core/ds_wan_tcp/ds_wan_tcp_scenarios.svg
     :align: center
@@ -304,10 +304,10 @@ The requirements to achieve TCP communication over WAN with Discovery Server as 
 
     Possible scenarios of TCP communication over WAN with Discovery Server
 
-Despite discovery *server* belongs or not to a *client* LAN, it is necessary to configure one port forwarding rule for the discovery *server*, and another port per every pair of *clients* communicating over the WAN, in either one of the sides.
+Regardless of whether the discovery *server* belongs, or not, to one of the *clients'* LANs, it is necessary to configure one port forwarding rule for the discovery *server*, and another rule per every pair of *clients* communicating over the WAN, on either one of the sides.
 
 If possible, deploy the different elements of the tutorial in different docker containers over WAN, following one of the possibilities displayed in the image above.
-For port forwarding configuration, see the `Configure transversal NAT on the network router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/use_cases/wan_tcp.html#configure-transversal-nat-on-the-network-router>`_ section from *WAN communication over TCP* Fast DDS Router tutorial for further information.
+In order to address the port forwarding configuration, see the `Configure transversal NAT on the network router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/use_cases/wan_tcp.html#configure-transversal-nat-on-the-network-router>`_ section from *WAN communication over TCP* Fast DDS Router tutorial for further information.
 
 .. tabs::
 
@@ -336,7 +336,6 @@ For port forwarding configuration, see the `Configure transversal NAT on the net
             # run the listener client
             source /opt/ros/humble/setup.bash
             export FASTRTPS_DEFAULT_PROFILES_FILE="listener_configuration.xml"
-            export ROS_DISCOVERY_SERVER="TCPv4:[<server public IP address>]:10111"
             ros2 run demo_nodes_cpp listener
 
     .. tab:: Talker
@@ -351,10 +350,9 @@ For port forwarding configuration, see the `Configure transversal NAT on the net
             # run the talker client
             source /opt/ros/humble/setup.bash
             export FASTRTPS_DEFAULT_PROFILES_FILE="talker_configuration.xml"
-            export ROS_DISCOVERY_SERVER="TCPv4:[<server public IP address>]:10111"
             ros2 run demo_nodes_cpp talker
 
-Make sure that the discovery *server* public IP has been properly set in all sections of the XML configuration files (in both ``listener_configuration.xml``, ``server_configuration.xml`` and ``talker_configuration.xml``), and also in the environment variable ``ROS_DISCOVERY_SERVER``.
+Make sure that the discovery *server* public IP has been properly set in all sections of the XML configuration files (in both ``listener_configuration.xml``, ``server_configuration.xml`` and ``talker_configuration.xml``).
 The host public IP address can be obtained by running:
 
 .. code-block:: bash
@@ -362,8 +360,4 @@ The host public IP address can be obtained by running:
     wget -qO- http://ipecho.net/plain | xargs echo
 
 It is also required to set the WAN address for each *client* in the XML transport descriptor configuration.
-If any of them are hosted in the same LAN as the discovery *server*, then the IP address would be the same for both contexts (*client* and *server*).
-
-.. note::
-
-    If that is the case, then also make sure that the XML transport descriptor listening ports configured for each of them are different.
+If any of them are hosted in the same LAN as the discovery *server*, then make sure that the XML transport descriptor listening ports configured for each of them are different. Also, take into account that the WAN IP address would be the same for both contexts (*client* and *server*).

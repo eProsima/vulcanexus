@@ -57,7 +57,6 @@ services:
     environment:
       DISPLAY: ":1"
       FASTRTPS_DEFAULT_PROFILES_FILE: "listener_configuration.xml"
-      ROS_DISCOVERY_SERVER: "TCPv4:[10.1.1.1]:10111"
     networks:
       listener_net:
         ipv4_address: 10.2.0.2
@@ -75,7 +74,6 @@ services:
     environment:
       DISPLAY: ":1"
       FASTRTPS_DEFAULT_PROFILES_FILE: "talker_configuration.xml"
-      ROS_DISCOVERY_SERVER: "TCPv4:[10.1.1.1]:10111"
     cap_add:
       - ALL
     networks:
