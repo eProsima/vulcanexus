@@ -295,6 +295,75 @@ The docker networks, containers and images can be removed using the docker ``pru
 TCP over real WAN with Discovery Server
 ---------------------------------------
 
+The configuration of the docker networks and the ``iptables`` has been performed to simulate the WAN scenario locally.
 The requirements to achieve TCP communication over WAN with Discovery Server as EDP in a real deployment are launching the three elements of the communication (``talker``, ``listener`` and discovery *server*) with their corresponding XML configurations applied, and setting the proper firewall or router configuration rules.
-It is necessary to configure one port forwarding rule for the discovery *server*, and another port per every pair of *clients* communicating over the WAN, in either one of the sides.
-See the `Configure transversal NAT on the network router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/use_cases/wan_tcp.html#configure-transversal-nat-on-the-network-router>`_ section from *WAN communication over TCP* Fast DDS Router tutorial for further information.
+
+.. figure:: /rst/figures/tutorials/core/ds_wan_tcp/ds_wan_tcp_scenarios.svg
+    :align: center
+    :width: 70%
+
+    Possible scenarios of TCP communication over WAN with Discovery Server
+
+Despite discovery *server* belongs or not to a *client* LAN, it is necessary to configure one port forwarding rule for the discovery *server*, and another port per every pair of *clients* communicating over the WAN, in either one of the sides.
+
+If possible, deploy the different elements of the tutorial in different docker containers over WAN, following one of the possibilities displayed in the image above.
+For port forwarding configuration, see the `Configure transversal NAT on the network router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/use_cases/wan_tcp.html#configure-transversal-nat-on-the-network-router>`_ section from *WAN communication over TCP* Fast DDS Router tutorial for further information.
+
+.. tabs::
+
+    .. tab:: Discovery *server*
+
+        .. code-block:: bash
+
+            # run the server docker image with the XML configuration
+            docker run -td --name discovery_server --net host eprosima/vulcanexus:humble
+            docker cp <workspace>/server_configuration.xml discovery_server:/server_configuration.xml
+            docker exec -it discovery_server bash
+
+            # run the discovery server
+            source /opt/vulcanexus/humble/setup.bash
+            fastdds discovery -i 0 -x server_configuration.xml
+
+    .. tab:: Listener
+
+        .. code-block:: bash
+
+            # run the listener docker image with the XML configuration
+            docker run -td --name ros_listener --net host eprosima/vulcanexus:humble
+            docker cp <workspace>/listener_configuration.xml ros_listener:/listener_configuration.xml
+            docker exec -it ros_listener bash
+
+            # run the listener client
+            source /opt/ros/humble/setup.bash
+            export FASTRTPS_DEFAULT_PROFILES_FILE="listener_configuration.xml"
+            export ROS_DISCOVERY_SERVER="TCPv4:[<server public IP address>]:10111"
+            ros2 run demo_nodes_cpp listener
+
+    .. tab:: Talker
+
+        .. code-block:: bash
+
+            # run the talker docker image with the XML configuration
+            docker run -td --name ros_talker --net host eprosima/vulcanexus:humble
+            docker cp <workspace>/talker_configuration.xml ros_talker:/talker_configuration.xml
+            docker exec -it ros_talker bash
+
+            # run the talker client
+            source /opt/ros/humble/setup.bash
+            export FASTRTPS_DEFAULT_PROFILES_FILE="talker_configuration.xml"
+            export ROS_DISCOVERY_SERVER="TCPv4:[<server public IP address>]:10111"
+            ros2 run demo_nodes_cpp talker
+
+Make sure that the discovery *server* public IP has been properly set in all sections of the XML configuration files (in both ``listener_configuration.xml``, ``server_configuration.xml`` and ``talker_configuration.xml``), and also in the environment variable ``ROS_DISCOVERY_SERVER``.
+The host public IP address can be obtained by running:
+
+.. code-block:: bash
+
+    wget -qO- http://ipecho.net/plain | xargs echo
+
+It is also required to set the WAN address for each *client* in the XML transport descriptor configuration.
+If any of them are hosted in the same LAN as the discovery *server*, then the IP address would be the same for both contexts (*client* and *server*).
+
+.. note::
+
+    If that is the case, then also make sure that the XML transport descriptor listening ports configured for each of them are different.
