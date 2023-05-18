@@ -1,0 +1,59 @@
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+
+    <!-- TCP transport descriptor -->
+    <transport_descriptors>
+        <transport_descriptor>
+            <!-- Transport descriptor identifier -->
+            <transport_id>TCP_ds_transport</transport_id>
+
+            <!-- TCP transport -->
+            <type>TCPv4</type>
+
+            <!-- Discovery server listening (physical) port -->
+            <listening_ports>
+                <port>10111</port>
+            </listening_ports>
+
+            <!-- Discovery server WAN address -->
+            <wan_addr>10.1.1.1</wan_addr>
+        </transport_descriptor>
+    </transport_descriptors>
+
+    <!-- Participant profile -->
+    <participant profile_name="TCP_discovery_server_profile" is_default_profile="true">
+        <rtps>
+            <!-- Use declared TCP transport descriptor -->
+            <userTransports>
+                <transport_id>TCP_ds_transport</transport_id>
+            </userTransports>
+
+            <!-- Do not use default builtin transports -->
+            <useBuiltinTransports>false</useBuiltinTransports>
+
+            <!-- Set server's GUID prefix -->
+            <prefix>44.53.00.5f.45.50.52.4f.53.49.4d.41</prefix>
+
+            <builtin>
+                <!-- Discovery server configuration -->
+                <discovery_config>
+                    <!-- Node kind: SERVER -->
+                    <discoveryProtocol>SERVER</discoveryProtocol>
+                </discovery_config>
+
+                 <!-- Set server's listening locator for discovery phase -->
+                <metatrafficUnicastLocatorList>
+                    <locator>
+                        <!-- TCP Discovery server listening locator -->
+                        <tcpv4>
+                            <address>10.1.1.1</address>
+                            <port>10111</port>
+                            <physical_port>10111</physical_port>
+                        </tcpv4>
+                    </locator>
+                </metatrafficUnicastLocatorList>
+            </builtin>
+        </rtps>
+    </participant>
+</profiles>
