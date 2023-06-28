@@ -163,6 +163,8 @@ Applying different profiles to different entities
 *rmw_fastrtps* allows for the configuration of different entities with different QoS using the same XML file.
 For doing so, *rmw_fastrtps* locates profiles in the XML based on topic names.
 
+.. _vulcanexus_configure_pubsub_profile_names:
+
 Creating publishers/subscribers with different profiles
 .......................................................
 
