@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dds>
-    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
         <!-- Profile name shall match topic name -->
         <data_reader profile_name="/chatter">
             <!--

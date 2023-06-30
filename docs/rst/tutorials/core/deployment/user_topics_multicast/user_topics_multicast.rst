@@ -97,7 +97,7 @@ Then, within the container, run the talker-listener demo.
         source /vulcanexus_entrypoint.sh
         ros2 run demo_nodes_cpp talker
 
-Optionally, as shown in the following video, it is possible to use Wireshark to sniff the RTPS traffic to corroborate the specified multicast address in indeed used:
+Optionally, as shown in the following video, it is possible to use Wireshark to sniff the RTPS traffic and corroborate that the specified multicast address and port are indeed used:
 
 .. raw:: html
 
