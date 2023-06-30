@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
+        <!-- Profile name shall match topic name -->
+        <data_reader profile_name="/chatter">
+            <!--
+                Set the chatter subscriptions listening address and port to a multicast locator
+            -->
+            <multicastLocatorList>
+                <locator>
+                    <udpv4>
+                        <address>239.255.0.4</address>
+                        <port>7900</port>
+                    </udpv4>
+                </locator>
+            </multicastLocatorList>
+        </data_reader>
+    </profiles>
+</dds>
