@@ -13,7 +13,7 @@
 # limitations under the License.
 
 export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
-export VULCANEXUS_DISTRO=humble
+export VULCANEXUS_DISTRO=iron
 export VULCANEXUS_HOME="@VULCANEXUS_HOME@"
 
 # Functions for enabling and disabling Fast DDS Statistics' Topics
