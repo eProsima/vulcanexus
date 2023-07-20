@@ -5,6 +5,7 @@ aarch
 Abbenseth
 abc
 Abdi
+ABI
 Abou
 Abrar
 abspath
@@ -24,6 +25,7 @@ Afonso
 ahcorde
 Akash
 al
+Alaa
 alemme
 Alexey
 Alfi
@@ -49,6 +51,7 @@ ansi
 Apalone
 api
 apis
+appropiate
 appveyor
 aproximate
 aravis
@@ -60,6 +63,7 @@ args
 Arguedas
 argumentparser
 argv
+Aris
 Arjo
 armhf
 armv
@@ -69,11 +73,13 @@ asio
 assimp
 AssimpLoader
 async
+asynchronicity
 asyncio
 AsyncParameterClient
 atm
 attr
 ATX
+Audren
 Audrow
 Auguste
 autoapprove
@@ -83,8 +89,10 @@ autodoc
 automerge
 autopep
 Autoware
+avoider
 Aydos
 Baali
+Babenko
 backend
 backport
 backported
@@ -125,12 +133,14 @@ bool
 boolean
 booleans
 Borong
+Boutillier
 bpwilcox
 br
 Braga
 Brameld
 brawner
 brian
+Briceno
 bringup
 Brinkmann
 broadcasted
@@ -198,6 +208,8 @@ cobertura
 codebase
 codebases
 codecov
+Codegen
+codegen
 codename
 codepath
 colcon
@@ -245,6 +257,7 @@ Cristóbal
 Crola
 crossposting
 cstddef
+cstdint
 cstring
 ctest
 CTest
@@ -372,6 +385,7 @@ encodings
 encrpyted
 Endres
 Engelke
+entites
 entrypoints
 Enum
 enums
@@ -413,6 +427,7 @@ fini
 fixup
 fixures
 flakey
+Florencia
 Florian
 fn
 Fonseca
@@ -431,6 +446,7 @@ fs
 Fuerte
 Fujita
 fulfil
+func
 funciton
 FutureReturnCode
 Gaël
@@ -457,6 +473,7 @@ Gflags
 ghi
 gid
 Gifs
+Giorgio
 github
 gitignore
 GL
@@ -476,6 +493,7 @@ graphviz
 grayscale
 Greengrass
 Grupp
+gte
 gtest
 GTest
 GTests
@@ -510,6 +528,7 @@ Henrique
 Henttinen
 Hernández
 herrmann
+Hervé
 heterogenous
 hg
 hh
@@ -558,7 +577,9 @@ imu
 incorect
 incrementing
 indentions
+indepedently
 inertias
+infos
 infrastucture
 Ingo
 ini
@@ -580,13 +601,16 @@ IoT
 iox
 ipa
 IPv
+iquarobotics
 iRobot
 Irwini
 Ishida
 Ishita
 isn
+iso
 isp
 iter
+Iwai
 ixx
 ixy
 ixz
@@ -596,9 +620,11 @@ izz
 Jafar
 Jäger
 Jaison
+Jalisco
 james
 Jannik
 Jaroszek
+Jawad
 Jaworski
 jca
 Jeremie
@@ -702,6 +728,7 @@ llvm
 Lobotuerk
 localhost
 Localizer
+loks
 lookups
 lookupTransform
 loopback
@@ -714,6 +741,7 @@ lossy
 Loy
 lsouchet
 LTS
+lttng
 Lukas
 Lütkebohle
 lz
@@ -722,6 +750,7 @@ macos
 macOS
 maintainance
 maintainership
+Mainwaring
 Makefile
 malloc
 managment
@@ -763,6 +792,7 @@ michel
 microcontroller
 microcontrollers
 MiddleButton
+middlewares
 migrator
 mihelich
 Mikael
@@ -783,6 +813,7 @@ mixins
 Miyake
 mjbogusz
 mjeronimo
+mnt
 moc
 modularity
 Mohta
@@ -792,6 +823,7 @@ Montesino
 Mostafa
 mousewheel
 Movidius
+mpark
 mROS
 msg
 msgs
@@ -822,6 +854,7 @@ Naveau
 NBadyal
 nd
 neccessary
+Neufeldt
 Neumann
 Neves
 Nico
@@ -901,6 +934,8 @@ PGotzmann
 pil
 PIL
 Pimpl
+pimpl
+Pintaudi
 Piotr
 pkgs
 plaintext
@@ -927,6 +962,7 @@ preallocating
 precompiled
 preconfigured
 predefine
+preempty
 prefetch
 preloading
 prepend
@@ -943,6 +979,7 @@ programatically
 programmatically
 protip
 Protyasha
+Przemysław
 ps
 psutil
 pthread
@@ -959,6 +996,7 @@ pycodestyle
 pycommon
 pydocstyle
 pynode
+pyqt
 pyresult
 pytest
 pytopic
@@ -983,6 +1021,7 @@ Rabaud
 Ragnarök
 Rahman
 ralwing
+Rauch
 Raymakers
 rcl
 rclc
@@ -1001,6 +1040,7 @@ realpath
 realtime
 Realtime
 rearchitected
+rebased
 Rebecca
 reconfiguring
 Redistributables
@@ -1020,8 +1060,12 @@ repo
 repos
 reprs
 req
+reqponse
+reraise
+resluting
 resolveProcess
 respawn
+responder
 responsibile
 Restrepo
 reStructured
@@ -1034,9 +1078,11 @@ Reuter
 revolute
 rewriter
 rgb
+Rhys
 ricardo
 Ridely
 Ridley
+Rin
 Rivero
 RMF
 rms
@@ -1053,6 +1099,7 @@ Rosbridge
 rosdep
 rosdistro
 rosdoc
+rosgraph
 rosidl
 roslaunch
 rosout
@@ -1115,6 +1162,7 @@ sha
 Shalem
 sharable
 SharedLibrary
+shiboken
 Shima
 Shivam
 shm
@@ -1138,8 +1186,10 @@ sonia
 Soragna
 Sorbini
 sourceable
+sourcedir
 spacebar
 spdlog
+specifc
 specifed
 Spieler
 spiralray
@@ -1178,6 +1228,7 @@ Struct
 structs
 Sture
 suab
+subbuffer
 subcommands
 subcomponents
 subdirectory
@@ -1205,6 +1256,7 @@ svn
 sw
 Symington
 symlink
+Synodinos
 syntaxes
 sys
 sysctl
@@ -1237,6 +1289,7 @@ th
 Thackston
 Thibaud
 Thijs
+Tiago
 Tianyu
 tim
 TimerAction
@@ -1297,6 +1350,7 @@ unknownMacro
 unmaintained
 unmanaged
 unparsed
+unpause
 unrecognised
 unselect
 unselecting
@@ -1314,11 +1368,13 @@ url
 urls
 userspace
 usestl
+utf
 utils
 uupks
 uwp
 Vahl
 valgrind
+validator
 Valle
 variadic
 vcs
@@ -1341,6 +1397,7 @@ Voldivh
 Vollprecht
 vrabaud
 vsnprintf
+vsprintf
 waitable
 Waitable
 waitables
@@ -1351,6 +1408,7 @@ Waitsets
 Wakely
 walkthrough
 walkToTopParent
+waypoint
 Wconversion
 Wdeprecated
 webhooks
@@ -1359,6 +1417,8 @@ webOS
 Webots
 Wecht
 Wedler
+Welte
+Wendland
 wep
 weren
 Werror
@@ -1368,12 +1428,14 @@ wget
 WGs
 whitelist
 whitespace
+Wiebe
 Wijnands
 wildcarded
 winsock
 Wmaybe
 Wno
 Wojciech
+wokring
 Wolsieffer
 Wonnacott
 Woodall
@@ -1382,6 +1444,7 @@ wouldn
 Wpedantic
 Wrock
 ws
+Wspanialy
 wstring
 WString
 Wunused
@@ -1404,6 +1467,8 @@ Xue
 xUnit
 xwnb
 xyz
+Yadu
+Yadunund
 Yakumoo
 yaml
 Yasushi
@@ -1411,6 +1476,7 @@ Yau
 Yifei
 ymd
 yml
+ymski
 Yoan
 Yossi
 Youtube
@@ -1430,3 +1496,4 @@ Zou
 zstd
 zu
 정찬희
+兰陈昕
