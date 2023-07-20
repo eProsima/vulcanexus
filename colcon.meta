@@ -24,7 +24,7 @@
                 "-DSECURITY=ON"
             ]
         },
-        "rmw_fastrtps_shared_cpp":               
+        "rmw_fastrtps_shared_cpp":
         {
             "cmake-args":
             [
