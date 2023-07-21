@@ -14,6 +14,7 @@ The following table outlines the Vulcanexus releases and their support cycles:
 .. toctree::
     :hidden:
 
+    /rst/notes/iron/notes
     /rst/notes/humble/notes
     /rst/notes/galactic/notes
 
@@ -24,11 +25,15 @@ The following table outlines the Vulcanexus releases and their support cycles:
      - Latest Version
      - Release Date
      - EOL Date
+   * - :ref:`Iron Infiernillo <notes_iron_latest>`
+     - v2.3.0
+     - May 2022
+     - May 2027
    * - :ref:`Humble Hierro <notes_humble_latest>`
-     - v2.2.0
+     - v2.3.0
      - May 2022
      - May 2027
    * - :ref:`Galactic Gamble <notes_galactic_latest>`
-     - v1.0.3
+     - v1.0.4
      - May 2022
      - November 2022
