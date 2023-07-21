@@ -26,12 +26,12 @@ Prerequisites
 Vulcanexus Tools
 ^^^^^^^^^^^^^^^^
 
-Ensure that the Vulcanexus installation includes Vulcanexus Tools (either ``vulcanexus-humble-desktop``, ``vulcanexus-humble-tools``, or ``vulcanexus-humble-base``).
+Ensure that the Vulcanexus installation includes Vulcanexus Tools (either ``vulcanexus-iron-desktop``, ``vulcanexus-iron-tools``, or ``vulcanexus-iron-base``).
 Also, remember to source the environment in every terminal in this tutorial.
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/humble/setup.bash
+    source /opt/vulcanexus/iron/setup.bash
 
 Prometheus exporter
 ^^^^^^^^^^^^^^^^^^^

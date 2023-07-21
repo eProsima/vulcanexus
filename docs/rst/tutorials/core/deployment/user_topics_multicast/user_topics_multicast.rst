@@ -50,10 +50,10 @@ Save the following XML configuration file at the desired location, which will be
 Run the example
 ---------------
 
-This tutorial leverages the Vulcanexus `humble-desktop` Docker image to demonstrate the use of the aforementioned XML
+This tutorial leverages the Vulcanexus `iron-desktop` Docker image to demonstrate the use of the aforementioned XML
 configuration file to achieve multicast communication across different hosts.
 
-First, run two Vulcanexus `humble-desktop` with:
+First, run two Vulcanexus `iron-desktop` with:
 
 .. tabs::
 
@@ -66,7 +66,7 @@ First, run two Vulcanexus `humble-desktop` with:
             --tty \
             --rm \
             --volume <path_to_xml_config_file_dir>:/root/xml_config \
-            ubuntu-vulcanexus:humble-desktop
+            ubuntu-vulcanexus:iron-desktop
 
   .. tab:: Container two (Publication)
 
@@ -76,7 +76,7 @@ First, run two Vulcanexus `humble-desktop` with:
             --interactive \
             --tty \
             --rm \
-            ubuntu-vulcanexus:humble-desktop
+            ubuntu-vulcanexus:iron-desktop
 
 Then, within the container, run the talker-listener demo.
 

@@ -11,7 +11,7 @@ Storing private keys in Hardware Secure Modules (HSM)
 Background
 ----------
 
-`ROS 2 Security <https://docs.ros.org/en/humble/Concepts/About-Security.html>`_ is implemented by means of the `DDS Security specification <https://www.omg.org/spec/DDS-SECURITY/About-DDS-SECURITY/>`_.
+`ROS 2 Security <https://docs.ros.org/en/iron/Concepts/About-Security.html>`_ is implemented by means of the `DDS Security specification <https://www.omg.org/spec/DDS-SECURITY/About-DDS-SECURITY/>`_.
 Specifically, when using Vulcanexus, security is implemented through `Fast DDS security plugins <https://fast-dds.docs.eprosima.com/en/latest/fastdds/security/security.html#security>`_.
 The security files required by the aforementioned specification are encapsulated within the ROS 2 security enclaves.
 This approach allows to set different security policies for different nodes, processes, users, or devices by defining different enclaves with their corresponding permissions.
@@ -49,7 +49,7 @@ Please, also remember to source the environment in every terminal in this tutori
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/humble/setup.bash
+    source /opt/vulcanexus/iron/setup.bash
 
 ROS 2 Security infrastructure
 -----------------------------
@@ -127,7 +127,7 @@ Remember to correctly setup your environment in each terminal.
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/humble/setup.bash
+    source /opt/vulcanexus/iron/setup.bash
     export ROS_SECURITY_KEYSTORE=~/vulcanexus_hsm_ws/vulcanexus_demo_keystore
     export ROS_SECURITY_ENABLE=true
     export ROS_SECURITY_STRATEGY=Enforce
@@ -163,5 +163,5 @@ If a second listener is launched in a third terminal without security (do not se
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/humble/setup.bash
+    source /opt/vulcanexus/iron/setup.bash
     ros2 run demo_nodes_cpp listener

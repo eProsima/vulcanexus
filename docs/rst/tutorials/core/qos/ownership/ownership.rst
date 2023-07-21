@@ -19,19 +19,19 @@ This QoS Policy specifies whether it is allowed for multiple DataWriters to upda
 Prerequisites
 -------------
 
-The first prerequisite is to have Vulcanexus Humble installed (see `Linux binary installation <https://docs.vulcanexus.org/en/latest/rst/installation/linux_binary_installation.html>`_ or `Linux installation from sources <https://docs.vulcanexus.org/en/latest/rst/installation/linux_source_installation.html>`_)
+The first prerequisite is to have Vulcanexus Iron installed (see `Linux binary installation <https://docs.vulcanexus.org/en/latest/rst/installation/linux_binary_installation.html>`_ or `Linux installation from sources <https://docs.vulcanexus.org/en/latest/rst/installation/linux_source_installation.html>`_)
 
 Please, remember to source the environment in every terminal in this tutorial.
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/humble/setup.bash
+    source /opt/vulcanexus/iron/setup.bash
 
 In a terminal sourced with the previous line, run the following command to install the ROS 2 demo-nodes-cpp tutorial (administrative privileges may be required):
 
 .. code-block:: bash
 
-    apt-get update && apt install -y ros-humble-demo-nodes-cpp
+    apt-get update && apt install -y ros-iron-demo-nodes-cpp
 
 XML Profile definition
 ----------------------
@@ -82,7 +82,7 @@ Then, you can run `ros-demo-nodes-cpp` program to create a listener with `EXCLUS
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/humble/setup.bash
+    source /opt/vulcanexus/iron/setup.bash
     export FASTRTPS_DEFAULT_PROFILES_FILE=~/small_strength.xml
     ros2 run demo_nodes_cpp listener
 
@@ -91,7 +91,7 @@ To create `ros-demo-nodes-cpp` talker, run the following commands:
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/humble/setup.bash
+    source /opt/vulcanexus/iron/setup.bash
     export FASTRTPS_DEFAULT_PROFILES_FILE=~/small_strength.xml
     ros2 run demo_nodes_cpp talker
 
@@ -108,7 +108,7 @@ To create another `ros-demo-nodes-cpp` talker, but now with greater ownership st
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/humble/setup.bash
+    source /opt/vulcanexus/iron/setup.bash
     export FASTRTPS_DEFAULT_PROFILES_FILE=~/large_strength.xml
     ros2 run demo_nodes_cpp talker
 

@@ -22,7 +22,7 @@ It is required to have previously installed Vulcanexus using one of the followin
 * :ref:`linux_source_installation`
 * :ref:`docker_installation`
 
-Ensure that the Vulcanexus installation includes Vulcanexus Tools (either ``vulcanexus-humble-desktop``, ``vulcanexus-humble-tools``, or ``vulcanexus-humble-base``).
+Ensure that the Vulcanexus installation includes Vulcanexus Tools (either ``vulcanexus-iron-desktop``, ``vulcanexus-iron-tools``, or ``vulcanexus-iron-base``).
 
 Run Vulcanexus Docker image with:
 
@@ -34,7 +34,7 @@ Run Vulcanexus Docker image with:
         --privileged \
         -e DISPLAY=$DISPLAY \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
-        ubuntu-vulcanexus:humble-desktop
+        ubuntu-vulcanexus:iron-desktop
 
 To run more than one session within the same container, *Vulcanexus* installation must be sourced.
 Given a running container, you can open another session by:
@@ -47,7 +47,7 @@ Then, within the container, source the *Vulcanexus* installation with:
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/humble/setup.bash
+    source /opt/vulcanexus/iron/setup.bash
 
 Launch ROS 2 Shapes Demo
 ------------------------

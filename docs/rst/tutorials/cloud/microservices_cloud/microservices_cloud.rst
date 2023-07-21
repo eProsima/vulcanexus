@@ -31,7 +31,7 @@ thus reducing the computational effort made by the edge nodes.
 
     This tutorial uses the ROS 2 Service communication method.
     Refer to
-    `ROS 2 Documentation <https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Services/Understanding-ROS2-Services.html>`_
+    `ROS 2 Documentation <https://docs.ros.org/en/iron/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Services/Understanding-ROS2-Services.html>`_
     for more information regarding ROS 2 Services, how they work and how to use them.
 
 
@@ -139,7 +139,7 @@ Start by creating the workspace of this application and downloading the source c
 .. code-block:: bash
 
     mkdir -p clients_ws/src && cd clients_ws/src
-    git clone --branch humble https://github.com/eProsima/vulcanexus.git
+    git clone --branch iron https://github.com/eProsima/vulcanexus.git
     mv vulcanexus/code/microservices/clients_py .
     rm -rf vulcanexus
     cd ..
@@ -148,7 +148,7 @@ Once created the workspace, source the Vulcanexus environment and build the ``cl
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/humble/setup.bash
+    source /opt/vulcanexus/iron/setup.bash
     colcon build
 
 Then source the ``clients_ws`` workspace:
@@ -185,7 +185,7 @@ Setup the Vulcanexus environment, either in a Docker container or on the local h
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/humble/setup.bash
+    source /opt/vulcanexus/iron/setup.bash
 
 Let's create a DDS Router configuration file as the one shown below.
 
@@ -313,7 +313,7 @@ To finish, as done in the previous steps, setup the Vulcanexus environment sourc
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/humble/setup.bash
+    source /opt/vulcanexus/iron/setup.bash
     ddsrouter -c <path/to/file>/ddsrouter_cloud.yaml
 
 The following figure summarizes the deployment on the Cloud.

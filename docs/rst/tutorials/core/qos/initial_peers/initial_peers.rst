@@ -33,23 +33,23 @@ A complete description of the initial peers list and its configuration can be fo
 Prerequisites
 -------------
 
-First of all, make sure that Vulcanexus Humble is installed.
+First of all, make sure that Vulcanexus Iron is installed.
 The docker installation is required for this tutorial (see :ref:`Docker installation <docker_installation>`).
 
-Open two terminals, and run the Vulcanexus Humble image in each one with the following command:
+Open two terminals, and run the Vulcanexus Iron image in each one with the following command:
 
 *   Terminal 1:
 
     .. code-block:: bash
 
-        docker run -it --name ros2_context_1 ubuntu-vulcanexus:humble-desktop
+        docker run -it --name ros2_context_1 ubuntu-vulcanexus:iron-desktop
 
 
 *   Terminal 2:
 
     .. code-block:: bash
 
-        docker run -it --name ros2_context_2 ubuntu-vulcanexus:humble-desktop
+        docker run -it --name ros2_context_2 ubuntu-vulcanexus:iron-desktop
 
 .. note::
 
@@ -88,13 +88,13 @@ Open a terminal, and list the Vulcanexus docker containers.
 
 The output should look like the following table:
 
-+-----------------+----------------------------------+----------------+---------------+--------------+-------+----------------+
-| CONTAINER ID    | IMAGE                            | COMMAND        | CREATED       | STATUS       | PORTS | NAMES          |
-+=================+==================================+================+===============+==============+=======+================+
-| <container ID1> | ubuntu-vulcanexus:humble-desktop | "…vulcanexus…" | 2 minutes ago | Up 2 minutes |       | ros2_context_1 |
-+-----------------+----------------------------------+----------------+---------------+--------------+-------+----------------+
-| <container ID2> | ubuntu-vulcanexus:humble-desktop | "…vulcanexus…" | 2 minutes ago | Up 2 minutes |       | ros2_context_2 |
-+-----------------+----------------------------------+----------------+---------------+--------------+-------+----------------+
++-----------------+--------------------------------+----------------+---------------+--------------+-------+----------------+
+| CONTAINER ID    | IMAGE                          | COMMAND        | CREATED       | STATUS       | PORTS | NAMES          |
++=================+================================+================+===============+==============+=======+================+
+| <container ID1> | ubuntu-vulcanexus:iron-desktop | "…vulcanexus…" | 2 minutes ago | Up 2 minutes |       | ros2_context_1 |
++-----------------+--------------------------------+----------------+---------------+--------------+-------+----------------+
+| <container ID2> | ubuntu-vulcanexus:iron-desktop | "…vulcanexus…" | 2 minutes ago | Up 2 minutes |       | ros2_context_2 |
++-----------------+--------------------------------+----------------+---------------+--------------+-------+----------------+
 
 Using the container name, check its detailed information.
 The following command also filters the output to obtain only the container IP address:

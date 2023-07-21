@@ -72,7 +72,7 @@ To do so, the ``Client listener`` node discovery servers list would be updated o
 Prerequisites
 -------------
 
-First of all, make sure that Vulcanexus Humble is installed.
+First of all, make sure that Vulcanexus Iron is installed.
 The docker installation is required for this tutorial (see :ref:`Docker installation <docker_installation>`).
 
 .. note::
@@ -89,7 +89,7 @@ Set a specific interface pool for this implementation by running the following c
 
     docker network create --subnet=113.11.3.0/16 vulcanexus_tutorial
 
-Then, open five terminals, and run the Vulcanexus Humble image in each one with the following commands with the specific IP addresses:
+Then, open five terminals, and run the Vulcanexus Iron image in each one with the following commands with the specific IP addresses:
 
 .. tabs::
 
@@ -101,19 +101,19 @@ Then, open five terminals, and run the Vulcanexus Humble image in each one with 
 
                 .. code-block:: bash
 
-                    docker run -it --rm --name server_A --net vulcanexus_tutorial --ip 113.11.3.0 ubuntu-vulcanexus:humble-desktop
+                    docker run -it --rm --name server_A --net vulcanexus_tutorial --ip 113.11.3.0 ubuntu-vulcanexus:iron-desktop
 
             .. tab:: Client talker A
 
                 .. code-block:: bash
 
-                    docker run -it --rm --name talker_A --net vulcanexus_tutorial --ip 113.11.3.2 ubuntu-vulcanexus:humble-desktop
+                    docker run -it --rm --name talker_A --net vulcanexus_tutorial --ip 113.11.3.2 ubuntu-vulcanexus:iron-desktop
 
             .. tab:: Client listener
 
                 .. code-block:: bash
 
-                    docker run -it --rm --name listener --net vulcanexus_tutorial --ip 113.11.3.3 ubuntu-vulcanexus:humble-desktop
+                    docker run -it --rm --name listener --net vulcanexus_tutorial --ip 113.11.3.3 ubuntu-vulcanexus:iron-desktop
 
     .. tab:: Discovery Server Network B
 
@@ -123,13 +123,13 @@ Then, open five terminals, and run the Vulcanexus Humble image in each one with 
 
                 .. code-block:: bash
 
-                    docker run -it --rm --name server_B --net vulcanexus_tutorial --ip 113.11.3.1 ubuntu-vulcanexus:humble-desktop
+                    docker run -it --rm --name server_B --net vulcanexus_tutorial --ip 113.11.3.1 ubuntu-vulcanexus:iron-desktop
 
             .. tab:: Client talker B
 
                 .. code-block:: bash
 
-                    docker run -it --rm --name talker_B --net vulcanexus_tutorial --ip 113.11.3.4 ubuntu-vulcanexus:humble-desktop
+                    docker run -it --rm --name talker_B --net vulcanexus_tutorial --ip 113.11.3.4 ubuntu-vulcanexus:iron-desktop
 
 
 
