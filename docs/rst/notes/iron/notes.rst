@@ -27,10 +27,10 @@ This version ships the following packages:
       - `v1.3.1 <https://github.com/eProsima/foonathan_memory_vendor/releases/tag/v1.3.1>`__
       - v3.0.0
     * - micro-ROS Agent
-      - `v3.0.5 <https://github.com/micro-ROS/micro-ROS-Agent/blob/humble/micro_ros_agent/CHANGELOG.rst#305-2023-06-06>`__
+      - `v4.0.3 <https://github.com/micro-ROS/micro-ROS-Agent/blob/iron/micro_ros_agent/CHANGELOG.rst#403-2023-06-06>`__
       - v3.0.0
     * - micro-ROS Setup
-      - `v3.1.3 <https://github.com/micro-ROS/micro_ros_setup/blob/humble/CHANGELOG.rst#313-2023-06-12>`__
+      - `v4.1.0 <https://github.com/micro-ROS/micro_ros_setup/blob/iron/CHANGELOG.rst#410-2023-06-12>`__
       - v3.0.0
     * - ROS 2 Monitor
       - `v1.5.0 <https://fast-dds-monitor.readthedocs.io/en/latest/rst/notes/notes.html#version-v1-5-0>`__
