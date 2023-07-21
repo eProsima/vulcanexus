@@ -15,7 +15,7 @@ And then load the image with:
 
 .. code-block:: bash
 
-    docker load -i ubuntu-vulcanexus-humble-desktop.tar
+    docker load -i ubuntu-vulcanexus-iron-desktop.tar
 
 *Vulcanexus* Docker image can be run with:
 
@@ -31,13 +31,13 @@ And then load the image with:
                 --privileged \
                 -e DISPLAY=$DISPLAY \
                 -v /tmp/.X11-unix:/tmp/.X11-unix \
-                ubuntu-vulcanexus:humble-desktop
+                ubuntu-vulcanexus:iron-desktop
 
     .. tab:: CLI support
 
         .. code-block:: bash
 
-            docker run -it ubuntu-vulcanexus:humble-desktop
+            docker run -it ubuntu-vulcanexus:iron-desktop
 
 To run more than one session within the same container, *Vulcanexus* installation must be sourced.
 Given a running container, you can open another session by:
@@ -50,7 +50,7 @@ Then, within the container, source the *Vulcanexus* installation with:
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/humble/setup.bash
+    source /opt/vulcanexus/iron/setup.bash
 
 To verify that the sourcing was correct, run:
 
@@ -62,4 +62,4 @@ The output should be:
 
 .. code-block:: bash
 
-    /opt/vulcanexus/humble
+    /opt/vulcanexus/iron

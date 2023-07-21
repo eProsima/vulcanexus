@@ -1,9 +1,9 @@
-FROM ubuntu-vulcanexus-cloud:humble
+FROM ubuntu-vulcanexus-cloud:iron
 
 # Install demo-nodes-cpp
-RUN source /opt/vulcanexus/humble/setup.bash && \
+RUN source /opt/vulcanexus/iron/setup.bash && \
     apt update && \
-    apt install -y ros-humble-demo-nodes-cpp
+    apt install -y ros-iron-demo-nodes-cpp
 
 COPY ./run.bash /
 RUN chmod +x /run.bash

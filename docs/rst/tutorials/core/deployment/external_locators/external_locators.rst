@@ -101,14 +101,14 @@ On both hosts, open a shell and run:
 
                     docker run --rm -it `# Cleanup, interactive terminal` \
                         -p 11200-11201:7412-7413/udp `# Expose default internal ports to host` \
-                        ubuntu-vulcanexus:humble-desktop `# Image name`
+                        ubuntu-vulcanexus:iron-desktop `# Image name`
 
             .. tab:: TERMINAL 2
 
                 .. code-block:: bash
 
                     docker run --rm -it `# Cleanup, interactive terminal` \
-                        ubuntu-vulcanexus:humble-desktop `# Image name`
+                        ubuntu-vulcanexus:iron-desktop `# Image name`
 
 
     .. tab:: HOST 2
@@ -121,7 +121,7 @@ On both hosts, open a shell and run:
 
                     docker run --rm -it `# Cleanup, interactive terminal` \
                         -p 11200-11201:7412-7413/udp `# Expose default internal ports to host` \
-                        ubuntu-vulcanexus:humble-desktop `# Image name`
+                        ubuntu-vulcanexus:iron-desktop `# Image name`
 
 
 .. note::

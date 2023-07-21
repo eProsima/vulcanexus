@@ -93,11 +93,11 @@ script_path = os.path.abspath(pathlib.Path(__file__).parent.absolute())
 project_source_docs_dir = os.path.abspath('{}/rst'.format(script_path))
 
 macros = {
-    'DISTRO': 'humble',
-    'DISTRO_TITLE': 'Humble',
-    'DISTRO_TITLE_FULL': 'Humble Hawksbill',
-    'REPOS_FILE_BRANCH': 'humble',
-    'FASTDDS_BRANCH': 'v2.8.1',
+    'DISTRO': 'iron',
+    'DISTRO_TITLE': 'Iron',
+    'DISTRO_TITLE_FULL': 'Iron Irwini',
+    'REPOS_FILE_BRANCH': 'iron',
+    'FASTDDS_BRANCH': 'v2.11.1',
 }
 
 # -- General configuration ------------------------------------------------

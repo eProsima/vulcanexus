@@ -58,22 +58,22 @@ For this, there are two possible options:
 
     .. code-block:: bash
 
-        docker run -it ubuntu-vulcanexus:humble-desktop
+        docker run -it ubuntu-vulcanexus:iron-desktop
 
     Then, within the container, source the Vulcanexus installation with:
 
     .. code-block:: bash
 
-            source /opt/vulcanexus/humble/setup.bash
+            source /opt/vulcanexus/iron/setup.bash
 
 #.  Setting up the development environment on the local host.
-    For this second option, it is necessary to have installed the ``vucanexus-humble-desktop`` package, since this is the one that includes all the simulation tools, demos and tutorials.
+    For this second option, it is necessary to have installed the ``vucanexus-iron-desktop`` package, since this is the one that includes all the simulation tools, demos and tutorials.
 
     Source the following file to setup the Vulcanexus environment:
 
     .. code-block:: bash
 
-            source /opt/vulcanexus/humble/setup.bash
+            source /opt/vulcanexus/iron/setup.bash
 
 Running ROS 2 nodes
 ^^^^^^^^^^^^^^^^^^^
@@ -111,7 +111,7 @@ Then, create the |rosrouter| configuration file as the one shown below.
 
 .. todo:
 
-..     Vulcanexus come already with a configuration file for changing domain from ``0`` to ``1`` installed in ``/opt/vulcanexus/humble/share/ddsrouter_tool/resources/configurations/examples/change_domain.yaml``.
+..     Vulcanexus come already with a configuration file for changing domain from ``0`` to ``1`` installed in ``/opt/vulcanexus/iron/share/ddsrouter_tool/resources/configurations/examples/change_domain.yaml``.
 ..     This file can be used in :code:`ddsrouter` command with :code:`--config-path` argument.
 
 .. literalinclude:: /resources/tutorials/cloud/change_domain/change_domain.yaml

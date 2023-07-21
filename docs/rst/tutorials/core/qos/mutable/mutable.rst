@@ -33,12 +33,12 @@ This will be done creating a custom package, following similar steps as in :ref:
 
 The ROS 2 middleware layer (see :ref:`concepts_ros2_vendors`) provides APIs to get handles to the objects of the inner DDS implementation, which is needed to be able to change the mutable Qos.
 Thus, this tutorial will also show how to use that powerful tool.
-For another demo on how to access inner RMW entities, see `demo_nodes_cpp_native <https://github.com/ros2/demos/tree/humble/demo_nodes_cpp_native>`__.
+For another demo on how to access inner RMW entities, see `demo_nodes_cpp_native <https://github.com/ros2/demos/tree/iron/demo_nodes_cpp_native>`__.
 
 Prerequisites
 -------------
 
-The first prerequisite is to have Vulcanexus Humble installed (see :ref:`Linux binary installation <linux_binary_installation>` or :ref:`Linux installation from sources <linux_source_installation>`).
+The first prerequisite is to have Vulcanexus Iron installed (see :ref:`Linux binary installation <linux_binary_installation>` or :ref:`Linux installation from sources <linux_source_installation>`).
 
 Also, before starting this tutorial, user should be familiar with creating a workspace and creating a package, as well as familiar with parameters and their function in a ROS 2 system.
 The recommendation is to first complete the following tutorials:
@@ -66,16 +66,16 @@ Create a clean workspace and download the Vulcanexus - Change Mutable QoS Throug
 
     # Download project source code
     cd ~/vulcanexus_ws/src/vulcanexus_change_mutable_qos
-    wget -O CMakeLists.txt https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/CMakeLists.txt
-    wget -O package.xml https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/package.xml
+    wget -O CMakeLists.txt https://raw.githubusercontent.com/eProsima/vulcanexus/iron/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/CMakeLists.txt
+    wget -O package.xml https://raw.githubusercontent.com/eProsima/vulcanexus/iron/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/package.xml
 
     cd ~/vulcanexus_ws/src/vulcanexus_change_mutable_qos/src
-    wget -O change_mutable_qos_publisher.cpp https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_publisher.cpp
+    wget -O change_mutable_qos_publisher.cpp https://raw.githubusercontent.com/eProsima/vulcanexus/iron/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/change_mutable_qos_publisher.cpp
 
     # Download profile config files for Fast DDS participants
-    wget -O large_ownership_strength.xml https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/large_ownership_strength.xml
-    wget -O small_ownership_strength.xml https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/small_ownership_strength.xml
-    wget -O subscriber_exclusive_ownership.xml https://raw.githubusercontent.com/eProsima/vulcanexus/humble/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/subscriber_exclusive_ownership.xml
+    wget -O large_ownership_strength.xml https://raw.githubusercontent.com/eProsima/vulcanexus/iron/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/large_ownership_strength.xml
+    wget -O small_ownership_strength.xml https://raw.githubusercontent.com/eProsima/vulcanexus/iron/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/small_ownership_strength.xml
+    wget -O subscriber_exclusive_ownership.xml https://raw.githubusercontent.com/eProsima/vulcanexus/iron/docs/resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/subscriber_exclusive_ownership.xml
 
 
 The resulting directory structure should be:
@@ -169,7 +169,7 @@ Change the directory to the workspace folder and build using colcon:
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/humble/setup.bash
+    source /opt/vulcanexus/iron/setup.bash
     cd ~/vulcanexus_ws
     colcon build
 
@@ -198,7 +198,7 @@ The code to execute in each terminal can be found in the tabs below:
 
         .. code-block:: bash
 
-            source /opt/vulcanexus/humble/setup.bash
+            source /opt/vulcanexus/iron/setup.bash
             cd ~/vulcanexus_ws
             `# Using profile to set exclusive ownership`
             export FASTRTPS_DEFAULT_PROFILES_FILE=./install/vulcanexus_change_mutable_qos/profiles/subscriber_exclusive_ownership.xml
@@ -208,7 +208,7 @@ The code to execute in each terminal can be found in the tabs below:
 
         .. code-block:: bash
 
-            source /opt/vulcanexus/humble/setup.bash
+            source /opt/vulcanexus/iron/setup.bash
             cd ~/vulcanexus_ws
             source install/setup.bash
             `# Using profile to set large strenght value`
@@ -219,7 +219,7 @@ The code to execute in each terminal can be found in the tabs below:
 
         .. code-block:: bash
 
-            source /opt/vulcanexus/humble/setup.bash
+            source /opt/vulcanexus/iron/setup.bash
             cd ~/vulcanexus_ws
             source install/setup.bash
             `# Using profile to set small strenght value`
@@ -246,7 +246,7 @@ In another terminal, try the following code:
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/humble/setup.bash
+    source /opt/vulcanexus/iron/setup.bash
     cd ~/vulcanexus_ws
     source install/setup.bash
     ros2 param set /Publisher_2_change_mutable_qos Publisher_2_ownership_strength 50

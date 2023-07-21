@@ -21,12 +21,12 @@ This tutorial provides step-by-step instructions to use Vulcanexus for monitorin
 Prerequisites
 -------------
 
-Ensure that the Vulcanexus installation includes Vulcanexus Tools (either ``vulcanexus-humble-desktop``, ``vulcanexus-humble-tools``, or ``vulcanexus-humble-base``).
+Ensure that the Vulcanexus installation includes Vulcanexus Tools (either ``vulcanexus-iron-desktop``, ``vulcanexus-iron-tools``, or ``vulcanexus-iron-base``).
 Also, remember to source the environment in every terminal in this tutorial.
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/humble/setup.bash
+    source /opt/vulcanexus/iron/setup.bash
 
 Launch ROS 2 Monitor
 -----------------------
@@ -82,7 +82,7 @@ Alias
 
 Participants in ROS 2 are named :code:`/` by default.
 In order to differentiate them, it is possible to change the Participant's aliases within the *ROS 2 Monitor*.
-In this case, the :code:`vulcanexus-humble-talker` Participant would be the one with a writer, and the :code:`vulcanexus-humble-listener` Participant would be the one with a reader.
+In this case, the :code:`vulcanexus-iron-talker` Participant would be the one with a writer, and the :code:`vulcanexus-iron-listener` Participant would be the one with a reader.
 
 .. figure:: /rst/figures/tutorials/tools/monitor_screenshots/alias.png
     :align: center
@@ -99,7 +99,7 @@ There, the host, user and process of each node are displayed.
 Statistical data
 ^^^^^^^^^^^^^^^^
 
-To show statistical data about the communication between the :code:`vulcanexus-humble-talker` and the :code:`vulcanexus-humble-listener`, follow the steps to `create dynamic series chart <https://fast-dds-monitor.readthedocs.io/en/latest/rst/getting_started/tutorial.html#tutorial-create-dynamic-series>`_.
+To show statistical data about the communication between the :code:`vulcanexus-iron-talker` and the :code:`vulcanexus-iron-listener`, follow the steps to `create dynamic series chart <https://fast-dds-monitor.readthedocs.io/en/latest/rst/getting_started/tutorial.html#tutorial-create-dynamic-series>`_.
 
 .. figure:: /rst/figures/tutorials/tools/monitor_screenshots/statistics.png
     :align: center

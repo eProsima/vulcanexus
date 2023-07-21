@@ -103,21 +103,21 @@ For this, there are two possible options:
             --privileged \
             -e DISPLAY=$DISPLAY \
             -v /tmp/.X11-unix:/tmp/.X11-unix \
-            ubuntu-vulcanexus:humble-desktop
+            ubuntu-vulcanexus:iron-desktop
 
     Then, within the container, source the Vulcanexus installation with:
 
     .. code-block:: bash
 
-            source /opt/vulcanexus/humble/setup.bash
+            source /opt/vulcanexus/iron/setup.bash
 
-#.  Setting up the development environment on the local host. For this second option, it is necessary to have installed the ``vucanexus-humble-desktop`` package, since this is the one that includes all the simulation tools, demos and tutorials.
+#.  Setting up the development environment on the local host. For this second option, it is necessary to have installed the ``vucanexus-iron-desktop`` package, since this is the one that includes all the simulation tools, demos and tutorials.
 
     Source the following file to setup the Vulcanexus environment:
 
     .. code-block:: bash
 
-            source /opt/vulcanexus/humble/setup.bash
+            source /opt/vulcanexus/iron/setup.bash
 
 Once the environment has been setup using one of the above options, simply run the ``turtlesim_node``.
 
@@ -151,7 +151,7 @@ Setup the Vulcanexus environment, either in a Docker container or on the local h
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/humble/setup.bash
+    source /opt/vulcanexus/iron/setup.bash
 
 Let's create a the DDS Router configuration file as the one shown below.
 
@@ -197,14 +197,14 @@ Run the ``turtlesim_square_move`` in the Edge 2 machine, which is the controller
 This will send commands to the ROS 2 application to the edge to move the turtle and receive information about the current state of the turtle at any time.
 
 A ROS 2 application that moves the turtle by drawing a square has been developed for this purpose.
-The application is based on the `ROS 2 tutorials <https://github.com/ros/ros_tutorials/tree/humble/turtlesim>`_, but has been slightly modified in order to make it easier to understand and adapt to the ROS 2 and modern C++ programming methods.
+The application is based on the `ROS 2 tutorials <https://github.com/ros/ros_tutorials/tree/iron/turtlesim>`_, but has been slightly modified in order to make it easier to understand and adapt to the ROS 2 and modern C++ programming methods.
 
 Then, start by creating the workspace of this application and downloading the source code:
 
 .. code-block:: bash
 
     mkdir -p turtlesim_move_ws/src && cd turtlesim_move_ws/src
-    git clone --branch humble https://github.com/eProsima/vulcanexus.git
+    git clone --branch iron https://github.com/eProsima/vulcanexus.git
     mv vulcanexus/code/turtlesim .
     rm -rf vulcanexus
     cd ..
@@ -213,7 +213,7 @@ Once created the workspace, source the Vulcanexus environment and build the ``tu
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/humble/setup.bash
+    source /opt/vulcanexus/iron/setup.bash
     colcon build
 
 .. note::

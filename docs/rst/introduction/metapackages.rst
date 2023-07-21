@@ -20,12 +20,12 @@ No additional developer tools are included with this basic installation.
 .. note::
 
     The binary package is called following the next convention ``vulcanexus-<version_name>-core`` being the ``version_name`` the corresponding adjective associated with the :ref:`specific release <release_notes>`.
-    For example, for Vulcanexus v2, ``version_name`` is ``humble``.
+    For example, for Vulcanexus v3, ``version_name`` is ``iron``.
     Consequently, in order to install this package run the following command after setting up the repository as explained in the :ref:`installation guide <linux_binary_installation>`
 
         .. code-block:: bash
 
-            sudo apt install vulcanexus-humble-core
+            sudo apt install vulcanexus-iron-core
 
 Vulcanexus Tools
 ----------------
@@ -41,12 +41,12 @@ Also, :ref:`ROS 2 Shapes Demo <vulcanexus_shapes_demo>` is provided as a simple 
 .. note::
 
     The binary package is called following the next convention ``vulcanexus-<version_name>-tools`` being the ``version_name`` the corresponding adjective associated with the :ref:`specific release <release_notes>`.
-    For example, for Vulcanexus v2, ``version_name`` is ``humble``.
+    For example, for Vulcanexus v3, ``version_name`` is ``iron``.
     Consequently, in order to install this package run the following command after setting up the repository as explained in the :ref:`installation guide <linux_binary_installation>`
 
         .. code-block:: bash
 
-            sudo apt install vulcanexus-humble-tools
+            sudo apt install vulcanexus-iron-tools
 
 Vulcanexus Micro
 ----------------
@@ -62,12 +62,12 @@ Micro-ROS provides also a set of tools for integration within many build systems
 .. note::
 
     The binary package is called following the next convention ``vulcanexus-<version_name>-micro`` being the ``version_name`` the corresponding adjective associated with the :ref:`specific release <release_notes>`.
-    For example, for Vulcanexus v2, ``version_name`` is ``humble``.
+    For example, for Vulcanexus v3, ``version_name`` is ``iron``.
     Consequently, in order to install this package run the following command after setting up the repository as explained in the :ref:`installation guide <linux_binary_installation>`
 
         .. code-block:: bash
 
-            sudo apt install vulcanexus-humble-micro
+            sudo apt install vulcanexus-iron-micro
 
 .. _intro_metapackages_cloud:
 
@@ -84,12 +84,12 @@ To this end, :ref:`ROS 2 Router <vulcanexus_router>` is installed in this *Vulca
 .. note::
 
     The binary package is called following the next convention ``vulcanexus-<version_name>-cloud`` being the ``version_name`` the corresponding adjective associated with the :ref:`specific release <release_notes>`.
-    For example, for Vulcanexus v2, ``version_name`` is ``humble``.
+    For example, for Vulcanexus v3, ``version_name`` is ``iron``.
     Consequently, in order to install this package run the following command after setting up the repository as explained in the :ref:`installation guide <linux_binary_installation>`
 
         .. code-block:: bash
 
-            sudo apt install vulcanexus-humble-cloud
+            sudo apt install vulcanexus-iron-cloud
 
 Vulcanexus Simulation
 ---------------------
@@ -100,12 +100,12 @@ Webots allows to simulate real robotic environments providing examples of robot 
 .. note::
 
     The binary package is called following the next convention ``vulcanexus-<version_name>-simulation`` being the ``version_name`` the corresponding adjective associated with the :ref:`specific release <release_notes>`.
-    For example, for Vulcanexus v2, ``version_name`` is ``humble``.
+    For example, for Vulcanexus v3, ``version_name`` is ``iron``.
     Consequently, in order to install this package run the following command after setting up the repository as explained in the :ref:`installation guide <linux_binary_installation>`
 
         .. code-block:: bash
 
-            sudo apt install vulcanexus-humble-simulation
+            sudo apt install vulcanexus-iron-simulation
 
 Vulcanexus Base
 ---------------
@@ -115,12 +115,12 @@ Vulcanexus Base
 .. note::
 
     The binary package is called following the next convention ``vulcanexus-<version_name>-base`` being the ``version_name`` the corresponding adjective associated with the :ref:`specific release <release_notes>`.
-    For example, for Vulcanexus v2, ``version_name`` is ``humble``.
+    For example, for Vulcanexus v3, ``version_name`` is ``iron``.
     Consequently, in order to install this package run the following command after setting up the repository as explained in the :ref:`installation guide <linux_binary_installation>`
 
         .. code-block:: bash
 
-            sudo apt install vulcanexus-humble-base
+            sudo apt install vulcanexus-iron-base
 
 Vulcanexus Desktop
 ------------------
@@ -132,9 +132,9 @@ This is the most complete *Vulcanexus* installation and it is intended for devel
 .. note::
 
     The binary package is called following the next convention ``vulcanexus-<version_name>-desktop`` being the ``version_name`` the corresponding adjective associated with the :ref:`specific release <release_notes>`.
-    For example, for Vulcanexus v2, ``version_name`` is ``humble``.
+    For example, for Vulcanexus v3, ``version_name`` is ``iron``.
     Consequently, in order to install this package run the following command after setting up the repository as explained in the :ref:`installation guide <linux_binary_installation>`
 
         .. code-block:: bash
 
-            sudo apt install vulcanexus-humble-desktop
+            sudo apt install vulcanexus-iron-desktop

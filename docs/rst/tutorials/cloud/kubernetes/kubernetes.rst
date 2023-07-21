@@ -22,12 +22,12 @@ Cloud environments such as container-oriented platforms can be connected using `
 Prerequisites
 -------------
 
-Ensure that the Vulcanexus installation includes the cloud and the ROS 2 demo nodes package (it is suggested to use ``vulcanexus-humble-desktop``).
+Ensure that the Vulcanexus installation includes the cloud and the ROS 2 demo nodes package (it is suggested to use ``vulcanexus-iron-desktop``).
 Also, remember to source the environment in every terminal in this tutorial.
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/humble/setup.bash
+    source /opt/vulcanexus/iron/setup.bash
 
 .. warning::
 
@@ -130,7 +130,7 @@ DDS-Router deployment
 ^^^^^^^^^^^^^^^^^^^^^
 
 The cloud router is launched from within a *Vulcanexus Cloud* Docker image (that can be downloaded in `Vulcanexus webpage <https://vulcanexus.org/>`_), which uses as configuration file the one hosted in the previously set up ConfigMap.
-Assuming the name of the generated Docker image is ``ubuntu-vulcanexus-cloud:humble``, the cloud router will then be deployed with the following settings:
+Assuming the name of the generated Docker image is ``ubuntu-vulcanexus-cloud:iron``, the cloud router will then be deployed with the following settings:
 
 .. literalinclude:: /resources/tutorials/cloud/kubernetes/ddsrouter.yaml
     :language: yaml
@@ -156,7 +156,7 @@ Build the docker image running the following command:
 
 .. code-block:: bash
 
-    docker build -t vulcanexus-cloud-demo-nodes:humble -f Dockerfile
+    docker build -t vulcanexus-cloud-demo-nodes:iron -f Dockerfile
 
 Now, the listener pod can be deployed by providing the following configuration:
 

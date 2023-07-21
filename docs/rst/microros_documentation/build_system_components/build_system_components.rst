@@ -33,7 +33,7 @@ Also, a wide range of transport layers are available: UART, UDP/IP, TCP/IP, USB-
 
     .. code-block:: bash
 
-        source /opt/vulcanexus/humble/setup.bash
+        source /opt/vulcanexus/iron/setup.bash
         ros2 run micro_ros_setup component renesas_e2_studio
 
 .. figure:: /rst/figures/micro/platforms_logos/esp_idf.png
@@ -56,7 +56,7 @@ Most of the ESP32 versions are supported: ESP32, ESP32-S2, ESP32-S3 and even the
 
     .. code-block:: bash
 
-        source /opt/vulcanexus/humble/setup.bash
+        source /opt/vulcanexus/iron/setup.bash
         ros2 run micro_ros_setup component esp_idf
 
 .. figure:: /rst/figures/micro/platforms_logos/zephyr_rtos.png
@@ -80,7 +80,7 @@ This module support a considerable part of the list of `supported boards by Zeph
 
     .. code-block:: bash
 
-        source /opt/vulcanexus/humble/setup.bash
+        source /opt/vulcanexus/iron/setup.bash
         ros2 run micro_ros_setup component zephyr_rtos
 
 .. figure:: /rst/figures/micro/platforms_logos/mbed_rtos.png
@@ -100,7 +100,7 @@ A basic UART transport is provided for version v6.8 and beyond.
 
     .. code-block:: bash
 
-        source /opt/vulcanexus/humble/setup.bash
+        source /opt/vulcanexus/iron/setup.bash
         ros2 run micro_ros_setup component mbed_rtos
 
 .. figure:: /rst/figures/micro/platforms_logos/nuttx_rtos.png
@@ -124,7 +124,7 @@ micro-ROS component for NuttX provides an example application environment where 
 
     .. code-block:: bash
 
-        source /opt/vulcanexus/humble/setup.bash
+        source /opt/vulcanexus/iron/setup.bash
         ros2 run micro_ros_setup component nuttx_rtos
 
 .. figure:: /rst/figures/micro/platforms_logos/azure_rtos.png
@@ -146,7 +146,7 @@ By means of this module, micro-ROS is integrated in ThreadX (the Azure RTOS sche
 
     .. code-block:: bash
 
-        source /opt/vulcanexus/humble/setup.bash
+        source /opt/vulcanexus/iron/setup.bash
         ros2 run micro_ros_setup component azure_rtos
 
 .. figure:: /rst/figures/micro/platforms_logos/tiva_c_series.png
@@ -166,7 +166,7 @@ micro-ROS provides support for this platform and a basic USB-CDC transport.
 
     .. code-block:: bash
 
-        source /opt/vulcanexus/humble/setup.bash
+        source /opt/vulcanexus/iron/setup.bash
         ros2 run micro_ros_setup component tiva_c_series
 
 .. figure:: /rst/figures/micro/platforms_logos/stm32cube.png
@@ -190,7 +190,7 @@ By using this module the micro-ROS user will find it easy to port micro-ROS to i
 
     .. code-block:: bash
 
-        source /opt/vulcanexus/humble/setup.bash
+        source /opt/vulcanexus/iron/setup.bash
         ros2 run micro_ros_setup component stm32cube
 
 .. figure:: /rst/figures/micro/platforms_logos/platformio.png
@@ -215,7 +215,7 @@ Also, the micro-ROS user will find easy to port micro-ROS to the large list of `
 
     .. code-block:: bash
 
-        source /opt/vulcanexus/humble/setup.bash
+        source /opt/vulcanexus/iron/setup.bash
         ros2 run micro_ros_setup component platformio
 
 .. figure:: /rst/figures/micro/platforms_logos/arduino.png
@@ -238,7 +238,7 @@ Also, for advanced users, instructions for customizing the installation and reco
 
     .. code-block:: bash
 
-        source /opt/vulcanexus/humble/setup.bash
+        source /opt/vulcanexus/iron/setup.bash
         ros2 run micro_ros_setup component arduino
 
 
@@ -263,5 +263,5 @@ Also, for advanced users, instructions for customizing the installation and reco
 
     .. code-block:: bash
 
-        source /opt/vulcanexus/humble/setup.bash
+        source /opt/vulcanexus/iron/setup.bash
         ros2 run micro_ros_setup component raspberry_pi_pico
