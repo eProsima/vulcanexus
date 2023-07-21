@@ -1,22 +1,22 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: ros2-humble-listener
+  name: ros2-iron-listener
   labels:
-    app: ros2-humble-listener
+    app: ros2-iron-listener
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ros2-humble-listener
+      app: ros2-iron-listener
   template:
     metadata:
       labels:
-        app: ros2-humble-listener
+        app: ros2-iron-listener
     spec:
       containers:
         - name: vulcanexus-cloud-demo-nodes
-          image: vulcanexus-cloud-demo-nodes:humble
+          image: vulcanexus-cloud-demo-nodes:iron
           args:
             - listener
             - 192.168.1.11

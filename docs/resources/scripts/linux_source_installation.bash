@@ -73,9 +73,9 @@ sudo apt update && sudo apt install -y \
 ##!
 
 ##LINUX_SOURCE_CLONE_ROS2_REPOS
-mkdir -p ~/vulcanexus_humble/src
-cd ~/vulcanexus_humble
-wget https://raw.githubusercontent.com/ros2/ros2/humble/ros2.repos
+mkdir -p ~/vulcanexus_iron/src
+cd ~/vulcanexus_iron
+wget https://raw.githubusercontent.com/ros2/ros2/iron/ros2.repos
 vcs import src < ros2.repos
 ##!
 
@@ -88,12 +88,12 @@ rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext
 
 ##LINUX_SOURCE_CLONE_VULCA
 cd ~
-cd vulcanexus_humble
+cd vulcanexus_iron
 # Remove ROS 2 packages overridden by Vulcanexus
 rm -rf src/ros2/rosidl_typesupport_fastrtps/ src/eProsima/foonathan_memory_vendor/ src/ros2/rmw_fastrtps/
 # Get Vulcanexus sources
-wget https://raw.githubusercontent.com/eProsima/vulcanexus/humble/vulcanexus.repos
-wget https://raw.githubusercontent.com/eProsima/vulcanexus/humble/colcon.meta
+wget https://raw.githubusercontent.com/eProsima/vulcanexus/iron/vulcanexus.repos
+wget https://raw.githubusercontent.com/eProsima/vulcanexus/iron/colcon.meta
 vcs import --force src < vulcanexus.repos
 ##!
 
@@ -117,6 +117,6 @@ sudo apt update && sudo apt install -y \
 ##!
 
 ##LINUX_SOURCE_VULCA_COMPILE
-cd ~/vulcanexus_humble
+cd ~/vulcanexus_iron
 colcon build
 ##!

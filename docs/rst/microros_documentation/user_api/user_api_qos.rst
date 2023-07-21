@@ -27,16 +27,16 @@ As shown in the initialization API of each entity, a ``rmw_qos_profile_t`` can b
       &custom_publisher, &node,
       &type_support, &topic_name, &custom_qos);
 
-This ``rmw_qos_profile_t`` structure is provided by ROS 2 RMW headers: `rmw_qos_profile_t <http://docs.ros2.org/latest/api/rmw/structrmw__qos__profile__t.html>`_. A list with predefined qos profiles is also available: `qos_profiles.h <https://github.com/ros2/rmw/blob/humble/rmw/include/rmw/qos_profiles.h>`__.
+This ``rmw_qos_profile_t`` structure is provided by ROS 2 RMW headers: `rmw_qos_profile_t <http://docs.ros2.org/latest/api/rmw/structrmw__qos__profile__t.html>`_. A list with predefined qos profiles is also available: `qos_profiles.h <https://github.com/ros2/rmw/blob/iron/rmw/include/rmw/qos_profiles.h>`__.
 
 .. note::
 
   By default, the following qos configuration is applied on each entity:
 
-    - Default Publisher/subscriber: `rmw_qos_profile_default <https://github.com/ros2/rmw/blob/humble/rmw/include/rmw/qos_profiles.h#L51>`__.
-    - Best effort Publisher/subscriber : `rmw_qos_profile_sensor_data <https://github.com/ros2/rmw/blob/humble/rmw/include/rmw/qos_profiles.h#L25>`__.
-    - Default Service/client: `rmw_qos_profile_services_default <https://github.com/ros2/rmw/blob/humble/rmw/include/rmw/qos_profiles./h#L64>`__.
-    - Best effort Service/client: `rmw_qos_profile_services_default <https://github.com/ros2/rmw/blob/humble/rmw/include/rmw/qos_profiles.h#L64>`__ with ``reliability = RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT``
+    - Default Publisher/subscriber: `rmw_qos_profile_default <https://github.com/ros2/rmw/blob/iron/rmw/include/rmw/qos_profiles.h#L51>`__.
+    - Best effort Publisher/subscriber : `rmw_qos_profile_sensor_data <https://github.com/ros2/rmw/blob/iron/rmw/include/rmw/qos_profiles.h#L25>`__.
+    - Default Service/client: `rmw_qos_profile_services_default <https://github.com/ros2/rmw/blob/iron/rmw/include/rmw/qos_profiles./h#L64>`__.
+    - Best effort Service/client: `rmw_qos_profile_services_default <https://github.com/ros2/rmw/blob/iron/rmw/include/rmw/qos_profiles.h#L64>`__ with ``reliability = RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT``
 
 History behaviour
 ^^^^^^^^^^^^^^^^^
