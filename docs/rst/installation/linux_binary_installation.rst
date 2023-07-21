@@ -3,7 +3,7 @@
 Linux binary installation
 =========================
 
-Debian packages for Vulcanexus Humble Hierro are currently available for Ubuntu Focal.
+Debian packages for Vulcanexus Iron Infiernillo are currently available for Ubuntu Jammy.
 Since Vulcanexus is a ROS 2 all-in-one tool set, certain ROS 2 prerequisites need to be met before installing.
 
 ROS 2 prerequisites
@@ -82,7 +82,7 @@ Base Install: basic installation without simulation tools, demos, and tutorials.
 
 .. code-block:: bash
 
-    sudo apt install -y vulcanexus-humble-base
+    sudo apt install -y vulcanexus-iron-base
 
 For other Vulcanexus packages, please refer to :ref:`vulcanexus_metapackages` for more
 information.
@@ -94,7 +94,7 @@ In order to use the Vulcanexus installation, the environment must be set up sour
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/humble/setup.bash
+    source /opt/vulcanexus/iron/setup.bash
 
 Try some examples
 -----------------
@@ -103,14 +103,14 @@ In one terminal, source the setup file and then run a C++ ``talker``:
 
 .. code-block:: bash
 
-    . ~/vulcanexus_humble/install/local_setup.bash
+    . ~/vulcanexus_iron/install/local_setup.bash
     ros2 run demo_nodes_cpp talker
 
 In another terminal source the setup file and then run a Python ``listener``:
 
 .. code-block:: bash
 
-    . ~/vulcanexus_humble/install/local_setup.bash
+    . ~/vulcanexus_iron/install/local_setup.bash
     ros2 run demo_nodes_py listener
 
 At this point, the ``talker`` should prompt ``Publishing: Hello World: <id>`` messages while the ``listener`` echoes ``I heard: [Hello World: <id>]``.
@@ -124,4 +124,4 @@ To uninstall Vulcanexus, it is enough to run the following command :
 
 .. code-block:: bash
 
-    sudo apt autoremove vulcanexus-humble-desktop
+    sudo apt autoremove vulcanexus-iron-desktop

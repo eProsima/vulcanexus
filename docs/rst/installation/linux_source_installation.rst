@@ -123,7 +123,7 @@ This scripts can be made accessible to the session adding the ``scripts`` folder
 
 .. code-block:: bash
 
-    export PATH=~/vulcanexus_humble/src/eProsima/Fast-DDS-Gen/scripts:$PATH
+    export PATH=~/vulcanexus_iron/src/eProsima/Fast-DDS-Gen/scripts:$PATH
 
 Build workspace
 ^^^^^^^^^^^^^^^
@@ -155,7 +155,7 @@ In order to use the Vulcanexus installation, the environment must be set up sour
 
 .. code-block:: bash
 
-    source ~/vulcanexus_humble/install/setup.bash
+    source ~/vulcanexus_iron/install/setup.bash
 
 Try some examples
 -----------------
@@ -164,14 +164,14 @@ In one terminal, source the setup file and then run a C++ ``talker``:
 
 .. code-block:: bash
 
-    . ~/vulcanexus_humble/install/local_setup.bash
+    . ~/vulcanexus_iron/install/local_setup.bash
     ros2 run demo_nodes_cpp talker
 
 In another terminal source the setup file and then run a Python ``listener``:
 
 .. code-block:: bash
 
-    . ~/vulcanexus_humble/install/local_setup.bash
+    . ~/vulcanexus_iron/install/local_setup.bash
     ros2 run demo_nodes_py listener
 
 At this point, the ``talker`` should prompt ``Publishing: Hello World: <id>`` messages while the ``listener`` echoes ``I heard: [Hello World: <id>]``.
