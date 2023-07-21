@@ -32,7 +32,6 @@ gpg
 Hemisson
 Hierro
 Husarion
-Infiernillo
 interoperability
 interprocess
 kB

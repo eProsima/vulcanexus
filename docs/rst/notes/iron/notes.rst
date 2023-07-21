@@ -1,9 +1,9 @@
 .. _notes_iron_latest:
 
-Iron Infiernillo
+Iron Imagination
 ================
 
-Iron Infiernillo (v3.0.0)
+Iron Imagination (v3.0.0)
 -------------------------
 
 This version ships the following packages:

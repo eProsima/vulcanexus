@@ -25,7 +25,7 @@ The following table outlines the Vulcanexus releases and their support cycles:
      - Latest Version
      - Release Date
      - EOL Date
-   * - :ref:`Iron Infiernillo <notes_iron_latest>`
+   * - :ref:`Iron Imagination <notes_iron_latest>`
      - v2.3.0
      - May 2022
      - May 2027

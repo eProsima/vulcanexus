@@ -20,7 +20,7 @@ Vulcanexus ROS 2 all-in-one tool set, is officially available in the platforms s
       - x86_64 |br|
         arm64
       - Ubuntu Jammy (22.04)
-    * - :ref:`Iron Infiernillo <notes_iron_latest>` v3
+    * - :ref:`Iron Imagination <notes_iron_latest>` v3
       - x86_64 |br|
         arm64
       - Ubuntu Jammy (22.04)
