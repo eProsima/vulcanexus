@@ -15,7 +15,7 @@ Overview
 This tool has several commands to interact with, that allows to get information regarding the status of the network.
 It supports to list topics existing, list Participants, Publishers, Subscriptions and even read user data in real time in a human readable format.
 
-.. figure:: /rst/figures/intro/fastddsspy/fastddsspy.png
+.. figure:: /rst/figures/intro/tools/fastddsspy/fastddsspy.png
     :align: center
 
 *Fast DDS Spy* is easily configurable and installed with a default setup, so that DDS topics, data types and entities are automatically discovered without the need to specify the types of data.

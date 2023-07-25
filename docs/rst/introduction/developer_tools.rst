@@ -16,6 +16,8 @@ Developer Tools
    tools/backend.rst
    tools/shapes_demo.rst
    tools/router.rst
+   tools/recordreplay.rst
+   tools/fastddsspy.rst
    tools/webots.rst
 
 - :ref:`ROS 2 QoS Profiles Manager <vulcanexus_qos_profiles_manager>`: tool suite to generate XML configuration files for Vulcanexus middleware Fast DDS.
