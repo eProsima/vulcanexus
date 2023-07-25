@@ -16,6 +16,8 @@ Developer Tools
    tools/backend.rst
    tools/shapes_demo.rst
    tools/router.rst
+   tools/recordreplay.rst
+   tools/fastddsspy.rst
    tools/webots.rst
 
 - :ref:`ROS 2 QoS Profiles Manager <vulcanexus_qos_profiles_manager>`: tool suite to generate XML configuration files for Vulcanexus middleware Fast DDS.
@@ -23,6 +25,8 @@ Developer Tools
 - :ref:`Fast DDS Statistics Backend <fastdds_statistics_backend>`: *ROS 2 Monitor*'s backend. Can be leveraged with other monitoring frontend applications (e.g. :ref:`Prometheus <tutorials_tools_prometheus>`).
 - :ref:`ROS 2 Shapes Demo <vulcanexus_shapes_demo>`: first demo application to understand the most used *ROS 2* Quality of Service (QoS) and test DDS and *ROS 2* communication.
 - :ref:`ROS 2 Router <vulcanexus_router>`: end-user software application enabling the connection of distributed *ROS 2* environments.
+- :ref:`ROS 2 Record & Replay <vulcanexus_recordreplay>`: end-user software applications that efficiently save messages published in a *ROS 2* environment and playback these messages in the order in which they were recorded.
+- :ref:`Fast DDS Spy <vulcanexus_fastddsspy>`: CLI interactive tool that allows the introspection of a *ROS 2* environment in a human readable format.
 - :ref:`Webots <webots>`: open-source three-dimensional mobile robot simulator.
 
 .. note::
