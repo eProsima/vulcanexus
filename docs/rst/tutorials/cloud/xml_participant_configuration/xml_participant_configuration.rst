@@ -2,7 +2,7 @@
 
 .. _tutorials_cloud_xml_participant_configuration:
 
-Load Participant Configuration from XML
+Participant Configuration with XML
 =======================================
 
 .. contents::
@@ -14,8 +14,8 @@ Load Participant Configuration from XML
 Background
 ----------
 
-*eProsima ROS 2 Router*, a.k.a `DDS Router <https://github.com/eProsima/DDS-Router>`_, is an end-user software application that enables the connection of distributed ROS 2 networks (see |rosrouter| documentation :ref:`here <vulcanexus_router>`).
-That is, ROS 2 nodes such as publishers and subscriptions, or clients and services, deployed in one geographic location and using a dedicated local network will be able to communicate with other ROS 2 nodes deployed in different geographic areas on their own dedicated local networks as if they were all on the same network through the use of |rosrouter|.
+*eProsima ROS 2 Router*, a.k.a `DDS Router <https://github.com/eProsima/DDS-Router>`_, is an end-user software application that enables the connection of distributed ROS 2 networks (see the |rosrouter| documentation :ref:`here <vulcanexus_router>`).
+That is, ROS 2 nodes such as publishers and subscriptions, or clients and services, deployed in one geographic location and using a dedicated local network will be able to communicate with other ROS 2 nodes deployed in different geographic locations on their own dedicated local networks as if they were all on the same network through the use of |rosrouter|.
 
 This tutorial explains how to configure a Participant with XML. In particular, we will configure two Participants, one without XML on domain ``0`` and one with XML on domain ``1``, and use the |rosrouter| to allow them to communicate between each other.
 
@@ -25,14 +25,14 @@ This tutorial explains how to configure a Participant with XML. In particular, w
 
 The DDS protocol defines Domain Id as a parameter for every *DomainParticipant*.
 Different entities in different Domain Ids will never discover each other, and thus they will not communicate with each other.
-The |rosrouter| can be used as a bridge between ROS 2 Domains, so that every node in a domain can communicate with any other node on another domain, as illustrated in the following figure:
+The |rosrouter| can be used as a bridge between ROS 2 Domains, so that every node in a domain can communicate with every other node on another domain, as illustrated in the following figure:
 
 .. figure:: /rst/figures/tutorials/cloud/change_domain.png
    :align: center
 
 This tutorial will use the ``demo_nodes_cpp`` package, available in the Vulcanexus Desktop distribution.
-A ROS 2 *talker* node and a *listener* node will be launched on different ROS 2 Domains, so that they cannot communicate between each other.
-Then, the |rosrouter| will be used as a bridge between the two Domains and will make the *listener* receive the messages from the *talker*.
+Two ROS 2 nodes, a *talker* and a *listener*, will be launched on different ROS 2 Domains, so that they cannot communicate between each other.
+Then, the |rosrouter| will be used as a bridge between the two Domains, allowing the *listener* to receive the messages from the *talker*.
 
 
 Prerequisites
@@ -53,7 +53,7 @@ Environment setup
 ^^^^^^^^^^^^^^^^^
 
 To run the nodes, we need to set up the Vulcanexus environment so that the ``demo_nodes_cpp`` package is available.
-There are two ways of achieving this:
+There are two ways to achieve this:
 
 #.  Running the Vulcanexus Docker image.
 
@@ -117,7 +117,7 @@ Participant XML Configuration
 |rosrouter| supports loading XML configuration files to load profiles.
 These profiles are used to configure different DomainParticipants using profile names.
 Loading an XML file or setting the raw xml file in the |ddsrouter| YAML configuration file allows to load such profiles.
-Here there are the 2 ways to load them.
+Here there are the two ways to load them.
 For more information check the `Load XML Configuration <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/configuration.html#user-manual-configuration-load-xml>`.
 
 .. literalinclude:: /resources/tutorials/cloud/xml_participant_configuration/xml.yaml
