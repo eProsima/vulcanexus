@@ -20,4 +20,4 @@ The following are the tutorials that make up this course on communication in dis
     wan_edge_cloud_tls/wan_edge_cloud_tls
     edge_edge_repeater_cloud/edge_edge_repeater_cloud
     microservices_cloud/microservices_cloud
-    xml_participant_configuration/xml_participant_configuration
+    router_conf_via_xml_profiles/router_conf_via_xml_profiles
