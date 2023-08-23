@@ -3,7 +3,7 @@
 Vulcanexus Cloud Tutorials
 ==========================
 
-This tutorials aims to show the user how to recreate a robot deployment in a distributed network with the capability of monitoring, control and tracking through the Cloud.
+These tutorials aim to show the user how to recreate a robot deployment in a distributed network with the capability of monitoring, controlling, and tracking through the Cloud.
 This way, a series of tutorials are presented that intend to build a complex final architecture step by step, explaining in detail the different steps of the process and the configuration of the different Vulcanexus nodes and WAN communication enabling components.
 
 The following are the tutorials that make up this course on communication in distributed scenarios using the Vulcanexus framework.
@@ -20,3 +20,4 @@ The following are the tutorials that make up this course on communication in dis
     wan_edge_cloud_tls/wan_edge_cloud_tls
     edge_edge_repeater_cloud/edge_edge_repeater_cloud
     microservices_cloud/microservices_cloud
+    xml_participant_configuration/xml_participant_configuration
