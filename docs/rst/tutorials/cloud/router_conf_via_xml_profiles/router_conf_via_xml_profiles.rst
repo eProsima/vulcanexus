@@ -21,7 +21,7 @@ This tutorial explains how to configure a Participant with XML. In particular, w
 
 .. note::
 
-    This tutorial is similar to the :ref:`tutorials_router_change_domain` tutorial, since we will launch a *talker* and a *listener* on different domains and connect them with the |rosrouter|. The main difference between both tutorials is that, in this one, one of the Participants' configurations will be written in XML.
+    This tutorial is similar to the :ref:`tutorials_router_change_domain` tutorial, since we will launch a *talker* and a *listener* on different domains and connect them with the |rosrouter|. The difference between both tutorials is that, in this one, one of the Participants will be configured using Fast DDS XML profiles.
 
 The DDS protocol defines Domain Id as a parameter for every *DomainParticipant*.
 Different entities in different Domain Ids will never discover each other, and thus they will not communicate with each other.
