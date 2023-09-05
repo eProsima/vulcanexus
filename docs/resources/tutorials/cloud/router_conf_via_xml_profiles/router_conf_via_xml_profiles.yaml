@@ -1,0 +1,23 @@
+version: v3.1
+
+xml:
+  files:
+    - "./xml_configuration.xml"
+  raw: |
+    <?xml version="1.0" encoding="UTF-8" ?>
+    <profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles" >
+        <participant profile_name="custom_participant_configuration">
+            <domainId>1</domainId>
+            <rtps></rtps>
+        </participant>
+    </profiles>
+
+participants:
+
+  - name: ROS_2_Domain_0
+    kind: local
+    domain: 0
+
+  - name: ROS_2_Domain_1
+    kind: xml
+    profile: custom_participant_configuration

@@ -29,6 +29,8 @@ And then load the image with:
             docker run \
                 -it \
                 --privileged \
+                --net host \
+                --ipc host \
                 -e DISPLAY=$DISPLAY \
                 -v /tmp/.X11-unix:/tmp/.X11-unix \
                 ubuntu-vulcanexus:humble-desktop
