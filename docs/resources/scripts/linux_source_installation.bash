@@ -89,24 +89,39 @@ rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext
 ##LINUX_SOURCE_CLONE_VULCA
 cd ~
 cd vulcanexus_iron
+
 # Remove ROS 2 packages overridden by Vulcanexus
-rm -rf src/ros2/rosidl_typesupport_fastrtps/ src/eProsima/foonathan_memory_vendor/ src/ros2/rmw_fastrtps/
+rm -rf \
+    src/eProsima/foonathan_memory_vendor/ \
+    src/ros2/rosidl_typesupport_fastrtps/ \
+    src/ros2/rosidl_dynamic_typesupport_fastrtps \
+    src/ros2/rmw_fastrtps/
+
 # Get Vulcanexus sources
 wget https://raw.githubusercontent.com/eProsima/vulcanexus/iron/vulcanexus.repos
 wget https://raw.githubusercontent.com/eProsima/vulcanexus/iron/colcon.meta
 vcs import --force src < vulcanexus.repos
+
+# Avoid compilation of some documentation and demo packages
+touch src/eProsima/Fast-DDS-QoS-Profiles-Manager/docs/COLCON_IGNORE
+touch src/eProsima/Vulcanexus-Base/docs/COLCON_IGNORE
+touch src/eProsima/Vulcanexus-Base/code/COLCON_IGNORE
 ##!
 
 ##LINUX_SOURCE_VULCA_DEPS
 sudo apt update && sudo apt install -y \
     libasio-dev \
+    libdocopt-dev \
     libengine-pkcs11-openssl \
     liblog4cxx-dev \
+    liblz4-dev \
     libp11-dev \
     libqt5charts5-dev \
     libssl-dev \
     libtinyxml2-dev \
+    libxerces-c-dev \
     libyaml-cpp-dev \
+    libzstd-dev \
     openjdk-8-jdk \
     python3-sphinx \
     python3-sphinx-rtd-theme \
