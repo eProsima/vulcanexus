@@ -106,13 +106,17 @@ vcs import --force src < vulcanexus.repos
 ##LINUX_SOURCE_VULCA_DEPS
 sudo apt update && sudo apt install -y \
     libasio-dev \
+    libdocopt-dev \
     libengine-pkcs11-openssl \
     liblog4cxx-dev \
+    liblz4-dev \
     libp11-dev \
     libqt5charts5-dev \
     libssl-dev \
     libtinyxml2-dev \
+    libxerces-c-dev \
     libyaml-cpp-dev \
+    libzstd-dev \
     openjdk-8-jdk \
     python3-sphinx \
     python3-sphinx-rtd-theme \
