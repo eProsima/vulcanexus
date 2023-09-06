@@ -1,0 +1,18 @@
+name: Install from sources Ubuntu
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  ubuntu-install-from-sources:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+
+      - name: Install from sources
+        run: |
+          bash docs/resources/scripts/linux_source_installation.bash
