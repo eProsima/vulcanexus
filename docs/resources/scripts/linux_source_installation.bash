@@ -89,8 +89,14 @@ rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext
 ##LINUX_SOURCE_CLONE_VULCA
 cd ~
 cd vulcanexus_iron
+
 # Remove ROS 2 packages overridden by Vulcanexus
-rm -rf src/ros2/rosidl_typesupport_fastrtps/ src/eProsima/foonathan_memory_vendor/ src/ros2/rmw_fastrtps/
+rm -rf \
+    src/eProsima/foonathan_memory_vendor/ \
+    src/ros2/rosidl_typesupport_fastrtps/ \
+    src/ros2/rosidl_dynamic_typesupport_fastrtps \
+    src/ros2/rmw_fastrtps/
+
 # Get Vulcanexus sources
 wget https://raw.githubusercontent.com/eProsima/vulcanexus/iron/vulcanexus.repos
 wget https://raw.githubusercontent.com/eProsima/vulcanexus/iron/colcon.meta
