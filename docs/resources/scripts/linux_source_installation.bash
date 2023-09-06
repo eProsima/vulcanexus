@@ -101,6 +101,11 @@ rm -rf \
 wget https://raw.githubusercontent.com/eProsima/vulcanexus/iron/vulcanexus.repos
 wget https://raw.githubusercontent.com/eProsima/vulcanexus/iron/colcon.meta
 vcs import --force src < vulcanexus.repos
+
+# Avoid compilation of some documentation and demo packages
+touch src/eProsima/Fast-DDS-QoS-Profiles-Manager/docs/COLCON_IGNORE
+touch src/eProsima/Vulcanexus-Base/docs/COLCON_IGNORE
+touch src/eProsima/Vulcanexus-Base/code/COLCON_IGNORE
 ##!
 
 ##LINUX_SOURCE_VULCA_DEPS
