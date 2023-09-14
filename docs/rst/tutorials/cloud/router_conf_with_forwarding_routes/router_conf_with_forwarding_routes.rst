@@ -21,7 +21,7 @@ This tutorial explains how to configure a |rosrouter| with forwarding routes.
 In particular, we will configure two participants in different domains and communicate them with a |rosrouter|.
 The |rosrouter| will have two forwarding routes, one generic and one specific to a topic.
 These routes will allow us to define what participants can subscribe to the data that another participant is publishing.
-This configuration can useful when a participant wants to send sensible data over a |rosrouter| to a subset of the participants.
+This configuration can be useful when a participant wants to send sensible data over a |rosrouter| to a subset of participants.
 
 .. note::
 
@@ -32,7 +32,7 @@ The DDS protocol defines Domain Id as a parameter for every *DomainParticipant*.
 Different entities in different Domain Ids will never discover each other, and thus they will not communicate with each other.
 The |rosrouter| can be used as a bridge between ROS 2 Domains, so that every node in a domain can communicate with every other node on another domain, as illustrated in the following figure:
 
-.. figure:: /rst/figures/tutorials/cloud/change_domain_xml.png
+.. figure:: /rst/figures/tutorials/cloud/change_domain_forwarding_routes.png
    :align: center
 
 This tutorial will use the ``demo_nodes_cpp`` package, available in the Vulcanexus Desktop distribution.
@@ -62,8 +62,8 @@ The following YAML configuration file configures a |rosrouter| with two Simple P
 
 .. note::
 
-    This configuration enables participants in different domains to publish and subscribe to topics, as in :ref:`tutorials_router_change_domain`.
-    The difference is that in this example we will use forwarding routes to define the participants we want to send messages to.
+    This configuration enables listeners in domain ``1`` to subscribe to messages published in domain ``0`` for any topic.
+    It also enables listeners in domain ``0`` to subscribe to messages published in domain ``1`` only for the topic ``/secret``.
 
 .. literalinclude:: /resources/tutorials/cloud/router_conf_with_forwarding_routes/router_conf_with_forwarding_routes.yaml
     :language: yaml
@@ -83,7 +83,7 @@ Generic Forwarding Routes
 """""""""""""""""""""""""
 
 We define the generic forwarding routes under the tag ``routes``.
-This route is configured so that ``ROS_2_Domain_1`` subscribes to the data published by ``ROS_2_Domain_0``.
+This route is configured so that ``ROS_2_Domain_1`` can subscribe to the data published by ``ROS_2_Domain_0``.
 
 .. literalinclude:: /resources/tutorials/cloud/router_conf_with_forwarding_routes/router_conf_with_forwarding_routes.yaml
     :language: yaml
@@ -115,15 +115,15 @@ Then, we declare the route for each participant.
 
 .. warning::
 
-    When there is not a topic forwarding route for a specific topic, the generic forwarding route will be completely ignored and the topic forwarding route will be used instead.
+    When a topic forwarding route is defined for a specific topic, the generic forwarding route gets completely ignored and the topic forwarding route is used instead.
 
-This route is configured so that ``ROS_2_Domain_0`` will subscribe to the data published by ``ROS_2_Domain_1``.
+This route is configured so that ``ROS_2_Domain_0`` will subscribe to the data published by ``ROS_2_Domain_1`` on topic ``/secret``.
 
 .. literalinclude:: /resources/tutorials/cloud/router_conf_with_forwarding_routes/router_conf_with_forwarding_routes.yaml
     :language: yaml
     :lines: 28-30
 
-This route is configured so that ``ROS_2_Domain_0`` does not forward the data it receives.
+This route is configured so that ``ROS_2_Domain_0`` does not forward the data it receives on topic ``/secret``.
 
 .. literalinclude:: /resources/tutorials/cloud/router_conf_with_forwarding_routes/router_conf_with_forwarding_routes.yaml
     :language: yaml
@@ -241,7 +241,7 @@ Run a ROS 2 ``demo_nodes_cpp`` *listener* on domain ``1``:
 
     ROS_DOMAIN_ID=1 ros2 run demo_nodes_cpp listener
 
-Since the |rosrouter| does not have a topic forwarding route on topic /secret from domain ``0`` and ``1``, it will not forward messages from the *publisher* in domain ``0`` to the *subscriber* in domain ``1``.
+Since the |rosrouter| does not have a topic forwarding route on topic ``/secret`` from domain ``0`` and ``1``, it will not forward messages from the *publisher* in domain ``0`` to the *subscriber* in domain ``1``.
 
 Publish in domain 1 and subscribe in domain 0 on topic /secret
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -258,4 +258,4 @@ Run a ROS 2 ``demo_nodes_cpp`` *listener* on domain ``0``:
 
     ROS_DOMAIN_ID=0 ros2 run demo_nodes_cpp listener
 
-Since the |rosrouter| has a topic forwarding route on topic /secret from domain ``1`` and ``0``, it will forward messages from the *publisher* in domain ``1`` to the *subscriber* in domain ``0``, that will print them in ``stdout``.
+Since the |rosrouter| has a topic forwarding route on topic ``/secret`` from domain ``1`` and ``0``, it will forward messages from the *publisher* in domain ``1`` to the *subscriber* in domain ``0``, that will print them in ``stdout``.
