@@ -20,7 +20,7 @@ routes:
 
 topic-routes:
 
-  - name: /secret
+  - name: rt/secret
     type: std_msgs::msg::dds_::String_
 
     routes:

@@ -63,7 +63,7 @@ The following YAML configuration file configures a |rosrouter| with two Simple P
 .. note::
 
     This configuration enables listeners in domain ``1`` to subscribe to messages published in domain ``0`` for any topic.
-    It also enables listeners in domain ``0`` to subscribe to messages published in domain ``1`` only for the topic ``/secret``.
+    It also enables listeners in domain ``0`` to subscribe to messages published in domain ``1`` only for the topic ``secret``.
 
 .. literalinclude:: /resources/tutorials/cloud/router_conf_with_forwarding_routes/router_conf_with_forwarding_routes.yaml
     :language: yaml
@@ -117,13 +117,13 @@ Then, we declare the route for each participant.
 
     When a topic forwarding route is defined for a specific topic, the generic forwarding route gets completely ignored and the topic forwarding route is used instead.
 
-This route is configured so that ``ROS_2_Domain_0`` will subscribe to the data published by ``ROS_2_Domain_1`` on topic ``/secret``.
+This route is configured so that ``ROS_2_Domain_0`` will subscribe to the data published by ``ROS_2_Domain_1`` on topic ``secret``.
 
 .. literalinclude:: /resources/tutorials/cloud/router_conf_with_forwarding_routes/router_conf_with_forwarding_routes.yaml
     :language: yaml
     :lines: 28-30
 
-This route is configured so that ``ROS_2_Domain_0`` does not forward the data it receives on topic ``/secret``.
+This route is configured so that ``ROS_2_Domain_0`` does not forward the data it receives on topic ``secret``.
 
 .. literalinclude:: /resources/tutorials/cloud/router_conf_with_forwarding_routes/router_conf_with_forwarding_routes.yaml
     :language: yaml
@@ -223,39 +223,39 @@ Run a ROS 2 ``demo_nodes_cpp`` *listener* on domain ``0``:
 Since the |rosrouter| does not have a generic forwarding route from domain ``1`` and ``0``, it will not forward messages from the *publisher* in domain ``1`` to the *subscriber* in domain ``0``.
 
 
-Running ROS 2 nodes on topic /secret
+Running ROS 2 nodes on topic secret
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Publish in domain 0 and subscribe in domain 1 on topic /secret
+Publish in domain 0 and subscribe in domain 1 on topic secret
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Run a ROS 2 ``demo_nodes_cpp`` *talker* on domain ``0``:
 
 .. code-block:: bash
 
-    ROS_DOMAIN_ID=0 ros2 run demo_nodes_cpp talker
+    ROS_DOMAIN_ID=0 ros2 run demo_nodes_cpp talker --ros-args -r chatter:=secret
 
 Run a ROS 2 ``demo_nodes_cpp`` *listener* on domain ``1``:
 
 .. code-block:: bash
 
-    ROS_DOMAIN_ID=1 ros2 run demo_nodes_cpp listener
+    ROS_DOMAIN_ID=1 ros2 run demo_nodes_cpp listener --ros-args -r chatter:=secret
 
-Since the |rosrouter| does not have a topic forwarding route on topic ``/secret`` from domain ``0`` and ``1``, it will not forward messages from the *publisher* in domain ``0`` to the *subscriber* in domain ``1``.
+Since the |rosrouter| does not have a topic forwarding route on topic ``secret`` from domain ``0`` and ``1``, it will not forward messages from the *publisher* in domain ``0`` to the *subscriber* in domain ``1``.
 
-Publish in domain 1 and subscribe in domain 0 on topic /secret
+Publish in domain 1 and subscribe in domain 0 on topic secret
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Run a ROS 2 ``demo_nodes_cpp`` *talker* on domain ``1``:
 
 .. code-block:: bash
 
-    ROS_DOMAIN_ID=1 ros2 run demo_nodes_cpp talker
+    ROS_DOMAIN_ID=1 ros2 run demo_nodes_cpp talker --ros-args -r chatter:=secret
 
 Run a ROS 2 ``demo_nodes_cpp`` *listener* on domain ``0``:
 
 .. code-block:: bash
 
-    ROS_DOMAIN_ID=0 ros2 run demo_nodes_cpp listener
+    ROS_DOMAIN_ID=0 ros2 run demo_nodes_cpp listener --ros-args -r chatter:=secret
 
-Since the |rosrouter| has a topic forwarding route on topic ``/secret`` from domain ``1`` and ``0``, it will forward messages from the *publisher* in domain ``1`` to the *subscriber* in domain ``0``, that will print them in ``stdout``.
+Since the |rosrouter| has a topic forwarding route on topic ``secret`` from domain ``1`` and ``0``, it will forward messages from the *publisher* in domain ``1`` to the *subscriber* in domain ``0``, that will print them in ``stdout``.
