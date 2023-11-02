@@ -1,7 +1,7 @@
 .. _tutorials_deployment_discovery_server_init:
 
 Discovery Server
-==============================================
+=================
 
 .. contents::
     :depth: 2
@@ -17,9 +17,9 @@ This is where the Fast DDS (Data Distribution Service) Discovery Server comes in
 This server acts as a centralized point for node registration and discovery, providing more flexibility and control in managing the network of nodes and is particularly advantageous in scenarios such as:
 
 * Large networks
-  
+
 * Complex networks
-  
+
 * Dynamical environments
 
 In this tutorial, we will explore how to set up and use the Fast DDS Discovery Server with ROS 2, enabling robust and dynamic node discovery communication.
@@ -47,19 +47,19 @@ In this tutorial the configuration chosen for setting up Vulcanexus in our compu
 This containerized environment can be found in `Vulcanexus's Downloads <https://vulcanexus.org/download>`__, where you will find a number of different Docker images to set up the environment for this tutorial.
 
 1. First install Docker:
-   
+
 .. code-block:: bash
 
     sudo apt install docker.io
 
 2. Then load the downloaded image:
-   
+
 .. code-block:: bash
 
     docker load -i ubuntu-vulcanexus-iron-desktop.tar
 
 3. Finally run the Docker image and source it:
-   
+
 .. code-block:: bash
 
     xhost local:root
@@ -72,7 +72,7 @@ This containerized environment can be found in `Vulcanexus's Downloads <https://
         -v /tmp/.X11-unix:/tmp/.X11-unix \
         ubuntu-vulcanexus:iron-desktop       #Downloaded Docker image
     source /opt/vulcanexus/iron/setup.bash
- 
+
 
 In every new terminal that we open to start another session within the same container run the following commands to have access to the image:
 
@@ -83,7 +83,7 @@ In every new terminal that we open to start another session within the same cont
         .. code-block:: bash
 
             docker exec -it ubuntu-vulcanexus:iron-desktop bash
-           
+
     .. tab:: Sourcing
 
         .. code-block:: bash
@@ -95,7 +95,7 @@ In every new terminal that we open to start another session within the same cont
 Run this tutorial
 ------------------
 
-Once we finish with the set up of Vulcanexus environment we are ready to start with the *talker-listener* demo tutorial. 
+Once we finish with the set up of Vulcanexus environment we are ready to start with the *talker-listener* demo tutorial.
 In this demo both a ``talker`` and a ``listener`` nodes are created: the talker node will publish a "hello world" message every second, while the listener node will listen to these messages.
 By sourcing ROS 2 you will get access to the CLI tool ``fastdds``. This tool gives access to the `discovery tool <https://fast-dds.docs.eprosima.com/en/latest/fastddscli/cli/cli.html#discovery>`__, which can be used to launch a discovery server. This server will manage the discovery process for the nodes that connect to it.
 
@@ -115,7 +115,7 @@ The role of the server is to re-distribute the clients (and servers) discovery i
 
 
 Launch Talker Node
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 Execute the Talker demo to publish on the ``/chatter`` topic. When setting the ``ROS_DISCOVERY_SERVER`` environment variable you are indicating that ROS node should act as a client that connects to a discovery server to discover other nodes on the network.
 Use the argument --remap __node:=talker_discovery_server to change the node’s name for this tutorial.
 
@@ -126,7 +126,7 @@ Use the argument --remap __node:=talker_discovery_server to change the node’s 
 
 
 Launch Listener Node
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 Execute the Listener demo to listen to the ``/chatter`` topic.
 
 .. code-block:: bash
