@@ -19,8 +19,8 @@ That is, ROS 2 nodes such as publishers and subscriptions, or clients and servic
 
 This tutorial explains how to configure a |rosrouter| with manual topics.
 In particular, we will configure two participants in different domains and communicate them with a |rosrouter|.
-The |rosrouter| will configure a Topic QoS (link to DDS Router's Topic QoS) on one of the participants with a manual topic (link to DDS Router's Manual Topics).
-These Manual Topics (link) will allow us to configure the QoS (link) of the DDS Router's internal entities.
+The |rosrouter| will configure a Topic QoS on one of the participants with a manual topic.
+These Manual Topics will allow us to configure the QoS of the DDS Router's internal entities.
 This configuration can be useful when, for instance, a user wants to limit the transmission frequency on a specific topic for a specific participant.
 
 .. note::
