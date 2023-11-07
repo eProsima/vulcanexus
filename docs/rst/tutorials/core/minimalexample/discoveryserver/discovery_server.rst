@@ -38,70 +38,19 @@ It is required to have previously installed Vulcanexus using one of the followin
 * `Linux installation from sources <https://docs.vulcanexus.org/en/latest/rst/installation/linux_source_installation.html>`__
 * `Docker installation <https://docs.vulcanexus.org/en/latest/rst/installation/docker.html>`__
 
-In this tutorial we will follow the instructions explained in *Configuring environment* to set up a Docker Image with the aim of using `source ROS 2 <https://docs.vulcanexus.org/en/latest/ros2_documentation/source/Tutorials/Beginner-CLI-Tools/Configuring-ROS2-Environment.html>`__ with *Fast DDS* discovery tool.
-
-Configuring environment
-------------------------
-A Docker image is a self-contained and executable package that includes all the necessary components to run an application, such as code, libraries, dependencies, and runtime environment.
-In this tutorial the configuration chosen for setting up Vulcanexus in our computer will be contained in a Docker image which contains Vulcanexus’s Desktop installation.
-This containerized environment can be found in `Vulcanexus's Downloads <https://vulcanexus.org/download>`__, where you will find a number of different Docker images to set up the environment for this tutorial.
-
-1. First install Docker:
-
-.. code-block:: bash
-
-    sudo apt install docker.io
-
-2. Then load the downloaded image:
-
-.. code-block:: bash
-
-    docker load -i ubuntu-vulcanexus-iron-desktop.tar
-
-3. Finally run the Docker image and source it:
-
-.. code-block:: bash
-
-    xhost local:root
-    docker run \
-        -it \
-        --privileged \
-        --net host \
-        --ipc host \
-        -e DISPLAY=$DISPLAY \
-        -v /tmp/.X11-unix:/tmp/.X11-unix \
-        ubuntu-vulcanexus:iron-desktop       #Downloaded Docker image
-    source /opt/vulcanexus/iron/setup.bash
-
-
-In every new terminal that we open to start another session within the same container run the following commands to have access to the image:
-
-.. tabs::
-
-    .. tab:: Execution
-
-        .. code-block:: bash
-
-            docker exec -it ubuntu-vulcanexus:iron-desktop bash
-
-    .. tab:: Sourcing
-
-        .. code-block:: bash
-
-            source /opt/vulcanexus/iron/setup.bash
-
-
 
 Run this tutorial
 ------------------
 
 Once we finish with the set up of Vulcanexus environment we are ready to start with the *talker-listener* demo tutorial.
-In this demo both a ``talker`` and a ``listener`` nodes are created: the talker node will publish a "hello world" message every second, while the listener node will listen to these messages.
-By sourcing ROS 2 you will get access to the CLI tool ``fastdds``. This tool gives access to the `discovery tool <https://fast-dds.docs.eprosima.com/en/latest/fastddscli/cli/cli.html#discovery>`__, which can be used to launch a discovery server. This server will manage the discovery process for the nodes that connect to it.
+In this demo both a ``talker`` and a ``listener`` nodes from the ``demo_nodes_cpp`` ROS 2 package are created: the talker node will publish a "hello world" message every second, while the listener node will listen to these messages.
+By sourcing Vulcanexus you will get access to the CLI tool ``fastdds``, together with the ROS 2 environment.
+This tool gives access to the `discovery tool <https://fast-dds.docs.eprosima.com/en/latest/fastddscli/cli/cli.html#discovery>`__, which can be used to launch a discovery server.
+This server will manage the discovery process for the nodes that connect to it.
 
 .. important::
 
-    Do not forget to source ROS 2 every time you open another session to have access to the CLI tool ``fastdds``.
+    Do not forget to source ROS 2 every time you open another session to have access to the ROS 2 environment and the CLI tool ``fastdds``.
 
 
 Setup Discovery Server
@@ -117,11 +66,11 @@ The role of the server is to re-distribute the clients (and servers) discovery i
 Launch Talker Node
 ^^^^^^^^^^^^^^^^^^^
 Execute the Talker demo to publish on the ``/chatter`` topic. When setting the ``ROS_DISCOVERY_SERVER`` environment variable you are indicating that ROS node should act as a client that connects to a discovery server to discover other nodes on the network.
-Use the argument --remap __node:=talker_discovery_server to change the node’s name for this tutorial.
+Use the argument ``--remap __node:=talker_discovery_server`` to change the node’s name for this tutorial.
 
 .. code-block:: bash
 
-    export ROS_DISCOVERY_SERVER=127.0.0.1:11811  #Localhost:127.0.0.1, port:11811 (default)
+    export ROS_DISCOVERY_SERVER=127.0.0.1:11811
     ros2 run demo_nodes_cpp talker --ros-args --remap __node:=talker_discovery_server
 
 
