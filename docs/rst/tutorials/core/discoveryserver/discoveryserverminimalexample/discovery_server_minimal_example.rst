@@ -1,7 +1,7 @@
-.. _tutorials_deployment_discovery_server_init:
+.. _tutorials_deployment_discovery_server_minimal_example:
 
-Discovery Server
-=================
+Discovery Server Minimal Example
+=================================
 
 .. contents::
     :depth: 2
