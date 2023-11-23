@@ -13,14 +13,14 @@ Background
 
 By default, ROS 2 uses the Simple Discovery Protocol (SDP), which relies on multicast communication to discover other nodes.
 While SDP is suitable for many scenarios, it may not be the best choice in complex and large-scale network configurations.
-This is where the Fast DDS (Data Distribution Service) Discovery Server comes into play. Fast DDS offers an alternative discovery mechanism that allows ROS 2 nodes to connect to a Discovery Server.
+This is where the Fast DDS Discovery Server comes into play. Fast DDS offers an alternative discovery mechanism that allows ROS 2 nodes to connect to a Discovery Server.
 This server acts as a centralized point for node registration and discovery, providing more flexibility and control in managing the network of nodes and is particularly advantageous in scenarios such as:
 
 * Large networks
 
 * Complex networks
 
-* Dynamical environments
+* WiFi networks
 
 In this tutorial, we will explore how to set up and use the Fast DDS Discovery Server with ROS 2, enabling robust and dynamic node discovery communication.
 

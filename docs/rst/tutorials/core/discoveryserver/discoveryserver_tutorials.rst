@@ -1,9 +1,9 @@
 .. _tutorials_discoveryserver_tutorials:
 
-Discovery Server deployment
-============================
+Discovery Server Tutorials
+===========================
 
-This introductory section provides some tutorials for creating and utilizing the *FastDDS Discovery Server*.
+This section provides some tutorials for creating and utilizing the *FastDDS Discovery Server* to avoid multicast communication in ROS 2 deployments.
 They will serve as the starting point for gaining proficiency in working with ROS 2 and the FastDDS middleware.
 
 .. toctree::
