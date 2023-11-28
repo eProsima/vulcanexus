@@ -14,9 +14,9 @@ Background
 
 *eProsima ROS 2 Router*, a.k.a `DDS Router <https://github.com/eProsima/DDS-Router>`_, is a cross-platform non-graphical application developed by eProsima that allows users to connect isolated DDS networks.
 These networks could be isolated one to each other due to the Transport Protocol (UDP, TCP, etc.), the Discovery Protocol (Simple, Discovery Server, etc.) or the DDS Domain Id used by each DDS entity.
-Configuring the DDS Router to have one Participant for each isolated network will allow to stablish the communication and data transmission between the entities.
+Configuring the DDS Router to have one Participant for each isolated network will allow to establish the communication and data transmission between the entities.
 In compliance with the DDS Security specification, Fast DDS provides secure communication by implementing pluggable security at three levels:
-a) DomainParticipants authentication (DDS:Auth:PKI-DH), b) access control of Entities (DDS:Access:Permissions), and c) data encryption (DDS:Crypto:AES-GCM-GMAC).
+DomainParticipants authentication (`DDS:Auth:PKI-DH plugin <https://fast-dds.docs.eprosima.com/en/latest/fastdds/security/auth_plugin/auth_plugin.html>`_), access control of Entities (`DDS:Access:Permissions plugin <https://fast-dds.docs.eprosima.com/en/latest/fastdds/security/access_control_plugin/access_control_plugin.html>`_), and data encryption (`DDS:Crypto:AES-GCM-GMAC <https://fast-dds.docs.eprosima.com/en/latest/fastdds/security/crypto_plugin/crypto_plugin.html>`_).
 Fast DDS allows security plugins to be activated through the `DomainParticipantQos <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/domain/domainParticipant/domainParticipant.html#dds-layer-domainparticipantqos>`_ properties.
 
 In this tutorial, the configuration of two DDS Router Participants will be undertaken through the utilization of XML Profiles, thereby imbuing them with enhanced security features.
@@ -98,7 +98,7 @@ At this point, the *listener* should not receive any data from the *talker* sinc
 Deploy ROS 2 Router
 -------------------
 
-The following YAML configuration file configures a `DDS Router <https://github.com/eProsima/DDS-Router>`_ to create 2 Participans in Domains ``0`` and ``1`` so that it creates a bridge between the isolated networks enabling communication between them.
+The following YAML configuration file configures a `DDS Router <https://github.com/eProsima/DDS-Router>`_ to create 2 Participants in Domains ``0`` and ``1`` so that it creates a bridge between the isolated networks enabling communication between them.
 
 .. literalinclude:: /resources/tutorials/cloud/router_participant_security_via_xml_profiles/ddsrouter.yaml
     :language: yaml
@@ -124,10 +124,10 @@ Once the certificates are generated, introduce their paths in the XML Participan
         .. literalinclude:: /resources/tutorials/cloud/router_participant_security_via_xml_profiles/configurations/secure_configurationB.xml
             :language: xml
 
-These XMLs snippet configure security settings for two participants in the Fast DDS middleware, focusing on authentication through the DDS:Auth:PKI-DH plugin.
-They activate the PKI-DH plugin, specifying the paths to the participants' identities certificateS, identity CA certificate, and private keys for authentication.
-Additionally, they enable access control through the DDS:Access:Permissions plugin, defining paths to the permissions CA certificate, governance files, and permissions files.
-The configuration also includes the activation of the DDS:Crypto:AES-GCM-GMAC plugin for data encryption, enhancing communication security within the Fast DDS framework.
+These XMLs snippet configure security settings for two participants in the Fast DDS middleware, focusing on authentication through the `DDS:Auth:PKI-DH plugin <https://fast-dds.docs.eprosima.com/en/latest/fastdds/security/auth_plugin/auth_plugin.html>`.
+They activate the PKI-DH plugin, specifying the paths to the participants' identities certificates, identity CA certificate, and private keys for authentication.
+Additionally, they enable access control through the `DDS:Access:Permissions plugin <https://fast-dds.docs.eprosima.com/en/latest/fastdds/security/access_control_plugin/access_control_plugin.html>`_, defining paths to the permissions CA certificate, governance files, and permissions files.
+The configuration also includes the activation of the `DDS:Crypto:AES-GCM-GMAC <https://fast-dds.docs.eprosima.com/en/latest/fastdds/security/crypto_plugin/crypto_plugin.html>`_ plugin for data encryption, enhancing communication security within the Fast DDS framework.
 
 Running ROS 2 Router
 ^^^^^^^^^^^^^^^^^^^^
