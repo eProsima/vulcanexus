@@ -50,66 +50,6 @@ To proceed, please install Vulcanexus with one of the following installation met
 * :ref:`docker_installation`
 
 
-Deploying a ROS 2 Router
-------------------------
-
-To deploy the |rosrouter|, we need to create its configuration file.
-
-Configuration
-^^^^^^^^^^^^^
-
-The following YAML configuration file configures a |rosrouter| with two Simple Participants in domains ``0`` and ``1``, and a manual topic to limit the transmission rate on one of the participants for a specific topic.
-
-.. note::
-
-    This configuration enables listeners in domain ``1`` to subscribe to messages published in domain ``0``, at a frequency of 1 Hz on topic ``secret`` , and at an unlimited frequency on any other topic.
-    It also enables listeners in domain ``0`` to subscribe to messages published in domain ``1`` at an unlimited frequency on any topic.
-
-.. literalinclude:: /resources/tutorials/cloud/router_conf_with_manual_topics/router_conf_with_manual_topics.yaml
-    :language: yaml
-
-
-Simple Participants
-"""""""""""""""""""
-
-The Simple Participants are configured with a name, a kind (``local``), and a domain id (``0`` and ``1``).
-
-.. literalinclude:: /resources/tutorials/cloud/router_conf_with_manual_topics/router_conf_with_manual_topics.yaml
-    :language: yaml
-    :lines: 10-17
-
-
-Manual Topic
-""""""""""""
-
-We define the manual topic under the tag ``routes``.
-This manual topic is configured so that ``ROS_2_Domain_1`` can subscribe to the data published by ``ROS_2_Domain_0`` at a maximum frequency of 1 Hz on topic ``secret``, at an unlimited
-
-.. literalinclude:: /resources/tutorials/cloud/router_conf_with_manual_topics/router_conf_with_manual_topics.yaml
-    :language: yaml
-    :lines: 3-8
-
-
-Running the ROS 2 Router
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-Run the |ddsrouter| with the configuration file available at ``<path/to/file>/ros_2_router_with_manual_topics.yaml``.
-
-.. code-block:: bash
-
-    ddsrouter --config-path <path/to/file>/ros_2_router_with_manual_topics.yaml
-
-The output from the |rosrouter| should be something like:
-
-.. code-block:: bash
-
-    Starting DDS Router Tool execution.
-    DDS Router running.
-
-If so, the |rosrouter| has started correctly and it is currently running.
-In order to close the execution, press ^C or send a signal (:code:`SIGINT 2` or :code:`SIGTERM 15`) to close it.
-
-
 Deploy ROS 2 nodes
 ------------------
 
@@ -163,8 +103,78 @@ Run a ROS 2 ``demo_nodes_cpp`` *listener* on domain ``1``:
 
     ROS_DOMAIN_ID=1 ros2 run demo_nodes_cpp listener
 
-Since the |rosrouter| does not have a manual topic to configure the ``max-tx-rate`` for the topic ``secret`` on the ``ROS_2_Domain_1`` participant, the listener will receive messages at an unlimited rate and it will print them in ``stdout``.
+Since the |rosrouter| does not have a manual topic to configure the ``max-tx-rate`` for the topic ``secret`` on the ``ROS_2_Domain_1`` participant, the *listener* will receive messages at an unlimited rate and it will print them in ``stdout`` once the |rosrouter| is running.
 
+
+Deploying a ROS 2 Router
+------------------------
+
+To deploy the |rosrouter|, we need to create its configuration file.
+
+Configuration
+^^^^^^^^^^^^^
+
+The following YAML configuration file configures a |rosrouter| with two Simple Participants in domains ``0`` and ``1``, and a manual topic to limit the transmission rate on one of the participants for a specific topic.
+
+.. note::
+
+    This configuration enables listeners in domain ``1`` to subscribe to messages published in domain ``0``, at a frequency of 1 Hz on topic ``secret``, and at an unlimited frequency on any other topic.
+    It also enables listeners in domain ``0`` to subscribe to messages published in domain ``1`` at an unlimited frequency on any topic.
+
+.. literalinclude:: /resources/tutorials/cloud/router_conf_with_manual_topics/router_conf_with_manual_topics.yaml
+    :language: yaml
+
+
+Simple Participants
+"""""""""""""""""""
+
+The Simple Participants are configured with a name, a kind (``local``), and a domain id (``0`` and ``1``).
+
+.. literalinclude:: /resources/tutorials/cloud/router_conf_with_manual_topics/router_conf_with_manual_topics.yaml
+    :language: yaml
+    :lines: 10-17
+
+
+Manual Topic
+""""""""""""
+
+We define the manual topic under the tag ``routes``.
+This manual topic is configured so that ``ROS_2_Domain_1`` can subscribe to the data published by ``ROS_2_Domain_0`` at a maximum frequency of 1 Hz on topic ``secret``, and at an unlimited frequency on any other topic.
+
+.. literalinclude:: /resources/tutorials/cloud/router_conf_with_manual_topics/router_conf_with_manual_topics.yaml
+    :language: yaml
+    :lines: 3-8
+
+
+Running the ROS 2 Router
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Run the |ddsrouter| with the configuration file available at ``<path/to/file>/ros_2_router_with_manual_topics.yaml``.
+
+.. code-block:: bash
+
+    ddsrouter --config-path <path/to/file>/ros_2_router_with_manual_topics.yaml
+
+The output from the |rosrouter| should be something like:
+
+.. code-block:: bash
+
+    Starting DDS Router Tool execution.
+    DDS Router running.
+
+If so, the |rosrouter| has started correctly and it is currently running.
+In order to close the execution, press ^C or send a signal (:code:`SIGINT 2` or :code:`SIGTERM 15`) to close it.
+
+The *listener* should now receive the messages sent by the *talker* at an unlimited rate.
+
+
+Deploy ROS 2 nodes on topic secret
+----------------------------------
+
+Let us now run the ROS 2 *talker* and *listener* nodes on the topic ``secret``.
+
+Running ROS 2 nodes
+^^^^^^^^^^^^^^^^^^^
 
 Publish in domain 0 and subscribe in domain 1 on topic secret
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -191,12 +201,12 @@ Run a ROS 2 ``demo_nodes_cpp`` *talker* on domain ``1``:
 
 .. code-block:: bash
 
-    ROS_DOMAIN_ID=1 ros2 run demo_nodes_cpp talker
+    ROS_DOMAIN_ID=1 ros2 run demo_nodes_cpp talker --ros-args -r chatter:=secret
 
 Run a ROS 2 ``demo_nodes_cpp`` *listener* on domain ``0``:
 
 .. code-block:: bash
 
-    ROS_DOMAIN_ID=0 ros2 run demo_nodes_cpp listener
+    ROS_DOMAIN_ID=0 ros2 run demo_nodes_cpp listener --ros-args -r chatter:=secret
 
 Since the |rosrouter| does not have a manual topic to configure the ``max-tx-rate`` for the topic ``secret`` on the ``ROS_2_Domain_0`` participant, the listener will receive messages at an unlimited rate and it will print them in ``stdout``.
