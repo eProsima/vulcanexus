@@ -12,15 +12,15 @@ ROS 2 Router configuration of DomainParticipants Security via XML profiles
 Background
 ----------
 
-*eProsima ROS 2 Router*, a.k.a `DDS Router <https://github.com/eProsima/DDS-Router>`_, is a cross-platform non-graphical application developed by eProsima that allows users to connect isolated DDS networks.
-These networks could be isolated one to each other due to the Transport Protocol (UDP, TCP, etc.), the Discovery Protocol (Simple, Discovery Server, etc.) or the DDS Domain Id used by each DDS entity.
+*eProsima ROS 2 Router*, a.k.a `DDS Router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/formalia/titlepage.html>`_, is a cross-platform non-graphical application developed by eProsima that allows users to connect physically or virtually separated DDS networks.
+These networks could be separated one to each other due to the Transport Protocol (UDP, TCP, etc.), the Discovery Protocol (Simple, Discovery Server, etc.) or the DDS Domain Id used by each DDS entity.
 Configuring the DDS Router to have one Participant for each isolated network will allow to establish the communication and data transmission between the entities.
 In compliance with the DDS Security specification, Fast DDS provides secure communication by implementing pluggable security at three levels:
 DomainParticipants authentication (`DDS:Auth:PKI-DH plugin <https://fast-dds.docs.eprosima.com/en/latest/fastdds/security/auth_plugin/auth_plugin.html>`_), access control of Entities (`DDS:Access:Permissions plugin <https://fast-dds.docs.eprosima.com/en/latest/fastdds/security/access_control_plugin/access_control_plugin.html>`_), and data encryption (`DDS:Crypto:AES-GCM-GMAC <https://fast-dds.docs.eprosima.com/en/latest/fastdds/security/crypto_plugin/crypto_plugin.html>`_).
 Fast DDS allows security plugins to be activated through the `DomainParticipantQos <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/domain/domainParticipant/domainParticipant.html#dds-layer-domainparticipantqos>`_ properties.
 
 In this tutorial, the configuration of two DDS Router Participants will be undertaken through the utilization of XML Profiles, thereby imbuing them with enhanced security features.
-Specifically, these Participants will facilitate communication between two distinct domains, a capability that would be unattainable in the absence of the Router.
+Specifically, these Participants will allow the communication between two distinct domains, a capability that would be unattainable in the absence of the Router.
 The chosen security configuration in this case will be related to authentication, access control, and data encryption.
 To know more about Security plugins, please refer to `Fast DDS Security Documentation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/security/security.html>`_.
 
@@ -29,7 +29,7 @@ To know more about Security plugins, please refer to `Fast DDS Security Document
 
 This tutorial will use the ``demo_nodes_cpp`` package, available in the Vulcanexus Desktop distribution.
 Two ROS 2 nodes, a *talker* and a *listener*, will be launched on different ROS 2 Domains, so that they cannot communicate between each other in a first instance.
-Then, the `DDS Router <https://github.com/eProsima/DDS-Router>`_ will be used as a bridge between the two Domains, checking the security features between the Participants and allowing the *listener* to receive the messages from the *talker*.
+Then, the `DDS Router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/formalia/titlepage.html>`_ will be used as a bridge between the two Domains, checking the security features between the Participants and allowing the *listener* to receive the messages from the *talker*.
 
 
 Prerequisites
@@ -92,13 +92,13 @@ Run a ROS 2 ``demo_nodes_cpp`` *listener* on domain ``1``:
     ROS_DOMAIN_ID=1 ros2 run demo_nodes_cpp listener
 
 
-At this point, the *listener* should not receive any data from the *talker* since they are in different domains. To connect them, we will use the `DDS Router <https://github.com/eProsima/DDS-Router>`_.
+At this point, the *listener* should not receive any data from the *talker* since they are in different domains. To connect them, we will use the `DDS Router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/formalia/titlepage.html>`_.
 
 
 Deploy ROS 2 Router
 -------------------
 
-The following YAML configuration file configures a `DDS Router <https://github.com/eProsima/DDS-Router>`_ to create 2 Participants in Domains ``0`` and ``1`` so that it creates a bridge between the isolated networks enabling communication between them.
+The following YAML configuration file configures a `DDS Router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/formalia/titlepage.html>`_ to create 2 Participants in Domains ``0`` and ``1`` so that it creates a bridge between the isolated networks enabling communication between them.
 
 .. literalinclude:: /resources/tutorials/cloud/router_participant_security_via_xml_profiles/ddsrouter.yaml
     :language: yaml
@@ -124,7 +124,7 @@ Once the certificates are generated, introduce their paths in the XML Participan
         .. literalinclude:: /resources/tutorials/cloud/router_participant_security_via_xml_profiles/configurations/secure_configurationB.xml
             :language: xml
 
-These XMLs snippet configure security settings for two participants in the Fast DDS middleware, focusing on authentication through the `DDS:Auth:PKI-DH plugin <https://fast-dds.docs.eprosima.com/en/latest/fastdds/security/auth_plugin/auth_plugin.html>`.
+These XMLs snippet configure security settings for two participants in the Fast DDS middleware, focusing on authentication through the `DDS:Auth:PKI-DH plugin <https://fast-dds.docs.eprosima.com/en/latest/fastdds/security/auth_plugin/auth_plugin.html>`_.
 They activate the PKI-DH plugin, specifying the paths to the participants' identities certificates, identity CA certificate, and private keys for authentication.
 Additionally, they enable access control through the `DDS:Access:Permissions plugin <https://fast-dds.docs.eprosima.com/en/latest/fastdds/security/access_control_plugin/access_control_plugin.html>`_, defining paths to the permissions CA certificate, governance files, and permissions files.
 The configuration also includes the activation of the `DDS:Crypto:AES-GCM-GMAC <https://fast-dds.docs.eprosima.com/en/latest/fastdds/security/crypto_plugin/crypto_plugin.html>`_ plugin for data encryption, enhancing communication security within the Fast DDS framework.
@@ -132,18 +132,18 @@ The configuration also includes the activation of the `DDS:Crypto:AES-GCM-GMAC <
 Running ROS 2 Router
 ^^^^^^^^^^^^^^^^^^^^
 
-Run the `DDS Router <https://github.com/eProsima/DDS-Router>`_ with the configuration file available at ``<path/to/file>/ddsrouter.yaml``.
+Run the `DDS Router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/formalia/titlepage.html>`_ with the configuration file available at ``<path/to/file>/ddsrouter.yaml``.
 
 .. code-block:: bash
 
     ddsrouter --config-path <path/to/file>/ddsrouter.yaml
 
-The output from the `DDS Router <https://github.com/eProsima/DDS-Router>`_ should be something like:
+The output from the `DDS Router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/formalia/titlepage.html>`_ should be something like:
 
 .. code-block:: bash
 
     Starting DDS Router Tool execution.
     DDS Router running.
 
-If so, the `DDS Router <https://github.com/eProsima/DDS-Router>`_ has started correctly and it is currently running. Once the `DDS Router <https://github.com/eProsima/DDS-Router>`_ is running, it will forward the messages from the *talker* on domain 0 to the *listener* on domain 1.
+If so, the `DDS Router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/formalia/titlepage.html>`_ has started correctly and it is currently running. Once the `DDS Router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/formalia/titlepage.html>`_ is running, it will forward the messages from the *talker* on domain 0 to the *listener* on domain 1.
 In order to close the execution, press ^C or send a signal (:code:`SIGINT 2` or :code:`SIGTERM 15`) to close it.
