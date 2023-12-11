@@ -32,7 +32,10 @@ Vulcanexus Tools
 
 **Vulcanexus Tools** is focused on helping developers with the introspection and debugging of their system.
 Thus, the :ref:`ROS 2 Monitor <vulcanexus_monitor>` and the :ref:`ROS 2 Statistics Backend <fastdds_statistics_backend>` are included in order to monitor and diagnose the *ROS 2* communication network.
-Also, :ref:`ROS 2 Shapes Demo <vulcanexus_shapes_demo>` is provided as a simple demo to help testing that the communication is successfully established in the system.
+:ref:`ROS 2 Shapes Demo <vulcanexus_shapes_demo>` is provided as a simple demo to help testing that the communication is successfully established in the system.
+:ref:`ROS 2 Record & Replay <vulcanexus_recordreplay>` are also included in this metapackage.
+They are applications that save published messages in a *ROS 2* environment and playback them in the order in which they were recorded.
+Finally, :ref:`Fast DDS Spy <vulcanexus_fastddsspy>` is provided as a CLI interactive tool that allows the introspection of a *ROS 2* environment in a human readable format.
 
 .. note::
 
