@@ -12,15 +12,15 @@
                     <!-- Configure DDS:Auth:PKI-DH plugin -->
                     <property>
                         <name>dds.sec.auth.builtin.PKI-DH.identity_ca</name>
-                        <value>file:///keystore/enclaves/talker_listener/talker/identity_ca.cert.pem</value>
+                        <value>file:///home/keystore/enclaves/talker_listener/talker/identity_ca.cert.pem</value>
                     </property>
                     <property>
                         <name>dds.sec.auth.builtin.PKI-DH.identity_certificate</name>
-                        <value>file:///keystore/enclaves/talker_listener/talker/cert.pem</value>
+                        <value>file:///home/keystore/enclaves/talker_listener/talker/cert.pem</value>
                     </property>
                     <property>
                         <name>dds.sec.auth.builtin.PKI-DH.private_key</name>
-                        <value>file:///keystore/enclaves/talker_listener/talker/key.pem</value>
+                        <value>file:///home/keystore/enclaves/talker_listener/talker/key.pem</value>
                     </property>
                     <!-- DDS:Access:Permissions plugin -->
                     <property>
@@ -29,15 +29,15 @@
                     </property>
                     <property>
                         <name>dds.sec.access.builtin.Access-Permissions.permissions_ca</name>
-                        <value>file:///keystore/enclaves/talker_listener/talker/permissions_ca.cert.pem</value>
+                        <value>file:///home/keystore/enclaves/talker_listener/talker/permissions_ca.cert.pem</value>
                     </property>
                     <property>
                         <name>dds.sec.access.builtin.Access-Permissions.governance</name>
-                        <value>file:///keystore/enclaves/talker_listener/talker/governance.p7s</value>
+                        <value>file:///home/keystore/enclaves/talker_listener/talker/governance.p7s</value>
                     </property>
                     <property>
                         <name>dds.sec.access.builtin.Access-Permissions.permissions</name>
-                        <value>file:///keystore/enclaves/talker_listener/talker/permissions.p7s</value>
+                        <value>file:///home/keystore/enclaves/talker_listener/talker/permissions.p7s</value>
                     </property>
                     <!-- Activate DDS:Crypto:AES-GCM-GMAC plugin -->
                     <property>

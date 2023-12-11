@@ -132,6 +132,38 @@ The configuration also includes the activation of the `DDS:Crypto:AES-GCM-GMAC <
 Running ROS 2 Router
 ^^^^^^^^^^^^^^^^^^^^
 
+Once all the files needed have been generated, create a workspace called ``workspace_ddsrouter-tutorial`` to collect all the directories and files.
+The tutorial workspace will have the following structure at the end of the project:
+
+.. code-block:: bash
+
+    workspace_ddsrouter-tutorial
+    ├── configurations
+    │   ├── secure_configurationA.xml
+    │   ├── secure_configurationB.xml
+    ├── keystore
+    |   ├── enclaves
+    |   ├── private
+    |   ├── public
+    └── ddsrouter.yaml
+
+Now that everything is prepared, run another Vulcanexus Docker image, in this case including the workspace created as a volume:
+
+.. code-block:: bash
+
+    docker run -it -v <path/to/workspace_ddsrouter-tutorial>:/home ubuntu-vulcanexus:iron-desktop
+
+.. note::
+
+    Remember to source /opt/vulcanexus/iron/setup.bash in all the terminals run in this tutorial.
+    Additionally, in the DDS Router terminal, export the corresponding environmental variables to set up security, as explained in the `ROS 2 Tutorial <https://docs.ros.org/en/iron/Tutorials/Advanced/Security/Introducing-ros2-security.html>`_.
+
+    .. code-block:: bash
+
+        export ROS_SECURITY_KEYSTORE=home/keystore
+        export ROS_SECURITY_ENABLE=true
+        export ROS_SECURITY_STRATEGY=Enforce
+
 Run the `DDS Router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/formalia/titlepage.html>`_ with the configuration file available at ``<path/to/file>/ddsrouter.yaml``.
 
 .. code-block:: bash

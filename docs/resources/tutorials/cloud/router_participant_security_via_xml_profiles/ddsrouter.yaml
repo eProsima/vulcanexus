@@ -6,19 +6,19 @@ version: v3.1
 # XML CONFIGURATION FILE
 xml:
   files:
-    - /configurations/secure_configurationA.xml
-    - /configurations/secure_configurationB.xml
+    - /home/configurations/secure_configurationA.xml
+    - /home/configurations/secure_configurationB.xml
 
 ##################################
 # PARTICIPANTS
 participants:
 
   - name: Secure_participantA
-    kind: xml
-    profile: secure_domainparticipant_conf_auth_plugin_xml_profile_A
+    kind: local
+    # profile: secure_domainparticipant_conf_auth_plugin_xml_profile_A
     domain: 0
 
   - name: Secure_participantB
-    kind: xml
-    profile: secure_domainparticipant_conf_auth_plugin_xml_profile_B
+    kind: local
+    # profile: secure_domainparticipant_conf_auth_plugin_xml_profile_B
     domain: 1
