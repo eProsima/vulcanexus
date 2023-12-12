@@ -68,7 +68,7 @@ There are two ways to achieve this:
 
 #.  Setting up a development environment on the local host.
 
-    To do this, the ``vucanexus-iron-desktop`` package is needed, since it includes all the simulation tools, demos, and tutorials.
+    To do this, the ``vulcanexus-iron-desktop`` package is needed, since it includes all the simulation tools, demos, and tutorials.
 
     Set up the Vulcanexus environment by executing:
 
@@ -147,7 +147,30 @@ The tutorial workspace will have the following structure at the end of the proje
     |   ├── public
     └── ddsrouter.yaml
 
-Now that everything is prepared, run another Vulcanexus Docker image, in this case including the workspace created as a volume:
+The certificates generated are set up to ``ROS_DOMAIN_ID=0`` by default.
+We can set up another domain or even a range of domains applying the following change in ``<domain></domain>`` in the *governance.xml* and in the *permissions.xml* file both for the *talker* and the *listener*:
+
+.. code-block:: xml
+
+    <domains>
+        <id_range>
+            <min>0</min>
+            <max>10</max>
+        </id_range>
+    </domains>
+
+Once applied the changes, the files must be signed with the permission CA certificate:
+
+.. code-block:: bash
+
+    openssl smime -sign -text -in permissions.xml -out permissions.p7s \
+        -signer permissions_ca.cert.pem \
+        -inkey ~/workspace_ddsrouter-tutorial/keystore/private/permissions_ca.key.pem
+    openssl smime -sign -text -in governance.xml -text -out governance.p7s \
+        -signer ~/Documentos/tutorial/demo_keystore/public/permissions_ca.cert.pem \
+        -inkey ~/Documentos/tutorial/demo_keystore/private/permissions_ca.key.pem
+
+Now that everything is prepared, run 3 Vulcanexus Docker images on 3 different terminals, including the workspace created as a volume:
 
 .. code-block:: bash
 
@@ -155,8 +178,7 @@ Now that everything is prepared, run another Vulcanexus Docker image, in this ca
 
 .. note::
 
-    Remember to source /opt/vulcanexus/iron/setup.bash in all the terminals run in this tutorial.
-    Additionally, in the DDS Router terminal, export the corresponding environmental variables to set up security, as explained in the `ROS 2 Tutorial <https://docs.ros.org/en/iron/Tutorials/Advanced/Security/Introducing-ros2-security.html>`_.
+    Remember to source /opt/vulcanexus/iron/setup.bash and export the corresponding environmental variables to set up security in all the terminals run in this tutorial., as explained in the `ROS 2 Tutorial <https://docs.ros.org/en/iron/Tutorials/Advanced/Security/Introducing-ros2-security.html>`_.
 
     .. code-block:: bash
 
@@ -164,7 +186,19 @@ Now that everything is prepared, run another Vulcanexus Docker image, in this ca
         export ROS_SECURITY_ENABLE=true
         export ROS_SECURITY_STRATEGY=Enforce
 
-Run the `DDS Router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/formalia/titlepage.html>`_ with the configuration file available at ``<path/to/file>/ddsrouter.yaml``.
+Open the first terminal to run a ROS 2 ``demo_nodes_cpp`` *talker* in domain ``0`` with its corresponding security:
+
+.. code-block:: bash
+
+    ROS_DOMAIN_ID=0 ros2 run demo_nodes_cpp talker --ros-args --enclave /talker_listener/talker
+
+And the same with the *listener* in domain ``1`` on a second terminal:
+
+.. code-block:: bash
+
+    ROS_DOMAIN_ID=1 ros2 run demo_nodes_cpp listener --ros-args --enclave /talker_listener/listener
+
+Finally, on the third terminal run the `DDS Router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/formalia/titlepage.html>`_ with the configuration file available at ``<path/to/file>/ddsrouter.yaml``.
 
 .. code-block:: bash
 
