@@ -141,7 +141,7 @@ The tutorial workspace will have the following structure at the end of the proje
     ├── configurations
     │   ├── secure_configurationA.xml
     │   ├── secure_configurationB.xml
-    ├── keystore
+    ├── demo_keystore
     |   ├── enclaves
     |   ├── private
     |   ├── public
@@ -149,6 +149,9 @@ The tutorial workspace will have the following structure at the end of the proje
 
 The certificates generated are set up to ``ROS_DOMAIN_ID=0`` by default.
 We can set up another domain or even a range of domains applying the following change in ``<domain></domain>`` in the *governance.xml* and in the *permissions.xml* file both for the *talker* and the *listener*:
+
+.. note::
+    Make sure that you have applied the changes in all ``<domain></domain>`` sections, as some files have it more than once.
 
 .. code-block:: xml
 
@@ -161,14 +164,28 @@ We can set up another domain or even a range of domains applying the following c
 
 Once applied the changes, the files must be signed with the permission CA certificate:
 
-.. code-block:: bash
+.. tabs::
 
-    openssl smime -sign -text -in permissions.xml -out permissions.p7s \
-        -signer permissions_ca.cert.pem \
-        -inkey ~/workspace_ddsrouter-tutorial/keystore/private/permissions_ca.key.pem
-    openssl smime -sign -text -in governance.xml -text -out governance.p7s \
-        -signer ~/Documentos/tutorial/demo_keystore/public/permissions_ca.cert.pem \
-        -inkey ~/Documentos/tutorial/demo_keystore/private/permissions_ca.key.pem
+    .. tab:: Permissions
+
+        .. code-block:: bash
+
+            openssl smime -sign -text -in <path/to/workspace_ddsrouter-tutorial>/demo_keystore/talker_listener/talker/permissions.xml \
+                -out <path/to/workspace_ddsrouter-tutorial>/demo_keystore/talker_listener/talker/permissions.p7s \
+                -signer <path/to/workspace_ddsrouter-tutorial>/demo_keystore/public/permissions_ca.cert.pem \
+                -inkey <path/to/workspace_ddsrouter-tutorial>/demo_keystore/private/permissions_ca.key.pem
+            openssl smime -sign -text -in <path/to/workspace_ddsrouter-tutorial>/demo_keystore/talker_listener/listener/permissions.xml \
+                -out <path/to/workspace_ddsrouter-tutorial>/demo_keystore/talker_listener/listener/permissions.p7s \
+                -signer <path/to/workspace_ddsrouter-tutorial>/demo_keystore/public/permissions_ca.cert.pem \
+                -inkey <path/to/workspace_ddsrouter-tutorial>/demo_keystore/private/permissions_ca.key.pem
+
+    .. tab:: Governance
+
+        .. code-block:: bash
+
+            openssl smime -sign -text -in governance.xml -text -out governance.p7s \
+                -signer <path/to/workspace_ddsrouter-tutorial>/demo_keystore/public/permissions_ca.cert.pem \
+                -inkey <path/to/workspace_ddsrouter-tutorial>/demo_keystore/private/permissions_ca.key.pem
 
 Now that everything is prepared, run 3 Vulcanexus Docker images on 3 different terminals, including the workspace created as a volume:
 
@@ -182,7 +199,8 @@ Now that everything is prepared, run 3 Vulcanexus Docker images on 3 different t
 
     .. code-block:: bash
 
-        export ROS_SECURITY_KEYSTORE=home/keystore
+        source /opt/vulcanexus/iron/setup.bash
+        export ROS_SECURITY_KEYSTORE=home/demo_keystore
         export ROS_SECURITY_ENABLE=true
         export ROS_SECURITY_STRATEGY=Enforce
 
