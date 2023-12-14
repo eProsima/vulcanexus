@@ -9,8 +9,8 @@
     The |rosrouter| features described in this tutorial are not yet available in the current release of Vulcanexus.
     Stay tuned for new Vulcanexus releases to start using these new features!
 
-Configuring DDS Topics in the ROS 2 Router
-==========================================
+Configuring ROS 2 Router's Topic QoS
+====================================
 
 .. contents::
     :depth: 2
@@ -38,7 +38,7 @@ The DDS protocol defines the Domain Id as a parameter for every *DomainParticipa
 Different entities in different Domain Ids will never discover each other, and thus they will not communicate with each other.
 The |rosrouter| can be used as a bridge between ROS 2 Domains, so that every node in a domain can communicate with every other node on another domain, as illustrated in the following figure:
 
-.. figure:: /rst/figures/tutorials/cloud/change_domain_manual_topics.png
+.. figure:: /rst/figures/tutorials/cloud/change_domain_topic_qos.png
    :align: center
 
 This tutorial will use the ``demo_nodes_cpp`` package, available in the Vulcanexus Desktop distribution.
@@ -128,7 +128,7 @@ The following YAML configuration file configures a |rosrouter| with two Simple P
     This configuration enables listeners in domain ``1`` to subscribe to messages published in domain ``0``, at a frequency of 1 Hz on topic ``secret``, and at an unlimited frequency on any other topic.
     It also enables listeners in domain ``0`` to subscribe to messages published in domain ``1`` at an unlimited frequency on any topic.
 
-.. literalinclude:: /resources/tutorials/cloud/router_conf_with_manual_topics/router_conf_with_manual_topics.yaml
+.. literalinclude:: /resources/tutorials/cloud/conf_router_topic_qos/conf_router_topic_qos.yaml
     :language: yaml
 
 
@@ -137,7 +137,7 @@ Simple Participants
 
 The Simple Participants are configured with a name, a kind (``local``), and a domain id (``0`` and ``1``).
 
-.. literalinclude:: /resources/tutorials/cloud/router_conf_with_manual_topics/router_conf_with_manual_topics.yaml
+.. literalinclude:: /resources/tutorials/cloud/conf_router_topic_qos/conf_router_topic_qos.yaml
     :language: yaml
     :lines: 10-17
 
@@ -148,7 +148,7 @@ Topic Configuration
 We define the topic under the tag ``topics``.
 This topic is configured so that ``ROS_2_Domain_1`` will publish at a maximum frequency of 1 Hz on topic ``secret``, and at an unlimited frequency on any other topic.
 
-.. literalinclude:: /resources/tutorials/cloud/router_conf_with_manual_topics/router_conf_with_manual_topics.yaml
+.. literalinclude:: /resources/tutorials/cloud/conf_router_topic_qos/conf_router_topic_qos.yaml
     :language: yaml
     :lines: 3-8
 
