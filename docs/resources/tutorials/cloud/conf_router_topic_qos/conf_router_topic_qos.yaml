@@ -1,0 +1,17 @@
+version: v4.0
+
+topics:
+  - name: rt/secret
+    qos:
+      max-tx-rate: 1
+    participant:
+      - Ros_2_Domain_1
+
+participants:
+  - name: ROS_2_Domain_0
+    kind: local
+    domain: 0
+
+  - name: ROS_2_Domain_1
+    kind: local
+    domain: 1
