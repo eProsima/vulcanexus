@@ -15,11 +15,11 @@ The following are the tutorials that make up this course on communication in dis
     change_domain/change_domain
     change_domain_discovery_server/change_domain_discovery_server
     debug_ros2_router/debug_ros2_router
+    router_topic_qos/router_topic_qos
     kubernetes/kubernetes
     wan_edge_cloud/wan_edge_cloud
     wan_edge_cloud_tls/wan_edge_cloud_tls
     edge_edge_repeater_cloud/edge_edge_repeater_cloud
     microservices_cloud/microservices_cloud
     router_conf_via_xml_profiles/router_conf_via_xml_profiles
-    router_conf_with_manual_topics/router_conf_with_manual_topics
     router_participant_security_via_xml_profiles/router_participant_security_via_xml_profiles
