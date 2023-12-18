@@ -47,22 +47,22 @@ To proceed, please install Vulcanexus with one of the following installation met
 * :ref:`linux_source_installation`
 * :ref:`docker_installation`
 
-Creating all security certificates
+Preparing all security certificates
 -----------------------------------
 
 Participants security can only be configured by XML, following the instructions of `Fast DDS Security Documentation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/security/security.html>`_ to fulfill the pertinent requirements of the chosen security mechanisms.
-To generate the security certificates needed for both *talker* and *listener* nodes and both Domain Participants follow the Vulcanexus Tutorial `Setting up security <https://docs.vulcanexus.org/en/latest/ros2_documentation/source/Tutorials/Advanced/Security/Introducing-ros2-security.html>`_.
-Additionally to the steps followed in the tutorial, when generating keys and certificates for the *talker* and *listener* nodes, generate also their corresponding security files for both Domain Participants as follows:
+To generate the security certificates needed for both *talker* and *listener* nodes and both |rosrouter| participants please follow the `Setting up security <https://docs.vulcanexus.org/en/latest/ros2_documentation/source/Tutorials/Advanced/Security/Introducing-ros2-security.html>`_ ROS 2 tutorial.
+Additionally to the steps followed in the tutorial, when generating keys and certificates for the *talker* and *listener* nodes (`Section 3 <https://docs.vulcanexus.org/en/latest/ros2_documentation/source/Tutorials/Advanced/Security/Introducing-ros2-security.html#generate-keys-and-certificates>`__), generate also their corresponding security files for both |rosrouter| participants as follows:
 
 .. code-block:: bash
 
-    ros2 security create_enclave demo_keystore /participants/participant0
-    ros2 security create_enclave demo_keystore /participants/participant1
+    ros2 security create_enclave demo_keystore /ros2_router/participant0
+    ros2 security create_enclave demo_keystore /ros2_router/participant1
 
 Configuring *governance.xml* and *permissions.xml*
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-By default, the ``create_enclave`` feature configures security in ``ROS_DOMAIN_ID=0``.
+By default, the ``create_enclave`` feature configures security for ROS Domain ``0``.
 We can set up another domain or even a range of domains applying the following change in ``<domain></domain>`` in the *governance.xml* and in the *permissions.xml* files.
 
 .. tabs::
@@ -86,7 +86,30 @@ We can set up another domain or even a range of domains applying the following c
                 </id_range>
             </domains>
 
-For our specific case, we will set the domain to ``ROS_DOMAIN_ID=1`` in the *listener* and *Participant 1* permissions and a range including both 0 and 1 domains in the governance file.
+For our specific case, we will modify the corresponding *listener* and ROS 2 Router participant in domain 1 *permissions.xml* files to apply to ROS 2 Domain ``1``.
+In order to do so, please find the ``<domain></domain>`` section in
+
+* ``~/sros2_demo/demo_keystore/enclaves/ros2_router/participant1/permissions.xml``, and
+* ``~/sros2_demo/demo_keystore/enclaves/ros2_router/participant1/permissions.xml``
+
+files and replace it by:
+
+.. code-block:: xml
+
+    <domains>
+        <id>0</id>
+    </domains>
+
+We also need to update the *governance.xml* file (``~/sros2_demo/demo_keystore/enclaves/governance.xml``) that applies to all entities in our demo to include both ROS 2 Domains ``0`` and ``1``.
+
+.. code-block:: xml
+
+    <domains>
+        <id_range>
+            <min>0</min>
+            <max>1</max>
+        </id_range>
+    </domains>
 
 .. note::
 
@@ -95,31 +118,33 @@ For our specific case, we will set the domain to ``ROS_DOMAIN_ID=1`` in the *lis
 Signing *governance.xml* and *permissions.xml*
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Once applied the changes, the files must be signed with the permission CA certificate:
+Once applied the changes, the updated files must be signed with the permission CA certificate.
 
-.. tabs::
+*   Sign permissions files
 
-    .. tab:: Permissions
+    .. code-block:: bash
 
-        .. code-block:: bash
+        openssl smime -sign -text \
+            -in ~/sros2_demo/demo_keystore/enclaves/talker_listener/listener/permissions.xml \
+            -out ~/sros2_demo/demo_keystore/enclaves/talker_listener/listener/permissions.p7s \
+            -signer ~/sros2_demo/demo_keystore/public/permissions_ca.cert.pem \
+            -inkey ~/sros2_demo/demo_keystore/private/permissions_ca.key.pem
 
-            openssl smime -sign -text -in <path/to/workspace_ddsrouter-tutorial>/demo_keystore/enclaves/talker_listener/listener/permissions.xml \
-                -out <path/to/workspace_ddsrouter-tutorial>/demo_keystore/enclaves/talker_listener/listener/permissions.p7s \
-                -signer <path/to/workspace_ddsrouter-tutorial>/demo_keystore/public/permissions_ca.cert.pem \
-                -inkey <path/to/workspace_ddsrouter-tutorial>/demo_keystore/private/permissions_ca.key.pem
-            openssl smime -sign -text -in <path/to/workspace_ddsrouter-tutorial>/demo_keystore/enclaves/participants/particpant1/permissions.xml \
-                -out <path/to/workspace_ddsrouter-tutorial>/demo_keystore/enclaves/participants/particpant1/permissions.p7s \
-                -signer <path/to/workspace_ddsrouter-tutorial>/demo_keystore/public/permissions_ca.cert.pem \
-                -inkey <path/to/workspace_ddsrouter-tutorial>/demo_keystore/private/permissions_ca.key.pem
+        openssl smime -sign -text \
+            -in ~/sros2_demo/demo_keystore/enclaves/ros2_router/particpant1/permissions.xml \
+            -out ~/sros2_demo/demo_keystore/enclaves/ros2_router/particpant1/permissions.p7s \
+            -signer ~/sros2_demo/demo_keystore/public/permissions_ca.cert.pem \
+            -inkey ~/sros2_demo/demo_keystore/private/permissions_ca.key.pem
 
-    .. tab:: Governance
+*   Sign governance file
 
-        .. code-block:: bash
+    .. code-block:: bash
 
-            openssl smime -sign -text -in <path/to/workspace_ddsrouter-tutorial>/demo_keystore/enclaves/governance.xml \
-                -text -out <path/to/workspace_ddsrouter-tutorial>/demo_keystore/enclaves/governance.p7s \
-                -signer <path/to/workspace_ddsrouter-tutorial>/demo_keystore/public/permissions_ca.cert.pem \
-                -inkey <path/to/workspace_ddsrouter-tutorial>/demo_keystore/private/permissions_ca.key.pem
+        openssl smime -sign -text -in ~/sros2_demo/demo_keystore/enclaves/governance.xml \
+            -text -out ~/sros2_demo/demo_keystore/enclaves/governance.p7s \
+            -signer ~/sros2_demo/demo_keystore/public/permissions_ca.cert.pem \
+            -inkey ~/sros2_demo/demo_keystore/private/permissions_ca.key.pem
+
 
 Configuration of ROS 2 Router
 -----------------------------
@@ -129,11 +154,13 @@ The following YAML configuration file configures a |rosrouter| to create two par
 .. literalinclude:: /resources/tutorials/cloud/router_participant_security_via_xml_profiles/ddsrouter.yaml
     :language: yaml
 
+Please, save this file in ``~/sros_demo/ros2_router`` directory.
+
 ROS 2 Router Participants Configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-DDS Router `Participant <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/user_manual_glossary.html#term-Participant>`_ is a DDS Router entity that works as an interface between a network and the core of the router.
-Participants security can only be configured by XML, following the instructions of `Fast DDS Security Documentation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/security/security.html>`_ to fulfill the pertinent requirements of the chosen security mechanisms.
+A `ROS 2 Router Participant <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/participants/participant.html>`_ is a |rosrouter| entity that works as an interface between a network and the core of the router.
+Participants security can only be configured via XML profiles, following the instructions of `Fast DDS Security Documentation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/security/security.html>`_ to fulfill the pertinent requirements of the chosen security mechanisms.
 
 .. tabs::
 
@@ -147,10 +174,15 @@ Participants security can only be configured by XML, following the instructions 
         .. literalinclude:: /resources/tutorials/cloud/router_participant_security_via_xml_profiles/configurations/secure_configuration1.xml
             :language: xml
 
-These XMLs snippet configure security settings for two participants in the Fast DDS middleware, focusing on authentication through the `DDS:Auth:PKI-DH plugin <https://fast-dds.docs.eprosima.com/en/latest/fastdds/security/auth_plugin/auth_plugin.html>`_.
-They activate the PKI-DH plugin, specifying the paths to the participants' identities certificates, identity CA certificate, and private keys for authentication.
+Please add these files (*secure_domain_0.xml* and *secure_domain_1.xml*) to the current workspace so they can be referenced when running the ROS 2 Router.
+At this point we have a workspace structure as follows:
+
+
+
+These XML snippets configure security settings for two participants in the Fast DDS middleware.
+They activate the PKI-DH plugin, specifying the paths to the participants' identities certificates, identity CA certificate, and private keys for authentication through the `DDS:Auth:PKI-DH plugin <https://fast-dds.docs.eprosima.com/en/latest/fastdds/security/auth_plugin/auth_plugin.html>`_.
 Additionally, they enable access control through the `DDS:Access:Permissions plugin <https://fast-dds.docs.eprosima.com/en/latest/fastdds/security/access_control_plugin/access_control_plugin.html>`_, defining paths to the permissions CA certificate, governance files, and permissions files.
-The configuration also includes the activation of the `DDS:Crypto:AES-GCM-GMAC <https://fast-dds.docs.eprosima.com/en/latest/fastdds/security/crypto_plugin/crypto_plugin.html>`_ plugin for data encryption, enhancing communication security within the Fast DDS framework.
+The configuration also includes the activation of the `DDS:Crypto:AES-GCM-GMAC <https://fast-dds.docs.eprosima.com/en/latest/fastdds/security/crypto_plugin/crypto_plugin.html>`_ plugin for data encryption, enhancing communication security.
 
 Running the tutorial
 --------------------
@@ -160,42 +192,34 @@ The tutorial workspace will have the following structure at the end of the proje
 
 .. code-block:: bash
 
-    workspace_ddsrouter-tutorial
-    ├── configurations
-    │   ├── secure_configuration0.xml
-    │   ├── secure_configuration1.xml
-    ├── demo_keystore
-    │   ├── enclaves
-    │   │   ├── participants
-    │   │   ├── talker_listener
-    │   │   ├── governance.p7s
-    │   │   ├── governance.xml
-    │   ├── private
-    │   ├── public
-    └── ddsrouter.yaml
+    ~/sros2_demo
+    ├── ros2_router
+    │   ├── secure_domain_0.xml
+    │   ├── secure_domain_1.xml
+    │   ├── ddsrouter.yaml
+    └── demo_keystore
+        ├── enclaves
+        │   ├── ros2_router
+        │   ├── talker_listener
+        │   ├── governance.p7s
+        │   ├── governance.xml
+        ├── private
+        └── public
 
 Running ROS2 nodes with security
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Now that everything is prepared, we can launch the demo nodes with security.
-For this, open two different terminals and run Vulcanexus Docker images on them, including the workspace created as a volume:
+For this, open two different terminals and setup the Vulcanexus environment and the corresponding environment variables for configuring ROs 2 secure communications.
 
 .. code-block:: bash
 
-    docker run -it -v <path/to/workspace_ddsrouter-tutorial>:/home ubuntu-vulcanexus:iron-desktop
+    source /opt/vulcanexus/iron/setup.bash
+    export ROS_SECURITY_KEYSTORE=home/demo_keystore
+    export ROS_SECURITY_ENABLE=true
+    export ROS_SECURITY_STRATEGY=Enforce
 
-.. note::
-
-    Remember to source /opt/vulcanexus/iron/setup.bash and export the corresponding environmental variables to set up security in all the terminals run in this tutorial., as explained in the `ROS 2 Tutorial <https://docs.ros.org/en/iron/Tutorials/Advanced/Security/Introducing-ros2-security.html>`_.
-
-    .. code-block:: bash
-
-        source /opt/vulcanexus/iron/setup.bash
-        export ROS_SECURITY_KEYSTORE=home/demo_keystore
-        export ROS_SECURITY_ENABLE=true
-        export ROS_SECURITY_STRATEGY=Enforce
-
-Open the first terminal to run a ROS 2 ``demo_nodes_cpp`` *talker* in domain ``0`` with its corresponding security:
+Open the first terminal to run a ROS 2 ``demo_nodes_cpp`` *talker* node in domain ``0`` with its corresponding security configuration:
 
 .. code-block:: bash
 
@@ -207,28 +231,35 @@ And the same with the *listener* in domain ``1`` on a second terminal:
 
     ROS_DOMAIN_ID=1 ros2 run demo_nodes_cpp listener --ros-args --enclave /talker_listener/listener
 
-At this point, the *listener* should not receive any data from the *talker* since they are in different domains. To connect them, we will use the ROS 2 Router.
+At this point, the *listener* should not receive any data from the *talker* since they are in different domains. To connect them, we will use the |rosrouter|.
 
 Running DDS Router
 ^^^^^^^^^^^^^^^^^^
 
-On a third terminal run another Docker image and launch the `DDS Router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/formalia/titlepage.html>`_ with the configuration file available at ``<path/to/file>/ddsrouter.yaml``.
+Open a third terminal and source the Vulcanexus environment:
 
 .. code-block:: bash
 
-    ddsrouter --config-path <path/to/file>/ddsrouter.yaml
+    source /opt/vulcanexus/iron/setup.bash
 
-The output from the `DDS Router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/formalia/titlepage.html>`_ should be something like:
+Then run the |rosrouter| with the *yaml* configuration file created before.
+
+.. code-block:: bash
+
+    ddsrouter --config-path ~/sros_demo/ddsrouter.yaml
+
+The output from the |rosrouter| should be something like:
 
 .. code-block:: bash
 
     Starting DDS Router Tool execution.
     DDS Router running.
 
-If so, the `DDS Router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/formalia/titlepage.html>`_ has started correctly and it is currently running. Once the `DDS Router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/formalia/titlepage.html>`_ is running, it will forward the messages from the *talker* on domain 0 to the *listener* on domain 1.
-In order to close the execution, press ^C or send a signal (:code:`SIGINT 2` or :code:`SIGTERM 15`) to close it.
+If so, the |rosrouter| has started correctly and it is currently running.
+Once the |rosrouter| is running, it will forward the messages from the *talker* on domain 0 to the *listener* on domain 1.
+In order to close the execution, press ^C or send a signal (:code:`SIGINT 2` or :code:`SIGTERM 15`) to stop it.
 
-To make sure security is working properly try running again the nodes without the ``--ros-args`` argument such as:
+To make sure security is working properly try running again the *talker* and *listener* ROS 2 nodes the security configuration:
 
 .. code-block:: bash
 
@@ -239,4 +270,4 @@ To make sure security is working properly try running again the nodes without th
 
     ROS_DOMAIN_ID=1 ros2 run demo_nodes_cpp listener
 
-This should not allow the *listener* to receive any data from the *talker*.
+This way the |rosrouter| will not receive any data from the *talker* and therefore neither will the *listener*.

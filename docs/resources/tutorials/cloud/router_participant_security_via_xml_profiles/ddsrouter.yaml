@@ -6,8 +6,8 @@ version: v3.1
 # XML CONFIGURATION FILE
 xml:
   files:
-    - /home/configurations/secure_configuration0.xml
-    - /home/configurations/secure_configuration1.xml
+    - ~/sros2_demo/ros2_router/secure_domain_0.xml
+    - ~/sros2_demo/ros2_router/secure_domain_1.xml
 
 ##################################
 # PARTICIPANTS
