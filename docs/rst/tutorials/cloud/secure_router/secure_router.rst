@@ -52,7 +52,7 @@ Creating all security certificates
 
 Participants security can only be configured by XML, following the instructions of `Fast DDS Security Documentation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/security/security.html>`_ to fulfill the pertinent requirements of the chosen security mechanisms.
 To generate the security certificates needed for both *talker* and *listener* nodes and both Domain Participants follow the Vulcanexus Tutorial `Setting up security <https://docs.vulcanexus.org/en/latest/ros2_documentation/source/Tutorials/Advanced/Security/Introducing-ros2-security.html>`_.
-Additionally to the steps followed in the tutorial, when generating keys and certificates for the *talker* and *listener* nodes, generate also ther corresponding security files for both Domain Participants as follows:
+Additionally to the steps followed in the tutorial, when generating keys and certificates for the *talker* and *listener* nodes, generate also their corresponding security files for both Domain Participants as follows:
 
 .. code-block:: bash
 
@@ -212,7 +212,7 @@ At this point, the *listener* should not receive any data from the *talker* sinc
 Running DDS Router
 ^^^^^^^^^^^^^^^^^^
 
-On a third terminal run anothe Docker image and launch the `DDS Router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/formalia/titlepage.html>`_ with the configuration file available at ``<path/to/file>/ddsrouter.yaml``.
+On a third terminal run another Docker image and launch the `DDS Router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/formalia/titlepage.html>`_ with the configuration file available at ``<path/to/file>/ddsrouter.yaml``.
 
 .. code-block:: bash
 
@@ -228,7 +228,7 @@ The output from the `DDS Router <https://eprosima-dds-router.readthedocs.io/en/l
 If so, the `DDS Router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/formalia/titlepage.html>`_ has started correctly and it is currently running. Once the `DDS Router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/formalia/titlepage.html>`_ is running, it will forward the messages from the *talker* on domain 0 to the *listener* on domain 1.
 In order to close the execution, press ^C or send a signal (:code:`SIGINT 2` or :code:`SIGTERM 15`) to close it.
 
-ITo make sure security is working properly try running again the nodes without the ``--ros-args`` argument such as:
+To make sure security is working properly try running again the nodes without the ``--ros-args`` argument such as:
 
 .. code-block:: bash
 
