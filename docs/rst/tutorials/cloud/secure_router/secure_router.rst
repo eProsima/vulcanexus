@@ -97,7 +97,7 @@ files and replace it by:
 .. code-block:: xml
 
     <domains>
-        <id>0</id>
+        <id>1</id>
     </domains>
 
 We also need to update the *governance.xml* file (``~/sros2_demo/demo_keystore/enclaves/governance.xml``) that applies to all entities in our demo to include both ROS 2 Domains ``0`` and ``1``.
@@ -131,8 +131,8 @@ Once applied the changes, the updated files must be signed with the permission C
             -inkey ~/sros2_demo/demo_keystore/private/permissions_ca.key.pem
 
         openssl smime -sign -text \
-            -in ~/sros2_demo/demo_keystore/enclaves/ros2_router/particpant1/permissions.xml \
-            -out ~/sros2_demo/demo_keystore/enclaves/ros2_router/particpant1/permissions.p7s \
+            -in ~/sros2_demo/demo_keystore/enclaves/ros2_router/participant1/permissions.xml \
+            -out ~/sros2_demo/demo_keystore/enclaves/ros2_router/participant1/permissions.p7s \
             -signer ~/sros2_demo/demo_keystore/public/permissions_ca.cert.pem \
             -inkey ~/sros2_demo/demo_keystore/private/permissions_ca.key.pem
 
@@ -166,12 +166,12 @@ Participants security can only be configured via XML profiles, following the ins
 
     .. tab:: Participant Domain 0
 
-        .. literalinclude:: /resources/tutorials/cloud/router_participant_security_via_xml_profiles/configurations/secure_configuration0.xml
+        .. literalinclude:: /resources/tutorials/cloud/router_participant_security_via_xml_profiles/configurations/secure_domain0.xml
             :language: xml
 
     .. tab:: Participant Domain 1
 
-        .. literalinclude:: /resources/tutorials/cloud/router_participant_security_via_xml_profiles/configurations/secure_configuration1.xml
+        .. literalinclude:: /resources/tutorials/cloud/router_participant_security_via_xml_profiles/configurations/secure_domain1.xml
             :language: xml
 
 Please add these files (*secure_domain_0.xml* and *secure_domain_1.xml*) to the current workspace so they can be referenced when running the ROS 2 Router.
