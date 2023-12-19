@@ -13,15 +13,15 @@
                     <!-- Configure DDS:Auth:PKI-DH plugin -->
                     <property>
                         <name>dds.sec.auth.builtin.PKI-DH.identity_ca</name>
-                        <value>file:///home/demo_keystore/enclaves/participants/participant0/identity_ca.cert.pem</value>
+                        <value>file:///~/sros2_demo/demo_keystore/enclaves/ros2_router/participant0/identity_ca.cert.pem</value>
                     </property>
                     <property>
                         <name>dds.sec.auth.builtin.PKI-DH.identity_certificate</name>
-                        <value>file:///home/demo_keystore/enclaves/participants/participant0/cert.pem</value>
+                        <value>file:///~/sros2_demo/demo_keystore/enclaves/ros2_router/participant0/cert.pem</value>
                     </property>
                     <property>
                         <name>dds.sec.auth.builtin.PKI-DH.private_key</name>
-                        <value>file:///home/demo_keystore/enclaves/participants/participant0/key.pem</value>
+                        <value>file:///~/sros2_demo/demo_keystore/enclaves/ros2_router/participant0/key.pem</value>
                     </property>
                     <!-- DDS:Access:Permissions plugin -->
                     <property>
@@ -30,15 +30,15 @@
                     </property>
                     <property>
                         <name>dds.sec.access.builtin.Access-Permissions.permissions_ca</name>
-                        <value>file:///home/demo_keystore/enclaves/participants/participant0/permissions_ca.cert.pem</value>
+                        <value>file:///~/sros2_demo/demo_keystore/enclaves/ros2_router/participant0/permissions_ca.cert.pem</value>
                     </property>
                     <property>
                         <name>dds.sec.access.builtin.Access-Permissions.governance</name>
-                        <value>file:///home/demo_keystore/enclaves/participants/participant0/governance.p7s</value>
+                        <value>file:///~/sros2_demo/demo_keystore/enclaves/ros2_router/participant0/governance.p7s</value>
                     </property>
                     <property>
                         <name>dds.sec.access.builtin.Access-Permissions.permissions</name>
-                        <value>file:///home/demo_keystore/enclaves/participants/participant0/permissions.p7s</value>
+                        <value>file:///~/sros2_demo/demo_keystore/enclaves/ros2_router/participant0/permissions.p7s</value>
                     </property>
                     <!-- Activate DDS:Crypto:AES-GCM-GMAC plugin -->
                     <property>

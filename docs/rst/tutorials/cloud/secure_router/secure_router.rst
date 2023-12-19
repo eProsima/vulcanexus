@@ -89,7 +89,7 @@ We can set up another domain or even a range of domains applying the following c
 For our specific case, we will modify the corresponding *listener* and ROS 2 Router participant in domain 1 *permissions.xml* files to apply to ROS 2 Domain ``1``.
 In order to do so, please find the ``<domain></domain>`` section in
 
-* ``~/sros2_demo/demo_keystore/enclaves/ros2_router/participant1/permissions.xml``, and
+* ``~/sros2_demo/demo_keystore/enclaves/talker_listener/listener/permissions.xml``, and
 * ``~/sros2_demo/demo_keystore/enclaves/ros2_router/participant1/permissions.xml``
 
 files and replace it by:
@@ -187,8 +187,7 @@ The configuration also includes the activation of the `DDS:Crypto:AES-GCM-GMAC <
 Running the tutorial
 --------------------
 
-Once all the files needed have been generated, create a workspace called ``workspace_ddsrouter-tutorial`` to collect all the directories and files.
-The tutorial workspace will have the following structure at the end of the project:
+Once all the files needed have been generated, the workspace ``sros2_demo`` generated in the previous steps will have the following structure:
 
 .. code-block:: bash
 
@@ -210,7 +209,7 @@ Running ROS2 nodes with security
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Now that everything is prepared, we can launch the demo nodes with security.
-For this, open two different terminals and setup the Vulcanexus environment and the corresponding environment variables for configuring ROs 2 secure communications.
+For this, open two different terminals and setup the Vulcanexus environment and the corresponding environment variables for configuring ROS 2 secure communications.
 
 .. code-block:: bash
 
