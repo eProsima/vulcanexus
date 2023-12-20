@@ -1,0 +1,32 @@
+version: v4.0
+
+participants:
+
+  - name: ROS_2_Domain_0
+    kind: local
+    domain: 0
+
+  - name: ROS_2_Domain_1
+    kind: local
+    domain: 1
+
+routes:
+
+  - src: ROS_2_Domain_0
+    dst:
+      - ROS_2_Domain_1
+
+  - src: ROS_2_Domain_1
+
+topic-routes:
+
+  - name: rt/secret
+    type: std_msgs::msg::dds_::String_
+
+    routes:
+
+      - src: ROS_2_Domain_1
+        dst:
+          - ROS_2_Domain_0
+
+      - src: ROS_2_Domain_0

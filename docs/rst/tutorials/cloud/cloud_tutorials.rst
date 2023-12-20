@@ -23,3 +23,4 @@ The following are the tutorials that make up this course on communication in dis
     microservices_cloud/microservices_cloud
     router_conf_via_xml_profiles/router_conf_via_xml_profiles
     router_participant_security_via_xml_profiles/router_participant_security_via_xml_profiles
+    router_conf_with_forwarding_routes/router_conf_with_forwarding_routes
