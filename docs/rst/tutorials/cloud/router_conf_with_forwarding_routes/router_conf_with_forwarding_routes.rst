@@ -2,6 +2,13 @@
 
 .. _tutorials_cloud_forwarding_routes:
 
+.. NOT-YET-AVAILABLE-TUTORIAL
+
+.. warning::
+
+    The |rosrouter| features described in this tutorial are not yet available in the current release of Vulcanexus.
+    Stay tuned for new Vulcanexus releases to start using these new features!
+
 ROS 2 Router configuration with Forwarding Routes
 =================================================
 
