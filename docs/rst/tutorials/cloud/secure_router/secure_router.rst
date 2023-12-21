@@ -214,7 +214,7 @@ For this, open two different terminals and setup the Vulcanexus environment and 
 .. code-block:: bash
 
     source /opt/vulcanexus/iron/setup.bash
-    export ROS_SECURITY_KEYSTORE=home/demo_keystore
+    export ROS_SECURITY_KEYSTORE=home/sros2_demo/demo_keystore
     export ROS_SECURITY_ENABLE=true
     export ROS_SECURITY_STRATEGY=Enforce
 
@@ -245,7 +245,7 @@ Then run the |rosrouter| with the *yaml* configuration file created before.
 
 .. code-block:: bash
 
-    ddsrouter --config-path ~/sros_demo/ddsrouter.yaml
+    ddsrouter --config-path ~/sros2_demo/ros2_router/ddsrouter.yaml
 
 The output from the |rosrouter| should be something like:
 
