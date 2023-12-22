@@ -214,7 +214,7 @@ For this, open two different terminals and setup the Vulcanexus environment and 
 .. code-block:: bash
 
     source /opt/vulcanexus/iron/setup.bash
-    export ROS_SECURITY_KEYSTORE=/home/sros2_demo/demo_keystore
+    export ROS_SECURITY_KEYSTORE=<absolute/path/to/sros2_demo>/sros2_demo/demo_keystore
     export ROS_SECURITY_ENABLE=true
     export ROS_SECURITY_STRATEGY=Enforce
 
