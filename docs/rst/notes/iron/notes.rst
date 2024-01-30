@@ -50,6 +50,9 @@ This version ships the following packages:
     * - ROS 2 Shapes Demo
       - `v2.13.1 <https://eprosima-shapes-demo.readthedocs.io/en/latest/notes/notes.html#version-2-13-1>`__
       - v3.1.0
+    * - ROS 2 Shapes Demo TypeSupport
+      - `v1.0.0 <https://github.com/eProsima/ShapesDemo-TypeSupport/releases/tag/v1.0.0>`__
+      - v3.1.0
     * - ROS 2 Statistics Backend
       - `v1.0.0 <https://fast-dds-statistics-backend.readthedocs.io/en/latest/rst/notes/notes.html#version-1-0-0>`__
       - v3.1.0
@@ -70,6 +73,12 @@ This version ships the following packages:
       - v3.1.0
     * - eProsima Fast DDS QoS Profiles Manager
       - `v0.1.0 <https://fast-dds-qos-profiles-manager.readthedocs.io/en/latest/rst/notes/notes.html#version-0-1-0>`__
+      - v3.0.0
+    * - Vulcanexus IDL TypeSupport Fast DDS
+      - `v3.4.0 <https://github.com/ros2/rosidl_typesupport_fastrtps/tree/3.4.0>`__
+      - v3.1.0
+    * - Vulcanexus IDL Dynamic TypeSupport Fast DDS
+      - `v0.1.0 <https://github.com/ros2/rosidl_dynamic_typesupport_fastrtps/blob/rolling/CHANGELOG.rst#010-2023-04-28>`__
       - v3.0.0
     * - Vulcanexus Base
       - `v3.1.0 <https://docs.vulcanexus.org/en/latest/rst/notes/iron/notes.html#iron-imagination-v3-1-0>`__

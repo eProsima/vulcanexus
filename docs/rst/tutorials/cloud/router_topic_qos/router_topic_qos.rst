@@ -2,13 +2,6 @@
 
 .. _tutorials_cloud_manual_topics:
 
-.. NOT-YET-AVAILABLE-TUTORIAL
-
-.. warning::
-
-    The |rosrouter| features described in this tutorial are not yet available in the current release of Vulcanexus.
-    Stay tuned for new Vulcanexus releases to start using these new features!
-
 Configuring ROS 2 Router's Topic QoS
 ====================================
 
