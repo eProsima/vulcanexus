@@ -38,6 +38,9 @@ This version ships the following packages:
     * - Micro-XRCE-DDS-Agent
       - `v2.4.2 <https://micro-xrce-dds.docs.eprosima.com/en/latest/notes.html#version-2-4-2>`__
       - v3.1.0
+    * - Micro-XRCE-DDS-Gen
+      - `v2.0.2 <https://micro-xrce-dds.docs.eprosima.com/en/latest/notes.html#version-2-4-2>`__
+      - v3.1.0
     * - Micro-ROS-Msgs
       - `iron <https://github.com/micro-ROS/micro_ros_msgs/blob/iron/CHANGELOG.rst>`__
       - v3.1.0
