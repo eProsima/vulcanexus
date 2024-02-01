@@ -42,7 +42,7 @@ This version ships the following packages:
       - `v2.0.2 <https://micro-xrce-dds.docs.eprosima.com/en/latest/notes.html#version-2-4-2>`__
       - v3.1.0
     * - Micro-ROS-Msgs
-      - `iron <https://github.com/micro-ROS/micro_ros_msgs/blob/iron/CHANGELOG.rst>`__
+      - `4.0.1 <https://github.com/micro-ROS/micro_ros_msgs/blob/iron/CHANGELOG.rst#401-2024-02-01>`__
       - v3.1.0
     * - ROS 2 Monitor
       - `v2.0.0 <https://fast-dds-monitor.readthedocs.io/en/latest/rst/notes/notes.html#version-v2-0-0>`__
@@ -86,3 +86,8 @@ This version ships the following packages:
     * - Vulcanexus Base
       - `v3.1.0 <https://docs.vulcanexus.org/en/latest/rst/notes/iron/notes.html#iron-imagination-v3-1-0>`__
       - v3.1.0
+
+Iron Imagination previous versions
+----------------------------------
+
+.. include:: previous_versions/v2.3.0.rst
