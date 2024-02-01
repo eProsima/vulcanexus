@@ -207,8 +207,8 @@ cobertura
 codebase
 codebases
 codecov
-Codegen
 codegen
+Codegen
 codename
 codepath
 colcon
@@ -431,6 +431,7 @@ Florian
 fn
 Fonseca
 Foote
+formatter
 formatters
 forwardports
 fp
@@ -933,8 +934,8 @@ Petter
 PGotzmann
 pil
 PIL
-Pimpl
 pimpl
+Pimpl
 Pintaudi
 Piotr
 pkgs

@@ -97,7 +97,7 @@ macros = {
     'DISTRO_TITLE': 'Iron',
     'DISTRO_TITLE_FULL': 'Iron Irwini',
     'REPOS_FILE_BRANCH': 'iron',
-    'FASTDDS_BRANCH': 'v2.11.1',
+    'FASTDDS_BRANCH': 'v2.13.1',
 }
 
 # -- General configuration ------------------------------------------------
