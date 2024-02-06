@@ -6,8 +6,8 @@ version: v3.1
 # XML CONFIGURATION FILE
 xml:
   files:
-    - /home/configurations/secure_configurationA.xml
-    - /home/configurations/secure_configurationB.xml
+    - ./sros2_demo/ros2_router/secure_domain_0.xml
+    - ./sros2_demo/ros2_router/secure_domain_1.xml
 
 ##################################
 # PARTICIPANTS
@@ -15,8 +15,8 @@ participants:
 
   - name: ROS_2_Domain_0
     kind: xml
-    profile: secure_domainparticipant_conf_auth_plugin_xml_profile_A
+    profile: participant_domain_0
 
   - name: ROS_2_Domain_1
     kind: xml
-    profile: secure_domainparticipant_conf_auth_plugin_xml_profile_B
+    profile: participant_domain_1
