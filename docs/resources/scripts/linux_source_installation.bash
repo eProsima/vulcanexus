@@ -88,12 +88,7 @@ rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext
 
 ##LINUX_SOURCE_CLONE_VULCA
 cd ~
-<<<<<<< HEAD
 cd vulcanexus_humble
-=======
-cd vulcanexus_iron
-
->>>>>>> b23560f (Fix Linux installations from sources docs (#151))
 # Remove ROS 2 packages overridden by Vulcanexus
 rm -rf \
     src/eProsima/foonathan_memory_vendor/ \
