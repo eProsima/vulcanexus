@@ -21,6 +21,5 @@ The following are the tutorials that make up this course on communication in dis
     wan_edge_cloud_tls/wan_edge_cloud_tls
     edge_edge_repeater_cloud/edge_edge_repeater_cloud
     microservices_cloud/microservices_cloud
-    router_conf_with_manual_topics/router_conf_with_manual_topics
     router_conf_via_xml_profiles/router_conf_via_xml_profiles
     router_participant_security_via_xml_profiles/router_participant_security_via_xml_profiles
