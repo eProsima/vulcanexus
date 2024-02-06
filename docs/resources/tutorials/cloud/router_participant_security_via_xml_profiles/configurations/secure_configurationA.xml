@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <participant profile_name="secure_domainparticipant_conf_auth_plugin_xml_profile_A">
+        <domainId>0</domainId>
+        <rtps>
+            <propertiesPolicy>
+                <properties>
+                    <!-- Activate DDS:Auth:PKI-DH plugin -->
+                    <property>
+                        <name>dds.sec.auth.plugin</name>
+                        <value>builtin.PKI-DH</value>
+                    </property>
+                    <!-- Configure DDS:Auth:PKI-DH plugin -->
+                    <property>
+                        <name>dds.sec.auth.builtin.PKI-DH.identity_ca</name>
+                        <value>file:///home/demo_keystore/enclaves/talker_listener/talker/identity_ca.cert.pem</value>
+                    </property>
+                    <property>
+                        <name>dds.sec.auth.builtin.PKI-DH.identity_certificate</name>
+                        <value>file:///home/demo_keystore/enclaves/talker_listener/talker/cert.pem</value>
+                    </property>
+                    <property>
+                        <name>dds.sec.auth.builtin.PKI-DH.private_key</name>
+                        <value>file:///home/demo_keystore/enclaves/talker_listener/talker/key.pem</value>
+                    </property>
+                    <!-- DDS:Access:Permissions plugin -->
+                    <property>
+                        <name>dds.sec.access.plugin</name>
+                        <value>builtin.Access-Permissions</value>
+                    </property>
+                    <property>
+                        <name>dds.sec.access.builtin.Access-Permissions.permissions_ca</name>
+                        <value>file:///home/demo_keystore/enclaves/talker_listener/talker/permissions_ca.cert.pem</value>
+                    </property>
+                    <property>
+                        <name>dds.sec.access.builtin.Access-Permissions.governance</name>
+                        <value>file:///home/demo_keystore/enclaves/talker_listener/talker/governance.p7s</value>
+                    </property>
+                    <property>
+                        <name>dds.sec.access.builtin.Access-Permissions.permissions</name>
+                        <value>file:///home/demo_keystore/enclaves/talker_listener/talker/permissions.p7s</value>
+                    </property>
+                    <!-- Activate DDS:Crypto:AES-GCM-GMAC plugin -->
+                    <property>
+                        <name>dds.sec.crypto.plugin</name>
+                        <value>builtin.AES-GCM-GMAC</value>
+                    </property>
+                </properties>
+            </propertiesPolicy>
+        </rtps>
+    </participant>
+</profiles>
