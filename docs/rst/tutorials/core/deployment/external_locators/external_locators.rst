@@ -100,11 +100,7 @@ On both hosts, open a shell and run:
                 .. code-block:: bash
 
                     docker run --rm -it `# Cleanup, interactive terminal` \
-<<<<<<< HEAD
-                        -p 11200-11201:7412-7413/udp `# Expose default internal ports to host` \
-=======
                         -p 11200-11201:7410-7411/udp `# Expose default internal ports to host` \
->>>>>>> 93e9dc9 (Fix port mapping in External Locators tutorial (#149))
                         ubuntu-vulcanexus:humble-desktop `# Image name`
 
             .. tab:: TERMINAL 2
@@ -124,11 +120,7 @@ On both hosts, open a shell and run:
                 .. code-block:: bash
 
                     docker run --rm -it `# Cleanup, interactive terminal` \
-<<<<<<< HEAD
-                        -p 11200-11201:7412-7413/udp `# Expose default internal ports to host` \
-=======
                         -p 11200-11201:7410-7411/udp `# Expose default internal ports to host` \
->>>>>>> 93e9dc9 (Fix port mapping in External Locators tutorial (#149))
                         ubuntu-vulcanexus:humble-desktop `# Image name`
 
 .. important::
