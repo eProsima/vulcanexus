@@ -18,8 +18,8 @@ Background
 That is, ROS 2 nodes such as publishers and subscriptions, or clients and services, deployed in one geographic location and using a dedicated local network will be able to communicate with other ROS 2 nodes deployed in different geographic areas on their own dedicated local networks as if they were all on the same network through the use of |rosrouter|.
 
 This tutorial explains how to use the |rosrouter| to communicate ROS 2 nodes in different Domain Ids.
-The DDS protocol define Domain Id as a parameter for every *DomainParticipant*.
-Different entities in different Domain Ids will never discover each other, and thus they will not communicate to each other.
+The DDS protocol defines Domain Id as a parameter for every *DomainParticipant*.
+Different entities in different Domain Ids will never discover each other, and thus they will not communicate with each other.
 Using the |rosrouter| as a bridge between ROS 2 Domains, every node will be able to communicate with any other node independently of the Domain where they are deployed.
 
 As already mentioned, the approach of this tutorial is straightforward and is illustrated in the following figure:
@@ -119,7 +119,7 @@ Then, create the |rosrouter| configuration file as the one shown below.
 
 This configuration defines 2 different *Router Participants*, internal "interfaces" for the |rosrouter|.
 Each of this Participants will create DDS Entities in each of the domains, and they will forward all the data received from one Domain to the other.
-Topics, Data Types, Quality of Services and order of messages will be respected when redirecting the data.
+Topics, Data Types, Quality of Services and the order of messages will be respected when redirecting the data.
 
 Running ROS 2 Router
 ^^^^^^^^^^^^^^^^^^^^
@@ -146,7 +146,7 @@ Communicating multiple Domains
 
 The |rosrouter| can equally inter-communicate 2 or more Domain Ids.
 Just add as many Participants as desired to the configuration file and this will redirect all messages from every Domain to all the others.
-In the following figure we could see the use case and the configuration required for communicating 4 different Domains.
+The following figure illustrates the use case and the configuration required to communicate four different Domains.
 
 .. figure:: /rst/figures/tutorials/cloud/change_domain_4.png
    :align: center
