@@ -19,12 +19,14 @@ acknowledgement
 acknowledgements
 Addisu
 Aditya
+Aerostack
 af
 Afonso
 ahcorde
 Akash
 al
 Alaa
+Aldrich
 alemme
 Alexey
 Alfi
@@ -88,6 +90,7 @@ autodoc
 automerge
 autopep
 Autoware
+Avellaneda
 avoider
 Aydos
 Baali
@@ -115,6 +118,7 @@ beggining
 behaviours
 Bence
 benchmarking
+Betterments
 Biggs
 bigobj
 bijoua
@@ -127,7 +131,9 @@ Blass
 Bo
 Boasson
 Bohren
+bokeh
 Bolson
+Bonxai
 bool
 boolean
 booleans
@@ -157,6 +163,7 @@ Bulwahn
 bw
 cairo
 cairocffi
+calback
 calib
 calloc
 cameraInfo
@@ -204,6 +211,7 @@ CMake
 cmakelists
 cmd
 cobertura
+Cobots
 codebase
 codebases
 codecov
@@ -225,6 +233,7 @@ composable
 composible
 compressio
 conan
+conda
 config
 configs
 configurability
@@ -310,6 +319,8 @@ Deschamps
 descibed
 deserialization
 deserialize
+deserialized
+deserialized
 destoryed
 destructor
 destructors
@@ -400,6 +411,7 @@ et
 ethernet
 Evalution
 everytime
+evoloving
 exe
 execinfo
 executables
@@ -457,6 +469,8 @@ Gb
 gbp
 Gbps
 gcc
+gdb
+gdb
 Geochelone
 gerkey
 Gesel
@@ -508,6 +522,7 @@ Günther
 gurumdds
 gurumnet
 gz
+Hakoniwa
 Hampp
 hannes
 Hannu
@@ -529,6 +544,7 @@ Henttinen
 Hernández
 herrmann
 Hervé
+het
 heterogenous
 hg
 hh
@@ -679,6 +695,7 @@ Kosuke
 kp
 Krönke
 ksuszka
+KubeEdge
 Kuo
 kwarg
 kwc
@@ -815,6 +832,7 @@ mjbogusz
 mjeronimo
 mnt
 moc
+Modelling
 modularity
 Mohta
 Mollard
@@ -884,11 +902,14 @@ nupkg
 nvblox
 O
 O'Quin
+Observability
 Octogonapus
+Octomap
 odometry
 ok
 okumura
 Oleynikova
+Omnidirectional
 Omniverse
 onwards
 opencv
@@ -911,6 +932,7 @@ overread
 pagefault
 pagefaults
 pais
+Palomo
 Pande
 Pandey
 Paques
@@ -930,6 +952,7 @@ pclint
 Peng
 performant
 Perron
+Petri
 Petter
 PGotzmann
 pil
@@ -1022,11 +1045,13 @@ Rabaud
 Ragnarök
 Rahman
 ralwing
+Ramón
 Rauch
 Raymakers
 rcl
 rclc
 rclcpp
+Rclex
 rclnodejs
 rclpy
 rclrs
@@ -1043,6 +1068,7 @@ Realtime
 rearchitected
 rebased
 Rebecca
+recognising
 reconfiguring
 Redistributables
 reenable
@@ -1079,6 +1105,7 @@ Reuter
 revolute
 rewriter
 rgb
+RHEL
 Rhys
 ricardo
 Ridely
@@ -1095,6 +1122,7 @@ Röhling
 Roncagliolo
 ros
 rosbag
+Rosbags
 rosbash
 Rosbridge
 rosdep
@@ -1188,6 +1216,7 @@ Soragna
 Sorbini
 sourceable
 sourcedir
+soversions
 spacebar
 spawner
 spdlog
@@ -1203,6 +1232,7 @@ srvcli
 sshfs
 sstream
 ssumoo
+Staschulat
 StaticExecutorEntitiesCollector
 stddef
 stderr
@@ -1308,6 +1338,7 @@ tomoya
 toMsg
 tooltip
 Toom
+Tormach
 tracepoint
 tracepoints
 tracetools
@@ -1373,6 +1404,7 @@ url
 urls
 userspace
 usestl
+Usi
 utf
 utils
 uupks
@@ -1471,6 +1503,7 @@ Xu
 Xue
 xUnit
 xwnb
+xy
 xyz
 Yadu
 Yadunund
