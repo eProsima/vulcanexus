@@ -1,10 +1,7 @@
 .. _notes_iron_latest:
 
-Iron Imagination
-================
-
 Iron Imagination (v3.1.0)
--------------------------
+=========================
 
 This version ships the following packages:
 
@@ -88,6 +85,6 @@ This version ships the following packages:
       - v3.1.0
 
 Iron Imagination previous versions
-----------------------------------
+==================================
 
 .. include:: previous_versions/v2.3.0.rst
