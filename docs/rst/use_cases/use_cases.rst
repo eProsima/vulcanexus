@@ -7,3 +7,4 @@ Vulcanexus Use Cases
     :maxdepth: 1
 
     rosbot2r/simulation
+    rosbotxl/autonomy
