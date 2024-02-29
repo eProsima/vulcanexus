@@ -204,7 +204,7 @@ As mentioned before, this command changes the default configuration of the trans
 
 .. raw:: html
 
-    <video width=100% height=auto autoplay loop muted>
+    <video width=100% height=auto autoplay loop controls muted>
         <source src="../../../_static/resources/use_cases/large_data/rosbot_terminals.mp4">
         Your browser does not support the video tag.
     </video>
@@ -237,7 +237,7 @@ Finally, launch RViz2 and set the configuration file to visualize the robot and 
 
 .. raw:: html
 
-    <video width=100% height=auto autoplay loop muted>
+    <video width=100% height=auto autoplay loop controls muted>
         <source src="../../../_static/resources/use_cases/large_data/laptop_terminals.mp4">
         Your browser does not support the video tag.
     </video>
