@@ -8,8 +8,8 @@ bare-metal
 behaviour
 blinky
 centric
-conf
 combinable
+conf
 cryptographic
 cryptosystem
 curl
@@ -41,6 +41,7 @@ keystore
 kiB
 Kubernetes
 MBed
+mecanum
 metatraffic
 micro_ros_utilities_memory_conf_t
 microros
@@ -55,11 +56,11 @@ NetX
 Nucleo
 NuttX
 Orbbec
-Posix
-Persistency
 persistency
+Persistency
 Pico
 pluggable
+Posix
 preallocates
 prebuilt
 proto
@@ -73,8 +74,8 @@ retransmit
 Robotstadium
 ROS
 runtime
-spinned
 scalable
+spinned
 src
 sSL
 stdout
