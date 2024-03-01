@@ -245,3 +245,22 @@ Finally, launch RViz2 and set the configuration file to visualize the robot and 
 
 Now, the laptop is prepared to visualize the environment and robot movement.
 You can navigate the environment, set goals, and generate maps effectively.
+
+Troubleshooting
+---------------
+
+If Large Data mode of Fast DDS is not sufficient to see the image and navigation costmap correctly in RViz, it is possible that the limiting factor for communications is the machine on which we run ROS 2.
+To improve communications, it is possible to apply some settings to each device running ROS 2, such as increasing the size of the system's network buffers.
+To do this, run the following commands:
+
+.. code-block:: bash
+
+    sudo sysctl -w net.core.rmem_max=100000000
+    sudo sysctl -w net.core.wmem_max=100000000
+
+
+Next steps
+----------
+
+This tutorial has explained how to configure ROS 2 for large data transmission.
+Stay tuned as this auto-configuration will be extended in future versions of Vulcanexus, offering more middleware configuration options via the same environment variable.
