@@ -167,7 +167,7 @@ As mentioned before, this command changes the default configuration of the trans
 
 3. **RPLIDAR A2**
 
-    Launch the RPLIDAR A2, specifying the baudrate and port:
+    Launch the RPLIDAR A2, specifying the baud rate and port:
 
     .. code-block:: bash
 
