@@ -60,7 +60,7 @@ All its contents are explained below.
 .. figure:: /rst/figures/use_cases/rosbotxl/astra-docker_repository.png
     :align: center
 
-`NAV 2 <https://navigation.ros.org/>`__ is the ROS 2 Navigation Stack that provides a modular architecture for autonomous navigation in robots.
+`Nav2 <https://navigation.ros.org/>`__ is the ROS 2 Navigation Stack that provides a modular architecture for autonomous navigation in robots.
 It includes packages for mapping, localization, path planning, and obstacle avoidance.
 
 .. figure:: /rst/figures/use_cases/rosbotxl/nav2.png
