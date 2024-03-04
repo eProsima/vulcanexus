@@ -205,7 +205,7 @@ As mentioned before, this command changes the default configuration of the trans
 .. note::
 
     The ROS 2 launch files explained earlier are executed using a single ROS 2 launch file for ease of use.
-    You can locate this launch file `here <https://github.com/eProsima/vulcanexus/tree/iron/resources/py/rosbotxl_astra_navigation_mapping_launch.py>`__.
+    You can locate this launch file `here <https://github.com/eProsima/vulcanexus/tree/humble/resources/py/rosbotxl_astra_navigation_mapping_launch.py>`__.
 
 .. raw:: html
 
