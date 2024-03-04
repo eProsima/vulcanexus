@@ -3,7 +3,7 @@
 Large data communication with ROS 2 (a practical example)
 =========================================================
 
-This use case explain how to use `ROSbot XL` with `Orbbec Astra` camera to perform autonomous navigation and mapping while taking images of the environment.
+This use case explains how to use `ROSbot XL` with `Orbbec Astra` camera to perform autonomous navigation and mapping while taking images of the environment.
 This tutorial serves to demonstrate the **new auto-configuration of Fast DDS**, the default communications middleware in ROS 2, **for sending large data** between multiple systems in a distributed environment.
 
 As we will see throughout this case study, enabling large data mode in Vulcanexus is as simple as setting ``FASTDDS_BUILTIN_TRANSPORTS=LARGE_DATA`` environment variable.
@@ -60,7 +60,7 @@ All its contents are explained below.
 .. figure:: /rst/figures/use_cases/rosbotxl/astra-docker_repository.png
     :align: center
 
-`NAV 2 <https://navigation.ros.org/>`__ is the ROS 2 Stack that provides a modular architecture for autonomous navigation in robots.
+`Nav2 <https://navigation.ros.org/>`__ is the ROS 2 Navigation Stack that provides a modular architecture for autonomous navigation in robots.
 It includes packages for mapping, localization, path planning, and obstacle avoidance.
 
 .. figure:: /rst/figures/use_cases/rosbotxl/nav2.png
@@ -68,7 +68,7 @@ It includes packages for mapping, localization, path planning, and obstacle avoi
 
 `MicroXRCEAgent <https://micro-xrce-dds.docs.eprosima.com/en/latest/agent.html>`_ acts as a server between the DDS Network and eProsima Micro XRCE-DDS Clients applications.
 It is part of the `Micro XRCE-DDS <https://micro-xrce-dds.docs.eprosima.com/en/latest/index.html>`_ stack, which is the default middleware for ``micro-ROS``.
-It allows the communication between the ROS 2 stack and the micro-ROS stack.
+It allows the ROS 2 stack to communicate with the micro-ROS stack.
 
 .. figure:: /rst/figures/use_cases/rosbotxl/microxrceagent.png
     :align: center
@@ -137,7 +137,7 @@ First, it is necessary to setup the Vulcanexus environment and the ROS 2 workspa
     source /opt/vulcanexus/humble/setup.bash
     source $HOME/ROS2-ws/install/setup.bash
 
-Then set the environment variable ``FASTDDS_BUILTIN_TRANSPORTS`` to ``LARGE_DATA`` in all the terminals.
+Then set the environment variable ``FASTDDS_BUILTIN_TRANSPORTS`` to ``LARGE_DATA`` on all the terminals.
 As mentioned before, this command changes the default configuration of the transport layer in Fast DDS to better support the large data packages that are going to be sent in this demo.
 
 .. code-block:: bash
@@ -201,6 +201,11 @@ As mentioned before, this command changes the default configuration of the trans
     .. code-block:: bash
 
         ros2 launch astra_camera astra_mini.launch.py
+
+.. note::
+
+    The ROS 2 launch files explained earlier are executed using a single ROS 2 launch file for ease of use.
+    You can locate this launch file `here <https://github.com/eProsima/vulcanexus/tree/humble/resources/py/rosbotxl_astra_navigation_mapping_launch.py>`__.
 
 .. raw:: html
 
