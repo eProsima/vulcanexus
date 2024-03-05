@@ -1,0 +1,8 @@
+module demo_keys_cpp {
+  module msg {
+    struct SensorDataMsg {
+      @key int16 sensor_id;
+      string data;
+    };
+  };
+};

@@ -49,6 +49,8 @@ corresponding to the object being observed.
 In this case, only one topic and subscriber per node is required to receive the data of interest in each case, while efficiently filtering
 out the irrelevant pieces of data.
 
+.. _benefits_of_topic_keys:
+
 Benefits of Keyed Topics
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
