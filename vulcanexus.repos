@@ -87,11 +87,15 @@ repositories:
     type: git
     url: https://github.com/eProsima/vulcanexus.git
     version: v3.1.1
-  ros2/ROSIDL-TypeSupport-FastRTPS:
+  eProsima/ROSIDL-TypeSupport-FastRTPS:
     type: git
-    url: https://github.com/ros2/rosidl_typesupport_fastrtps.git
-    version: 3.4.0
+    url: https://github.com/eProsima/rosidl_typesupport_fastrtps
+    version: vulcanexus-iron
   ros2/ROSIDL-Dynamic-TypeSupport-FastRTPS:
     type: git
     url: https://github.com/ros2/rosidl_dynamic_typesupport_fastrtps.git
     version: 0.1.0
+  eProsima/ROSIDL:
+      type: git
+      url: https://github.com/eProsima/rosidl
+      version: vulcanexus-iron
