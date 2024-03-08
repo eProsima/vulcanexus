@@ -74,7 +74,7 @@ repositories:
   eProsima/RMW-Fast-DDS:
     type: git
     url: https://github.com/eProsima/rmw_fastrtps.git
-    version: vulcanexus-humble
+    version: feature/humble/no-abi-break-keys
   eProsima/Shapes-Demo:
     type: git
     url: https://github.com/eProsima/ShapesDemo.git
@@ -87,7 +87,11 @@ repositories:
     type: git
     url: https://github.com/eProsima/vulcanexus.git
     version: v2.4.1
-  ros2/ROSIDL-TypeSupport-FastRTPS:
+  eProsima/ROSIDL-TypeSupport-FastRTPS:
     type: git
-    url: https://github.com/ros2/rosidl_typesupport_fastrtps.git
-    version: 2.2.2
+    url: https://github.com/eProsima/rosidl_typesupport_fastrtps
+    version: feature/humble/no-abi-break-keys
+  eProsima/ROSIDL:
+      type: git
+      url: https://github.com/eProsima/rosidl
+      version: feature/humble/no-abi-break-keys
