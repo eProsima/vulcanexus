@@ -74,7 +74,7 @@ repositories:
   eProsima/RMW-Fast-DDS:
     type: git
     url: https://github.com/eProsima/rmw_fastrtps.git
-    version: vulcanexus-iron
+    version: v3.1.1
   eProsima/Shapes-Demo:
     type: git
     url: https://github.com/eProsima/ShapesDemo.git
