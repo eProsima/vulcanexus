@@ -13,20 +13,18 @@ Topic Keys Tutorial
 Background
 ----------
 
-In Vulcanexus, a *Topic* is a communication channel used for publishing and subscribing to messages.
+In Vulcanexus, a *Topic* is a communication channel used for publishing and subscribing to updates of object states.
 The value of data associated with a topic changes over time and each of these values are known as *data samples*.
-:ref:`topic_keys` refer to topics where each data sample is uniquely identified by a set of key fields (known as *data instance*).
+:ref:`topic_keys` refer to topics where each data sample can update specific parts of the entire object state described by the topic (known as *instance*).
 
-Unlike standard topics, where each data sample is distinct, keyed topics allow the user to manage and
-access data samples more efficiently by associating them with specific keys.
+Unlike standard topics, where each data sample updates the entire object state with every data sample, keyed topics allow the user to reduce the number of required resources (topics, along with its associated publisher and subscriber) by multiplexing into a single one.
 Please, refer to the documented section on :ref:`topic_keys` for a more detailed explanation.
 
 Creating custom IDL messages
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In ROS 2, users can define its own :ref:`custom messages<CustomInterfaces>`. In addition,
-a user can also create custom messages using the `IDL (Interface Definition Language) <https://www.omg.org/spec/IDL/4.2/About-IDL>`_
-format following a standardized way of defining the message structure.
+In ROS 2, users can define their own :ref:`custom messages<CustomInterfaces>`.
+In addition, it is also possible to create custom messages using the `IDL (Interface Definition Language) <https://www.omg.org/spec/IDL/4.2/About-IDL>`_ format following a standardized way of defining the message structure.
 Next example depicts how to define a custom message using the IDL format in ROS 2:
 
 .. code-block:: bash
@@ -35,28 +33,34 @@ Next example depicts how to define a custom message using the IDL format in ROS 
     module package_name {
       module msg {
         struct ExampleMsg {
-          long field;
+          string field;
           short another_field;
-          boolean yet_another_field;
+          double yet_another_field;
         };
       };
     };
 
-As it can be seen, it is required to name the upper module with the same name as the package name containing it and
-with a nested module called *msg*. Within the *msg* module, user can define the message structure as desired using the IDL syntax
-and name it with the same name as the file.
+    # ExampleMsg.msg equivalent
+    string field;
+    short another_field;
+    double yet_another_field;
+
+As it can be seen, using the IDL format requires naming the upper module with the same name as the package name containing it.
+Furthermore, the message structure shall be named as the file containing it, and it shall be declared within an *msg* module nested in the package name one.
 
 One of the advantages of defining messages in Interface Definition Language (IDL) is the ability to use annotations.
-Annotations are metadata that provide additional information about IDL constructs such as modules,
-interfaces, operations, attributes, and data types and are used to convey details that are not part of the core
-IDL syntax but are relevant for code generation, documentation, or other purposes.
+Annotations are metadata to the data structure definition that provide additional information about IDL constructs such as modules, interfaces, operations, attributes, and data types.
+They are relevant for code generation, documentation, or other purposes.
 Annotations in IDL typically follow the ``@`` symbol and can be applied to various IDL constructs.
+Please, refer to the the tutorial about :ref:`communicating Vulcanexus and Fast DDS <dds2vulcanexus_topic>`, where the way to generate types from IDL files is shown.
+
+The ``@key`` annotation is used to designate a member as key, which is covered in the following section.
 
 Creating Keyed Messages
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Keyed topics typically consist of one or more key fields within the data sample structure.
-These key fields serve as unique identifiers for each data sample published within the topic.
+Keyed topics exist when one or more fields in the data structure are annotated as keys.
+These key fields serve as unique identifiers for topic instances.
 to organize and manage the data samples, facilitating efficient access, retrieval, and filtering
 of data based on the specified key criteria.
 
@@ -68,7 +72,7 @@ and can be applied to structure fields of various types:
   Otherwise, the key will be the concatenation of all the fields.
 
 In order to specify multiple keys, separate ``@key`` annotations are used.
-The following example shows how to define a keyed message using the IDL format in ROS 2:
+The following example shows how to define a keyed message using the IDL format in Vulcanexus:
 
 .. code-block:: bash
 
@@ -85,10 +89,7 @@ The following example shows how to define a keyed message using the IDL format i
 .. note::
 
     Currently, the only supported message format that can be annotated with ``@key`` is *.idl*.
-    Neither ``.msg`` nor ``.srv`` files support annotations.
-
-In this tutorial, we will demonstrate the use of topic keys in Vulcanexus by creating a simple example in
-which we will simulate a system with two sensors (each one identified by a key), and a controller.
+    Neither ``.msg`` nor ``.srv`` files support annotations yet.
 
 Prerequisites
 -------------
@@ -112,10 +113,7 @@ For this, there are two possible options:
 
     .. code-block:: bash
 
-        xhost local:root
-        docker run \
-            -it \
-            ubuntu-vulcanexus:{DISTRO}-desktop
+        docker run -it --rm ubuntu-vulcanexus:{DISTRO}-desktop
 
     Then, within the container, source the Vulcanexus installation with:
 
@@ -124,7 +122,7 @@ For this, there are two possible options:
             source /opt/vulcanexus/{DISTRO}/setup.bash
 
 #.  Running the tutorial on the local host. For this second option,
-    it is necessary to have installed the ``vucanexus-iron-desktop`` package,
+    it is necessary to have installed the ``vucanexus-iron-base`` package,
     since this is the one that includes all the simulation tools, demos and tutorials.
 
     Source the following file to setup the Vulcanexus environment:

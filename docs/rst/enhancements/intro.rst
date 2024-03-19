@@ -4,10 +4,7 @@
 Vulcanexus Enhancements
 =======================
 
-*Vulcanexus* brings the latest features available in the middleware.
-
-This page describes in detail a series of enhancements that are available
-in *Vulcanexus*:
+*Vulcanexus* extends ROS 2 capabilities by leveraging the latest and more advanced features available in Fast DDS:
 
 .. toctree::
    :maxdepth: 1
