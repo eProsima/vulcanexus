@@ -1,0 +1,9 @@
+module demo_keys_filtering_cpp {
+  module msg {
+    struct KeyedSensorDataMsg {
+      @key int16 sensor_id;
+      double measurement;
+      string data;
+    };
+  };
+};

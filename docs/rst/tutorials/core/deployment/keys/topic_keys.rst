@@ -5,6 +5,8 @@
 Topic Keys Tutorial
 ===================
 
+This tutorial aims to demonstrate the use of topic keys in *Vulcanexus* by simulating a scenario in which multiple sensors are transmitting their readings to a controller that processes them.
+
 .. contents::
     :depth: 2
     :local:
@@ -19,6 +21,8 @@ The value of data associated with a topic changes over time and each of these va
 
 Unlike standard topics, where each data sample updates the entire object state with every data sample, keyed topics allow the user to reduce the number of required resources (topics, along with its associated publisher and subscriber) by multiplexing into a single one.
 Please, refer to the documented section on :ref:`topic_keys` for a more detailed explanation.
+
+//TODO: Add gif
 
 Creating custom IDL messages
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -52,7 +56,7 @@ One of the advantages of defining messages in Interface Definition Language (IDL
 Annotations are metadata to the data structure definition that provide additional information about IDL constructs such as modules, interfaces, operations, attributes, and data types.
 They are relevant for code generation, documentation, or other purposes.
 Annotations in IDL typically follow the ``@`` symbol and can be applied to various IDL constructs.
-Please, refer to the the tutorial about :ref:`communicating Vulcanexus and Fast DDS <dds2vulcanexus_topic>`, where the way to generate types from IDL files is shown.
+Please, refer to the tutorial about :ref:`communicating Vulcanexus and Fast DDS <dds2vulcanexus_topic>`, where the way to generate types from IDL files is shown.
 
 The ``@key`` annotation is used to designate a member as key, which is covered in the following section.
 
@@ -95,7 +99,7 @@ Prerequisites
 -------------
 
 * It is recommended to have a basic understanding of ``Topic Keys`` introduced in the :ref:`topic_keys` section.
-* An up-to-date Vulcanexus installation using one of the following installation methods:
+* An up-to-date (latest) Vulcanexus installation using one of the following installation methods:
 
   * :ref:`linux_binary_installation`
   * :ref:`linux_source_installation`
@@ -135,22 +139,39 @@ For this, there are two possible options:
 Retrieving the sources
 ^^^^^^^^^^^^^^^^^^^^^^
 
+In order to retrieve the example demo code, create a new workspace and download the demo package sources as indicated below:
+
 .. code-block:: bash
 
     # Create directory structure
     mkdir -p ~/vulcanexus_ws/src/demo_keys_cpp
-    mkdir ~/vulcanexus_ws/src/demo_keys_cpp/src
     mkdir ~/vulcanexus_ws/src/demo_keys_cpp/msg
+    mkdir ~/vulcanexus_ws/src/demo_keys_cpp/src
+    mkdir ~/vulcanexus_ws/src/demo_keys_cpp/launch
     cd ~/vulcanexus_ws/src/demo_keys_cpp
 
     # Download demo package source code
-    wget -O CMakeLists.txt https://raw.githubusercontent.com/eProsima/vulcanexus/{DISTRO}/docs/resources/tutorials/core/deployment/keys/CMakeLists.txt
-    wget -O package.xml https://raw.githubusercontent.com/eProsima/vulcanexus/{DISTRO}/docs/resources/tutorials/core/deployment/keys/package.xml
-    wget -O README.md https://raw.githubusercontent.com/eProsima/vulcanexus/{DISTRO}/docs/resources/tutorials/core/deployment/keys/README.md
-    wget -O msg/SensorDataMsg.idl https://raw.githubusercontent.com/eProsima/vulcanexus/{DISTRO}/docs/resources/tutorials/core/deployment/keys/msg/SensorDataMsg.idl
-    wget -O src/right_sensor.cpp https://raw.githubusercontent.com/eProsima/vulcanexus/{DISTRO}/docs/resources/tutorials/core/deployment/keys/src/right_sensor.cpp
-    wget -O src/left_sensor.cpp https://raw.githubusercontent.com/eProsima/vulcanexus/{DISTRO}/docs/resources/tutorials/core/deployment/keys/src/left_sensor.cpp
-    wget -O src/controller.cpp https://raw.githubusercontent.com/eProsima/vulcanexus/{DISTRO}/docs/resources/tutorials/core/deployment/keys/src/controller.cpp
+    wget -O CMakeLists.txt https://raw.githubusercontent.com/eProsima/vulcanexus/{DISTRO}/docs/resources/tutorials/core/deployment/keys/demo_keys_cpp/CMakeLists.txt
+    wget -O package.xml https://raw.githubusercontent.com/eProsima/vulcanexus/{DISTRO}/docs/resources/tutorials/core/deployment/keys/demo_keys_cpp/package.xml
+    wget -O README.md https://raw.githubusercontent.com/eProsima/vulcanexus/{DISTRO}/docs/resources/tutorials/core/deployment/keys/demo_keys_cpp/README.md
+    wget -O msg/SensorDataMsg.idl https://raw.githubusercontent.com/eProsima/vulcanexus/{DISTRO}/docs/resources/tutorials/core/deployment/keys/demo_keys_cpp/msg/SensorDataMsg.idl
+    wget -O msg/KeyedSensorDataMsg.idl https://raw.githubusercontent.com/eProsima/vulcanexus/{DISTRO}/docs/resources/tutorials/core/deployment/keys/demo_keys_cpp/msg/KeyedSensorDataMsg.idl
+    wget -O src/multiple_topic_sensor.cpp https://raw.githubusercontent.com/eProsima/vulcanexus/{DISTRO}/docs/resources/tutorials/core/deployment/keys/demo_keys_cpp/src/multiple_topic_sensor.cpp
+    wget -O src/multiple_topic_controller.cpp https://raw.githubusercontent.com/eProsima/vulcanexus/{DISTRO}/docs/resources/tutorials/core/deployment/keys/demo_keys_cpp/src/multiple_topic_controller.cpp
+    wget -O src/single_topic_sensor.cpp https://raw.githubusercontent.com/eProsima/vulcanexus/{DISTRO}/docs/resources/tutorials/core/deployment/keys/demo_keys_cpp/src/single_topic_sensor.cpp
+    wget -O src/single_topic_controller.cpp https://raw.githubusercontent.com/eProsima/vulcanexus/{DISTRO}/docs/resources/tutorials/core/deployment/keys/demo_keys_cpp/src/single_topic_controller.cpp
+    wget -O src/keyed_sensor.cpp https://raw.githubusercontent.com/eProsima/vulcanexus/{DISTRO}/docs/resources/tutorials/core/deployment/keys/demo_keys_cpp/src/keyed_sensor.cpp
+    wget -O src/keyed_controller.cpp https://raw.githubusercontent.com/eProsima/vulcanexus/{DISTRO}/docs/resources/tutorials/core/deployment/keys/demo_keys_cpp/src/keyed_controller.cpp
+    wget -O launch/multiple_topic_sensors_launch.py https://raw.githubusercontent.com/eProsima/vulcanexus/{DISTRO}/docs/resources/tutorials/core/deployment/keys/demo_keys_cpp/launch/multiple_topic_sensors_launch.py
+    wget -O launch/single_topic_sensors_launch.py https://raw.githubusercontent.com/eProsima/vulcanexus/{DISTRO}/docs/resources/tutorials/core/deployment/keys/demo_keys_cpp/launch/single_topic_sensors_launch.py
+    wget -O launch/keyed_sensors_launch.py https://raw.githubusercontent.com/eProsima/vulcanexus/{DISTRO}/docs/resources/tutorials/core/deployment/keys/demo_keys_cpp/launch/keyed_sensors_launch.py
+
+Like any other ROS 2 related package, the external dependencies are listed in the ``package.xml``.
+The ``CMakeLists.txt`` file defines the different targets to be built and the dependencies between them.
+Note that it is built in a component manner meaning that the nodes defined in the source files can be also loaded as composable plugins apart from being executed as standalone nodes.
+The *src/* directory contains the core source files for the different nodes that will be executed in the demo.
+The launch files for sensors are also provided in the *launch/* directory in which 10 different nodes are launched for each one of the cases that will be later explained.
+Finally, the *msg/* directory contains two different IDL message definitions, one with key annotations (sensor_id) and another without it.
 
 The resulting directory structure should be:
 
@@ -161,13 +182,21 @@ The resulting directory structure should be:
         ├── demo_keys_cpp
             ├── CMakeLists.txt
             ├── README.md
+            ├── launch
+            │   ├── keyed_sensors_launch.py
+            │   ├── multiple_topic_sensors_launch.py
+            │   └── single_topic_sensors_launch.py
             ├── msg
-            │   └── SensorDataMsg.idl
+            │   ├── KeyedSensorDataMsg.idl
+            │   └── SensorDataMsg.idl
             ├── package.xml
             └── src
-                ├── left_sensor.cpp
-                ├── right_sensor.cpp
-                └── controller.cpp
+                ├── keyed_controller.cpp
+                ├── keyed_sensor.cpp
+                ├── multiple_topic_controller.cpp
+                ├── multiple_topic_sensor.cpp
+                ├── single_topic_controller.cpp
+                └── single_topic_sensor.cpp
 
 Building the demo package
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -185,30 +214,23 @@ Get into the root of the workspace and build it with the following commands:
 Running the demo
 ----------------
 
-Finally, we can run the demo by executing the following commands in separate terminals:
+The tutorial demo consists of a controller node that subscribes to the data published by multiple sensors.
+Each of the sensors are identified by a *sensor_id* and publish data to the controller at different rates, in particular, the publication period (in seconds) is the *sensor_id* times 1.
+Three different valid approaches are used to address the situation:
 
-.. tabs::
+* In the first one, multiple sensors are publishing data to the controller using different topics for each sensor and the controller subscribing to each one of them.
+* In the second approach, multiple sensors publish data to the controller using a single standalone topic.
+* Finally, in the third one, the sensors use a single keyed topic defining a single data instance per unique *sensor_id*.
 
-    .. tab:: Shell 1 (Right Sensor)
+In addition, all the publications and subscriptions use the following QoS settings:
 
-        .. code-block:: bash
+* History QoS: ``KEEP_LAST 1``.
+* Reliable communication.
+* Transient Local durability.
 
-            source ~/vulcanexus_ws/install/setup.bash
-            ros2 run demo_keys_cpp right_sensor
+This is set this way to recreate late joining of the controller to the application and evaluate the behavior in each of the three different scenarios.
 
-    .. tab:: Shell 2 (Left Sensor)
-
-        .. code-block:: bash
-
-            source ~/vulcanexus_ws/install/setup.bash
-            ros2 run demo_keys_cpp left_sensor
-
-    .. tab:: Shell 3 (Controller)
-
-        .. code-block:: bash
-
-            source ~/vulcanexus_ws/install/setup.bash
-            ros2 run demo_keys_cpp controller
+Lets start with the first scenario. Run the demo by executing the following commands in separate terminals:
 
 .. note::
 
@@ -216,17 +238,102 @@ Finally, we can run the demo by executing the following commands in separate ter
     the running docker container before executing the above commands.
     This can be done by running ``docker exec -it <container_name> /bin/bash``.
 
+.. tabs::
+
+    .. tab:: Shell 1 (Sensors)
+
+        .. code-block:: bash
+
+            source ~/vulcanexus_ws/install/setup.bash
+            ros2 launch demo_keys_cpp multiple_topic_sensors_launch.py
+
+    .. tab:: Shell 2 (Controller)
+
+        .. code-block:: bash
+
+            source ~/vulcanexus_ws/install/setup.bash
+            ros2 run demo_keys_cpp multiple_topic_controller
+
+
 The resulting output should be similar to the following:
 
 .. raw:: html
 
     <video width=100% height=auto autoplay loop controls muted>
-        <source src="../../../../../_static/resources/tutorials/core/deployment/keys/topic_keys_tutorial.mp4">
+        <source src="../../../../../_static/resources/tutorials/core/deployment/keys/multiple_topics.mp4">
         Your browser does not support the video tag.
     </video>
 
-One of the important differences to note against having used a standard topic is that, setting a reliable
-communication and defining history QoS (Quality of Service) as ``KEEP_LAST 1``, if the controller late joins the application, it is
-by no means guaranteed to receive the last data published by both of the sensors whereas by using topic keys
-we assure that the last status of each instance (sensor) is received. This is because QoS are applied per data instance.
-This and further benefits can be explored in :ref:`benefits_of_topic_keys`.
+User may notice that this initial approach is not the most efficient one, as it entails the creation of multiple topics, publications and suscriptions.
+But, apart from being inneficient, it also makes the application more complex, harder to maintain, and resource demanding.
+Moreover, as a consequence of creating far more entities than needed, the application incurrs in an unnecessary discovery overhead.
+
+Lets go a step further.
+In this second approach a single topic is used in which all the sensors will publish their data.
+Run the demo by executing the following commands in separate terminals:
+
+.. tabs::
+
+    .. tab:: Shell 1 (Sensors)
+
+        .. code-block:: bash
+
+            source ~/vulcanexus_ws/install/setup.bash
+            ros2 launch demo_keys_cpp single_topic_sensors_launch.py
+
+    .. tab:: Shell 2 (Controller)
+
+        .. code-block:: bash
+
+            source ~/vulcanexus_ws/install/setup.bash
+            #Wait until sensor[10] publishes the first data (10 secs)
+            ros2 run demo_keys_cpp single_topic_controller
+
+Which leads to an output similar to the one shown below:
+
+.. raw:: html
+
+    <video width=100% height=auto autoplay loop controls muted>
+        <source src="../../../../../_static/resources/tutorials/core/deployment/keys/single_topics.mp4">
+        Your browser does not support the video tag.
+    </video>
+
+This second scenario illustrates that using one single topic, a late-joining controller will not recover the state of all the sensors when it joins the application.
+This is perfertly noted in the case of sensor with *id* 10. The controller will not receive the latest data published by this sensor until it publishes a new one.
+Furthermore, sensors publishing at higher rates (sensors 1~3) can overwrite the data of low rate sensors, causing inanition even in the case of augmenting the history size.
+These are severe problems that should be avoided.
+
+Now, lets move on to the third approach for addressing the problem.
+Start, or reuse previous openned terminals and run the following commands:
+
+.. tabs::
+
+    .. tab:: Shell 1 (Sensors)
+
+        .. code-block:: bash
+
+            source ~/vulcanexus_ws/install/setup.bash
+            ros2 launch demo_keys_cpp keyed_sensors_launch.py
+
+    .. tab:: Shell 2 (Controller)
+
+        .. code-block:: bash
+
+            source ~/vulcanexus_ws/install/setup.bash
+            #Wait until sensor[10] publishes the first data (10 secs)
+            ros2 run demo_keys_cpp keyed_controller
+
+The resulting output should be similar to the following:
+
+.. raw:: html
+
+    <video width=100% height=auto autoplay loop controls muted>
+        <source src="../../../../../_static/resources/tutorials/core/deployment/keys/keyed_topic.mp4">
+        Your browser does not support the video tag.
+    </video>
+
+In this final case, the controller is able to successfully recover the latest state of each sensor (data instance) when it joins the application.
+In addition, it uses optimmum resources (it only requires one topic and one suscription) and guarantees a minimum discovery overhead.
+Hence, it is by using topic keys when we assure that the latest status of each instance (sensor) is received. This is because the Quality of Servie settings are applied per data instance.
+These and further benefits can be explored in :ref:`benefits_of_topic_keys`.
+
