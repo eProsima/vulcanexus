@@ -22,7 +22,7 @@ The value of data associated with a topic changes over time and each of these va
 Unlike standard topics, where each data sample updates the entire object state with every data sample, keyed topics allow the user to reduce the number of required resources (topics, along with its associated publisher and subscriber) by multiplexing into a single one.
 Please, refer to the documented section on :ref:`topic_keys` for a more detailed explanation.
 
-//TODO: Add gif
+//TODO: Add video
 
 Creating custom IDL messages
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -264,9 +264,9 @@ The resulting output should be similar to the following:
         Your browser does not support the video tag.
     </video>
 
-User may notice that this initial approach is not the most efficient one, as it entails the creation of multiple topics, publications and suscriptions.
-But, apart from being inneficient, it also makes the application more complex, harder to maintain, and resource demanding.
-Moreover, as a consequence of creating far more entities than needed, the application incurrs in an unnecessary discovery overhead.
+User may notice that this initial approach is not the most efficient one, as it entails the creation of multiple topics, publications and subscriptions.
+But, apart from being inefficient, it also makes the application more complex, harder to maintain, and resource demanding.
+Moreover, as a consequence of creating far more entities than needed, the application incurs in an unnecessary discovery overhead.
 
 Lets go a step further.
 In this second approach a single topic is used in which all the sensors will publish their data.
@@ -299,12 +299,12 @@ Which leads to an output similar to the one shown below:
     </video>
 
 This second scenario illustrates that using one single topic, a late-joining controller will not recover the state of all the sensors when it joins the application.
-This is perfertly noted in the case of sensor with *id* 10. The controller will not receive the latest data published by this sensor until it publishes a new one.
+This is perfectly noted in the case of sensor with *id* 10. The controller will not receive the latest data published by this sensor until it publishes a new one.
 Furthermore, sensors publishing at higher rates (sensors 1~3) can overwrite the data of low rate sensors, causing inanition even in the case of augmenting the history size.
 These are severe problems that should be avoided.
 
 Now, lets move on to the third approach for addressing the problem.
-Start, or reuse previous openned terminals and run the following commands:
+Start, or reuse previous opened terminals and run the following commands:
 
 .. tabs::
 
@@ -333,7 +333,7 @@ The resulting output should be similar to the following:
     </video>
 
 In this final case, the controller is able to successfully recover the latest state of each sensor (data instance) when it joins the application.
-In addition, it uses optimmum resources (it only requires one topic and one suscription) and guarantees a minimum discovery overhead.
-Hence, it is by using topic keys when we assure that the latest status of each instance (sensor) is received. This is because the Quality of Servie settings are applied per data instance.
+In addition, it uses optimum resources (it only requires one topic and one subscription) and guarantees a minimum discovery overhead.
+Hence, it is by using topic keys when we assure that the latest status of each instance (sensor) is received. This is because the Quality of Service settings are applied per data instance.
 These and further benefits can be explored in :ref:`benefits_of_topic_keys`.
 

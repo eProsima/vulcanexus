@@ -21,7 +21,7 @@ In Vulcanexus, topics are a mean for representing the state of an object.
 Keyed topics allow the user to reduce the number of required resources (topics, along with its associated publisher and subscriber) by multiplexing data into a single one.
 Please, refer to the documented section on :ref:`topic_keys` for a more detailed explanation.
 
-The `Content Filter Topic <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/topic/contentFilteredTopic/contentFilteredTopic.html>`_ facilitiates efficient data distribution by allowing the publications (writer-side) or suscription (reader-side) to specify criteria for the types of data they wish to receive.
+The `Content Filter Topic <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/topic/contentFilteredTopic/contentFilteredTopic.html>`_ facilitates efficient data distribution by allowing the publications (writer-side) or subscription (reader-side) to specify criteria for the types of data they wish to receive.
 By defining this criteria, irrelevant data can be filtered out and focus only on the information that is relevant to their needs.
 This functionality not only reduces the amount of data transmitted over the network but also minimizes processing overhead on the publishing or receiving end, leading to improved system performance and scalability.
 
@@ -29,7 +29,7 @@ When combined with topic instances, the benefits of the Content Filter are furth
 By associating specific filter criteria with each topic instance, it is possible fine-tune the data selection process and tailor it to their precise requirements.
 This granular level of filtering enables the applications to optimally manage data while ensuring that they exchange only the information that is pertinent to their individual use cases.
 
-//TODO: Add gif
+//TODO: Add video
 
 Prerequisites
 -------------
@@ -171,7 +171,7 @@ Run the demo by executing the following commands in separate terminals:
 
 The resulting output should be similar to the following, in which the controller node is receiving data from the sensors and filtering it based on the sensor_id (topic instances, sensors 2 to 4).
 In addition, only when the measurement is greater than 60, the controller node will receive data.
-That is what it is specififed in the filter expression ``sensor_id >= 2 AND sensor_id <= 4``:
+That is what it is specified in the filter expression ``sensor_id >= 2 AND sensor_id <= 4``:
 
 .. raw:: html
 

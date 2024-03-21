@@ -33,7 +33,7 @@ That is the power of topic instances.
 In addition, the use of topic instances report numerous advantages, including:
 
 * Efficient middleware infrastructure, data distribution and resource utilization as the number of entities are dramatically reduced.
-* A better history management, meaning that cached updates are managed in a more permorfant way for determined Quality of Service parameters.
+* A better history management, meaning that cached updates are managed in a more performant way for determined Quality of Service parameters.
 
 These benefits are further detailed in the :ref:`benefits_of_topic_keys` section.
 
