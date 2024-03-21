@@ -7,6 +7,36 @@ Topic Keys endow developers with the ability of orchestrating efficient and tail
 facilitating streamlined communication and enhancing system scalability.
 This exploration unravels their significance, working principles, and how to use them.
 
+Motivation
+^^^^^^^^^^
+
+Robotic systems and applications, in general, often require modularity in order to divide complex problems into smaller, more manageable parts.
+These sub-systems need to model real world objects, maintaining a state of it (for example, in a robot perception pipeline it could be important to track the pose of an certain object in the environment or retrieving the status of the base controller in a mobile robot).
+Hence, communicating successive updates on the states of these objects is required.
+In *Vulcanexus*, this is achieved by exchanging data messages over a topic.
+
+Conceptually, topic instances is a way of multiplexing updates of several objects of the same kind over the same resource (the topic) and can be understood as objects of the same *logical* kind.
+Imagine a scenario where multiple robots are exploring an uncharted territory and are sending their positions to a central control node.
+Instead of having multiple topics, one per robot, topic keys allow to have a single topic where each robot sends its status with a unique key (the robot id) that identifies the robot.
+That is the power of topic instances.
+
+.. list-table::
+   :width: 100%
+   :class: borderless
+
+   * - .. image:: ../../figures/enhancements/keys/topic_instances_example.svg
+          :width: 100%
+
+     - .. image:: ../../figures/enhancements/keys/topics_example.svg
+          :width: 100%
+
+In addition, the use of topic instances report numerous advantages, including:
+
+* Efficient middleware infrastructure, data distribution and resource utilization as the number of entities are dramatically reduced.
+* A better history management, meaning that cached updates are managed in a more permorfant way for determined Quality of Service parameters.
+
+These benefits are further detailed in the :ref:`benefits_of_topic_keys` section.
+
 Background
 ^^^^^^^^^^
 *Vulcanexus* uses :ref:`Fast DDS as middleware <vulcanexus_middleware>`.
@@ -64,8 +94,8 @@ The use of topic keys report several benefits, including:
   Without keyed topics, the middleware lacks the ability to intelligently cache data on a per-instance basis, resulting in late joiners needing to process a larger history before accessing the current value of an instance.
 * Easy integration with databases. Individual records in a table are uniquely identified by the values of the fields marked as the “primary key” for that table.
   If those same fields are also marked as the key fields for the corresponding Topic, then the integration is seamless and can work hand-in-hand with the database table storage.
-* Improved message filtering: by combining topic keys with `Content Filter Topic <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/topic/contentFilteredTopic/contentFilteredTopic.html>` Nodes have the ability to subscribe selectively to messages by utilizing their keys, allowing for precise filtering and minimizing superfluous message handling.
-  However this requires additional configuration.
+* Improved message filtering: by combining topic keys with `Content Filter Topic <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/topic/contentFilteredTopic/contentFilteredTopic.html>`_ Nodes have the ability to subscribe selectively to messages by utilizing their keys, allowing for precise filtering and minimizing superfluous message handling.
+  However this requires additional configuration. Please consult the :ref:`filtered_topic_keys_tutorial` for practical guidance.
 
 In summary, keyed topics enhance the flexibility, efficiency, and organization of messages exchange.
 By leveraging keyed topics, developers can design more robust and scalable robotic applications capable of handling diverse data sources and complex environments.
@@ -73,4 +103,8 @@ By leveraging keyed topics, developers can design more robust and scalable robot
 Using Topic Keys
 ^^^^^^^^^^^^^^^^
 
-For details on how to use topic keys in *Vulcanexus*, please refer to the :ref:`Documented Tutorial <topic_keys_tutorial>` in this regard.
+For details on how to use topic keys in *Vulcanexus*, please refer to the documented tutorials in this regard :
+
+  * :ref:`topic_keys_tutorial`
+  * :ref:`filtered_topic_keys_tutorial`
+
