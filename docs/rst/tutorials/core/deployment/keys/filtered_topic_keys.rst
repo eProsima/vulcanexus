@@ -166,7 +166,12 @@ Get into the root of the workspace and build it with the following commands:
 Running the demo
 ----------------
 
-In the demo, different sensors are publishing data
+In the demo, different sensors are publishing data to a controller node using a keyed topic as exemplified below:
+
+.. image:: ../../../../figures/tutorials/core/keys/cft_tutorial_diagram.svg
+    :align: center
+    :width: 80%
+
 Run the demo by executing the following commands in separate terminals:
 
 .. note::
