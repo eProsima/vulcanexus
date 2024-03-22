@@ -17,9 +17,9 @@ Background
 
 In Vulcanexus, a *Topic* is a communication channel used for publishing and subscribing to updates of object states.
 The value of data associated with a topic changes over time and each of these values are known as *data samples*.
-:ref:`topic_keys` refer to topics where each data sample can update specific parts of the entire object state described by the topic (known as *instance*).
+:ref:`topic_keys` refer to topics where each data sample represent an update of the state of a specific object  (known as *instance*) among all those objects represented in the topic.
 
-Unlike standard topics, where each data sample updates the entire object state with every data sample, keyed topics allow the user to reduce the number of required resources (topics, along with its associated publisher and subscriber) by multiplexing into a single one.
+Unlike standard topics, where each data sample updates the entire object state with every data sample, keyed topics allow the user to reduce the number of required resources (topics, along with its associated publisher and subscriber) by multiplexing updates of several objects of the same kind into a single resource.
 Please, refer to the documented section on :ref:`topic_keys` for a more detailed explanation.
 
 .. image:: ../../../../figures/enhancements/keys/keyed-topics.gif
@@ -27,30 +27,38 @@ Please, refer to the documented section on :ref:`topic_keys` for a more detailed
 Creating custom IDL messages
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In ROS 2, users can define their own :ref:`custom messages<CustomInterfaces>`.
+In Vulcanexus, users can define their own :ref:`custom messages<CustomInterfaces>`.
 In addition, it is also possible to create custom messages using the `IDL (Interface Definition Language) <https://www.omg.org/spec/IDL/4.2/About-IDL>`_ format following a standardized way of defining the message structure.
-Next example depicts how to define a custom message using the IDL format in ROS 2:
+Next example depicts how to define a custom message using the IDL format in Vulcanexus:
 
-.. code-block:: bash
+.. tabs::
 
-    # ExampleMsg.idl
-    module package_name {
-      module msg {
-        struct ExampleMsg {
-          string field;
-          short another_field;
-          double yet_another_field;
-        };
-      };
-    };
+    .. tab:: IDL
 
-    # ExampleMsg.msg equivalent
-    string field;
-    short another_field;
-    double yet_another_field;
+        .. code-block:: bash
+
+            # ExampleMsg.idl
+            module package_name {
+              module msg {
+                struct ExampleMsg {
+                  string field;
+                  short another_field;
+                  double yet_another_field;
+                };
+              };
+            };
+
+    .. tab:: MSG
+
+        .. code-block:: bash
+
+            # ExampleMsg.msg equivalent
+            string field;
+            short another_field;
+            double yet_another_field;
 
 As it can be seen, using the IDL format requires naming the upper module with the same name as the package name containing it.
-Furthermore, the message structure shall be named as the file containing it, and it shall be declared within an *msg* module nested in the package name one.
+Furthermore, the message structure shall be named as the file containing it, and it shall be declared within a *msg* module nested in the package name one.
 
 One of the advantages of defining messages in Interface Definition Language (IDL) is the ability to use annotations.
 Annotations are metadata to the data structure definition that provide additional information about IDL constructs such as modules, interfaces, operations, attributes, and data types.
@@ -64,9 +72,7 @@ Creating Keyed Messages
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 Keyed topics exist when one or more fields in the data structure are annotated as keys.
-These key fields serve as unique identifiers for topic instances.
-to organize and manage the data samples, facilitating efficient access, retrieval, and filtering
-of data based on the specified key criteria.
+These key fields serve as unique identifiers for topic instances in order to organize and manage the data samples, facilitating efficient access, retrieval, and filtering of data based on the specified key criteria.
 
 The ``@key`` annotation designates a field as a key for the given topic type, which can have zero or more key fields
 and can be applied to structure fields of various types:
@@ -126,8 +132,7 @@ For this, there are two possible options:
             source /opt/vulcanexus/{DISTRO}/setup.bash
 
 #.  Running the tutorial on the local host. For this second option,
-    it is necessary to have installed the ``vucanexus-iron-base`` package,
-    since this is the one that includes all the simulation tools, demos and tutorials.
+    it is necessary to have the ``vucanexus-iron-base`` package installed.
 
     Source the following file to setup the Vulcanexus environment:
 
@@ -229,13 +234,17 @@ In addition, all the publications and subscriptions use the following QoS settin
 * Transient Local durability.
 
 This is set this way to recreate late joining of the controller to the application and evaluate the behavior in each of the three different scenarios.
+The following diagram depicts the three different scenarios:
+
+.. image:: ../../../../figures/tutorials/core/keys/tutorial_diagram.svg
+    :align: center
+    :width: 90%
 
 Lets start with the first scenario. Run the demo by executing the following commands in separate terminals:
 
 .. note::
 
-    If a docker deployment was preferred, it would be necessary to attach the other two terminals to
-    the running docker container before executing the above commands.
+    If a docker deployment was preferred, it would be necessary to attach the other two terminals to the running docker container before executing the above commands.
     This can be done by running ``docker exec -it <container_name> /bin/bash``.
 
 .. tabs::
@@ -264,12 +273,12 @@ The resulting output should be similar to the following:
         Your browser does not support the video tag.
     </video>
 
-User may notice that this initial approach is not the most efficient one, as it entails the creation of multiple topics, publications and subscriptions.
-But, apart from being inefficient, it also makes the application more complex, harder to maintain, and resource demanding.
+It is important to note that this initial approach is not the most efficient one, as it entails the creation of multiple topics, publications, and subscriptions.
+Furthermore, apart from being inefficient, it also makes the application more complex, harder to maintain, and resource demanding.
 Moreover, as a consequence of creating far more entities than needed, the application incurs in an unnecessary discovery overhead.
 
 Lets go a step further.
-In this second approach a single topic is used in which all the sensors will publish their data.
+In this second approach a single topic is used in which all the sensors will publish their data  (without using a keyed topic).
 Run the demo by executing the following commands in separate terminals:
 
 .. tabs::
@@ -299,8 +308,8 @@ Which leads to an output similar to the one shown below:
     </video>
 
 This second scenario illustrates that using one single topic, a late-joining controller will not recover the state of all the sensors when it joins the application.
-This is perfectly noted in the case of sensor with *id* 10. The controller will not receive the latest data published by this sensor until it publishes a new one.
-Furthermore, sensors publishing at higher rates (sensors 1~3) can overwrite the data of low rate sensors, causing inanition even in the case of augmenting the history size.
+This is easily noticeable in the case of sensor with *id* 10; the controller will not receive the latest data published by this sensor until it publishes a new one.
+Furthermore, sensors publishing at higher rates (sensors 1~3) can overwrite the data of low rate sensors, causing starvation even in the case of augmenting the history size.
 These are severe problems that should be avoided.
 
 Now, lets move on to the third approach for addressing the problem.
@@ -334,6 +343,7 @@ The resulting output should be similar to the following:
 
 In this final case, the controller is able to successfully recover the latest state of each sensor (data instance) when it joins the application.
 In addition, it uses optimum resources (it only requires one topic and one subscription) and guarantees a minimum discovery overhead.
-Hence, it is by using topic keys when we assure that the latest status of each instance (sensor) is received. This is because the Quality of Service settings are applied per data instance.
+Hence, it is by using topic keys when the reception of the latest status of each instance (sensor) is assured. This is because the Quality of Service settings are applied per data instance.
 These and further benefits can be explored in :ref:`benefits_of_topic_keys`.
+For learning how to combine keyed topics with content filter topic in *Vulcanexus*, please refer to the :ref:`filtered_topic_keys_tutorial`.
 

@@ -16,18 +16,18 @@ Background
 ----------
 
 In Vulcanexus, topics are a mean for representing the state of an object.
-:ref:`topic_keys` refer to topics where each data sample can update specific parts of the entire object state described by the topic (known as *instance* or *topic instance*).
+:ref:`topic_keys` refer to topics where each data sample represent an update of the state of a specific object  (known as *instance*) among all those objects represented in the topic.
 
-Keyed topics allow the user to reduce the number of required resources (topics, along with its associated publisher and subscriber) by multiplexing data into a single one.
+Keyed topics allow the user to reduce the number of required resources (topics, along with its associated publisher and subscriber) by multiplexing updates of several objects of the same kind into a single resource.
 Please, refer to the documented section on :ref:`topic_keys` for a more detailed explanation.
 
-The `Content Filter Topic <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/topic/contentFilteredTopic/contentFilteredTopic.html>`_ facilitates efficient data distribution by allowing the publications (writer-side) or subscription (reader-side) to specify criteria for the types of data they wish to receive.
-By defining this criteria, irrelevant data can be filtered out and focus only on the information that is relevant to their needs.
-This functionality not only reduces the amount of data transmitted over the network but also minimizes processing overhead on the publishing or receiving end, leading to improved system performance and scalability.
+The `Content Filter Topic <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/topic/contentFilteredTopic/contentFilteredTopic.html>`_ facilitates efficient data distribution by allowing the subscription (reader-side) to specify criteria for the types of data they wish to receive.
+By defining this criteria, irrelevant data can be filtered out and applications can focus only on the information that is relevant to their needs.
+This functionality not only reduces the amount of data transmitted over the network but also minimizes processing overhead on the receiving end, leading to improved system performance and scalability.
 
 When combined with topic instances, the benefits of the Content Filter are further enhanced.
 By associating specific filter criteria with each topic instance, it is possible fine-tune the data selection process and tailor it to their precise requirements.
-This granular level of filtering enables the applications to optimally manage data while ensuring that they exchange only the information that is pertinent to their individual use cases.
+This granular level of filtering enables applications to optimally manage data while ensuring that they exchange only the information that is pertinent to their individual use cases.
 
 .. image:: ../../../../figures/enhancements/keys/keyed-topics-cft.gif
 
@@ -62,8 +62,7 @@ For this, there are two possible options:
             source /opt/vulcanexus/{DISTRO}/setup.bash
 
 #.  Running the tutorial on the local host. For this second option,
-    it is necessary to have installed the ``vucanexus-iron-base`` package,
-    since this is the one that includes all the simulation tools, demos and tutorials.
+    it is necessary to have the ``vucanexus-iron-base`` package installed.
 
     Source the following file to setup the Vulcanexus environment:
 
@@ -115,22 +114,46 @@ The resulting directory structure should be:
 
 A brief analysis on the provided files is explained below:
 
-* *demo_keys_filtering_cpp* : This directory likely contains the main source code and configuration files for the demonstration.
+* *demo_keys_filtering_cpp* : This directory contains the main source code and configuration files for the demonstration.
 * ``CMakeLists.txt``: This file is used with CMake to specify build configurations and dependencies.
-* ``README.md``: This is likely a markdown file providing instructions or information about the demonstration.
-* *launch*: This directory probably contains launch configuration files for launching ROS nodes.
-  * ``keyed_sensors_launch.py``: This Python script is likely used to launch the demonstration nodes.
+* ``README.md``: This is a markdown file providing instructions or information about the demonstration.
+* *launch*: This directory contains launch configuration files for launching ROS nodes.
+  * ``keyed_sensors_launch.py``: This Python script is used to launch the demonstration nodes.
 * *msg*: This directory contains message definition files.
-  * KeyedSensorDataMsg.idl: This is likely an IDL (Interface Definition Language) file defining the message structure for keyed sensor data.
+  * KeyedSensorDataMsg.idl: This is an IDL (Interface Definition Language) file defining the message structure for keyed sensor data.
 * ``package.xml``: This is an XML file containing metadata about the ROS package.
 * *src*: This directory contains the source code files for the demonstration.
-  * ``filtered_keyed_controller.cpp``: This is likely the source code for a controller node that filters keyed sensor data in reception.
-  * ``filtered_keyed_sensor.cpp``: This is likely the source code for a sensor node that publishes keyed sensor data.
+  * ``filtered_keyed_controller.cpp``: This is the source code for a controller node that filters keyed sensor data in reception, being the most relevant lines the ones that define the filter expression and Quality of Service settings:
+
+.. code-block:: bash
+
+    // Initialize a subscription with a content filter to receive data from sensors 2 to 4
+    rclcpp::SubscriptionOptions sub_options;
+    sub_options.content_filter_options.filter_expression =
+        "sensor_id >= 2 AND sensor_id <= 4 AND measurement > %0";
+    sub_options.content_filter_options.expression_parameters = {
+      std::to_string(SENSOR_TRIGGER)
+    };
+
+    // Create the subscription with the content filter options
+    sub_ = create_subscription<demo_keys_filtering_cpp::msg::KeyedSensorDataMsg>("/robot/sensors",
+        rclcpp::QoS(rclcpp::KeepLast(1)).reliable().transient_local(),
+        callback,
+        sub_options);
+
+* ``filtered_keyed_sensor.cpp``: This is the source code for a sensor node that publishes keyed sensor data.
+  The most relevant lines are the ones that create the publication with a particular Quality of Service settings that enables the controller to late join the application but still receiving the latest update for every instance with the use of topic keys.
+
+.. code-block:: bash
+
+  pub_ = this->create_publisher<demo_keys_filtering_cpp::msg::KeyedSensorDataMsg>(
+        "/robot/sensors",
+        rclcpp::QoS(rclcpp::KeepLast(1)).reliable().transient_local());
 
 Building the demo package
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Once the environment has been setup and the demo package sources are available, we are ready to build the workspace.
+Once the environment has been setup and the demo package sources are available, the demo package can be built.
 Get into the root of the workspace and build it with the following commands:
 
 .. code-block:: bash
@@ -169,9 +192,9 @@ Run the demo by executing the following commands in separate terminals:
             ros2 run demo_keys_filtering_cpp filtered_keyed_controller
 
 
-The resulting output should be similar to the following, in which the controller node is receiving data from the sensors and filtering it based on the sensor_id (topic instances, sensors 2 to 4).
+The resulting output should be similar to the following, in which the controller node is only receiving data from the specified sensors, i.e. sensors which sensor_id is in the range [2, 4].
 In addition, only when the measurement is greater than 60, the controller node will receive data.
-That is what it is specified in the filter expression ``sensor_id >= 2 AND sensor_id <= 4``:
+That is specified in the filter expression ``sensor_id >= 2 AND sensor_id <= 4``:
 
 .. raw:: html
 
@@ -180,9 +203,10 @@ That is what it is specified in the filter expression ``sensor_id >= 2 AND senso
         Your browser does not support the video tag.
     </video>
 
-Even in a late-joining scenario, the controller node will receive the latest data of the sensors that meet the filter criteria at the moment it joins the application, which could be crucial depending on the type of the real application.
+Even in a late-joining scenario, the controller node will receive the latest data of the sensors that meet the filtering criteria at the moment it joins the application, which could be crucial depending on the type of the real application.
 
 Overall, the combination of topic instances with a content filter topic offers significant benefits in terms of data efficiency, scalability, adaptability and resource optimization.
 By leveraging these capabilities, *Vulcanexus* applications can efficiently manage and distribute data in complex distributed environments.
 These and further benefits can be explored in :ref:`benefits_of_topic_keys`.
+Also, for additional materials regarding the topic content filter, please refer to the :doc:`Content Filtering Subscription Tutorial <../../../../../ros2_documentation/source/Tutorials/Demos/Content-Filtering-Subscription>`.
 
