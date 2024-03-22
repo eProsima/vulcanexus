@@ -76,7 +76,7 @@ allowing for a more efficient resource management.
 
 Following with the example above, the next image illustrates this concept, where the sensors publish data with a unique key (sensor id) corresponding to the object being observed.
 
-.. image:: ../../figures/enhancements/keys/keyed-topics.gif
+.. image:: ../../figures/enhancements/keys/keyed-topics-cft.gif
 
 In this case, only one topic and subscriber per node is required to receive the data of interest.
 

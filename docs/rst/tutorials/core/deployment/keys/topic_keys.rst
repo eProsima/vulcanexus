@@ -22,7 +22,7 @@ The value of data associated with a topic changes over time and each of these va
 Unlike standard topics, where each data sample updates the entire object state with every data sample, keyed topics allow the user to reduce the number of required resources (topics, along with its associated publisher and subscriber) by multiplexing into a single one.
 Please, refer to the documented section on :ref:`topic_keys` for a more detailed explanation.
 
-//TODO: Add video
+.. image:: ../../../../figures/enhancements/keys/keyed-topics.gif
 
 Creating custom IDL messages
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^

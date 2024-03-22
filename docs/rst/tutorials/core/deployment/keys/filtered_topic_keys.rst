@@ -29,7 +29,7 @@ When combined with topic instances, the benefits of the Content Filter are furth
 By associating specific filter criteria with each topic instance, it is possible fine-tune the data selection process and tailor it to their precise requirements.
 This granular level of filtering enables the applications to optimally manage data while ensuring that they exchange only the information that is pertinent to their individual use cases.
 
-//TODO: Add video
+.. image:: ../../../../figures/enhancements/keys/keyed-topics-cft.gif
 
 Prerequisites
 -------------
