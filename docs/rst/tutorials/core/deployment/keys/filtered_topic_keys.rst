@@ -30,6 +30,8 @@ By associating specific filter criteria with each topic instance, it is possible
 This granular level of filtering enables applications to optimally manage data while ensuring that they exchange only the information that is pertinent to their individual use cases.
 
 .. image:: ../../../../figures/enhancements/keys/keyed-topics-cft.gif
+    :align: center
+    :width: 70%
 
 Prerequisites
 -------------

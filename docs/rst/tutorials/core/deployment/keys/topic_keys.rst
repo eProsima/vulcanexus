@@ -23,6 +23,8 @@ Unlike standard topics, where each data sample updates the entire object state w
 Please, refer to the documented section on :ref:`topic_keys` for a more detailed explanation.
 
 .. image:: ../../../../figures/enhancements/keys/keyed-topics.gif
+    :align: center
+    :width: 70%
 
 Creating custom IDL messages
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^

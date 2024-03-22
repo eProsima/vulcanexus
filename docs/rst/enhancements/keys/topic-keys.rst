@@ -49,6 +49,8 @@ The following image depicts a simple scenario where two sensors publish data in 
 The first ``Logging`` node only subscribes to the Sensor 2 output topic, while the ``Controller`` node subscribes to both topics.
 
 .. image:: ../../figures/enhancements/keys/topics.gif
+    :align: center
+    :width: 70%
 
 When any new data is available in the sensors, it is transmitted through the corresponding topic and all the subscribers attached to that topic receive the message.
 
@@ -70,6 +72,8 @@ By using keyed topics, each sensor can publish its data in only one topic having
 Following with the example above, the next image illustrates this concept, where the sensors publish data with a unique key (sensor id) corresponding to the object being observed.
 
 .. image:: ../../figures/enhancements/keys/keyed-topics-cft.gif
+    :align: center
+    :width: 70%
 
 In this case, only one topic and subscriber per node is required to receive the data of interest.
 
