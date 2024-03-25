@@ -26,7 +26,8 @@ Getting started
 
 * :ref:`Overview <vulcanexus_global_introduction>`
 
-  - *Vulcanexus* concepts including *ROS 2* and *micro-ROS* Documentation.
+  - *Vulcanexus* concepts including *ROS 2*, *micro-ROS* Documentation
+    and the latest :ref:`Enhancements <vulcanexus_enhancements>`.
 
 * :ref:`Tutorials <tutorials_core_ros2_tutorials>`
 
@@ -100,6 +101,7 @@ To make such contributions, please refer to the
    /rst/introduction/metapackages.rst
    /ros2_documentation/source/index.rst
    /rst/microros_documentation/index.rst
+   /rst/enhancements/intro.rst
 
 .. toctree::
    :caption: Tutorials
