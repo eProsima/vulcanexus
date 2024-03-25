@@ -76,8 +76,7 @@ Creating Keyed Messages
 Keyed topics exist when one or more fields in the data structure are annotated as keys.
 These key fields serve as unique identifiers for topic instances in order to organize and manage the data samples, facilitating efficient access, retrieval, and filtering of data based on the specified key criteria.
 
-The ``@key`` annotation designates a field as a key for the given topic type, which can have zero or more key fields
-and can be applied to structure fields of various types:
+The ``@key`` annotation designates a field as a key for the given topic type, which can have zero or more key fields and can be applied to structure fields of various types:
 
 * Any primitive, such as booleans, integers, characters, strings or sequences.
 * Other existing or defined messages. If those have defined an inner key member, then those fields will we used as part of the key.
@@ -133,8 +132,8 @@ For this, there are two possible options:
 
             source /opt/vulcanexus/{DISTRO}/setup.bash
 
-#.  Running the tutorial on the local host. For this second option,
-    it is necessary to have the ``vucanexus-iron-base`` package installed.
+#.  Running the tutorial on the local host.
+    For this second option, it is necessary to have the ``vucanexus-iron-base`` package installed.
 
     Source the following file to setup the Vulcanexus environment:
 
@@ -242,7 +241,8 @@ The following diagram depicts the three different scenarios:
     :align: center
     :width: 90%
 
-Lets start with the first scenario. Run the demo by executing the following commands in separate terminals:
+Lets start with the first scenario.
+Run the demo by executing the following commands in separate terminals:
 
 .. note::
 
@@ -275,12 +275,12 @@ The resulting output should be similar to the following:
         Your browser does not support the video tag.
     </video>
 
-It is important to note that this initial approach is not the most efficient one, as it entails the creation of multiple topics, publications, and subscriptions.
+It is important to note that this initial approach is not the most efficient one, as it entails the creation of multiple topics, publihsers, and subscriptions.
 Furthermore, apart from being inefficient, it also makes the application more complex, harder to maintain, and resource demanding.
 Moreover, as a consequence of creating far more entities than needed, the application incurs in an unnecessary discovery overhead.
 
 Lets go a step further.
-In this second approach a single topic is used in which all the sensors will publish their data  (without using a keyed topic).
+In this second approach a single topic is used in which all the sensors will publish their data (without using a keyed topic).
 Run the demo by executing the following commands in separate terminals:
 
 .. tabs::
@@ -345,7 +345,8 @@ The resulting output should be similar to the following:
 
 In this final case, the controller is able to successfully recover the latest state of each sensor (data instance) when it joins the application.
 In addition, it uses optimum resources (it only requires one topic and one subscription) and guarantees a minimum discovery overhead.
-Hence, it is by using topic keys when the reception of the latest status of each instance (sensor) is assured. This is because the Quality of Service settings are applied per data instance.
+Hence, it is by using topic keys when the reception of the latest status of each instance (sensor) is assured.
+This is because the Quality of Service settings are applied per data instance.
 These and further benefits can be explored in :ref:`benefits_of_topic_keys`.
 For learning how to combine keyed topics with content filter topic in *Vulcanexus*, please refer to the :ref:`filtered_topic_keys_tutorial`.
 

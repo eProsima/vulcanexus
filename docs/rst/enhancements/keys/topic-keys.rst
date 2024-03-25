@@ -3,8 +3,7 @@
 Topic Keys
 ==========
 
-Topic Keys endow developers with the ability of orchestrating efficient and tailored data distribution,
-facilitating streamlined communication and enhancing system scalability.
+Topic Keys endow developers with the ability of orchestrating efficient and tailored data distribution, facilitating streamlined communication and enhancing system scalability.
 This exploration unravels their significance, working principles, and how to use them.
 
 Motivation
@@ -54,7 +53,7 @@ The first ``Logging`` node only subscribes to the Sensor 2 output topic, while t
 
 When any new data is available in the sensors, it is transmitted through the corresponding topic and all the subscribers attached to that topic receive the message.
 
-In this situation, each of the sensors has a dedicated topic for transmitting its data. This suggests excessive resource usage because the middleware has to create and manage additional entities (topics, publications, and subscriptions) and can potentially lead to a discovery overhead as the number of sensors scale up.
+In this situation, each of the sensors has a dedicated topic for transmitting its data. This suggests excessive resource usage because the middleware has to create and manage additional entities (topics, publishers, and subscriptions) and can potentially lead to a discovery overhead as the number of sensors scale up.
 
 Understanding Keyed Topics
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -84,12 +83,12 @@ Benefits of Keyed Topics
 
 The use of topic keys report several benefits, including:
 
-* Efficient middleware infrastructure and data distribution: the use of keyed topics reduce the amount of entities (subscriptions, publications, and topics) needed in the data flow of the application which entails a more efficient usage of resources and bandwidth.
-* A better history management. *Fast DDS* maintains a cache of recent updates, typically the last 10 updates for each instance.
+* Efficient middleware infrastructure and data distribution: the use of keyed topics reduce the amount of entities (subscriptions, publishers, and topics) needed in the data flow of the application which entails a more efficient usage of resources and bandwidth.
+* A better history management: *Fast DDS* maintains a cache of recent updates, typically the last 10 updates for each instance.
   This caching mechanism, configured separately for publishers and subscriptions, prevents instances with frequent changes from overriding the latest value of another instance that changes less frequently.
   Moreover, this per-instance cache can be managed by the source application or a persistence service for late-joining subscribers, ensuring they initialize with the current value or recent changes of each object.
   Without keyed topics, the middleware lacks the ability to intelligently cache data on a per-instance basis, resulting in late joiners needing to process a larger history before accessing the current value of a specific instance.
-* Easy integration with databases. Individual records in a table are uniquely identified by the values of the fields marked as the “primary key” for that table.
+* Easy integration with databases: individual records in a table are uniquely identified by the values of the fields marked as the “primary key” for that table.
   If those same fields are also marked as the key fields for the corresponding Topic, then the integration is seamless and can work hand-in-hand with the database table storage.
 * Improved message filtering: by combining topic keys with `Content Filter Topic <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/topic/contentFilteredTopic/contentFilteredTopic.html>`_, nodes have the ability to subscribe selectively to messages by utilizing their keys, allowing for precise filtering and minimizing superfluous message handling.
   Please consult the :ref:`filtered_topic_keys_tutorial` for practical guidance.
@@ -100,7 +99,7 @@ By leveraging keyed topics, developers can design more robust and scalable robot
 Using Topic Keys
 ^^^^^^^^^^^^^^^^
 
-For details on how to use topic keys in *Vulcanexus*, please refer to the documented tutorials in this regard :
+For details on how to use topic keys in *Vulcanexus*, please refer to the documented tutorials in this regard:
 
   * :ref:`topic_keys_tutorial`
   * :ref:`filtered_topic_keys_tutorial`
