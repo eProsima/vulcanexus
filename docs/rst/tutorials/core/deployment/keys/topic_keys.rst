@@ -275,7 +275,7 @@ The resulting output should be similar to the following:
         Your browser does not support the video tag.
     </video>
 
-It is important to note that this initial approach is not the most efficient one, as it entails the creation of multiple topics, publihsers, and subscriptions.
+It is important to note that this initial approach is not the most efficient one, as it entails the creation of multiple topics, publishers, and subscriptions.
 Furthermore, apart from being inefficient, it also makes the application more complex, harder to maintain, and resource demanding.
 Moreover, as a consequence of creating far more entities than needed, the application incurs in an unnecessary discovery overhead.
 
