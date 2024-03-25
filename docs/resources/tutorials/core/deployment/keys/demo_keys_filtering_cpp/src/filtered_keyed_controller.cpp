@@ -14,8 +14,8 @@
 // limitations under the License.
 
 #include <demo_keys_filtering_cpp/msg/keyed_sensor_data_msg.hpp>
-#include <rclcpp_components/register_node_macro.hpp>
 #include <rclcpp/rclcpp.hpp>
+#include <rclcpp_components/register_node_macro.hpp>
 
 namespace demo_keys_filtering_cpp
 {

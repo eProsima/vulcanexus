@@ -20,8 +20,8 @@
 #include <utility>
 
 #include <demo_keys_filtering_cpp/msg/keyed_sensor_data_msg.hpp>
-#include <rclcpp_components/register_node_macro.hpp>
 #include <rclcpp/rclcpp.hpp>
+#include <rclcpp_components/register_node_macro.hpp>
 
 using namespace std::chrono_literals;
 
