@@ -322,7 +322,6 @@ descibed
 deserialization
 deserialize
 deserialized
-deserialized
 destoryed
 destructor
 destructors
@@ -452,6 +451,7 @@ fp
 fPIC
 fpr
 fprintf
+freeform
 Freitag
 fromMsg
 frontend
@@ -471,7 +471,6 @@ Gb
 gbp
 Gbps
 gcc
-gdb
 gdb
 Geochelone
 gerkey
@@ -1167,6 +1166,7 @@ Saraiya
 Sarthak
 Sato
 saveCalibrationFile
+scalability
 scalable
 schemas
 Schettler
@@ -1382,6 +1382,7 @@ uncrustify
 undeclare
 undistortion
 unencrypted
+unhandled
 unicast
 unicode
 unittest
