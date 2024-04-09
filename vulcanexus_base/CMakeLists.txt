@@ -16,7 +16,7 @@ cmake_minimum_required(VERSION 3.8)
 project(vulcanexus_base)
 
 set(vulcanexus_base_MAJOR_VERSION 3)
-set(vulcanexus_base_MINOR_VERSION 1)
+set(vulcanexus_base_MINOR_VERSION 2)
 set(vulcanexus_base_PATCH_VERSION 0)
 set(vulcanexus_base_MAJOR_VERSION
     ${vulcanexus_base_MAJOR_VERSION}.${vulcanexus_base_MINOR_VERSION}.${vulcanexus_base_PATCH_VERSION})
