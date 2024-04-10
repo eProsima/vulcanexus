@@ -80,6 +80,9 @@ This version ships the following packages:
     * - Vulcanexus IDL Dynamic TypeSupport Fast DDS
       - `v0.1.0 <https://github.com/ros2/rosidl_dynamic_typesupport_fastrtps/blob/rolling/CHANGELOG.rst#010-2023-04-28>`__
       - v3.0.0
+    * - Vulcanexus IDL
+      - `v3.2.0 <https://github.com/eProsima/rosidl_typesupport_fastrtps/releases/tag/v3.2.0>`__
+      - v3.2.0
     * - Vulcanexus Base
       - `v3.2.0 <https://docs.vulcanexus.org/en/latest/rst/notes/iron/notes.html#iron-imagination-v3-2-0>`__
       - v3.2.0
