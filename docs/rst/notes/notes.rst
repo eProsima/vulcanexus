@@ -26,7 +26,7 @@ The following table outlines the Vulcanexus releases and their support cycles:
      - Release Date
      - EOL Date
    * - :ref:`Iron Imagination <notes_iron_latest>`
-     - v3.1.0
+     - v3.2.0
      - May 2023
      - May 2024
    * - :ref:`Humble Hierro <notes_humble_latest>`
