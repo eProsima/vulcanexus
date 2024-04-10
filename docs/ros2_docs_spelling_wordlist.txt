@@ -132,6 +132,7 @@ Blass
 Bo
 Boasson
 Bohren
+bokeh
 Bolson
 Bonxai
 bool
@@ -865,6 +866,7 @@ namespaces
 namespacing
 nan
 NaN
+Nano
 nanseconds
 natively
 nav
@@ -1275,6 +1277,8 @@ subitems
 sublogger
 submodule
 subnamespace
+subnet
+Subnet
 subprocess
 subscriptable
 subsubsections
@@ -1348,6 +1352,7 @@ translational
 transversal
 Traversaro
 travis
+trtxb
 tty
 Tully
 tumtom
