@@ -6,14 +6,20 @@ on:
   schedule:
     - cron: '0 0 * * *'
 
-
 jobs:
   ubuntu-install-from-binaries:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix:
+        ros2_distro:
+          - iron
+          - humble
 
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ matrix.ros2_distro }}
           submodules: 'recursive'
 
       - name: Install from binaries
