@@ -1,6 +1,8 @@
 name: Install from sources Ubuntu
 
 on:
+  workflow_dispatch:
+
   schedule:
     - cron: '0 0 * * *'
 
