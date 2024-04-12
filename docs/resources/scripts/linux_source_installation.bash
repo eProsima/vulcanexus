@@ -89,12 +89,25 @@ rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext
 ##LINUX_SOURCE_CLONE_VULCA
 cd ~
 cd vulcanexus_humble
+
 # Remove ROS 2 packages overridden by Vulcanexus
 rm -rf \
     src/eProsima/foonathan_memory_vendor/ \
     src/ros2/rosidl_typesupport_fastrtps/ \
     src/ros2/rosidl_dynamic_typesupport_fastrtps \
-    src/ros2/rmw_fastrtps/
+    src/ros2/rmw_fastrtps/ \
+    src/ros2/rosidl/rosidl_adapter/ \
+    src/ros2/rosidl/rosidl_cli/ \
+    src/ros2/rosidl/rosidl_cmake/ \
+    src/ros2/rosidl/rosidl_generator_c/ \
+    src/ros2/rosidl/rosidl_generator_cpp/ \
+    src/ros2/rosidl/rosidl_parser/ \
+    src/ros2/rosidl/rosidl_runtime_c/ \
+    src/ros2/rosidl/rosidl_runtime_cpp/ \
+    src/ros2/rosidl/rosidl_typesupport_interface/ \
+    src/ros2/rosidl/rosidl_typesupport_introspection_c/ \
+    src/ros2/rosidl/rosidl_typesupport_introspection_cpp/ \
+    src/ros2/rosidl/rosidl_typesupport_introspection_tests/
 
 # Get Vulcanexus sources
 wget https://raw.githubusercontent.com/eProsima/vulcanexus/humble/vulcanexus.repos
