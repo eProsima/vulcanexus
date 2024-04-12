@@ -9,10 +9,17 @@ on:
 jobs:
   ubuntu-install-from-sources:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ros2_distro:
+          - iron
+          - humble
 
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ matrix.ros2_distro }}
           submodules: 'recursive'
 
       - name: Install from sources
