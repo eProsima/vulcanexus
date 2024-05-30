@@ -29,6 +29,14 @@ The following diagram illustrates the system architecture:
 .. figure:: /rst/figures/use_cases/keys/keys.png
     :align: center
 
+.. note::
+
+    Topic keys work exclusively with publishers and subscribers, not with services.
+    Multiple service clients can use the same service,
+    but there can only be one service server for a given service.
+    Since each Turtle Node must have a service server to control goals,
+    it does not make sense to have multiple clients (e.g., controllers) using the same service server with different keys.
+
 
 Prerequisites
 -------------
