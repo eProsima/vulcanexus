@@ -7,7 +7,7 @@
     The docs_turtlesim package is designed for teaching ROS and ROS package usage.
     It includes:
     - An executable to draw a square with turtlesim.
-    - An executable to launch a Qt GUI with three KeyedTurtles.
+    - An executable to launch three KeyedTurtles.
     - An executable to launch a teleoperation node for controlling three KeyedTurtles.
   </description>
 

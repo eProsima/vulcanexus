@@ -82,7 +82,7 @@ Turtle::Turtle(const long id, const QImage& turtle_image, const QPointF& pos, fl
   rclcpp::SubscriptionOptions sub_options;
   sub_options.content_filter_options.filter_expression = "key = %0";
   sub_options.content_filter_options.expression_parameters = {
-    id
+    std::to_string(id)
   };
 
   // Create a subscription for the velocity of the turtle

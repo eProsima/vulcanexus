@@ -44,9 +44,9 @@ add_executable(turtlesim_square_move src/SquareMove.cpp)
 ament_target_dependencies(turtlesim_square_move "geometry_msgs" "rclcpp" "std_srvs" "turtlesim")
 target_link_libraries(turtlesim_square_move "${cpp_typesupport_target}")
 
-add_executable(turtlesim_multi_qt ${turtlesim_node_SRCS} ${turtlesim_node_MOCS})
-ament_target_dependencies(turtlesim_multi_qt "ament_index_cpp" "rclcpp")
-target_link_libraries(turtlesim_multi_qt Qt5::Widgets "${cpp_typesupport_target}")
+add_executable(turtlesim_node_keys ${turtlesim_node_SRCS} ${turtlesim_node_MOCS})
+ament_target_dependencies(turtlesim_node_keys "ament_index_cpp" "rclcpp")
+target_link_libraries(turtlesim_node_keys Qt5::Widgets "${cpp_typesupport_target}")
 
 add_executable(turtlesim_multi_control src/controller_keyed_turtle.cpp)
 ament_target_dependencies(turtlesim_multi_control "ament_index_cpp" "rclcpp")
@@ -55,7 +55,7 @@ target_link_libraries(turtlesim_multi_control "${cpp_typesupport_target}")
 install(
   TARGETS
   turtlesim_square_move
-  turtlesim_multi_qt
+  turtlesim_node_keys
   turtlesim_multi_control
   DESTINATION lib/${PROJECT_NAME})
 
