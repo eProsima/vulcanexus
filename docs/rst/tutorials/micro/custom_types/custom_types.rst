@@ -17,7 +17,7 @@ Further information can be found in :ref:`Implementing custom interfaces <Single
 
     This tutorial starts from a previously created micro-ROS environment. Check the first steps of `Getting started micro-ROS <https://docs.vulcanexus.org/en/latest/rst/tutorials/micro/getting_started/getting_started.html>`_ for instructions on how to create a micro-ROS environment for embedded platforms.
 
-    For creating custom types in a :ref:`Build System Component <micro_build_system_components>`, check the instructions in each component repository. For example `Renesas e2 Studio Readme <https://github.com/micro-ROS/micro_ros_renesas2estudio_component#adding-custom-packages-to-the-micro-ros-build>`_ or `ST Micro ST Cube IDE/MX <https://github.com/micro-ROS/micro_ros_stm32cubemx_utils#adding-custom-packages>`_.
+    For creating custom types in a :ref:`Build System Component <micro_build_system_components>`, check the instructions in each component repository.
 
 Simple types
 ------------

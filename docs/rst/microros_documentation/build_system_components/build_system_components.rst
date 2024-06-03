@@ -9,33 +9,6 @@ Build System Components
     :local:
     :backlinks: none
 
-
-.. figure:: /rst/figures/micro/platforms_logos/renesas_e2_studio.png
-    :align: center
-
-.. _micro_ros_renesas_e2_studio:
-
-Renesas e\ :sup:`2` Studio
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-`Renesas RA Family <https://www.renesas.com/us/en/products/microcontrollers-microprocessors/ra-cortex-m-mcus>`_ is the **official supported hardware** of micro-ROS.
-This family of MCUs provides a wide range of features based on Arm® Cortex®-M33, M23, and M4 processor cores.
-
-Renesas e\ :sup:`2` Studio provides a whole integrated development environment that allows for professional development, test and profiling of embedded applications.
-The micro-ROS component for Renesas provides a set of tools and instructions to integrate the build and configuration of micro-ROS within a Renesas e\ :sup:`2` Studio project.
-
-This package supports multiple RTOSes (FreeRTOS and Azure RTOS), as well as a bare-metal approach.
-Also, a wide range of transport layers are available: UART, UDP/IP, TCP/IP, USB-CDC and CAN/FD.
-
-.. note::
-
-    For detailed instructions on how to use micro-ROS with this platform, please refer to `micro-ROS for Renesas e2 Studio <https://github.com/micro-ROS/micro_ros_renesas2estudio_component>`_ Github repository or use your Vulcanexus distribution to download this module:
-
-    .. code-block:: bash
-
-        source /opt/vulcanexus/iron/setup.bash
-        ros2 run micro_ros_setup component renesas_e2_studio
-
 .. figure:: /rst/figures/micro/platforms_logos/esp_idf.png
     :align: center
 
