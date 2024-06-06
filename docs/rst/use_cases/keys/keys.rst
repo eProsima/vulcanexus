@@ -21,12 +21,17 @@ This setup illustrates efficient and effective communication in a complex system
 
 Users can control the turtles using the keyboard, while the Qt application visually represents their movements.
 The Qt application terminal displays the turtles' positions, and the controller terminal shows the commands sent to each Turtle Node.
-The controller receives the turtles position but it has subscriber filtered to show only the positions of turtles 1 and 2.
+The controller receives the turtles position.
 Each velocity and pose message is tagged with a key representing the turtle ID.
 
-The following diagram illustrates the system architecture:
+The diagram below shows the entities required using topic keys:
 
 .. figure:: /rst/figures/use_cases/keys/keys.png
+    :align: center
+
+The diagram below shows the entities required **without** using topic keys:
+
+.. figure:: /rst/figures/use_cases/keys/non-keys.png
     :align: center
 
 .. note::
