@@ -73,8 +73,8 @@ The keyed Topics use the following message types to represent the turtles' veloc
         module msg {
             struct KeyedPose {
                 @key long turtle_id;        // Identifier of the turtle.
-                double x;                   // X-coordinate of the turtle's position.
-                double y;                   // Y-coordinate of the turtle's position.
+                double x;                   // X-coordinate of the turtles position.
+                double y;                   // Y-coordinate of the turtles position.
                 double theta;               // Orientation angle of the turtle.
 
                 double linear_velocity;     // Linear velocity of the turtle.
