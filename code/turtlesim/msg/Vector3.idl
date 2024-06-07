@@ -1,0 +1,10 @@
+// Vector3.idl
+module docs_turtlesim {
+    module msg {
+        struct Vector3 {
+            double x;
+            double y;
+            double z;
+        };
+    };
+};

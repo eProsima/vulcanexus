@@ -1,0 +1,14 @@
+// KeyedPose.idl
+module docs_turtlesim {
+    module msg {
+        struct KeyedPose {
+            @key long turtle_id;
+            double x;
+            double y;
+            double theta;
+
+            double linear_velocity;
+            double angular_velocity;
+        };
+    };
+};
