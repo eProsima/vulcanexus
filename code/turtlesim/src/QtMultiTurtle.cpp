@@ -90,7 +90,7 @@ void MultiTurtleApp::spawnTurtle(const std::string& name, float x, float y, floa
   width_in_meters_ = (width() - 1) / meter;
   height_in_meters_ = (height() - 1) / meter;
 
-  // Turtle key_ is the turtle number, starting from 1
+  // turtles_.size()+1 is the turtle_id, starting from 1
   std::shared_ptr<Turtle> turtle_node = std::make_shared<Turtle>(turtles_.size()+1, img, QPointF(x, y), angle);
   turtles_.push_back(turtle_node);
 

@@ -2,7 +2,7 @@
 module docs_turtlesim {
     module msg {
         struct KeyedTwist {
-            @key long key;
+            @key long turtle_id;
             docs_turtlesim::msg::Vector3  linear;
             docs_turtlesim::msg::Vector3  angular;
         };

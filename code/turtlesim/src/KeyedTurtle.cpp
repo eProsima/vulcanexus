@@ -66,7 +66,7 @@ static double normalizeAngle(double angle)
 
 Turtle::Turtle(const long id, const QImage& turtle_image, const QPointF& pos, float orient)
 : Node("keyed_turtle" + std::to_string(id))
-, key_(id)
+, turtle_id_(id)
 , turtle_image_(turtle_image)
 , pos_(pos)
 , orient_(orient)
@@ -80,7 +80,7 @@ Turtle::Turtle(const long id, const QImage& turtle_image, const QPointF& pos, fl
 
   // Initialize a subscription with a content filter to receive data with the key of the turtle
   rclcpp::SubscriptionOptions sub_options;
-  sub_options.content_filter_options.filter_expression = "key = %0";
+  sub_options.content_filter_options.filter_expression = "turtle_id = %0";
   sub_options.content_filter_options.expression_parameters = {
     std::to_string(id)
   };
@@ -176,7 +176,7 @@ bool Turtle::update(double dt, QPainter& path_painter, const QImage& path_image,
   {
     // Publish pose of the turtle
     auto p = std::make_unique<docs_turtlesim::msg::KeyedPose>();
-    p->key = key_;
+    p->turtle_id = turtle_id_;
     p->x = pos_.x();
     p->y = canvas_height - pos_.y();
     p->theta = orient_;
@@ -184,7 +184,7 @@ bool Turtle::update(double dt, QPainter& path_painter, const QImage& path_image,
     p->angular_velocity = ang_vel_;
     pose_pub_->publish(std::move(p));
 
-    RCLCPP_INFO(get_logger(), "Turtle [%ld]: pos_x: %f pos_y: %f theta: %f", key_, pos_.x(), pos_.y(), orient_);
+    RCLCPP_INFO(get_logger(), "Turtle [%ld]: pos_x: %f pos_y: %f theta: %f", turtle_id_, pos_.x(), pos_.y(), orient_);
   }
 
   return modified;

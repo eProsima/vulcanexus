@@ -78,7 +78,7 @@ private:
   void velocityCallback(const docs_turtlesim::msg::KeyedTwist::ConstSharedPtr vel);
   void rotateImage();
 
-  const long key_;
+  const long turtle_id_;
 
   QImage turtle_image_;
   QImage turtle_rotated_image_;

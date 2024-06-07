@@ -19,17 +19,20 @@ This use case explains how to run three turtlesim nodes by leveraging topic keys
 By integrating topic keys and content filtering, each turtle node processes the data intended for it.
 This setup illustrates efficient and effective communication in a complex system with multiple entities.
 
-Users can control the turtles using the keyboard, while the Qt application visually represents their movements.
-The Qt application terminal displays the turtles' positions, and the controller terminal shows the commands sent to each Turtle Node.
-The controller receives the turtles position.
-Each velocity and pose message is tagged with a key representing the turtle ID.
+Users can control each turtle separately using the keyboard, while the graphical application visually represents their movements.
+
+The controller receives the position of the turtles, which is determined by the ID of the turtle that publishes it, being this parameter the key in the message.
+Also, the controller publishes the velocity message to each corresponding turtle by the same means, using the ID of the turtle as the key in the message.
+
+This mechanism allows ROS 2 nodes to control the history of messages with a different key separately and to avoid stepping on each other in the publisher and subscription history of samples.
 
 The diagram below shows the entities required using topic keys:
 
 .. figure:: /rst/figures/use_cases/keys/keys.png
     :align: center
 
-The diagram below shows the entities required **without** using topic keys:
+The diagram below shows the entities required **without** using topic keys.
+It is worth noting that the number of topics, subscriptions and publications required increases significantly as the system grows if we do not use the key based approach, increasing the memory footprint and resource usage.
 
 .. figure:: /rst/figures/use_cases/keys/non-keys.png
     :align: center
@@ -63,35 +66,24 @@ The keyed Topics use the following message types to represent the turtles' veloc
 
 ``docs_turtlesim::msg::KeyedPose`` Represents the pose of a turtle with a key.
 
-- `key:` Identifier of the turtle.
-- `x:` X-coordinate of the turtle's position.
-- `y:` Y-coordinate of the turtle's position.
-- `theta:` Orientation angle of the turtle.
-- `linear_velocity:` Linear velocity of the turtle.
-- `angular_velocity:` Angular velocity of the turtle.
-
 .. code-block:: bash
 
     // KeyedPose.idl
     module docs_turtlesim {
         module msg {
             struct KeyedPose {
-                @key long key;
-                double x;
-                double y;
-                double theta;
+                @key long turtle_id;        // Identifier of the turtle.
+                double x;                   // X-coordinate of the turtle's position.
+                double y;                   // Y-coordinate of the turtle's position.
+                double theta;               // Orientation angle of the turtle.
 
-                double linear_velocity;
-                double angular_velocity;
+                double linear_velocity;     // Linear velocity of the turtle.
+                double angular_velocity;    // Angular velocity of the turtle.
             };
         };
     };
 
 ``docs_turtlesim::msg::KeyedVelocity`` Represents the velocity of a turtle with a key.
-
-- `key:` Identifier of the turtle.
-- `linear:` Linear velocity of the turtle.
-- `angular:` Angular velocity of the turtle.
 
 .. code-block:: bash
 
@@ -99,9 +91,9 @@ The keyed Topics use the following message types to represent the turtles' veloc
     module docs_turtlesim {
         module msg {
             struct KeyedTwist {
-                @key long key;
-                docs_turtlesim::msg::Vector3  linear;
-                docs_turtlesim::msg::Vector3  angular;
+                @key long turtle_id;                        // Identifier of the turtle.
+                docs_turtlesim::msg::Vector3  linear;       // Linear velocity of the turtle.
+                docs_turtlesim::msg::Vector3  angular;      // Angular velocity of the turtle.
             };
         };
     };
@@ -121,9 +113,7 @@ To create a new ROS 2 workspace and clone the `docs_turtlesim` package run:
     mkdir -p $HOME/ros2-ws/src
     cd $HOME/ros2-ws/src
     git clone --depth=1 https://github.com/eProsima/vulcanexus.git tmp_dir
-    cd tmp_dir
-    cp -r code/turtlesim ..
-    cd ..
+    mv tmp_dir/code/turtlesim .
     rm -rf tmp_dir
 
 Build the ROS 2 workspace with:
@@ -163,16 +153,19 @@ To start the turtlesim controller, run:
 
     ros2 run docs_turtlesim turtlesim_multi_control
 
-Run Turtlesim Nodes with Key
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Run the Turtlesim application
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To launch the turtlesim application with three turtle nodes, use this command:
+To launch the ``turtlesim`` application with three turtle nodes, use this command:
 
 .. code-block:: bash
 
     ros2 run docs_turtlesim turtlesim_node_keys
 
-Now you can control multiple turtles with the controller and see the pose of each turtle in the terminals.
+The turtlesim is now ready!
+Start by selecting a turtle by pressing its number ID (1, 2, or 3).
+Then, use the arrows to move the turtle around the screen.
+If the turtles move correctly, the system is working as expected.
 
 .. raw:: html
 

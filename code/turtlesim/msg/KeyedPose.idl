@@ -2,7 +2,7 @@
 module docs_turtlesim {
     module msg {
         struct KeyedPose {
-            @key long key;
+            @key long turtle_id;
             double x;
             double y;
             double theta;

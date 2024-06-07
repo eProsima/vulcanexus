@@ -89,23 +89,18 @@ class ControlKeyedTurtle : public rclcpp::Node
 public:
   ControlKeyedTurtle()
   : Node("controller_keyed_turtle")
-  , key_(0)
+  , turtle_id_(0)
   {
     // Create a publisher for the velocity
     velocity_pub_ = create_publisher<docs_turtlesim::msg::KeyedTwist>(
       "/cmd_vel",
       rclcpp::QoS(rclcpp::KeepLast(1)).reliable().transient_local());
 
-    // Initialize a subscription with a content filter to receive data from turtle 1 to 2
-    rclcpp::SubscriptionOptions sub_options;
-    sub_options.content_filter_options.filter_expression = "key <= 2";
-
     // Create a subscriber for the pose
     pose_sub_ = create_subscription<docs_turtlesim::msg::KeyedPose>(
       "/pose",
       rclcpp::QoS(rclcpp::KeepLast(1)).reliable().transient_local(),
-      std::bind(&ControlKeyedTurtle::callbackPose, this, std::placeholders::_1),
-      sub_options);
+      std::bind(&ControlKeyedTurtle::callbackPose, this, std::placeholders::_1));
 
     puts("Reading from keyboard");
     puts("---------------------------");
@@ -157,15 +152,15 @@ public:
       return 0;
     case KEYCODE_1:
       RCLCPP_INFO(get_logger(), "Selecting turtle 1");
-      key_ = 1;
+      turtle_id_ = 1;
       break;
     case KEYCODE_2:
       RCLCPP_INFO(get_logger(), "Selecting turtle 2");
-      key_ = 2;
+      turtle_id_ = 2;
       break;
     case KEYCODE_3:
       RCLCPP_INFO(get_logger(), "Selecting turtle 3");
-      key_ = 3;
+      turtle_id_ = 3;
       break;
     default:
       // This can happen if the read returned when there was no data, or
@@ -176,14 +171,14 @@ public:
 
     if (linear != 0.0 || angular != 0.0)
     {
-      if (key_ == 0)
+      if (turtle_id_ == 0)
       {
         RCLCPP_INFO(get_logger(), "No turtle selected.");
       }
       else
       {
         docs_turtlesim::msg::KeyedTwist twist;
-        twist.key = key_;
+        twist.turtle_id = turtle_id_;
         twist.angular.z = SCALE_ANGULAR * angular;
         twist.linear.x = SCALE_LINEAR * linear;
         velocity_pub_->publish(twist);
@@ -198,13 +193,13 @@ private:
   void callbackPose(const docs_turtlesim::msg::KeyedPose::SharedPtr pose) const
   {
     RCLCPP_INFO(get_logger(), "Turtle [%d] is at x: %f, y: %f, theta: %f",
-      pose->key, pose->x, pose->y, pose->theta);
+      pose->turtle_id, pose->x, pose->y, pose->theta);
   }
 
   rclcpp::Publisher<docs_turtlesim::msg::KeyedTwist>::SharedPtr velocity_pub_;
   rclcpp::Subscription<docs_turtlesim::msg::KeyedPose>::SharedPtr pose_sub_;
 
-  long key_;
+  long turtle_id_;
   KeyboardReader input_;
 };
 
