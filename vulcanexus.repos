@@ -103,3 +103,7 @@ repositories:
     type: git
     url: https://github.com/ros2/common_interfaces
     version: 5.0.1
+  ros2/rcl_interfaces:
+    type: git
+    url: https://github.com/ros2/rcl_interfaces
+    version: 1.6.0
