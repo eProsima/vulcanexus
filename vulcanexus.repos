@@ -99,3 +99,7 @@ repositories:
     type: git
     url: https://github.com/ros2/rosidl_dynamic_typesupport_fastrtps.git
     version: 0.1.0
+  ros2/common_interfaces:
+    type: git
+    url: https://github.com/ros2/common_interfaces
+    version: 5.0.1
