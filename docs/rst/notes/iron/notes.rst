@@ -1,6 +1,6 @@
 .. _notes_iron_latest:
 
-Iron Imagination (v3.2.0)
+Iron Imagination (v3.3.0)
 =========================
 
 This version ships the following packages:
@@ -15,11 +15,11 @@ This version ships the following packages:
       - `v1.1.1 <https://github.com/eProsima/Fast-CDR/releases/tag/v1.1.1>`__
       - v3.1.0
     * - eProsima Fast DDS
-      - `v2.14.0 <https://fast-dds.docs.eprosima.com/en/latest/notes/notes.html#version-2-14-0>`__
-      - v3.2.0
+      - `v2.14.2 <https://fast-dds.docs.eprosima.com/en/latest/notes/notes.html#version-2-14-2>`__
+      - v3.3.0
     * - eProsima Fast DDS Python
-      - `v1.4.1 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.4.1>`__
-      - v3.2.0
+      - `v1.4.2 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.4.2>`__
+      - v3.3.0
     * - eProsima Fast DDS Gen
       - `v3.3.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v3.3.0>`__
       - v3.2.0
@@ -48,8 +48,8 @@ This version ships the following packages:
       - `v2.2.0 <https://eprosima-dds-router.readthedocs.io/en/latest/rst/notes/notes.html#version-v2-2-0>`__
       - v3.2.0
     * - ROS 2 Shapes Demo
-      - `v2.14.0 <https://eprosima-shapes-demo.readthedocs.io/en/latest/notes/notes.html#version-2-14-0>`__
-      - v3.2.0
+      - `v2.14.2 <https://eprosima-shapes-demo.readthedocs.io/en/latest/notes/notes.html#version-2-14-2>`__
+      - v3.3.0
     * - ROS 2 Shapes Demo TypeSupport
       - `v1.0.0 <https://github.com/eProsima/ShapesDemo-TypeSupport/releases/tag/v1.0.0>`__
       - v3.1.0
@@ -57,8 +57,8 @@ This version ships the following packages:
       - `v1.1.0 <https://fast-dds-statistics-backend.readthedocs.io/en/latest/rst/notes/notes.html#version-1-1-0>`__
       - v3.2.0
     * - Vulcanexus Fast DDS RMW
-      - `v3.2.0 <https://github.com/eProsima/rmw_fastrtps/releases/tag/v3.2.0>`__
-      - v3.2.0
+      - `v3.3.0 <https://github.com/eProsima/rmw_fastrtps/releases/tag/v3.3.0>`__
+      - v3.3.0
     * - eProsima Dev Utils
       - `v0.6.0 <https://github.com/eProsima/dev-utils/releases/tag/v0.6.0>`__
       - v3.2.0
@@ -75,20 +75,21 @@ This version ships the following packages:
       - `v0.1.0 <https://fast-dds-qos-profiles-manager.readthedocs.io/en/latest/rst/notes/notes.html#version-0-1-0>`__
       - v3.0.0
     * - Vulcanexus IDL TypeSupport Fast DDS
-      - `v3.2.0 <https://github.com/eProsima/rosidl_typesupport_fastrtps/releases/tag/v3.2.0>`__
-      - v3.2.0
+      - `v3.3.0 <https://github.com/eProsima/rosidl_typesupport_fastrtps/releases/tag/v3.3.0>`__
+      - v3.3.0
     * - Vulcanexus IDL Dynamic TypeSupport Fast DDS
       - `v0.1.0 <https://github.com/ros2/rosidl_dynamic_typesupport_fastrtps/blob/rolling/CHANGELOG.rst#010-2023-04-28>`__
       - v3.0.0
     * - Vulcanexus IDL
-      - `v3.2.0 <https://github.com/eProsima/rosidl_typesupport_fastrtps/releases/tag/v3.2.0>`__
-      - v3.2.0
+      - `v3.3.0 <https://github.com/eProsima/rosidl/releases/tag/v3.3.0>`__
+      - v3.3.0
     * - Vulcanexus Base
-      - `v3.2.0 <https://docs.vulcanexus.org/en/latest/rst/notes/iron/notes.html#iron-imagination-v3-2-0>`__
-      - v3.2.0
+      - `v3.3.0 <https://docs.vulcanexus.org/en/latest/rst/notes/iron/notes.html#iron-imagination-v3-3-0>`__
+      - v3.3.0
 
 Iron Imagination previous versions
 ==================================
 
+.. include:: previous_versions/v3.2.0.rst
 .. include:: previous_versions/v3.1.0.rst
 .. include:: previous_versions/v3.0.0.rst
