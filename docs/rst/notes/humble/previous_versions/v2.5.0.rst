@@ -79,5 +79,5 @@ This version ships the following packages:
       - `v2.5.0 <https://github.com/eProsima/rosidl_typesupport_fastrtps/releases/tag/v2.5.0>`__
       - v2.5.0
     * - Vulcanexus Base
-      - `v2.5.0 <https://docs.vulcanexus.org/en/latest/rst/notes/iron/notes.html#iron-imagination-v3-2-0>`__
+      - `v2.5.0 <https://docs.vulcanexus.org/en/latest/rst/notes/humble/notes.html#humble-hierro-v2-5-0>`__
       - v2.5.0

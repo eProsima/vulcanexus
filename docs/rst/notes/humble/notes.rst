@@ -81,7 +81,7 @@ This version ships the following packages:
       - `v2.6.0 <https://github.com/eProsima/rosidl/releases/tag/v2.6.0>`__
       - v2.6.0
     * - Vulcanexus Base
-      - `v2.6.0 <https://docs.vulcanexus.org/en/latest/rst/notes/iron/notes.html#iron-imagination-v3-3-0>`__
+      - `v2.6.0 <https://docs.vulcanexus.org/en/latest/rst/notes/humble/notes.html#humble-hierro-v2-6-0>`__
       - v2.6.0
 
 Humble Hierro previous versions
