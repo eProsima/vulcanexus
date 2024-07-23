@@ -69,7 +69,6 @@ rcl
 rclc
 reconfigurations
 reconnections
-Renesas
 repository
 retransmit
 Robotstadium
