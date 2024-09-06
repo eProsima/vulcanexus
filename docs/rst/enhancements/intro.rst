@@ -9,4 +9,5 @@ Vulcanexus Enhancements
 .. toctree::
    :maxdepth: 1
 
+   fastdds3/fastdds3.rst
    keys/topic-keys.rst
