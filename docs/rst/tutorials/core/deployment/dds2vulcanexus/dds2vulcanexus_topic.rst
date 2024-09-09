@@ -91,9 +91,9 @@ The `HelloWorld.idl`, and its ``msg`` equivalent is as follows:
 
 .. important::
 
-    If generating the type for a Fast DDS native application with ``Fast DDS-Gen v4.0.0`` (the minimum required for Fast DDS *v3.0.0*), the extensibility  must be explicitly marked as ``@extensibility(FINAL)`` in idl structs.
-    Starting from ``Fast DDS-Gen v4.0.1``, it can be left unspecified, as it defaults to ``@final``.
-    Please, refer to `Fast DDS data types extensibility <https://fast-dds.docs.eprosima.com/en/latest/fastddsgen/dataTypes/dataTypes.html#extensibility>`_ for further information about type extensibility.
+    If generating the type for a Fast DDS native application with Fast DDS-Gen *v4.0.0* (the minimum required for Fast DDS *v3.0.0*), the extensibility  must be explicitly marked as ``@extensibility(FINAL)`` in idl structs.
+    Starting from Fast DDS-Gen *v4.0.1*, it can be left unspecified, as it defaults to ``@extensibility(FINAL)``.
+    Please, refer to `Fast DDS data types extensibility <https://fast-dds.docs.eprosima.com/en/latest/fastddsgen/dataTypes/dataTypes.html#extensibility>`__ for further information about type extensibility.
 
 .. tabs::
 
@@ -222,9 +222,9 @@ In particular, the type generation related code is:
 
 .. important::
 
-    If generating the type for a Fast DDS native application with ``Fast DDS-Gen v4.0.0`` (the minimum required for Fast DDS *v3.0.0*), the extensibility  must be explicitly marked as ``@extensibility(FINAL)`` in idl structs.
-    Starting from ``Fast DDS-Gen v4.0.1``, it can be left unspecified, as it defaults to ``@final``.
-    Please, refer to `Fast DDS data types extensibility <https://fast-dds.docs.eprosima.com/en/latest/fastddsgen/dataTypes/dataTypes.html#extensibility>`_ for further information about type extensibility.
+    If generating the type for a Fast DDS native application with Fast DDS-Gen *v4.0.0* (the minimum required for Fast DDS *v3.0.0*), the extensibility  must be explicitly marked as ``@extensibility(FINAL)`` in idl structs.
+    Starting from Fast DDS-Gen *v4.0.1*, it can be left unspecified, as it defaults to ``@extensibility(FINAL)``.
+    Please, refer to `Fast DDS data types extensibility <https://fast-dds.docs.eprosima.com/en/latest/fastddsgen/dataTypes/dataTypes.html#extensibility>`__ for further information about type extensibility.
 
 The call to *Fast DDS-Gen* within ``add_custom_command`` will generate the type support in the `fastdds_app` directory, leaving the file names in a convenient ``GENERATED_TYPE_SUPPORT_FILES`` CMake variable that is later used to add the source files to the executable.
 It is important to note the *Fast DDS-Gen* is called with the `-typeros2` flag, so it generates ROS 2 compatible type names.
