@@ -32,7 +32,7 @@ The following considerations have to be taken into account when using Vulcanexus
     You can refer to our `Migration guide <https://github.com/eProsima/Fast-DDS/blob/master/UPGRADING.md>`__ for more detailed information.
   * When generating types, the minimum required version of Fast DDS-Gen is *v4.0.0*.
     If this version is used, the extensibility must be explicitly marked as ``@extensibility(FINAL)`` in idl structs.
-    However, starting from Fast DDS-Gen *v4.0.1*, it can be left unspecified, as it will default to ``@extensibility(FINAL)``.
+    However, starting from Fast DDS-Gen *v4.0.1*, it can be left unspecified, as it will default to ``@final``.
     Please, refer to `Fast DDS data types extensibility <https://fast-dds.docs.eprosima.com/en/latest/fastddsgen/dataTypes/dataTypes.html#extensibility>`__ for further information about type extensibility.
 
 * QoS settings for `Data Representation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/xtypesExtensions.html#datarepresentationqospolicy>`__ has to be set to ``XCDR_DATA_REPRESENTATION``.
