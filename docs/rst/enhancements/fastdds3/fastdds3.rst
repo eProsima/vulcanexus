@@ -35,4 +35,4 @@ The following considerations have to be taken into account when using Vulcanexus
     However, starting from Fast DDS-Gen *v4.0.1*, it can be left unspecified, as it will default to ``@final``.
     Please, refer to `Fast DDS data types extensibility <https://fast-dds.docs.eprosima.com/en/latest/fastddsgen/dataTypes/dataTypes.html#extensibility>`__ for further information about type extensibility.
 
-* QoS settings for `Data Representation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/xtypesExtensions.html#datarepresentationqospolicy>`__ has to be set to ``XCDR_DATA_REPRESENTATION``.
+* Make sure that the QoS setting for `Data Representation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/xtypesExtensions.html#datarepresentationqospolicy>`__ is set to ``XCDR_DATA_REPRESENTATION``.
