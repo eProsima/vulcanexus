@@ -1,7 +1,7 @@
 .. _fastdds3:
 
-Support for Fast DDS 3.0
-========================
+Support for Fast DDS v3
+=======================
 
 Vulcanexus now includes support for the new `Fast DDS major version 3 <https://fast-dds.docs.eprosima.com/en/v3.0.0/notes/notes.html>`__, the latest version of the Data Distribution Service (DDS) implementation from eProsima.
 Fast DDS *v3.0.0* introduces a range of improvements that align with Vulcanexus's mission to provide seamless and efficient middleware solutions for robotics, automotive, aerospace, and other high-demand industries.
@@ -24,7 +24,7 @@ Most relevant features
 Implications
 ^^^^^^^^^^^^
 
-The following considerations have to be taken into account when using Vulcanexus with Fast DDS 3.0:
+The following considerations have to be taken into account when using Vulcanexus with Fast DDS v3:
 
 * Communicating Vulcanexus with Fast DDS native applications:
 
