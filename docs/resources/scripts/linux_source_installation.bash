@@ -119,8 +119,8 @@ vcs import --force src < vulcanexus.repos
 
 # Avoid compilation of some documentation and demo packages
 touch src/eProsima/Fast-DDS-QoS-Profiles-Manager/docs/COLCON_IGNORE
-touch src/eProsima/Vulcanexus-Base/docs/COLCON_IGNORE
-touch src/eProsima/Vulcanexus-Base/code/COLCON_IGNORE
+touch src/eProsima/Vulcanexus/docs/COLCON_IGNORE
+touch src/eProsima/Vulcanexus/code/COLCON_IGNORE
 ##!
 
 ##LINUX_SOURCE_VULCA_DEPS
