@@ -35,6 +35,14 @@ repositories:
     type: git
     url: https://github.com/eProsima/Fast-DDS-monitor.git
     version: v3.0.0
+  plotjuggler:
+    type: git
+    url: https://github.com/facontidavide/PlotJuggler.git
+    version: 3.9.1
+  eProsima/fastdds_visualizer_plugin:
+    type: git
+    url: https://github.com/eProsima/fastdds-visualizer-plugin.git
+    version: v2.0.0
   eProsima/Fast-DDS-Python:
     type: git
     url: https://github.com/eProsima/Fast-DDS-python.git
