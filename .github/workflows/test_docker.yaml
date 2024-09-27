@@ -1,0 +1,65 @@
+name: test-docker-workflow
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - main
+      - humble
+      - iron
+      - jazzy
+
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  docker-tests:
+    runs-on: ubuntu-22.04
+
+    env:
+      VULCANEXUS_COMPOSE_TEST_DOCKER_IMAGE: "vulcanexus:ci"
+
+    steps:
+
+      - name: Sync repository
+        uses: eProsima/eProsima-CI/external/checkout@v0
+        with:
+          path: src
+          # ref: main
+          ref: feature/fastdds-cli-package
+
+      - name: Build Vulcanexus Docker image
+        run: |
+          cd ./src/.github/docker
+          docker build \
+            --no-cache \
+            -t ${{ env.VULCANEXUS_COMPOSE_TEST_DOCKER_IMAGE }} \
+            -f Dockerfile .
+
+      - name: Check if Docker images exist
+        run: |
+          [ -n "$(docker images -q ${{ env.VULCANEXUS_COMPOSE_TEST_DOCKER_IMAGE }})" ] || echo "Vulcanexus Docker image does not exist"
+
+      - name: Install colcon
+        uses: eProsima/eProsima-CI/ubuntu/install_colcon@main
+
+      - name: Install GTest
+        uses: eProsima/eProsima-CI/ubuntu/install_gtest@main
+
+      - name: Compile docker tests
+        uses: eProsima/eProsima-CI/multiplatform/colcon_build@v0
+        with:
+          workspace: ${{ github.workspace }}
+          colcon_build_args: --packages-up-to vulcanexus_test
+          cmake_args: -DBUILD_COMPOSE_TESTS=ON
+
+      - name: Run tests
+        run: |
+          export VULCANEXUS_COMPOSE_TEST_DOCKER_IMAGE=${{ env.VULCANEXUS_COMPOSE_TEST_DOCKER_IMAGE }}
+          source install/setup.bash
+          colcon test \
+            --packages-select vulcanexus_test \
+            --event-handlers console_direct+ \
+            --return-code-on-test-failure \
+            --ctest-args \
+              --timeout 120
