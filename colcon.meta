@@ -38,6 +38,13 @@
             [
                 "-DROS_BUILD=OFF"
             ]
+        },
+        "micro_ros_agent":
+        {
+            "cmake-args":
+            [
+                "-DMICROROSAGENT_SUPERBUILD=OFF"
+            ]
         }
     }
 }
