@@ -8,6 +8,12 @@ These open source elements include numerous features and tools, providing Vulcan
 
 Visit the website [vulcanexus.org](https://vulcanexus.org/) and download the package of your choice for free!
 
+## Commercial support
+
+Looking for commercial support? Write us to info@eprosima.com
+
+Find more about us at [eProsima’s webpage](https://eprosima.com/).
+
 ## Vulcanexus project
 
 Vulcanexus is composed of a collection of downloadable packages:
