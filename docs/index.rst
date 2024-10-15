@@ -17,6 +17,13 @@ It allows users to build robotics applications combining the unique *Vulcanexus*
 These open source elements include numerous features and tools, providing *Vulcanexus* users customizable solutions while improving overall system performance.
 With *Vulcanexus*, users have fast access to constantly improving functionalities, such as the latest *Fast DDS* version along with its new features.
 
+Commercial support
+^^^^^^^^^^^^^^^^^^
+
+Looking for commercial support? Write us to info@eprosima.com
+
+Find more about us at `eProsima’s webpage <https://eprosima.com/>`__.
+
 Getting started
 ^^^^^^^^^^^^^^^
 
@@ -60,16 +67,6 @@ Vulcanexus project
 The table below shows the components included in every one of the previously explained packages:
 
 .. figure:: /rst/figures/intro/vulcanexus_packages_table.svg
-
-Contacts and Commercial support
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Find more about us at `Vulcanexus webpage <https://vulcanexus.org/>`__.
-
-Support available at:
-
-* Email: support@eprosima.com
-* Phone: +34 91 804 34 48
 
 Contributing to the documentation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
