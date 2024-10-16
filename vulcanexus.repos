@@ -58,7 +58,7 @@ repositories:
   eProsima/Micro-ROS-Agent:
     type: git
     url: https://github.com/micro-ROS/micro-ROS-Agent.git
-    version: 5.0.2-vulcanexus
+    version: 7.0.0-vulcanexus
   eProsima/Micro-ROS-Msgs:
     type: git
     url: https://github.com/micro-ROS/micro_ros_msgs.git
