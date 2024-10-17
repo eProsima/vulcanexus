@@ -14,6 +14,7 @@ The following table outlines the Vulcanexus releases and their support cycles:
 .. toctree::
     :hidden:
 
+    /rst/notes/jazzy/notes
     /rst/notes/iron/notes
     /rst/notes/humble/notes
     /rst/notes/galactic/notes
@@ -25,6 +26,10 @@ The following table outlines the Vulcanexus releases and their support cycles:
      - Latest Version
      - Release Date
      - EOL Date
+   * - :ref:`Jazzy Jolo <notes_jazzy_latest>`
+     - v4.0.0
+     - October 2024
+     - May 2029
    * - :ref:`Iron Imagination <notes_iron_latest>`
      - v3.3.0
      - May 2023
