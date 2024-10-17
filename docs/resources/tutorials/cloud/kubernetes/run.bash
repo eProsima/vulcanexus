@@ -11,7 +11,7 @@ SERVER_IP=$2
 SERVER_PORT=$3
 
 # Setup environment
-source "/opt/vulcanexus/iron/setup.bash"
+source "/opt/vulcanexus/jazzy/setup.bash"
 
 echo "Starting ${NODE} as client of Discovery Server ${SERVER_IP}:${SERVER_PORT}"
 ROS_DISCOVERY_SERVER=";${SERVER_IP}:${SERVER_PORT}" ros2 run demo_nodes_cpp ${NODE}

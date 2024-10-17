@@ -46,13 +46,13 @@ Create a clean workspace and download the *Vulcanexus - Fast DDS Topic Intercomm
     cd ~/vulcanexus_dds_ws
     mkdir fastdds_app idl vulcanexus_app
     # Download project source code
-    wget -O CMakeLists.txt https://raw.githubusercontent.com/eProsima/vulcanexus/iron/docs/resources/tutorials/core/deployment/dds2vulcanexus/topic/CMakeLists.txt
-    wget -O Dockerfile https://raw.githubusercontent.com/eProsima/vulcanexus/iron/docs/resources/tutorials/core/deployment/dds2vulcanexus/topic/Dockerfile
-    wget -O package.xml https://raw.githubusercontent.com/eProsima/vulcanexus/iron/docs/resources/tutorials/core/deployment/dds2vulcanexus/topic/package.xml
-    wget -O README.md https://raw.githubusercontent.com/eProsima/vulcanexus/iron/docs/resources/tutorials/core/deployment/dds2vulcanexus/topic/README.md
-    wget -O fastdds_app/subscriber.cpp https://raw.githubusercontent.com/eProsima/vulcanexus/iron/docs/resources/tutorials/core/deployment/dds2vulcanexus/topic/fastdds_app/subscriber.cpp
-    wget -O idl/HelloWorld.idl https://raw.githubusercontent.com/eProsima/vulcanexus/iron/docs/resources/tutorials/core/deployment/dds2vulcanexus/topic/idl/HelloWorld.idl
-    wget -O vulcanexus_app/publisher.cpp https://raw.githubusercontent.com/eProsima/vulcanexus/iron/docs/resources/tutorials/core/deployment/dds2vulcanexus/topic/vulcanexus_app/publisher.cpp
+    wget -O CMakeLists.txt https://raw.githubusercontent.com/eProsima/vulcanexus/jazzy/docs/resources/tutorials/core/deployment/dds2vulcanexus/topic/CMakeLists.txt
+    wget -O Dockerfile https://raw.githubusercontent.com/eProsima/vulcanexus/jazzy/docs/resources/tutorials/core/deployment/dds2vulcanexus/topic/Dockerfile
+    wget -O package.xml https://raw.githubusercontent.com/eProsima/vulcanexus/jazzy/docs/resources/tutorials/core/deployment/dds2vulcanexus/topic/package.xml
+    wget -O README.md https://raw.githubusercontent.com/eProsima/vulcanexus/jazzy/docs/resources/tutorials/core/deployment/dds2vulcanexus/topic/README.md
+    wget -O fastdds_app/subscriber.cpp https://raw.githubusercontent.com/eProsima/vulcanexus/jazzy/docs/resources/tutorials/core/deployment/dds2vulcanexus/topic/fastdds_app/subscriber.cpp
+    wget -O idl/HelloWorld.idl https://raw.githubusercontent.com/eProsima/vulcanexus/jazzy/docs/resources/tutorials/core/deployment/dds2vulcanexus/topic/idl/HelloWorld.idl
+    wget -O vulcanexus_app/publisher.cpp https://raw.githubusercontent.com/eProsima/vulcanexus/jazzy/docs/resources/tutorials/core/deployment/dds2vulcanexus/topic/vulcanexus_app/publisher.cpp
 
 The resulting directory structure should be:
 

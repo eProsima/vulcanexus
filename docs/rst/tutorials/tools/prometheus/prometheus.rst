@@ -26,12 +26,12 @@ Prerequisites
 Vulcanexus Tools
 ^^^^^^^^^^^^^^^^
 
-Ensure that the Vulcanexus installation includes Vulcanexus Tools (either ``vulcanexus-iron-desktop``, ``vulcanexus-iron-tools``, or ``vulcanexus-iron-base``).
+Ensure that the Vulcanexus installation includes Vulcanexus Tools (either ``vulcanexus-jazzy-desktop``, ``vulcanexus-jazzy-tools``, or ``vulcanexus-jazzy-base``).
 Also, remember to source the environment in every terminal in this tutorial.
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/iron/setup.bash
+    source /opt/vulcanexus/jazzy/setup.bash
 
 Prometheus exporter
 ^^^^^^^^^^^^^^^^^^^

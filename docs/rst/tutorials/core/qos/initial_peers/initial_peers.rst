@@ -33,23 +33,23 @@ A complete description of the initial peers list and its configuration can be fo
 Prerequisites
 -------------
 
-First of all, make sure that Vulcanexus Iron is installed.
+First of all, make sure that Vulcanexus jazzy is installed.
 The docker installation is required for this tutorial (see :ref:`Docker installation <docker_installation>`).
 
-Open two terminals, and run the Vulcanexus Iron image in each one with the following command:
+Open two terminals, and run the Vulcanexus jazzy image in each one with the following command:
 
 *   Terminal 1:
 
     .. code-block:: bash
 
-        docker run -it --name ros2_context_1 ubuntu-vulcanexus:iron-desktop
+        docker run -it --name ros2_context_1 ubuntu-vulcanexus:jazzy-desktop
 
 
 *   Terminal 2:
 
     .. code-block:: bash
 
-        docker run -it --name ros2_context_2 ubuntu-vulcanexus:iron-desktop
+        docker run -it --name ros2_context_2 ubuntu-vulcanexus:jazzy-desktop
 
 .. note::
 
@@ -91,9 +91,9 @@ The output should look like the following table:
 +-----------------+--------------------------------+----------------+---------------+--------------+-------+----------------+
 | CONTAINER ID    | IMAGE                          | COMMAND        | CREATED       | STATUS       | PORTS | NAMES          |
 +=================+================================+================+===============+==============+=======+================+
-| <container ID1> | ubuntu-vulcanexus:iron-desktop | "…vulcanexus…" | 2 minutes ago | Up 2 minutes |       | ros2_context_1 |
+| <container ID1> | ubuntu-vulcanexus:jazzy-desktop | "…vulcanexus…" | 2 minutes ago | Up 2 minutes |       | ros2_context_1 |
 +-----------------+--------------------------------+----------------+---------------+--------------+-------+----------------+
-| <container ID2> | ubuntu-vulcanexus:iron-desktop | "…vulcanexus…" | 2 minutes ago | Up 2 minutes |       | ros2_context_2 |
+| <container ID2> | ubuntu-vulcanexus:jazzy-desktop | "…vulcanexus…" | 2 minutes ago | Up 2 minutes |       | ros2_context_2 |
 +-----------------+--------------------------------+----------------+---------------+--------------+-------+----------------+
 
 Using the container name, check its detailed information.

@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-FROM ubuntu-vulcanexus:iron-desktop as build
+FROM ubuntu-vulcanexus:jazzy-desktop as build
 
 ENV TZ=Europe/Madrid
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -25,10 +25,10 @@ COPY vulcanexus_app vulcanexus_app
 COPY fastdds_app fastdds_app
 
 WORKDIR /dds2vulcanexus_ws
-RUN source /opt/vulcanexus/iron/setup.bash && \
+RUN source /opt/vulcanexus/jazzy/setup.bash && \
     colcon build --event-handlers=console_direct+
 
-FROM ubuntu-vulcanexus:iron-desktop as run-time
+FROM ubuntu-vulcanexus:jazzy-desktop as run-time
 
 COPY --from=build /dds2vulcanexus_ws/install /dds2vulcanexus
 

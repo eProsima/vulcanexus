@@ -108,7 +108,7 @@ On both hosts, open a shell and run:
                 .. code-block:: bash
 
                     docker run --rm -it `# Cleanup, interactive terminal` \
-                        ubuntu-vulcanexus:iron-desktop `# Image name`
+                        ubuntu-vulcanexus:jazzy-desktop `# Image name`
 
 
     .. tab:: HOST 2

@@ -10,7 +10,7 @@ Parameter Server
 
 ROS 2 parameters allow the user to create variables on a node and manipulate/read them with different ROS 2 commands. Further information about ROS 2 parameters can be found on :ref:`Understanding parameters <ROS2Params>`.
 
-Ready to use code related to this concepts can be found on micro-ROS demos repository `parameter_server <https://github.com/micro-ROS/micro-ROS-demos/blob/iron/rclc/parameter_server/main.c>`_ example.
+Ready to use code related to this concepts can be found on micro-ROS demos repository `parameter_server <https://github.com/micro-ROS/micro-ROS-demos/blob/jazzy/rclc/parameter_server/main.c>`_ example.
 
 Initialization
 --------------

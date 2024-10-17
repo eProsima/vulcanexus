@@ -26,7 +26,7 @@ Regardless of the installation method used, to run *ROS 2 Shapes Demo*, load the
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/iron/setup.bash
+    source /opt/vulcanexus/jazzy/setup.bash
     shapesdemo
 
 .. warning::
