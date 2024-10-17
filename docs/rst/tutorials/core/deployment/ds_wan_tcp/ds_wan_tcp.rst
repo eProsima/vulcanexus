@@ -128,7 +128,7 @@ Prerequisites
 
 First of all, make sure that Vulcanexus jazzy is installed.
 The docker installation is required for this tutorial (see :ref:`Docker installation <docker_installation>`), together with the `eProsima Vulcanexus docker image <https://hub.docker.com/r/eprosima/vulcanexus>`_.
-The :ref:`Vulcanexus jazzy <notes_iron_latest>` image can be downloaded by running:
+The :ref:`Vulcanexus jazzy <notes_jazzy_latest>` image can be downloaded by running:
 
 .. code-block:: bash
 

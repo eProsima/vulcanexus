@@ -95,9 +95,9 @@ project_source_docs_dir = os.path.abspath('{}/rst'.format(script_path))
 macros = {
     'DISTRO': 'jazzy',
     'DISTRO_TITLE': 'jazzy',
-    'DISTRO_TITLE_FULL': 'Jazzy Jalisco',
+    'DISTRO_TITLE_FULL': 'Jazzy Jolo',
     'REPOS_FILE_BRANCH': 'jazzy',
-    'FASTDDS_BRANCH': 'v2.13.1',
+    'FASTDDS_BRANCH': 'v3.1.0',
 }
 
 # -- General configuration ------------------------------------------------

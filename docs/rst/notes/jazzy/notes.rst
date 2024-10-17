@@ -1,4 +1,4 @@
-.. _notes_iron_latest:
+.. _notes_jazzy_latest:
 
 Jazzy Jolo (v4.0.0)
 ===================
