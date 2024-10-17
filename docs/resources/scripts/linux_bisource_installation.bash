@@ -9,7 +9,7 @@ fi
 
 if !(locale | grep -e 'utf8' -e 'UTF-8') >/dev/null 2>&1; then
 
-##LINUX_SOURCE_LOCALE
+##LINUX_BINARY_LOCALE
 locale  # check for UTF-8
 
 sudo apt update && sudo apt install -y locales
@@ -23,7 +23,7 @@ locale
 
 fi
 
-##LINUX_SOURCE_UBUNTU_UNIVERSE
+##LINUX_BINARY_UBUNTU_UNIVERSE
 apt-cache policy | grep universe
 
 # This should print something similar to:
@@ -37,13 +37,30 @@ sudo apt install -y software-properties-common
 sudo add-apt-repository universe -y
 ##!
 
-##LINUX_SOURCE_KEYSTORE
+##LINUX_BINARY_KEYSTORE
 sudo apt update && sudo apt install -y curl gnupg lsb-release
 sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
 ##!
 
-##LINUX_SOURCE_REPO_SOURCELIST
+##LINUX_BINARY_REPO_SOURCELIST
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(source /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+##!
+
+##LINUX_BINARY_ROS_UPDATE
+sudo apt update -y
+##!
+
+##LINUX_BINARY_ROS_INSTALL
+sudo apt install -y ros-iron-desktop
+##!
+
+##SETUP_ROS_ENV
+source "/opt/ros/iron/setup.bash"
+##!
+
+##CREATE_WORKSPACE
+mkdir -p ~/vulcanexus_iron/src
+cd ~/vulcanexus_iron
 ##!
 
 ##LINUX_SOURCE_ROS2_DEPS
@@ -72,57 +89,6 @@ sudo apt update && sudo apt install -y \
     wget
 ##!
 
-##LINUX_SOURCE_CLONE_ROS2_REPOS
-mkdir -p ~/vulcanexus_iron/src
-cd ~/vulcanexus_iron
-wget https://raw.githubusercontent.com/ros2/ros2/jazzy/ros2.repos
-vcs import src < ros2.repos
-##!
-
-##LINUX_SOURCE_DOWN_ROS2_DEPS
-sudo apt upgrade -y
-sudo rosdep init
-rosdep update
-rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-6.0.1 urdfdom_headers"
-##!
-
-##LINUX_SOURCE_CLONE_VULCA
-cd ~
-cd vulcanexus_iron
-
-# Remove ROS 2 packages overridden by Vulcanexus
-rm -rf \
-    src/eProsima/foonathan_memory_vendor/ \
-    src/ros2/rosidl_typesupport_fastrtps/ \
-    src/ros2/rosidl_dynamic_typesupport_fastrtps \
-    src/ros2/rmw_fastrtps/ \
-    src/ros2/rosidl/rosidl_adapter/ \
-    src/ros2/rosidl/rosidl_cli/ \
-    src/ros2/rosidl/rosidl_cmake/ \
-    src/ros2/rosidl/rosidl_generator_c/ \
-    src/ros2/rosidl/rosidl_generator_cpp/ \
-    src/ros2/rosidl/rosidl_generator_tests/ \
-    src/ros2/rosidl/rosidl_generator_type_description/ \
-    src/ros2/rosidl/rosidl_parser/ \
-    src/ros2/rosidl/rosidl_pycommon/ \
-    src/ros2/rosidl/rosidl_runtime_c/ \
-    src/ros2/rosidl/rosidl_runtime_cpp/ \
-    src/ros2/rosidl/rosidl_typesupport_interface/ \
-    src/ros2/rosidl/rosidl_typesupport_introspection_c/ \
-    src/ros2/rosidl/rosidl_typesupport_introspection_cpp/ \
-    src/ros2/rosidl/rosidl_typesupport_introspection_tests/
-
-# Get Vulcanexus sources
-wget https://raw.githubusercontent.com/eProsima/vulcanexus/jazzy/vulcanexus.repos
-wget https://raw.githubusercontent.com/eProsima/vulcanexus/jazzy/colcon.meta
-vcs import --force src < vulcanexus.repos
-
-# Avoid compilation of some documentation and demo packages
-touch src/eProsima/Fast-DDS-QoS-Profiles-Manager/docs/COLCON_IGNORE
-touch src/eProsima/Vulcanexus/docs/COLCON_IGNORE
-touch src/eProsima/Vulcanexus/code/COLCON_IGNORE
-##!
-
 ##LINUX_SOURCE_VULCA_DEPS
 sudo apt update && sudo apt install -y \
     libasio-dev \
@@ -146,7 +112,31 @@ sudo apt update && sudo apt install -y \
     swig
 ##!
 
+# Get Vulcanexus sources
+wget https://raw.githubusercontent.com/eProsima/vulcanexus/iron/vulcanexus.repos
+wget https://raw.githubusercontent.com/eProsima/vulcanexus/iron/colcon.meta
+vcs import --force src < vulcanexus.repos
+
+# Avoid compilation of some documentation and demo packages
+touch src/eProsima/Fast-DDS-QoS-Profiles-Manager/docs/COLCON_IGNORE
+touch src/eProsima/Vulcanexus-Base/docs/COLCON_IGNORE
+touch src/eProsima/Vulcanexus-Base/code/COLCON_IGNORE
+##!
+
+#################################################################################################
+#################################################################################################
+#################################################################################################
+###### TEMP ######
+cd /tmp
+git clone https://github.com/eProsima/vulcanexus.git
+cd vulcanexus
+git checkout feature/fastdds-cli-package
+mv fastdds_cli ~/vulcanexus_iron/src/eProsima/Vulcanexus-Base
+#################################################################################################
+#################################################################################################
+#################################################################################################
+
 ##LINUX_SOURCE_VULCA_COMPILE
 cd ~/vulcanexus_iron
-colcon build
+colcon build --cmake-args -DBUILD_TESTING=OFF
 ##!

@@ -1,0 +1,12 @@
+# Test description:
+#   This test checks that running fastdds CLI shm option results in no error (process return code is not 1).
+#
+
+services:
+
+  vulcanexus:
+    image: ${VULCANEXUS_COMPOSE_TEST_DOCKER_IMAGE}
+    container_name: vulcanexus
+    volumes:
+      - ../../../scripts:/scripts
+    command: python3 /scripts/execute_and_validate.py --command "ros2 run fastdds_cli shm"

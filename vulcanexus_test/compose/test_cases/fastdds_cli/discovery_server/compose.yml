@@ -1,0 +1,12 @@
+# Test description:
+#   This test checks that running fastdds CLI discovery option results in no error (process return code is not 1).
+#
+
+services:
+
+  vulcanexus:
+    image: ${VULCANEXUS_COMPOSE_TEST_DOCKER_IMAGE}
+    container_name: vulcanexus
+    volumes:
+      - ../../../scripts:/scripts
+    command: python3 /scripts/execute_and_validate.py --command "timeout 1 ros2 run fastdds_cli discovery_server"
