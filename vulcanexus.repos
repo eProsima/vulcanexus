@@ -34,7 +34,7 @@ repositories:
   eProsima/Fast-DDS-Monitor:
     type: git
     url: https://github.com/eProsima/Fast-DDS-monitor.git
-    version: v3.0.0
+    version: v3.1.0
   eProsima/plotjuggler:
     type: git
     url: https://github.com/facontidavide/PlotJuggler.git
@@ -46,11 +46,11 @@ repositories:
   eProsima/Fast-DDS-Python:
     type: git
     url: https://github.com/eProsima/Fast-DDS-python.git
-    version: v2.0.0
+    version: v2.1.0
   eProsima/Fast-DDS-Statistics-Backend:
     type: git
     url: https://github.com/eProsima/Fast-DDS-statistics-backend.git
-    version: v2.0.0
+    version: v2.1.0
   eProsima/Foonathan-Memory-Vendor:
     type: git
     url: https://github.com/eProsima/foonathan_memory_vendor.git
@@ -78,7 +78,7 @@ repositories:
   eProsima/RMW-Fast-DDS:
     type: git
     url: https://github.com/eProsima/rmw_fastrtps.git
-    version: 4.0.0
+    version: v4.0.0
   eProsima/Shapes-Demo:
     type: git
     url: https://github.com/eProsima/ShapesDemo.git
@@ -90,8 +90,8 @@ repositories:
   eProsima/Vulcanexus:
     type: git
     url: https://github.com/eProsima/vulcanexus.git
-    version: 4.0.0
+    version: v4.0.0
   eProsima/ROSIDL-Dynamic-TypeSupport-FastRTPS:
     type: git
     url: https://github.com/eProsima/rosidl_dynamic_typesupport_fastrtps.git
-    version: 4.0.0
+    version: v4.0.0
