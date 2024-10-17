@@ -60,5 +60,5 @@ sudo apt update -y
 ##!
 
 ##LINUX_BINARY_VULCA_INSTALL
-sudo apt install -y vulcanexus-iron-desktop
+sudo apt install -y vulcanexus-jazzy-desktop
 ##!

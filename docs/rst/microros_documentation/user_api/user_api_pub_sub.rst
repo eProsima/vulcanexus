@@ -12,7 +12,7 @@ ROS 2 publishers and subscribers are the basic communication mechanism between n
 
 .. TODO(acuadros95): Refer to getting started tutorial
 
-Ready to use code related to this concepts can be found on micro-ROS demos repository `int32_publisher <https://github.com/micro-ROS/micro-ROS-demos/tree/iron/rclc/int32_publisher/main.c>`_ and `int32_subscriber <https://github.com/micro-ROS/micro-ROS-demos/tree/iron/rclc/int32_subscriber/main.c>`_ examples.
+Ready to use code related to this concepts can be found on micro-ROS demos repository `int32_publisher <https://github.com/micro-ROS/micro-ROS-demos/tree/jazzy/rclc/int32_publisher/main.c>`_ and `int32_subscriber <https://github.com/micro-ROS/micro-ROS-demos/tree/jazzy/rclc/int32_subscriber/main.c>`_ examples.
 
 .. note::
 

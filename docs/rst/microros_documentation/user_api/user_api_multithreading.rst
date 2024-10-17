@@ -12,7 +12,7 @@ Multithreading support can be enabled at compilation time, which enables the mic
 
 With this feature, micro-ROS entities such as publishers, subscribers or services can run on different RTOS execution threads, with the improvements on performance, usability and resource optimization that this implies.
 
-Ready to use code related to this concept can be found on micro-ROS demos repository `multithread_publisher_subscriber <https://github.com/micro-ROS/micro-ROS-demos/blob/iron/rclc/multithread_publisher_subscriber/main.c>`_ example.
+Ready to use code related to this concept can be found on micro-ROS demos repository `multithread_publisher_subscriber <https://github.com/micro-ROS/micro-ROS-demos/blob/jazzy/rclc/multithread_publisher_subscriber/main.c>`_ example.
 
 Configuration
 -------------

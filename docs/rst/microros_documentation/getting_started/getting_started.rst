@@ -17,12 +17,12 @@ This tutorial provides step-by-step instructions to use Vulcanexus micro tools t
 Prerequisites
 -------------
 
-Ensure that the Vulcanexus installation includes Vulcanexus micro (either ``vulcanexus-iron-desktop``, ``vulcanexus-iron-micro``, or ``vulcanexus-iron-base``).
+Ensure that the Vulcanexus installation includes Vulcanexus micro (either ``vulcanexus-jazzy-desktop``, ``vulcanexus-jazzy-micro``, or ``vulcanexus-jazzy-base``).
 Also, remember to source the environment in every terminal in this tutorial.
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/iron/setup.bash
+    source /opt/vulcanexus/jazzy/setup.bash
 
 
 Create a micro-ROS workspace
@@ -32,7 +32,7 @@ A workspace is a directory containing ROS 2 packages. Before using ROS 2, it's n
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/iron/setup.bash
+    source /opt/vulcanexus/jazzy/setup.bash
 
     # Best practice is to create a new directory for every new workspace.
     mkdir -p ~/microros_ws/src

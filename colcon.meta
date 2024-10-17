@@ -1,12 +1,13 @@
 {
     "names":
     {
-        "fastrtps":
+        "fastdds":
         {
             "cmake-args":
             [
                 "-DSECURITY=ON",
                 "-DCOMPILE_EXAMPLES=ON",
+                "-DINSTALL_EXAMPLES=ON",
                 "-DFASTDDS_STATISTICS=ON"
             ]
         },
@@ -29,6 +30,13 @@
             "cmake-args":
             [
                 "-DSECURITY=ON"
+            ]
+        },
+        "plotjuggler":
+        {
+            "cmake-args":
+            [
+                "-DROS_BUILD=OFF"
             ]
         }
     }

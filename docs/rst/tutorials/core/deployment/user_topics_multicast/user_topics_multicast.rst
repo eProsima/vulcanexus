@@ -50,10 +50,10 @@ Save the following XML configuration file at the desired location, which will be
 Run the example
 ---------------
 
-This tutorial leverages the Vulcanexus `iron-desktop` Docker image to demonstrate the use of the aforementioned XML
+This tutorial leverages the Vulcanexus `jazzy-desktop` Docker image to demonstrate the use of the aforementioned XML
 configuration file to achieve multicast communication across different hosts.
 
-First, run two Vulcanexus `iron-desktop` with:
+First, run two Vulcanexus `jazzy-desktop` with:
 
 .. tabs::
 
@@ -66,7 +66,7 @@ First, run two Vulcanexus `iron-desktop` with:
             --tty \
             --rm \
             --volume <path_to_xml_config_file_dir>:/root/xml_config \
-            ubuntu-vulcanexus:iron-desktop
+            ubuntu-vulcanexus:jazzy-desktop
 
   .. tab:: Container two (Publication)
 
@@ -76,7 +76,7 @@ First, run two Vulcanexus `iron-desktop` with:
             --interactive \
             --tty \
             --rm \
-            ubuntu-vulcanexus:iron-desktop
+            ubuntu-vulcanexus:jazzy-desktop
 
 Then, within the container, run the talker-listener demo.
 

@@ -44,7 +44,7 @@ Please, remember to source the environment in every terminal used during this tu
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/iron/setup.bash
+    source /opt/vulcanexus/jazzy/setup.bash
 
 Overview
 --------
@@ -83,14 +83,14 @@ Next, run the talker and the listener:
 
         .. code-block:: bash
 
-            source /opt/vulcanexus/iron/setup.bash
+            source /opt/vulcanexus/jazzy/setup.bash
             FASTRTPS_DEFAULT_PROFILES_FILE=<path_to_xml_config_file>/vulcanexus_disable_shm.xml ros2 run demo_nodes_cpp listener
 
     .. tab:: Shell 2 (Talker)
 
         .. code-block:: bash
 
-            source /opt/vulcanexus/iron/setup.bash
+            source /opt/vulcanexus/jazzy/setup.bash
             FASTRTPS_DEFAULT_PROFILES_FILE=<path_to_xml_config_file>/vulcanexus_disable_shm.xml ros2 run demo_nodes_cpp talker
 
 The traffic captured will show several ``DATA(p)`` messages which are the periodic DomainParticipant announcements sent to multicast (PDP) and to any DomainParticipant already matched (Liveliness).
@@ -143,14 +143,14 @@ Run again the talker-listener demo loading the corresponding XML configuration f
 
         .. code-block:: bash
 
-            source /opt/vulcanexus/iron/setup.bash
+            source /opt/vulcanexus/jazzy/setup.bash
             FASTRTPS_DEFAULT_PROFILES_FILE=<path_to_xml_config_file>/listener_profile.xml ros2 run demo_nodes_cpp listener
 
     .. tab:: Shell 2 (Talker)
 
         .. code-block:: bash
 
-            source /opt/vulcanexus/iron/setup.bash
+            source /opt/vulcanexus/jazzy/setup.bash
             FASTRTPS_DEFAULT_PROFILES_FILE=<path_to_xml_config_file>/talker_profile.xml ros2 run demo_nodes_cpp talker
 
 If the traffic is captured again using Wireshark, this time no ``DATA(w)`` or ``DATA(r)`` is exchanged, but communication is established.
@@ -210,21 +210,21 @@ This time a third terminal is required to run the ROS 2 daemon.
 
         .. code-block:: bash
 
-            source /opt/vulcanexus/iron/setup.bash
+            source /opt/vulcanexus/jazzy/setup.bash
             FASTRTPS_DEFAULT_PROFILES_FILE=<path_to_xml_config_file>/listener_profile.xml ros2 run demo_nodes_cpp listener
 
     .. tab:: Shell 2 (Talker)
 
         .. code-block:: bash
 
-            source /opt/vulcanexus/iron/setup.bash
+            source /opt/vulcanexus/jazzy/setup.bash
             FASTRTPS_DEFAULT_PROFILES_FILE=<path_to_xml_config_file>/talker_profile.xml ros2 run demo_nodes_cpp talker
 
     .. tab:: Shell 3 (ROS 2 Daemon)
 
         .. code-block:: bash
 
-            source /opt/vulcanexus/iron/setup.bash
+            source /opt/vulcanexus/jazzy/setup.bash
             ros2 daemon stop
             FASTRTPS_DEFAULT_PROFILES_FILE=<path_to_xml_config_file>/ros2_daemon_profile.xml ros2 daemon start
             ros2 topic list

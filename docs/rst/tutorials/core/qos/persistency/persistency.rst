@@ -34,7 +34,7 @@ provides guidelines on how to set up persistent nodes.
 Prerequisites
 -------------
 
-Vulcanexus Iron should be installed (:ref:`follow the steps here <linux_binary_installation>`).
+Vulcanexus jazzy should be installed (:ref:`follow the steps here <linux_binary_installation>`).
 For testing sake, using a docker container is often a more convenient approach (:ref:`docker setup <docker_installation>`).
 In order to test this feature, a *Vulcanexus* lightweight docker image (as *core* or *micro*) is enough.
 The images are available for download on *Vulcanexus* `website <https://vulcanexus.org/download>`_.

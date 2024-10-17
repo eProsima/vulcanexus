@@ -17,8 +17,6 @@
         "fastddsspy_participants",
         "fastddsspy_yaml",
         "fastddsspy_tool",
-        "fastdds_qos_profiles_manager_lib",
-        "fastdds_qos_profiles_manager_cli",
         "fastcdr",
         "fastdds_monitor",
         "fastdds_statistics_backend",
@@ -29,11 +27,10 @@
         "micro_ros_setup",
         "rmw_fastrtps_cpp",
         "rmw_fastrtps_dynamic_cpp",
-        "rosidl_typesupport_fastrtps_c",
-        "rosidl_typesupport_fastrtps_cpp",
-        "rosidl_dynamic_typesupport_fastrtps",
         "ShapesDemo",
-        "shapes_demo_typesupport"
+        "shapes_demo_typesupport",
+        "fastdds_visualizer_plugin",
+        "plotjuggler"
     ],
     "hooks": [
         "share/vulcanexus_base/environment/vulcanexus_base-setup.bash",

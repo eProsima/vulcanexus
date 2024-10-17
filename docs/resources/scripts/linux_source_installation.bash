@@ -75,7 +75,7 @@ sudo apt update && sudo apt install -y \
 ##LINUX_SOURCE_CLONE_ROS2_REPOS
 mkdir -p ~/vulcanexus_iron/src
 cd ~/vulcanexus_iron
-wget https://raw.githubusercontent.com/ros2/ros2/iron/ros2.repos
+wget https://raw.githubusercontent.com/ros2/ros2/jazzy/ros2.repos
 vcs import src < ros2.repos
 ##!
 
@@ -113,8 +113,8 @@ rm -rf \
     src/ros2/rosidl/rosidl_typesupport_introspection_tests/
 
 # Get Vulcanexus sources
-wget https://raw.githubusercontent.com/eProsima/vulcanexus/iron/vulcanexus.repos
-wget https://raw.githubusercontent.com/eProsima/vulcanexus/iron/colcon.meta
+wget https://raw.githubusercontent.com/eProsima/vulcanexus/jazzy/vulcanexus.repos
+wget https://raw.githubusercontent.com/eProsima/vulcanexus/jazzy/colcon.meta
 vcs import --force src < vulcanexus.repos
 
 # Avoid compilation of some documentation and demo packages

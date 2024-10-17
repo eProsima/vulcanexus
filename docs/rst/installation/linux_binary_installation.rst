@@ -3,7 +3,7 @@
 Linux binary installation
 =========================
 
-Debian packages for Vulcanexus Iron Imagination are currently available for Ubuntu Jammy.
+Debian packages for Vulcanexus Jazzy Jolo are currently available for Ubuntu Jammy.
 Since Vulcanexus is a ROS 2 all-in-one tool set, certain ROS 2 prerequisites need to be met before installing.
 
 ROS 2 prerequisites
@@ -82,7 +82,7 @@ Base Install: basic installation without simulation tools, demos, and tutorials.
 
 .. code-block:: bash
 
-    sudo apt install -y vulcanexus-iron-base
+    sudo apt install -y vulcanexus-jazzy-base
 
 For other Vulcanexus packages, please refer to :ref:`vulcanexus_metapackages` for more
 information.
@@ -94,7 +94,7 @@ In order to use the Vulcanexus installation, the environment must be set up sour
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/iron/setup.bash
+    source /opt/vulcanexus/jazzy/setup.bash
 
 Try some examples
 -----------------
@@ -124,4 +124,4 @@ To uninstall Vulcanexus, it is enough to run the following command :
 
 .. code-block:: bash
 
-    sudo apt autoremove vulcanexus-iron-desktop
+    sudo apt autoremove vulcanexus-jazzy-desktop
