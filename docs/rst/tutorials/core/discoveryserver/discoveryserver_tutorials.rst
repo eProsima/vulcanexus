@@ -10,3 +10,4 @@ They will serve as the starting point for gaining proficiency in working with RO
     :maxdepth: 1
 
     discoveryserverminimalexample/discovery_server_minimal_example
+    discoveryserver_complex
