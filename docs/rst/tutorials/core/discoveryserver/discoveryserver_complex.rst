@@ -14,7 +14,7 @@ Overview
 --------
 
 This tutorial will demonstrate how to address common issues encountered when connecting ROS 2 nodes over a Wi-Fi network.
-In this tutorial, two ``image_tools`` publisher nodes will communicate with two subscriber nodes, with each publisher-subscriber pair running on separate hosts.
+In this tutorial, two ``image_tools`` `publisher` nodes will communicate with two `subscriber` nodes, with each `publisher`-`subscriber` pair running on separate hosts.
 The discovery process will use a Discovery Server instead of multicast, and the builting transport will be configured to TCP, to handle large data transfers over a reliable protocol rather than the default UDP.
 This setup provides a network architecture that overcomes node discovery challenges in environments where multicast is not possible, while facilitating the transmission of large data over Wi-Fi or other lossy networks.
 
@@ -125,6 +125,23 @@ You will also need the ROS package ``image_tools``, which can be installed by ru
 
 Lastly, ensure you have a working webcam connected to both of the hosts.
 
+Considerations for Video Streaming
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Before proceeding with the tutorial, it's important to consider the following factors when streaming large video images over Wi-Fi:
+
+1. Network Bandwidth:
+    Ensure that the Wi-Fi network has sufficient bandwidth to support the video stream's bitrate, especially when multiple devices are connected.
+    Higher-resolution or higher-framerate video streams demand more bandwidth, so consider compressing the video or reducing the resolution if the Wi-Fi network has limitations.
+
+2. Network Congestion:
+    Multiple devices using the same network can lead to congestion, resulting in buffering or dropped frames during video streaming.
+    To enhance streaming performance, limit other network activities (such as large downloads or additional streams) on the same Wi-Fi network while the video is being transmitted.
+
+3. Video Compression and Encoding:
+    Utilizing efficient video codecs can significantly reduce the amount of data needed for transmission without compromising quality.
+    If high-quality video isn't essential, adjusting the encoding settings to a lower bitrate will further decrease bandwidth requirements.
+
 Run this tutorial
 ------------------
 
@@ -148,14 +165,14 @@ Open a terminal and configure the Fast DDS server as follows:
                 --ipc host \
                 -e DISPLAY=$DISPLAY \
                 -v /tmp/.X11-unix:/tmp/.X11-unix \
-                ubuntu-vulcanexus:iron-desktop
+                ubuntu-vulcanexus:humble-desktop
 
 Once the container is running, configure Fast DDS *server* using the `Fast DDS Discovery CLI <https://fast-dds.docs.eprosima.com/en/latest/fastddscli/cli/cli.html#discovery>`__:
 The *server* ``discovery id`` would be set as ``0`` and will be listening on localhost with default TCP port 42100:
 
 .. code-block:: bash
 
-    fastdds discovery --server-id 0 -t 127.0.0.1
+    fastdds discovery --server-id 0 -t 192.168.1.165
 
 The output should look similar to the following:
 
@@ -166,10 +183,10 @@ The output should look similar to the following:
     Security:           NO
     Server ID:          0
     Server GUID prefix: 44.53.00.5f.45.50.52.4f.53.49.4d.41
-    Server Addresses:   TCPv4:[127.0.0.1]:42100
+    Server Addresses:   TCPv4:[192.168.1.165]:42100-42100
 
 The output displays the ``server ID`` set, followed by the security and server GUID prefix.
-Server address ``127.0.0.1`` tells *Fast DDS* to listen on all available interfaces.
+Server address ``192.168.1.165`` tells *Fast DDS* to listen on Wifi 192.168.1.165 interface.
 Finally, the ``42100-42100`` default port would be necessary for further configuration.
 
 After setting up the Discovery Server, you need to launch four additional Docker containers, two in each host, that will act as clients.
@@ -185,7 +202,7 @@ First, open two new terminals in each machine and run the following command to s
         --ipc host \
         -e DISPLAY=$DISPLAY \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
-        ubuntu-vulcanexus:iron-desktop
+        ubuntu-vulcanexus:humble-desktop
 
 Replace ``<container_name>`` with a unique name for each container.
 Once the containers are running, and after sourcing the Vulcanexus environment within each container, the easiest way to configure the clients to point to the *Discovery Server* is by setting `Environment Variables <https://fast-dds.docs.eprosima.com/en/latest/fastdds/env_vars/env_vars.html>`__.
@@ -226,23 +243,13 @@ To facilitate the environment setup, and since more than one environment variabl
 
 Since the Discovery Server, a *publisher* and a *listener* ``image_tools`` nodes are running on Host A, these two nodes within Host A's containers should be configured to point to ``127.0.0.1`` as the Discovery Server is running locally on the same host.
 Aditionally, we will configure all nodes to be |SUPER_CLIENT| and `Large Data Mode <https://fast-dds.docs.eprosima.com/en/latest/fastdds/use_cases/tcp/tcp_with_multicast_discovery.html>`__ as builtin transport.
-The json file for the nodes in **Host A** will look like:
-
-.. code-block:: xml
-
-    {
-        "ROS_DISCOVERY_SERVER": "127.0.0.1:42100",
-        "ROS_SUPER_CLIENT": "TRUE",
-        "FASTDDS_BUILTIN_TRANSPORTS"="LARGE_DATA"
-    }
-
 On Host B, where other *publisher* and *subscriber* ``image_tools`` nodes will be running, the ``ROS_DISCOVERY_SERVER`` variable should point to the IP address of Host A on the Wi-Fi network, as the Discovery Server is running on a different machine.
-The json file for the nodes in **Host B** will look like:
+The json file for the nodes in both **Host A** and **Host B** will look like:
 
 .. code-block:: xml
 
     {
-        "ROS_DISCOVERY_SERVER": "<host_A_wifi_ip>:42100",
+        "ROS_DISCOVERY_SERVER": "TCPv4:[192.168.1.165]:42100",
         "ROS_SUPER_CLIENT": "TRUE",
         "FASTDDS_BUILTIN_TRANSPORTS"="LARGE_DATA"
     }
