@@ -24,4 +24,3 @@ The following are the tutorials that make up this course on communication in dis
     router_conf_via_xml_profiles/router_conf_via_xml_profiles
     router_conf_with_forwarding_routes/router_conf_with_forwarding_routes
     secure_router/secure_router
-    large_data/large_data.rst
