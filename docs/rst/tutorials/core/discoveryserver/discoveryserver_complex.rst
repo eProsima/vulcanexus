@@ -13,7 +13,7 @@ How to solve wireless network issues in ROS2
 Have you faced problems deploying your ROS2 application via Wifi?
 -----------------------------------------------------------------
 
-Deploying ROS 2 applications over Wi-Fi networks can often be challenging.
+Deploying ROS 2 applications over Wifi networks can often be challenging.
 You may encounter issues with node discovery due to the limitations of multicast, or experience poor performance when streaming large data, such as video, across unstable or lossy networks.
 Fortunately, there's a straightforward solution: leveraging the **Discovery Server** and **Large Data** mode in Fast DDS.
 
@@ -46,10 +46,10 @@ To address these issues, follow these simple steps:
 Overview
 --------
 
-This tutorial will demonstrate how to address common issues encountered when connecting ROS 2 nodes over a Wi-Fi network.
+This tutorial will demonstrate how to address common issues encountered when connecting ROS 2 nodes over a Wifi network.
 In this tutorial, two ``image_tools`` `publisher` nodes will communicate with two `subscriber` nodes, with each `publisher`-`subscriber` pair running on separate hosts.
 The discovery process will use a Discovery Server instead of multicast, and the builtin transport will be configured to TCP, to handle large data transfers over a reliable protocol rather than the default UDP.
-This setup provides a network architecture that overcomes node discovery challenges in environments where multicast is not possible, while facilitating the transmission of large data over Wi-Fi or other lossy networks.
+This setup provides a network architecture that overcomes node discovery challenges in environments where multicast is not possible, while facilitating the transmission of large data over Wifi or other lossy networks.
 
 .. figure:: /rst/figures/tutorials/core/discovery_server/ros2_wifi.svg
    :align: center
@@ -161,15 +161,15 @@ Lastly, ensure you have a working webcam connected to both of the hosts.
 Considerations for Video Streaming
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Before proceeding with the tutorial, it's important to consider the following factors when streaming large video images over Wi-Fi:
+Before proceeding with the tutorial, it's important to consider the following factors when streaming large video images over Wifi:
 
 1. Network Bandwidth:
-    Ensure that the Wi-Fi network has sufficient bandwidth to support the video stream's bitrate, especially when multiple devices are connected.
-    Higher-resolution or higher-frame-rate video streams demand more bandwidth, so consider compressing the video or reducing the resolution if the Wi-Fi network has limitations.
+    Ensure that the Wifi network has sufficient bandwidth to support the video stream's bitrate, especially when multiple devices are connected.
+    Higher-resolution or higher-frame-rate video streams demand more bandwidth, so consider compressing the video or reducing the resolution if the Wifi network has limitations.
 
 2. Network Congestion:
     Multiple devices using the same network can lead to congestion, resulting in buffering or dropped frames during video streaming.
-    To enhance streaming performance, limit other network activities (such as large downloads or additional streams) on the same Wi-Fi network while the video is being transmitted.
+    To enhance streaming performance, limit other network activities (such as large downloads or additional streams) on the same Wifi network while the video is being transmitted.
 
 3. Video Compression and Encoding:
     Utilizing efficient video codecs can significantly reduce the amount of data needed for transmission without compromising quality.
@@ -275,7 +275,7 @@ There are two different environment variables that adapt to different needs:
 Regardless of the environment variable used, make sure to set it in each of the containers where the ROS 2 nodes will be running.
 To facilitate the environment setup, and since more than one environment variable needs to be set, we will use the ``FASTDDS_ENVIRONMENT_FILE`` variable to include them all in a single JSON file.
 
-Since the Discovery Server, a *publisher* and a *listener* ``image_tools`` nodes are running on Host A, these two nodes within Host A's containers should be configured to point to the Wi-fi ip address ``192.168.1.165`` and to localhost.
+Since the Discovery Server, a *publisher* and a *listener* ``image_tools`` nodes are running on Host A, these two nodes within Host A's containers should be configured to point to the Wifi ip address ``192.168.1.165`` and to localhost.
 Additionally, we will configure all nodes to be |SUPER_CLIENT| and `Large Data Mode <https://fast-dds.docs.eprosima.com/en/latest/fastdds/use_cases/tcp/tcp_with_multicast_discovery.html>`__ as builtin transport.
 The json file for the nodes in **Host A** will look like:
 
@@ -288,7 +288,7 @@ The json file for the nodes in **Host A** will look like:
         "FASTDDS_BUILTIN_TRANSPORTS"="LARGE_DATA"
     }
 
-On Host B, where other *publisher* and *subscriber* ``image_tools`` nodes will be running, the ``ROS_DISCOVERY_SERVER`` variable should point to the IP address of Host A on the Wi-Fi network, as the Discovery Server is running on a different machine.
+On Host B, where other *publisher* and *subscriber* ``image_tools`` nodes will be running, the ``ROS_DISCOVERY_SERVER`` variable should point to the IP address of Host A on the Wifi network, as the Discovery Server is running on a different machine.
 The json file for the nodes in **Host B** will be:
 
 .. code-block:: xml
