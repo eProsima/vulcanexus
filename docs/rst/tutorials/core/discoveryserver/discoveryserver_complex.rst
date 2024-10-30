@@ -10,6 +10,39 @@ How to solve wireless network issues in ROS2
     :local:
     :backlinks: none
 
+Have you faced problems deploying your ROS2 application via Wifi?
+-----------------------------------------------------------------
+
+Deploying ROS 2 applications over Wi-Fi networks can often be challenging.
+You may encounter issues with node discovery due to the limitations of multicast, or experience poor performance when streaming large data, such as video, across unstable or lossy networks.
+Fortunately, there's a straightforward solution: leveraging the **Discovery Server** and **Large Data** mode in Fast DDS.
+
+**Quick Solution Overview**
+
+To address these issues, follow these simple steps:
+
+1. **Configure a Discovery Server** to replace multicast-based discovery with a more reliable client-server setup.
+
+.. code-block:: bash
+
+    fastdds discovery --server-id 0 -t <wifi_ip_address> -q 42100
+
+2. Create the JSON configuration file for each client, setting up **Large Data** mode and the **Discovery Server** to point to:
+
+.. code-block:: xml
+
+    {
+        "ROS_DISCOVERY_SERVER": "TCPv4:[<wifi_ip_address>]:42100",
+        "ROS_SUPER_CLIENT": "TRUE",
+        "FASTDDS_BUILTIN_TRANSPORTS"="LARGE_DATA"
+    }
+
+3. Apply the JSON file in each client by setting the environment variable:
+
+.. code-block:: bash
+
+    export FASTDDS_ENVIRONMENT_FILE="<json_file_path>"
+
 Overview
 --------
 
@@ -168,11 +201,11 @@ Open a terminal and configure the Fast DDS server as follows:
                 ubuntu-vulcanexus:humble-desktop
 
 Once the container is running, configure Fast DDS *server* using the `Fast DDS Discovery CLI <https://fast-dds.docs.eprosima.com/en/latest/fastddscli/cli/cli.html#discovery>`__:
-The *server* ``discovery id`` would be set as ``0`` and will be listening on localhost with default TCP port 42100:
+The *server* ``discovery id`` would be set as ``0`` and will be listening on Wifi ip address with TCP port 42100 and localhost with TCP port 42101:
 
 .. code-block:: bash
 
-    fastdds discovery --server-id 0 -t 192.168.1.165
+    fastdds discovery --server-id 0 -t 192.168.1.165 -q 42100 -t 127.0.0.1 -q 42101
 
 The output should look similar to the following:
 
@@ -184,10 +217,11 @@ The output should look similar to the following:
     Server ID:          0
     Server GUID prefix: 44.53.00.5f.45.50.52.4f.53.49.4d.41
     Server Addresses:   TCPv4:[192.168.1.165]:42100-42100
+                        TCPv4:[127.0.0.1]:42101-42101
 
 The output displays the ``server ID`` set, followed by the security and server GUID prefix.
-Server address ``192.168.1.165`` tells *Fast DDS* to listen on Wifi 192.168.1.165 interface.
-Finally, the ``42100-42100`` default port would be necessary for further configuration.
+Server address ``TCPv4:[192.168.1.165]`` tells *Fast DDS* to listen on Wifi 192.168.1.165 interface with the ``42100`` connection port.
+Server address ``TCPv4:[127.0.0.1]`` tells *Fast DDS* to listen on localhost with the ``42101`` connection port.
 
 After setting up the Discovery Server, you need to launch four additional Docker containers, two in each host, that will act as clients.
 First, open two new terminals in each machine and run the following command to start each container in the same network:
@@ -241,10 +275,21 @@ There are two different environment variables that adapt to different needs:
 Regardless of the environment variable used, make sure to set it in each of the containers where the ROS 2 nodes will be running.
 To facilitate the environment setup, and since more than one environment variable needs to be set, we will use the ``FASTDDS_ENVIRONMENT_FILE`` variable to include them all in a single JSON file.
 
-Since the Discovery Server, a *publisher* and a *listener* ``image_tools`` nodes are running on Host A, these two nodes within Host A's containers should be configured to point to ``127.0.0.1`` as the Discovery Server is running locally on the same host.
+Since the Discovery Server, a *publisher* and a *listener* ``image_tools`` nodes are running on Host A, these two nodes within Host A's containers should be configured to point to the Wi-fi ip address ``192.168.1.165`` and to localhost.
 Aditionally, we will configure all nodes to be |SUPER_CLIENT| and `Large Data Mode <https://fast-dds.docs.eprosima.com/en/latest/fastdds/use_cases/tcp/tcp_with_multicast_discovery.html>`__ as builtin transport.
+The json file for the nodes in **Host A** will look like:
+
+.. code-block:: xml
+
+    {
+        "ROS_DISCOVERY_SERVER": "TCPv4:[192.168.1.165]:42100",
+        "ROS_DISCOVERY_SERVER": "TCPv4:[127.0.0.1]:42101",
+        "ROS_SUPER_CLIENT": "TRUE",
+        "FASTDDS_BUILTIN_TRANSPORTS"="LARGE_DATA"
+    }
+
 On Host B, where other *publisher* and *subscriber* ``image_tools`` nodes will be running, the ``ROS_DISCOVERY_SERVER`` variable should point to the IP address of Host A on the Wi-Fi network, as the Discovery Server is running on a different machine.
-The json file for the nodes in both **Host A** and **Host B** will look like:
+The json file for the nodes in **Host B** will be:
 
 .. code-block:: xml
 
