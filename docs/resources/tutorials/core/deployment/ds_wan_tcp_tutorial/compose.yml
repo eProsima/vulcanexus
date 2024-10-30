@@ -24,7 +24,7 @@ services:
       iptables -A OUTPUT -j ACCEPT &&
       route del default &&
       route add default gw 10.3.2.1 eth1 &&
-      fastdds discovery -i 0 -x server_configuration.xml"
+      fastdds discovery -x server_configuration.xml"
     privileged: true
     cap_add:
       - ALL

@@ -322,7 +322,7 @@ In order to address the port forwarding configuration, see the `Configure transv
 
             # run the discovery server
             source /opt/vulcanexus/jazzy/setup.bash
-            fastdds discovery -i 0 -x server_configuration.xml
+            fastdds discovery -x server_configuration.xml
 
     .. tab:: Listener
 

@@ -112,7 +112,7 @@ Take care of using the public IP of the machine hosting the *Discovery Server* a
 
 .. code-block:: bash
 
-    fastdds discovery --server-id 0 --ip-address 127.0.0.1 --port 11666
+    fastdds discovery --ip-address 127.0.0.1 --port 11666
 
 .. note::
 
