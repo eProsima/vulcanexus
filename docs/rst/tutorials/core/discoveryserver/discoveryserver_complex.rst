@@ -48,7 +48,7 @@ Overview
 
 This tutorial will demonstrate how to address common issues encountered when connecting ROS 2 nodes over a Wi-Fi network.
 In this tutorial, two ``image_tools`` `publisher` nodes will communicate with two `subscriber` nodes, with each `publisher`-`subscriber` pair running on separate hosts.
-The discovery process will use a Discovery Server instead of multicast, and the builting transport will be configured to TCP, to handle large data transfers over a reliable protocol rather than the default UDP.
+The discovery process will use a Discovery Server instead of multicast, and the builtin transport will be configured to TCP, to handle large data transfers over a reliable protocol rather than the default UDP.
 This setup provides a network architecture that overcomes node discovery challenges in environments where multicast is not possible, while facilitating the transmission of large data over Wi-Fi or other lossy networks.
 
 .. figure:: /rst/figures/tutorials/core/discovery_server/ros2_wifi.svg
@@ -134,7 +134,7 @@ For more details and advanced configurations, refer to the official documentatio
 
 .. note::
 
-    For compability issues, Discovery Server has to be configured with TCP transport protocol when Large Data is set.
+    For compatibility issues, Discovery Server has to be configured with TCP transport protocol when Large Data is set.
 
 Prerequisites
 -------------
@@ -165,7 +165,7 @@ Before proceeding with the tutorial, it's important to consider the following fa
 
 1. Network Bandwidth:
     Ensure that the Wi-Fi network has sufficient bandwidth to support the video stream's bitrate, especially when multiple devices are connected.
-    Higher-resolution or higher-framerate video streams demand more bandwidth, so consider compressing the video or reducing the resolution if the Wi-Fi network has limitations.
+    Higher-resolution or higher-frame-rate video streams demand more bandwidth, so consider compressing the video or reducing the resolution if the Wi-Fi network has limitations.
 
 2. Network Congestion:
     Multiple devices using the same network can lead to congestion, resulting in buffering or dropped frames during video streaming.
@@ -276,7 +276,7 @@ Regardless of the environment variable used, make sure to set it in each of the 
 To facilitate the environment setup, and since more than one environment variable needs to be set, we will use the ``FASTDDS_ENVIRONMENT_FILE`` variable to include them all in a single JSON file.
 
 Since the Discovery Server, a *publisher* and a *listener* ``image_tools`` nodes are running on Host A, these two nodes within Host A's containers should be configured to point to the Wi-fi ip address ``192.168.1.165`` and to localhost.
-Aditionally, we will configure all nodes to be |SUPER_CLIENT| and `Large Data Mode <https://fast-dds.docs.eprosima.com/en/latest/fastdds/use_cases/tcp/tcp_with_multicast_discovery.html>`__ as builtin transport.
+Additionally, we will configure all nodes to be |SUPER_CLIENT| and `Large Data Mode <https://fast-dds.docs.eprosima.com/en/latest/fastdds/use_cases/tcp/tcp_with_multicast_discovery.html>`__ as builtin transport.
 The json file for the nodes in **Host A** will look like:
 
 .. code-block:: xml
@@ -299,7 +299,7 @@ The json file for the nodes in **Host B** will be:
         "FASTDDS_BUILTIN_TRANSPORTS"="LARGE_DATA"
     }
 
-Finally, make te export of the ``FASTDDS_ENVIRONMENT_FILE`` in every node terminal, pointing to the JSON file path:
+Finally, make the export of the ``FASTDDS_ENVIRONMENT_FILE`` in every node terminal, pointing to the JSON file path:
 
 .. code-block:: bash
 
