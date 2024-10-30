@@ -1,4 +1,4 @@
-.. include:: ../../../exports/alias.include
+.. include:: ../../../../exports/alias.include
 
 .. _tutorials_large_data_video_streaming:
 
@@ -9,6 +9,20 @@ How to handle large data video streaming in ROS 2
     :depth: 2
     :local:
     :backlinks: none
+
+Have you faced problems streaming video in ROS2?
+------------------------------------------------
+
+If you've experienced issues streaming video in ROS2, such as video freezing, packet loss, or jitter, especially over WiFi, you can enable Fast DDS’s **Large Data Mode** with a simple environment variable configuration.
+This allows you to bypass some of the limitations of UDP transport by using TCP or Shared Memory (SHM) for large data transmission, enhancing the reliability and quality of your video stream.
+
+**Quick Solution Overview**
+
+To apply this solution, set the ``FASTDDS_BUILTIN_TRANSPORTS`` environment variable to ``LARGE_DATA`` in every ROS2 node involved in transmitting large data messages:
+
+.. code:: bash
+
+    export FASTDDS_BUILTIN_TRANSPORTS=LARGE_DATA
 
 Overview
 --------
@@ -157,7 +171,7 @@ This is done by exporting the environment variable in the terminal on both compu
 
 .. code:: bash
 
-    export FASTDDS_BUILTIN_TRANSPORTS=LARGE_DATA&non_blocking=true
+    export FASTDDS_BUILTIN_TRANSPORTS="LARGE_DATA?non_blocking=true"
 
 With this setting, run the same publisher and subscriber commands again.
 This time, you should experience smooth and uninterrupted video streaming with no freezing or image loss.
