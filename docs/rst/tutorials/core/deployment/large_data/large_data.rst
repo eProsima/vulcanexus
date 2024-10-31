@@ -45,7 +45,7 @@ When working with large data transfers in DDS (Data Distribution Service), it's 
 UDP offers flexibility and control over key aspects of message delivery, such as allowing users to configure messages as either best-effort or reliable, depending on their needs. This control is a major advantage for many real-time applications.
 
 However, due to the nature of UDP, there are certain factors that need attention when handling larger data, such as images or point clouds, commonly seen in robotics or other high-bandwidth applications.
-While UDP is flexible, it hasn’t received the same performance optimizations as TCP, which is widely used in modern networking.
+While UDP is flexible, it has not received the same performance optimizations as TCP, which is widely used in modern networking.
 For example, Linux systems often allocate small default buffer sizes for UDP (around 256 KB), which may not be enough for larger data like images or point clouds. Combined with unreliable networks, like WiFi, this can cause issues like repeated retransmissions and buffer overflows.
 
 Manual tuning options
