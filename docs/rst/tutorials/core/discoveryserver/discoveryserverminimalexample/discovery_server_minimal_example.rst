@@ -60,7 +60,7 @@ The role of the server is to re-distribute the clients (and servers) discovery i
 
 .. code-block:: bash
 
-    fastdds discovery --server-id 0
+    fastdds discovery
 
 
 Launch Talker Node
