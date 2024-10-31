@@ -169,7 +169,7 @@ Before proceeding with the tutorial, consider these factors and tips to optimize
     To support video streaming over WiFi, ensure your network bandwidth meets the demands of the video’s bitrate, especially if multiple devices are connected.
     Higher-resolution or higher-frame-rate video streams demand more bandwidth, so consider compressing the video or reducing the resolution if the WiFi network has limitations.
     Future tutorials will cover ways to adjust these settings in ROS 2.
-    Additionally, you can `adjust the socket buffer sizes <https://fast-dds.docs.eprosima.com/en/latest/fastdds/use_cases/large_data/large_data.html#tuning-socket-buffer>` in your system’s network settings to accommodate larger data rates, which can help stabilize high-bandwidth streams.
+    Additionally, you can `adjust the socket buffer sizes <https://fast-dds.docs.eprosima.com/en/latest/fastdds/use_cases/large_data/large_data.html#tuning-socket-buffer>`__ in your system’s network settings to accommodate larger data rates, which can help stabilize high-bandwidth streams.
 
 2. Network Congestion:
     Multiple devices using the same network can lead to congestion, resulting in buffering or dropped frames during video streaming.
@@ -212,13 +212,12 @@ The output should look similar to the following:
 
     ### Server is running ###
     Participant Type:   SERVER
-    Security:           NO
-    Server ID:          0
-    Server GUID prefix: 44.53.00.5f.45.50.52.4f.53.49.4d.41
+    Security:           YES
+    Server GUID prefix: 01.0f.33.0a.3a.14.27.73.00.00.00.00
     Server Addresses:   TCPv4:[192.168.1.165]:42100-42100
                         TCPv4:[127.0.0.1]:42101-42101
 
-The output displays the ``server ID`` set, followed by the security and server GUID prefix.
+The output displays the security and server GUID prefix.
 Server address ``TCPv4:[192.168.1.165]`` tells *Fast DDS* to listen on WiFi 192.168.1.165 interface with the ``42100`` connection port.
 Server address ``TCPv4:[127.0.0.1]`` tells *Fast DDS* to listen on localhost with the ``42101`` connection port.
 
@@ -259,14 +258,13 @@ Then save the file in a known location and set the environment variable to point
 
 Make sure to set it in each of the containers where the ROS 2 nodes will be running.
 
-Since the Discovery Server, a *publisher* and a *listener* ``image_tools`` nodes are running on Host A, these two nodes within Host A's containers should be configured to point to the WiFi IP address ``192.168.1.165`` and to localhost.
+Since the Discovery Server, a *publisher* and a *listener* ``image_tools`` nodes are running on Host A, these two nodes within Host A's containers should be configured to point to localhost.
 Additionally, we will configure all nodes to be |SUPER_CLIENT| and `Large Data Mode <https://fast-dds.docs.eprosima.com/en/latest/fastdds/use_cases/tcp/tcp_with_multicast_discovery.html>`__ as builtin transport.
 The json file for the nodes in **Host A** will look like:
 
 .. code-block:: xml
 
     {
-        "ROS_DISCOVERY_SERVER": "TCPv4:[192.168.1.165]:42100",
         "ROS_DISCOVERY_SERVER": "TCPv4:[127.0.0.1]:42101",
         "ROS_SUPER_CLIENT": "TRUE",
         "FASTDDS_BUILTIN_TRANSPORTS"="LARGE_DATA"
@@ -297,13 +295,13 @@ After all the configurations have been set, run the *publisher* and  *subscriber
 Host A
 """"""
 
-To start the ``publisher`` node on topic ``/image_1``:
+Run the following command to start the ``publisher`` node on topic ``/image_1``:
 
 .. code-block:: bash
 
     ros2 run image_tools cam2image --ros-args -r __node:=publisher_1 -r image:=/image_1
 
-And the ``subscriber`` node on topic ``/image_2``:
+Then run the ``subscriber`` node on topic ``/image_2``:
 
 .. code-block:: bash
 
@@ -312,13 +310,13 @@ And the ``subscriber`` node on topic ``/image_2``:
 Host B
 """"""
 
-To start the ``publisher`` node on topic ``/image_2``:
+Run the following command to start the ``publisher`` node on topic ``/image_2``:
 
 .. code-block:: bash
 
     ros2 run image_tools cam2image --ros-args -r __node:=publisher_2 -r image:=/image_2
 
-And the ``subscriber`` node on topic ``/image_1``:
+Then run the ``subscriber`` node on topic ``/image_1``:
 
 .. code-block:: bash
 
