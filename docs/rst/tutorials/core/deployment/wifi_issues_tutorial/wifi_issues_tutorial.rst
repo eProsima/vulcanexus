@@ -163,20 +163,21 @@ Lastly, ensure you have a working webcam connected to both of the hosts.
 Considerations for Video Streaming
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Before proceeding with the tutorial, it's important to consider the following factors when streaming large video images over WiFi:
+Before proceeding with the tutorial, consider these factors and tips to optimize video streaming over WiFi:
 
 1. Network Bandwidth:
-    Ensure that the WiFi network has sufficient bandwidth to support the video stream's bitrate, especially when multiple devices are connected.
+    To support video streaming over WiFi, ensure your network bandwidth meets the demands of the video’s bitrate, especially if multiple devices are connected.
     Higher-resolution or higher-frame-rate video streams demand more bandwidth, so consider compressing the video or reducing the resolution if the WiFi network has limitations.
-    Stay tuned for upcoming tutorials on how to do this in ROS 2.
+    Future tutorials will cover ways to adjust these settings in ROS 2.
+    Additionally, you can `adjust the socket buffer sizes <https://fast-dds.docs.eprosima.com/en/latest/fastdds/use_cases/large_data/large_data.html#tuning-socket-buffer>` in your system’s network settings to accommodate larger data rates, which can help stabilize high-bandwidth streams.
 
 2. Network Congestion:
     Multiple devices using the same network can lead to congestion, resulting in buffering or dropped frames during video streaming.
-    To enhance streaming performance, limit other network activities (such as large downloads or additional streams) on the same WiFi network while the video is being transmitted.
+    Tools like ``netstat`` or ``iptraf`` can monitor current network traffic, helping you assess if limiting other network activities—such as downloads or additional video streams—would improve performance.
 
 3. Video Compression and Encoding:
     Utilizing efficient video codecs can significantly reduce the amount of data needed for transmission without compromising quality.
-    If high-quality video isn't essential, adjusting the encoding settings to a lower bitrate will further decrease bandwidth requirements.
+    If high-quality video isn't essential, try lowering the encoding bitrate, which can significantly reduce bandwidth requirements.
 
 Run this tutorial
 ------------------
