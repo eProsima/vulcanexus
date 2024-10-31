@@ -14,6 +14,10 @@
 .. |rosrouter| replace:: *ROS 2 Router*
 .. |efastdds| replace:: *eProsima Fast DDS*
 
+.. |SERVER| replace:: `SERVER <https://fast-dds.docs.eprosima.com/en/latest/fastdds/api_reference/rtps/attributes/DiscoveryProtocol.html#_CPPv4N8eprosima7fastdds4rtps17DiscoveryProtocol6SERVERE>`__
+.. |CLIENT| replace:: `CLIENT <https://fast-dds.docs.eprosima.com/en/latest/fastdds/api_reference/rtps/attributes/DiscoveryProtocol.html#_CPPv4N8eprosima7fastdds4rtps17DiscoveryProtocol6CLIENTE>`__
+.. |SUPER_CLIENT| replace:: `SUPER_CLIENT <https://fast-dds.docs.eprosima.com/en/latest/fastdds/api_reference/rtps/attributes/DiscoveryProtocol.html#_CPPv4N8eprosima7fastdds4rtps17DiscoveryProtocol12SUPER_CLIENTE>`__
+
 .. |k8s| replace:: *K8s*
 
 .. |br| raw:: html
