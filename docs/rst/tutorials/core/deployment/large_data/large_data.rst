@@ -10,15 +10,15 @@ How to handle large data video streaming in ROS 2
     :local:
     :backlinks: none
 
-Have you faced problems streaming video in ROS2?
-------------------------------------------------
+Have you ever faced problems streaming video in ROS 2?
+------------------------------------------------------
 
-If you've experienced issues streaming video in ROS2, such as video freezing, packet loss, or jitter, especially over WiFi, you can enable Fast DDS’s **Large Data Mode** with a simple environment variable configuration.
+If you've experienced issues streaming video in ROS 2, such as video freezing, packet loss, or jitter, especially over WiFi, you can enable Fast DDS’s **Large Data Mode** with a simple environment variable configuration.
 This allows you to bypass some of the limitations of UDP transport by using TCP or Shared Memory (SHM) for large data transmission, enhancing the reliability and quality of your video stream.
 
 **Quick Solution Overview**
 
-To apply this solution, set the ``FASTDDS_BUILTIN_TRANSPORTS`` environment variable to ``LARGE_DATA`` in every ROS2 node involved in transmitting large data messages:
+To apply this solution, set the ``FASTDDS_BUILTIN_TRANSPORTS`` environment variable to ``LARGE_DATA`` in every ROS 2 node involved in transmitting large data messages:
 
 .. code:: bash
 
@@ -34,9 +34,14 @@ The tutorial will guide you through two scenarios:
 
 2. *Large Data Mode*: Next, we will enable Fast DDS's Large Data Mode, which leverages TCP or Shared Memory for data transmission, offering more reliability for large data transfers. You will see how this configuration improves the stability and quality of the video reception on the receiving host.
 
-By comparing both performances, we'll understand the impact of transport configuration on large data transfers and learn how to optimize Fast DDS for reliable communication in scenarios that involve sending large data over networks prone to instability, such as WiFi.
-A brief theoretical overview of the Large Data Mode will be provided for additional context.
-However, readers may skip directly to the prerequisites section if they prefer to start with the setup steps.
+3. *Advanced Large Data Mode*: Finally, we will explore additional custom configurations within the Large Data Mode to further optimize video streaming performance. By adjusting network parameters, such as socket buffer sizes and non-blocking mode, and setting a TCP negotiation timeout, this configuration enhances stability and responsiveness, especially when streaming large data over networks prone to instability.
+
+By comparing the three performances, we'll understand the impact of transport configuration on large data transfers and learn how to optimize Fast DDS for reliable communication in scenarios that involve sending large data over networks prone to instability, such as WiFi.
+
+.. warning::
+
+    A brief theoretical overview of the Large Data Mode will be provided for additional context.
+    However, readers may skip directly to the :ref:`tutorials_large_data_video_streaming_prerequisites` section if they prefer to start with the setup steps.
 
 Background
 ----------
@@ -85,13 +90,11 @@ Tuning these parameters for large messages and enabling non-blocking mode can op
 
 The following snippets show how to configure the ``LARGE_DATA`` mode:
 
-.. tabs::
+.. code-block:: bash
 
-    .. tab:: Environment Variable
+    export FASTDDS_BUILTIN_TRANSPORTS=LARGE_DATA?max_msg_size=1MB&sockets_size=1MB&non_blocking=true&tcp_negotiation_timeout=50
 
-        .. code-block:: bash
-
-            export FASTDDS_BUILTIN_TRANSPORTS=LARGE_DATA?max_msg_size=1MB&sockets_size=1MB&non_blocking=true&tcp_negotiation_timeout=50
+.. _tutorials_large_data_video_streaming_prerequisites:
 
 Prerequisites
 -------------
@@ -166,12 +169,77 @@ Furthermore, the inherent unreliability of UDP, especially in WiFi environments,
 Large Data Mode
 ^^^^^^^^^^^^^^^
 
-In the second part, we will switch to using the Large Data mode for improved performance and the ``non-blocking`` to prevent delays when socket buffers are full.
+In the second part, we will switch to using the Large Data mode for improved performance.
 This is done by exporting the environment variable in the terminal on both computers:
 
 .. code:: bash
 
-    export FASTDDS_BUILTIN_TRANSPORTS="LARGE_DATA?non_blocking=true"
+    export FASTDDS_BUILTIN_TRANSPORTS="LARGE_DATA"
 
 With this setting, run the same publisher and subscriber commands again.
 This time, you should experience smooth and uninterrupted video streaming with no freezing or image loss.
+
+Advanced Large Data Mode
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+In the final part of this tutorial, we’ll guide you through more advanced settings to improve video streaming performance in ROS 2 using Fast DDS.
+These additional steps are aimed at optimizing reliability and quality, particularly over unstable or high-bandwidth networks.
+
+Increasing Socket Buffer Sizes on Linux
+"""""""""""""""""""""""""""""""""""""""
+
+First, we’ll increase the socket buffer sizes, which can help prevent packet loss and improve the stability of the video stream.
+To adjust the send and receive socket buffers on Linux, follow these steps:
+
+1. Check the current buffer sizes:
+
+    * For send buffers:
+
+    .. code:: bash
+
+        sudo sysctl -a | grep net.core.wmem_max
+
+    * For receive buffers:
+
+    .. code:: bash
+
+        sudo sysctl -a | grep net.core.rmem_max
+
+2. Increase the buffer sizes if needed:
+
+    * For send buffers:
+
+    .. code:: bash
+
+        sudo sysctl -w net.core.wmem_max=12582912
+
+    * For receive buffers:
+
+    .. code:: bash
+
+        sudo sysctl -w net.core.rmem_max=12582912
+
+Large Data Mode with Custom Configuration
+"""""""""""""""""""""""""""""""""""""""""
+
+After adjusting the socket buffer sizes, we’ll configure Fast DDS’s Large Data Mode with additional parameters to further optimize performance.
+Use the following environment variable to apply these settings:
+
+.. code:: bash
+
+    export FASTDDS_BUILTIN_TRANSPORTS="LARGE_DATA?max_msg_size=1MB&sockets_size=1MB&non_blocking=true&tcp_negotiation_timeout=50"
+
+This configuration sets the ``maximum_message_size`` and ``socket_buffer_sizes`` to handle larger data without fragmentation, enables ``non-blocking`` mode to avoid blocking the application when buffers are full, and adds a ``timeout`` for TCP port negotiation to prevent initial packet loss.
+
+Conclusion
+----------
+
+In this tutorial, we explored various configurations to optimize large data transmission, specifically video streaming, using Fast DDS over WiFi in ROS 2.
+We began with a basic UDP transmission setup to highlight the common challenges of packet loss and jitter in high-bandwidth scenarios.
+By enabling Fast DDS’s Large Data Mode, we saw how switching to TCP can improve the reliability of video transmission.
+
+For even better performance, we applied advanced configurations within Large Data Mode, such as increasing maximum message sizes and socket buffer sizes, enabling non-blocking mode, and setting a TCP negotiation timeout.
+These settings provide greater stability and responsiveness, making Fast DDS a powerful tool for handling high-throughput data like video over potentially unreliable networks.
+
+With these techniques, you can enhance the reliability of ROS 2 video streaming, reducing issues related to packet loss, freezing, and jitter.
+Whether streaming video or other large data types, these configurations can be applied to build more robust communication systems in your ROS 2 applications.
