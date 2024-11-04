@@ -126,7 +126,7 @@ sudo apt update && sudo apt install -y \
     qtbase5-dev \
     qtdeclarative5-dev \
     qtquickcontrols2-5-dev \
-    swig
+    swig4.1
 ##!
 
 ##LINUX_SOURCE_VULCA_COMPILE
