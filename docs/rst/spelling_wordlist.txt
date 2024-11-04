@@ -98,8 +98,6 @@ vulcanexus
 Vulcanexus
 wbt
 webpage
-Wi-fi
-Wifi
 Wireshark
 ws
 XRCE
