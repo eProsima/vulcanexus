@@ -116,6 +116,10 @@ You will also need the ROS package ``image_tools``, which can be installed by ru
 
 Lastly, ensure you have a working webcam connected to one of the hosts.
 
+.. note::
+
+    Make sure to source Vulcanexus setup file on every working terminal of the tutorial.
+
 Run this tutorial
 ------------------
 
@@ -129,7 +133,7 @@ Follow these steps:
 
 .. code:: bash
 
-    . <path to Vulcanexus install space>/setup.bash
+    source /opt/vulcanexus/jazzy/setup.bash
 
 2. On the receiving computer, run the subscriber node:
 

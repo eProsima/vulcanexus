@@ -13,6 +13,7 @@ For tutorials related to cloud or cloud-edge deployments, please refer :ref:`tut
     :maxdepth: 1
 
     wifi_issues_tutorial/wifi_issues_tutorial
+    large_data/large_data.rst
     transport/custom_transports
     external_locators/external_locators
     dds2vulcanexus/dds2vulcanexus_topic
@@ -22,4 +23,3 @@ For tutorials related to cloud or cloud-edge deployments, please refer :ref:`tut
     user_topics_multicast/user_topics_multicast
     keys/topic_keys
     keys/filtered_topic_keys
-    large_data/large_data.rst
