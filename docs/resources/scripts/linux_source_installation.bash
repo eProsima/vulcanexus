@@ -93,24 +93,8 @@ cd vulcanexus_iron
 # Remove ROS 2 packages overridden by Vulcanexus
 rm -rf \
     src/eProsima/foonathan_memory_vendor/ \
-    src/ros2/rosidl_typesupport_fastrtps/ \
-    src/ros2/rosidl_dynamic_typesupport_fastrtps \
     src/ros2/rmw_fastrtps/ \
-    src/ros2/rosidl/rosidl_adapter/ \
-    src/ros2/rosidl/rosidl_cli/ \
-    src/ros2/rosidl/rosidl_cmake/ \
-    src/ros2/rosidl/rosidl_generator_c/ \
-    src/ros2/rosidl/rosidl_generator_cpp/ \
-    src/ros2/rosidl/rosidl_generator_tests/ \
-    src/ros2/rosidl/rosidl_generator_type_description/ \
-    src/ros2/rosidl/rosidl_parser/ \
-    src/ros2/rosidl/rosidl_pycommon/ \
-    src/ros2/rosidl/rosidl_runtime_c/ \
-    src/ros2/rosidl/rosidl_runtime_cpp/ \
-    src/ros2/rosidl/rosidl_typesupport_interface/ \
-    src/ros2/rosidl/rosidl_typesupport_introspection_c/ \
-    src/ros2/rosidl/rosidl_typesupport_introspection_cpp/ \
-    src/ros2/rosidl/rosidl_typesupport_introspection_tests/
+    src/ros2/rosidl_dynamic_typesupport_fastrtps
 
 # Get Vulcanexus sources
 wget https://raw.githubusercontent.com/eProsima/vulcanexus/jazzy/vulcanexus.repos
@@ -118,9 +102,8 @@ wget https://raw.githubusercontent.com/eProsima/vulcanexus/jazzy/colcon.meta
 vcs import --force src < vulcanexus.repos
 
 # Avoid compilation of some documentation and demo packages
-touch src/eProsima/Fast-DDS-QoS-Profiles-Manager/docs/COLCON_IGNORE
-touch src/eProsima/Vulcanexus-Base/docs/COLCON_IGNORE
-touch src/eProsima/Vulcanexus-Base/code/COLCON_IGNORE
+touch src/eProsima/Vulcanexus/docs/COLCON_IGNORE
+touch src/eProsima/Vulcanexus/code/COLCON_IGNORE
 ##!
 
 ##LINUX_SOURCE_VULCA_DEPS
