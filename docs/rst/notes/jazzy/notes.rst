@@ -75,5 +75,5 @@ This version ships the following packages:
       - `v4.0.0 <https://github.com/eProsima/rosidl_dynamic_typesupport_fastrtps/releases/tag/v4.0.0>`__
       - v4.0.0
     * - Vulcanexus Base
-      - `v4.0.0 <https://docs.vulcanexus.org/en/latest/rst/notes/iron/notes.html#iron-imagination-v4-0-0>`__
+      - `v4.0.0 <https://docs.vulcanexus.org/en/latest/rst/notes/jazzy/notes.html#jazzy-imagination-v4-0-0>`__
       - v4.0.0

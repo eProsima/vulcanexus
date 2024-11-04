@@ -73,8 +73,8 @@ sudo apt update && sudo apt install -y \
 ##!
 
 ##LINUX_SOURCE_CLONE_ROS2_REPOS
-mkdir -p ~/vulcanexus_iron/src
-cd ~/vulcanexus_iron
+mkdir -p ~/vulcanexus_jazzy/src
+cd ~/vulcanexus_jazzy
 wget https://raw.githubusercontent.com/ros2/ros2/jazzy/ros2.repos
 vcs import src < ros2.repos
 ##!
@@ -88,7 +88,7 @@ rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext
 
 ##LINUX_SOURCE_CLONE_VULCA
 cd ~
-cd vulcanexus_iron
+cd vulcanexus_jazzy
 
 # Remove ROS 2 packages overridden by Vulcanexus
 rm -rf \
@@ -130,6 +130,6 @@ sudo apt update && sudo apt install -y \
 ##!
 
 ##LINUX_SOURCE_VULCA_COMPILE
-cd ~/vulcanexus_iron
+cd ~/vulcanexus_jazzy
 colcon build
 ##!
