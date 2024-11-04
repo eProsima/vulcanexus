@@ -1,6 +1,6 @@
 .. _tutorials_wifi_ros2_tutorials:
 
-Vulcanexus Wifi Tutorials
+Vulcanexus WiFi Tutorials
 =========================
 
 Configuring ROS 2 applications over WiFi networks can present multiple challenges.

@@ -109,7 +109,6 @@ To make such contributions, please refer to the
    /rst/tutorials/core/ros2_tutorials
    /rst/tutorials/tools/tools_tutorials
    /rst/tutorials/cloud/cloud_tutorials
-   /rst/tutorials/wifi/wifi_tutorials
    /rst/tutorials/micro/micro_tutorials
 
 .. toctree::
