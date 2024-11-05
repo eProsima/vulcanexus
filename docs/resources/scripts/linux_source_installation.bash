@@ -69,6 +69,8 @@ sudo apt update && sudo apt install -y \
     python3-rosdep \
     python3-setuptools \
     python3-vcstool \
+    libqt5websockets5-dev \
+    libqt5x11extras5-dev \
     wget
 ##!
 
