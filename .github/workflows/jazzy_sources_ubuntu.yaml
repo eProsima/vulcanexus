@@ -1,0 +1,31 @@
+name: jazzy-sources-ubuntu-24.04
+
+on:
+  workflow_dispatch:
+
+  pull_request:
+    branches:
+      - jazzy
+      - main
+
+  push:
+    branches:
+      - jazzy
+      - main
+
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  ubuntu-install-from-sources:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || 'jazzy'}}
+          submodules: 'recursive'
+
+      - name: Install from sources
+        run: |
+          bash docs/resources/scripts/linux_source_installation.bash

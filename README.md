@@ -36,9 +36,9 @@ Vulcanexus official documentation can be found [here](https://docs.vulcanexus.or
 
 | Version | Status |
 | - | - |
-| Rolling | [![docs-rolling](https://github.com/eProsima/vulcanexus/actions/workflows/docs.yaml/badge.svg?branch=main&event=push)](https://github.com/eProsima/vulcanexus/actions/workflows/docs.yaml)
-| Humble | [![docs-humble](https://github.com/eProsima/vulcanexus/actions/workflows/docs.yaml/badge.svg?branch=humble&event=push)](https://github.com/eProsima/vulcanexus/actions/workflows/docs.yaml)
-| Galactic | [![docs-galactic](https://github.com/eProsima/vulcanexus/actions/workflows/docs.yaml/badge.svg?branch=galactic&event=push)](https://github.com/eProsima/vulcanexus/actions/workflows/docs.yaml)
+| Jazzy | ![Jazzy Workflow Status](https://img.shields.io/github/actions/workflow/status/eProsima/vulcanexus/install_linux_from_binaries.yaml?logo=github&logoSize=auto)
+| Iron | ![Iron Workflow Status](https://img.shields.io/github/actions/workflow/status/eProsima/vulcanexus/install_linux_from_binaries.yaml?logo=github&logoSize=auto)
+| Humble | ![Humble Workflow Status](https://img.shields.io/github/actions/workflow/status/eProsima/vulcanexus/install_linux_from_binaries.yaml?logo=github&logoSize=auto)
 
 ## Getting started
 
