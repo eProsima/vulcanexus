@@ -117,6 +117,16 @@ Please, refer to `Fast DDS-Gen documentation <https://fast-dds.docs.eprosima.com
     cd src/eProsima/Fast-DDS-Gen
     ./gradlew assemble
 
+.. note::
+
+   Java version 17 is required to build Fast DDS Gen.
+   It can be installed by executing the following commands
+
+   .. code-block:: bash
+
+       sudo apt update
+       sudo apt install openjdk-17-jdk
+
 The generated Java application can be found in ``src/eProsima/Fast-DDS-Gen/share/fastddsgen``.
 However, the ``scripts`` folder provides some user friendly scripts that are recommended to be used.
 This scripts can be made accessible to the session adding the ``scripts`` folder path to the ``PATH`` environment variable.
