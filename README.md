@@ -34,11 +34,11 @@ Vulcanexus official documentation can be found [here](https://docs.vulcanexus.or
 
 ## CI
 
-| Version | Status |
-| - | - |
-| Jazzy | ![Jazzy Workflow Status](https://img.shields.io/github/actions/workflow/status/eProsima/vulcanexus/install_linux_from_binaries.yaml?logo=github&logoSize=auto)
-| Iron | ![Iron Workflow Status](https://img.shields.io/github/actions/workflow/status/eProsima/vulcanexus/install_linux_from_binaries.yaml?logo=github&logoSize=auto)
-| Humble | ![Humble Workflow Status](https://img.shields.io/github/actions/workflow/status/eProsima/vulcanexus/install_linux_from_binaries.yaml?logo=github&logoSize=auto)
+| Version | Install (binaries) | Build (sources) |
+| - | - | - |
+| Jazzy | ![Jazzy Binaries Status](https://img.shields.io/github/actions/workflow/status/eProsima/vulcanexus/jazzy_binaries_ubuntu.yaml?logo=github&logoSize=auto) | ![Jazzy Sources Status](https://img.shields.io/github/actions/workflow/status/eProsima/vulcanexus/jazzy_sources_ubuntu.yaml?logo=github&logoSize=auto)
+| Iron | ![Iron Binaries Status](https://img.shields.io/github/actions/workflow/status/eProsima/vulcanexus/iron_binaries_ubuntu.yaml?logo=github&logoSize=auto) | ![Iron Sources Status](https://img.shields.io/github/actions/workflow/status/eProsima/vulcanexus/iron_sources_ubuntu.yaml?logo=github&logoSize=auto)
+| Humble | ![Humble Binaries Status](https://img.shields.io/github/actions/workflow/status/eProsima/vulcanexus/humble_binaries_ubuntu.yaml?logo=github&logoSize=auto) | ![Humble Sources Status](https://img.shields.io/github/actions/workflow/status/eProsima/vulcanexus/humble_sources_ubuntu.yaml?logo=github&logoSize=auto)
 
 ## Getting started
 
