@@ -1,0 +1,29 @@
+name: humble-binaries-ubuntu-22.04
+
+on:
+  workflow_dispatch:
+
+  pull_request:
+    branches:
+      - humble
+
+  push:
+    branches:
+      - humble
+
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  ubuntu-install-from-binaries:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || 'humble'}}
+          submodules: 'recursive'
+
+      - name: Install from binaries
+        run: |
+          bash docs/resources/scripts/linux_binary_installation.bash

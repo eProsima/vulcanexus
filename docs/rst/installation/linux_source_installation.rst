@@ -117,13 +117,23 @@ Please, refer to `Fast DDS-Gen documentation <https://fast-dds.docs.eprosima.com
     cd src/eProsima/Fast-DDS-Gen
     ./gradlew assemble
 
+.. note::
+
+   Java version 17 is required to build Fast DDS Gen.
+   It can be installed by executing the following commands
+
+   .. code-block:: bash
+
+       sudo apt update
+       sudo apt install openjdk-17-jdk
+
 The generated Java application can be found in ``src/eProsima/Fast-DDS-Gen/share/fastddsgen``.
 However, the ``scripts`` folder provides some user friendly scripts that are recommended to be used.
 This scripts can be made accessible to the session adding the ``scripts`` folder path to the ``PATH`` environment variable.
 
 .. code-block:: bash
 
-    export PATH=~/vulcanexus_iron/src/eProsima/Fast-DDS-Gen/scripts:$PATH
+    export PATH=~/vulcanexus_jazzy/src/eProsima/Fast-DDS-Gen/scripts:$PATH
 
 Build workspace
 ^^^^^^^^^^^^^^^
@@ -155,7 +165,7 @@ In order to use the Vulcanexus installation, the environment must be set up sour
 
 .. code-block:: bash
 
-    source ~/vulcanexus_iron/install/setup.bash
+    source ~/vulcanexus_jazzy/install/setup.bash
 
 Try some examples
 -----------------
@@ -164,14 +174,14 @@ In one terminal, source the setup file and then run a C++ ``talker``:
 
 .. code-block:: bash
 
-    . ~/vulcanexus_iron/install/local_setup.bash
+    . ~/vulcanexus_jazzy/install/local_setup.bash
     ros2 run demo_nodes_cpp talker
 
 In another terminal source the setup file and then run a Python ``listener``:
 
 .. code-block:: bash
 
-    . ~/vulcanexus_iron/install/local_setup.bash
+    . ~/vulcanexus_jazzy/install/local_setup.bash
     ros2 run demo_nodes_py listener
 
 At this point, the ``talker`` should prompt ``Publishing: Hello World: <id>`` messages while the ``listener`` echoes ``I heard: [Hello World: <id>]``.

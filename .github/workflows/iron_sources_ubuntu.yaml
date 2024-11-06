@@ -1,7 +1,15 @@
-name: Install from sources Ubuntu
+name: iron-sources-ubuntu-22.04
 
 on:
   workflow_dispatch:
+
+  pull_request:
+    branches:
+      - iron
+
+  push:
+    branches:
+      - iron
 
   schedule:
     - cron: '0 0 * * *'
@@ -9,17 +17,11 @@ on:
 jobs:
   ubuntu-install-from-sources:
     runs-on: ubuntu-22.04
-    strategy:
-      fail-fast: false
-      matrix:
-        ros2_distro:
-          - iron
-          - humble
 
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ matrix.ros2_distro }}
+          ref: ${{ github.head_ref || 'iron'}}
           submodules: 'recursive'
 
       - name: Install from sources

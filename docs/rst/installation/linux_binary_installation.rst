@@ -103,14 +103,14 @@ In one terminal, source the setup file and then run a C++ ``talker``:
 
 .. code-block:: bash
 
-    . ~/vulcanexus_iron/install/local_setup.bash
+    . ~/vulcanexus_jazzy/install/local_setup.bash
     ros2 run demo_nodes_cpp talker
 
 In another terminal source the setup file and then run a Python ``listener``:
 
 .. code-block:: bash
 
-    . ~/vulcanexus_iron/install/local_setup.bash
+    . ~/vulcanexus_jazzy/install/local_setup.bash
     ros2 run demo_nodes_py listener
 
 At this point, the ``talker`` should prompt ``Publishing: Hello World: <id>`` messages while the ``listener`` echoes ``I heard: [Hello World: <id>]``.
