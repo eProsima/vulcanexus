@@ -220,3 +220,16 @@ This time you will see a reduction in the bandwith usage:
         Message size mean: 0.07 MB min: 0.07 MB max: 0.07 MB
     2.24 MB/s from 90 messages
         Message size mean: 0.07 MB min: 0.07 MB max: 0.08 MB
+
+Conclusions
+-----------
+
+In this tutorial, we have explored the impact of image compression on video streaming performance in ROS 2, specifically in a WiFi-based setup between two hosts.
+By comparing uncompressed and compressed image transmissions, you should now appreciate how compression can significantly reduce bandwidth consumption and improve fluidity in video streaming.
+
+Using uncompressed images requires a high bandwidth, which can lead to bottlenecks and latency issues in network-constrained environments, particularly when transmitting at higher frame rates.
+In contrast, compressed image formats demonstrate clear advantages by lowering the data rate and enabling smoother video playback with less lag.
+This approach is particularly beneficial in applications where network resources are limited or shared.
+
+By applying these compression techniques, you can enhance the stability and efficiency of video streaming in ROS 2 environments, making it a valuable practice for real-time applications in robotics and other bandwidth-sensitive fields.
+You will find more approaches to improve your large data sending over WiFi in the rest of tutorials of this `section <https://docs.vulcanexus.org/en/latest/rst/tutorials/core/wifi/wifi_tutorials.html>`__.
