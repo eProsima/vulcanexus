@@ -12,7 +12,6 @@ For tutorials related to cloud or cloud-edge deployments, please refer :ref:`tut
 .. toctree::
     :maxdepth: 1
 
-    router_fully_connected/router_fully_connected
     transport/custom_transports
     external_locators/external_locators
     dds2vulcanexus/dds2vulcanexus_topic
