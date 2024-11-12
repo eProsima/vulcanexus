@@ -10,10 +10,44 @@ How to avoid Fully-Connected Graph Networks in ROS 2
     :local:
     :backlinks: none
 
+Facing Scalability Challenges in Your ROS 2 System?
+---------------------------------------------------
+
+Have you ever struggled with scaling your ROS 2 network as it grows in size?
+As more nodes, topics, and services are added to a ROS 2 system, the underlying DDS (Data Distribution Service) quickly forms a fully-connected graph, meaning that every node discovers and communicates with every other node.
+While this setup guarantees robust connectivity, it can also lead to network congestion and high discovery traffic as the system scales, impacting performance and reliability.
+
+**Quick Solution Overview**
+
+Fortunately, there are tools designed to address these scalability challenges, such as the `DDS Router <https://eprosima-dds-router.readthedocs.io/en/latest/>`__.
+The |ddsrouter| Can encapsulate and route communications, allowing nodes in different domains or even separate LANs to exchange information without every node being directly connected.
+This selective routing minimizes traffic, making it possible to maintain high performance even in complex distributed systems.
+Basically, instead of communicating all the ROS 2 nodes in the same domain, separe them in different domains, enrouting the data through a |ddsrouter| with a a participant listening to the topics and another one transmiting them.
+The following configuration file illustrate an example of |ddsrouter| setup:
+
+.. code-block:: yaml
+
+    version: v4.0
+
+    participants:
+      - name: listening_participant
+        kind: simple
+        domain: 0                          # Publishers domain
+
+      - name: transmiting_participant
+        kind: simple
+        domain: 1                          # Subscribers domain
+
+After creating the configiguration file, to start the |ddsrouter| just run:
+
+.. code:: bash
+
+    ddsrouter -c <path_to_configuration_file>
+
 Overview
 --------
 
-In this tutorial, we will explore a network communication setup involving two hosts connected over the same WiFi network.
+In this tutorial, we will explore how the DDS Router can be used to reduce unnecessary connections and streamline communication in a ROS 2 network with multiple hosts connected over the same WiFi network.
 On one host, we will run two video `publishers` of the ROS2 package ``image_tools`` node ``cam2image``, while on the other, we will set up two `subscribers` of the ``showimage`` node to receive the video streams.
 Instead of directly connecting the `publishers` and `subscribers` across the hosts (resulting in four total connections), we will streamline the communication by introducing a |ddsrouter|  on each host.
 
@@ -80,38 +114,28 @@ Run this tutorial
 
 To run this tutorial, start by publishing images on **Host A**.
 You’ll set up two publishers: one streaming images from the webcam and another streaming a predefined image source.
-These will publish to the topics ``image`` and ``burger``:
+This will publish to the topic ``image``:
 
-.. tabs::
+.. code:: bash
 
-    .. tab:: Publisher 1
+    ROS_DOMAIN_ID=0 ros2 run image_tools cam2image --ros-args -p reliability:=best_effort
 
-        .. code:: bash
+And this will publish on the topic ``burger``:
 
-            ROS_DOMAIN_ID=0 ros2 run image_tools cam2image --ros-args -p reliability:=best_effort
+.. code:: bash
 
-    .. tab:: Publisher 2
-
-        .. code:: bash
-
-            ROS_DOMAIN_ID=0 ros2 run image_tools cam2image --ros-args -r image:=burger -p burger_mode:=True -p reliability:=best_effort
+    ROS_DOMAIN_ID=0 ros2 run image_tools cam2image --ros-args -r image:=burger -p burger_mode:=True -p reliability:=best_effort
 
 Next, run the subscriber nodes on **Host B** for each topic.
 Assign these nodes to a different domain to prevent direct communication between the publishers and subscribers:
 
-.. tabs::
+.. code:: bash
 
-    .. tab:: Subscriber 1
+    ROS_DOMAIN_ID=2 ros2 run image_tools showimage --ros-args -p reliability:=best_effort
 
-        .. code:: bash
+.. code:: bash
 
-            ROS_DOMAIN_ID=2 ros2 run image_tools showimage --ros-args -p reliability:=best_effort
-
-    .. tab:: Subscriber 2
-
-        .. code:: bash
-
-            ROS_DOMAIN_ID=2 ros2 run image_tools showimage --ros-args -r image:=burger -p reliability:=best_effort
+    ROS_DOMAIN_ID=2 ros2 run image_tools showimage --ros-args -r image:=burger -p reliability:=best_effort
 
 Finally, set up a |ddsrouter| in each domain to manage and filter communication between the hosts.
 This setup will ensure that messages are only passed between two participants, reducing cross-host traffic while maintaining a stable connection.
@@ -120,89 +144,80 @@ Each |ddsrouter| will contain a local participant assigned to the same domain as
 In this configuration, publishers and subscribers will exchange data with the local participant within their host’s router.
 This local participant will then handle forwarding the data to the XML participant, enabling seamless communication across hosts.
 
-The following configuration files illustrate the setup for each host:
+To configure communication on **Host A**, we use the following YAML configuration file.
+This file defines the participants, their types, and specifies an XML file for additional configuration details:
 
-.. tabs::
+.. code-block:: yaml
 
-    .. tab:: Host A
+    version: v4.0
 
-        .. tabs::
+    xml:
+    files:
+        - "<path_to_xml>"
 
-            .. tab:: DDS Router configuration file
+    participants:
+      - name: ROS2_Domain_0
+        kind: simple
+        domain: 0
 
-                .. code-block:: yaml
+      - name: ROS2_large_data_A
+        kind: xml
+        profile: large_data_participant
 
-                    version: v4.0
+In this configuration, the participant named ``ROS2_large_data_A`` uses an XML profile called ``large_data_participant``, which is tailored to handle large data transfers.
+The following XML file specifies the settings for the `large data <https://fast-dds.docs.eprosima.com/en/latest/fastdds/use_cases/tcp/tcp_large_data_with_options.html>`_ participant:
 
-                    xml:
-                    files:
-                      - "<path_to_xml>"
+.. code-block:: xml
 
-                    participants:
-                      - name: ROS2_Domain_0
-                        kind: simple
-                        domain: 0
+    <?xml version="1.0" encoding="UTF-8"?>
 
-                      - name: ROS2_large_data_A
-                        kind: xml
-                        profile: large_data_participant
+    <dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+      <profiles>
+        <participant profile_name="large_data_participant">
+          <domainId>1</domainId>
+          <rtps>
+            <builtinTransports max_msg_size="1MB" sockets_size="1MB" non_blocking="true" tcp_negotiation_timeout="50">LARGE_DATA</builtinTransports>
+          </rtps>
+        </participant>
+      </profiles>
+    </dds>
 
-            .. tab:: XML file
+Now, let’s configure **Host B** with a similar YAML setup.
+This configuration enables Host B to communicate effectively within the same large-data framework as Host A:
 
-                .. code-block:: xml
+.. code-block:: yaml
 
-                    <?xml version="1.0" encoding="UTF-8"?>
+    version: v4.0
 
-                    <dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
-                      <profiles>
-                        <participant profile_name="large_data_participant">
-                          <domainId>1</domainId>
-                          <rtps>
-                            <builtinTransports max_msg_size="1MB" sockets_size="1MB" non_blocking="true" tcp_negotiation_timeout="50">LARGE_DATA</builtinTransports>
-                          </rtps>
-                        </participant>
-                      </profiles>
-                    </dds>
+    xml:
+    files:
+        - "<path_to_xml>"
 
-    .. tab:: Host B
+    participants:
+      - name: ROS2_Domain_2
+        kind: simple
+        domain: 2
 
-        .. tabs::
+      - name: ROS2_large_data_B
+        kind: xml
+        profile: large_data_participant
 
-            .. tab:: DDS Router configuration file
+With the following XML file:
 
-                .. code-block:: yaml
+.. code-block:: xml
 
-                    version: v4.0
+    <?xml version="1.0" encoding="UTF-8"?>
 
-                    xml:
-                    files:
-                      - "<path_to_xml>"
-
-                    participants:
-                      - name: ROS2_Domain_2
-                        kind: simple
-                        domain: 2
-
-                      - name: ROS2_large_data_B
-                        kind: xml
-                        profile: large_data_participant
-
-            .. tab:: XML file
-
-                .. code-block:: xml
-
-                    <?xml version="1.0" encoding="UTF-8"?>
-
-                    <dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
-                      <profiles>
-                        <participant profile_name="large_data_participant">
-                          <domainId>1</domainId>
-                          <rtps>
-                            <builtinTransports max_msg_size="1MB" sockets_size="1MB" non_blocking="true" tcp_negotiation_timeout="50">LARGE_DATA</builtinTransports>
-                          </rtps>
-                        </participant>
-                      </profiles>
-                    </dds>
+    <dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+      <profiles>
+        <participant profile_name="large_data_participant">
+          <domainId>1</domainId>
+          <rtps>
+            <builtinTransports max_msg_size="1MB" sockets_size="1MB" non_blocking="true" tcp_negotiation_timeout="50">LARGE_DATA</builtinTransports>
+          </rtps>
+        </participant>
+      </profiles>
+    </dds>
 
 Once the configuration files are ready, run the |ddsrouter| in each host with:
 
