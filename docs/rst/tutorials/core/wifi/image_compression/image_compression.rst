@@ -10,10 +10,34 @@ How to compress images for video streaming in ROS 2
     :local:
     :backlinks: none
 
+Have you ever faced problems trying to send large data images in a video in ROS 2?
+----------------------------------------------------------------------------------
+
+Transmitting uncompressed data can easily overwhelm network bandwidth, especially in WiFi setups or environments with limited resources.
+This often leads to issues like lag, choppy video playback, or even dropped frames, making it hard to achieve smooth and reliable video streaming for real-time applications.
+
+**Quick Solution Overview**
+
+A quick solution to this problem is **image compression**.
+By compressing images before transmission, you can drastically reduce data size while maintaining good image quality.
+You can easily compress images in ROS 2 using `OpenCV <https://opencv.org/>`__, a powerful library for image processing.
+OpenCV provides tools to encode images into various compressed formats such as JPEG and PNG.
+By leveraging these features, you can significantly reduce the size of image data being transmitted over the network.
+Here's how you can compress an image into JPEG format with 90% quality:
+
+.. code-block:: cpp
+
+    std::vector<uchar> buf;
+    std::vector<int> params = {cv::IMWRITE_JPEG_QUALITY, 90}; // 90% JPEG quality
+    cv::imencode(".jpg", image, buf, params);
+
+The result is a compressed byte array (compressed image) that you can easily package into a ROS 2 message and publish.
+This approach integrates seamlessly with the ROS 2 ecosystem and is particularly effective for applications like video streaming, where reducing bandwidth usage is critical.
+
 Overview
 --------
 
-In a previous `tutorial <https://docs.vulcanexus.org/en/jazzy/rst/tutorials/core/wifi/large_data/large_data.html>`__, we discussed specific configurations of *Fast DDS* to improve video stream transmission over WiFi.
+In a previous `tutorial <https://docs.vulcanexus.org/en/latest/rst/tutorials/core/wifi/large_data/large_data.html>`__, we discussed specific configurations of *Fast DDS* to improve video stream transmission over WiFi.
 Building on that foundation, this tutorial will focus on **image compression** techniques, which play a crucial role in optimizing video transmission, especially in scenarios with limited bandwidth or congested WiFi networks.
 Proper image compression can significantly reduce the data load, enhancing the stability and performance of video streaming in challenging network conditions.
 
@@ -32,7 +56,7 @@ It is required to have previously installed Vulcanexus using one of the followin
 
 Additionally, you will need to install the following ROS 2 packages in your working environment:
 
-* `image_transport_tutorials <https://github.com/ros-perception/image_transport_tutorials/tree/humble?tab=readme-ov-file>`__: This package provides basic tutorials and examples on using image transport in ROS 2.
+* `image_transport_tutorials <https://github.com/ros-perception/image_transport_tutorials/tree/jazzy?tab=readme-ov-file>`__: This package provides basic tutorials and examples on using image transport in ROS 2.
 * `image_transport_plugins <https://github.com/ros-perception/image_transport_plugins>`__: This package provides the necessary plugins for different image transport transports (e.g., raw, compressed, etc.).
 
 The steps to install these packages from sources will be provided in the :ref:`tutorials_image_compression_run_this_tutorial` section.
@@ -88,6 +112,7 @@ Install Dependencies:
 
     cd ~/image_transport_ws/
     source /opt/vulcanexus/jazzy/setup.bash
+    sudo apt update
     rosdep install -i --from-path src --rosdistro jazzy -y
 
 Build the WorkSpace:
@@ -98,12 +123,12 @@ Build the WorkSpace:
 
 .. note::
 
-    Remember to source both your ROS 2 setup file (/opt/ros/humble/setup.bash) and the install/setup.bash file in the image_transport_ws workspace in every terminal where you will run the nodes.
+    Remember to source both your ROS 2 setup file (/opt/ros/jazzy/setup.bash) and the install/setup.bash file in the image_transport_ws workspace in every terminal where you will run the nodes.
 
 Running the publisher node
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-On **Host A**, you will run a publisher node named `publisher_from_video`, which will publish video frames from a specified video file at 5 Hz.
+On **Host A**, you will run a publisher node named ``publisher_from_video``, which will publish video frames from a specified video display.
 This publisher will publish frames to four different topics, each corresponding to a different type of image compression:
 
 - ``/camera/image``: Raw image data
@@ -133,9 +158,9 @@ In this example, the image matrix is compressed as a JPEG with 90% quality, and 
 
 4. **Publish the Compressed Image:** Finally, the compressed image is packaged into a message and published. Subscribers on the other end can decode this byte stream back into an image format they can use.
 
-To simulate a real video streaming frequency, we will adjust the publishing frequency of the publisher node `publisher_from_video` to 30 Hz.
+To simulate a real video streaming frequency, we will adjust the publishing frequency of the publisher node ``publisher_from_video`` from 5 Hz to 30 Hz.
 This adjustment will allow you to observe the advantages of compressed versus uncompressed image transmission at higher rates.
-To achieve this, modify the line in the `publisher_from_video` code that specifies the publishing rate:
+To achieve this, modify the line in ``publisher_from_video.cpp`` file that specifies the publishing rate:
 
 .. code:: cpp
 
@@ -158,16 +183,16 @@ Then compile again and run the publisher node:
 Running the subscriber node
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-On **Host B**, you will set up a subscriber node `my_subscriber` to receive and display the video frames published by Host A.
-The `my_subscriber` node can subscribe to image messages with various transport types, enabling you to view the published images on your screen regardless of the compression format.
+On **Host B**, you will set up a subscriber node ``my_subscriber`` to receive and display the video frames published by Host A.
+The ``my_subscriber`` node can subscribe to image messages with various transport types, enabling you to view the published images on your screen regardless of the compression format.
 
-To start `my_subscriber` listening on ``/camera/image`` topic (default), use the following command:
+To start ``my_subscriber`` listening on ``/camera/image`` topic (default), use the following command:
 
 .. code:: bash
 
     ros2 run image_transport_tutorials my_subscriber
 
-Once the `my_subscriber` node is running, Host B should display the images being streamed from the publisher node on Host A.
+Once the ``my_subscriber`` node is running, Host B should display the images being streamed from the publisher node on Host A.
 You may notice that the display appears slightly choppy or less smooth.
 This is due to the high frequency (30 Hz) of image publishing on Host A, which can create a bottleneck when transmitting large, uncompressed image data over the network.
 
@@ -194,7 +219,7 @@ This shows the transmission rate and the message size.
 If you observe that the transmission rate is very high, especially for raw image data, you may notice that the WiFi bandwidth is insufficient to handle the amount of data being transmitted.
 This can result in a choppy or delayed display on Host B.
 
-Now, to improve the fluidity of the display and reduce bandwidth consumption, you can run the `my_subscriber` node with compressed images.
+Now, to improve the fluidity of the display and reduce bandwidth consumption, you can run the ``my_subscriber`` node with compressed images.
 To do this, run the following command on Host B:
 
 .. code:: bash
