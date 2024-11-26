@@ -190,7 +190,7 @@ This configuration enables Host B to communicate effectively within the same lar
     version: v4.0
 
     xml:
-    files:
+      files:
         - "<path_to_xml>"
 
     participants:
