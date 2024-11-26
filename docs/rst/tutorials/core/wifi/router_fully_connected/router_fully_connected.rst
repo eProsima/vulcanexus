@@ -38,7 +38,7 @@ The following configuration file illustrate an example of |ddsrouter| setup:
         kind: simple
         domain: 1                          # Subscribers domain
 
-After creating the configiguration file, to start the |ddsrouter| just run:
+After creating the configuration file, to start the |ddsrouter| just run:
 
 .. code:: bash
 
@@ -51,7 +51,7 @@ In this tutorial, we will explore how the DDS Router can be used to reduce unnec
 On one host, we will run two video `publishers` of the ROS2 package ``image_tools`` node ``cam2image``, while on the other, we will set up two `subscribers` of the ``showimage`` node to receive the video streams.
 Instead of directly connecting the `publishers` and `subscribers` across the hosts (resulting in four total connections), we will streamline the communication by introducing a |ddsrouter|  on each host.
 
-By using |ddsrouter| s, we can limit the communication to only two participants, one on each host, enhancing both control and efficiency.
+By using |ddsrouter|, we can limit the communication to only two participants, one on each host, enhancing both control and efficiency.
 Each publisher will communicate solely with a local participant within the |ddsrouter|  on its host, rather than establishing connections with all remote subscribers.
 The local |ddsrouter|  participant then links to an XML-configured participant, which manages communication with the corresponding XML participant of the remote |ddsrouter|  on the other host.
 
@@ -79,7 +79,7 @@ The discovery process can generate significant traffic, and when new nodes join,
 To improve the efficiency of discovery in large-scale ROS 2 networks, tools like the `Discovery Server <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery_server.html#discovery-server>`__ can be used.
 The Discovery Server centralizes the discovery process, enabling nodes to connect to a central point rather than independently discovering all other nodes.
 This reduces network traffic and simplifies node management.
-There are `tutorials <https://docs.vulcanexus.org/en/iron/rst/tutorials/core/discoveryserver/discoveryserver_tutorials.html>`__ available that explain how to integrate the Discovery Server into your ROS 2 network, providing practical steps to optimize discovery and scaling in larger deployments.
+There are `tutorials <https://docs.vulcanexus.org/en/latest/rst/tutorials/core/discoveryserver/discoveryserver_tutorials.html>`__ available that explain how to integrate the Discovery Server into your ROS 2 network, providing practical steps to optimize discovery and scaling in larger deployments.
 
 DDS Router
 ^^^^^^^^^^
@@ -144,7 +144,7 @@ Each |ddsrouter| will contain a local participant assigned to the same domain as
 In this configuration, publishers and subscribers will exchange data with the local participant within their host’s router.
 This local participant will then handle forwarding the data to the XML participant, enabling seamless communication across hosts.
 
-To configure communication on **Host A**, we use the following YAML configuration file.
+To configure communication on **Host A**, we create the following YAML configuration file.
 This file defines the participants, their types, and specifies an XML file for additional configuration details:
 
 .. code-block:: yaml
@@ -152,7 +152,7 @@ This file defines the participants, their types, and specifies an XML file for a
     version: v4.0
 
     xml:
-    files:
+      files:
         - "<path_to_xml>"
 
     participants:
