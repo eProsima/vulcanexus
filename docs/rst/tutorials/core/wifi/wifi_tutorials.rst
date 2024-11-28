@@ -10,5 +10,6 @@ This series of tutorials is designed to help address common issues that arise wh
     :maxdepth: 1
 
     wifi_issues_tutorial/wifi_issues_tutorial
-    large_data/large_data.rst
+    large_data/large_data
     router_fully_connected/router_fully_connected
+    image_compression/image_compression
