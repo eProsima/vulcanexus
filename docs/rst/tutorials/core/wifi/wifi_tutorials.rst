@@ -11,4 +11,3 @@ This series of tutorials is designed to help address common issues that arise wh
 
     wifi_issues_tutorial/wifi_issues_tutorial
     large_data/large_data.rst
-    router_fully_connected/router_fully_connected
