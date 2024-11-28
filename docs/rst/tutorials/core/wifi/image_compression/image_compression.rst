@@ -228,13 +228,13 @@ To do this, run the following command on Host B:
 
 By using compressed images, the bandwidth usage will be significantly reduced, and you should notice a smoother display with reduced lag, even on limited network conditions
 
-Again, to check the messages being sent and their bandwith usage, run in a new terminal:
+Again, to check the messages being sent and their bandwidth usage, run in a new terminal:
 
 .. code:: bash
 
     ros2 topic bw /camera/image/compressed
 
-This time you will see a reduction in the bandwith usage:
+This time you will see a reduction in the bandwidth usage:
 
 .. code-block::
 
