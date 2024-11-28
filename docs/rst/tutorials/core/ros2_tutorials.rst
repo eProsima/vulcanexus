@@ -12,6 +12,7 @@ This section provides a collection of tutorials on the use and application of th
     :maxdepth: 1
 
     wifi/wifi_tutorials
+    scalability/scalability_tutorials
     discoveryserver/discoveryserver_tutorials
     security/security_tutorials
     qos/qos_tutorials
