@@ -22,7 +22,7 @@ While this setup guarantees robust connectivity, it can also lead to network con
 Fortunately, there are tools designed to address these scalability challenges, such as the `DDS Router <https://eprosima-dds-router.readthedocs.io/en/latest/>`__.
 The |ddsrouter| Can encapsulate and route communications, allowing nodes in different domains or even separate LANs to exchange information without every node being directly connected.
 This selective routing minimizes traffic, making it possible to maintain high performance even in complex distributed systems.
-Basically, instead of communicating all the ROS 2 nodes in the same domain, separe them in different domains, enrouting the data through a |ddsrouter| with a a participant listening to the topics and another one transmiting them.
+Basically, instead of communicating all the ROS 2 nodes in the same domain, separate them in different domains, routing the data through a |ddsrouter| with a a participant listening to the topics and another one transmitting them.
 The following configuration file illustrate an example of |ddsrouter| setup:
 
 .. code-block:: yaml
@@ -34,7 +34,7 @@ The following configuration file illustrate an example of |ddsrouter| setup:
         kind: simple
         domain: 0                          # Publishers domain
 
-      - name: transmiting_participant
+      - name: transmitting_participant
         kind: simple
         domain: 1                          # Subscribers domain
 
