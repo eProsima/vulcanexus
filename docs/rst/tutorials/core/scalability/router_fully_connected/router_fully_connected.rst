@@ -2,8 +2,8 @@
 
 .. _tutorials_router_fully_connected:
 
-How to avoid Fully-Connected Graph Networks in ROS 2
-====================================================
+How to Use DDS Router for Scalable ROS 2 Network Communication
+==============================================================
 
 .. contents::
     :depth: 2
