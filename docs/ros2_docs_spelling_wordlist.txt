@@ -1,3 +1,4 @@
+à
 aa
 aab
 aad
@@ -121,6 +122,8 @@ backport
 backported
 backporting
 backports
+backtrace
+Backtrace
 backtraces
 Backtraces
 Bader
@@ -141,6 +144,7 @@ bdai
 bdd
 bebe
 Bedard
+Bédard
 beggining
 behaviours
 Bence
@@ -267,6 +271,7 @@ codename
 codepath
 Codespaces
 colcon
+Colli
 Colosi
 colour
 commandline
@@ -298,6 +303,7 @@ connextddsmicro
 const
 constref
 Containerising
+convensions
 convienent
 copyless
 Cordero
@@ -305,6 +311,7 @@ cornder
 coronavirus
 coroutine
 costmap
+couldn
 cout
 cov
 covariance
@@ -356,6 +363,7 @@ deallocate
 deallocating
 deallocation
 deallocations
+debbuging
 debian
 debians
 debuild
@@ -371,6 +379,7 @@ definintions
 deflateBound
 degrated
 del
+deleteall
 deleter
 deliveres
 Delsey
@@ -435,6 +444,7 @@ Dockerfiles
 docstring
 docstrings
 documention
+Documetation
 doesn
 doesnt
 Doisy
@@ -601,6 +611,7 @@ gitignore
 GL
 glibc
 glsl
+gmail
 gmock
 GMock
 GoalUUID
@@ -616,6 +627,7 @@ graphviz
 grayscale
 Greengrass
 Grupp
+GSplines
 gte
 gtest
 GTest
@@ -630,6 +642,7 @@ guillaume
 Günther
 gurumdds
 gurumnet
+Gutiérrez
 gz
 gzflush
 gzopen
@@ -703,6 +716,7 @@ imgproc
 Immanuel
 impl
 implemenetation
+implementors
 importlib
 imu
 incorect
@@ -793,6 +807,7 @@ jUnit
 JUnit
 Jupyter
 kagibson
+Kaiju
 Kaju
 Kalupahana
 kanban
@@ -815,6 +830,7 @@ keypresses
 Khasreto
 Kholodnyi
 Khush
+Kiltled
 kim
 Kishor
 Kiwibot
@@ -960,6 +976,7 @@ Michal
 michel
 microcontroller
 microcontrollers
+microROS
 MiddleButton
 middlewares
 migrator
@@ -987,6 +1004,7 @@ mld
 mmk
 mnt
 moc
+Modelin
 Modelling
 modularity
 Mohta
@@ -1034,6 +1052,7 @@ Neufeldt
 Neumann
 Neves
 Nia
+Nicla
 Nico
 nightlies
 nikulin
@@ -1086,6 +1105,7 @@ orocos
 os
 Oscarchoi
 osrf
+osrfoundation
 OSX
 outpout
 Ovcharik
@@ -1094,9 +1114,11 @@ overline
 overmatching
 overread
 Øystein
+pacakage
 pagefault
 pagefaults
 pais
+Palacios
 Palomo
 Pande
 Pandey
@@ -1118,6 +1140,7 @@ pclint
 Pecka
 Peng
 Penzlin
+perf
 performant
 Perron
 Petri
@@ -1176,6 +1199,7 @@ processe
 processMessage
 processs
 proects
+profiler
 programatically
 programmatically
 protip
@@ -1279,11 +1303,13 @@ resolveProcess
 respawn
 responder
 responsibile
+respository
 Restrepo
 reStructured
 reStructuredText
 ret
 rethrow
+retransform
 retreiver
 retrigger
 retriggering
@@ -1316,6 +1342,7 @@ Rosbags
 rosbash
 Rosbridge
 rosdep
+rosdisto
 rosdistro
 rosdoc
 rosgraph
@@ -1327,6 +1354,7 @@ rospkg
 rospy
 rostest
 rostopic
+Rplace
 rpy
 rpyutils
 rqt
@@ -1345,6 +1373,7 @@ runtype
 rvalue
 rviz
 RViz
+RViZ
 rw
 rwm
 Sai
@@ -1407,6 +1436,7 @@ signedness
 sigterm
 Silvio
 simulacrus
+simulatio
 siposcsaba
 sizeof
 Smac
@@ -1518,6 +1548,7 @@ Takeshi
 Takeuchi
 Tanaka
 Taveira
+teardown
 teleop
 Teleop
 Teleoperate
@@ -1551,6 +1582,7 @@ tl
 tlsf
 Tobias
 tock
+tocking
 tomoya
 toMsg
 tooltip
@@ -1635,6 +1667,7 @@ urdfdom
 uri
 url
 urls
+usecase
 userspace
 usestl
 Usi
@@ -1660,6 +1693,7 @@ Verheye
 Vicidel
 Víctor
 viewable
+Vijay
 Vikas
 Vilches
 Vimeo
@@ -1684,6 +1718,7 @@ wakeups
 walkthrough
 walkToTopParent
 warnigns
+watiable
 waypoint
 Wconversion
 Wdeprecated
@@ -1707,7 +1742,9 @@ whitespace
 Wiebe
 Wijnands
 wildcarded
+william
 winsock
+wip
 wjwwood
 Wmaybe
 Wno
@@ -1717,6 +1754,7 @@ wokring
 Wolsieffer
 Wonnacott
 Woodall
+worksapce
 workspaces
 wouldn
 Wpedantic
@@ -1747,6 +1785,7 @@ XTypes
 Xu
 Xue
 xUnit
+XUnit
 xwnb
 xy
 xyz
