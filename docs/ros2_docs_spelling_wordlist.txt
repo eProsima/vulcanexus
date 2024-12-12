@@ -976,6 +976,7 @@ Michal
 michel
 microcontroller
 microcontrollers
+microROS
 MiddleButton
 middlewares
 migrator
@@ -1079,6 +1080,7 @@ numpy
 nupkg
 nvblox
 O
+O'Kane
 O'Quin
 Observability
 occurences
