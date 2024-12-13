@@ -87,6 +87,7 @@ This version ships the following packages:
 Humble Hierro previous versions
 ===============================
 
+.. include:: previous_versions/v2.6.0.rst
 .. include:: previous_versions/v2.5.0.rst
 .. include:: previous_versions/v2.4.0.rst
 .. include:: previous_versions/v2.3.0.rst
