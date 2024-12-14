@@ -1,7 +1,5 @@
-.. _notes_jazzy_latest:
-
-Jazzy Jolo (v4.1.0)
-===================
+Jazzy Jolo (v4.0.0)
+-------------------
 
 This version ships the following packages:
 
@@ -57,8 +55,8 @@ This version ships the following packages:
       - `v2.1.0 <https://fast-dds-statistics-backend.readthedocs.io/en/latest/rst/notes/notes.html#version-2-1-0>`__
       - v4.0.0
     * - Vulcanexus Fast DDS RMW
-      - `v4.1.0 <https://github.com/eProsima/rmw_fastrtps/releases/tag/v4.1.0>`__
-      - v4.1.0
+      - `v4.0.0 <https://github.com/eProsima/rmw_fastrtps/releases/tag/v4.0.0>`__
+      - v4.0.0
     * - eProsima Dev Utils
       - `v1.1.0 <https://github.com/eProsima/dev-utils/releases/tag/v1.1.0>`__
       - v4.0.0
@@ -72,13 +70,8 @@ This version ships the following packages:
       - `v1.1.0 <https://fast-dds-spy.readthedocs.io/en/latest/rst/notes/notes.html#version-v1-1-0>`__
       - v4.0.0
     * - Vulcanexus IDL Dynamic TypeSupport Fast DDS
-      - `v4.1.0 <https://github.com/eProsima/rosidl_dynamic_typesupport_fastrtps/releases/tag/v4.1.0>`__
-      - v4.1.0
+      - `v4.0.0 <https://github.com/eProsima/rosidl_dynamic_typesupport_fastrtps/releases/tag/v4.0.0>`__
+      - v4.0.0
     * - Vulcanexus Base
-      - `v4.1.0 <https://docs.vulcanexus.org/en/latest/rst/notes/jazzy/notes.html#jazzy-imagination-v4-1-0>`__
-      - v4.1.0
-
-Jazzy Jolo previous versions
-============================
-
-.. include:: previous_versions/v4.0.0.rst
+      - `v4.0.0 <https://docs.vulcanexus.org/en/latest/rst/notes/jazzy/notes.html#jazzy-imagination-v4-0-0>`__
+      - v4.0.0
