@@ -1,3 +1,4 @@
+à
 aa
 aab
 aad
@@ -270,6 +271,7 @@ codename
 codepath
 Codespaces
 colcon
+Colli
 Colosi
 colour
 commandline
@@ -377,6 +379,7 @@ definintions
 deflateBound
 degrated
 del
+deleteall
 deleter
 deliveres
 Delsey
@@ -624,6 +627,7 @@ graphviz
 grayscale
 Greengrass
 Grupp
+GSplines
 gte
 gtest
 GTest
@@ -1001,6 +1005,7 @@ mld
 mmk
 mnt
 moc
+Modelin
 Modelling
 modularity
 Mohta
@@ -1048,6 +1053,7 @@ Neufeldt
 Neumann
 Neves
 Nia
+Nicla
 Nico
 nightlies
 nikulin
@@ -1304,6 +1310,7 @@ reStructured
 reStructuredText
 ret
 rethrow
+retransform
 retreiver
 retrigger
 retriggering
@@ -1367,6 +1374,7 @@ runtype
 rvalue
 rviz
 RViz
+RViZ
 rw
 rwm
 Sai
@@ -1430,6 +1438,7 @@ signedness
 sigterm
 Silvio
 simulacrus
+simulatio
 siposcsaba
 sizeof
 Smac
@@ -1541,6 +1550,7 @@ Takeshi
 Takeuchi
 Tanaka
 Taveira
+teardown
 teleop
 Teleop
 Teleoperate
@@ -1747,6 +1757,7 @@ wokring
 Wolsieffer
 Wonnacott
 Woodall
+worksapce
 workspaces
 wouldn
 Wpedantic
@@ -1777,6 +1788,7 @@ XTypes
 Xu
 Xue
 xUnit
+XUnit
 xwnb
 xy
 xyz
