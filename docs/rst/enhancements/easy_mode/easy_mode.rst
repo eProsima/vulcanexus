@@ -73,7 +73,7 @@ See the `ROS 2 documentation <https://docs.ros.org/en/rolling/Concepts/Intermedi
 Understanding Easy Mode
 -----------------------
 
-The new ``Vulcanexus Easy Mode`` can be enabled by simply setting the already known environment variable ``EASY_MODE`` to an ip (later explained).
+The new ``Vulcanexus Easy Mode`` can be enabled by simply setting the already known environment variable ``EASY_MODE`` to an IP (later explained).
 The transports configured in this new mode include ``TCP`` for discovery and user data and ``Shared Memory`` for user data (in case it is `possible to use <https://fast-dds.docs.eprosima.com/en/latest/fastdds/transport/shared_memory/shared_memory.html>`_).
 
 When the first ROS 2 node is launched, it will automatically spawn a Discovery Server instance in the given domain i.e the one specified in the ``ROS_DOMAIN_ID`` (0 by default) and make the ROS 2 node a client pointing to it.
@@ -117,7 +117,7 @@ On the left part of the figure, when the discovery servers in Hosts' B and C are
 This suggests that connecting to a Discovery Server is equivalent to connecting to all the servers that this server is connected to, because connected servers automatically conform to a `mesh topology <https://www.bbc.co.uk/bitesize/guides/z7mxh39/revision/6>`_.
 See `Discovery Server documentation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery_server.html>`_.
 
-At the same time, the right part of the figure illustrates the case of a different domain in which Hosts B and C are operating in localhost i.e having the ``EASY_MODE`` to their own host's ip.
+At the same time, the right part of the figure illustrates the case of a different domain in which Hosts B and C are operating in localhost i.e having the ``EASY_MODE`` to their own host's IP.
 Which is perfectly valid and can coexist with the other domain.
 
 For a practical example demo, please refer to the :ref:`easy_mode_tutorial`.
