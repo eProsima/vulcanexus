@@ -11,12 +11,11 @@ ROS 2 network statistics inspection with ROS 2 Monitor
 Background
 ----------
 
-Vulcanexus integrates `ROS 2 Monitor <https://fast-dds-monitor.readthedocs.io/en/latest/>`_, which is a useful tool for monitoring and studying a ROS 2 network as ROS 2 relies on the `DDS specification <https://www.omg.org/spec/DDS/1.4/About-DDS/>`_ to communicate the different nodes.
-The automatic discovery of entities in a local network enables to easily identify the different running Participants, their Endpoints, the Topics that each of them is using, and even the network interfaces they are employing to communicate with one another.
-Additionally, it is possible to receive statistical data from every endpoint in the network leveraging the `ROS 2 Statistics Module <https://fast-dds.docs.eprosima.com/en/latest/fastdds/statistics/statistics.html>`_.
-This data is very useful to analyze the DDS network performance and seek possible communication problems in it.
+Vulcanexus integrates the `ROS 2 Monitor <https://fast-dds-monitor.readthedocs.io/en/latest/>`_, a powerful tool for monitoring and studying ROS 2 networks. Since ROS 2 relies on the `DDS specification <https://www.omg.org/spec/DDS/1.4/About-DDS/>`_ for communication between nodes, this tool simplifies the process of observing network activity..
+With automatic entity discovery within a local network, users can easily identify active Participants, their Endpoints, the Topics they utilize, and even the network interfaces used for communication.
+Moreover, the `ROS 2 Statistics Module <https://fast-dds.docs.eprosima.com/en/latest/fastdds/statistics/statistics.html>`_ enables the collection of statistical data from every endpoint in the network. This data is very useful for analyzing the DDS network performance and diagnosing possible communication issues.
 
-This tutorial provides step-by-step instructions to use Vulcanexus for monitoring a ROS 2 talker/listener demo.
+This tutorial prov ides step-by-step instructions to use Vulcanexus for monitoring a ROS 2 talker/listener demo.
 
 Prerequisites
 -------------
@@ -39,7 +38,7 @@ Initiate *ROS 2 Monitor* running the following command:
 
 Once *ROS 2 Monitor* is launched, start a monitor in domain :code:`0` (default domain).
 
-.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/init_domain.png
+.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/Init_domain.png
     :align: center
 
 Execute ROS 2 demo nodes with statistics
@@ -74,7 +73,7 @@ Monitoring network
 
 Now, the two new Participants are visible in the *ROS 2 Monitor*'s DDS Panel.
 
-.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/participants.png
+.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/Participants.png
     :align: center
 
 Alias
@@ -82,26 +81,26 @@ Alias
 
 Participants in ROS 2 are named :code:`/` by default.
 In order to differentiate them, it is possible to change the Participant's aliases within the *ROS 2 Monitor*.
-In this case, the :code:`vulcanexus-jazzy-talker` Participant would be the one with a writer, and the :code:`vulcanexus-jazzy-listener` Participant would be the one with a reader.
+In this case, the :code:`talker` Participant would be the one with a :code:`chatter` writer, and the :code:`listener` Participant would be the one with a :code:`chatter` reader.
 
-.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/alias.png
+.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/Alias.png
     :align: center
 
 Physical data
 ^^^^^^^^^^^^^
 
-In order to see the information of the host and the physical context where every node is running, go to the Explorer Pane and activate the Physical Panel.
-There, the host, user and process of each node are displayed.
+In order to see the information of the Host and the physical context where every node is running, go to the Explorer Panel and activate the Physical Panel.
+There, the Host, User and Process of each node are displayed.
 
-.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/physical.png
+.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/Physical.png
     :align: center
 
 Statistical data
 ^^^^^^^^^^^^^^^^
 
-To show statistical data about the communication between the :code:`vulcanexus-jazzy-talker` and the :code:`vulcanexus-jazzy-listener`, follow the steps to `create dynamic series chart <https://fast-dds-monitor.readthedocs.io/en/latest/rst/getting_started/tutorial.html#tutorial-create-dynamic-series>`_.
+To show statistical data about the communication between the :code:`talker` and the :code:`listener`, follow the steps to `create dynamic series chart <https://fast-dds-monitor.readthedocs.io/en/latest/rst/getting_started/tutorial.html#tutorial-create-dynamic-series>`_.
 
-.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/statistics.png
+.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/Statistics.png
     :align: center
 
 Introspect metatraffic topics
@@ -113,5 +112,5 @@ These topics are the ones that ROS 2 uses for discovery and configuration purpos
 In order to see these topics in the monitor, click *View->Show Metatraffic* menu button.
 Now, these topics are shown in the logical panel. Furthermore, the Readers and Writers associated to them are now listed under their respective Participants.
 
-.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/metatraffic.png
+.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/Metatraffic.png
     :align: center
