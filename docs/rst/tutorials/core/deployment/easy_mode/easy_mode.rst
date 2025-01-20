@@ -44,7 +44,7 @@ For this, there are two possible options:
 
     Repeat these steps in a second terminal.
 
-#.  Running the tutorial between two hosts (an available conenction to the same network will be needed).
+#.  Running the tutorial between two hosts (an available connection to the same network will be needed).
     For this second option, it is necessary to have the ``vucanexus-jazzy-base`` package installed.
 
     In both hosts, source the following file to setup the Vulcanexus environment:
@@ -79,7 +79,7 @@ Run the following commands in each container:
 .. note::
 
     If the tutorial is run using two hosts, the IP address of the ``EASY_MODE`` environment variable needs to be set to the IP address of the first host.
-    It is also posible to run the demo in a single host by opening two terminals and running the commands in each terminal.
+    It is also possible to run the demo in a single host by opening two terminals and running the commands in each terminal.
     In this case, the IP address should be set to the hosts's IP and only one discovery server will be used.
 
 After a moment, the listener should start receiving samples from the talker, meaning that both Discovery Servers are now connected to each other.

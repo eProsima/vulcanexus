@@ -104,7 +104,7 @@ A direct consequence of the ``Easy Mode`` is that the discovery scope of every R
 By setting this value to the IP of a remote host, nodes can interconnect across hosts, as long as they share the same domain.
 However, if a local IP is selected, nodes will not try to discover other entities in different hosts.
 It is important to clarify that setting a local IP does not prevent your nodes from being discovered by other hosts.
-They can be discovered by any other host setting the ``EASY_MODE`` variable to your local IP.```
+They can be discovered by any other host setting the ``EASY_MODE`` variable to your local IP.
 
 The next image shows an example of this latter case:
 
