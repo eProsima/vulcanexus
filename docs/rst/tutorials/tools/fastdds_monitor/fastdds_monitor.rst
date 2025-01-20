@@ -11,11 +11,11 @@ ROS 2 network statistics inspection with ROS 2 Monitor
 Background
 ----------
 
-Vulcanexus integrates the `ROS 2 Monitor <https://fast-dds-monitor.readthedocs.io/en/latest/>`_, a powerful tool for monitoring and studying ROS 2 networks. Since ROS 2 relies on the `DDS specification <https://www.omg.org/spec/DDS/1.4/About-DDS/>`_ for communication between nodes, this tool simplifies the process of observing network activity..
+Vulcanexus integrates the `ROS 2 Monitor <https://fast-dds-monitor.readthedocs.io/en/latest/>`_, a powerful tool for monitoring and studying ROS 2 networks. Since ROS 2 relies on the `DDS specification <https://www.omg.org/spec/DDS/1.4/About-DDS/>`_ for communication between nodes, this tool simplifies the process of observing network activity.
 With automatic entity discovery within a local network, users can easily identify active Participants, their Endpoints, the Topics they utilize, and even the network interfaces used for communication.
 Moreover, the `ROS 2 Statistics Module <https://fast-dds.docs.eprosima.com/en/latest/fastdds/statistics/statistics.html>`_ enables the collection of statistical data from every endpoint in the network. This data is very useful for analyzing the DDS network performance and diagnosing possible communication issues.
 
-This tutorial prov ides step-by-step instructions to use Vulcanexus for monitoring a ROS 2 talker/listener demo.
+This tutorial provides step-by-step instructions to use Vulcanexus for monitoring a ROS 2 talker/listener demo.
 
 Prerequisites
 -------------
