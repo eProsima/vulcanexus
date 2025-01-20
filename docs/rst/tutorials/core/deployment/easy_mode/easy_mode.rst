@@ -5,7 +5,7 @@
 Easy Mode Tutorial
 ==================
 
-This tutorial aims to demonstrate the use
+This tutorial aims to demonstrate the new :ref:`easy_mode` feature in *Vulcanexus* by running a simple talker-listener example demo.
 
 .. contents::
     :depth: 2
@@ -44,7 +44,7 @@ For this, there are two possible options:
 
     Repeat these steps in a second terminal.
 
-#.  Running the tutorial on the local host (note that more than one host connected to the same network will be needed).
+#.  Running the tutorial between two hosts (an available conenction to the same network will be needed).
     For this second option, it is necessary to have the ``vucanexus-jazzy-base`` package installed.
 
     In both hosts, source the following file to setup the Vulcanexus environment:
@@ -75,6 +75,12 @@ Run the following commands in each container:
 
     # Container 2
     EASY_MODE=172.17.0.2 ros2 run demo_nodes_cpp listener
+
+.. note::
+
+    If the tutorial is run using two hosts, the IP address of the ``EASY_MODE`` environment variable needs to be set to the IP address of the first host.
+    It is also posible to run the demo in a single host by opening two terminals and running the commands in each terminal.
+    In this case, the IP address should be set to the hosts's IP and only one discovery server will be used.
 
 After a moment, the listener should start receiving samples from the talker, meaning that both Discovery Servers are now connected to each other.
 As the talker and listener nodes share the same topic ``chatter``, nodes are discovered and data exchange can happen.
