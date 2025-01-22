@@ -99,7 +99,7 @@ entity. The :code:`talker` would be the one with a :code:`chatter` writer, and t
 :code:`chatter` reader. Since we're not going to be using this Tab anymore, click on the *X* to return to the
 :code:`New Tab` view.
 
-.. figure:: /rst/figures/screenshots/jazzy_tutorial/Alias_new.png
+.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/Alias_new.png
     :align: center
 
 Physical data
