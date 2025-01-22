@@ -95,8 +95,8 @@ Alias
 Participants in ROS 2 are named :code:`/` by default.
 In order to differentiate them, it is possible to change the Participant's aliases within the *ROS 2 Monitor*. This can
 be done either from the Explorer Panel, or from the Domain View panel, by pressing *righ click* on top of the
-entity. The :code:`talker` would be the one with a :code:`chatter` writer, and the :code:`listener` the one with a
-:code:`chatter` reader. Since we're not going to be using this Tab anymore, click on the *X* to return to the
+entity. The :code:`talker` would be the one with a :code:`chatter` DataWriter, and the :code:`listener` the one with a
+:code:`chatter` DataReader. Since we're not going to be using this Tab anymore, click on the *X* to return to the
 :code:`New Tab` view.
 
 .. figure:: /rst/figures/tutorials/tools/monitor_screenshots/Alias_new.png
