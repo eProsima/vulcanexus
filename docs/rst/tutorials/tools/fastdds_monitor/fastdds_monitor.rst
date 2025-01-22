@@ -28,7 +28,7 @@ Also, remember to source the environment in every terminal in this tutorial.
     source /opt/vulcanexus/jazzy/setup.bash
 
 Launch ROS 2 Monitor
------------------------
+--------------------
 
 Initiate *ROS 2 Monitor* running the following command:
 
@@ -76,14 +76,30 @@ Now, the two new Participants are visible in the *ROS 2 Monitor*'s DDS Panel.
 .. figure:: /rst/figures/tutorials/tools/monitor_screenshots/Participants.png
     :align: center
 
+Domain View
+^^^^^^^^^^^
+
+To easily inspect the structure of the DDS network created, open the *Domain View* in the Main Panel.
+In this tab, we can see a graph describing the structure of our network: our single Host contains our single User,
+which in turn contains both our Processes, each containing a number of DataReaders and DataWriters. We can see a
+number of Topics, presented as vertical gray lines, related to the code of the listener and talker. Only one of them,
+:code:`rt/chatter`, relates two entities, a DataWriter and a DataReader: this is the Topic that is being
+used to exchange information.
+
+.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/Domain_Graph.png
+    :align: center
+
 Alias
 ^^^^^
 
 Participants in ROS 2 are named :code:`/` by default.
-In order to differentiate them, it is possible to change the Participant's aliases within the *ROS 2 Monitor*.
-In this case, the :code:`talker` Participant would be the one with a :code:`chatter` writer, and the :code:`listener` Participant would be the one with a :code:`chatter` reader.
+In order to differentiate them, it is possible to change the Participant's aliases within the *ROS 2 Monitor*. This can
+be done either from the Explorer Panel, or from the Domain View panel, by pressing *righ click* on top of the
+entity. The :code:`talker` would be the one with a :code:`chatter` writer, and the :code:`listener` the one with a
+:code:`chatter` reader. Since we're not going to be using this Tab anymore, click on the *X* to return to the
+:code:`New Tab` view.
 
-.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/Alias.png
+.. figure:: /rst/figures/screenshots/jazzy_tutorial/Alias_new.png
     :align: center
 
 Physical data
