@@ -4,16 +4,15 @@ Easy Mode
 =========
 
 The new ``Vulcanexus Easy Mode`` aims to simplify, enhance and optimize the deployment of any ROS 2 application reinforcing the overall out-of-the-box user experience.
-Moreover, it claims to be the default discovery behavior within :ref:`Vulcanexus <vulcanexus_introduction>`.
 This section reveals its significance, operating mode and impact.
 
 Quick Overview
 ^^^^^^^^^^^^^^
 
 The ``Vulcanexus Easy Mode`` is a builtin discovery mode that simplifies to the most the deployment of ROS 2 applications with the use of `Discovery Server <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery_server.html>`_.
-To enable this feature the user only needs to set the environment variable ``EASY_MODE=<ip>``.
+To enable this feature the user only needs to set the environment variable ``ROS2_EASY_MODE=<ip>``.
 This ``<ip>`` can be either the IP address of the current host or the ``<ip>`` of an external host in the same LAN acting as the central point of discovery (``master``).
-A new discovery server will be spawned in background in the domain specified by the ``ROS_DOMAIN_ID`` environment variable.
+By running a ROS 2 node with this environment variable, a new discovery server will be spawned in background.
 The following diagram illustrates the concept:
 
 .. image:: ../../figures/enhancements/easy_mode/easy_mode_quick_intro.png
@@ -42,9 +41,13 @@ This sub-section provides a detailed explanation of the ``Vulcanexus Easy Mode``
 Motivation
 ----------
 
-ROS 2 users often expect ROS 2 applications to run out-of-the-box without caring about middleware configuration or network setup.
-As a result, experience has revealed that the default `DDS Simple discovery mechanism <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/simple.html#simple-discovery-settings>`_ with multicast is not always the best choice for the majority of use cases.
-However, `eProsima's Discovery Server <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery_server.html>`_ mechanism effectively removes the need for multicast discovery traffic and presents a flexible solution for different network topologies.
+ROS 2 users frequently prefer ROS 2 applications to function seamlessly without requiring extensive middleware configuration or network setup.
+However, practical experience suggests that the default `DDS Simple discovery mechanism <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/simple.html#simple-discovery-settings>`_ using multicast may not be the most suitable option for many use cases.
+In contrast, `eProsima's Discovery Server <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery_server.html>`_ mechanism offers an alternative by eliminating the need for multicast discovery traffic and providing a flexible solution adaptable to various network topologies.
+
+This method proposes a centralized discovery approach by means of a Discovery Server entity.
+`Investigation and comparison of both methods <https://fast-dds.docs.eprosima.com/en/2.14.x/fastdds/ros2/discovery_server/ros2_discovery_server.html#discovery-server-v2>`_ have shown that the number of discovery packets is drastically reduced and the system scalability improves when using the Discovery Server.
+The following image shows how Discovery Server simplifies the discovery graph compared with the default DDS Simple discovery for a localhost deployment of four ROS 2 nodes.
 
 .. list-table::
    :width: 100%
@@ -55,10 +58,6 @@ However, `eProsima's Discovery Server <https://fast-dds.docs.eprosima.com/en/lat
 
      - .. image:: ../../figures/enhancements/easy_mode/easy_mode_multiple_hosts.png
           :width: 100%
-
-This method proposes a centralized discovery approach by means of a Discovery Server entity.
-`Investigation and comparison of both methods <https://fast-dds.docs.eprosima.com/en/2.14.x/fastdds/ros2/discovery_server/ros2_discovery_server.html#discovery-server-v2>`_ have shown that the number of discovery packets is drastically reduced and the system scalability improves when using the Discovery Server.
-The previous image shows how Discovery Server simplifies the discovery graph compared with the default DDS Simple discovery for a localhost deployment of four ROS 2 nodes.
 
 Background
 ----------
@@ -85,7 +84,7 @@ See the `ROS 2 documentation <https://docs.ros.org/en/rolling/Concepts/Intermedi
 Understanding Easy Mode
 -----------------------
 
-The new ``Vulcanexus Easy Mode`` can be enabled by simply setting the environment variable ``EASY_MODE`` to an IP (later explained).
+The new ``Vulcanexus Easy Mode`` can be enabled by simply setting the environment variable ``ROS2_EASY_MODE`` to an IP (later explained).
 The transports configured in this new mode include ``TCP`` for discovery and user data and ``Shared Memory`` for user data (in case it is `possible to use <https://fast-dds.docs.eprosima.com/en/latest/fastdds/transport/shared_memory/shared_memory.html>`_).
 
 When the first ROS 2 node is launched, it will automatically spawn a Discovery Server instance in the given domain, i.e., the one specified in the ``ROS_DOMAIN_ID`` (0 by default) and make the ROS 2 node a client pointing to it.
@@ -104,7 +103,7 @@ A direct consequence of the ``Easy Mode`` is that the discovery scope of every R
 By setting this value to the IP of a remote host, nodes can interconnect across hosts, as long as they share the same domain.
 However, if a local IP is selected, nodes will not try to discover other entities in different hosts.
 It is important to clarify that setting a local IP does not prevent your nodes from being discovered by other hosts.
-They can be discovered by any other host setting the ``EASY_MODE`` variable to your local IP.
+They can be discovered by any other host setting the ``ROS2_EASY_MODE`` variable to your local IP.
 
 The next image shows an example of this latter case:
 
@@ -112,8 +111,8 @@ The next image shows an example of this latter case:
     :align: center
     :width: 55%
 
-The solid red arrow represents that the discovery server in Host B points to the master in Host A.
-Then, the dashed arrow indicates that both servers will discover each other and, finally, the green arrow signifies the data exchange between the ROS 2 nodes in purple (meaning that they share the same topic).
+The dashed red arrow represents that the discovery server in Host B points to the master in Host A.
+Then, the solid arrow indicates that both servers will discover each other and, finally, the green arrow signifies the data exchange between the ROS 2 nodes in purple (meaning that they share the same topic).
 
 The act of connecting Discovery Servers can also be done in other fashions, such as:
 
@@ -128,11 +127,11 @@ The figure below shows a general case where multiple Discovery Servers are conne
     :align: center
     :width: 80%
 
-On the left part of the figure, when discovery servers in Hosts' B and C are connected to an external master server in Host A (i.e., setting ``EASY_MODE=<host_a_ip>``), servers in Host B and C will automatically connect to each other.
+On the left part of the figure, when discovery servers in Hosts' B and C are connected to an external master server in Host A (i.e., setting ``ROS2_EASY_MODE=<host_a_ip>``), servers in Host B and C will automatically connect to each other.
 This exemplifies how connecting to a Discovery Server is equivalent to connecting to all the servers that this server is connected to, as connected servers automatically form a `mesh topology <https://www.bbc.co.uk/bitesize/guides/z7mxh39/revision/6>`_.
 See `Discovery Server documentation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery_server.html>`_.
 
-At the same time, the right part of the figure illustrates the case of a different domain in which Hosts B and C are operating in localhost, i.e., having the ``EASY_MODE`` to their own host's IP.
+At the same time, the right part of the figure illustrates the case of a different domain in which Hosts B and C are operating in localhost, i.e., having the ``ROS2_EASY_MODE`` to their own host's IP.
 Which is perfectly valid and can coexist with the other domain.
 
 For a practical example demo, please refer to the :ref:`easy_mode_tutorial`.

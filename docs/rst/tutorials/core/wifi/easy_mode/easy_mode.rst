@@ -26,41 +26,35 @@ Preparation
 -----------
 
 Lets start by setting up the Vulcanexus environment.
-For this, there are two possible options:
+First, create an isolated Docker network for the Vulcanexus containers:
 
-#.  Running the Vulcanexus Docker image (recommended).
+.. code-block:: bash
 
-    Run the Vulcanexus Docker image with:
+        docker network create --subnet=172.18.0.0/16 vulcanexus_net
 
-    .. code-block:: bash
+Run two containers of the Vulcanexus Docker image and source the Vulcanexus installation with:
 
-        docker run -it --rm ubuntu-vulcanexus:{DISTRO}-desktop
+.. code-block:: bash
 
-    Then, within the container, source the Vulcanexus installation with:
+    # Terminal 1
+    docker run --net vulcanexus_net --ip 172.18.0.2 -it --rm ubuntu-vulcanexus:{DISTRO}-desktop
+    source /opt/vulcanexus/{DISTRO}/setup.bash
 
-    .. code-block:: bash
+    # Terminal 2
+    docker run --net vulcanexus_net --ip 172.18.0.3 -it --rm ubuntu-vulcanexus:{DISTRO}-desktop
+    source /opt/vulcanexus/{DISTRO}/setup.bash
 
-            source /opt/vulcanexus/{DISTRO}/setup.bash
+.. note::
 
-    Repeat these steps in a second terminal.
-
-#.  Running the tutorial between two hosts (an available connection to the same network will be needed).
-    For this second option, it is necessary to have the ``vucanexus-jazzy-base`` package installed.
-
-    In both hosts, source the following file to setup the Vulcanexus environment:
-
-    .. code-block:: bash
-
-            source /opt/vulcanexus/{DISTRO}/setup.bash
+    It is also possible to run the tutorial between two hosts sharing the same network.
 
 Running the demo
 ----------------
 
-The demo will be exemplified using Docker.
-It consists in two docker containers (hosts) running a ROS 2 talker - listener example with the new ``Vulcanexus Easy Mode`` enabled.
+The tutorial consists in two docker containers (hosts) running a ROS 2 talker - listener example with the new ``Vulcanexus Easy Mode`` enabled.
 Both hosts are in the same network and domain id as shown in the following diagram:
 
-.. image:: ../../../../figures/enhancements/easy_mode/easy_mode_tutorial.png
+.. image:: ../../../../figures/tutorials/core/easy_mode/easy_mode_tutorial.png
     :align: center
     :width: 55%
 
@@ -71,16 +65,16 @@ Run the following commands in each container:
 .. code-block:: bash
 
     # Container 1
-    EASY_MODE=172.17.0.2 ros2 run demo_nodes_cpp talker
+    ROS2_EASY_MODE=172.18.0.2 ros2 run demo_nodes_cpp talker
 
     # Container 2
-    EASY_MODE=172.17.0.2 ros2 run demo_nodes_cpp listener
+    ROS2_EASY_MODE=172.18.0.2 ros2 run demo_nodes_cpp listener
 
 .. note::
 
-    If the tutorial is run using two hosts, the IP address of the ``EASY_MODE`` environment variable needs to be set to the IP address of the first host.
+    If the tutorial is run using two hosts, the IP address of the ``ROS2_EASY_MODE`` environment variable needs to be set to the IP address of the first host.
     It is also possible to run the demo in a single host by opening two terminals and running the commands in each terminal.
-    In this case, the IP address should be set to the hosts's IP and only one discovery server will be used.
+    In this case, the IP address should be set to the hosts's IP and only one discovery server will be spawned.
 
 After a moment, the listener should start receiving samples from the talker, meaning that both Discovery Servers are now connected to each other.
 As the talker and listener nodes share the same topic ``chatter``, nodes are discovered and data exchange can happen.

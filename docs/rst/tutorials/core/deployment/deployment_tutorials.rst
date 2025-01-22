@@ -21,4 +21,3 @@ For tutorials related to cloud or cloud-edge deployments, please refer :ref:`tut
     user_topics_multicast/user_topics_multicast
     keys/topic_keys
     keys/filtered_topic_keys
-    easy_mode/easy_mode
