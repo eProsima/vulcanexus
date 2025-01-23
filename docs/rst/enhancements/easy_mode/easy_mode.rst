@@ -119,7 +119,7 @@ The act of connecting Discovery Servers can also be done in other fashions, such
 * Setting the environment variable ``ROS_STATIC_PEERS`` with the pair ``<ip_address:domain_id>`` of the server to connect to.
 * Using the ``fastdds discovery`` cli tool with the sub commands ``add`` or ``set`` followed by the domain and the ``<ip_address:domain_id>`` pair.
 
-Please, refer to the `Fast DDS documentation <TODO:Insert LINK>`_ for further information in this regard.
+Please, refer to the `Fast DDS documentation <https://fast-dds.docs.eprosima.com/en/latest/fastddscli/cli/cli.html#discovery-server-cli-easy-mode>`_ for further information in this regard.
 
 The figure below shows a general case where multiple Discovery Servers are connected to each other:
 
