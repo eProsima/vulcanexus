@@ -89,8 +89,8 @@ used to exchange information.
 .. figure:: /rst/figures/tutorials/tools/monitor_screenshots/Domain_Graph.png
     :align: center
 
-The *Domain View* allows us to access different possibilites. By pressing *right-click* on top of the Topic name, we can
-find several options, such as filtering the graph by the Topic (selecting *Filter topic graph*). Clicking on the 
+The *Domain View* allows us to access different possibilities. By pressing *right-click* on top of the Topic name, we can
+find several options, such as filtering the graph by the Topic (selecting *Filter topic graph*). Clicking on the
 :code:`rt/chatter` Topic, we can easily see the entities exchanging information.
 
 .. figure:: /rst/figures/tutorials/tools/monitor_screenshots/Topic_filter.png
