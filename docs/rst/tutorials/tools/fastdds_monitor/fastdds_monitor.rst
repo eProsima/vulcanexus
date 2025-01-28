@@ -102,15 +102,6 @@ entity. The :code:`talker` would be the one with a :code:`chatter` DataWriter, a
 .. figure:: /rst/figures/tutorials/tools/monitor_screenshots/Alias_new.png
     :align: center
 
-Physical data
-^^^^^^^^^^^^^
-
-In order to see the information of the Host and the physical context where every node is running, go to the Explorer Panel and activate the Physical Panel.
-There, the Host, User and Process of each node are displayed.
-
-.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/Physical.png
-    :align: center
-
 Statistical data
 ^^^^^^^^^^^^^^^^
 
