@@ -27,25 +27,25 @@ Most relevant features
     This can be accomplished with the following XML.
     Please refer to `disable type propagation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/property_policies/non_consolidated_qos.html#property-type-propagation>`__ for more information.
 
-.. code-block:: xml
+    .. code-block:: xml
 
-    <?xml version="1.0" encoding="UTF-8" ?>
-    <dds xmlns="http://www.eprosima.com">
-        <profiles>
-            <participant profile_name="no_xtypes" is_default_profile="true">
-                <rtps>
-                    <propertiesPolicy>
-                        <properties>
-                            <property>
-                                <name>fastdds.type_propagation</name>
-                                <value>disabled</value>
-                            </property>
-                        </properties>
-                    </propertiesPolicy>
-                </rtps>
-            </participant>
-        </profiles>
-    </dds>
+        <?xml version="1.0" encoding="UTF-8" ?>
+        <dds xmlns="http://www.eprosima.com">
+            <profiles>
+                <participant profile_name="no_xtypes" is_default_profile="true">
+                    <rtps>
+                        <propertiesPolicy>
+                            <properties>
+                                <property>
+                                    <name>fastdds.type_propagation</name>
+                                    <value>disabled</value>
+                                </property>
+                            </properties>
+                        </propertiesPolicy>
+                    </rtps>
+                </participant>
+            </profiles>
+        </dds>
 
 Implications
 ^^^^^^^^^^^^
