@@ -138,7 +138,7 @@ For a practical example demo, please refer to the :ref:`easy_mode_tutorial`.
 
 .. note::
     When ``ROS2_EASY_MODE`` is enabled, Fast DDS automatically loads a custom XML profile named ``service``.
-    This profile increases the server's response timeout for ROS2 services by modifying the
+    This profile increases the server's response timeout for ROS 2 services by modifying the
     `max_blocking_time <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/standardQosPolicies.html#reliabilityqospolicy>`_.
     However, if the user provides an XML file that already contains a profile with the same name, Fast DDS will not
     load any extra profile.
