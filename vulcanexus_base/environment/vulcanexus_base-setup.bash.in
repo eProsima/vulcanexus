@@ -15,6 +15,7 @@
 export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 export VULCANEXUS_DISTRO=jazzy
 export VULCANEXUS_HOME="@VULCANEXUS_HOME@"
+export PYTHONWARNINGS="ignore:invalid escape sequence"
 
 # Functions for enabling and disabling Fast DDS Statistics' Topics
 enable_all_fastdds_statistics()
