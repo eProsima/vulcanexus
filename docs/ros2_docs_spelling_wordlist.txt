@@ -367,6 +367,7 @@ debbuging
 debian
 debians
 debuild
+deconstructor
 decref
 decription
 decrypts
