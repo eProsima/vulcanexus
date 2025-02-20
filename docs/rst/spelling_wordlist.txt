@@ -83,6 +83,7 @@ stdout
 sudo
 teleoperate
 teleoperation
+Theora
 ThreadX
 Tiva
 toolchain
