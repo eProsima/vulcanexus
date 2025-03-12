@@ -1,3 +1,5 @@
+.. include:: ../../exports/alias.include
+
 .. _easy_mode:
 
 Easy Mode
@@ -143,3 +145,114 @@ For a practical example demo, please refer to the :ref:`easy_mode_tutorial`.
     However, if the user provides an XML file that already contains a profile with the same name, Fast DDS will not
     load any extra profile.
     Instead, the `max_blocking_time <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/standardQosPolicies.html#reliabilityqospolicy>`_ value defined in the user's XML file will be used.
+
+Easy Mode CLI
+-------------
+
+Although the Vulcanexus ``Easy Mode`` is designed to be as simple as possible, it also provides a CLI tool to manage the Discovery Servers running in the background.
+Note that using the CLI is not mandatory, as the servers are automatically spawned and monitored by a background daemon.
+However, the CLI can be useful as an auxiliary tool for more advanced configurations or specific use cases.
+
+It can be used to manage running servers, modifying their remote connections, restarting them or stopping them.
+
+Configuration of servers launched with ``ROS2_EASY_MODE`` is available by using the following command:
+
+.. code-block:: bash
+
+    fastdds discovery <command> [optional -d <domain>] [optional "<master_ip:domain>"]
+
+The following table lists the available commands for the *Fast DDS* Discovery Server CLI:
+
+.. list-table::
+    :header-rows: 1
+    :align: left
+
+    * - Command
+      - Description
+    * - stop
+      - Stop the Discovery Server daemon if it is executed with no arguments. If a domain is |br|
+        specified with the ``-d`` argument it will only stop the corresponding server and the daemon |br|
+        will remain alive.
+    * - add
+      - Add new remote Discovery Servers to the local server.
+        This will connect both servers and |br|
+        their sub-networks without modifying existing remote servers. |br|
+    * - set
+      - Rewrite the remote Discovery Servers connected to the local server.
+        This will replace |br|
+        existing remote servers with the new connections. |br|
+    * - list
+      - List local active Discovery Servers created with the CLI Tool or the ``ROS2_EASY_MODE=<ip>``.
+    * - auto
+      - Handle the daemon start-up automatically and creates a Discovery Server in the specified |br|
+        domain (0 by default).
+    * - start
+      - Start the Discovery Server daemon with the remote connections specified. |br|
+
+.. list-table::
+    :header-rows: 1
+    :align: left
+
+    * - Option parameters
+      - Description
+    * - ``-d  --domain``
+      - Selects the domain of the server to target for this action.
+        It defaults to 0 if |br|
+        this argument is missing and no value is found in the ``ROS_DOMAIN_ID``
+        environment variable.
+    * - ``<remote_server_list>``
+      - It is only accepted with the `auto`, `start`, `add` and `set` commands.
+        It is a list of |br|
+        remote servers to connect to with the following structure: "<IP:domain>;<IP:domain>;...".
+
+.. important::
+    It is important to remark that spawning a new server from the CLI which will be later used by the ROS 2 nodes requires to:
+
+    * Set the ``ROS2_EASY_MODE`` environment variable in CLI command.
+    * Select the master server IP and pass it as an argument to the CLI command.
+
+    .. code-block:: bash
+
+        ROS2_EASY_MODE=<master_ip> fastdds discovery auto -d <domain> <master_ip>:<domain>
+
+    Otherwise, the spawned server will not be available for the ROS 2 nodes.
+    It is recommended to run new servers directly from the ROS 2 nodes to avoid this issue.
+
+Examples
+""""""""
+
+1.  Stop all running Easy Mode Discovery Servers and shut down Fast DDS daemon:
+
+    .. code-block:: bash
+
+        fastdds discovery stop
+
+2.  Stop the Easy Mode Discovery Server running in domain 0:
+
+    .. code-block:: bash
+
+        fastdds discovery stop -d 0
+
+3.  Start an Easy Mode Discovery Server in the domain 7 as master:
+
+    .. code-block:: bash
+
+        ROS2_EASY_MODE=127.0.0.1 fastdds discovery auto -d 7 127.0.0.1:7
+
+    OR
+
+    .. code-block:: bash
+
+        ROS_DOMAIN_ID=7 ROS2_EASY_MODE=127.0.0.1 fastdds discovery auto 127.0.0.1:7
+
+3.  Start an Easy Mode Discovery Server in the domain 3 pointing to a master in IP 192.168.1.42:
+
+    .. code-block:: bash
+
+        ROS2_EASY_MODE=192.168.1.42 fastdds discovery auto -d 3 192.168.1.42:3
+
+    OR
+
+    .. code-block:: bash
+
+        ROS_DOMAIN_ID=3 ROS2_EASY_MODE=192.168.1.42 fastdds discovery auto 192.168.1.42:3
