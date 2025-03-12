@@ -3,13 +3,13 @@
 Easy Mode
 =========
 
-The new ``Vulcanexus Easy Mode`` aims to simplify, enhance and optimize the deployment of any ROS 2 application reinforcing the overall out-of-the-box user experience.
+The new Vulcanexus ``Easy Mode`` aims to simplify, enhance and optimize the deployment of any ROS 2 application reinforcing the overall out-of-the-box user experience.
 This section reveals its significance, operating mode and impact.
 
 Quick Overview
 ^^^^^^^^^^^^^^
 
-The ``Vulcanexus Easy Mode`` is a builtin discovery mode that simplifies to the most the deployment of ROS 2 applications with the use of `Discovery Server <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery_server.html>`_.
+The Vulcanexus ``Easy Mode`` is a builtin discovery mode that simplifies to the most the deployment of ROS 2 applications with the use of `Discovery Server <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/discovery_server.html>`_.
 To enable this feature the user only needs to set the environment variable ``ROS2_EASY_MODE=<ip>``.
 This ``<ip>`` can be either the IP address of the current host or the ``<ip>`` of an external host in the same LAN acting as the central point of discovery (``master``).
 By running a ROS 2 node with this environment variable, a new discovery server will be spawned in background.
@@ -19,14 +19,14 @@ The following diagram illustrates the concept:
     :align: center
     :width: 55%
 
-The advantages of the ``Vulcanexus Easy Mode`` can be explored in the next section.
+The advantages of the Vulcanexus ``Easy Mode`` can be explored in the next section.
 
 .. _easy_mode_benefits:
 
 Benefits
 ^^^^^^^^
 
-The use of ``Vulcanexus Easy Mode`` brings the following benefits:
+The use of Vulcanexus ``Easy Mode`` brings the following benefits:
 
 * **Simplicity**: The user does not need to worry about configuring the middleware, enhancing the out-of-the-box experience.
   The user easily manages connections between domains and hosts only when needed.
@@ -36,7 +36,7 @@ The use of ``Vulcanexus Easy Mode`` brings the following benefits:
 Feature Insights
 ^^^^^^^^^^^^^^^^
 
-This sub-section provides a detailed explanation of the ``Vulcanexus Easy Mode``.
+This sub-section provides a detailed explanation of the Vulcanexus ``Easy Mode``.
 
 Motivation
 ----------
@@ -84,7 +84,7 @@ See the `ROS 2 documentation <https://docs.ros.org/en/rolling/Concepts/Intermedi
 Understanding Easy Mode
 -----------------------
 
-The new ``Vulcanexus Easy Mode`` can be enabled by simply setting the environment variable ``ROS2_EASY_MODE`` to an IP (later explained).
+The new Vulcanexus ``Easy Mode`` can be enabled by simply setting the environment variable ``ROS2_EASY_MODE`` to an IP (later explained).
 The transports configured in this new mode include ``TCP`` for discovery and user data and ``Shared Memory`` for user data (in case it is `possible to use <https://fast-dds.docs.eprosima.com/en/latest/fastdds/transport/shared_memory/shared_memory.html>`_).
 
 When the first ROS 2 node is launched, it will automatically spawn a Discovery Server instance in the given domain, i.e., the one specified in the ``ROS_DOMAIN_ID`` (0 by default) and make the ROS 2 node a client pointing to it.
