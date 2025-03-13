@@ -98,9 +98,9 @@ find several options, such as filtering the graph by the Topic (selecting *Filte
 
 Additionally, we can access the we can access the IDL representation of any of the Topics, by pressing right-click over
 the Topic name, and choosing *Data type IDL view*. This opens a new Tab with the required information, which can be
-copied and pasted.
+copied and pasted. Note that for ROS 2 topics, the IDL representation is demangled by default (can be undone in *View->Revert ROS 2 Demangling*).
 
-.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/IDL_img_jazzy.png
+.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/IDL_img_jazzy2.png
     :align: center
 
 Alias
