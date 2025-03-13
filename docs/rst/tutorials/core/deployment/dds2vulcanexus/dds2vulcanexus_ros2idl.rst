@@ -40,7 +40,7 @@ For this tutorial, we will use a simple example ROS 2 talker already installed i
 To run the example, simply execute the following command:
 
 .. code-block:: bash
-    
+
     ros2 run demo_nodes_cpp talker
 
 With this, we have a ROS 2 publisher running in the Vulcanexus container. We won't need to interact with it anymore for the purposes of the tutorial.
@@ -52,7 +52,7 @@ To inspect the messages being sent by the ROS 2 publisher, we will use Fast DDS 
 We will be using the Fast DDS Docker image downloaded previously, which can be run with the following commands:
 
 .. code-block:: bash
-    
+
     cd <path_to_fastdds_docker_image>
     docker load -i ubuntu-fastdds-suite\ <FastDDS-Version>.tar
     xhost local:root
@@ -61,7 +61,7 @@ We will be using the Fast DDS Docker image downloaded previously, which can be r
 Now that the container is up and running, we can access the Fast DDS Monitor:
 
 .. code-block:: bash
-    
+
     fastdds_monitor
 
 .. note::
@@ -73,12 +73,12 @@ We can now see the starting screen of Fast DDS Monitor, where we click on :code:
 .. image:: /rst/figures/tutorials/core/ros2_idl/Monitor_cover.png
     :align: center
 
-The next step is the selection of the domain. For this tutorial, we will avoid the default domain, and instead choose Domain :code:`42`. 
+The next step is the selection of the domain. For this tutorial, we will avoid the default domain, and instead choose Domain :code:`42`.
 To ensure our ROS 2 talker is visible in the Fast DDS Monitor, we must set the domain of the ROS 2 talker to :code:`42` as well.
 This can be done by setting the following environment variable before launching the ROS 2 talker:
 
 .. code-block:: bash
-    
+
     export ROS_DOMAIN_ID=42
 
 .. image:: /rst/figures/tutorials/core/ros2_idl/Monitor_domain.png
@@ -95,7 +95,7 @@ But this is not all the information that is being exchanged in this DDS network.
     :align: center
 
 For the purposes of this tutorial, we are going to select a topic which is already known to lead to incompatibilities if the bare ROS 2 IDL is used: :code:`ros_discovery_info`. Finding the topic and pressing right-click over the topic name, then choosing *Data type IDL view*, we can see the IDL representation of the topic.
-Note that by default, the monitor will perform a demangling operation over the ROS 2 type messages received, removing the dds_ namespace and modules among other modifications. The info sign on the top right corner informs the user when this operation has been performed.
+Note that by default, the monitor will perform a demangling operation over the ROS 2 type messages received, removing the `dds_` namespace and modules among other modifications. The info sign on the top right corner informs the user when this operation has been performed.
 
 .. image:: /rst/figures/tutorials/core/ros2_idl/Monitor_idl.png
     :align: center
@@ -106,7 +106,7 @@ Creating the readers and writers
 First, we are now going to create a new folder in the FastDDS docker to contain our code. To do so, run:
 
 .. code-block:: bash
-    
+
     mkdir my_IDL
     cd my_IDL/
 
@@ -115,12 +115,12 @@ For the next steps of the tutorial, in which we create the datareaders and dataw
 Option 1: Demangled IDL
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-We can directly employ the demangled IDL shown by default in the Fast DDS Monitor. In the IDL view, right-clicking on the screen and selecting *Copy* will allow us to copy the full IDL information into the clipboard. 
+We can directly employ the demangled IDL shown by default in the Fast DDS Monitor. In the IDL view, right-clicking on the screen and selecting *Copy* will allow us to copy the full IDL information into the clipboard.
 We can then paste this information into a new file, which we will name `ParticipantEntitiesInfo.idl`. First we will create the file, then open it with the program nano (any other program to pen the file may be used).
 To do so, run the following commands:
 
 .. code-block:: bash
-    
+
     touch ParticipantEntitiesInfo.idl
     apt-get update
     apt-get install nano
@@ -133,7 +133,7 @@ To create the necessary code, we will use a tool called `Fast DDS-Gen <https://f
 To generate the code, run the following command:
 
 .. code-block:: bash
-    
+
     fastddsgen -example CMake -typeros2 ParticipantEntitiesInfo.idl
 
 Now, we have the full code we need to create the datareaders and datawriters.
@@ -146,7 +146,7 @@ We can then paste this information into a new file, which we will name `Particip
 To do so, run the following commands:
 
 .. code-block:: bash
-    
+
     touch ParticipantEntitiesInfo.idl
     apt-get update
     apt-get install nano
@@ -157,7 +157,7 @@ To create the necessary code, we will use a tool called `Fast DDS-Gen <https://f
 This tool will aotomatically generate the necessary code to create the datareaders and datawriters. To generate the code, run the following command:
 
 .. code-block:: bash
-    
+
     fastddsgen -example CMake ParticipantEntitiesInfo.idl
 
 Now, we have the full code we need to create the datareaders and datawriters.
@@ -175,7 +175,7 @@ with :code:`topic_ = participant_->create_topic("ros_discovery_info", type_.get_
 After these modifications, we can compile the code using CMake by running the following commands:
 
 .. code-block:: bash
-    
+
     mkdir build
     cd build
     apt-get install -y cmake
@@ -185,11 +185,11 @@ After these modifications, we can compile the code using CMake by running the fo
 This created an application we can directly run from the command line. We can now launch the datareader by running:
 
 .. code-block:: bash
-    
+
     ./ParticipantEntitiesInfo subscriber
 
 The connection will be made beteen them, as can be illustrated by the monitor itself in the Domain View. Additionally, the following message will be displayed by the console:
 
 .. code-block:: bash
-    
+
     rmw_dds_common::msg::ParticipantEntitiesInfo Subscriber matched.
