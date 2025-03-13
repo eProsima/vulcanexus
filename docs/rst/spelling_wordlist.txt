@@ -17,10 +17,17 @@ curl
 customizable
 Cyberbotics
 dataflow
+datareader
+datareaders
 dataspace
+datawriter
+datawriters
 dds
 Deallocates
 decrypt
+Demangled
+demangled
+demangling
 Diffie
 entrypoint
 eProsima
@@ -54,6 +61,7 @@ multicast
 multithreaded
 Multithreading
 namespace
+nano
 Nao
 NetX
 Nucleo

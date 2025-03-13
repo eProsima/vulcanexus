@@ -66,7 +66,7 @@ Now that the container is up and running, we can access the Fast DDS Monitor:
 
 .. note::
 
-    In this tutorial we are not interested in the statiscal analysis capabilities of Fast DDS Monitor, but rather in the ability to visualize the type IDL information from the messages being sent by the ROS 2 talker. For more information on the Fast DDS Monitor capabilities, please refer to :ref:`tutorials_tools_fastdds_monitor`.
+    In this tutorial we are not interested in the statistical analysis capabilities of Fast DDS Monitor, but rather in the ability to visualize the type IDL information from the messages being sent by the ROS 2 talker. For more information on the Fast DDS Monitor capabilities, please refer to :ref:`tutorials_tools_fastdds_monitor`.
 
 We can now see the starting screen of Fast DDS Monitor, where we click on :code:`Start monitoring!` to initiate the program.
 
@@ -127,9 +127,9 @@ To do so, run the following commands:
     nano ParticipantEntitiesInfo.idl
 
 In the nano editor, paste the copied IDL information. Due to reserved words in FastDDS operation, there is a small modification we need to apply, which will be deleted later in the automatic operation of our program.
-Inside the IDL file, replace the line :code:`rmw_dds_common::msg::Gid gid;`` with :code:`rmw_dds_common::msg::Gid _gid;`, that is, add an underscore before gid since gid is a reserved memeber name.
+Inside the IDL file, replace the line :code:`rmw_dds_common::msg::Gid gid;`` with :code:`rmw_dds_common::msg::Gid _gid;`, that is, add an underscore before gid since gid is a reserved member name.
 Then, save and exit by pressing :code:`Ctrl+X`, then :code:`Y` and :code:`Enter`. This is the IDL file we will use to create the datareaders and datawriters.
-To create the necessary code, we will use a tool called `Fast DDS-Gen <https://fast-dds.docs.eprosima.com/en/latest/fastddsgen/introduction/introduction.html>`_. This tool will aotomatically generate the necessary code to create the datareaders and datawriters.
+To create the necessary code, we will use a tool called `Fast DDS-Gen <https://fast-dds.docs.eprosima.com/en/latest/fastddsgen/introduction/introduction.html>`_. This tool will automatically generate the necessary code to create the datareaders and datawriters.
 To generate the code, run the following command:
 
 .. code-block:: bash
@@ -154,7 +154,7 @@ To do so, run the following commands:
 
 In the nano editor, paste the copied IDL information. Then, save and exit by pressing :code:`Ctrl+X`, then :code:`Y` and :code:`Enter`. This is the IDL file we will use to create the datareaders and datawriters.
 To create the necessary code, we will use a tool called `Fast DDS-Gen <https://fast-dds.docs.eprosima.com/en/latest/fastddsgen/introduction/introduction.html>`_.
-This tool will aotomatically generate the necessary code to create the datareaders and datawriters. To generate the code, run the following command:
+This tool will automatically generate the necessary code to create the datareaders and datawriters. To generate the code, run the following command:
 
 .. code-block:: bash
 
@@ -188,7 +188,7 @@ This created an application we can directly run from the command line. We can no
 
     ./ParticipantEntitiesInfo subscriber
 
-The connection will be made beteen them, as can be illustrated by the monitor itself in the Domain View. Additionally, the following message will be displayed by the console:
+The connection will be made between them, as can be illustrated by the monitor itself in the Domain View. Additionally, the following message will be displayed by the console:
 
 .. code-block:: bash
 
