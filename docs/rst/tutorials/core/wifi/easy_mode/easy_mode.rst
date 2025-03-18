@@ -15,7 +15,7 @@ This tutorial aims to demonstrate the new :ref:`easy_mode` feature in *Vulcanexu
 Prerequisites
 -------------
 
-* It is recommended to have a basic understanding of ``Vulcanexus Easy Mode`` introduced in the :ref:`easy_mode` section.
+* It is recommended to have a basic understanding of Vulcanexus ``Easy Mode`` introduced in the :ref:`easy_mode` section.
 * An up-to-date (latest) Vulcanexus installation using one of the following installation methods:
 
   * :ref:`linux_binary_installation`
@@ -51,7 +51,7 @@ Run two containers of the Vulcanexus Docker image and source the Vulcanexus inst
 Running the demo
 ----------------
 
-The tutorial consists in two docker containers (hosts) running a ROS 2 talker - listener example with the new ``Vulcanexus Easy Mode`` enabled.
+The tutorial consists in two docker containers (hosts) running a ROS 2 talker - listener example with the new Vulcanexus ``Easy Mode`` enabled.
 Both hosts are in the same network and domain id as shown in the following diagram:
 
 .. image:: ../../../../figures/tutorials/core/easy_mode/easy_mode_tutorial.png
@@ -79,3 +79,11 @@ Run the following commands in each container:
 After a moment, the listener should start receiving samples from the talker, meaning that both Discovery Servers are now connected to each other.
 As the talker and listener nodes share the same topic ``chatter``, nodes are discovered and data exchange can happen.
 Further benefits of using the new ``Easy Mode`` are detailed in the :ref:`easy_mode_benefits` section.
+
+To stop the Discovery Server spawned in the background and the Fast DDS Daemon, run the following command:
+
+.. code-block:: bash
+
+    fastdds discovery stop
+
+Otherwise, both will be killed after stopping the container.
