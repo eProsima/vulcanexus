@@ -165,8 +165,8 @@ Now, we have the full code we need to create the datareaders and datawriters.
 Launching a FastDDS datareader
 ------------------------------
 
-For the purpose of this tutorial, we will only be creating a single datareader to connect with the ROS 2 talker. The code for the datareader was generated in the previous step, and requires only a single modification.
-By opening the file `ParticipantEntitiesInfomain.cxx`, we need to perform a small modification to the code. The line :code:`int domain_id = 0;` must be replaced with :code:`int domain_id = 42;`, so our participants are created in the same domain as the ROS 2 talker.
+For the purpose of this tutorial, we will only be creating a single datareader to connect with the ROS 2 talker. The code for the datareader was generated in the previous step, and requires only a few simple modifications.
+Opening the file `ParticipantEntitiesInfomain.cxx`, we need to perform a small modification to the code. The line :code:`int domain_id = 0;` must be replaced with :code:`int domain_id = 42;`, so our participants are created in the same domain as the ROS 2 talker.
 Save and exit by pressing :code:`Ctrl+X`, then :code:`Y` and :code:`Enter`.
 
 Additionally, we need to ensure that the datareader joins the same topic as the ROS 2 talker, so we need to perform an additional modification. Open the file `ParticipantEntitiesInfoSubscriberApp.cxx`, and replace the line :code:`topic_ = participant_->create_topic("ParticipantEntitiesInfoTopic", type_.get_type_name(), topic_qos);`
