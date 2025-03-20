@@ -3,11 +3,6 @@
 Connecting Nodes over an External Network
 ==========================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Background
 ----------
 

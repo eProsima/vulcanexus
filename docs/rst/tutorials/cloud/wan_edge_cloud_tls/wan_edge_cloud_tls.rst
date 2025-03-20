@@ -12,11 +12,6 @@ Edge-Cloud TLS communication on WAN
    since terms like :term:`CA`, :term:`Public-key cryptography`, :term:`RSA`,
    and :term:`Diffie-Hellman` are not explained in detail.
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Background
 ----------
 

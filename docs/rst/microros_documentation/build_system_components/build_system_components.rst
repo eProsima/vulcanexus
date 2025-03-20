@@ -4,12 +4,6 @@
 Build System Components
 =======================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
-
 .. figure:: /rst/figures/micro/platforms_logos/renesas_e2_studio.png
     :align: center
 

@@ -3,11 +3,6 @@
 Change mutable QoS through get native API
 =========================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Background
 ----------
 

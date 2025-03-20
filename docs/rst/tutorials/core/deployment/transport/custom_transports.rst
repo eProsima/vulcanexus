@@ -3,11 +3,6 @@
 Customizing Network Transports
 ==============================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 .. _tutorials_core_deployment_custom_transports_background:
 
 Background

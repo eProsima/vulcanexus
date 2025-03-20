@@ -6,11 +6,6 @@
 Cloud ROS 2 MicroServices
 =========================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Background
 ----------
 

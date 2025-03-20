@@ -7,11 +7,6 @@ Topic Instances Subscription Filtering Tutorial
 
 This tutorial aims to demonstrate how to receive data only from certain topic instances by combining the use of topic keys and topic content filtering.
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Background
 ----------
 

@@ -7,11 +7,6 @@ Easy Mode Tutorial
 
 This tutorial aims to demonstrate the new :ref:`easy_mode` feature in *Vulcanexus* by running a simple talker-listener example demo.
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Prerequisites
 -------------
 

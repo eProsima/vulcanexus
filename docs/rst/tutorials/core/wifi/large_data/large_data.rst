@@ -5,11 +5,6 @@
 How to handle large data video streaming in ROS 2
 =================================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Have you ever faced problems streaming video in ROS 2?
 ------------------------------------------------------
 

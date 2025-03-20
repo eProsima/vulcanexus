@@ -3,11 +3,6 @@
 Services
 =======================
 
-.. contents:: Table of Contents
-    :depth: 2
-    :local:
-    :backlinks: none
-
 ROS 2 services are another communication mechanism between nodes. Services implement a client-server paradigm based on ROS 2 messages and types. Further information about ROS 2 services can be found on  :ref:`Understanding services <ROS2Services>`.
 
 Ready to use code related to this concepts can be found on micro-ROS demos repository `addtwoints_server <https://github.com/micro-ROS/micro-ROS-demos/tree/jazzy/rclc/addtwoints_server/main.c>`_ and `addtwoints_client <https://github.com/micro-ROS/micro-ROS-demos/tree/jazzy/rclc/addtwoints_client/main.c>`_ examples.

@@ -3,11 +3,6 @@
 Storing private keys in Hardware Secure Modules (HSM)
 =====================================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Background
 ----------
 

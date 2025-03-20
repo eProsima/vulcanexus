@@ -3,11 +3,6 @@
 Enabling multicast communication
 ================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 .. _tutorials_core_deployment_user_topics_multicast_background:
 
 Background

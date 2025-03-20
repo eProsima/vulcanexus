@@ -3,11 +3,6 @@
 Modify Discovery Server locators on run-time
 ============================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 .. _tutorials_deployment_ds_locators_runtime_background:
 
 Background
@@ -15,11 +10,6 @@ Background
 
 The :ref:`Discovery Server <vulcanexus_discovery_server>` is a Fast DDS enabled feature that procures an alternative discovery mechanism to the default ROS 2 discovery mechanism, `Simple Discovery Protocol (SDP) <https://fast-dds.docs.eprosima.com/en/latest/fastdds/discovery/simple.html#simple-disc-settings>`_, which is served by the DDS implementations according to the DDS specification.
 Whereas SDP (right figure) provides automatic out-of-the-box discovery by leveraging multicast, ROS 2 Discovery Server (left figure) provides a centralized hub for managing discovery which drastically reduces network bandwidth utilization when compared to SDP, since the nodes, publishers, and subscribers, only discovered those remote ROS 2 entities with which they need to communication (as opposed to the SDP model where everyone knows about each other).
-
-.. contents::
-    :local:
-    :backlinks: none
-    :depth: 1
 
 .. figure:: /rst/figures/intro/discovery-server.svg
     :align: center

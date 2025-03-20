@@ -5,12 +5,6 @@
 Configuring ROS 2 Router's Topic QoS
 ====================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
-
 Background
 ----------
 

@@ -7,11 +7,6 @@ Topic Keys Tutorial
 
 This tutorial aims to demonstrate the use of topic keys in *Vulcanexus* by simulating a scenario in which multiple sensors are transmitting their readings to a controller that processes them.
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Background
 ----------
 

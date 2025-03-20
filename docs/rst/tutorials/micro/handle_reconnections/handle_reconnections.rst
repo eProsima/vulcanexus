@@ -3,11 +3,6 @@
 Reconnections and liveliness
 ============================
 
-.. contents:: Table of Contents
-    :depth: 1
-    :local:
-    :backlinks: none
-
 This tutorial aims at providing insight on mechanism for handling reconnections between the micro-ROS Agent and Client and assert the connection liveliness.
 
 This features can be useful in multiple situations when the Agent or the Client are no longer available or the communication channel between them is broken. Those situations can be, among others:

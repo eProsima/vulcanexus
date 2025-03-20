@@ -3,11 +3,6 @@
 Nodes
 =======================
 
-.. contents:: Table of Contents
-    :depth: 2
-    :local:
-    :backlinks: none
-
 ROS 2 nodes are the main participants on ROS 2 ecosystem. They will communicate between each other using publishers, subscriptions, services, etc.
 Further information about ROS 2 nodes can be found on :ref:`Understanding nodes <ROS2Nodes>`.
 

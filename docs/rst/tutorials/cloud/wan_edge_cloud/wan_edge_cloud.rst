@@ -6,11 +6,6 @@
 Edge-Cloud communication on WAN
 ===============================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Background
 ----------
 
