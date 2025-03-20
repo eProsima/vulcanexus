@@ -3,11 +3,6 @@
 Keyed Topics in ROS 2 Turtlesim Demo
 ====================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Background
 ----------
 

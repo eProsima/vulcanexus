@@ -3,11 +3,6 @@
 Mapping Webots environment with ROSbot 2R teleoperation
 =======================================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Background
 ----------
 

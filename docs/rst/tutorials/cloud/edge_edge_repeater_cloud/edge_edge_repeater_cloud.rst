@@ -6,11 +6,6 @@
 Edge-Edge communication via Repeater
 ====================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Background
 ----------
 

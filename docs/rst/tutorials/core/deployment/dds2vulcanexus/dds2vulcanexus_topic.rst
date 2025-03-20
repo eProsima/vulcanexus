@@ -5,11 +5,6 @@ Fast DDS - Vulcanexus Topic Intercommunication
 
 This tutorial presents a step-by-step demonstration on how to intercommunicate Vulcanexus applications with native Fast DDS applications.
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 .. _dds2vulcanexus_topic_background:
 
 Background

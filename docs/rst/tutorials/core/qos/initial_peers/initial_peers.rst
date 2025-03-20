@@ -5,11 +5,6 @@
 Static discovery between ROS 2 nodes with Initial Peers
 =======================================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Background
 ----------
 

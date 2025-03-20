@@ -3,11 +3,6 @@
 Modifying Ownership and Ownership Strength QoS Policy
 =====================================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Background
 ----------
 

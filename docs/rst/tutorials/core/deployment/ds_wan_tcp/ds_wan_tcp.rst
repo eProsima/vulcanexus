@@ -3,11 +3,6 @@
 TCP over WAN with Discovery Server
 ==================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Background
 ----------
 

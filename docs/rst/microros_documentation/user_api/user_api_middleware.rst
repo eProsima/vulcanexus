@@ -3,11 +3,6 @@
 Middleware API
 ==============
 
-.. contents:: Table of Contents
-    :depth: 2
-    :local:
-    :backlinks: none
-
 micro-ROS default rmw layer `rmw_microxrcedds_c <https://github.com/micro-ROS/rmw_microxrcedds>`_ offers a set of utilities to directly configure and interact with the underlying middleware.
 The exposed API detailed on this documentation can be used with the ``rmw_microxrcedds_c`` public header: ``#include <rmw_microros/rmw_microros.h>``.
 

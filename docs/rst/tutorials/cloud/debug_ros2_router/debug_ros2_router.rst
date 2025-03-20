@@ -5,12 +5,6 @@
 Debugging ROS 2 Router
 ======================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
-
 Background
 ----------
 

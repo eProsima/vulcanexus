@@ -5,12 +5,6 @@
 ROS 2 Router configuration with Forwarding Routes
 =================================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
-
 Background
 ----------
 
