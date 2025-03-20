@@ -146,6 +146,8 @@ For a practical example demo, please refer to the :ref:`easy_mode_tutorial`.
     load any extra profile.
     Instead, the `max_blocking_time <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/standardQosPolicies.html#reliabilityqospolicy>`_ value defined in the user's XML file will be used.
 
+.. _easy_mode_cli:
+
 Easy Mode CLI
 -------------
 
@@ -183,11 +185,11 @@ The following table lists the available commands for the *Fast DDS* Discovery Se
         existing remote servers with the new connections. |br|
     * - list
       - List local active Discovery Servers created with the CLI Tool or the ``ROS2_EASY_MODE=<ip>``.
-    * - auto
-      - Handle the daemon start-up automatically and creates a Discovery Server in the specified |br|
-        domain (0 by default).
     * - start
-      - Start the Discovery Server daemon with the remote connections specified. |br|
+      - Handle the daemon start-up automatically and creates a Discovery Server in the specified |br|
+        domain (0 by default) with the remote connections specified. |br|
+    * - auto
+      - It is an alias that does the same as the ``start`` command. |br|
 
 .. list-table::
     :header-rows: 1
@@ -221,6 +223,10 @@ The following table lists the available commands for the *Fast DDS* Discovery Se
 Examples
 """"""""
 
+.. note::
+    The following examples are a quick guide to the CLI tool usage, for a more detailed explanation please refer to the
+    :ref:`easy_mode_cli_tutorial`.
+
 1.  Stop all running Easy Mode Discovery Servers and shut down Fast DDS daemon:
 
     .. code-block:: bash
@@ -245,7 +251,7 @@ Examples
 
         ROS_DOMAIN_ID=7 ROS2_EASY_MODE=127.0.0.1 fastdds discovery auto 127.0.0.1:7
 
-3.  Start an Easy Mode Discovery Server in the domain 3 pointing to a master in IP 192.168.1.42:
+4.  Start an Easy Mode Discovery Server in the domain 3 pointing to a master in IP 192.168.1.42:
 
     .. code-block:: bash
 
