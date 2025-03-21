@@ -7,7 +7,7 @@ Easy Mode CLI Tutorial
 
 This tutorial demonstrates the CLI usage of new :ref:`easy_mode` feature in *Vulcanexus*,
 serving as a follow up of the :ref:`easy_mode_tutorial`. We will run two talkers and two listeners
-distributed across diferent hosts and domains and we will use the :ref:`easy_mode` CLI to connect and disconnect
+distributed across different hosts and domains and we will use the :ref:`easy_mode` CLI to connect and disconnect
 them as needed.
 
 .. note::
@@ -30,7 +30,7 @@ it is essential to have completed the prerequisites section of that tutorial bef
 Preparation
 -----------
 
-We will be working with up to 3 different hosts distributed in Docker containers. 
+We will be working with up to 3 different hosts distributed in Docker containers.
 First, create an isolated Docker network for the Vulcanexus containers:
 
 .. code-block:: bash
@@ -136,7 +136,7 @@ indicating that the Discovery Server is already running:
 
 .. image:: ../../../../figures/tutorials/core/easy_mode/cli_tutorial_1_start_bien.gif
     :align: center
-    
+
 
 The ``start`` command requires setting the ``ROS2_EASY_MODE`` environment variable to be set to the master IP address for internal daemon operations. If the value
 does not match the one specified in the command, an error will be thrown:
