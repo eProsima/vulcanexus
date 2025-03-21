@@ -24,7 +24,11 @@ For the ROS 2 Docker image, the following command can be used to download the la
 
     docker pull eprosima/vulcanexus:jazzy-desktop
 
-For the FastDDS Docker image, it can be found on the `eProsima website <https://www.eprosima.com/product-download>`_. Note that for this tutorial, FastDSS suite 3.2 or higher is necessary.
+The Fast DDS Docker image can be found on the `eProsima website <https://www.eprosima.com/product-download>`_.
+
+.. note::
+
+    For this tutorial, FastDSS suite 3.2 or higher is necessary.
 
 Vulcanexus application
 -----------------------
@@ -37,6 +41,13 @@ To start the Vulcanexus application, we initiate the Docker container, and sourc
     source opt/vulcanexus/jazzy/setup.bash
 
 For this tutorial, we will use a simple example ROS 2 talker already installed in Vulcanexus, which sends periodically string messages to the chatter topic.
+
+In this example, we'll use domain :code:`42`. To configure the ROS 2 talker accordingly, set the following environment variable before launching it:
+
+.. code-block:: bash
+
+    export ROS_DOMAIN_ID=42
+
 To run the example, simply execute the following command:
 
 .. code-block:: bash
@@ -73,13 +84,7 @@ We can now see the starting screen of Fast DDS Monitor, where we click on :code:
 .. image:: /rst/figures/tutorials/core/ros2_idl/Monitor_cover.png
     :align: center
 
-The next step is the selection of the domain. For this tutorial, we will avoid the default domain, and instead choose Domain :code:`42`.
-To ensure our ROS 2 talker is visible in the Fast DDS Monitor, we must set the domain of the ROS 2 talker to :code:`42` as well.
-This can be done by setting the following environment variable before launching the ROS 2 talker:
-
-.. code-block:: bash
-
-    export ROS_DOMAIN_ID=42
+The next step is the selection of the domain. For this tutorial, we will choose Domain :code:`42`.
 
 .. image:: /rst/figures/tutorials/core/ros2_idl/Monitor_domain.png
     :align: center
@@ -103,14 +108,14 @@ Note that by default, the monitor will perform a demangling operation over the R
 Creating the readers and writers
 --------------------------------
 
-First, we are now going to create a new folder in the FastDDS docker to contain our code. To do so, run:
+First, we are now going to create a new folder in the Fast DDS docker to contain our code. To do so, run:
 
 .. code-block:: bash
 
     mkdir my_IDL
     cd my_IDL/
 
-For the next steps of the tutorial, in which we create the datareaders and datawriters, there are two different possible series of steps to take.
+For the next steps of the tutorial, in which we create the DataReaders and DataWriters, there are two different possible series of steps to take.
 
 Option 1: Demangled IDL
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -126,23 +131,21 @@ To do so, run the following commands:
     apt-get install nano
     nano ParticipantEntitiesInfo.idl
 
-In the nano editor, paste the copied IDL information. Due to reserved words in FastDDS operation, there is a small modification we need to apply, which will be deleted later in the automatic operation of our program.
+In the nano editor, paste the copied IDL information. Due to reserved words in Fast DDS operation, there is a small modification we need to apply, which will be deleted later in the automatic operation of our program.
 Inside the IDL file, replace the line :code:`rmw_dds_common::msg::Gid gid;`` with :code:`rmw_dds_common::msg::Gid _gid;`, that is, add an underscore before gid since gid is a reserved member name.
-Then, save and exit by pressing :code:`Ctrl+X`, then :code:`Y` and :code:`Enter`. This is the IDL file we will use to create the datareaders and datawriters.
-To create the necessary code, we will use a tool called `Fast DDS-Gen <https://fast-dds.docs.eprosima.com/en/latest/fastddsgen/introduction/introduction.html>`_. This tool will automatically generate the necessary code to create the datareaders and datawriters.
+Then, save and exit by pressing :code:`Ctrl+X`, then :code:`Y` and :code:`Enter`. This is the IDL file we will use to create the DataReaders and DataWriters.
+To create the necessary code, we will use a tool called `Fast DDS-Gen <https://fast-dds.docs.eprosima.com/en/latest/fastddsgen/introduction/introduction.html>`_. This tool will automatically generate the necessary code to create the DataReaders and DataWriters.
 To generate the code, run the following command:
 
 .. code-block:: bash
 
     fastddsgen -example CMake -typeros2 ParticipantEntitiesInfo.idl
 
-Now, we have the full code we need to create the datareaders and datawriters.
-
 Option 2: Mangled ROS 2 IDL
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A different approach is to use the mangled ROS 2 IDL directly. To do so, in the monitor, go to *View->Revert ROS 2 Demangling* to recover the IDL as received by the monitor, then in the IDL view, right-clicking on the screen and selecting *Copy* will allow us to copy the full IDL information into the clipboard.
-We can then paste this information into a new file, which we will name `ParticipantEntitiesInfo.idl`. First we will create the file, then open it with the program nano (any other program to pen the file may be used).
+We can then paste this information into a new file, which we will name `ParticipantEntitiesInfo.idl`. First we will create the file, then open it with the program nano (any other program to open the file may be used).
 To do so, run the following commands:
 
 .. code-block:: bash
@@ -152,25 +155,23 @@ To do so, run the following commands:
     apt-get install nano
     nano ParticipantEntitiesInfo.idl
 
-In the nano editor, paste the copied IDL information. Then, save and exit by pressing :code:`Ctrl+X`, then :code:`Y` and :code:`Enter`. This is the IDL file we will use to create the datareaders and datawriters.
+In the nano editor, paste the copied IDL information. Then, save and exit by pressing :code:`Ctrl+X`, then :code:`Y` and :code:`Enter`. This is the IDL file we will use to create the DataReaders and DataWriters.
 To create the necessary code, we will use a tool called `Fast DDS-Gen <https://fast-dds.docs.eprosima.com/en/latest/fastddsgen/introduction/introduction.html>`_.
-This tool will automatically generate the necessary code to create the datareaders and datawriters. To generate the code, run the following command:
+This tool will automatically generate the necessary code to create the DataReaders and DataWriters. To generate the code, run the following command:
 
 .. code-block:: bash
 
     fastddsgen -example CMake ParticipantEntitiesInfo.idl
 
-Now, we have the full code we need to create the datareaders and datawriters.
+Launching a Fast DDS DataReader
+-------------------------------
 
-Launching a FastDDS datareader
-------------------------------
-
-For the purpose of this tutorial, we will only be creating a single datareader to connect with the ROS 2 talker. The code for the datareader was generated in the previous step, and requires only a few simple modifications.
+For the purpose of this tutorial, we will only be creating a single DataReader to connect with the ROS 2 talker. The code for the DataReader was generated in the previous step, and requires only a few simple modifications.
 Opening the file `ParticipantEntitiesInfomain.cxx`, we need to perform a small modification to the code. The line :code:`int domain_id = 0;` must be replaced with :code:`int domain_id = 42;`, so our participants are created in the same domain as the ROS 2 talker.
 Save and exit by pressing :code:`Ctrl+X`, then :code:`Y` and :code:`Enter`.
 
-Additionally, we need to ensure that the datareader joins the same topic as the ROS 2 talker, so we need to perform an additional modification. Open the file `ParticipantEntitiesInfoSubscriberApp.cxx`, and replace the line :code:`topic_ = participant_->create_topic("ParticipantEntitiesInfoTopic", type_.get_type_name(), topic_qos);`
-with :code:`topic_ = participant_->create_topic("ros_discovery_info", type_.get_type_name(), topic_qos);`. This same operation needs to be done on the file `ParticipantEntitiesInfoPublisherApp.cxx` if we wanted a datawriter to connect to this topic too.
+Additionally, we need to ensure that the DataReader joins the same topic as the ROS 2 talker, so we need to perform an additional modification. Open the file `ParticipantEntitiesInfoSubscriberApp.cxx`, and replace the line :code:`topic_ = participant_->create_topic("ParticipantEntitiesInfoTopic", type_.get_type_name(), topic_qos);`
+with :code:`topic_ = participant_->create_topic("ros_discovery_info", type_.get_type_name(), topic_qos);`. This same operation needs to be done on the file `ParticipantEntitiesInfoPublisherApp.cxx` if we wanted a DataWriter to connect to this topic too.
 
 After these modifications, we can compile the code using CMake by running the following commands:
 
@@ -182,7 +183,7 @@ After these modifications, we can compile the code using CMake by running the fo
     cmake ..
     make
 
-This created an application we can directly run from the command line. We can now launch the datareader by running:
+This created an application we can directly run from the command line. We can now launch the DataReader by running:
 
 .. code-block:: bash
 

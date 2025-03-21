@@ -17,11 +17,7 @@ curl
 customizable
 Cyberbotics
 dataflow
-datareader
-datareaders
 dataspace
-datawriter
-datawriters
 dds
 Deallocates
 decrypt
