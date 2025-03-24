@@ -14,7 +14,7 @@ Background
 .. figure:: /rst/figures/tutorials/tools/ddsrecord&replay/DDSRecord&Replay.png
     :align: center
 
-*Vulcanexus* integrates the `DDS Record & Replay <https://dds-recorder.readthedocs.io/en/latest/>`_, a powerful tool that efficiently saves DDS data published into a DDS environment in a MCAP format database. 
+*Vulcanexus* integrates the `DDS Record & Replay <https://dds-recorder.readthedocs.io/en/latest/>`_, a powerful tool that efficiently saves DDS data published into a DDS environment in a MCAP format database.
 Thus, the exact playback of the recorded network events is possible as the data is linked to the timestamp at which the original data was published.
 This tutorial provides step-by-step instructions to use *Vulcanexus* for monitoring a ROS 2 turtlesim demo.
 
@@ -36,16 +36,16 @@ Each terminal will serve a specific purpose, ensuring a structured and modular a
 
 1. **Terminal 1: Launching the Turtlesim Simulation**:
     This first terminal will run the turtlesim graphical interface, where two turtles (A and B) will move within the simulation.
-    
+
     .. code-block:: bash
-        
+
         # Terminal 1
         ros2 run turtlesim turtlesim_node
 
     .. note::
         As the docker requires a graphical interface, running the docker container with the following flags is recommended:
         :code:`-e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --gpus all --env QT_X11_NO_MITSHM=1`.
-        
+
         It may also be necessary to export the following environment variable inside the container: :code:`export LIBGL_ALWAYS_SOFTWARE=1`.
 
 2. **Terminal 2: Spawning and Controlling the Turtles**:
@@ -82,7 +82,7 @@ In this section, we will use the *DDSRecorder* to capture the movement commands 
 This will allows us to replay the exact motion sequences later:
 
 .. code-block:: bash
-    
+
     # Terminal 4
     ddsrecorder -c <path_to_recorder_config>.yaml
 
@@ -95,7 +95,7 @@ We will use different recording configurations to control which topics are recor
 
         dds:
           domain: 0
-        
+
         recorder:
           output:
             filename: "tutorial"
@@ -108,10 +108,10 @@ We will use different recording configurations to control which topics are recor
 
         dds:
           domain: 0
-        
+
           allowlist:
             - name: "*/cmd_vel"
-        
+
         recorder:
           output:
             filename: "tutorial"
@@ -128,10 +128,10 @@ We will use different recording configurations to control which topics are recor
           allowlist:
           # - name: "rt/A/cmd_vel" # Recommended approach
             - name: "*/cmd_vel"
-        
+
           blocklist:
             - name: "*/B/*"
-        
+
         recorder:
           output:
             filename: "tutorial"
@@ -173,7 +173,7 @@ We will use different replay configurations to control how the data is replayed:
 
         dds:
           domain: 0
-        
+
           allowlist:
             - name: "*/cmd_vel"
 
@@ -187,7 +187,7 @@ We will use different replay configurations to control how the data is replayed:
 
         dds:
           domain: 0
-        
+
           allowlist:
             - name: "rt/A/cmd_vel"
 
@@ -259,7 +259,7 @@ We will use different replay configurations to control how the data is replayed:
             # milliseconds: <milliseconds> # Optional
 
     .. figure:: /rst/figures/tutorials/tools/ddsrecord&replay/DDSRecord&Replay_time.gif
-        :align: center  
+        :align: center
 
 
 .. important::
