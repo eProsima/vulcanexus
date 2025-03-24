@@ -176,12 +176,12 @@ Additionally, we need to ensure that the DataReader joins the same topic as the 
 
     topic_ = participant_->create_topic("ParticipantEntitiesInfoTopic", type_.get_type_name(), topic_qos);
 
-with 
+with
 
 .. code-block:: cpp
 
-    topic_ = participant_->create_topic("ros_discovery_info", type_.get_type_name(), topic_qos);. 
-    
+    topic_ = participant_->create_topic("ros_discovery_info", type_.get_type_name(), topic_qos);
+
 This same operation needs to be done on the file `ParticipantEntitiesInfoPublisherApp.cxx` if we wanted a DataWriter to connect to this topic too.
 
 After these modifications, we can compile the code using CMake by running the following commands:
