@@ -102,7 +102,7 @@ We will use different recording configurations to control which topics are recor
             path: "."
 
 2. **Record commanded velocities**:
-    To achieve this configuration, we will use the allowlist option to specify the topics we want to record, in this case any topic ending with "cmd_vel".
+    To achieve this configuration, we will use the ``allowlist`` option to specify the topics we want to record, in this case any topic ending with "cmd_vel".
 
     .. code-block::
 
@@ -118,7 +118,7 @@ We will use different recording configurations to control which topics are recor
             path: "."
 
 3. **Record only turtle A's movements**:
-    This configuration will record only the /A/cmd_vel topic. To achieve this we could use the allowlist as in the previous example (the recommended approach) or, just for demonstration purposes, we could use the blocklist to exclude all the topics in the ``B`` namespace using the wildcard character ``*``.
+    This configuration will record only the /A/cmd_vel topic. To achieve this we could use the ``allowlist`` as in the previous example (the recommended approach) or, just for demonstration purposes, we could use the ``blocklist`` to exclude all the topics in the ``B`` namespace using the wildcard character ``*``.
 
     .. code-block::
 
@@ -138,10 +138,10 @@ We will use different recording configurations to control which topics are recor
 
     .. note::
         The ROS2 topics and types suffer a mangling process when converted to DDS topics and types.
-        This is why in the allowlist we would need to use the namespace ``rt`` to refer to the ROS2 topic ``/A/cmd_vel``.
+        This is why in the ``allowlist`` we would need to use the namespace ``rt`` to refer to the ROS2 topic ``/A/cmd_vel``.
 
 .. important::
-    To check all the available options for the recorder configuration, you can refer to the `DDS Recorder documentation <https://dds-recorder.readthedocs.io/en/latest/rst/recording/usage/configuration.html>`_.
+    To check all the available options for the *DDDSRecorder* configuration, you can refer to the `DDS Recorder documentation <https://dds-recorder.readthedocs.io/en/latest/rst/recording/usage/configuration.html>`_.
 
 Replay Data
 -----------
@@ -263,5 +263,5 @@ We will use different replay configurations to control how the data is replayed:
 
 
 .. important::
-    To check all the available options for the replayer configuration, you can refer to the `DDS Replayer documentation <https://dds-recorder.readthedocs.io/en/latest/rst/replaying/usage/configuration.html>`_.
+    To check all the available options for the *DDSReplayer* configuration, you can refer to the `DDS Replayer documentation <https://dds-recorder.readthedocs.io/en/latest/rst/replaying/usage/configuration.html>`_.
 
