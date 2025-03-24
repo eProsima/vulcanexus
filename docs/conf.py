@@ -239,7 +239,6 @@ try:
 
     spelling_word_list_filename = [
         "rst/spelling_wordlist.txt",
-        "ros2_docs_spelling_wordlist.txt",
     ]
 
     from sphinxcontrib.spelling.filters import ContractionFilter
