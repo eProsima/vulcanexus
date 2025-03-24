@@ -40,6 +40,7 @@ Husarion
 inefficient
 interoperability
 interprocess
+Jolo
 kB
 keyring
 keyrings
@@ -77,6 +78,8 @@ reconfigurations
 reconnections
 Renesas
 repository
+retransmission
+retransmissions
 retransmit
 Robotstadium
 ROS
