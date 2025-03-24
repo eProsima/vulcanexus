@@ -76,9 +76,9 @@ Run the example
 This tutorial leverages the `ros-jazzy-image-tools` package to demonstrate that the aforementioned XML configuration indeed achieves communication over localhost with UDPv4 datagrams smaller than the standard 1500 B MTU.
 To run the tutorial, two shells are required:
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: Shell 1 (Subscription)
+  .. tab-item:: Shell 1 (Subscription)
 
     .. code-block:: bash
 
@@ -86,7 +86,7 @@ To run the tutorial, two shells are required:
         export FASTRTPS_DEFAULT_PROFILES_FILE=<path_to_xml_config_file>
         ros2 run image_tools showimage
 
-  .. tab:: Shell 2 (Publisher)
+  .. tab-item:: Shell 2 (Publisher)
 
     .. code-block:: bash
 

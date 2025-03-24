@@ -102,15 +102,15 @@ Run the following commands to extract the required URIs and save them automatica
 Even though the URIs have been saved, the corresponding pins have not been included into the URIs.
 Two options can be followed:
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: Environment variable
+    .. tab-item:: Environment variable
 
         .. code-block:: bash
 
             export FASTDDS_PKCS11_PIN=VulcanexusDemo<Talker|Listener>
 
-    .. tab:: PKCS #11 URI
+    .. tab-item:: PKCS #11 URI
 
         Edit both ``key.p11`` files and add at the end the corresponding pin: ``?pin-value=VulcanexusDemo<Talker|Listener>``.
 

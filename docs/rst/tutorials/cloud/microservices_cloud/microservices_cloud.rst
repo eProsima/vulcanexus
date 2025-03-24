@@ -238,9 +238,9 @@ but use the package ``microservers_py`` instead of ``client_py`` (change these s
 
 Once the whole workspace has been installed and correctly sourced, each server could be run with the following commands:
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: WAN
+    .. tab-item:: WAN
 
         .. code-block:: bash
 
@@ -249,7 +249,7 @@ Once the whole workspace has been installed and correctly sourced, each server c
             # In different terminal or background
             ros2 run microservers_py server_subtraction # To run Subtraction (-) Server
 
-    .. tab:: LAN
+    .. tab-item:: LAN
 
         .. code-block:: bash
 
@@ -281,14 +281,14 @@ Configure the DDS Router Cloud
 
 The DDS Router Cloud configuration file is quite similar to the DDS Router Edge configuration file, as can be seen below:
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: WAN
+    .. tab-item:: WAN
 
         .. literalinclude:: /resources/tutorials/cloud/microservices_cloud/dds_router_cloud_wan.yaml
             :language: yaml
 
-    .. tab:: LAN
+    .. tab-item:: LAN
 
         .. literalinclude:: /resources/tutorials/cloud/microservices_cloud/dds_router_cloud_lan.yaml
             :language: yaml

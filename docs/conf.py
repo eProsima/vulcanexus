@@ -223,16 +223,13 @@ macros = {
 extensions = [
     "notfound.extension",
     "sphinx_sitemap",
-    "sphinx_tabs.tabs",
+    "sphinx_design",
     "sphinx.ext.graphviz",
     "sphinx.ext.ifconfig",
     "sphinx.ext.intersphinx",
     "sphinx.ext.todo",
     "sphinxcontrib.plantuml",
 ]
-
-sphinx_tabs_disable_css_loading = False
-sphinx_tabs_disable_tab_closing = True
 
 try:
     import sphinxcontrib.spelling  # noqa: F401

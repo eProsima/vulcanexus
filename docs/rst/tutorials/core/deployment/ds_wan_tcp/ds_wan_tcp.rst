@@ -304,9 +304,9 @@ Regardless of whether the discovery *server* belongs, or not, to one of the *cli
 If possible, deploy the different elements of the tutorial in different docker containers over WAN, following one of the possibilities displayed in the image above.
 In order to address the port forwarding configuration, see the `Configure transversal NAT on the network router <https://eprosima-dds-router.readthedocs.io/en/latest/rst/use_cases/wan_tcp.html#configure-transversal-nat-on-the-network-router>`_ section from *WAN communication over TCP* Fast DDS Router tutorial for further information.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: Discovery *server*
+    .. tab-item:: Discovery *server*
 
         .. code-block:: bash
 
@@ -319,7 +319,7 @@ In order to address the port forwarding configuration, see the `Configure transv
             source /opt/vulcanexus/jazzy/setup.bash
             fastdds discovery -x server_configuration.xml
 
-    .. tab:: Listener
+    .. tab-item:: Listener
 
         .. code-block:: bash
 
@@ -333,7 +333,7 @@ In order to address the port forwarding configuration, see the `Configure transv
             export FASTRTPS_DEFAULT_PROFILES_FILE="listener_configuration.xml"
             ros2 run demo_nodes_cpp listener
 
-    .. tab:: Talker
+    .. tab-item:: Talker
 
         .. code-block:: bash
 

@@ -50,9 +50,9 @@ configuration file to achieve multicast communication across different hosts.
 
 First, run two Vulcanexus `jazzy-desktop` with:
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: Container one (Subscription)
+  .. tab-item:: Container one (Subscription)
 
     .. code-block:: bash
 
@@ -63,7 +63,7 @@ First, run two Vulcanexus `jazzy-desktop` with:
             --volume <path_to_xml_config_file_dir>:/root/xml_config \
             ubuntu-vulcanexus:jazzy-desktop
 
-  .. tab:: Container two (Publication)
+  .. tab-item:: Container two (Publication)
 
     .. code-block:: bash
 
@@ -75,9 +75,9 @@ First, run two Vulcanexus `jazzy-desktop` with:
 
 Then, within the container, run the talker-listener demo.
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: Container one (Subscription)
+  .. tab-item:: Container one (Subscription)
 
     .. code-block:: bash
 
@@ -85,7 +85,7 @@ Then, within the container, run the talker-listener demo.
         export FASTRTPS_DEFAULT_PROFILES_FILE=/root/xml_config/<xml_config_file>
         ros2 run demo_nodes_cpp listener
 
-  .. tab:: Container two (Publication)
+  .. tab-item:: Container two (Publication)
 
     .. code-block:: bash
 

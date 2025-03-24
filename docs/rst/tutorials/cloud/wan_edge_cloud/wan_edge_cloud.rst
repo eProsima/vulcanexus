@@ -209,15 +209,15 @@ Then source the ``turtlesim_move_ws`` workspace:
 
 And finally, run the application:
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: WAN
+    .. tab-item:: WAN
 
         .. code-block:: bash
 
             ros2 run turtlesim turtlesim_square_move
 
-    .. tab:: LAN
+    .. tab-item:: LAN
 
         .. code-block:: bash
 
@@ -262,14 +262,14 @@ Configure the DDS Router Cloud
 
 The DDS Router Cloud configuration file is quite similar to the DDS Router Edge configuration file, as can be seen below:
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: WAN
+    .. tab-item:: WAN
 
         .. literalinclude:: /resources/tutorials/cloud/wan_edge_cloud/dds_router_cloud_wan.yaml
             :language: yaml
 
-    .. tab:: LAN
+    .. tab-item:: LAN
 
         .. literalinclude:: /resources/tutorials/cloud/wan_edge_cloud/dds_router_cloud_lan.yaml
             :language: yaml

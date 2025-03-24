@@ -59,9 +59,9 @@ Configuring *governance.xml* and *permissions.xml*
 By default, the ``create_enclave`` feature configures security for ROS Domain ``0``.
 We can set up another domain or even a range of domains applying the following change in ``<domain></domain>`` in the *governance.xml* and in the *permissions.xml* files.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: Change to another domain
+    .. tab-item:: Change to another domain
 
         .. code-block:: xml
 
@@ -69,7 +69,7 @@ We can set up another domain or even a range of domains applying the following c
                 <id>(new domain)</id>
             </domains>
 
-    .. tab:: Change to a range of domains
+    .. tab-item:: Change to a range of domains
 
         .. code-block:: xml
 
@@ -156,14 +156,14 @@ ROS 2 Router Participants Configuration
 A `ROS 2 Router Participant <https://eprosima-dds-router.readthedocs.io/en/latest/rst/user_manual/participants/participant.html>`_ is a |rosrouter| entity that works as an interface between a network and the core of the router.
 Participants security can only be configured via XML profiles, following the instructions of `Fast DDS Security Documentation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/security/security.html>`_ to fulfill the pertinent requirements of the chosen security mechanisms.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: Participant Domain 0
+    .. tab-item:: Participant Domain 0
 
         .. literalinclude:: /resources/tutorials/cloud/router_participant_security_via_xml_profiles/configurations/secure_domain0.xml
             :language: xml
 
-    .. tab:: Participant Domain 1
+    .. tab-item:: Participant Domain 1
 
         .. literalinclude:: /resources/tutorials/cloud/router_participant_security_via_xml_profiles/configurations/secure_domain1.xml
             :language: xml
