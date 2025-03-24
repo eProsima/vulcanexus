@@ -7,7 +7,7 @@ Background
 ----------
 
 In this tutorial, it is explained how to deploy a TCP communication over WAN using Discovery Server as discovery mechanism.
-The following diagram describes de main idea of the deployment tutorial.
+The following diagram describes the main idea of the deployment tutorial.
 
 .. figure:: /rst/figures/tutorials/core/ds_wan_tcp/ds_wan_tcp_simple.svg
     :align: center
