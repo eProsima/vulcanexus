@@ -134,7 +134,7 @@ indicating that the Discovery Server is already running:
 .. image:: ../../../../figures/tutorials/core/easy_mode/Diagrams_cli_1.png
     :align: center
 
-.. image:: ../../../../figures/tutorials/core/easy_mode/cli_tutorial_1_start_bien.gif
+.. image:: ../../../../figures/tutorials/core/easy_mode/cli_tutorial_1_start.gif
     :align: center
 
 
