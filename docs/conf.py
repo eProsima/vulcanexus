@@ -223,6 +223,7 @@ macros = {
 extensions = [
     "notfound.extension",
     "sphinx_sitemap",
+    "sphinx_copybutton",
     "sphinx_design",
     "sphinx.ext.graphviz",
     "sphinx.ext.ifconfig",
