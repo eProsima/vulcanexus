@@ -56,24 +56,24 @@ The two resultant XML configurations are detailed below:
 
     Note that the container network itself does not create another level of externality in this case, as it is bridged with the host network.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: HOST 1
+    .. tab-item:: HOST 1
 
-        .. tabs::
+        .. tab-set::
 
-            .. tab:: CONTAINER 1
+            .. tab-item:: CONTAINER 1
 
                 .. literalinclude:: /resources/tutorials/core/deployment/external_locators/host1_container1.xml
                     :language: xml
 
 
 
-    .. tab:: HOST 2
+    .. tab-item:: HOST 2
 
-        .. tabs::
+        .. tab-set::
 
-            .. tab:: CONTAINER 1
+            .. tab-item:: CONTAINER 1
 
                 .. literalinclude:: /resources/tutorials/core/deployment/external_locators/host2_container1.xml
                     :language: xml
@@ -84,13 +84,13 @@ Run the example
 This section provides with step-by-step instructions for setting up the example scenario described in previous sections.
 On both hosts, open a shell and run:
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: HOST 1
+    .. tab-item:: HOST 1
 
-        .. tabs::
+        .. tab-set::
 
-            .. tab:: TERMINAL 1
+            .. tab-item:: TERMINAL 1
 
                 .. code-block:: bash
 
@@ -98,7 +98,7 @@ On both hosts, open a shell and run:
                         -p 11200-11201:7410-7411/udp `# Expose default internal ports to host` \
                         ubuntu-vulcanexus:humble-desktop `# Image name`
 
-            .. tab:: TERMINAL 2
+            .. tab-item:: TERMINAL 2
 
                 .. code-block:: bash
 
@@ -106,11 +106,11 @@ On both hosts, open a shell and run:
                         ubuntu-vulcanexus:jazzy-desktop `# Image name`
 
 
-    .. tab:: HOST 2
+    .. tab-item:: HOST 2
 
-        .. tabs::
+        .. tab-set::
 
-            .. tab:: TERMINAL 1
+            .. tab-item:: TERMINAL 1
 
                 .. code-block:: bash
 
@@ -131,13 +131,13 @@ Inside each one of the three containers, create a Profiles.xml file and paste th
 
 Finally, export the environment variable pointing to the Profiles.xml file, source Vulcanexus environment and run the ros2 example nodes.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: HOST 1
+    .. tab-item:: HOST 1
 
-        .. tabs::
+        .. tab-set::
 
-            .. tab:: CONTAINER 1
+            .. tab-item:: CONTAINER 1
 
                 .. code-block:: bash
 
@@ -145,7 +145,7 @@ Finally, export the environment variable pointing to the Profiles.xml file, sour
                     export FASTRTPS_DEFAULT_PROFILES_FILE=/Profiles.xml # Or the Profiles.xml file location
                     ros2 run demo_nodes_cpp talker
 
-            .. tab:: CONTAINER 2
+            .. tab-item:: CONTAINER 2
 
                 .. code-block:: bash
 
@@ -153,11 +153,11 @@ Finally, export the environment variable pointing to the Profiles.xml file, sour
                     ros2 run demo_nodes_cpp listener
 
 
-    .. tab:: HOST 2
+    .. tab-item:: HOST 2
 
-        .. tabs::
+        .. tab-set::
 
-            .. tab:: CONTAINER 1
+            .. tab-item:: CONTAINER 1
 
                     .. code-block:: bash
 

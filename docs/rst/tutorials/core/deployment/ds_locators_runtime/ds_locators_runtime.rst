@@ -81,41 +81,41 @@ Set a specific interface pool for this implementation by running the following c
 
 Then, open five terminals, and run the Vulcanexus jazzy image in each one with the following commands with the specific IP addresses:
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: Discovery Server Network A
+    .. tab-item:: Discovery Server Network A
 
-        .. tabs::
+        .. tab-set::
 
-            .. tab:: Server A
+            .. tab-item:: Server A
 
                 .. code-block:: bash
 
                     docker run -it --rm --name server_A --net vulcanexus_tutorial --ip 113.11.3.0 ubuntu-vulcanexus:jazzy-desktop
 
-            .. tab:: Client talker A
+            .. tab-item:: Client talker A
 
                 .. code-block:: bash
 
                     docker run -it --rm --name talker_A --net vulcanexus_tutorial --ip 113.11.3.2 ubuntu-vulcanexus:jazzy-desktop
 
-            .. tab:: Client listener
+            .. tab-item:: Client listener
 
                 .. code-block:: bash
 
                     docker run -it --rm --name listener --net vulcanexus_tutorial --ip 113.11.3.3 ubuntu-vulcanexus:jazzy-desktop
 
-    .. tab:: Discovery Server Network B
+    .. tab-item:: Discovery Server Network B
 
-        .. tabs::
+        .. tab-set::
 
-            .. tab:: Server B
+            .. tab-item:: Server B
 
                 .. code-block:: bash
 
                     docker run -it --rm --name server_B --net vulcanexus_tutorial --ip 113.11.3.1 ubuntu-vulcanexus:jazzy-desktop
 
-            .. tab:: Client talker B
+            .. tab-item:: Client talker B
 
                 .. code-block:: bash
 
@@ -128,23 +128,23 @@ Configure the discovery entities
 
 The *servers* configuration is really simple: by using the `Fast DDS Discovery CLI <https://fast-dds.docs.eprosima.com/en/latest/fastddscli/cli/cli.html#discovery>`_, the *server* ``discovery id`` would be set as ``0`` in the ``Discovery Server Network A``, and ``1`` in the ``Discovery Server Network B``.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: Discovery Server Network A
+    .. tab-item:: Discovery Server Network A
 
-        .. tabs::
+        .. tab-set::
 
-            .. tab:: Server A
+            .. tab-item:: Server A
 
                 .. code-block:: bash
 
                     fastdds discovery --server-id 0
 
-    .. tab:: Discovery Server Network B
+    .. tab-item:: Discovery Server Network B
 
-        .. tabs::
+        .. tab-set::
 
-            .. tab:: Server B
+            .. tab-item:: Server B
 
                 .. code-block:: bash
 
@@ -152,13 +152,13 @@ The *servers* configuration is really simple: by using the `Fast DDS Discovery C
 
 The outputs should look similar to the followings:
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: Discovery Server Network A
+    .. tab-item:: Discovery Server Network A
 
-        .. tabs::
+        .. tab-set::
 
-            .. tab:: Server A
+            .. tab-item:: Server A
 
                 .. code-block:: bash
 
@@ -168,11 +168,11 @@ The outputs should look similar to the followings:
                     Server GUID prefix: 44.53.00.5f.45.50.52.4f.53.49.4d.41
                     Server Addresses:   UDPv4:[0.0.0.0]:11811
 
-    .. tab:: Discovery Server Network B
+    .. tab-item:: Discovery Server Network B
 
-        .. tabs::
+        .. tab-set::
 
-            .. tab:: Server B
+            .. tab-item:: Server B
 
                 .. code-block:: bash
 
@@ -200,27 +200,27 @@ Create a ``discovery_servers.json`` ``json`` file for each *client* and introduc
    As long as the default port has been used in the tutorial, it could be omitted in the ``json`` configuration.
 
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: Discovery Server Network A
+    .. tab-item:: Discovery Server Network A
 
-        .. tabs::
+        .. tab-set::
 
-            .. tab:: Client talker A
-
-                .. literalinclude:: /resources/tutorials/core/deployment/ds_locators_runtime/discovery_servers_networkA.json
-                    :language: xml
-
-            .. tab:: Client listener
+            .. tab-item:: Client talker A
 
                 .. literalinclude:: /resources/tutorials/core/deployment/ds_locators_runtime/discovery_servers_networkA.json
                     :language: xml
 
-    .. tab:: Discovery Server Network B
+            .. tab-item:: Client listener
 
-        .. tabs::
+                .. literalinclude:: /resources/tutorials/core/deployment/ds_locators_runtime/discovery_servers_networkA.json
+                    :language: xml
 
-            .. tab:: Client talker B
+    .. tab-item:: Discovery Server Network B
+
+        .. tab-set::
+
+            .. tab-item:: Client talker B
 
                 .. literalinclude:: /resources/tutorials/core/deployment/ds_locators_runtime/discovery_servers_networkB.json
                     :language: xml
@@ -238,31 +238,31 @@ Run the example
 
 After all the configuration has been set, run the *discovery servers*, and the ``talker`` and ``listener`` *client* nodes:
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: Discovery Server Network A
+    .. tab-item:: Discovery Server Network A
 
-        .. tabs::
+        .. tab-set::
 
-            .. tab:: Client talker A
+            .. tab-item:: Client talker A
 
                 .. code-block:: bash
 
                     export FASTDDS_ENVIRONMENT_FILE="discovery_servers.json"
                     ros2 run demo_nodes_cpp talker
 
-            .. tab:: Client listener
+            .. tab-item:: Client listener
 
                 .. code-block:: bash
 
                     export FASTDDS_ENVIRONMENT_FILE="discovery_servers.json"
                     ros2 run demo_nodes_cpp listener
 
-    .. tab:: Discovery Server Network B
+    .. tab-item:: Discovery Server Network B
 
-        .. tabs::
+        .. tab-set::
 
-            .. tab:: Client talker B
+            .. tab-item:: Client talker B
 
                 .. code-block:: bash
 

@@ -181,16 +181,16 @@ Run the demo by executing the following commands in separate terminals:
     If a docker deployment was preferred, it would be necessary to attach the other two terminals to the running docker container before executing the above commands.
     This can be done by running ``docker exec -it <container_name> /bin/bash``.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: Shell 1 (Sensors)
+    .. tab-item:: Shell 1 (Sensors)
 
         .. code-block:: bash
 
             source ~/vulcanexus_ws/install/setup.bash
             ros2 launch demo_keys_filtering_cpp keyed_sensors_launch.py
 
-    .. tab:: Shell 2 (Controller)
+    .. tab-item:: Shell 2 (Controller)
 
         .. code-block:: bash
 

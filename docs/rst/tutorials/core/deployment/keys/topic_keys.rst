@@ -28,9 +28,9 @@ In Vulcanexus, users can define their own :ref:`custom messages<CustomInterfaces
 In addition, it is also possible to create custom messages using the `IDL (Interface Definition Language) <https://www.omg.org/spec/IDL/4.2/About-IDL>`_ format following a standardized way of defining the message structure.
 Next example depicts how to define a custom message using the IDL format in Vulcanexus:
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: IDL
+    .. tab-item:: IDL
 
         .. code-block:: bash
 
@@ -45,7 +45,7 @@ Next example depicts how to define a custom message using the IDL format in Vulc
               };
             };
 
-    .. tab:: MSG
+    .. tab-item:: MSG
 
         .. code-block:: bash
 
@@ -244,16 +244,16 @@ Run the demo by executing the following commands in separate terminals:
     If a docker deployment was preferred, it would be necessary to attach the other two terminals to the running docker container before executing the above commands.
     This can be done by running ``docker exec -it <container_name> /bin/bash``.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: Shell 1 (Sensors)
+    .. tab-item:: Shell 1 (Sensors)
 
         .. code-block:: bash
 
             source ~/vulcanexus_ws/install/setup.bash
             ros2 launch demo_keys_cpp multiple_topic_sensors_launch.py
 
-    .. tab:: Shell 2 (Controller)
+    .. tab-item:: Shell 2 (Controller)
 
         .. code-block:: bash
 
@@ -278,16 +278,16 @@ Lets go a step further.
 In this second approach a single topic is used in which all the sensors will publish their data (without using a keyed topic).
 Run the demo by executing the following commands in separate terminals:
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: Shell 1 (Sensors)
+    .. tab-item:: Shell 1 (Sensors)
 
         .. code-block:: bash
 
             source ~/vulcanexus_ws/install/setup.bash
             ros2 launch demo_keys_cpp single_topic_sensors_launch.py
 
-    .. tab:: Shell 2 (Controller)
+    .. tab-item:: Shell 2 (Controller)
 
         .. code-block:: bash
 
@@ -312,16 +312,16 @@ These are severe problems that should be avoided.
 Now, lets move on to the third approach for addressing the problem.
 Start, or reuse previous opened terminals and run the following commands:
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: Shell 1 (Sensors)
+    .. tab-item:: Shell 1 (Sensors)
 
         .. code-block:: bash
 
             source ~/vulcanexus_ws/install/setup.bash
             ros2 launch demo_keys_cpp keyed_sensors_launch.py
 
-    .. tab:: Shell 2 (Controller)
+    .. tab-item:: Shell 2 (Controller)
 
         .. code-block:: bash
 
