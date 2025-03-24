@@ -26,6 +26,7 @@ config
 const
 costmap
 cpp
+colcon
 compatibilities
 cryptographic
 cryptosystem
