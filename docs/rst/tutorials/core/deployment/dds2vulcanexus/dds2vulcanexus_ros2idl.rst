@@ -115,7 +115,7 @@ First, we are now going to create a new folder in the Fast DDS docker to contain
     mkdir my_IDL
     cd my_IDL/
 
-For the next steps of the tutorial, in which we create the DataReaders and DataWriters, there are two different possible series of steps to take.
+For the next steps of the tutorial, in which we create the DataReaders and DataWriters, there are two different approaches.
 
 Option 1: Demangled IDL
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -170,8 +170,19 @@ For the purpose of this tutorial, we will only be creating a single DataReader t
 Opening the file `ParticipantEntitiesInfomain.cxx`, we need to perform a small modification to the code. The line :code:`int domain_id = 0;` must be replaced with :code:`int domain_id = 42;`, so our participants are created in the same domain as the ROS 2 talker.
 Save and exit by pressing :code:`Ctrl+X`, then :code:`Y` and :code:`Enter`.
 
-Additionally, we need to ensure that the DataReader joins the same topic as the ROS 2 talker, so we need to perform an additional modification. Open the file `ParticipantEntitiesInfoSubscriberApp.cxx`, and replace the line :code:`topic_ = participant_->create_topic("ParticipantEntitiesInfoTopic", type_.get_type_name(), topic_qos);`
-with :code:`topic_ = participant_->create_topic("ros_discovery_info", type_.get_type_name(), topic_qos);`. This same operation needs to be done on the file `ParticipantEntitiesInfoPublisherApp.cxx` if we wanted a DataWriter to connect to this topic too.
+Additionally, we need to ensure that the DataReader joins the same topic as the ROS 2 talker, so we need to perform an additional modification. Open the file `ParticipantEntitiesInfoSubscriberApp.cxx`, and replace the line
+
+.. code-block:: cpp
+
+    topic_ = participant_->create_topic("ParticipantEntitiesInfoTopic", type_.get_type_name(), topic_qos);
+
+with 
+
+.. code-block:: cpp
+
+    topic_ = participant_->create_topic("ros_discovery_info", type_.get_type_name(), topic_qos);. 
+    
+This same operation needs to be done on the file `ParticipantEntitiesInfoPublisherApp.cxx` if we wanted a DataWriter to connect to this topic too.
 
 After these modifications, we can compile the code using CMake by running the following commands:
 
@@ -194,3 +205,5 @@ The connection will be made between them, as can be illustrated by the monitor i
 .. code-block:: bash
 
     rmw_dds_common::msg::ParticipantEntitiesInfo Subscriber matched.
+
+Finally, THE Domain View can be filtered to see only endpoints associated to `ros_discovery_info` topic.
