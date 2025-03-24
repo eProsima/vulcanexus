@@ -23,6 +23,7 @@ import json
 import os
 import pathlib
 import requests
+import sys
 
 from docutils.parsers.rst import Directive
 
@@ -222,7 +223,6 @@ macros = {
 # ones.
 extensions = [
     "notfound.extension",
-    "sphinx_sitemap",
     "sphinx_copybutton",
     "sphinx_design",
     "sphinx.ext.graphviz",
@@ -338,7 +338,16 @@ suppress_warnings = [
     "cpp.duplicate_declaration",
     "cpp.parse_function_declaration",
     "image.nonlocal_uri",
+    "config.cache",
 ]
+
+# Check if we are checking the spelling. In this case...
+if "spelling" in sys.argv:
+    # Exclude Ros2 documentation.
+    exclude_patterns.append("ros2_documentation/**")
+    # Avoid the warning of a wrong reference in the TOC entries, unknown references and unknow docs
+    # because fails due we are not including ros2_documentation.
+    suppress_warnings.extend(["toc.excluded", "ref.ref", "ref.doc"])
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False
