@@ -200,10 +200,8 @@ This created an application we can directly run from the command line. We can no
 
     ./ParticipantEntitiesInfo subscriber
 
-The connection will be made between them, as can be illustrated by the monitor itself in the Domain View. Additionally, the following message will be displayed by the console:
+The connection will be made between them, as can be illustrated by the monitor itself in the Domain View, which can be filtered to see only endpoints associated to `ros_discovery_info` topic (right-click over the Topic name, and choose Filter topic graph, opening the filtered graph in a new Tab). Additionally, the following message will be displayed by the console:
 
 .. code-block:: bash
 
     rmw_dds_common::msg::ParticipantEntitiesInfo Subscriber matched.
-
-Finally, THE Domain View can be filtered to see only endpoints associated to `ros_discovery_info` topic.
