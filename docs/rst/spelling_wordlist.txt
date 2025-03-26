@@ -18,8 +18,12 @@ customizable
 Cyberbotics
 dataflow
 dataspace
+dds
 Deallocates
 decrypt
+Demangled
+demangled
+demangling
 Diffie
 entrypoint
 eProsima
@@ -53,6 +57,7 @@ multicast
 multithreaded
 Multithreading
 namespace
+nano
 Nao
 NetX
 Nucleo
