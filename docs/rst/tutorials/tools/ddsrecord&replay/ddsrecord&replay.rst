@@ -44,7 +44,7 @@ Each terminal will serve a specific purpose, ensuring a structured and modular a
 
     .. note::
         As the docker requires a graphical interface, running the docker container with the following flags is recommended:
-        :code:`-e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --gpus all --env QT_X11_NO_MITSHM=1`.
+        :code:`-e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --env QT_X11_NO_MITSHM=1`.
 
         It may also be necessary to export the following environment variable inside the container: :code:`export LIBGL_ALWAYS_SOFTWARE=1`.
 
@@ -85,6 +85,9 @@ This will allows us to replay the exact motion sequences later:
 
     # Terminal 4
     ddsrecorder -c <path_to_recorder_config>.yaml
+
+.. important::
+    You can stop the recorder at any time by pressing ``Ctrl+C`` in the terminal where it is running.
 
 We will use different recording configurations to control which topics are recorded:
 
@@ -136,12 +139,13 @@ We will use different recording configurations to control which topics are recor
           output:
             filename: "tutorial"
 
-    .. note::
+    .. important::
         The ROS2 topics and types suffer a mangling process when converted to DDS topics and types.
         This is why in the ``allowlist`` we would need to use the namespace ``rt`` to refer to the ROS2 topic ``/A/cmd_vel``.
+        To know more about topic mangling, you can refer to the `ROS2 Topic and Service name mapping to DDS documentation <https://design.ros2.org/articles/topic_and_service_names.html>`_.
 
-.. important::
-    To check all the available options for the *DDDSRecorder* configuration, you can refer to the `DDS Recorder documentation <https://dds-recorder.readthedocs.io/en/latest/rst/recording/usage/configuration.html>`_.
+.. note::
+    To check all the available options for the *DDSRecorder* configuration, you can refer to the `DDS Recorder documentation <https://dds-recorder.readthedocs.io/en/latest/rst/recording/usage/configuration.html>`_.
 
 Replay Data
 -----------
@@ -183,6 +187,9 @@ We will use different replay configurations to control how the data is replayed:
 3. **Replay only turtle A's movements**:
     This configuration will replay only the movement commands of turtle A recorded in the mcap file.
 
+    .. warning::
+        The ``Terminal 3`` must be stopped before replaying the data to avoid ``/A/cmd_vel`` topic being republished by the mimic node into the ``/B/cmd_vel`` topic.
+
     .. code-block::
 
         dds:
@@ -196,6 +203,9 @@ We will use different replay configurations to control how the data is replayed:
 
 4. **Replay in a different ROS2 domain**:
     This configuration will replay the data in a different ROS2 domain, in our case we will use ``ROS_DOMAIN_ID=2``.
+
+    .. warning::
+        The ``turtlesim_node`` must be stopped and relaunched in the new domain to avoid conflicts.
 
     .. code-block::
 
@@ -226,22 +236,10 @@ We will use different replay configurations to control how the data is replayed:
         :align: center
 
 6. **Replay from a specific time until a specific time**:
-    This configuration will replay the data from a specific time until a specific time, in our case we will concatenate two different replays, the first one will end at a specific time and the second one will start at that same time, so the turtle will complete its whole route in two different replays.
+    This configuration allows replaying recorded data within a defined time range.
+    In our case, we will demonstrate this by splitting the replay into two separate sessions:
 
-    .. code-block::
-
-        dds:
-          domain: 2
-
-          allowlist:
-            - name: "rt/A/cmd_vel"
-
-        replayer:
-          begin-time:
-            datetime: <start_time>
-            # format: "%Y-%m-%d_%H-%M-%S"  # Optional
-            # local: true                  # Optional
-            # milliseconds: <milliseconds> # Optional
+    * The first replay will start normally and stop at a specific timestamp defined by ``end-time``:
 
     .. code-block::
 
@@ -258,10 +256,30 @@ We will use different replay configurations to control how the data is replayed:
             # local: true                  # Optional
             # milliseconds: <milliseconds> # Optional
 
+    * The second replay will resume from that exact point thanks to the ``begin-time`` tag, allowing the turtle to complete its full route:
+
+    .. code-block::
+
+        dds:
+          domain: 2
+
+          allowlist:
+            - name: "rt/A/cmd_vel"
+
+        replayer:
+          begin-time:
+            datetime: <start_time>
+            # format: "%Y-%m-%d_%H-%M-%S"  # Optional
+            # local: true                  # Optional
+            # milliseconds: <milliseconds> # Optional
+
+    .. important::
+        This two-step replay is used for clearer visualization, but both ``begin-time`` and ``end-time`` can be configured in a single configuration file.
+
     .. figure:: /rst/figures/tutorials/tools/ddsrecord&replay/DDSRecord&Replay_time.gif
         :align: center
 
 
-.. important::
+.. note::
     To check all the available options for the *DDSReplayer* configuration, you can refer to the `DDS Replayer documentation <https://dds-recorder.readthedocs.io/en/latest/rst/replaying/usage/configuration.html>`_.
 
