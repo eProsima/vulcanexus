@@ -5,11 +5,6 @@
 How to compress images for video streaming in ROS 2
 ===================================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Have you ever faced problems trying to send large data images in a video in ROS 2?
 ----------------------------------------------------------------------------------
 

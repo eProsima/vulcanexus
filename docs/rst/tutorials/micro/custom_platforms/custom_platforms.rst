@@ -14,12 +14,6 @@ This means that the library can be built as a standalone library with the only r
 
 This tutorial will cover the former topics along these sections:
 
-.. contents:: Table of Contents
-    :depth: 3
-    :local:
-    :backlinks: none
-
-
 Generating a micro-ROS Client library
 -------------------------------------
 

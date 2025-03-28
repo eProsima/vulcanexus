@@ -3,11 +3,6 @@
 Monitoring ROS 2 with Fast DDS Statistics Backend
 =================================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Background
 ----------
 

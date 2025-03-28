@@ -3,11 +3,6 @@
 Static Discovery
 ================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Background
 ----------
 
@@ -77,16 +72,16 @@ After launching Wireshark (with administrative privileges to be able to capture 
 The traffic shown can be filtered using as parameter ``rtps`` to see only traffic of interest.
 Next, run the talker and the listener:
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: Shell 1 (Listener)
+    .. tab-item:: Shell 1 (Listener)
 
         .. code-block:: bash
 
             source /opt/vulcanexus/jazzy/setup.bash
             FASTRTPS_DEFAULT_PROFILES_FILE=<path_to_xml_config_file>/vulcanexus_disable_shm.xml ros2 run demo_nodes_cpp listener
 
-    .. tab:: Shell 2 (Talker)
+    .. tab-item:: Shell 2 (Talker)
 
         .. code-block:: bash
 
@@ -111,14 +106,14 @@ Consequently, a different configuration file is required for each DomainParticip
 
 Save the following XML configuration files in the ``path_to_xml_config_file`` under the names ``talker_profile.xml`` and ``listener_profile.xml`` respectively:
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: talker_profile.xml
+  .. tab-item:: talker_profile.xml
 
     .. literalinclude:: /resources/tutorials/core/deployment/static_edp//talker_profile.xml
       :language: xml
 
-  .. tab:: listener_profile.xml
+  .. tab-item:: listener_profile.xml
 
     .. literalinclude:: /resources/tutorials/core/deployment/static_edp//listener_profile.xml
       :language: xml
@@ -137,16 +132,16 @@ Whereas the endpoint profile has to be set using the ROS 2 Topic name, the stati
 
 Run again the talker-listener demo loading the corresponding XML configuration file using ``FASTRTPS_DEFAULT_PROFILES_FILE`` environment variable:
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: Shell 1 (Listener)
+    .. tab-item:: Shell 1 (Listener)
 
         .. code-block:: bash
 
             source /opt/vulcanexus/jazzy/setup.bash
             FASTRTPS_DEFAULT_PROFILES_FILE=<path_to_xml_config_file>/listener_profile.xml ros2 run demo_nodes_cpp listener
 
-    .. tab:: Shell 2 (Talker)
+    .. tab-item:: Shell 2 (Talker)
 
         .. code-block:: bash
 
@@ -179,24 +174,24 @@ These endpoints are related to topic and node discovery, ROS 2 logging module, a
 Below, the complete XML files are shown.
 Please, replaced the previous XML configuration files with these ones and the new one required to configure the ROS 2 daemon DomainParticipant.
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: talker_profile.xml
+  .. tab-item:: talker_profile.xml
 
     .. literalinclude:: /resources/tutorials/core/deployment/static_edp//complete_talker_profile.xml
       :language: xml
 
-  .. tab:: listener_profile.xml
+  .. tab-item:: listener_profile.xml
 
     .. literalinclude:: /resources/tutorials/core/deployment/static_edp//complete_listener_profile.xml
       :language: xml
 
-  .. tab:: ros2_daemon_profile.xml
+  .. tab-item:: ros2_daemon_profile.xml
 
     .. literalinclude:: /resources/tutorials/core/deployment/static_edp//ros2_daemon_profile.xml
       :language: xml
 
-  .. tab:: static_edp_info.xml
+  .. tab-item:: static_edp_info.xml
 
     .. literalinclude:: /resources/tutorials/core/deployment/static_edp//complete_static_edp_info.xml
       :language: xml
@@ -204,23 +199,23 @@ Please, replaced the previous XML configuration files with these ones and the ne
 Run again the talker-listener demo loading the corresponding XML configuration file using ``FASTRTPS_DEFAULT_PROFILES_FILE`` environment variable.
 This time a third terminal is required to run the ROS 2 daemon.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: Shell 1 (Listener)
+    .. tab-item:: Shell 1 (Listener)
 
         .. code-block:: bash
 
             source /opt/vulcanexus/jazzy/setup.bash
             FASTRTPS_DEFAULT_PROFILES_FILE=<path_to_xml_config_file>/listener_profile.xml ros2 run demo_nodes_cpp listener
 
-    .. tab:: Shell 2 (Talker)
+    .. tab-item:: Shell 2 (Talker)
 
         .. code-block:: bash
 
             source /opt/vulcanexus/jazzy/setup.bash
             FASTRTPS_DEFAULT_PROFILES_FILE=<path_to_xml_config_file>/talker_profile.xml ros2 run demo_nodes_cpp talker
 
-    .. tab:: Shell 3 (ROS 2 Daemon)
+    .. tab-item:: Shell 3 (ROS 2 Daemon)
 
         .. code-block:: bash
 

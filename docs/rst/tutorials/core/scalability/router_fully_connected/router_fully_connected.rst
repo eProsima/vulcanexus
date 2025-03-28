@@ -5,11 +5,6 @@
 How to Use DDS Router for Scalable ROS 2 Network Communication
 ==============================================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Facing Scalability Challenges in Your ROS 2 System?
 ---------------------------------------------------
 

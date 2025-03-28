@@ -3,11 +3,6 @@
 ROS 2 network statistics inspection with Prometheus
 ===================================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Background
 ----------
 

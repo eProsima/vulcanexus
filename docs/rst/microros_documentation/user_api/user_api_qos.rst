@@ -3,11 +3,6 @@
 QoS configuration
 =================
 
-.. contents:: Table of Contents
-    :depth: 2
-    :local:
-    :backlinks: none
-
 QoS (Quality of Services) configuration related to DDS communication can also applied to micro-ROS entities, as its default middleware `eProsima Micro XRCE-DDS <https://micro-xrce-dds.docs.eprosima.com/en/latest/>`_ allows for complete customization using the provided RMW API.
 
 Further information about ROS 2 available QoS can be found on :ref:`About Quality of Service settings <concepts_about_qos>`.

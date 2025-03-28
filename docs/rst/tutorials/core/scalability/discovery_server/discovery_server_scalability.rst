@@ -3,11 +3,6 @@
 How to Use a Discovery Server to Optimize ROS 2 Node Discovery
 ==============================================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Facing Scalability Challenges in Your ROS 2 System?
 ---------------------------------------------------
 

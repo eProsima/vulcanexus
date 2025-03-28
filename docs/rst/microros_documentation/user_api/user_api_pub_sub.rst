@@ -3,11 +3,6 @@
 Publishers and subscribers
 ==========================
 
-.. contents:: Table of Contents
-    :depth: 2
-    :local:
-    :backlinks: none
-
 ROS 2 publishers and subscribers are the basic communication mechanism between nodes using topics. Further information about ROS 2 publish-subscribe pattern can be found on :ref:`Understanding topics <ROS2Topics>`.
 
 .. TODO(acuadros95): Refer to getting started tutorial
