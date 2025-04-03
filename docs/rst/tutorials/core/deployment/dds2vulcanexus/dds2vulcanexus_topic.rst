@@ -36,7 +36,7 @@ Prerequisites
 -------------
 
 For convenience, this tutorial is built and run within a Docker environment, although Docker is not required.
-The tutorial focuses on the explanations regarding message type and topic name compatibilities rather than given an in depth explanation about the code used.
+The tutorial focuses on the explanations regarding message type and topic name compatibilities rather than giving an in depth explanation about the code used.
 Create a clean workspace and download the *Vulcanexus - Fast DDS Topic Intercommunication* project:
 
 .. code-block:: bash
@@ -85,6 +85,10 @@ IDL type definition
 Although the ``msg`` format used to be the preferred way to describe topic types in ROS 2 (just to ease the migration from ROS types), they get converted into ``IDL`` under the hood before the actual topic type related code is generated on the CMake call to ``rosidl_generate_interfaces``.
 This means that the topic type definitions can be written as ``IDL`` files directly, allowing for a straight forward type compatibility with native DDS applications, since the standardized type definition format in DDS is in fact ``IDL``.
 For a complete correspondence matrix between ``msg`` and ``IDL`` types (referred as `DDS Types` in the table), please refer to :ref:`message_descriptions_field_types`.
+
+.. warning::
+
+    Note that the IDL files created by ROS 2 are not necessarily compatible with Fast DDS applications. For a detailed explanation on how to ensure the compatibility between ROS 2 and Fast DDS applications, please refer to :ref:`dds2vulcanexus_ros2idl`.
 
 This tutorial leverages ROS 2 capabilities of describing types in ``IDL`` to define a `HelloWorld.idl` that will be used by both the Vulcanexus and native Fast DDS applications.
 The `HelloWorld.idl`, and its ``msg`` equivalent is as follows:
