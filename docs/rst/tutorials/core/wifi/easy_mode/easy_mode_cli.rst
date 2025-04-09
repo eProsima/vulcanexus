@@ -229,7 +229,7 @@ In the following example, we will start Discovery Servers on each host without i
     # Terminal 1 -> Host A
     fastdds discovery start -d 1 $OWN_IP:1
     ROS_DOMAIN_ID=1 ROS2_EASY_MODE=$OWN_IP ros2 run demo_nodes_cpp talker
-    
+
     # Terminal 3 -> Host B
     fastdds discovery start -d 1 $OWN_IP:1
     ROS_DOMAIN_ID=1 ROS2_EASY_MODE=$OWN_IP ros2 run demo_nodes_cpp listener
@@ -249,7 +249,7 @@ In the following example, we will start Discovery Servers on each host without i
     ROS_DOMAIN_ID=1 ROS2_EASY_MODE=$OWN_IP ros2 topic pub /chatter std_msgs/msg/String "{data: 'Hello world in domain 1 from HOST_A'}" --once --spin-time 2
 
   .. image:: ../../../../figures/tutorials/core/easy_mode/cli_tutorial_3_add_2.gif
-    :align: center 
+    :align: center
 
   .. important::
     The ``ROS2_EASY_MODE`` environment variable must be set to the own IP when running the talker as that was the value used when starting the server.
