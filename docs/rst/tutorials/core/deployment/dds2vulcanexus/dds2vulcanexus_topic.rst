@@ -5,11 +5,6 @@ Fast DDS - Vulcanexus Topic Intercommunication
 
 This tutorial presents a step-by-step demonstration on how to intercommunicate Vulcanexus applications with native Fast DDS applications.
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 .. _dds2vulcanexus_topic_background:
 
 Background
@@ -99,15 +94,15 @@ The `HelloWorld.idl`, and its ``msg`` equivalent is as follows:
     Starting from Fast DDS-Gen *v4.0.1*, it can be left unspecified, as it defaults to ``@final``.
     Please, refer to `Fast DDS data types extensibility <https://fast-dds.docs.eprosima.com/en/latest/fastddsgen/dataTypes/dataTypes.html#extensibility>`__ for further information about type extensibility.
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: HelloWorld.idl
+  .. tab-item:: HelloWorld.idl
 
         .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/idl/HelloWorld.idl
             :language: IDL
 
 
-  .. tab:: HelloWorld.msg
+  .. tab-item:: HelloWorld.msg
 
     .. code-block::
 
@@ -305,16 +300,16 @@ The image can be run in each of them with:
 
 Then, run the publisher on one of the containers and the subscriber on the other:
 
-.. tabs::
+.. tab-set::
 
-  .. tab:: Publisher
+  .. tab-item:: Publisher
 
     .. code-block::
 
         vulcanexus_publisher
 
 
-  .. tab:: Subscriber
+  .. tab-item:: Subscriber
 
     .. code-block::
 

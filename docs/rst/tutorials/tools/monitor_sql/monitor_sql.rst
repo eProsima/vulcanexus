@@ -3,11 +3,6 @@
 Fast DDS Statistics Backend Monitoring to SQL
 =============================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Background
 ----------
 

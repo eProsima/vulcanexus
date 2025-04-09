@@ -6,11 +6,6 @@
 Vulcanexus Cloud and Kubernetes
 ===============================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Background
 ----------
 

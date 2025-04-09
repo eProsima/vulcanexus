@@ -6,11 +6,6 @@
 Edge-Edge communication via Repeater
 ====================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Background
 ----------
 
@@ -229,15 +224,15 @@ Then source the ``turtlesim_move_ws`` workspace:
 
 And finally, run the application:
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: WAN
+    .. tab-item:: WAN
 
         .. code-block:: bash
 
             ros2 run docs_turtlesim turtlesim_square_move
 
-    .. tab:: LAN
+    .. tab-item:: LAN
 
         .. code-block:: bash
 
@@ -266,14 +261,14 @@ In this example both edges use different ports to communicate with the Repeater,
 However this is not needed, and only one address could be used.
 The following snippet shows a configuration file (changing Domain for LAN scenarios):
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: WAN
+    .. tab-item:: WAN
 
         .. literalinclude:: /resources/tutorials/cloud/edge_edge_repeater_cloud/dds_router_edge_2_wan.yaml
             :language: yaml
 
-    .. tab:: LAN
+    .. tab-item:: LAN
 
         .. literalinclude:: /resources/tutorials/cloud/edge_edge_repeater_cloud/dds_router_edge_2_lan.yaml
             :language: yaml

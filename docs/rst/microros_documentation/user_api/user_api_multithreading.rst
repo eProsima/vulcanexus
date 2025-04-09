@@ -3,11 +3,6 @@
 Multithreading
 ==============
 
-.. contents:: Table of Contents
-    :depth: 1
-    :local:
-    :backlinks: none
-
 Multithreading support can be enabled at compilation time, which enables the micro-ROS default middleware (Micro XRCE-DDS) to be thread safe under specific circumstances.
 
 With this feature, micro-ROS entities such as publishers, subscribers or services can run on different RTOS execution threads, with the improvements on performance, usability and resource optimization that this implies.

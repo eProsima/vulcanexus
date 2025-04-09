@@ -3,12 +3,6 @@
 Benchmarking
 ============
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
-
 This tutorial will give insight on micro-ROS benchmarking on different topics:
 
 - Memory profiling: Static, dynamic and stack.

@@ -3,12 +3,6 @@
 Custom Transports
 =================
 
-.. contents:: Table of Contents
-    :depth: 1
-    :local:
-    :backlinks: none
-
-
 This tutorial aims at providing step-by-step guidance for those users interested in creating micro-ROS custom transports, instead of using the ones provided by default in the micro-ROS tools set.
 
 This tutorial starts from a previously created micro-ROS environment. Check the first steps of `Getting started micro-ROS <https://docs.vulcanexus.org/en/latest/rst/tutorials/micro/getting_started/getting_started.html>`_ for instructions on how to create a micro-ROS environment for embedded platforms.
