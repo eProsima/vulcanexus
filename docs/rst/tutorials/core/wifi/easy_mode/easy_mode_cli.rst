@@ -7,12 +7,12 @@ Easy Mode CLI Tutorial
 
 This tutorial demonstrates the CLI usage of new :ref:`easy_mode` feature in *Vulcanexus*,
 serving as a follow up of the :ref:`easy_mode_tutorial`. We will run two talkers and two listeners
-distributed across different hosts and domains and we will use the :ref:`easy_mode` CLI to connect and disconnect
+distributed across different hosts and domains and we will use the :ref:`easy_mode_cli` to connect and disconnect
 them as needed.
 
 .. note::
 
-  * The :ref:`easy_mode` feature works automatically and does not require the use of any of the following CLI commands in order to work.
+    The :ref:`easy_mode` feature works automatically and does not require the use of any of the following CLI commands in order to work.
     However, the following CLI commands  can be useful in certain complex scenarios.
 
 
@@ -25,7 +25,7 @@ Prerequisites
 -------------
 
 As mentioned earlier, this tutorial is a follow up of the :ref:`easy_mode_tutorial`. Therefore,
-it is essential to have completed the prerequisites section of that tutorial beforehand.
+it is essential to fulfill the prerequisites section of that tutorial beforehand.
 
 Preparation
 -----------
@@ -43,8 +43,8 @@ we will store the IP addresses of the other hosts, as well as the container's ow
 .. code-block:: bash
 
     # Terminal 1 -> Host A
-    docker run --net vulcanexus_net --ip 172.18.0.2 -it --rm ubuntu-vulcanexus:{DISTRO}-desktop
-    source /opt/vulcanexus/{DISTRO}/setup.bash
+    docker run --net vulcanexus_net --ip 172.18.0.2 -it --rm eprosima/vulcanexus:{DISTRO}-desktop
+
     export OWN_IP=172.18.0.2 && export B_IP=172.18.0.3 && export C_IP=172.18.0.4
 
     #Terminal 2 -> HOST A (just another terminal from the same container as Terminal 1)
@@ -53,13 +53,13 @@ we will store the IP addresses of the other hosts, as well as the container's ow
     export OWN_IP=172.18.0.2 && export B_IP=172.18.0.3 && export C_IP=172.18.0.4
 
     # Terminal 3 -> Host B
-    docker run --net vulcanexus_net --ip 172.18.0.3 -it --rm ubuntu-vulcanexus:{DISTRO}-desktop
-    source /opt/vulcanexus/{DISTRO}/setup.bash
+    docker run --net vulcanexus_net --ip 172.18.0.3 -it --rm eprosima/vulcanexus:{DISTRO}-desktop
+
     export A_IP=172.18.0.2 && export OWN_IP=172.18.0.3 && export C_IP=172.18.0.4
 
     # Terminal 4 -> Host C
-    docker run --net vulcanexus_net --ip 172.18.0.4 -it --rm ubuntu-vulcanexus:{DISTRO}-desktop
-    source /opt/vulcanexus/{DISTRO}/setup.bash
+    docker run --net vulcanexus_net --ip 172.18.0.4 -it --rm eprosima/vulcanexus:{DISTRO}-desktop
+
     export A_IP=172.18.0.2 && export B_IP=172.18.0.3 && export OWN_IP=172.18.0.4
 
 .. note::
@@ -82,64 +82,70 @@ This will help establish the context for the subsequent CLI demonstrations.
   for the domain 1 talker and to the IP address of Host C for the domain 2 talker.
 * With this configuration alone, the talkers and listeners will be fully connected and exchanging data.
 
+.. image:: ../../../../figures/tutorials/core/easy_mode/Diagrams_cli_0.png
+    :align: center
+
 .. code-block:: bash
 
     # Terminal 3 -> Host B
-    ROS_DOMAIN_ID=1 ROS2_EASY_MODE=$B_IP ros2 run demo_nodes_cpp listener
+    ROS_DOMAIN_ID=1 ROS2_EASY_MODE=$OWN_IP ros2 run demo_nodes_cpp listener
 
     # Terminal 4 -> Host C
-    ROS_DOMAIN_ID=2 ROS2_EASY_MODE=$C_IP ros2 run demo_nodes_cpp listener
+    ROS_DOMAIN_ID=2 ROS2_EASY_MODE=$OWN_IP ros2 run demo_nodes_cpp listener
 
     # Terminal 1 -> Host A
     ROS_DOMAIN_ID=1 ROS2_EASY_MODE=$B_IP ros2 topic pub /chatter std_msgs/msg/String "{data: 'Hello world in domain 1 from HOST_A'}" --once --spin-time 2
 
     # Terminal 2 -> Host A
-    ROS_DOMAIN_ID=2 ROS2_EASY_MODE=$C_IP ros2 topic pub /chatter std_msgs/msg/String "{data: 'Hello world in domain 1 from HOST_A'}" --once --spin-time 2
-
-.. image:: ../../../../figures/tutorials/core/easy_mode/Diagrams_cli_0.png
-    :align: center
+    ROS_DOMAIN_ID=2 ROS2_EASY_MODE=$C_IP ros2 topic pub /chatter std_msgs/msg/String "{data: 'Hello world in domain 2 from HOST_A'}" --once --spin-time 2
 
 .. image:: ../../../../figures/tutorials/core/easy_mode/cli_tutorial_0_easy.gif
     :align: center
 
+.. warning::
+    To execute each part of the tutorial, it is recommended to stop all running discovery servers and the Fast DDS Daemon before running the example: ``fastdds discovery stop``.
 
 
 START command
 ^^^^^^^^^^^^^
 
-The ``start`` command is used to launch the Discovery Server daemon with the specified remote connections. This functionality is also implicitly executed
-when running any ROS 2 node with the ``ROS2_EASY_MODE`` environment variable:
+The ``start`` command is used to launch the Fast DDS daemon and the Discovery Server with the specified remote connection.
+This functionality is also implicitly executed when running any ROS 2 node with the ``ROS2_EASY_MODE`` environment variable:
 
 .. code-block:: bash
 
-    ROS2_EASY_MODE=<master_ip> fastdds discovery start -d <domain_id> <master_ip>:<domain_id>
+    fastdds discovery start -d <domain_id> <master_ip>:<domain_id>
 
 .. note::
-    Throughout this tutorial, we will use the term ``master_ip`` to refer to the IP address set in the ``ROS2_EASY_MODE`` environment variable. However, the concept
-    of a single master server is no longer strictly valid, as we will use commands that allow us to define multiple remote servers, rather than a single central master.
+    Throughout this tutorial, we will use the term ``master_ip`` to refer to the IP address set in the ``ROS2_EASY_MODE`` environment variable, which must match the one set in the ``start`` command.
+    However, the concept of a single master server is no longer strictly valid.
+    We will use commands such as ``add`` to define multiple remote servers, enabling dynamic and decentralized connectivity rather than relying on a central master.
+    It is important to note that the system supports a fully meshed network topology, where servers can communicate with one another even if they are not directly connected, as long as they are part of the same connected graph.
 
-We will now replicate the previous example (focusing only on domain 1 for simplicity) using the start command. When running the nodes, you will notice a message
+We will now replicate the previous example (focusing only on domain 1 for simplicity) using the ``start`` command. When running the nodes, you will notice a message
 indicating that the Discovery Server is already running:
+
+.. image:: ../../../../figures/tutorials/core/easy_mode/Diagrams_cli_1.png
+    :align: center
 
 .. code-block:: bash
 
     # Terminal 3 -> Host B
-    ROS2_EASY_MODE=$B_IP fastdds discovery start -d 1 $B_IP:1
-    ROS_DOMAIN_ID=1 ROS2_EASY_MODE=$B_IP ros2 run demo_nodes_cpp listener
+    fastdds discovery start -d 1 $OWN_IP:1
+    ROS_DOMAIN_ID=1 ROS2_EASY_MODE=$OWN_IP ros2 run demo_nodes_cpp listener
 
     # Terminal 1 -> Host A
-    ROS2_EASY_MODE=$B_IP fastdds discovery start -d 1 $B_IP:1
+    fastdds discovery start -d 1 $B_IP:1
     ROS_DOMAIN_ID=1 ROS2_EASY_MODE=$B_IP ros2 topic pub /chatter std_msgs/msg/String "{data: 'Hello world in domain 1 from HOST_A'}" --once --spin-time 2
-
-.. image:: ../../../../figures/tutorials/core/easy_mode/Diagrams_cli_1.png
-    :align: center
 
 .. image:: ../../../../figures/tutorials/core/easy_mode/cli_tutorial_1_start.gif
     :align: center
 
 
-The ``start`` command requires setting the ``ROS2_EASY_MODE`` environment variable to be set to the master IP address for internal daemon operations. If the value
-does not match the one specified in the command, an error will be thrown:
+.. warning::
+    The ``start`` command will start a Discovery Server in the specified domain and IP address, which must be the same as the one set in the ``ROS2_EASY_MODE`` and ``ROS_DOMAIN_ID`` environment variables:
+      * If the ``ROS_DOMAIN_ID`` value does not match the -d argument of the command, the system will look for a Discovery Server in the specified domain and create one if it does not exist.
+      * If the ``ROS2_EASY_MODE`` value does not match the IP address specified in the command, an error will be thrown.
 
 .. image:: ../../../../figures/tutorials/core/easy_mode/cli_tutorial_1_start_error.gif
     :align: center
@@ -158,9 +164,11 @@ In the following example, we will start three separate Discovery Servers on the 
 .. code-block:: bash
 
     # Terminal 1 -> Host A
-    ROS2_EASY_MODE=$OWN_IP fastdds discovery start -d 1 $OWN_IP:1
-    ROS2_EASY_MODE=$OWN_IP fastdds discovery start -d 2 $OWN_IP:2
-    ROS2_EASY_MODE=$OWN_IP fastdds discovery start -d 3 $OWN_IP:3
+    fastdds discovery start -d 1 $OWN_IP:1
+    fastdds discovery list
+    fastdds discovery start -d 2 $OWN_IP:2
+    fastdds discovery list
+    fastdds discovery start -d 3 $OWN_IP:3
     fastdds discovery list
 
 .. image:: ../../../../figures/tutorials/core/easy_mode/cli_tutorial_2_list.gif
@@ -168,8 +176,8 @@ In the following example, we will start three separate Discovery Servers on the 
 STOP command
 ^^^^^^^^^^^^
 
-The ``stop`` command is used to stop Discovery Servers. It can terminate all Discovery Servers running on the same host, regardless of the domain. Alternatively,
-the user can specify a domain to stop only the corresponding server, while the daemon remains active.
+The ``stop`` command is used to stop Discovery Servers. It can terminate all Discovery Servers running on the same host, regardless of the domain, along with the Fast DDS Daemon.
+Alternatively, the user can specify a domain to stop only the corresponding server, while the daemon remains active.
 
 .. code-block:: bash
 
@@ -182,11 +190,14 @@ command, we will proceed to stop all remaining servers and confirm that no serve
 .. code-block:: bash
 
     # Terminal 1 -> Host A
-    ROS2_EASY_MODE=$OWN_IP fastdds discovery start -d 1 $OWN_IP:1
-    ROS2_EASY_MODE=$OWN_IP fastdds discovery start -d 2 $OWN_IP:2
-    ROS2_EASY_MODE=$OWN_IP fastdds discovery start -d 3 $OWN_IP:3
+    fastdds discovery start -d 1 $OWN_IP:1
+    fastdds discovery start -d 2 $OWN_IP:2
+    fastdds discovery start -d 3 $OWN_IP:3
+    fastdds discovery list
     fastdds discovery stop -d 3
+    fastdds discovery list
     fastdds discovery stop
+    fastdds discovery list
 
 .. image:: ../../../../figures/tutorials/core/easy_mode/cli_tutorial_2_stop.gif
 
@@ -201,53 +212,96 @@ existing remote servers.
     fastdds discovery add -d <domain_id> <remote_ip>:<domain_id>
 
 .. note::
-    This command can be used on any server to connect it to any other server, removing the concept of master servers and enabling a fully meshed network where all
-    servers can communicate with each other. For example, if A connects to B and B connects to C, then A and C are also connected.
+    This command allows a server to connect to a new remote server without needing to restart, enabling dynamic expansion of the network or joining an already connected one.
 
-In the following example, we will start Discovery Servers on Host B and Host C, both in domain 1, without pointing to any remote server. Then:
-
-* First, we will start a Discovery Server on Host A, also without pointing to any remote server. Since none of the servers are connected to a remote server, they remain isolated.
-  This can be observed as the publisher gets stuck in the "Waiting for at least one matching subscriber" state.
-* Next, we will add Host B as a remote server to the Discovery Server on Host A. This establishes a connection between A and B, but Host C still does not receive any data.
-* Finally, we will add Host C as a remote server to the Discovery Server on Host B. Due to the meshed network setup, Hosts A, B, and C are now fully connected.
+In the following example, we will start Discovery Servers on each host without initially connecting them, and then link them using the ``add`` command:
 
 .. image:: ../../../../figures/tutorials/core/easy_mode/Diagrams_cli_3_gif.png
     :align: center
 
+* First, we start a Discovery Server on Host A, Host B, and Host C, all in domain 1, each pointing only to itself.
+  Since none of the servers are connected to any remote servers, they remain isolated.
+  This behavior can be observed by running a publisher on Host A and listeners on Host B and Host C.
+  You will notice that no communication takes place between them.
 
-.. image:: ../../../../figures/tutorials/core/easy_mode/cli_tutorial_3_add.gif
+  .. code-block:: bash
+
+    # Terminal 1 -> Host A
+    fastdds discovery start -d 1 $OWN_IP:1
+    ROS_DOMAIN_ID=1 ROS2_EASY_MODE=$OWN_IP ros2 run demo_nodes_cpp talker
+    
+    # Terminal 3 -> Host B
+    fastdds discovery start -d 1 $OWN_IP:1
+    ROS_DOMAIN_ID=1 ROS2_EASY_MODE=$OWN_IP ros2 run demo_nodes_cpp listener
+
+    # Terminal 4 -> Host C
+    fastdds discovery start -d 1 $OWN_IP:1
+    ROS_DOMAIN_ID=1 ROS2_EASY_MODE=$OWN_IP ros2 run demo_nodes_cpp listener
+
+  .. image:: ../../../../figures/tutorials/core/easy_mode/cli_tutorial_3_add_1.gif
+
+* Next, we add Host B as a remote server to the Discovery Server on Host A. This establishes a connection between A and B, enabling communication between them, while Host C still does not receive any data.
+
+  .. code-block:: bash
+
+    # Terminal 1 -> Host A
+    fastdds discovery add -d 1 $B_IP:1
+    ROS_DOMAIN_ID=1 ROS2_EASY_MODE=$OWN_IP ros2 topic pub /chatter std_msgs/msg/String "{data: 'Hello world in domain 1 from HOST_A'}" --once --spin-time 2
+
+  .. image:: ../../../../figures/tutorials/core/easy_mode/cli_tutorial_3_add_2.gif
+    :align: center 
+
+  .. important::
+    The ``ROS2_EASY_MODE`` environment variable must be set to the own IP when running the talker as that was the value used when starting the server.
+
+* Finally, we add Host C as a remote server to the Discovery Server on Host B, forming an interconnected graph where A points to B and B points to C.
+  Thanks to this meshed network setup, Hosts A, B, and C are now fully connected, and messages from the publisher on Host A reach both listeners on Hosts B and C.
+
+  .. code-block:: bash
+
+    # Terminal 3 -> Host B
+    fastdds discovery add -d 1 $C_IP:1
+    ROS_DOMAIN_ID=1 ROS2_EASY_MODE=$OWN_IP ros2 run demo_nodes_cpp listener
+
+    # Terminal 1 -> Host A
+    ROS_DOMAIN_ID=1 ROS2_EASY_MODE=$OWN_IP ros2 topic pub /chatter std_msgs/msg/String "{data: 'Hello world in domain 1 from HOST_A'}" --once --spin-time 2
+
+  .. image:: ../../../../figures/tutorials/core/easy_mode/cli_tutorial_3_add_3.gif
+    :align: center
 
 SET command
 ^^^^^^^^^^^
 
-The ``set`` command is used to modify the remote Discovery Servers connected to the local server. This replaces existing remote servers with the newly specified connections.
-Its functionality is equivalent to stopping the server and restarting it with the new connections. Due to this ``start``-like behaviour, the ``ROS2_EASY_MODE`` environment variable
-must be set to the master IP address.
+The ``set`` command is used to modify the remote Discovery Servers connected to the local server.
+This replaces existing remote servers with the newly specified connection.
+Its functionality is equivalent to stopping the server and restarting it with the new connection.
+Due to this ``start``-like behaviour, the ``ROS2_EASY_MODE`` environment variable must be set to the master IP address for the following commands to work properly.
 
 .. code-block:: bash
 
-    ROS2_EASY_MODE=<master_ip> fastdds discovery set -d <domain_id> <master_ip>:<domain_id>
+    fastdds discovery set -d <domain_id> <master_ip>:<domain_id>
 
-In the following example, we will start a Discovery Server in Host A, initially pointing to Host B in domain 1. We will publish a message to verify that data is received on Host B
-but not on Host C. Then, we will update the remote server to point to Host C in domain 1 and observe that the connection successfully switches, allowing data to be received on
-Host C instead of Host B.
+In the following example, we will start a Discovery Server in Host A, initially pointing to Host B in domain 1.
+We will publish a message to verify that data is received on Host B but not on Host C.
+Then, we will update the remote server to point to Host C in domain 1 and observe that the connection successfully switches, allowing data to be received on Host C instead of Host B.
+
+.. image:: ../../../../figures/tutorials/core/easy_mode/Diagrams_cli_4_gif.png
+    :align: center
 
 .. code-block:: bash
 
     # Terminal 3 -> Host B
-    ROS_DOMAIN_ID=1 ROS2_EASY_MODE=$B_IP ros2 run demo_nodes_cpp listener
+    ROS_DOMAIN_ID=1 ROS2_EASY_MODE=$OWN_IP ros2 run demo_nodes_cpp listener
 
     # Terminal 4 -> Host C
-    ROS_DOMAIN_ID=1 ROS2_EASY_MODE=$C_IP ros2 run demo_nodes_cpp listener
+    ROS_DOMAIN_ID=1 ROS2_EASY_MODE=$OWN_IP ros2 run demo_nodes_cpp listener
 
     # Terminal 1 -> Host A
-    ROS2_EASY_MODE=$B_IP fastdds discovery start -d 1 $B_IP:1
+    fastdds discovery start -d 1 $B_IP:1
     ROS_DOMAIN_ID=1 ROS2_EASY_MODE=$B_IP ros2 topic pub /chatter std_msgs/msg/String "{data: 'Hello world in domain 1 from HOST_A'}" --once --spin-time 2
-    ROS2_EASY_MODE=$C_IP fastdds discovery set -d 1 $C_IP:1
+    fastdds discovery set -d 1 $C_IP:1
     ROS_DOMAIN_ID=1 ROS2_EASY_MODE=$C_IP ros2 topic pub /chatter std_msgs/msg/String "{data: 'Hello world in domain 1 from HOST_A'}" --once --spin-time 2
 
-.. image:: ../../../../figures/tutorials/core/easy_mode/Diagrams_cli_4_gif.png
-    :align: center
 
 .. image:: ../../../../figures/tutorials/core/easy_mode/cli_tutorial_4_set.gif
 
