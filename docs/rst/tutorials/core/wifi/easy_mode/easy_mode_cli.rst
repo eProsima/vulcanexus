@@ -44,7 +44,6 @@ we will store the IP addresses of the other hosts, as well as the container's ow
 
     # Terminal 1 -> Host A
     docker run --net vulcanexus_net --ip 172.18.0.2 -it --rm eprosima/vulcanexus:{DISTRO}-desktop
-
     export OWN_IP=172.18.0.2 && export B_IP=172.18.0.3 && export C_IP=172.18.0.4
 
     #Terminal 2 -> HOST A (just another terminal from the same container as Terminal 1)
@@ -54,12 +53,10 @@ we will store the IP addresses of the other hosts, as well as the container's ow
 
     # Terminal 3 -> Host B
     docker run --net vulcanexus_net --ip 172.18.0.3 -it --rm eprosima/vulcanexus:{DISTRO}-desktop
-
     export A_IP=172.18.0.2 && export OWN_IP=172.18.0.3 && export C_IP=172.18.0.4
 
     # Terminal 4 -> Host C
     docker run --net vulcanexus_net --ip 172.18.0.4 -it --rm eprosima/vulcanexus:{DISTRO}-desktop
-
     export A_IP=172.18.0.2 && export B_IP=172.18.0.3 && export OWN_IP=172.18.0.4
 
 .. note::
@@ -143,9 +140,9 @@ indicating that the Discovery Server is already running:
 
 
 .. warning::
-    The ``start`` command will start a Discovery Server in the specified domain and IP address, which must be the same as the one set in the ``ROS2_EASY_MODE`` and ``ROS_DOMAIN_ID`` environment variables:
-      * If the ``ROS_DOMAIN_ID`` value does not match the -d argument of the command, the system will look for a Discovery Server in the specified domain and create one if it does not exist.
-      * If the ``ROS2_EASY_MODE`` value does not match the IP address specified in the command, an error will be thrown.
+    The ``start`` command will start a Discovery Server in the specified domain and IP address, which must be the same as the ones set in the ``ROS2_EASY_MODE`` and ``ROS_DOMAIN_ID`` environment variables. When running a ROS2 node:
+     * If the ``ROS_DOMAIN_ID`` value does not match the ``-d`` argument of the command, the system will look for a Discovery Server in the specified domain and create a new one if it does not exist, instead of connecting to the already existing one.
+     * If the ``ROS2_EASY_MODE`` value does not match the IP address specified in the command, an error will be thrown.
 
 .. image:: ../../../../figures/tutorials/core/easy_mode/cli_tutorial_1_start_error.gif
     :align: center
@@ -183,8 +180,9 @@ Alternatively, the user can specify a domain to stop only the corresponding serv
 
     fastdds discovery stop -d <domain_id>
 
-In the following example, we will resume the previous terminal session and stop only the server running in domain 3. After verifying its termination using the ``list``
-command, we will proceed to stop all remaining servers and confirm that no servers, including the daemon, are running.
+In the following example, we will spawn three servers to demonstrate the two different syntaxes of the ``stop`` command.
+First, we will stop only the server running in domain 3 by specifying its domain and we will verify its termination using the ``list`` command.
+Then, we will proceed to stop all remaining servers and confirm that no servers, including the daemon, are still running.
 
 
 .. code-block:: bash
@@ -275,7 +273,10 @@ SET command
 The ``set`` command is used to modify the remote Discovery Servers connected to the local server.
 This replaces existing remote servers with the newly specified connection.
 Its functionality is equivalent to stopping the server and restarting it with the new connection.
-Due to this ``start``-like behaviour, the ``ROS2_EASY_MODE`` environment variable must be set to the master IP address for the following commands to work properly.
+
+.. warning::
+    The ``set`` command will stop the Discovery Server and then start it again with the new connection.
+    Due to this ``start``-like behaviour, the ``ROS2_EASY_MODE`` environment variable used to run any ROS 2 node from now on must match the IP address specified in the ``set`` command.
 
 .. code-block:: bash
 
