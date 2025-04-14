@@ -1,5 +1,12 @@
 .. include:: ../../../../exports/alias.include
 
+.. NOT-YET-AVAILABLE-TUTORIAL
+
+.. warning::
+
+    The features described in this tutorial are not yet available in the current release of Vulcanexus.
+    Stay tuned for new Vulcanexus releases to start using these new features!
+
 .. _easy_mode_cli_tutorial:
 
 Easy Mode CLI Tutorial
