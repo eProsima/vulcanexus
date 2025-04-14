@@ -43,7 +43,7 @@ we will store the IP addresses of the other hosts, as well as the container's ow
 .. code-block:: bash
 
     # Terminal 1 -> Host A
-    docker run --net vulcanexus_net --ip 172.18.0.2 -it --rm eprosima/vulcanexus:{DISTRO}-desktop
+    docker run --net vulcanexus_net --ip 172.18.0.2 -it --rm --hostname HOST_A eprosima/vulcanexus:{DISTRO}-desktop
     export OWN_IP=172.18.0.2 && export B_IP=172.18.0.3 && export C_IP=172.18.0.4
 
     #Terminal 2 -> HOST A (just another terminal from the same container as Terminal 1)
@@ -52,11 +52,11 @@ we will store the IP addresses of the other hosts, as well as the container's ow
     export OWN_IP=172.18.0.2 && export B_IP=172.18.0.3 && export C_IP=172.18.0.4
 
     # Terminal 3 -> Host B
-    docker run --net vulcanexus_net --ip 172.18.0.3 -it --rm eprosima/vulcanexus:{DISTRO}-desktop
+    docker run --net vulcanexus_net --ip 172.18.0.3 -it --rm --hostname HOST_B eprosima/vulcanexus:{DISTRO}-desktop
     export A_IP=172.18.0.2 && export OWN_IP=172.18.0.3 && export C_IP=172.18.0.4
 
     # Terminal 4 -> Host C
-    docker run --net vulcanexus_net --ip 172.18.0.4 -it --rm eprosima/vulcanexus:{DISTRO}-desktop
+    docker run --net vulcanexus_net --ip 172.18.0.4 -it --rm --hostname HOST_C eprosima/vulcanexus:{DISTRO}-desktop
     export A_IP=172.18.0.2 && export B_IP=172.18.0.3 && export OWN_IP=172.18.0.4
 
 .. note::
@@ -91,10 +91,10 @@ This will help establish the context for the subsequent CLI demonstrations.
     ROS_DOMAIN_ID=2 ROS2_EASY_MODE=$OWN_IP ros2 run demo_nodes_cpp listener
 
     # Terminal 1 -> Host A
-    ROS_DOMAIN_ID=1 ROS2_EASY_MODE=$B_IP ros2 topic pub /chatter std_msgs/msg/String "{data: 'Hello world in domain 1 from HOST_A'}" --once --spin-time 2
+    ROS_DOMAIN_ID=1 ROS2_EASY_MODE=$B_IP ros2 topic pub /chatter std_msgs/msg/String "{data: 'Hello world in domain 1 from HOST_A'}" --once --spin-time 3
 
     # Terminal 2 -> Host A
-    ROS_DOMAIN_ID=2 ROS2_EASY_MODE=$C_IP ros2 topic pub /chatter std_msgs/msg/String "{data: 'Hello world in domain 2 from HOST_A'}" --once --spin-time 2
+    ROS_DOMAIN_ID=2 ROS2_EASY_MODE=$C_IP ros2 topic pub /chatter std_msgs/msg/String "{data: 'Hello world in domain 2 from HOST_A'}" --once --spin-time 3
 
 .. image:: ../../../../figures/tutorials/core/easy_mode/cli_tutorial_0_easy.gif
     :align: center
@@ -142,7 +142,7 @@ indicating that the Discovery Server is already running:
 .. warning::
     The ``start`` command will start a Discovery Server in the specified domain and IP address, which must be the same as the ones set in the ``ROS2_EASY_MODE`` and ``ROS_DOMAIN_ID`` environment variables. When running a ROS2 node:
      * If the ``ROS_DOMAIN_ID`` value does not match the ``-d`` argument of the command, the system will look for a Discovery Server in the specified domain and create a new one if it does not exist, instead of connecting to the already existing one.
-     * If the ``ROS2_EASY_MODE`` value does not match the IP address specified in the command, an error will be thrown.
+     * If the ``ROS2_EASY_MODE`` value does not match the IP address specified in the command, an error like the one shown in the following image will be thrown.
 
 .. image:: ../../../../figures/tutorials/core/easy_mode/cli_tutorial_1_start_error.gif
     :align: center
@@ -217,7 +217,7 @@ In the following example, we will start Discovery Servers on each host without i
 .. image:: ../../../../figures/tutorials/core/easy_mode/Diagrams_cli_3_gif.png
     :align: center
 
-* First, we start a Discovery Server on Host A, Host B, and Host C, all in domain 1, each pointing only to itself.
+* First, we start a Discovery Server on Host A, Host B and Host C, all in domain 1, each pointing only to itself.
   Since none of the servers are connected to any remote servers, they remain isolated.
   This behavior can be observed by running a publisher on Host A and listeners on Host B and Host C.
   You will notice that no communication takes place between them.
@@ -242,27 +242,28 @@ In the following example, we will start Discovery Servers on each host without i
 
   .. code-block:: bash
 
-    # Terminal 1 -> Host A
+    # Terminal 2 -> Host A
     fastdds discovery add -d 1 $B_IP:1
-    ROS_DOMAIN_ID=1 ROS2_EASY_MODE=$OWN_IP ros2 topic pub /chatter std_msgs/msg/String "{data: 'Hello world in domain 1 from HOST_A'}" --once --spin-time 2
 
   .. image:: ../../../../figures/tutorials/core/easy_mode/cli_tutorial_3_add_2.gif
     :align: center
 
   .. important::
-    The ``ROS2_EASY_MODE`` environment variable must be set to the own IP when running the talker as that was the value used when starting the server.
+    Adding a remote server does not change the ``master_ip``, so when running any ROS 2 node, the ``ROS2_EASY_MODE`` environment variable should still be set to the same value used when starting the server.
 
 * Finally, we add Host C as a remote server to the Discovery Server on Host B, forming an interconnected graph where A points to B and B points to C.
   Thanks to this meshed network setup, Hosts A, B, and C are now fully connected, and messages from the publisher on Host A reach both listeners on Hosts B and C.
 
+  To observe the connection being established without interrupting the listener, we will run the command in a new terminal on Host B (the top right corner terminal in the image below):
+
   .. code-block:: bash
 
-    # Terminal 3 -> Host B
+    # Terminal 5 -> Host B
+    docker exec -it <HOST_B_CONTAINER> bash
+    source /opt/vulcanexus/jazzy/setup.bash
+    export A_IP=172.18.0.2 && export OWN_IP=172.18.0.3 && export C_IP=172.18.0.4
     fastdds discovery add -d 1 $C_IP:1
-    ROS_DOMAIN_ID=1 ROS2_EASY_MODE=$OWN_IP ros2 run demo_nodes_cpp listener
 
-    # Terminal 1 -> Host A
-    ROS_DOMAIN_ID=1 ROS2_EASY_MODE=$OWN_IP ros2 topic pub /chatter std_msgs/msg/String "{data: 'Hello world in domain 1 from HOST_A'}" --once --spin-time 2
 
   .. image:: ../../../../figures/tutorials/core/easy_mode/cli_tutorial_3_add_3.gif
     :align: center
