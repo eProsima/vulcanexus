@@ -146,6 +146,8 @@ For a practical example demo, please refer to the :ref:`easy_mode_tutorial`.
     load any extra profile.
     Instead, the `max_blocking_time <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/standardQosPolicies.html#reliabilityqospolicy>`_ value defined in the user's XML file will be used.
 
+.. _easy_mode_cli:
+
 Easy Mode CLI
 -------------
 
@@ -169,25 +171,21 @@ The following table lists the available commands for the *Fast DDS* Discovery Se
 
     * - Command
       - Description
-    * - stop
-      - Stop the Discovery Server daemon if it is executed with no arguments. If a domain is |br|
-        specified with the ``-d`` argument it will only stop the corresponding server and the daemon |br|
-        will remain alive.
-    * - add
-      - Add new remote Discovery Servers to the local server.
-        This will connect both servers and |br|
-        their sub-networks without modifying existing remote servers. |br|
-    * - set
-      - Rewrite the remote Discovery Servers connected to the local server.
-        This will replace |br|
-        existing remote servers with the new connections. |br|
-    * - list
-      - List local active Discovery Servers created with the CLI Tool or the ``ROS2_EASY_MODE=<ip>``.
-    * - auto
-      - Handle the daemon start-up automatically and creates a Discovery Server in the specified |br|
-        domain (0 by default).
     * - start
       - Start the Discovery Server daemon with the remote connections specified. |br|
+        (Example: start -d 1 10.0.0.1:1).
+    * - stop
+      - Stop the Discovery Server daemon if it is executed with no arguments.
+        If a domain is |br| specified with the ``-d`` argument it will only stop the corresponding server and |br|
+        the daemon will remain alive.
+    * - add
+      - Add new remote Discovery Servers to the local server.
+        This will connect both servers |br| and their sub-networks without modifying existing remote servers.
+    * - set
+      - Rewrite the remote Discovery Servers connected to the local server.
+        This will replace |br| existing remote servers with the new connections.
+    * - list
+      - List local active Discovery Servers created with the CLI Tool or the ``ROS2_EASY_MODE=<ip>``.
 
 .. list-table::
     :header-rows: 1
@@ -197,29 +195,32 @@ The following table lists the available commands for the *Fast DDS* Discovery Se
       - Description
     * - ``-d  --domain``
       - Selects the domain of the server to target for this action.
-        It defaults to 0 if |br|
-        this argument is missing and no value is found in the ``ROS_DOMAIN_ID``
-        environment variable.
-    * - ``<remote_server_list>``
-      - It is only accepted with the `auto`, `start`, `add` and `set` commands.
-        It is a list of |br|
-        remote servers to connect to with the following structure: "<IP:domain>;<IP:domain>;...".
+        It is mandatory for |br| commands ``start``, ``add`` and ``set``.
+    * - ``<remote_server>``
+      - It is an IP-domain pair defining a remote server to connect to: |br|
+        ``<IP:domain>``.
+        It is mandatory with the `start`, `add` and `set` commands. |br|
+        Only valid IPv4 addresses are accepted.
 
+.. note::
+    The command ``add`` also accepts a remote server list using the structure ``"<IP:domain>;<IP:domain>;..."``.
 .. important::
-    It is important to remark that spawning a new server from the CLI which will be later used by the ROS 2 nodes requires to:
-
-    * Set the ``ROS2_EASY_MODE`` environment variable in CLI command.
-    * Select the master server IP and pass it as an argument to the CLI command.
+    It is important to note that when spawning a new server from the CLI for use with ROS 2 nodes, the specified domain ID and master IP must match the values defined in the corresponding ROS 2 environment variables when running the nodes.
 
     .. code-block:: bash
 
-        ROS2_EASY_MODE=<master_ip> fastdds discovery auto -d <domain> <master_ip>:<domain>
+        fastdds discovery start -d <domain> <master_ip>:<domain>
+        ROS2_EASY_MODE=<master_ip> ROS_DOMAIN_ID=<domain> ros2 run <package> <executable>
 
     Otherwise, the spawned server will not be available for the ROS 2 nodes.
     It is recommended to run new servers directly from the ROS 2 nodes to avoid this issue.
 
 Examples
 """"""""
+
+.. note::
+    The following examples are a quick guide to the CLI tool usage, for a more detailed explanation please refer to the
+    :ref:`easy_mode_cli_tutorial`.
 
 1.  Stop all running Easy Mode Discovery Servers and shut down Fast DDS daemon:
 
@@ -237,22 +238,10 @@ Examples
 
     .. code-block:: bash
 
-        ROS2_EASY_MODE=127.0.0.1 fastdds discovery auto -d 7 127.0.0.1:7
+        fastdds discovery start -d 7 127.0.0.1:7
 
-    OR
-
-    .. code-block:: bash
-
-        ROS_DOMAIN_ID=7 ROS2_EASY_MODE=127.0.0.1 fastdds discovery auto 127.0.0.1:7
-
-3.  Start an Easy Mode Discovery Server in the domain 3 pointing to a master in IP 192.168.1.42:
+4.  Start an Easy Mode Discovery Server in the domain 3 pointing to a master in IP 192.168.1.42:
 
     .. code-block:: bash
 
-        ROS2_EASY_MODE=192.168.1.42 fastdds discovery auto -d 3 192.168.1.42:3
-
-    OR
-
-    .. code-block:: bash
-
-        ROS_DOMAIN_ID=3 ROS2_EASY_MODE=192.168.1.42 fastdds discovery auto 192.168.1.42:3
+        fastdds discovery start -d 3 192.168.1.42:3
