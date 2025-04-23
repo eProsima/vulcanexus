@@ -3,11 +3,6 @@
 Change mutable QoS through get native API
 =========================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Background
 ----------
 
@@ -143,19 +138,19 @@ To do that, inside the package, there are three xml files.
 Each one of them defines a profile for a publisher with a "large" ownership strength, another with a "small" ownership strength and a subscriber (that does not need an ownership strength definition).
 For the three of them, exclusive ownership is defined.
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: large_ownership_strength.xml
+    .. tab-item:: large_ownership_strength.xml
 
         .. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/large_ownership_strength.xml
             :language: xml
 
-    .. tab:: small_ownership_strength.xml
+    .. tab-item:: small_ownership_strength.xml
 
         .. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/small_ownership_strength.xml
             :language: xml
 
-    .. tab:: subscriber_exclusive_ownership.xml
+    .. tab-item:: subscriber_exclusive_ownership.xml
 
         .. literalinclude:: /resources/tutorials/core/qos/mutable/vulcanexus_change_mutable_qos/src/subscriber_exclusive_ownership.xml
             :language: xml
@@ -192,9 +187,9 @@ Then, export the `FASTRTPS_DEFAULT_PROFILES_FILE` environment variable to point 
 
 The code to execute in each terminal can be found in the tabs below:
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: First terminal
+    .. tab-item:: First terminal
 
         .. code-block:: bash
 
@@ -204,7 +199,7 @@ The code to execute in each terminal can be found in the tabs below:
             export FASTRTPS_DEFAULT_PROFILES_FILE=./install/vulcanexus_change_mutable_qos/profiles/subscriber_exclusive_ownership.xml
             ros2 run demo_nodes_cpp listener  `# Run minimal subscriber`
 
-    .. tab:: Second terminal
+    .. tab-item:: Second terminal
 
         .. code-block:: bash
 
@@ -215,7 +210,7 @@ The code to execute in each terminal can be found in the tabs below:
             export FASTRTPS_DEFAULT_PROFILES_FILE=./install/vulcanexus_change_mutable_qos/profiles/large_ownership_strength.xml
             ros2 run vulcanexus_change_mutable_qos change_mutable_qos_publisher Publisher_1     `# Run Publisher 1`
 
-    .. tab:: Third terminal
+    .. tab-item:: Third terminal
 
         .. code-block:: bash
 

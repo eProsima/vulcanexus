@@ -7,11 +7,6 @@
 Persistent Data using Durability QoS
 ====================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Background
 ----------
 

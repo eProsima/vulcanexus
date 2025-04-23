@@ -3,12 +3,6 @@
 Creating custom types
 =====================
 
-.. contents:: Table of Contents
-    :depth: 1
-    :local:
-    :backlinks: none
-
-
 This tutorial aims at providing step-by-step guidance for those users interested in adding custom message definition to the micro-ROS build. Those instructions can be used to extend the type definition for topics, services and actions provided by ROS 2 and micro-ROS.
 
 Further information can be found in :ref:`Implementing custom interfaces <SinglePkgInterface>`.

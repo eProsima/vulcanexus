@@ -5,12 +5,6 @@
 Change ROS 2 Domain to Discovery Server
 =======================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
-
 Background
 ----------
 

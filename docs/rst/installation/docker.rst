@@ -19,9 +19,9 @@ And then load the image with:
 
 *Vulcanexus* Docker image can be run with:
 
-.. tabs::
+.. tab-set::
 
-    .. tab:: GUI support
+    .. tab-item:: GUI support
 
         .. code-block:: bash
 
@@ -35,7 +35,7 @@ And then load the image with:
                 -v /tmp/.X11-unix:/tmp/.X11-unix \
                 ubuntu-vulcanexus:jazzy-desktop
 
-    .. tab:: CLI support
+    .. tab-item:: CLI support
 
         .. code-block:: bash
 

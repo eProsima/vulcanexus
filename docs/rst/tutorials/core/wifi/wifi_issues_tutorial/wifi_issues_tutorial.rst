@@ -5,11 +5,6 @@
 How to solve wireless network issues in ROS 2
 =============================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Have you ever faced issues deploying your ROS 2 application over WiFi?
 ----------------------------------------------------------------------
 

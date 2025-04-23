@@ -3,11 +3,6 @@
 micro-ROS Utilities
 ===================
 
-.. contents:: Table of Contents
-    :depth: 1
-    :local:
-    :backlinks: none
-
 `micro_ros_utilities <https://github.com/micro-ROS/micro_ros_utilities>`_ is a package that provides a set of tools for easing the use of micro-ROS on different platforms. Currently, it has two `APIs <https://micro.ros.org/docs/api/utils/>`_:
 
 - micro-ROS type utils.

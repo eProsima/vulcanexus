@@ -5,11 +5,6 @@
 Configuring Fast-DDS QoS via XML profiles
 =========================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Vulcanexus offers the possibility of fully configuring Fast DDS' QoS policies through XML profile definition.
 This can be done in several ways depending on whether the application used is a native Fast DDS application or a Vulcanexus application using Fast DDS's RMW implementation.
 This guide will focus on the latter.

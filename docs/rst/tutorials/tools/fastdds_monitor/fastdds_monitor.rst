@@ -3,11 +3,6 @@
 ROS 2 network statistics inspection with ROS 2 Monitor
 ======================================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Background
 ----------
 

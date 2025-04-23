@@ -5,12 +5,6 @@
 ROS 2 Router configuration via XML profiles
 ===========================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
-
 Background
 ----------
 
