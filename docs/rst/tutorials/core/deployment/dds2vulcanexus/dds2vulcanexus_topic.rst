@@ -150,7 +150,7 @@ The simple Vulcanexus publisher node is as follows:
 
 To use the type generated from the IDL, three things are done:
 
-1. Include the generated type header:
+1.  Include the generated type header:
 
     .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/vulcanexus_app/publisher.cpp
         :language: c++
@@ -158,36 +158,36 @@ To use the type generated from the IDL, three things are done:
 
 2. Create a publisher in a ``HelloWorld`` topic which uses the generated type.
 
-    1. First, the ``HelloWorldPublisher`` ``Node`` class stores a shared pointer to the publisher:
+    1.  First, the ``HelloWorldPublisher`` ``Node`` class stores a shared pointer to the publisher:
 
         .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/vulcanexus_app/publisher.cpp
                 :language: c++
                 :lines: 50
                 :dedent: 2
 
-    2. Then, upon construction, it instantiates the publisher, assigning it to the shared pointer class data member:
+    2.  Then, upon construction, it instantiates the publisher, assigning it to the shared pointer class data member:
 
         .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/vulcanexus_app/publisher.cpp
                 :language: c++
                 :lines: 35
                 :dedent: 4
 
-3. Publish data on the topic.
-   In this case, the ``HelloWorldPublisher`` is using a wall timer to have periodic publications:
+3.  Publish data on the topic.
+    In this case, the ``HelloWorldPublisher`` is using a wall timer to have periodic publications:
 
-        1. ``HelloWorldPublisher`` has a data member for reusing the sample:
+    1.  ``HelloWorldPublisher`` has a data member for reusing the sample:
 
-            .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/vulcanexus_app/publisher.cpp
-                :language: c++
-                :lines: 51
-                :dedent: 2
+        .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/vulcanexus_app/publisher.cpp
+            :language: c++
+            :lines: 51
+            :dedent: 2
 
-        2. ``HelloWorldPublisher``, upon construction, creates said wall timer, which is used to publish data:
+    2.  ``HelloWorldPublisher``, upon construction, creates said wall timer, which is used to publish data:
 
-            .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/vulcanexus_app/publisher.cpp
-                :language: c++
-                :lines: 37-45
-                :dedent: 4
+        .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/vulcanexus_app/publisher.cpp
+            :language: c++
+            :lines: 37-45
+            :dedent: 4
 
 .. _dds2vulcanexus_topic_fastdds:
 
@@ -240,46 +240,46 @@ The native Fast DDS subscriber is as follows:
 
 There are several things to unpack in this application:
 
-1. ``HelloWorldSubscriber`` holds both a reference to the type support, to create the topic, and a ``HelloWorld`` sample instance for reusing it upon reception.
+1.  ``HelloWorldSubscriber`` holds both a reference to the type support, to create the topic, and a ``HelloWorld`` sample instance for reusing it upon reception.
 
     .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/fastdds_app/subscriber.cpp
         :language: c++
         :lines: 115-116
         :dedent: 4
 
-    1. The type support is instantiated upon construction:
+    1.  The type support is instantiated upon construction:
 
         .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/fastdds_app/subscriber.cpp
             :language: c++
             :lines: 37-42
             :dedent: 4
 
-    2. Then, it is registered in the ``DomainParticipant`` for further use:
+    2.  Then, it is registered in the ``DomainParticipant`` for further use:
 
         .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/fastdds_app/subscriber.cpp
             :language: c++
             :lines: 72
             :dedent: 8
 
-2. The topic is created with name ``rt/HelloWorld``.
-   Mind that this topic name is different from the one set in the Vulcanexus publisher (``HelloWorld``).
-   This is because Vulcanexus appends ``rt/`` to the topic name passed when creating a ``Publisher`` or ``Subscription``, where ``rt`` stands for *ROS Topic*, as services and actions have different prefixes (please refer to ROS 2 design documentation regarding `Topic and Service name mapping to DDS <https://design.ros2.org/articles/topic_and_service_names.html>`_).
-   Another important detail is the type name, which in this example is extracted from the type support directly, as the type is generated with ROS 2 naming compatibility (see :ref:`dds2vulcanexus_topic_fastdds_generation`).
+2.  The topic is created with name ``rt/HelloWorld``.
+    Mind that this topic name is different from the one set in the Vulcanexus publisher (``HelloWorld``).
+    This is because Vulcanexus appends ``rt/`` to the topic name passed when creating a ``Publisher`` or ``Subscription``, where ``rt`` stands for *ROS Topic*, as services and actions have different prefixes (please refer to ROS 2 design documentation regarding `Topic and Service name mapping to DDS <https://design.ros2.org/articles/topic_and_service_names.html>`_).
+    Another important detail is the type name, which in this example is extracted from the type support directly, as the type is generated with ROS 2 naming compatibility (see :ref:`dds2vulcanexus_topic_fastdds_generation`).
 
-       .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/fastdds_app/subscriber.cpp
-            :language: c++
-            :lines: 74-79
-            :dedent: 8
+    .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/fastdds_app/subscriber.cpp
+        :language: c++
+        :lines: 74-79
+        :dedent: 8
 
 
-3. A ``DataReader`` is created in the topic, setting the very ``HelloWorldSubscriber`` as listener, since it inherits from ``DataReaderListener``, overriding the ``on_data_available`` callback:
+3.  A ``DataReader`` is created in the topic, setting the very ``HelloWorldSubscriber`` as listener, since it inherits from ``DataReaderListener``, overriding the ``on_data_available`` callback:
 
     .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/fastdds_app/subscriber.cpp
         :language: c++
         :lines: 81-91
         :dedent: 8
 
-4. Finally, when a new sample arrives, Fast DDS calls the implementation of ``on_data_available``, which print the data to the ``STDOUT``:
+4.  Finally, when a new sample arrives, Fast DDS calls the implementation of ``on_data_available``, which prints the data to the ``STDOUT``:
 
     .. literalinclude:: /resources/tutorials/core/deployment/dds2vulcanexus/topic/fastdds_app/subscriber.cpp
         :language: c++
@@ -291,7 +291,7 @@ There are several things to unpack in this application:
 Run the demo
 ------------
 
-Once the Docker image is built, running the demo simply require two terminals.
+Once the Docker image is built, running the demo simply requires two terminals.
 The image can be run in each of them with:
 
 .. code-block:: bash

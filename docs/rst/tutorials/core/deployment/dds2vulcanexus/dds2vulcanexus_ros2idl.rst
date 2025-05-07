@@ -5,10 +5,6 @@ Communication between Vulcanexus and Fast DDS using ROS 2 generated IDLs
 
 This tutorial presents a step-by-step demonstration on how to intercommunicate Vulcanexus applications with native Fast DDS applications, when using ROS 2 generated IDLs.
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
 
 .. _dds2vulcanexus_ros2idl_prerequisites:
 

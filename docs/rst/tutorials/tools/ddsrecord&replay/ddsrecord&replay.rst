@@ -3,11 +3,6 @@
 ROS 2 recording with DDS Record & Replay
 ========================================
 
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
-
 Background
 ----------
 

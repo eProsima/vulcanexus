@@ -1,12 +1,5 @@
 .. include:: ../../../../exports/alias.include
 
-.. NOT-YET-AVAILABLE-TUTORIAL
-
-.. warning::
-
-    The features described in this tutorial are not yet available in the current release of Vulcanexus.
-    Stay tuned for new Vulcanexus releases to start using these new features!
-
 .. _easy_mode_cli_tutorial:
 
 Easy Mode CLI Tutorial
@@ -22,11 +15,6 @@ them as needed.
     The :ref:`easy_mode` feature works automatically and does not require the use of any of the following CLI commands in order to work.
     However, the following CLI commands  can be useful in certain complex scenarios.
 
-
-.. contents::
-    :depth: 2
-    :local:
-    :backlinks: none
 
 Prerequisites
 -------------
