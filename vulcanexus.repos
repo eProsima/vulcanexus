@@ -90,7 +90,7 @@ repositories:
   eProsima/Vulcanexus:
     type: git
     url: https://github.com/eProsima/vulcanexus.git
-    version: 4.3.0
+    version: v4.3.0
   eProsima/ROSIDL-Dynamic-TypeSupport-FastRTPS:
     type: git
     url: https://github.com/eProsima/rosidl_dynamic_typesupport_fastrtps.git
