@@ -42,7 +42,7 @@ This version ships the following packages:
       - `5.0.2 <https://github.com/micro-ROS/micro_ros_msgs/blob/jazzy/CHANGELOG.rst#502-2024-05-31>`__
       - v4.0.0
     * - ROS 2 Monitor
-      - `v3.2.0 <https://fast-dds-monitor.readthedocs.io/en/latest/rst/notes/notes.html>`__
+      - `v3.2.0 <https://fast-dds-monitor.readthedocs.io/en/latest/rst/notes/notes.html#version-v3-2-0>`__
       - v4.3.0
     * - ROS 2 Router
       - `v3.2.0 <https://eprosima-dds-router.readthedocs.io/en/latest/rst/notes/notes.html#version-v3-2-0>`__
