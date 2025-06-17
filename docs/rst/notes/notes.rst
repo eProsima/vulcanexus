@@ -27,7 +27,7 @@ The following table outlines the Vulcanexus releases and their support cycles:
      - Release Date
      - EOL Date
    * - :ref:`Jazzy Jolo <notes_jazzy_latest>`
-     - v4.3.0
+     - v4.3.1
      - October 2024
      - May 2029
    * - :ref:`Iron Imagination <notes_iron_latest>`
