@@ -90,7 +90,7 @@ repositories:
   eProsima/rosidl:
     type: git
     url: https://github.com/eProsima/rosidl.git
-    version: v2.7.0
+    version: v2.8.0
   eProsima/ROSIDL-TypeSupport-FastRTPS:
     type: git
     url: https://github.com/eProsima/rosidl_typesupport_fastrtps
