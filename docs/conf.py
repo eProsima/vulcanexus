@@ -230,6 +230,7 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx.ext.todo",
     "sphinxcontrib.plantuml",
+    'sphinxcontrib.mermaid',
 ]
 
 try:
