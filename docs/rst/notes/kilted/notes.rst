@@ -1,6 +1,6 @@
 .. _notes_kilted_latest:
 
-Kilted K (v5.0.0)
+Kilted Kaiju (v5.0.0)
 ===================
 
 .. warning::

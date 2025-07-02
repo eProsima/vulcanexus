@@ -29,7 +29,7 @@ The following table outlines the Vulcanexus releases and their support cycles:
      - EOL Date
    * - :ref:`Kilted Kaiju <notes_kilted_latest>`
      - v5.0.0
-     - July 2025
+     - September 2025
      - November 2026
    * - :ref:`Jazzy Jolo <notes_jazzy_latest>`
      - v4.3.1

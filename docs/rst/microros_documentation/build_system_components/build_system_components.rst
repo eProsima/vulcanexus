@@ -27,7 +27,7 @@ Also, a wide range of transport layers are available: UART, UDP/IP, TCP/IP, USB-
 
     .. code-block:: bash
 
-        source /opt/vulcanexus/kilted/setup.bash
+        source /opt/vulcanexus/$VULCANEXUS_DISTRO/setup.bash
         ros2 run micro_ros_setup component renesas_e2_studio
 
 .. figure:: /rst/figures/micro/platforms_logos/esp_idf.png
