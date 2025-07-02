@@ -255,7 +255,7 @@ In the following example, we will start Discovery Servers on each host without i
 
     # Terminal 5 -> Host B
     docker exec -it <HOST_B_CONTAINER> bash
-    source /opt/vulcanexus/jazzy/setup.bash
+    source /opt/vulcanexus/kilted/setup.bash
     export A_IP=172.18.0.2 && export OWN_IP=172.18.0.3 && export C_IP=172.18.0.4
     fastdds discovery add -d 1 $C_IP:1
 

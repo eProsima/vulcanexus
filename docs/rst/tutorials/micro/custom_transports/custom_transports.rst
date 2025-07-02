@@ -25,7 +25,7 @@ These two modes can be selected by activating and deactivating the ``framing`` p
 micro-ROS Client
 ----------------
 
-A full example can be found on micro-ROS demos repository `custom_transports <https://github.com/micro-ROS/micro-ROS-demos/blob/jazzy/rclc/configuration_example/custom_transports/main.c>`_ example.
+A full example can be found on micro-ROS demos repository `custom_transports <https://github.com/micro-ROS/micro-ROS-demos/blob/kilted/rclc/configuration_example/custom_transports/main.c>`_ example.
 
 An example on how to set these external transport callbacks in the micro-ROS Client API is:
 

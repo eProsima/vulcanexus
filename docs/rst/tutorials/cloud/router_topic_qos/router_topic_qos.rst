@@ -60,23 +60,23 @@ There are two ways to achieve this:
 
     .. code-block:: bash
 
-        docker run -it ubuntu-vulcanexus:jazzy-desktop
+        docker run -it ubuntu-vulcanexus:kilted-desktop
 
     The Docker container will automatically setup the Vulcanexus environment on start up, but in case you installed Vulcanexus from binaries please do not forget to source the Vulcanexus installation first by executing:
 
     .. code-block:: bash
 
-            source /opt/vulcanexus/jazzy/setup.bash
+            source /opt/vulcanexus/kilted/setup.bash
 
 #.  Setting up a development environment on the local host.
 
-    To do this, the ``vucanexus-jazzy-desktop`` package is needed, since it includes all the simulation tools, demos, and tutorials.
+    To do this, the ``vucanexus-kilted-desktop`` package is needed, since it includes all the simulation tools, demos, and tutorials.
 
     Set up the Vulcanexus environment by executing:
 
     .. code-block:: bash
 
-            source /opt/vulcanexus/jazzy/setup.bash
+            source /opt/vulcanexus/kilted/setup.bash
 
 Running ROS 2 nodes
 ^^^^^^^^^^^^^^^^^^^

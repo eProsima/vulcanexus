@@ -15,7 +15,7 @@ And then load the image with:
 
 .. code-block:: bash
 
-    docker load -i ubuntu-vulcanexus-jazzy-desktop.tar
+    docker load -i ubuntu-vulcanexus-kilted-desktop.tar
 
 *Vulcanexus* Docker image can be run with:
 
@@ -33,13 +33,13 @@ And then load the image with:
                 --ipc host \
                 -e DISPLAY=$DISPLAY \
                 -v /tmp/.X11-unix:/tmp/.X11-unix \
-                ubuntu-vulcanexus:jazzy-desktop
+                ubuntu-vulcanexus:kilted-desktop
 
     .. tab-item:: CLI support
 
         .. code-block:: bash
 
-            docker run -it ubuntu-vulcanexus:jazzy-desktop
+            docker run -it ubuntu-vulcanexus:kilted-desktop
 
 To run more than one session within the same container, *Vulcanexus* installation must be sourced.
 Given a running container, you can open another session by:
@@ -52,7 +52,7 @@ Then, within the container, source the *Vulcanexus* installation with:
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/jazzy/setup.bash
+    source /opt/vulcanexus/kilted/setup.bash
 
 To verify that the sourcing was correct, run:
 
@@ -64,4 +64,4 @@ The output should be:
 
 .. code-block:: bash
 
-    /opt/vulcanexus/jazzy
+    /opt/vulcanexus/kilted
