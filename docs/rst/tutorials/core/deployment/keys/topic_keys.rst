@@ -343,5 +343,5 @@ In addition, it uses optimum resources (it only requires one topic and one subsc
 Hence, it is by using topic keys when the reception of the latest status of each instance (sensor) is assured.
 This is because the Quality of Service settings are applied per data instance.
 These and further benefits can be explored in :ref:`benefits_of_topic_keys`.
-For learning how to combine keyed topics with content filter topic in *Vulcanexus*, please refer to the :ref:`filtered_topic_keys_tutorial`.
+For learning how to combine keyed topics with content filter topic in *Vulcanexus*, please refer to the :ref:`vulcanexus_filtered_topic_keys_tutorial`.
 
