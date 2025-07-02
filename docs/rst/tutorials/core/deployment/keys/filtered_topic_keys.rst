@@ -31,7 +31,7 @@ This granular level of filtering enables applications to optimally manage data w
 Prerequisites
 -------------
 
-* It is highly recommended to have completed the :ref:`topic_keys_tutorial`.
+* It is highly recommended to have completed the :ref:`vulcanexus_topic_keys_tutorial`.
 * An up-to-date (latest) Vulcanexus installation using one of the following installation methods:
 
   * :ref:`linux_binary_installation`
