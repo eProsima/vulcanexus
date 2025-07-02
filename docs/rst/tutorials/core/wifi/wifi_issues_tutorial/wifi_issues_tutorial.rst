@@ -151,7 +151,7 @@ You will also need the ROS package ``image_tools``, which can be installed by ru
 
 .. code:: bash
 
-    sudo apt-get install ros-jazzy-image-tools
+    sudo apt-get install ros-kilted-image-tools
 
 Lastly, ensure you have a working webcam connected to both of the hosts.
 
@@ -193,7 +193,7 @@ Open a terminal and configure the Fast DDS server as follows:
         --ipc host \
         -e DISPLAY=$DISPLAY \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
-        ubuntu-vulcanexus:jazzy-desktop
+        ubuntu-vulcanexus:kilted-desktop
 
 Once the container is running, configure Fast DDS *server* using the `Fast DDS Discovery CLI <https://fast-dds.docs.eprosima.com/en/latest/fastddscli/cli/cli.html#discovery>`__.
 
@@ -229,7 +229,7 @@ First, open two new terminals in each machine and run the following command to s
         --ipc host \
         -e DISPLAY=$DISPLAY \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
-        ubuntu-vulcanexus:jazzy-desktop
+        ubuntu-vulcanexus:kilted-desktop
 
 Replace ``<container_name>`` with a unique name for each container.
 Once the containers are running, and after sourcing the Vulcanexus environment within each container, the easiest way to configure the clients to point to the *Discovery Server* is by setting `Environment Variables <https://fast-dds.docs.eprosima.com/en/latest/fastdds/env_vars/env_vars.html>`__.

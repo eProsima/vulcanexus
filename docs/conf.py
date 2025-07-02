@@ -205,11 +205,11 @@ script_path = os.path.abspath(pathlib.Path(__file__).parent.absolute())
 project_source_docs_dir = os.path.abspath("{}/rst".format(script_path))
 
 macros = {
-    "DISTRO": "jazzy",
-    "DISTRO_TITLE": "jazzy",
-    "DISTRO_TITLE_FULL": "Jazzy Jolo",
-    "REPOS_FILE_BRANCH": "jazzy",
-    "FASTDDS_BRANCH": "v3.1.0",
+    "DISTRO": "kilted",
+    "DISTRO_TITLE": "kilted",
+    "DISTRO_TITLE_FULL": "Kilted Kaiju",
+    "REPOS_FILE_BRANCH": "kilted",
+    "FASTDDS_BRANCH": "v3.2.2",
 }
 
 # -- General configuration ------------------------------------------------

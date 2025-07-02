@@ -91,7 +91,7 @@ This approach allows a micro-ROS Client to handle Agent restarts or to follow a 
         }
     }
 
-A working example with this approach can be found on micro-ROS for Arduino repository `micro-ros_reconnection <https://github.com/micro-ROS/micro_ros_arduino/blob/jazzy/examples/micro-ros_reconnection_example/micro-ros_reconnection_example.ino>`_ example.
+A working example with this approach can be found on micro-ROS for Arduino repository `micro-ros_reconnection <https://github.com/micro-ROS/micro_ros_arduino/blob/kilted/examples/micro-ros_reconnection_example/micro-ros_reconnection_example.ino>`_ example.
 
 Agent side: Hard liveliness check
 ---------------------------------

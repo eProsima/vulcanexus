@@ -59,7 +59,7 @@ For this, there are two possible options:
             source /opt/vulcanexus/{DISTRO}/setup.bash
 
 #.  Running the tutorial on the local host.
-    For this second option, it is necessary to have the ``vucanexus-jazzy-base`` package installed.
+    For this second option, it is necessary to have the ``vucanexus-kilted-base`` package installed.
 
     Source the following file to setup the Vulcanexus environment:
 

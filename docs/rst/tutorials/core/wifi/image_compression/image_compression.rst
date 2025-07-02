@@ -51,7 +51,7 @@ It is required to have previously installed Vulcanexus using one of the followin
 
 Additionally, you will need to install the following ROS 2 packages in your working environment:
 
-* `image_transport_tutorials <https://github.com/ros-perception/image_transport_tutorials/tree/jazzy?tab=readme-ov-file>`__: This package provides basic tutorials and examples on using image transport in ROS 2.
+* `image_transport_tutorials <https://github.com/ros-perception/image_transport_tutorials/tree/kilted?tab=readme-ov-file>`__: This package provides basic tutorials and examples on using image transport in ROS 2.
 * `image_transport_plugins <https://github.com/ros-perception/image_transport_plugins>`__: This package provides the necessary plugins for different image transport transports (e.g., raw, compressed, etc.).
 
 The steps to install these packages from sources will be provided in the :ref:`tutorials_image_compression_run_this_tutorial` section.
@@ -77,7 +77,7 @@ On both **Host A** and **Host B** run *Vulcanexus* Docker image with:
         --ipc host \
         -e DISPLAY=$DISPLAY \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
-        ubuntu-vulcanexus:jazzy-desktop
+        ubuntu-vulcanexus:kilted-desktop
 
 And create a workspace and clone the necessary repositories so you can inspect and manipulate the code.
 You'll need to install both the ``image_transport_tutorials`` and ``image_transport_plugins`` packages in the same workspace.
@@ -93,22 +93,22 @@ Clone the ``image_transport_tutorials`` repository:
 
 .. code-block:: bash
 
-    git clone -b jazzy https://github.com/ros-perception/image_transport_tutorials.git
+    git clone -b kilted https://github.com/ros-perception/image_transport_tutorials.git
 
 Clone the ``image_transport_plugins`` repository:
 
 .. code-block:: bash
 
-    git clone -b jazzy https://github.com/ros-perception/image_transport_plugins.git
+    git clone -b kilted https://github.com/ros-perception/image_transport_plugins.git
 
 Install Dependencies:
 
 .. code-block:: bash
 
     cd ~/image_transport_ws/
-    source /opt/vulcanexus/jazzy/setup.bash
+    source /opt/vulcanexus/kilted/setup.bash
     sudo apt update
-    rosdep install -i --from-path src --rosdistro jazzy -y
+    rosdep install -i --from-path src --rosdistro kilted -y
 
 Build the WorkSpace:
 
@@ -118,7 +118,7 @@ Build the WorkSpace:
 
 .. note::
 
-    Remember to source both your ROS 2 setup file (/opt/ros/jazzy/setup.bash) and the install/setup.bash file in the image_transport_ws workspace in every terminal where you will run the nodes.
+    Remember to source both your ROS 2 setup file (/opt/ros/kilted/setup.bash) and the install/setup.bash file in the image_transport_ws workspace in every terminal where you will run the nodes.
 
 Running the publisher node
 ^^^^^^^^^^^^^^^^^^^^^^^^^^

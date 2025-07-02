@@ -62,7 +62,7 @@ To do so, the ``Client listener`` node discovery servers list would be updated o
 Prerequisites
 -------------
 
-First of all, make sure that Vulcanexus jazzy is installed.
+First of all, make sure that Vulcanexus kilted is installed.
 The docker installation is required for this tutorial (see :ref:`Docker installation <docker_installation>`).
 
 .. note::
@@ -79,7 +79,7 @@ Set a specific interface pool for this implementation by running the following c
 
     docker network create --subnet=113.11.3.0/16 vulcanexus_tutorial
 
-Then, open five terminals, and run the Vulcanexus jazzy image in each one with the following commands with the specific IP addresses:
+Then, open five terminals, and run the Vulcanexus kilted image in each one with the following commands with the specific IP addresses:
 
 .. tab-set::
 
@@ -91,19 +91,19 @@ Then, open five terminals, and run the Vulcanexus jazzy image in each one with t
 
                 .. code-block:: bash
 
-                    docker run -it --rm --name server_A --net vulcanexus_tutorial --ip 113.11.3.0 ubuntu-vulcanexus:jazzy-desktop
+                    docker run -it --rm --name server_A --net vulcanexus_tutorial --ip 113.11.3.0 ubuntu-vulcanexus:kilted-desktop
 
             .. tab-item:: Client talker A
 
                 .. code-block:: bash
 
-                    docker run -it --rm --name talker_A --net vulcanexus_tutorial --ip 113.11.3.2 ubuntu-vulcanexus:jazzy-desktop
+                    docker run -it --rm --name talker_A --net vulcanexus_tutorial --ip 113.11.3.2 ubuntu-vulcanexus:kilted-desktop
 
             .. tab-item:: Client listener
 
                 .. code-block:: bash
 
-                    docker run -it --rm --name listener --net vulcanexus_tutorial --ip 113.11.3.3 ubuntu-vulcanexus:jazzy-desktop
+                    docker run -it --rm --name listener --net vulcanexus_tutorial --ip 113.11.3.3 ubuntu-vulcanexus:kilted-desktop
 
     .. tab-item:: Discovery Server Network B
 
@@ -113,13 +113,13 @@ Then, open five terminals, and run the Vulcanexus jazzy image in each one with t
 
                 .. code-block:: bash
 
-                    docker run -it --rm --name server_B --net vulcanexus_tutorial --ip 113.11.3.1 ubuntu-vulcanexus:jazzy-desktop
+                    docker run -it --rm --name server_B --net vulcanexus_tutorial --ip 113.11.3.1 ubuntu-vulcanexus:kilted-desktop
 
             .. tab-item:: Client talker B
 
                 .. code-block:: bash
 
-                    docker run -it --rm --name talker_B --net vulcanexus_tutorial --ip 113.11.3.4 ubuntu-vulcanexus:jazzy-desktop
+                    docker run -it --rm --name talker_B --net vulcanexus_tutorial --ip 113.11.3.4 ubuntu-vulcanexus:kilted-desktop
 
 
 

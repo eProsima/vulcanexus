@@ -16,12 +16,12 @@ This tutorial provides step-by-step instructions to use *Vulcanexus* for monitor
 Prerequisites
 -------------
 
-Ensure that the *Vulcanexus* installation includes *Vulcanexus Tools* (either ``vulcanexus-jazzy-desktop``, ``vulcanexus-jazzy-tools``, or ``vulcanexus-jazzy-base``).
+Ensure that the *Vulcanexus* installation includes *Vulcanexus Tools* (either ``vulcanexus-kilted-desktop``, ``vulcanexus-kilted-tools``, or ``vulcanexus-kilted-base``).
 Also, remember to source the environment in every terminal in this tutorial.
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/jazzy/setup.bash
+    source /opt/vulcanexus/kilted/setup.bash
 
 Initial Setup
 -------------

@@ -115,7 +115,7 @@ Time synchronization
 micro-ROS clients can synchronize their epoch time with the connected Agent, this can be very useful when working in embedded environments that do not provide any time synchronization mechanism.
 This utility is based on the NTP protocol, taking into account delays caused by the transport layer.
 
-An usage example can be found on `epoch_synchronization micro-ROS demo <https://github.com/micro-ROS/micro-ROS-demos/blob/jazzy/rclc/epoch_synchronization/main.c>`_:
+An usage example can be found on `epoch_synchronization micro-ROS demo <https://github.com/micro-ROS/micro-ROS-demos/blob/kilted/rclc/epoch_synchronization/main.c>`_:
 
 .. code-block:: c
 
@@ -147,7 +147,7 @@ After the session is synchronized, the adjusted timestamp can be retrieved with 
 Ping agent
 ----------
 
-The client can test the connection with the Agent with the ping utility. This functionality can be used even when the micro-ROS context has not yet been initialized, which is useful to test the connection before trying to connect to the Agent. An example can be found on `ping_uros_agent micro-ROS demo <https://github.com/micro-ROS/micro-ROS-demos/blob/jazzy/rclc/ping_uros_agent/main.c>`_.
+The client can test the connection with the Agent with the ping utility. This functionality can be used even when the micro-ROS context has not yet been initialized, which is useful to test the connection before trying to connect to the Agent. An example can be found on `ping_uros_agent micro-ROS demo <https://github.com/micro-ROS/micro-ROS-demos/blob/kilted/rclc/ping_uros_agent/main.c>`_.
 
 .. code-block:: c
 

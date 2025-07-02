@@ -24,7 +24,7 @@ It is required to have previously installed Vulcanexus using one of the followin
 * :ref:`linux_source_installation`
 * :ref:`docker_installation`
 
-Ensure that the Vulcanexus installation includes Vulcanexus Tools (either ``vulcanexus-jazzy-desktop``, ``vulcanexus-jazzy-tools``, or ``vulcanexus-jazzy-base``).
+Ensure that the Vulcanexus installation includes Vulcanexus Tools (either ``vulcanexus-kilted-desktop``, ``vulcanexus-kilted-tools``, or ``vulcanexus-kilted-base``).
 
 Creating the monitor package and application
 --------------------------------------------
@@ -241,7 +241,7 @@ Then, in one of them run a ``talker`` and in the other one a ``listener`` of the
 
     .. code-block:: bash
 
-        source /opt/vulcanexus/jazzy/setup.bash
+        source /opt/vulcanexus/kilted/setup.bash
         export FASTDDS_STATISTICS="HISTORY_LATENCY_TOPIC;PUBLICATION_THROUGHPUT_TOPIC;PHYSICAL_DATA_TOPIC"
         ros2 run demo_nodes_cpp talker
 
@@ -249,7 +249,7 @@ Then, in one of them run a ``talker`` and in the other one a ``listener`` of the
 
     .. code-block:: bash
 
-        source /opt/vulcanexus/jazzy/setup.bash
+        source /opt/vulcanexus/kilted/setup.bash
         export FASTDDS_STATISTICS="HISTORY_LATENCY_TOPIC;PUBLICATION_THROUGHPUT_TOPIC;PHYSICAL_DATA_TOPIC"
         ros2 run demo_nodes_cpp listener
 

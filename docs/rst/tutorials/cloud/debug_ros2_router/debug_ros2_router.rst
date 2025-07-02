@@ -60,22 +60,22 @@ For this, there are two possible options:
 
     .. code-block:: bash
 
-        docker run -it ubuntu-vulcanexus:jazzy-desktop
+        docker run -it ubuntu-vulcanexus:kilted-desktop
 
     Then, within the container, source the Vulcanexus installation with:
 
     .. code-block:: bash
 
-            source /opt/vulcanexus/jazzy/setup.bash
+            source /opt/vulcanexus/kilted/setup.bash
 
 #.  Setting up the development environment on the local host.
-    For this second option, it is necessary to have installed the ``vucanexus-jazzy-desktop`` package, since this is the one that includes all the simulation tools, demos and tutorials.
+    For this second option, it is necessary to have installed the ``vucanexus-kilted-desktop`` package, since this is the one that includes all the simulation tools, demos and tutorials.
 
     Source the following file to setup the Vulcanexus environment:
 
     .. code-block:: bash
 
-            source /opt/vulcanexus/jazzy/setup.bash
+            source /opt/vulcanexus/kilted/setup.bash
 
 Running ROS 2 nodes
 ^^^^^^^^^^^^^^^^^^^
@@ -197,13 +197,13 @@ The steps to follow are described below:
 
         .. code-block:: bash
 
-            docker run -it ubuntu-vulcanexus:jazzy-desktop
+            docker run -it ubuntu-vulcanexus:kilted-desktop
 
     -   If you have installed Vulcanexus on your local machine, load the environment with the following command.
 
         .. code-block:: bash
 
-            source /opt/vulcanexus/jazzy/setup.bash
+            source /opt/vulcanexus/kilted/setup.bash
 
 1.  Create the development workspace, download the *ROS 2 Router* from GitHub, and build it by executing the following commands:
 

@@ -46,13 +46,13 @@ Please, remember to source the environment in every terminal used during this tu
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/jazzy/setup.bash
+    source /opt/vulcanexus/kilted/setup.bash
 
-Install the `ROS 2 image demo package <https://github.com/ros2/demos/tree/jazzy/image_tools>`_ (administrative privileges may be required):
+Install the `ROS 2 image demo package <https://github.com/ros2/demos/tree/kilted/image_tools>`_ (administrative privileges may be required):
 
 .. code-block:: bash
 
-    apt update && apt install -y ros-jazzy-image-tools
+    apt update && apt install -y ros-kilted-image-tools
 
 .. _tutorials_core_deployment_custom_transports_config:
 
@@ -73,7 +73,7 @@ Run the example
 
     To run this example using a Vulcanexus docker container, GUI capabilities are required (see :ref:`docker_installation`).
 
-This tutorial leverages the `ros-jazzy-image-tools` package to demonstrate that the aforementioned XML configuration indeed achieves communication over localhost with UDPv4 datagrams smaller than the standard 1500 B MTU.
+This tutorial leverages the `ros-kilted-image-tools` package to demonstrate that the aforementioned XML configuration indeed achieves communication over localhost with UDPv4 datagrams smaller than the standard 1500 B MTU.
 To run the tutorial, two shells are required:
 
 .. tab-set::
@@ -82,7 +82,7 @@ To run the tutorial, two shells are required:
 
     .. code-block:: bash
 
-        source /opt/vulcanexus/jazzy/setup.bash
+        source /opt/vulcanexus/kilted/setup.bash
         export FASTRTPS_DEFAULT_PROFILES_FILE=<path_to_xml_config_file>
         ros2 run image_tools showimage
 
@@ -90,7 +90,7 @@ To run the tutorial, two shells are required:
 
     .. code-block:: bash
 
-        source /opt/vulcanexus/jazzy/setup.bash
+        source /opt/vulcanexus/kilted/setup.bash
         export FASTRTPS_DEFAULT_PROFILES_FILE=<path_to_xml_config_file>
         ros2 run image_tools cam2image --ros-args -p burger_mode:=True
 

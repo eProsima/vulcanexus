@@ -207,7 +207,7 @@ For this, open two different terminals and setup the Vulcanexus environment and 
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/jazzy/setup.bash
+    source /opt/vulcanexus/kilted/setup.bash
     export ROS_SECURITY_KEYSTORE=<absolute/path/to/sros2_demo>/sros2_demo/demo_keystore
     export ROS_SECURITY_ENABLE=true
     export ROS_SECURITY_STRATEGY=Enforce
@@ -233,7 +233,7 @@ Open a third terminal and source the Vulcanexus environment:
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/jazzy/setup.bash
+    source /opt/vulcanexus/kilted/setup.bash
 
 Then run the |rosrouter| with the *yaml* configuration file created before.
 
