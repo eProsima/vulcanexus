@@ -3,12 +3,6 @@
 Kilted K (v5.0.0)
 ===================
 
-This version ships the following packages:
+.. warning::
 
-.. list-table::
-    :header-rows: 1
-
-    * - Package name
-      - Package version
-      - Since Vulcanexus version
-
+    This version is under development and has not been released yet.
