@@ -13,7 +13,7 @@
 # limitations under the License.
 
 export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
-export VULCANEXUS_DISTRO=jazzy
+export VULCANEXUS_DISTRO=kilted
 export VULCANEXUS_HOME="@VULCANEXUS_HOME@"
 export PYTHONWARNINGS="ignore:invalid escape sequence"
 
