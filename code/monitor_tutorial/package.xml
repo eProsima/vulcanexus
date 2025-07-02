@@ -11,7 +11,7 @@
   <buildtool_depend>ament_cmake</buildtool_depend>
 
   <depend>fastcdr</depend>
-  <depend>fastrtps</depend>
+  <depend>fastdds</depend>
   <depend>fastdds_statistics_backend</depend>
 
   <test_depend>ament_lint_auto</test_depend>

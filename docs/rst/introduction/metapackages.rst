@@ -20,7 +20,7 @@ No additional developer tools are included with this basic installation.
 .. note::
 
     The binary package is called following the next convention ``vulcanexus-<version_name>-core`` being the ``version_name`` the corresponding adjective associated with the :ref:`specific release <release_notes>`.
-    For example, for Vulcanexus v3, ``version_name`` is ``kilted``.
+    For example, for Vulcanexus v5, ``version_name`` is ``kilted``.
     Consequently, in order to install this package run the following command after setting up the repository as explained in the :ref:`installation guide <linux_binary_installation>`
 
         .. code-block:: bash
@@ -65,7 +65,7 @@ Micro-ROS provides also a set of tools for integration within many build systems
 .. note::
 
     The binary package is called following the next convention ``vulcanexus-<version_name>-micro`` being the ``version_name`` the corresponding adjective associated with the :ref:`specific release <release_notes>`.
-    For example, for Vulcanexus v3, ``version_name`` is ``kilted``.
+    For example, for Vulcanexus v5, ``version_name`` is ``kilted``.
     Consequently, in order to install this package run the following command after setting up the repository as explained in the :ref:`installation guide <linux_binary_installation>`
 
         .. code-block:: bash
