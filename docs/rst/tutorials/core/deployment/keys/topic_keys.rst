@@ -1,6 +1,6 @@
 .. include:: ../../../../exports/alias.include
 
-.. _topic_keys_tutorial:
+.. _vulcanexus_topic_keys_tutorial:
 
 Topic Keys Tutorial
 ===================

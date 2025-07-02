@@ -101,6 +101,6 @@ Using Topic Keys
 
 For details on how to use topic keys in *Vulcanexus*, please refer to the documented tutorials in this regard:
 
-  * :ref:`topic_keys_tutorial`
+  * :ref:`vulcanexus_topic_keys_tutorial`
   * :ref:`vulcanexus_filtered_topic_keys_tutorial`
 
