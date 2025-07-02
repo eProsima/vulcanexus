@@ -1,15 +1,17 @@
-name: jazzy-binaries-ubuntu-24.04
+name: kilted-binaries-ubuntu-24.04
 
 on:
   workflow_dispatch:
 
   pull_request:
     branches:
-      - jazzy
+      - kilted
+      - main
 
   push:
     branches:
-      - jazzy
+      - kilted
+      - main
 
   schedule:
     - cron: '0 0 * * *'
@@ -21,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref || 'jazzy'}}
+          ref: ${{ github.head_ref || 'kilted'}}
           submodules: 'recursive'
 
       - name: Install from binaries
