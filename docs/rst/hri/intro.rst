@@ -118,3 +118,22 @@ The message also includes a float value representing the confidence score of the
 
 This package can be considered as an extension of the :ref:`vulcanexus_hri_face_detect` package, as it requires the face detection module to be running in order to obtain the face images for emotion recognition.
 When both packages are run simultaneously, the same unique ID is assigned to the same person across both packages, allowing to correlate the detected faces with their recognized emotions, which simplifies representantion and visualization of the results.
+
+.. _vulcanexus_hri_detection_display:
+
+HRI Displays
+------------
+
+Vulcanexus provides an optional display module to visualize the results of the HRI components in RViz2.
+The `*hri_detection_display* <https://github.com/eProsima/agile-hri>`_ package is responsible for this functionality.
+
+It includes specific nodes to parse the data received from the HRI components, merge it and render it in RViz2 in a user-friendly manner.
+The display module can visualize the following information:
+
+- Detected faces and unique IDs.
+- Detected bodies with landmarks and unique IDs.
+- Recognized emotions associated with detected faces.
+
+The display module subscribes to the topics published by the HRI components and updates the visualization in real-time as new data is received.
+It has several parameters to customize the visualization, such as enabling/disabling specific components or dynamically applying filters to control what is displayed (i.e., disallow back turned people, allow half body detections, etc.).
+It is the fastest and easiest way to visualize the output of the HRI components and can be used for debugging, testing, or demonstration purposes.
