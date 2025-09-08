@@ -103,3 +103,18 @@ Body landmarks refer to the following specific points on a human body:
 
 Similarly to the Face Detection module, the unique ID is an identifier assigned to each detected body, which allows to track the same body across multiple frames.
 It is also provided via a ROS 2 service by the `*hri_id_manager* <https://github.com/eProsima/agile-hri>`_ node, which is responsible for managing the IDs of the detected bodies and ensuring that the same ID is assigned to face detected by :ref:`vulcanexus_hri_face_detect` package when run simultaneously.
+
+.. _vulcanexus_hri_emotion_detect:
+
+Emotion Recognition
+-------------------
+
+Emotion recognition is accomplished by the `*hri_emotion_detect* <https://github.com/eProsima/agile-hri>`_ package.
+`OpenCV Zoo Facial Expression Recognition model <https://github.com/opencv/opencv_zoo/tree/main/models/facial_expression_recognition>`_ is used as main model to perform emotion recognition.
+
+The output of the emotion recognition module is published as `hri_msgs/msg/Expression` messages on the topic `/humans/faces/emotion`.
+This message contains a string describing the recognized emotion for a specific individual, identified by their unique ID, used as key of the message.
+The message also includes a float value representing the confidence score of the recognition, ranging from 0 to 1.
+
+This package can be considered as an extension of the :ref:`vulcanexus_hri_face_detect` package, as it requires the face detection module to be running in order to obtain the face images for emotion recognition.
+When both packages are run simultaneously, the same unique ID is assigned to the same person across both packages, allowing to correlate the detected faces with their recognized emotions, which simplifies representantion and visualization of the results.
