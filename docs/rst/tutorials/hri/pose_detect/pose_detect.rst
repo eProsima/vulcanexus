@@ -52,6 +52,10 @@ Install it with the following command:
     apt update && \
     apt install -y ros-${VULCANEXUS_DISTRO}-usb-cam
 
+.. note::
+
+  Package *usb_cam* is already included in the Vulcanexus Docker image.
+
 After sourcing the Vulcanexus installation, run the ``usb_cam`` node to publish images from the webcam:
 
 .. code-block:: bash
@@ -192,6 +196,14 @@ To execute it, run the following command in the same terminal where the ``compos
     docker compose --profile display up -d
 
 This command will start the ``hri_detection_display`` node in a new container and launch RViz2 to visualize the detected faces.
+
+The ``compose.yaml`` file includes an optional service ``local_webcam`` which can be used to publish images from a webcam, alternatively to the setup explained in the previous section.
+It is provided in case the user wants to run the entire tutorial using only Docker and one terminal.
+To enable it, run the following command instead:
+
+.. code-block:: bash
+
+    docker compose --profile display --profile usb_cam up -d
 
 To stop all the running containers, use the following command:
 
