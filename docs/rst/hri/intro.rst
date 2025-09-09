@@ -159,3 +159,62 @@ By leveraging VAD, the STT module can segment the audio input in real-time whene
 
 The STT action server is designed to auto configure itself based on the characteristics of the audio input source, simplifying the setup process to its maximum, which makes it ideal for rapid integration in robotic applications.
 This package also includes utility scripts to download the required models or list the available audio input devices, to facilitate the initial setup.
+
+.. _vulcanexus_hri_tts:
+
+Text-to-Speech (TTS)
+--------------------
+
+The Text-to-Speech (TTS) module is provided by the `hri_tts <https://github.com/eProsima/agile-hri>`_ package.
+It relies on `TTS models from Coqui <https://coqui.ai/>`_ for speech synthesis.
+Although these models can run on CPU, a **Nvidia GPU is recommended** to achieve optimal performance and obtain real-time speech synthesis.
+
+The TTS package includes three different nodes which serve different purposes:
+
+- A TTS action server that receives text input and converts it to speech, publishing the generated audio as an Audio message on a ROS 2 topic.
+- A TTS subscriber node that listens to the audio topic and plays the received audio through a specified speaker.
+- Another version of the TTS action server that receives text input and converts it to speech, but storing the result in ``.wav`` file on the path specified.
+  This node is useful for offline processing or when the audio needs to be stored for later use, for example when using *presets* (check :ref:`tutorials_hri_tts_presets`).
+
+This package also includes utility scripts to download the required model or list the available audio output devices, to facilitate the initial setup.
+
+TTS publisher
+^^^^^^^^^^^^^
+
+The TTS publisher is the main node of the package, as is the one responsible for running the TTS model and generating the speech.
+It implements a ROS 2 action server that receives text input and converts it to speech.
+The generated speech is then published as an Audio message on the ``/hri_tts/audio`` topic.
+Note that the TTS publisher does not play the generated audio, nor sends the audio data back to the client that requested the speech synthesis.
+The audio is published on a different topic in order to decouple the speech synthesis from the audio playback, allowing the user to choose how to play the generated audio without blocking the action server.
+
+The parameter ``wait_for_finished`` is available to control whether the action server should wait for the audio playback to finish before sending the response back to the client.
+By default, this parameter is set to ``True``, meaning that the action server will wait for the audio to finish playing before responding with ``SUCCEEDED``.
+It recognizes the end of the audio playback by subscribing to the topic ``/hri_tts/finished``.
+Hence, the TTS subscriber node must be running and publishing ``True`` on this topic when the audio playback is complete for the action server to acknowledge it and be able to respond with ``SUCCEEDED``.
+Otherwise, if no message is received on this topic within a timeout period, the action server will respond with ``ABORTED``.
+The timeout period is calculated based on the duration of the audio generated and 5 additional seconds.
+
+If the parameter is set to ``False``, the action server will respond inmediately after the audio is published, without waiting for the playback to finish.
+The user can choose the desired behavior based on the specific requirements of their application and workflow.
+
+TTS subscriber
+^^^^^^^^^^^^^^
+
+The TTS subscriber is an optional node that can be used to play the generated audio through a specified speaker.
+It subscribes to the ``/hri_tts/audio`` topic and plays the received audio.
+It only requires to specify the audio output device to be used for playback, which can be listed using the included utility script.
+
+The TTS package also includes extra features to enhance its performance and usability, like the ability to use *presets* when generating the speech.
+Presets are already created audio files (stored locally) that can be directly played instead of generating the speech from scratch.
+This feature is useful when some audios need to be played repeatedly, as it avoids the need to generate the same audio multiple times, saving both time and computational resources.
+Check :ref:`tutorials_hri_tts_presets` for more information about this feature and how to implement it.
+
+This node is designed to work seamlessly with the TTS publisher, but it can also be used independently to play audio from other sources, as long as the audio is published as an Audio message on the ``/hri_tts/audio`` topic.
+
+TTS Generator
+^^^^^^^^^^^^^
+
+Lastly, the TTS package includes another version of the TTS action server that generates the speech and stores it in a ``.wav`` file on the specified path.
+This node is useful for offline processing or when the audio needs to be stored for later use.
+The logic and configuration of this node is similar to the TTS publisher, but instead of publishing the generated audio on a topic, it saves it in a file.
+The path used to store the file can be specified by ROS 2 parameters.
