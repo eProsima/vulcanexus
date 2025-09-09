@@ -137,3 +137,25 @@ The display module can visualize the following information:
 The display module subscribes to the topics published by the HRI components and updates the visualization in real-time as new data is received.
 It has several parameters to customize the visualization, such as enabling/disabling specific components or dynamically applying filters to control what is displayed (i.e., disallow back turned people, allow half body detections, etc.).
 It is the fastest and easiest way to visualize the output of the HRI components and can be used for debugging, testing, or demonstration purposes.
+
+.. _vulcanexus_hri_stt:
+
+Speech-to-Text (STT)
+--------------------
+
+The Speech-to-Text (STT) module is provided by the `*hri_stt* <https://github.com/eProsima/agile-hri>`_ package.
+It relies on `faster-whisper <https://github.com/SYSTRAN/faster-whisper>`_ as speech recognition model.
+Thanks to its efficient design and low resource consumption, this model can run efficiently locally.
+Nevertheless, a **Nvidia GPU is required** for inferences, as it depends on the CUBLAS and CUDNN libraries.
+
+The STT module wraps the model into a ROS 2 node that implements a ROS 2 action server.
+This server receives real-time audio streams and produces transcriptions.
+This package also incorporates voice activity detection (VAD) functionalities to detect when the user is speaking and when they are silent.
+This feature helps to improve the accuracy of the transcriptions by reducing background noise and irrelevant audio data, but also automatically detecting when the speech has ended, allowing to send the transcription result back to the client.
+Although it includes a default VAD model responsible for this task, the module can also operate with microphones that feature integrated VAD solutions.
+The default model is based on `Silero VAD <https://github.com/snakers4/silero-vad>`_.
+
+By leveraging VAD, the STT module can segment the audio input in real-time whenever short pauses are detected, enabling it to speed up the overall transcription process while maintaining contextual accuracy.
+
+The STT action server is designed to auto configure itself based on the characteristics of the audio input source, simplifying the setup process to its maximum, which makes it ideal for rapid integration in robotic applications.
+This package also includes utility scripts to download the required models or list the available audio input devices, to facilitate the initial setup.
