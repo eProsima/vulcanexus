@@ -30,6 +30,7 @@ However, it is also possible to run the tutorial on a native installation of Vul
 
 The STT package in Vulcanexus is designed to transcript audio in real-time from a microphone.
 If no audio input device is available, the node will not be able to record any audio stream and will not publish any transcription.
+
 Also, no AI model is included in the Vulcanexus installation by default due to their size, so it is necessary to download the models before running the tutorial.
 This applies to both Vulcanexus apt package and the docker image.
 The following sections describe how to select the microphone and download the models.
@@ -95,31 +96,32 @@ To invoke the script, run the following command:
     ros2 run hri_stt download_stt_models
 
 When using Docker, there exists two options to persist the models:
+
 1. Run Vulcanexus HRI docker image and execute the download script inside the container.
-   This will download the models inside the container. Then, the docker image needs to be committed to a new image to persist the models.
+This will download the models inside the container. Then, the docker image needs to be committed to a new image to persist the models.
 
-    .. code-block:: bash
+.. code-block:: bash
 
-        # Run the container
-        docker run -it --rm ubuntu-vulcanexus:{VULCANEXUS_DISTRO}-hri bash
-        # Inside the container, run the download script and commit the container to a new image
-        source /opt/vulcanexus/{VULCANEXUS_DISTRO}/setup.bash
-        ros2 run hri_stt download_stt_models
-        # In another terminal, find the container ID of the running container with `docker ps`
-        # and replace <container_id> in the following command
-        docker commit <container_id> ubuntu-vulcanexus:{VULCANEXUS_DISTRO}-hri-stt
+    # Run the container
+    docker run -it --rm ubuntu-vulcanexus:{VULCANEXUS_DISTRO}-hri bash
+    # Inside the container, run the download script and commit the container to a new image
+    source /opt/vulcanexus/{VULCANEXUS_DISTRO}/setup.bash
+    ros2 run hri_stt download_stt_models
+    # In another terminal, find the container ID of the running container with `docker ps`
+    # and replace <container_id> in the following command
+    docker commit <container_id> ubuntu-vulcanexus:{VULCANEXUS_DISTRO}-hri-stt
 
 2. Alternatively, the user's home hidden cache can be mounted in the container, allowing the models to be downloaded directly in the native host after running the download script from within the container.
-    This approach requires to always mount the cache directories when running the container, as shown in the ``stt-compose.yaml`` file under the ``volumes`` section.
-    Otherwise, the models will be downloaded inside the container and will be lost when the container is removed.
-    To download the models locally, run the following command:
+This approach requires to always mount the cache directories when running the container, as shown in the ``stt-compose.yaml`` file under the ``volumes`` section.
+Otherwise, the models will be downloaded inside the container and will be lost when the container is removed.
+To download the models locally, run the following command:
 
-    .. code-block:: bash
+.. code-block:: bash
 
-        docker run -it --rm -v /home/user/.cache/torch:/root/.cache/torch \
-          -v /home/user/.cache/huggingface:/root/.cache/huggingface \
-          --entrypoint bash ubuntu-vulcanexus:{VULCANEXUS_DISTRO}-hri \
-          -lc "source /opt/vulcanexus/${VULCANEXUS_DISTRO}/setup.bash && ros2 run hri_stt download_stt_models"
+    docker run -it --rm -v /home/user/.cache/torch:/root/.cache/torch \
+        -v /home/user/.cache/huggingface:/root/.cache/huggingface \
+        --entrypoint bash ubuntu-vulcanexus:{VULCANEXUS_DISTRO}-hri \
+        -lc "source /opt/vulcanexus/${VULCANEXUS_DISTRO}/setup.bash && ros2 run hri_stt download_stt_models"
 
 Selecting the microphone
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -183,7 +185,7 @@ To run the STT node, execute the following command in the same directory where t
     docker compose -f stt-compose.yaml up -d
 
 This command will start the ``hri_stt`` node in a new container, enabling the action server to receive transcription requests.
-To check that the node is running correctly, attach a new terminal to one of the running containers and run:
+To check that the node is running correctly, attach a new terminal to the running container and run:
 
 .. code-block:: bash
 
@@ -192,7 +194,7 @@ To check that the node is running correctly, attach a new terminal to one of the
 The output should include the ``/hri_stt`` action server.
 
 To test the node, the ROS 2 command line tool can be used to send a request to the action server.
-To do so, attach a new terminal to one of the running containers and run:
+To do so, run:
 
 .. code-block:: bash
 

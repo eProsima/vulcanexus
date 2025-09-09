@@ -35,12 +35,12 @@ These tutorials provide step-by-step guidance on how to set up and use the vario
 Face Detection
 ---------------
 
-Face detection is accomplished by the `*hri_face_detect* <https://github.com/eProsima/agile-hri>`_ package.
+Face detection is accomplished by the `hri_face_detect <https://github.com/eProsima/agile-hri>`_ package.
 It relies on `YuNet face detector <https://github.com/ShiqiYu/libfacedetection>`_ to perform face detection.
 This Convolutional Neural Network (CNN) model is optimized for real-time applications and can run efficiently on CPU.
 Hence, there is no need to set up any GPU acceleration for this package.
 
-This package optimizes the `ROS REP-155 <https://ros.org/reps/rep-0155.html>`_ by introducing `keys <https://docs.ros.org/en/rolling/Tutorials/Advanced/Topic-Keys/Topic-Keys-Tutorial.html>`, only compatible with `Fast DDS <https://github.com/eProsima/Fast-DDS>`_.
+This package optimizes the `ROS REP-155 <https://ros.org/reps/rep-0155.html>`_ by introducing `keys <https://docs.ros.org/en/rolling/Tutorials/Advanced/Topic-Keys/Topic-Keys-Tutorial.html>`_, only compatible with `Fast DDS <https://github.com/eProsima/Fast-DDS>`_.
 By using keyed topics, this package is able to provide face recognition for multiple targets by just publishing in one topic, which significantly reduces the network load.
 
 Face detections are published as ``hri_msgs/msg/Face2DList`` messages on a keyed topic name ``/humans/faces``.
@@ -55,19 +55,19 @@ Face landmarks refer to the following specific points on a human face:
 - Right mouth corner
 
 The unique ID is an identifier assigned to each detected face, which can be used to track the same face across multiple frames.
-It is provided via a ROS 2 service by the `*hri_id_manager* <https://github.com/eProsima/agile-hri>`_ node, which is responsible for managing the IDs of the detected faces and ensuring that the same ID is assigned to the same person across different HRI packages, such as :ref:`vulcanexus_hri_pose_detect`.
+It is provided via a ROS 2 service by the `hri_id_manager <https://github.com/eProsima/agile-hri>`_ node, which is responsible for managing the IDs of the detected faces and ensuring that the same ID is assigned to the same person across different HRI packages, such as the :ref:`vulcanexus_hri_pose_detect` package.
 
 .. _vulcanexus_hri_pose_detect:
 
 Human Pose recognition
 ----------------------
 
-Human pose recognition is accomplished by the `*hri_pose_detect* <https://github.com/eProsima/agile-hri>`_ package.
+Human pose recognition is accomplished by the `hri_pose_detect <https://github.com/eProsima/agile-hri>`_ package.
 It relies on `YOLOv8-pose <https://docs.ultralytics.com/models/yolov8/>`_ to detect and track human poses in real-time.
 The package is designed to work seamlessly within the ROS 2 ecosystem and can be easily integrated with other HRI components.
 This model, however, requires GPU acceleration to run efficiently.
 
-Following the same line of development as the ``hri_face_detect`` package, this library also optimizes the `ROS REP-155 <https://ros.org/reps/rep-0155.html>`_ by introducing `keys <https://docs.ros.org/en/rolling/Tutorials/Advanced/Topic-Keys/Topic-Keys-Tutorial.html>`, only compatible with `Fast DDS <https://github.com/eProsima/Fast-DDS>`_.
+Following the same line of development as the ``hri_face_detect`` package, this library also optimizes the `ROS REP-155 <https://ros.org/reps/rep-0155.html>`_ by introducing `keys <https://docs.ros.org/en/rolling/Tutorials/Advanced/Topic-Keys/Topic-Keys-Tutorial.html>`_, only compatible with `Fast DDS <https://github.com/eProsima/Fast-DDS>`_.
 By using keyed topics, this package is able to provide pose recognition for multiple targets by just publishing in one topic, which significantly reduces the network load.
 
 Pose or body detections are published as ``hri_msgs/msg/Skeleton2DList`` messages on a keyed topic name ``/humans/bodies``.
@@ -77,7 +77,7 @@ An additional list of floats is also included, representing the mean depth of th
 
 ``hri_pose_detect`` also supports 3D pose detection by leveraging depth information from RGB-D cameras.
 When enabled, the package computes the 3D coordinates of each keypoint using the camera's intrinsic parameters and the depth value at the keypoint's location.
-An additional message is then published on topic ``/humans/bodies/skel3`` containing a list of ``hri_msgs/msg/Skeleton3D`` messages with the 3D coordinates of each keypoint.
+An additional message is then published on topic ``/humans/bodies/skel3D`` containing a list of ``hri_msgs/msg/Skeleton3D`` messages with the 3D coordinates of each keypoint.
 Leveraging depth information and YOLO advanced tracking capabilities, this package is able to accurately estimate the orientation of the detected bodies.
 
 Body landmarks refer to the following specific points on a human body:
@@ -102,18 +102,18 @@ Body landmarks refer to the following specific points on a human body:
 - Right Ear
 
 Similarly to the Face Detection module, the unique ID is an identifier assigned to each detected body, which allows to track the same body across multiple frames.
-It is also provided via a ROS 2 service by the `*hri_id_manager* <https://github.com/eProsima/agile-hri>`_ node, which is responsible for managing the IDs of the detected bodies and ensuring that the same ID is assigned to face detected by :ref:`vulcanexus_hri_face_detect` package when run simultaneously.
+It is also provided via a ROS 2 service by the `hri_id_manager <https://github.com/eProsima/agile-hri>`_ node, which is responsible for managing the IDs of the detected bodies and ensuring that the same ID is assigned to face detected by the :ref:`vulcanexus_hri_face_detect` package when run simultaneously.
 
 .. _vulcanexus_hri_emotion_detect:
 
 Emotion Recognition
 -------------------
 
-Emotion recognition is accomplished by the `*hri_emotion_detect* <https://github.com/eProsima/agile-hri>`_ package.
+Emotion recognition is accomplished by the `hri_emotion_detect <https://github.com/eProsima/agile-hri>`_ package.
 `OpenCV Zoo Facial Expression Recognition model <https://github.com/opencv/opencv_zoo/tree/main/models/facial_expression_recognition>`_ is used as main model to perform emotion recognition.
 
-The output of the emotion recognition module is published as `hri_msgs/msg/Expression` messages on the topic `/humans/faces/emotion`.
-This message contains a string describing the recognized emotion for a specific individual, identified by their unique ID, used as key of the message.
+The output of the emotion recognition module is published as ``hri_msgs/msg/Expression`` messages on the topic ``/humans/faces/emotion``.
+This message contains a string describing the recognized emotion for a specific individual, identified by their unique ID, which is used as key of the message.
 The message also includes a float value representing the confidence score of the recognition, ranging from 0 to 1.
 
 This package can be considered as an extension of the :ref:`vulcanexus_hri_face_detect` package, as it requires the face detection module to be running in order to obtain the face images for emotion recognition.
@@ -125,7 +125,7 @@ HRI Displays
 ------------
 
 Vulcanexus provides an optional display module to visualize the results of the HRI components in RViz2.
-The `*hri_detection_display* <https://github.com/eProsima/agile-hri>`_ package is responsible for this functionality.
+The `hri_detection_display <https://github.com/eProsima/agile-hri>`_ package is responsible for this functionality.
 
 It includes specific nodes to parse the data received from the HRI components, merge it and render it in RViz2 in a user-friendly manner.
 The display module can visualize the following information:
@@ -143,21 +143,21 @@ It is the fastest and easiest way to visualize the output of the HRI components 
 Speech-to-Text (STT)
 --------------------
 
-The Speech-to-Text (STT) module is provided by the `*hri_stt* <https://github.com/eProsima/agile-hri>`_ package.
+The Speech-to-Text (STT) module is provided by the `hri_stt <https://github.com/eProsima/agile-hri>`_ package.
 It relies on `faster-whisper <https://github.com/SYSTRAN/faster-whisper>`_ as speech recognition model.
 Thanks to its efficient design and low resource consumption, this model can run efficiently locally.
-Nevertheless, a **Nvidia GPU is required** for inferences, as it depends on the CUBLAS and CUDNN libraries.
+Nevertheless, a **Nvidia GPU is required** for inferences, as it depends on the *CUBLAS* and *CUDNN* libraries.
 
-The STT module wraps the model into a ROS 2 node that implements a ROS 2 action server.
+The STT module wraps this model into a ROS 2 node that implements a ROS 2 action server.
 This server receives real-time audio streams and produces transcriptions.
-This package also incorporates voice activity detection (VAD) functionalities to detect when the user is speaking and when they are silent.
+This package also incorporates voice activity detection (VAD) functionalities to detect when users are speaking and when they are silent.
 This feature helps to improve the accuracy of the transcriptions by reducing background noise and irrelevant audio data, but also automatically detecting when the speech has ended, allowing to send the transcription result back to the client.
-Although it includes a default VAD model responsible for this task, the module can also operate with microphones that feature integrated VAD solutions.
+Although it includes a default VAD model responsible for this task, the package can also operate with microphones that feature integrated VAD solutions.
 The default model is based on `Silero VAD <https://github.com/snakers4/silero-vad>`_.
-
 By leveraging VAD, the STT module can segment the audio input in real-time whenever short pauses are detected, enabling it to speed up the overall transcription process while maintaining contextual accuracy.
 
 The STT action server is designed to auto configure itself based on the characteristics of the audio input source, simplifying the setup process to its maximum, which makes it ideal for rapid integration in robotic applications.
+
 This package also includes utility scripts to download the required models or list the available audio input devices, to facilitate the initial setup.
 
 .. _vulcanexus_hri_tts:
