@@ -1,6 +1,6 @@
 .. _notes_jazzy_latest:
 
-Jazzy Jolo (v4.3.1)
+Jazzy Jolo (v4.3.2)
 ===================
 
 This version ships the following packages:
@@ -15,7 +15,7 @@ This version ships the following packages:
       - `v2.3.0 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.3.0>`__
       - v4.3.0
     * - eProsima Fast DDS
-      - `v3.2.2 <https://fast-dds.docs.eprosima.com/en/3.x/notes/previous_versions/supported_versions.html>`__
+      - `v3.3.0 <https://fast-dds.docs.eprosima.com/en/3.x/notes/previous_versions/supported_versions.html>`__
       - v4.3.0
     * - eProsima Fast DDS Python
       - `v2.2.0 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v2.2.0>`__
@@ -76,7 +76,7 @@ This version ships the following packages:
       - v4.1.0
     * - Vulcanexus Base
       - `v4.3.0 <https://docs.vulcanexus.org/en/latest/rst/notes/jazzy/notes.html#jazzy-imagination-v4-3-1>`__
-      - v4.3.1
+      - v4.3.2
 
 Jazzy Jolo previous versions
 ============================
