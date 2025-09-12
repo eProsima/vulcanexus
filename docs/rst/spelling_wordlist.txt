@@ -88,6 +88,7 @@ keyring
 keyrings
 keystore
 kiB
+Kolumbo
 Kubernetes
 Lalancette
 latencies
