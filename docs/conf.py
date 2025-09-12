@@ -207,7 +207,7 @@ project_source_docs_dir = os.path.abspath("{}/rst".format(script_path))
 macros = {
     "DISTRO": "kilted",
     "DISTRO_TITLE": "kilted",
-    "DISTRO_TITLE_FULL": "Kilted Kaiju",
+    "DISTRO_TITLE_FULL": "Kilted Kolumbo",
     "REPOS_FILE_BRANCH": "kilted",
     "FASTDDS_BRANCH": "v3.2.2",
 }

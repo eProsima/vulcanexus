@@ -3,7 +3,7 @@
 Linux binary installation
 =========================
 
-Debian packages for Vulcanexus Kilted Kaiju are currently available for Ubuntu Jammy.
+Debian packages for Vulcanexus Kilted Kolumbo are currently available for Ubuntu Jammy.
 Since Vulcanexus is a ROS 2 all-in-one tool set, certain ROS 2 prerequisites need to be met before installing.
 
 ROS 2 prerequisites

@@ -14,7 +14,7 @@ Prerequisites
 For convenience, this tutorial is built and run using Docker environments to avoid requiring local installations, although Docker is not required. All steps can be executed in a local environment, provided the necessary dependencies are properly installed.
 The tutorial focuses on the explanations regarding topic compatibility rather than giving an in depth explanation about the code used. The only prerequisites are, thus, downloading both Docker images.
 
-For the ROS 2 Docker image, the following command can be used to download the latest version of Vulcanexus Kilted Kaiju:
+For the ROS 2 Docker image, the following command can be used to download the latest version of Vulcanexus Kilted Kolumbo:
 
 .. code-block:: bash
 
