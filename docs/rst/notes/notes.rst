@@ -27,7 +27,7 @@ The following table outlines the Vulcanexus releases and their support cycles:
      - Latest Version
      - Release Date
      - EOL Date
-   * - :ref:`Kilted Kaiju <notes_kilted_latest>`
+   * - :ref:`Kilted Kolumbo <notes_kilted_latest>`
      - v5.0.0
      - September 2025
      - November 2026
