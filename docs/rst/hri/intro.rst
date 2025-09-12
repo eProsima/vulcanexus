@@ -15,6 +15,7 @@ HRI Components
 
 Vulcanexus HRI library includes the following components:
 
+- **HRI Msgs**: A package that defines the custom message types used in Vulcanexus HRI applications.
 - **Face detection**: A module for detecting and recognizing human faces in images and video streams.
 - **Human pose recognition**: A module for recognizing human body poses and gestures.
 - **Emotion recognition**: A module for recognizing human emotions based on facial expressions and body language.
@@ -30,10 +31,33 @@ Getting Started with HRI
 To get started with HRI in Vulcanexus, you can follow the tutorials provided in the :ref:`Vulcanexus HRI Tutorials <tutorials_hri_hri_tutorials>` section.
 These tutorials provide step-by-step guidance on how to set up and use the various HRI components within the Vulcanexus framework.
 
+.. _vulcanexus_hri_msgs:
+
+HRI Messages
+------------
+
+The ``hri_msgs`` package represents the cornerstone of the Human-Robot Interaction (HRI) modules distributed within *Vulcanexus*.
+It originates from the `ROS4HRI <https://github.com/ros4hri>`_ initiative and has been extended to provide a more robust and efficient framework for implementing HRI applications in ROS 2.
+
+One of the key innovations integrated into Vulcanexus ``hri_msgs`` is the use of **Fast DDS keyed topics**, a mechanism that introduces a unique identifier, or *key*, to each message instance.
+Keys enable multiple objects of the same logical kind to be published within a single topic, rather than requiring the creation of multiple topics for each individual object.
+For more information about keyed topics, please refer to the :ref:`topic_keys` section.
+This design significantly reduces the number of middleware entities, minimizes discovery overhead, and optimizes bandwidth consumption.
+
+Within the HRI ecosystem, this feature proves particularly advantageous. For example:
+
+- In :ref:`vulcanexus_hri_face_detect`, faces are represented as ``Face2D`` keyed messages, each instance corresponding to a unique face ID.
+- In :ref:`vulcanexus_hri_pose_detect`, detected body skeletons are published as ``Skeleton2D`` keyed messages, with each instance tied to a specific individual.
+
+By centralizing all HRI-related message definitions, ``hri_msgs`` simplifies development and ensures consistency across the various perception and interaction modules.
+The integration of Fast DDS keys allows nodes to manage multiple entities within a single stream, avoiding redundant topics, reducing computational load, and ensuring scalability for real-world applications where many humans may interact simultaneously with a robot.
+
+More information about the message definitions and the enhancements introduced in this package can be found in :ref:`enhancements_hri_msgs`.
+
 .. _vulcanexus_hri_face_detect:
 
 Face Detection
----------------
+--------------
 
 Face detection is accomplished by the `hri_face_detect <https://github.com/eProsima/agile-hri>`_ package.
 It relies on `YuNet face detector <https://github.com/ShiqiYu/libfacedetection>`_ to perform face detection.
