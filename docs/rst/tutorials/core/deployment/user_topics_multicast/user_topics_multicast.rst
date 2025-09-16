@@ -45,10 +45,10 @@ Save the following XML configuration file at the desired location, which will be
 Run the example
 ---------------
 
-This tutorial leverages the Vulcanexus `jazzy-desktop` Docker image to demonstrate the use of the aforementioned XML
+This tutorial leverages the Vulcanexus `kilted-desktop` Docker image to demonstrate the use of the aforementioned XML
 configuration file to achieve multicast communication across different hosts.
 
-First, run two Vulcanexus `jazzy-desktop` with:
+First, run two Vulcanexus `kilted-desktop` with:
 
 .. tab-set::
 
@@ -61,7 +61,7 @@ First, run two Vulcanexus `jazzy-desktop` with:
             --tty \
             --rm \
             --volume <path_to_xml_config_file_dir>:/root/xml_config \
-            ubuntu-vulcanexus:jazzy-desktop
+            ubuntu-vulcanexus:kilted-desktop
 
   .. tab-item:: Container two (Publication)
 
@@ -71,7 +71,7 @@ First, run two Vulcanexus `jazzy-desktop` with:
             --interactive \
             --tty \
             --rm \
-            ubuntu-vulcanexus:jazzy-desktop
+            ubuntu-vulcanexus:kilted-desktop
 
 Then, within the container, run the talker-listener demo.
 

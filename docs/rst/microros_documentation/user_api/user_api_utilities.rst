@@ -10,7 +10,7 @@ micro-ROS Utilities
 
 .. note::
 
-    A full example can be found on how to use this API can be found `here <https://github.com/micro-ROS/micro_ros_arduino/blob/jazzy/examples/micro-ros_types_handling/micro-ros_types_handling.ino>`_
+    A full example can be found on how to use this API can be found `here <https://github.com/micro-ROS/micro_ros_arduino/blob/kilted/examples/micro-ros_types_handling/micro-ros_types_handling.ino>`_
 
 micro-ROS String Utilities
 --------------------------

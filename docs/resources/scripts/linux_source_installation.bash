@@ -73,9 +73,9 @@ sudo apt update && sudo apt install -y \
 ##!
 
 ##LINUX_SOURCE_CLONE_ROS2_REPOS
-mkdir -p ~/vulcanexus_jazzy/src
-cd ~/vulcanexus_jazzy
-wget https://raw.githubusercontent.com/ros2/ros2/jazzy/ros2.repos
+mkdir -p ~/vulcanexus_kilted/src
+cd ~/vulcanexus_kilted
+wget https://raw.githubusercontent.com/ros2/ros2/kilted/ros2.repos
 vcs import src < ros2.repos
 ##!
 
@@ -83,12 +83,12 @@ vcs import src < ros2.repos
 sudo apt upgrade -y
 sudo rosdep init
 rosdep update
-rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-6.0.1 urdfdom_headers"
+rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-7.3.0 urdfdom_headers"
 ##!
 
 ##LINUX_SOURCE_CLONE_VULCA
 cd ~
-cd vulcanexus_jazzy
+cd vulcanexus_kilted
 
 # Remove ROS 2 packages overridden by Vulcanexus
 rm -rf \
@@ -97,8 +97,8 @@ rm -rf \
     src/ros2/rosidl_dynamic_typesupport_fastrtps
 
 # Get Vulcanexus sources
-wget https://raw.githubusercontent.com/eProsima/vulcanexus/jazzy/vulcanexus.repos
-wget https://raw.githubusercontent.com/eProsima/vulcanexus/jazzy/colcon.meta
+wget https://raw.githubusercontent.com/eProsima/vulcanexus/branch-out/kilted/vulcanexus.repos
+wget https://raw.githubusercontent.com/eProsima/vulcanexus/branch-out/kilted/colcon.meta
 vcs import --force src < vulcanexus.repos
 
 # Avoid compilation of some documentation and demo packages
@@ -132,6 +132,6 @@ sudo apt update && sudo apt install -y \
 ##!
 
 ##LINUX_SOURCE_VULCA_COMPILE
-cd ~/vulcanexus_jazzy
+cd ~/vulcanexus_kilted
 colcon build
 ##!

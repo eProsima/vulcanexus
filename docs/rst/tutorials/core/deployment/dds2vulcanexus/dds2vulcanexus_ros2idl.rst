@@ -14,11 +14,11 @@ Prerequisites
 For convenience, this tutorial is built and run using Docker environments to avoid requiring local installations, although Docker is not required. All steps can be executed in a local environment, provided the necessary dependencies are properly installed.
 The tutorial focuses on the explanations regarding topic compatibility rather than giving an in depth explanation about the code used. The only prerequisites are, thus, downloading both Docker images.
 
-For the ROS 2 Docker image, the following command can be used to download the latest version of Vulcanexus Jazzy Jolo:
+For the ROS 2 Docker image, the following command can be used to download the latest version of Vulcanexus Kilted Kolumbo:
 
 .. code-block:: bash
 
-    docker pull eprosima/vulcanexus:jazzy-desktop
+    docker pull eprosima/vulcanexus:kilted-desktop
 
 The Fast DDS Docker image can be found on the `eProsima website <https://www.eprosima.com/product-download>`_.
 
@@ -33,8 +33,8 @@ To start the Vulcanexus application, we initiate the Docker container, and sourc
 
 .. code-block:: bash
 
-    docker run -it --rm eprosima/vulcanexus:jazzy-desktop
-    source opt/vulcanexus/jazzy/setup.bash
+    docker run -it --rm eprosima/vulcanexus:kilted-desktop
+    source opt/vulcanexus/kilted/setup.bash
 
 For this tutorial, we will use a simple example ROS 2 talker already installed in Vulcanexus, which sends periodically string messages to the chatter topic.
 

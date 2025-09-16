@@ -15,12 +15,12 @@ This tutorial provides step-by-step instructions to use Vulcanexus for monitorin
 Prerequisites
 -------------
 
-Ensure that the Vulcanexus installation includes Vulcanexus Tools (either ``vulcanexus-jazzy-desktop``, ``vulcanexus-jazzy-tools``, or ``vulcanexus-jazzy-base``).
+Ensure that the Vulcanexus installation includes Vulcanexus Tools (either ``vulcanexus-kilted-desktop``, ``vulcanexus-kilted-tools``, or ``vulcanexus-kilted-base``).
 Also, remember to source the environment in every terminal in this tutorial.
 
 .. code-block:: bash
 
-    source /opt/vulcanexus/jazzy/setup.bash
+    source /opt/vulcanexus/kilted/setup.bash
 
 Launch ROS 2 Monitor
 --------------------
@@ -95,7 +95,7 @@ Additionally, we can access the we can access the IDL representation of any of t
 the Topic name, and choosing *Data type IDL view*. This opens a new Tab with the required information, which can be
 copied and pasted. Note that for ROS 2 topics, the IDL representation is demangled by default (can be undone in *View->Revert ROS 2 Demangling*).
 
-.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/IDL_img_jazzy2.png
+.. figure:: /rst/figures/tutorials/tools/monitor_screenshots/IDL_img_kilted2.png
     :align: center
 
 Alias

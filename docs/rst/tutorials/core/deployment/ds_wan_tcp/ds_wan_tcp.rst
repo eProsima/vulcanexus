@@ -121,13 +121,13 @@ The expected behavior is that both ``talker`` and ``listener`` are able to conne
 Prerequisites
 -------------
 
-First of all, make sure that Vulcanexus jazzy is installed.
+First of all, make sure that Vulcanexus kilted is installed.
 The docker installation is required for this tutorial (see :ref:`Docker installation <docker_installation>`), together with the `eProsima Vulcanexus docker image <https://hub.docker.com/r/eprosima/vulcanexus>`_.
-The :ref:`Vulcanexus jazzy <notes_jazzy_latest>` image can be downloaded by running:
+The :ref:`Vulcanexus kilted <notes_kilted_latest>` image can be downloaded by running:
 
 .. code-block:: bash
 
-    docker pull eprosima/vulcanexus:jazzy
+    docker pull eprosima/vulcanexus:kilted
 
 In addition, docker `compose <https://docs.docker.com/compose/>`_ is used to simplify the example deployment, and ``iptables`` is required to update the network configuration.
 Follow `docker compose installation guide <https://docs.docker.com/compose/install/>`_, and install the ``iptables`` dependency by running:
@@ -211,7 +211,7 @@ Create the Docker compose file
 ------------------------------
 
 Once the XML configuration files have been included in the workspace, create a new file named ``Dockerfile`` and paste the following code.
-It contains the required commands to assemble a docker image based on Vulcanexus jazzy.
+It contains the required commands to assemble a docker image based on Vulcanexus kilted.
 That includes some dependencies, and the recently created XML configuration files.
 
 .. literalinclude:: /resources/tutorials/core/deployment/ds_wan_tcp_tutorial/Dockerfile
@@ -311,12 +311,12 @@ In order to address the port forwarding configuration, see the `Configure transv
         .. code-block:: bash
 
             # run the server docker image with the XML configuration
-            docker run -td --name discovery_server --net host eprosima/vulcanexus:jazzy
+            docker run -td --name discovery_server --net host eprosima/vulcanexus:kilted
             docker cp <workspace>/server_configuration.xml discovery_server:/server_configuration.xml
             docker exec -it discovery_server bash
 
             # run the discovery server
-            source /opt/vulcanexus/jazzy/setup.bash
+            source /opt/vulcanexus/kilted/setup.bash
             fastdds discovery -x server_configuration.xml
 
     .. tab-item:: Listener
@@ -324,12 +324,12 @@ In order to address the port forwarding configuration, see the `Configure transv
         .. code-block:: bash
 
             # run the listener docker image with the XML configuration
-            docker run -td --name ros_listener --net host eprosima/vulcanexus:jazzy
+            docker run -td --name ros_listener --net host eprosima/vulcanexus:kilted
             docker cp <workspace>/listener_configuration.xml ros_listener:/listener_configuration.xml
             docker exec -it ros_listener bash
 
             # run the listener client
-            source /opt/ros/jazzy/setup.bash
+            source /opt/ros/kilted/setup.bash
             export FASTRTPS_DEFAULT_PROFILES_FILE="listener_configuration.xml"
             ros2 run demo_nodes_cpp listener
 
@@ -338,12 +338,12 @@ In order to address the port forwarding configuration, see the `Configure transv
         .. code-block:: bash
 
             # run the talker docker image with the XML configuration
-            docker run -td --name ros_talker --net host eprosima/vulcanexus:jazzy
+            docker run -td --name ros_talker --net host eprosima/vulcanexus:kilted
             docker cp <workspace>/talker_configuration.xml ros_talker:/talker_configuration.xml
             docker exec -it ros_talker bash
 
             # run the talker client
-            source /opt/ros/jazzy/setup.bash
+            source /opt/ros/kilted/setup.bash
             export FASTRTPS_DEFAULT_PROFILES_FILE="talker_configuration.xml"
             ros2 run demo_nodes_cpp talker
 

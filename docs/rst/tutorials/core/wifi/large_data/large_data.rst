@@ -128,7 +128,7 @@ Follow these steps:
 
 .. code:: bash
 
-    source /opt/vulcanexus/jazzy/setup.bash
+    source /opt/vulcanexus/kilted/setup.bash
 
 2. On the receiving computer, run the subscriber node:
 

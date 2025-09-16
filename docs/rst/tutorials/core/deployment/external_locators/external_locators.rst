@@ -103,7 +103,7 @@ On both hosts, open a shell and run:
                 .. code-block:: bash
 
                     docker run --rm -it `# Cleanup, interactive terminal` \
-                        ubuntu-vulcanexus:jazzy-desktop `# Image name`
+                        ubuntu-vulcanexus:kilted-desktop `# Image name`
 
 
     .. tab-item:: HOST 2

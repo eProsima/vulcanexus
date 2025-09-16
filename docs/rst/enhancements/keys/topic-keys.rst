@@ -91,7 +91,7 @@ The use of topic keys report several benefits, including:
 * Easy integration with databases: individual records in a table are uniquely identified by the values of the fields marked as the “primary key” for that table.
   If those same fields are also marked as the key fields for the corresponding Topic, then the integration is seamless and can work hand-in-hand with the database table storage.
 * Improved message filtering: by combining topic keys with `Content Filter Topic <https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/topic/contentFilteredTopic/contentFilteredTopic.html>`_, nodes have the ability to subscribe selectively to messages by utilizing their keys, allowing for precise filtering and minimizing superfluous message handling.
-  Please consult the :ref:`filtered_topic_keys_tutorial` for practical guidance.
+  Please consult the :ref:`vulcanexus_filtered_topic_keys_tutorial` for practical guidance.
 
 In summary, keyed topics enhance the flexibility, efficiency, and organization of messages exchange.
 By leveraging keyed topics, developers can design more robust and scalable robotic applications capable of handling diverse data sources and complex environments.
@@ -101,6 +101,6 @@ Using Topic Keys
 
 For details on how to use topic keys in *Vulcanexus*, please refer to the documented tutorials in this regard:
 
-  * :ref:`topic_keys_tutorial`
-  * :ref:`filtered_topic_keys_tutorial`
+  * :ref:`vulcanexus_topic_keys_tutorial`
+  * :ref:`vulcanexus_filtered_topic_keys_tutorial`
 

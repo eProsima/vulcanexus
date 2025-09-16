@@ -1,9 +1,9 @@
-FROM ubuntu-vulcanexus-cloud:jazzy
+FROM ubuntu-vulcanexus-cloud:kilted
 
 # Install demo-nodes-cpp
-RUN source /opt/vulcanexus/jazzy/setup.bash && \
+RUN source /opt/vulcanexus/kilted/setup.bash && \
     apt update && \
-    apt install -y ros-jazzy-demo-nodes-cpp
+    apt install -y ros-kilted-demo-nodes-cpp
 
 COPY ./run.bash /
 RUN chmod +x /run.bash

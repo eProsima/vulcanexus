@@ -133,7 +133,7 @@ Once both files are ready, the micro-ROS library can be generated and built usin
 Creating a custom build script
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A basic understanding on how to proceed can be extracted analyzing the code of the `custom library generation script <https://github.com/micro-ROS/micro_ros_setup/blob/jazzy/config/generate_lib/generic/build.sh>`_ explained above.
+A basic understanding on how to proceed can be extracted analyzing the code of the `custom library generation script <https://github.com/micro-ROS/micro_ros_setup/blob/kilted/config/generate_lib/generic/build.sh>`_ explained above.
 
 But in general the following points shall be taken into account:
 
@@ -230,12 +230,12 @@ Using a common ``gcc`` command line, the following steps can be followed:
 Makefile
 ^^^^^^^^
 
-An example on how to integrate micro-ROS Client library in a Make build system can be found in the `micro-ROS app for TI Tiva C Series <https://github.com/micro-ROS/micro_ros_tivac_launchpad_app/blob/jazzy/Makefile>`_.
+An example on how to integrate micro-ROS Client library in a Make build system can be found in the `micro-ROS app for TI Tiva C Series <https://github.com/micro-ROS/micro_ros_tivac_launchpad_app/blob/kilted/Makefile>`_.
 
 CMake
 ^^^^^
 
-An example on how to integrate micro-ROS Client library in a CMake build system can be found in the `micro-ROS example for Mbed RTOS <https://github.com/micro-ROS/micro_ros_mbed/blob/jazzy/CMakeLists.txt>`_.
+An example on how to integrate micro-ROS Client library in a CMake build system can be found in the `micro-ROS example for Mbed RTOS <https://github.com/micro-ROS/micro_ros_mbed/blob/kilted/CMakeLists.txt>`_.
 
 
 micro-ROS system dependencies

@@ -1,6 +1,6 @@
 .. include:: ../../../../exports/alias.include
 
-.. _filtered_topic_keys_tutorial:
+.. _vulcanexus_filtered_topic_keys_tutorial:
 
 Topic Instances Subscription Filtering Tutorial
 ===============================================
@@ -31,7 +31,7 @@ This granular level of filtering enables applications to optimally manage data w
 Prerequisites
 -------------
 
-* It is highly recommended to have completed the :ref:`topic_keys_tutorial`.
+* It is highly recommended to have completed the :ref:`vulcanexus_topic_keys_tutorial`.
 * An up-to-date (latest) Vulcanexus installation using one of the following installation methods:
 
   * :ref:`linux_binary_installation`
@@ -59,7 +59,7 @@ For this, there are two possible options:
             source /opt/vulcanexus/{DISTRO}/setup.bash
 
 #.  Running the tutorial on the local host.
-    For this second option, it is necessary to have the ``vucanexus-jazzy-base`` package installed.
+    For this second option, it is necessary to have the ``vucanexus-kilted-base`` package installed.
 
     Source the following file to setup the Vulcanexus environment:
 

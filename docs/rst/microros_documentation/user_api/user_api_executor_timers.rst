@@ -48,7 +48,7 @@ The callback gives a pointer to the associated timer and the time elapsed since 
       }
   }
 
-The timer can be canceled or have its period and/or callback modified using the passed pointer. Check `rcl/timer.h <https://github.com/ros2/rcl/blob/jazzy/rcl/include/rcl/timer.h>`_ for details.
+The timer can be canceled or have its period and/or callback modified using the passed pointer. Check `rcl/timer.h <https://github.com/ros2/rcl/blob/kilted/rcl/include/rcl/timer.h>`_ for details.
 
 Cleaning Up
 ^^^^^^^^^^^
