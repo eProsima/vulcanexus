@@ -44,7 +44,7 @@ Finally, :ref:`Fast DDS Spy <vulcanexus_fastddsspy>` is provided as a CLI intera
 .. note::
 
     The binary package is called following the next convention ``vulcanexus-<version_name>-tools`` being the ``version_name`` the corresponding adjective associated with the :ref:`specific release <release_notes>`.
-    For example, for Vulcanexus v3, ``version_name`` is ``kilted``.
+    For example, for Vulcanexus v5, ``version_name`` is ``kilted``.
     Consequently, in order to install this package run the following command after setting up the repository as explained in the :ref:`installation guide <linux_binary_installation>`
 
         .. code-block:: bash
@@ -87,7 +87,7 @@ To this end, :ref:`ROS 2 Router <vulcanexus_router>` is installed in this *Vulca
 .. note::
 
     The binary package is called following the next convention ``vulcanexus-<version_name>-cloud`` being the ``version_name`` the corresponding adjective associated with the :ref:`specific release <release_notes>`.
-    For example, for Vulcanexus v3, ``version_name`` is ``kilted``.
+    For example, for Vulcanexus v5, ``version_name`` is ``kilted``.
     Consequently, in order to install this package run the following command after setting up the repository as explained in the :ref:`installation guide <linux_binary_installation>`
 
         .. code-block:: bash

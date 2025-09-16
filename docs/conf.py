@@ -209,7 +209,7 @@ macros = {
     "DISTRO_TITLE": "kilted",
     "DISTRO_TITLE_FULL": "Kilted Kolumbo",
     "REPOS_FILE_BRANCH": "kilted",
-    "FASTDDS_BRANCH": "v3.2.2",
+    "FASTDDS_BRANCH": "v3.3.0",
 }
 
 # -- General configuration ------------------------------------------------
