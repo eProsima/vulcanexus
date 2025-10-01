@@ -112,6 +112,7 @@ To make such contributions, please refer to the
    /rst/tutorials/cloud/cloud_tutorials
    /rst/tutorials/micro/micro_tutorials
    /rst/tutorials/hri/hri_tutorials
+   /rst/tutorials/vulcanai/vulcanai_tutorials
 
 .. toctree::
    :caption: Use cases
