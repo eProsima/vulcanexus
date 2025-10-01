@@ -45,7 +45,7 @@ In the terminal where the environment is set up, run the following command:
 
 .. code-block:: bash
 
-        ros2 run turtlesim_tools vulcanai_turtlesim_demo
+        ros2 run vulcanai_turtlesim_demo vulcanai_turtlesim_demo
 
 You should start seeing VulcanAI logs in the terminal.
 The first time the console is run, it will download the embedding model used by the library to tokenize the input.

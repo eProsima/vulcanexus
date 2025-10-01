@@ -82,10 +82,10 @@ Replace the ``entry_points`` section of the ``setup.py`` file with the following
 
     entry_points={
         "console_scripts": [
-            "vulcanai_turtlesim_demo = turtlesim_tools.ros2_node:main",
+            "vulcanai_turtlesim_demo = vulcanai_turtlesim_demo.ros2_node:main",
         ],
         "turtle_tools": [
-            "turtle_tools = turtlesim_tools.turtlesim_tools",
+            "turtle_tools = vulcanai_turtlesim_demo.turtlesim_tools",
         ],
     },
 
@@ -94,7 +94,7 @@ Then, go to the root of your workspace and build the package:
 .. code-block:: bash
 
     cd ~/<your_workspace> && \
-    colcon build --packages-select turtlesim_tools && \
+    colcon build --packages-select vulcanai_turtlesim_demo && \
     source install/setup.bash
 
 Remember that if VulcanAI is installed in a virtual environment, you need to activate it before sourcing the workspace.

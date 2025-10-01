@@ -17,8 +17,8 @@ First, create a ROS 2 package inside a your workspace (make sure to replace ``<y
 .. code-block:: bash
 
     cd ~/<your_workspace>/src && \
-    ros2 pkg create --build-type ament_python turtlesim_tools && \
-    cd turtlesim_tools
+    ros2 pkg create --build-type ament_python vulcanai_turtlesim_demo && \
+    cd vulcanai_turtlesim_demo
 
 Sharing a single ROS 2 Node between tools
 -----------------------------------------
@@ -30,7 +30,7 @@ In this way, all the tools will be able to reuse the same entities created by ot
 The blackboard is a shared memory space where tools can write and read data, allowing them to share information without the need for the LLM to reason about how to pass data between tools.
 To get a better understanding of this concept, please refer to the :ref:`Sharing data between tools <vulcanai_tools_sharing_data>` section in the :ref:`VulcanAI Tools <vulcanai_tools>` tutorial.
 
-To create the shared ROS 2 node, create a new file called ``ros2_node.py`` inside the ``turtlesim_tools/turtlesim_tools`` folder with the following content:
+To create the shared ROS 2 node, create a new file called ``ros2_node.py`` inside the ``vulcanai_turtlesim_demo/vulcanai_turtlesim_demo`` folder with the following content:
 
 .. literalinclude:: /resources/tutorials/vulcanai/turtlesim/ros2_node.py
     :language: python
@@ -99,7 +99,7 @@ Run the following commands to download the tools (make sure to replace ``<your_w
 
 .. code-block:: bash
 
-    cd ~/<your_workspace>/src/turtlesim_tools/turtlesim_tools && \
+    cd ~/<your_workspace>/src/vulcanai_turtlesim_demo/vulcanai_turtlesim_demo && \
     wget https://https://raw.githubusercontent.com/eProsima/vulcanexus/refs/heads/main/docs/resources/tutorials/vulcanai/turtlesim/turtlesim_tools.py
 
 Examining a tool with a service client
