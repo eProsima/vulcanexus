@@ -94,6 +94,7 @@ Then, go to the root of your workspace and build the package:
 .. code-block:: bash
 
     cd ~/<your_workspace> && \
+    source /opt/vulcanexus/${VULCANEXUS_DISTRO}/setup.bash && \
     colcon build --packages-select vulcanai_turtlesim_demo && \
     source install/setup.bash
 
@@ -102,3 +103,24 @@ Check the :ref:`Running VulcanAI from virtual environment with Vulcanexus <vulca
 
 After successfully building the package, the node is ready to be launched and tested.
 Continue with the :ref:`Using VulcanAI to control TurtleSim <tutorials_vulcanai_turtlesim_usage>` tutorial to learn how to use the created tools to control TurtleSim through natural language instructions.
+
+Get all the code
+----------------
+
+Instead of following all the steps in the :ref:`VulcanAI Tools <tutorials_vulcanai_turtlesim_tools>` and :ref:`VulcanAI Console and manager <tutorials_vulcanai_turtlesim_main>` tutorials, you can also get all the code with the following command:
+
+.. code-block:: bash
+
+    cd ~/<your_workspace> && \
+    mkdir temp && \
+    mkdir src && \
+    git clone https://github.com/eProsima/vulcanexus.git temp/ && \
+    cp -r temp/code/vulcanai_turtlesim/vulcanai_turtlesim_demo src/. && \
+    rm -rf temp/ && \
+    source /opt/vulcanexus/${VULCANEXUS_DISTRO}/setup.bash && \
+    colcon build --packages-select vulcanai_turtlesim_demo && \
+    source install/setup.bash
+
+Remember to replace ``<your_workspace>`` with the path to your ROS 2 workspace.
+The code will be downloaded to the ``src/vulcanai_turtlesim_demo`` folder of your workspace and can be directly built and run.
+Getting the code this way is equivalent to following all the steps in the previous tutorials.
