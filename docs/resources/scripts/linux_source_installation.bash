@@ -97,8 +97,8 @@ rm -rf \
     src/ros2/rosidl_dynamic_typesupport_fastrtps
 
 # Get Vulcanexus sources
-wget https://raw.githubusercontent.com/eProsima/vulcanexus/branch-out/kilted/vulcanexus.repos
-wget https://raw.githubusercontent.com/eProsima/vulcanexus/branch-out/kilted/colcon.meta
+wget https://raw.githubusercontent.com/eProsima/vulcanexus/kilted/vulcanexus.repos
+wget https://raw.githubusercontent.com/eProsima/vulcanexus/kilted/colcon.meta
 vcs import --force src < vulcanexus.repos
 
 # Avoid compilation of some documentation and demo packages
