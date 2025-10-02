@@ -9,12 +9,10 @@ import time
 import rclpy
 from geometry_msgs.msg import Twist
 from std_srvs.srv import Empty
-from turtlesim_msgs.srv import Kill, Spawn, TeleportAbsolute, TeleportRelative
+from turtlesim_msgs.srv import Kill, SetPen, Spawn, TeleportAbsolute, TeleportRelative
 from turtlesim_msgs.msg import Pose
 
-from vulcanai.tool_registry import vulcanai_tool
-from vulcanai.tools import AtomicTool, CompositeTool
-
+from vulcanai import AtomicTool, CompositeTool, vulcanai_tool
 
 @vulcanai_tool
 class SpawnTurtleTool(AtomicTool):
@@ -166,23 +164,43 @@ class AbsoluteTeleportTurtleTool(AtomicTool):
             return {"name": "", "teleported": False}
 
         name = kwargs.get("name", "")
-        client_name = f"/{name}/teleport_absolute"
+        tp_srv_name = f"/{name}/teleport_absolute"
+        pen_srv_name = f"/{name}/set_pen"
 
-        client = node.get_client(TeleportAbsolute, client_name)
-        if not client.wait_for_service(timeout_sec=5.0):
-            raise Exception("Service not available, aborting...")
+        try:
+            # Try to disable the pen before teleporting to avoid drawing a line
+            # Do not fail if the pen service is not available
+            pen_result = None
+            pen_client = node.get_client(SetPen, pen_srv_name)
+            pen_req = SetPen.Request(r=179, g=184, b=255, width=3, off=1)
+            with node.node_lock:
+                pen_future = pen_client.call_async(pen_req)
+                rclpy.spin_until_future_complete(node, pen_future, timeout_sec=3.0)
+                pen_result = pen_future.result()
 
-        req = TeleportAbsolute.Request()
-        req.x = kwargs.get("x", 0.0)
-        req.y = kwargs.get("y", 0.0)
-        req.theta = kwargs.get("theta", 0.0)
+            client = node.get_client(TeleportAbsolute, tp_srv_name)
+            if not client.wait_for_service(timeout_sec=5.0):
+                raise Exception("Service not available, aborting...")
 
-        with node.node_lock:
-            future = client.call_async(req)
-            rclpy.spin_until_future_complete(node, future, timeout_sec=5.0)
-            result = future.result()
-            if result is None:
-                raise Exception("Service call failed timeout, aborting...")
+            req = TeleportAbsolute.Request()
+            req.x = kwargs.get("x", 0.0)
+            req.y = kwargs.get("y", 0.0)
+            req.theta = kwargs.get("theta", 0.0)
+
+            with node.node_lock:
+                future = client.call_async(req)
+                rclpy.spin_until_future_complete(node, future, timeout_sec=5.0)
+                result = future.result()
+                if result is None:
+                    raise Exception("Service call failed timeout, aborting...")
+        finally:
+            if pen_result is not None:
+                # Restore the pen state after teleporting
+                pen_req.off = 0
+                with node.node_lock:
+                    pen_future = pen_client.call_async(pen_req)
+                    rclpy.spin_until_future_complete(node, pen_future, timeout_sec=3.0)
+                    pen_future.result()
 
         return {"name": name, "teleported": True}
 
@@ -257,6 +275,7 @@ class GetTurtlePose(AtomicTool):
 
         return {"name": name, "x": msg.x, "y": msg.y, "theta": msg.theta}
 
+
 @vulcanai_tool
 class MoveTurtleTool(AtomicTool):
     name = "move_turtle"
@@ -293,7 +312,7 @@ class MoveTurtleTool(AtomicTool):
 @vulcanai_tool
 class DrawRectangleTool(CompositeTool):
     name = "draw_rectangle"
-    description = "Move the turtle 'name' in a rectangular shape. 'success' indicates if rectangle was drawn successfully."
+    description = "Move the turtle 'name' in a rectangular shape where 'size' is the length of the shortest sides. 'success' indicates if rectangle was drawn successfully."
     tags = ["turtlesim", "draw", "rectangle", "move", "cmd_vel"]
     input_schema = [
         ("name", "string"),
@@ -332,7 +351,7 @@ class DrawRectangleTool(CompositeTool):
             "name": name,
             "linear": linear_speed,
             "angular": 0.0,
-            "duration": (size - 1) / linear_speed,
+            "duration": (size + 1) / linear_speed,
         }
         turn_args = {
             "name": name,
@@ -351,4 +370,3 @@ class DrawRectangleTool(CompositeTool):
         tp_relative_tool.run(**turn_args)
 
         return {"success": True}
-

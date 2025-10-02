@@ -93,7 +93,7 @@ We will only explain the most relevant parts of the code, illustrating each type
 - An *AtomicTool* that calls a service to spawn a turtle.
 - An *AtomicTool* that creates a publisher to move a turtle.
 - An *AtomicTool* that creates a subscription to get the current state of a turtle.
-- A *CompositeTool* that combines multiple *AtomicTool*s to draw a rectangle.
+- A *CompositeTool* that combines multiple *AtomicTools* to draw a rectangle.
 
 Run the following commands to download the tools (make sure to replace ``<your_workspace>`` with the path to your ROS 2 workspace):
 
@@ -111,9 +111,9 @@ This tool will call the ``/spawn`` service to create a new turtle in the environ
 The tool is marked with the ``@vulcanai_tool`` decorator, which is needed to register the tool in VulcanAI.
 It inherits from the ``AtomicTool`` class, as it only performs a single action and does not have any dependencies on other tools.
 
-.. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools.py
+.. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools_srv.py
     :language: python
-    :lines: 14-25
+    :lines: 1-12
 
 The ``name`` and ``description`` attributes are used by the agent to understand the purpose of the tool.
 The ``tags`` attribute is optional, but here it is used to categorize the tool and also add keywords that can help the agent to find it when needed.
@@ -124,9 +124,9 @@ The output is the name of the spawned turtle and a boolean indicating if the ope
 The ``run()`` method contains the logic of the tool.
 It first retrieves the shared ROS 2 node from the blackboard, and then calls the already explained ``get_client()`` method of the shared node for the ``/spawn`` service.
 
-.. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools.py
+.. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools_srv.py
     :language: python
-    :lines: 27-34
+    :lines: 14-21
 
 Note that if the *shared_node* is not found or the service is not available, the tool will raise an exception and abort the operation.
 Exceptions are handled by VulcanAI, automatically assingning a null output to the tool and informing the agent about the error.
@@ -134,9 +134,9 @@ Exceptions are handled by VulcanAI, automatically assingning a null output to th
 Then, a request object is created and filled with the input data, which is retrieved from the `kwargs` dictionary.
 Finally, the service is called and the future is awaited until the response is received before returning the output.
 
-.. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools.py
+.. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools_srv.py
     :language: python
-    :lines: 36-49
+    :lines: 23-36
 
 The output is returned as a dictionary, matching the defined output schema.
 
@@ -150,7 +150,7 @@ The tool is defined in the same way as the previous one, with the necessary basi
 
 .. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools.py
     :language: python
-    :lines: 255-266
+    :lines: 1-12
 
 The run method differs from the previous one, as it needs to create a publisher instead of a service client.
 First, the input parameters are retrieved from the ``kwargs`` dictionary.
@@ -159,14 +159,14 @@ Linear and angular velocities are used to create a ``Twist`` message that will b
 
 .. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools.py
     :language: python
-    :lines: 268-280
+    :lines: 14-26
 
 Then, the generated message is published to the topic.
 A for loop is used to publish the message multiple times, based on the ``duration`` input parameter.
 
 .. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools.py
     :language: python
-    :lines: 280-285
+    :lines: 27-31
 
 Examining a tool with a subscriber
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -176,7 +176,7 @@ The tool is defined in the same way as the previous ones, with the necessary bas
 
 .. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools.py
     :language: python
-    :lines: 226-239
+    :lines: 1-14
 
 In this case, the ``run()`` method needs to call the ``wait_for_message()``, which creates a subscription to the topic and waits for a single message to be received.
 Note that this method is the one responsible of the spinning of the node until a message is received, so we don't need to call ``rclpy.spin()`` or similar methods.
@@ -184,7 +184,7 @@ The output of the method is the received message, which is then used to fill the
 
 .. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools.py
     :language: python
-    :lines: 241-253
+    :lines: 16-28
 
 Take a look at the definition of the method ``run(self, name: str = "")``.
 The input parameter is defined as a regular method parameter instead of using the ``kwargs`` dictionary, which is also valid and more convenient when there are few input parameters.
@@ -197,7 +197,7 @@ The definition of the tool remains almost the same as the previous ones, adding 
 
 .. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools.py
     :language: python
-    :lines: 288-298
+    :lines: 1-11
 
 The ``dependencies`` attribute is a list of tool names that will be used during the execution of the *CompositeTool*.
 In this case, the tool depends on the ``MoveTurtleTool`` and ``RelativeTeleportTurtleTool`` to move the turtle and teleport it to the starting position.
@@ -208,7 +208,7 @@ The definition of the ``run()`` is similar to the previous tools, as well as the
 
 .. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools.py
     :language: python
-    :lines: 300-312
+    :lines: 13-25
 
 However, the ``run()`` method of a *CompositeTool* adds new behavior, as it needs to reuse the functionality of the dependent tools.
 To do so, *CompositeTools* owns an attribute called ``self.resolved_deps``, which is a dictionary that contains a reference to the dependent tools, indexed by their name.
@@ -218,7 +218,7 @@ Note lines:
 
 .. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools.py
     :language: python
-    :lines: 311-312
+    :lines: 24-25
 
 It is important to remark how we are manually assigning the current *blackboard* to the dependent tools.
 This step is usually done by the VulcanAI manager when tools are called, but in this case we need to do it manually, as the *CompositeTool* is the one being called by the agent, and not the dependent tools.
@@ -228,14 +228,14 @@ Therefore, we create 3 sets of arguments that will be passed to the ``move_tool`
 
 .. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools.py
     :language: python
-    :lines: 314-336
+    :lines: 27-49
 
 Finally, we call the ``run()`` method of the dependent tools with the corresponding arguments, and return a success output.
 We could check the output of each tool call to ensure that the operation was successful, but for simplicity we will assume that everything works as expected.
 
 .. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools.py
     :language: python
-    :lines: 338-346
+    :lines: 51-61
 
 Next steps
 ----------

@@ -12,10 +12,15 @@ At the end of this set of tutorials you will have learned:
 - How to create custom VulcanAI tools, adapted to a ROS 2 environment using TurtleSim as an example.
 - How to use VulcanAI to control TurtleSim through the VulcanAI console.
 
-A demo of the potential of VulcanAI can be found in the following video:
+At the end of this set of tutorials, you will be able to achieve the following behaviors found in the next video:
 
-.. figure:: /rst/figures/tutorials/vulcanai/usage/star_5_points.webm
-    :align: center
+.. raw:: html
+
+      <div class="video-center">
+        <video controls playsinline muted loop>
+          <source src="../../../../_static/resources/tutorials/vulcanai/pentagon.mp4">
+        </video>
+      </div>
 
 Requisites
 ----------

@@ -4,7 +4,7 @@ import rclpy
 from rclpy.node import Node
 from rclpy.task import Future
 
-from vulcanai.console import VulcanConsole
+from vulcanai import VulcanConsole
 
 
 class SharedNode(Node):

@@ -135,20 +135,20 @@ Writing complex prompts
 
 Although the examples that we have shown so far are useful to test the tools, they are quite simple and do not fully exploit the capabilities of VulcanAI.
 Let's try a more complex prompt that involves multiple steps and requires the agent to reason about the sequence of actions to be taken.
-Write the following prompt in the console:
+Reset turtlesim and write the following prompt in the console:
 
 .. code-block:: bash
 
-    [USER] >>> Spawn a new turtle named 'star' on coordinates 2,2 and draw a 5 point star of size 2.
+    [USER] >>> Draw a pentagon with 'turtle1'.
 
-This action involves not only multiple steps, but also some reasoning to determine the angles and movements required to draw a star shape.
-Doing this manually would require some calculations and multiple publisher calls, but the LLM is able to deduce the required movements and angles to draw the star shape.
+This action involves not only multiple steps, but also some reasoning to determine the angles and movements required to draw a pentagon shape.
+Doing this manually would require some calculations and multiple publisher calls, but the LLM is able to deduce the required movements and angles to draw the pentagon shape.
 
 .. raw:: html
 
       <div class="video-center">
         <video controls playsinline muted loop>
-          <source src="../../../../../_static/resources/tutorials/vulcanai/star_5_points.webm">
+          <source src="../../../../../_static/resources/tutorials/vulcanai/pentagon.mp4">
         </video>
       </div>
 

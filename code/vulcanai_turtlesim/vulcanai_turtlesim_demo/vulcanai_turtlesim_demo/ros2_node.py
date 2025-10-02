@@ -8,7 +8,7 @@ import rclpy
 from rclpy.node import Node
 from rclpy.task import Future
 
-from vulcanai.console import VulcanConsole
+from vulcanai import VulcanConsole
 
 
 class SharedNode(Node):
@@ -90,4 +90,3 @@ The simulation has one or more turtles that can move around, drawing on the scre
 
 if __name__ == '__main__':
     main()
-
