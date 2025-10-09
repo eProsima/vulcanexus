@@ -48,7 +48,7 @@ class SharedNode(Node):
                 self.get_logger().info(f"Created new publisher for {topic_name}")
             return self._vulcan_publishers[key]
 
-    def wait_for_message(self, msg_type, topic: str, timeout: float = None):
+    def wait_for_message(self, msg_type, topic: str, timeout_sec: float = None):
         """
         Block until a message is received or timeout expires.
         Subscriptions are created on demand and destroyed after use to avoid
@@ -62,7 +62,7 @@ class SharedNode(Node):
 
         sub = self.create_subscription(msg_type, topic, callback, 10)
 
-        rclpy.spin_until_future_complete(self, future, timeout_sec=timeout)
+        rclpy.spin_until_future_complete(self, future, timeout_sec=timeout_sec)
         self.destroy_subscription(sub)
 
         if future.done():
