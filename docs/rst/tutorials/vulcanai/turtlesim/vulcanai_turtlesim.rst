@@ -3,7 +3,7 @@
 VulcanAI with TurtleSim
 =======================
 
-:ref:`VulcanAI <tutorials_vulcanai_vulcanai_tutorials>` can be easily adapted to control the popular TurtleSim simulator, which is often used for educational purposes in the ROS 2 community.
+:ref:`VulcanAI <vulcanai_introduction>` can be easily adapted to control the popular TurtleSim simulator, which is often used for educational purposes in the ROS 2 community.
 The popularity of this simulator makes it an excellent choice for demonstrating the capabilities of VulcanAI in a ROS 2 environment.
 This tutorial guides you through the steps to set up and use VulcanAI to control TurtleSim and accomplish complex tasks from natural language instructions, demonstrating its capabilities in a simple yet effective manner.
 At the end of this set of tutorials you will have learned:

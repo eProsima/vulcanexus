@@ -3,7 +3,7 @@
 VulcanAI Installation
 =====================
 
-This tutorial provides step-by-step instructions to install and configure *VulcanAI*.
+The following section provides step-by-step instructions to install and configure *VulcanAI*.
 For more info about *VulcanAI* and its capabilities, please refer to the main :ref:`VulcanAI <tutorials_vulcanai_vulcanai_tutorials>` page.
 
 Requirements
@@ -22,7 +22,7 @@ To do so, open a terminal and run the following command:
    pip install eprosima-vulcanai
 
 This will install the latest stable version of VulcanAI and all its dependencies.
-However, it is recommend to create a virtual environment before installing VulcanAI to avoid potential conflicts with other Python packages.
+However, it is recommended to create a virtual environment before installing VulcanAI to avoid potential conflicts with other Python packages.
 
 To create a virtual environment, run the following command:
 

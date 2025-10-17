@@ -19,7 +19,7 @@ Definition of Tools
 In the context of VulcanAI, a *tool* is a Python class that encapsulates a specific functionality or a set of related functionalities.
 Each tool can be thought of as a building block that can be combined with other tools to create more complex behaviors and capabilities.
 Every tool must inherit from either the `vulcanai.tools.AtomicTool` or the `vulcanai.tools.CompositeTool` class, depending on whether it represents a single action or a composition of multiple actions.
-Both types, inherit from the base `vulcanai.tools.ITool` class, which provides common functionality and interfaces for all tools.
+Both types inherit from the base `vulcanai.tools.ITool` class, which provides common functionality and interfaces for all tools.
 
 - Atomic tools are the simplest type of tools, representing a single action.
   They do not have dependencies on other tools and can be executed independently.
@@ -66,7 +66,7 @@ First of all, each tool must be decorated with the `@vulcanai_tool` decorator, w
 
 .. literalinclude:: /resources/tutorials/vulcanai/tools_basic/math_tools.py
     :language: python
-    :lines: 4-5
+    :lines: 3-4
 
 Once the tools are decorated, they can be registered in the following ways:
 
@@ -184,13 +184,13 @@ To mitigate this issue, VulcanAI comes with an extra feature that allows to manu
 The *blackboard* is a shared memory space where tools write data, every time a tool is executed, its output is stored in the *blackboard*, following the output schema of the tool.
 This mechanism allows to freely share any type of data between tools or even between other entities in the Python environment, without the need for the LLM to reason about how to pass data between tools.
 
-To use the *blackboard*, tools can access it through the ``self.bb`` attribute, which is a dictionary-like object that allows to read data.
+To use the *blackboard*, tools can access it through the ``self.bb`` attribute, which is a dictionary-like object that allows to reading data.
 
 For example, we could rewrite the `AddAndMultiplyTool` tool to use the *blackboard* like this:
 
 .. literalinclude:: /resources/tutorials/vulcanai/tools_basic/math_tools_blackboard.py
     :language: python
-    :lines: 14-32
+    :lines: 13-31
 
 In this way, we access the output of the `AddTool` directly from the *blackboard* instead of relying on the agent to pass it as an input.
 

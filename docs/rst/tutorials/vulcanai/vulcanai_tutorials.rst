@@ -3,23 +3,20 @@
 Vulcanexus VulcanAI
 ===================
 
-VulcanAI is a library that provides a framework to easily and flexibly create powerful AI applications.
-Leveraging LLM capabilities, VulcanAI acts as an intelligent assistant, capable of understanding and
-executing complex tasks by decomposing them into manageable sub-tasks in any environment.
-VulcanAI is completely compatible with Vulcanexus, and works marvelously to control and even debug ROS 2
-robots and applications.
+The following VulcanAI tutorial shows how to use most of VulcanAI's features, starting from the basics concepts and gradually increasing in complexity until a complete application is built.
+VulcanAI is completely compatible with Vulcanexus and ROS 2 applications, making it a powerful tool to create intelligent robotic systems.
 
-The following VulcanAI tutorials show how to use most of VulcanAI's features, starting from the basics concepts and gradually increasing in complexity until a complete application is built.
+To learn more about VulcanAI, please refer to the :ref:`VulcanAI Overview <vulcanai_introduction>` section.
+
+This tutorial showcases how to use VulcanAI to control a turtlesim robot using natural language commands.
 
 .. toctree::
     :maxdepth: 1
 
-    vulcanai_installation/vulcanai_installation.rst
-    vulcanai_tools/vulcanai_tools.rst
     turtlesim/vulcanai_turtlesim.rst
 
 Quick Demo
-==========
+----------
 
 A simple demo of the potential of VulcanAI can be found in the following video:
 

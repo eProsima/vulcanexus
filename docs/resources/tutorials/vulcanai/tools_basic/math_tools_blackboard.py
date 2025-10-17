@@ -1,5 +1,4 @@
-from vulcanai.tools import AtomicTool
-from vulcanai.tool_registry import vulcanai_tool
+from vulcanai import AtomicTool, vulcanai_tool
 
 @vulcanai_tool
 class AddTool(AtomicTool):

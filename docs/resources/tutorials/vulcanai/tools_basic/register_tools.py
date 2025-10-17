@@ -1,4 +1,4 @@
-from vulcanai.manager import ToolManager
+from vulcanai import ToolManager
 manager = ToolManager()
 
 # Register tools from the math_tools.py file
