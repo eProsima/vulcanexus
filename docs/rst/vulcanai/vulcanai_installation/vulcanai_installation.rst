@@ -50,7 +50,7 @@ If you prefer to install VulcanAI from source, follow these steps:
 
    .. code-block:: bash
 
-      git clone **TODO: Add repository URL** VulcanAI && cd VulcanAI
+      git clone https://github.com/eProsima/VulcanAI.git VulcanAI && cd VulcanAI
 
 2. Install VulcanAI:
 
