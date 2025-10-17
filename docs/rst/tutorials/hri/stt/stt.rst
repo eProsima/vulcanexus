@@ -40,7 +40,7 @@ The following sections describe how to select the microphone and download the mo
 Docker setup
 ^^^^^^^^^^^^
 
-Create a ``stt-compose.yaml`` file with the following content, replacing ``{VULCANEXUS_DISTRO}`` with your Vulcanexus distribution:
+Create a ``stt-compose.yaml`` file with the following content, replacing ``<VULCANEXUS_DISTRO>`` with your Vulcanexus distribution:
 
 .. code-block:: yaml
 
@@ -55,7 +55,7 @@ Create a ``stt-compose.yaml`` file with the following content, replacing ``{VULC
 
     services:
         stt_server:
-            image: ubuntu-vulcanexus:{VULCANEXUS_DISTRO}-hri
+            image: ubuntu-vulcanexus:<VULCANEXUS_DISTRO>-hri
             <<: *common-config
             deploy:
                 resources:
@@ -103,13 +103,13 @@ This will download the models inside the container. Then, the docker image needs
 .. code-block:: bash
 
     # Run the container
-    docker run -it --rm ubuntu-vulcanexus:{VULCANEXUS_DISTRO}-hri bash
+    docker run -it --rm ubuntu-vulcanexus:<VULCANEXUS_DISTRO>-hri bash
     # Inside the container, run the download script and commit the container to a new image
-    source /opt/vulcanexus/{VULCANEXUS_DISTRO}/setup.bash
+    source /opt/vulcanexus/${VULCANEXUS_DISTRO}/setup.bash
     ros2 run hri_stt download_stt_models
     # In another terminal, find the container ID of the running container with `docker ps`
     # and replace <container_id> in the following command
-    docker commit <container_id> ubuntu-vulcanexus:{VULCANEXUS_DISTRO}-hri-stt
+    docker commit <container_id> ubuntu-vulcanexus:<VULCANEXUS_DISTRO>-hri-stt
 
 2. Alternatively, the user's home hidden cache can be mounted in the container, allowing the models to be downloaded directly in the native host after running the download script from within the container.
 This approach requires to always mount the cache directories when running the container, as shown in the ``stt-compose.yaml`` file under the ``volumes`` section.
@@ -120,7 +120,7 @@ To download the models locally, run the following command:
 
     docker run -it --rm -v /home/user/.cache/torch:/root/.cache/torch \
         -v /home/user/.cache/huggingface:/root/.cache/huggingface \
-        --entrypoint bash ubuntu-vulcanexus:{VULCANEXUS_DISTRO}-hri \
+        --entrypoint bash ubuntu-vulcanexus:<VULCANEXUS_DISTRO>-hri \
         -lc "source /opt/vulcanexus/${VULCANEXUS_DISTRO}/setup.bash && ros2 run hri_stt download_stt_models"
 
 Selecting the microphone
@@ -143,7 +143,7 @@ To list the available audio input devices, run the following command:
 
 .. code-block:: bash
 
-    docker run -it --rm --device /dev/snd --entrypoint bash ubuntu-vulcanexus:{VULCANEXUS_DISTRO}-hri \
+    docker run -it --rm --device /dev/snd --entrypoint bash ubuntu-vulcanexus:<VULCANEXUS_DISTRO>-hri \
         -lc "source /opt/vulcanexus/${VULCANEXUS_DISTRO}/setup.bash && ros2 run hri_stt list_microphones"
 
 This command will print an indexed list of all available audio input devices in the system.

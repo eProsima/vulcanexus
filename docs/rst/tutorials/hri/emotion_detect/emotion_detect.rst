@@ -44,7 +44,7 @@ To run the emotion detection node create a new ``emotion-compose.yaml`` file (or
 
     services:
         emotion_detect:
-            image: ubuntu-vulcanexus:{VULCANEXUS_DISTRO}-hri
+            image: ubuntu-vulcanexus:<VULCANEXUS_DISTRO>-hri
             <<: *common-config
             environment:
                 <<: *common-variables

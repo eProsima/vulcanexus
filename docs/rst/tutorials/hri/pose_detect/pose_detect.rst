@@ -38,13 +38,13 @@ Use a webcam as image source
 
 In case of using Docker, it is needed to give access to the webcam device inside the container.
 Usually, the webcam is located at ``/dev/video0``.
-Run Vulcanexus docker image with the following command, replacing ``{VULCANEXUS_DISTRO}`` with your Vulcanexus distribution:
+Run Vulcanexus docker image with the following command, replacing ``<VULCANEXUS_DISTRO>`` with your Vulcanexus distribution:
 
 .. code-block:: bash
 
-    docker run --device /dev/video0 -it --rm --net host --ipc host ubuntu-vulcanexus:{VULCANEXUS_DISTRO}-hri
+    docker run --device /dev/video0 -it --rm --net host --ipc host ubuntu-vulcanexus:<VULCANEXUS_DISTRO>-hri
 
-To publish images from a webcam, you can use the `*usb_cam* <https://github.com/ros-drivers/usb_cam>`_ package.
+To publish images from a webcam, you can use the `usb_cam <https://github.com/ros-drivers/usb_cam>`_ package.
 Install it with the following command:
 
 .. code-block:: bash
@@ -109,7 +109,7 @@ To run both nodes simultaneously, create a ``compose.yaml`` file with the follow
 
     services:
         id_manager:
-            image: ubuntu-vulcanexus:{VULCANEXUS_DISTRO}-hri
+            image: ubuntu-vulcanexus:<VULCANEXUS_DISTRO>-hri
             <<: *common-config
             environment:
                 <<: *common-variables
@@ -117,7 +117,7 @@ To run both nodes simultaneously, create a ``compose.yaml`` file with the follow
                 ros2 launch hri_id_manager id_manager.launch.py
 
         pose_detect_2D:
-            image: ubuntu-vulcanexus:{VULCANEXUS_DISTRO}-hri
+            image: ubuntu-vulcanexus:<VULCANEXUS_DISTRO>-hri
             <<: *common-config
             environment:
                 <<: *common-variables
@@ -133,7 +133,7 @@ To run both nodes simultaneously, create a ``compose.yaml`` file with the follow
 
         # Run ($xhost local:root) before starting this container to be able to display RViz2
         detection_display_2D:
-            image: ubuntu-vulcanexus:{VULCANEXUS_DISTRO}-hri
+            image: ubuntu-vulcanexus:<VULCANEXUS_DISTRO>-hri
             <<: *common-config
             privileged: true
             volumes:
@@ -148,7 +148,7 @@ To run both nodes simultaneously, create a ``compose.yaml`` file with the follow
 
         # Not needed if there is already a node publishing images on /color/image_raw
         local_webcam:
-            image: ubuntu-vulcanexus:{VULCANEXUS_DISTRO}-hri
+            image: ubuntu-vulcanexus:<VULCANEXUS_DISTRO>-hri
             <<: *common-config
             environment:
                 <<: *common-variables

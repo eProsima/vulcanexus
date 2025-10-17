@@ -73,7 +73,7 @@ Using the same example as before, with keyed topics, the number of DDS entities 
    :class: longtable
 
    * - Scenario
-     - REP-155 /|br|ROS4HRI
+     - REP-155 |br|ROS4HRI
      - Vulcanexus HRI (``hri_msgs``)
      - Notes
    * - **Faces** |br| **(10 detected)**

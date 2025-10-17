@@ -47,7 +47,7 @@ The following sections describe how to select the audio output device and downlo
 Docker setup
 ^^^^^^^^^^^^
 
-Create a ``tts-compose.yaml`` file with the following content, replacing ``{VULCANEXUS_DISTRO}`` with your Vulcanexus distribution:
+Create a ``tts-compose.yaml`` file with the following content, replacing ``<VULCANEXUS_DISTRO>`` with your Vulcanexus distribution:
 
 .. code-block:: yaml
 
@@ -62,7 +62,7 @@ Create a ``tts-compose.yaml`` file with the following content, replacing ``{VULC
 
     services:
         tts_publisher:
-            image: ubuntu-vulcanexus:{VULCANEXUS_DISTRO}-hri
+            image: ubuntu-vulcanexus:<VULCANEXUS_DISTRO>-hri
             <<: *common-config
             deploy:
                 resources:
@@ -80,7 +80,7 @@ Create a ``tts-compose.yaml`` file with the following content, replacing ``{VULC
                 ros2 launch hri_tts tts.launch.py wait_for_finished:=False
 
         tts_subscriber:
-            image: ubuntu-vulcanexus:{VULCANEXUS_DISTRO}-hri
+            image: ubuntu-vulcanexus:<VULCANEXUS_DISTRO>-hri
             <<: *common-config
             environment:
                 <<: *common-variables
@@ -125,13 +125,13 @@ This will download the models inside the container. Then, the docker image needs
 .. code-block:: bash
 
     # Run the container
-    docker run -it --rm ubuntu-vulcanexus:{VULCANEXUS_DISTRO}-hri bash
+    docker run -it --rm ubuntu-vulcanexus:<VULCANEXUS_DISTRO>-hri bash
     # Inside the container, run the download script and commit the container to a new image
-    source /opt/vulcanexus/{VULCANEXUS_DISTRO}/setup.bash
+    source /opt/vulcanexus/${VULCANEXUS_DISTRO}/setup.bash
     ros2 run hri_tts download_tts_models
     # In another terminal, find the container ID of the running container with `docker ps`
     # and replace <container_id> in the following command
-    docker commit <container_id> ubuntu-vulcanexus:{VULCANEXUS_DISTRO}-hri-tts
+    docker commit <container_id> ubuntu-vulcanexus:<VULCANEXUS_DISTRO>-hri-tts
 
 2. Alternatively, the user's home hidden local directory can be mounted in the container, allowing the models to be downloaded directly in the native host after running the download script from within the container.
 This approach requires to always mount the model directory when running the container, as shown in the ``tts-compose.yaml`` file under the ``volumes`` section.
@@ -141,7 +141,7 @@ To download the models locally, run the following command:
 .. code-block:: bash
 
     docker run -it --rm -v /home/user/.local/share/tts:/root/.local/share/tts \
-        --entrypoint bash ubuntu-vulcanexus:{VULCANEXUS_DISTRO}-hri \
+        --entrypoint bash ubuntu-vulcanexus:<VULCANEXUS_DISTRO>-hri \
         -lc "source /opt/vulcanexus/${VULCANEXUS_DISTRO}/setup.bash && ros2 run hri_tts download_tts_models"
 
 Selecting the speaker
@@ -165,7 +165,7 @@ To list the available audio output devices, run the following command:
 
 .. code-block:: bash
 
-    docker run -it --rm --device /dev/snd --entrypoint bash ubuntu-vulcanexus:{VULCANEXUS_DISTRO}-hri \
+    docker run -it --rm --device /dev/snd --entrypoint bash ubuntu-vulcanexus:<VULCANEXUS_DISTRO>-hri \
       -lc "source /opt/vulcanexus/${VULCANEXUS_DISTRO}/setup.bash && ros2 run hri_tts list_speakers"
 
 This command will print an indexed list of all available audio output devices in the system.
@@ -330,7 +330,7 @@ To run the TTS generator node, create a new file ``tts-gen-compose.yaml`` with t
 
     services:
         tts_generator:
-            image: ubuntu-vulcanexus:{VULCANEXUS_DISTRO}-hri
+            image: ubuntu-vulcanexus:<VULCANEXUS_DISTRO>-hri
             <<: *common-config
             deploy:
                 resources:
