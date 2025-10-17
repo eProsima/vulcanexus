@@ -11,8 +11,8 @@ The first step when creating new tools for VulcanAI agents is to decide:
 
 By answering these questions, we can define the ``name``, ``description``, ``input_schema`` and ``output_schema`` of the tool, which are essential for the agent to understand how to use it.
 
-For this tutorial, we will create a tool for most basic functionalities of TurtleSim, including services for reseting the environment or spawning new turtles and classic pub-sub topology to move the turtles.
-First, create a ROS 2 package inside a your workspace (make sure to replace ``<your_workspace>`` with the path to your ROS 2 workspace):
+For this tutorial, we will create a tool for most basic functionalities of TurtleSim, including services for resetting the environment or spawning new turtles and classic pub-sub topology to move the turtles.
+First, create a ROS 2 package inside your workspace (make sure to replace ``<your_workspace>`` with the path to your ROS 2 workspace):
 
 .. code-block:: bash
 
@@ -76,10 +76,10 @@ The method ``get_publisher`` works in a similar way, creating or returning an ex
     :language: python
     :lines: 47-66
 
-Finally, the method ``wait_for_message`` is a utility function that allows to wait for a single message from a topic, which is needed for tools that will use subscriptions.
+Finally, the method ``wait_for_message`` is a utility function that allows waiting for a single message from a topic, which is needed for tools that will use subscriptions.
 Subscriptions, unlike publishers or service clients, will not be reused.
 
-To control TurtleSim we do not require to keep a subscription alive and handling its callbacks between tool calls, as we will only need to get the current state of the turtles when requested by the user.
+To control TurtleSim we do not require keeping a subscription alive and handling its callbacks between tool calls, as we will only need to get the current state of the turtles when requested by the user.
 Therefore, we will create a new subscription every time we need to get a message from a topic, spin the node until we get a message, and then destroy it after receiving the first message.
 The ``Future`` object is used in the subscriber callback to wait for the message to be received.
 
@@ -105,7 +105,7 @@ Run the following commands to download the tools (make sure to replace ``<your_w
 Examining a tool with a service client
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To explain how to implement a tool that calls a service, we will use the ``SpawnTurtleTool`` as example.
+To explain how to implement a tool that calls a service, we will use the ``SpawnTurtleTool`` as an example.
 This tool will call the ``/spawn`` service to create a new turtle in the environment, which uses the ``turtlesim_msgs/srv/Spawn`` service type.
 
 The tool is marked with the ``@vulcanai_tool`` decorator, which is needed to register the tool in VulcanAI.
@@ -119,7 +119,7 @@ The ``name`` and ``description`` attributes are used by the agent to understand 
 The ``tags`` attribute is optional, but here it is used to categorize the tool and also add keywords that can help the agent to find it when needed.
 The ``input_schema`` and ``output_schema`` attributes define the inputs and outputs of the tool.
 In this case, the tool requires the name of the turtle to be spawned, as well as its initial position and orientation.
-The output is the name of the spawned turtle and a boolean indicating if the opearation was successful.
+The output is the name of the spawned turtle and a boolean indicating if the operation was successful.
 
 The ``run()`` method contains the logic of the tool.
 It first retrieves the shared ROS 2 node from the blackboard, and then calls the already explained ``get_client()`` method of the shared node for the ``/spawn`` service.
@@ -129,7 +129,7 @@ It first retrieves the shared ROS 2 node from the blackboard, and then calls the
     :lines: 14-21
 
 Note that if the *shared_node* is not found or the service is not available, the tool will raise an exception and abort the operation.
-Exceptions are handled by VulcanAI, automatically assingning a null output to the tool and informing the agent about the error.
+Exceptions are handled by VulcanAI, automatically assigning a null output to the tool and informing the agent about the error.
 
 Then, a request object is created and filled with the input data, which is retrieved from the `kwargs` dictionary.
 Finally, the service is called and the future is awaited until the response is received before returning the output.
@@ -179,7 +179,7 @@ The tool is defined in the same way as the previous ones, with the necessary bas
     :lines: 1-14
 
 In this case, the ``run()`` method needs to call the ``wait_for_message()``, which creates a subscription to the topic and waits for a single message to be received.
-Note that this method is the one responsible of the spinning of the node until a message is received, so we don't need to call ``rclpy.spin()`` or similar methods.
+Note that this method is the one responsible for the spinning of the node until a message is received, so we don't need to call ``rclpy.spin()`` or similar methods.
 The output of the method is the received message, which is then used to fill the output dictionary.
 
 .. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools.py

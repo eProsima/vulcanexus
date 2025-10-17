@@ -126,7 +126,7 @@ Before moving to more complex prompts, let's reset the environment:
         </video>
       </div>
 
-In our case, the LLM output a sequential plan with two steps, reset the environment and then clear the environment.
+In our case, the LLM outputs a sequential plan with two steps, reset the environment and then clear the environment.
 This is because the LLM has no info about what the actual reset command does, and it does not know that it also clears the environment.
 This could be easily fixed by improving the tool description to indicate that the reset command also clears the environment, so the LLM does not need to add an extra step to the plan.
 

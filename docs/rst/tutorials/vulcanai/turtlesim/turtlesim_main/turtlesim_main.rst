@@ -14,7 +14,7 @@ Therefore, we only need to create a script that initializes the console, registe
 Write the main method
 ---------------------
 
-In the same file where we define the ``SharedNode`` class, we can write the main method that will be used as entry point for the package.
+In the same file where we define the ``SharedNode`` class, we can write the main method that will be used as the entry point for the package.
 
 Just add the following content at the end of the ``ros2_node.py`` file:
 
@@ -44,7 +44,7 @@ Then, we write a brief context that will inform the agent about the purpose of t
     :language: python
     :lines: 75-77
 
-Next, we will use the ``VulcanConsole`` as main interface for the user to interact with the agent.
+Next, we will use the ``VulcanConsole`` as the main interface for the user to interact with the agent.
 This object already includes all classes and logic necessary to create and manage agents, tools and user contexts.
 We only need to specify the name of the module where the tools will be installed after building the package, and add the user context to the console manager.
 
@@ -60,7 +60,7 @@ Finally, we manually add the shared node to the console manager blackboard, so i
     :lines: 82-84
     :dedent: 4
 
-Last two lines calls the ``main`` method when the script is executed directly.
+The last two lines call the ``main`` method when the script is executed directly.
 
 .. literalinclude:: /resources/tutorials/vulcanai/turtlesim/ros2_node.py
     :language: python
