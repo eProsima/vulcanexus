@@ -32,7 +32,7 @@ The STT package in Vulcanexus is designed to transcript audio in real-time from 
 If no audio input device is available, the node will not be able to record any audio stream and will not publish any transcription.
 
 Also, no AI model is included in the Vulcanexus installation by default due to their size, so it is necessary to download the models before running the tutorial.
-This applies to both Vulcanexus apt package and the docker image.
+This applies to both the Vulcanexus apt package and the docker image.
 The following sections describe how to select the microphone and download the models.
 
 .. _tutorial_hri_stt_docker_setup:
@@ -83,10 +83,10 @@ Downloading the models
 ^^^^^^^^^^^^^^^^^^^^^^
 
 The STT node will automatically download the model if they are not found in the system.
-However, this step cant take some time and it requires internet access.
+However, this step can take some time and it requires internet access.
 To avoid this delay when running the node for the first time, it is possible to download the models beforehand.
 
-The ``hri_stt`` package in Vulcanexus comes along a python script that automatically downloads required models to run the node.
+The ``hri_stt`` package in Vulcanexus comes along with a python script that automatically downloads required models to run the node.
 When running the script natively, the models are downloaded to the user's home hidden cache directory (``/home/user/.cache/torch`` and ``/home/user/.cache/huggingface``).
 The models will be loaded from that directory if they are already downloaded when running the node, accelerating the startup time.
 To invoke the script, run the following command:

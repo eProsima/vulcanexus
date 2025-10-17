@@ -59,7 +59,7 @@ And run the following command in the same directory where the file is located:
     docker compose -f emotion-compose.yaml --profile emotion up -d
 
 This command will start the ``hri_emotion_detect`` node in a new container.
-The node will start publishing detected emotions on the ``/humans/faces/emotions`` topic, which will be automatically detect by the detection display node if it is running, and will update the visualization in RViz2 to show the detected emotions.
+The node will start publishing detected emotions on the ``/humans/faces/emotions`` topic, which will be automatically detected by the detection display node if it is running, and will update the visualization in RViz2 to show the detected emotions.
 
 
 .. note::
