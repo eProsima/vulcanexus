@@ -19,13 +19,13 @@ The specification aims to provide broadly accepted interfaces and pipelines for 
 Following this approach, the `ROS4HRI <https://github.com/ros4hri>`_ framework has developed a series of ROS 2 packages that implements basic HRI functionalities such as face detection, gesture recognition or voice processing.
 
 One of the key aspects of the ROS REP-155 which has been implemented by ROS4HRI is the use of dedicated namespaces for each detected human entity.
-For example, when a new face is detected, a new namespace such as ``/humans/faces/alzha/`` is created.
+For example, when a new face is detected, a new namespace such as ``/humans/faces/ja8v7/`` is created.
 Under this namespace, multiple topics coexist to publish complementary information:
 
-- ``/humans/faces/alzha/roi``
-- ``/humans/faces/alzha/cropped``
-- ``/humans/faces/alzha/landmarks``
-- ``/humans/faces/alzha/pose``
+- ``/humans/faces/ja8v7/roi``
+- ``/humans/faces/ja8v7/cropped``
+- ``/humans/faces/ja8v7/landmarks``
+- ``/humans/faces/ja8v7/pose``
 - And up to 8 topics in total for each face instance.
 
 Similarly, body detections replicate this behavior, creating one namespace for each detected body, but working with up to 6 topics under each detected body namespace.
