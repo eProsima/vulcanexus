@@ -151,8 +151,7 @@ This reduction is dramatic and has direct consequences:
 
 - **Lower resource usage**: fewer publishers, subscribers, and topics to maintain.
 - **Simplified discovery** and **reduced Network traffic**: fewer DDS entities to be discovered and matched.
-- **Simpler visualization**: all the data of a frame is available in a single aggregated message, making display
-modules more efficient and easier to implement.
+- **Simpler visualization**: all the data of a frame is available in a single aggregated message, making display modules more efficient and easier to implement.
 
 Conclusion
 ----------
