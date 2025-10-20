@@ -3,6 +3,10 @@
 VulcanAI Console and manager
 ============================
 
+.. note::
+   VulcanAI is currently in active development, and new features and improvements are being added regularly.
+   Current version is in Beta stage.
+
 In the previous tutorial (:ref:`tutorials_vulcanai_turtlesim_tools`), we created a package that contains a shared ROS 2 node and the tools needed to control TurtleSim using VulcanAI.
 Now, we will create the main script that will be used to run the VulcanAI console and manage the interaction between the user, the agent, and the tools.
 

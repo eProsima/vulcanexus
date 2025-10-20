@@ -3,6 +3,10 @@
 Tools for Turtlesim
 ===================
 
+.. note::
+   VulcanAI is currently in active development, and new features and improvements are being added regularly.
+   Current version is in Beta stage.
+
 The first step when creating new tools for VulcanAI agents is to decide:
 
 - What does the tool need to accomplish.
@@ -28,7 +32,7 @@ To avoid creating a new node for each tool, which would be highly inefficient as
 
 In this way, all the tools will be able to reuse the same entities created by other calls, and it will also exemplify how to share data between tools by means of the *blackboard*.
 The blackboard is a shared memory space where tools can write and read data, allowing them to share information without the need for the LLM to reason about how to pass data between tools.
-To get a better understanding of this concept, please refer to the :ref:`Sharing data between tools <vulcanai_tools_sharing_data>` section in the :ref:`VulcanAI Tools <vulcanai_tools>` tutorial.
+To get a better understanding of this concept, please refer to the :ref:`Sharing data between tools <vulcanai_tools_sharing_data>` section in the :ref:`VulcanAI Tools <vulcanai_tools>` page.
 
 To create the shared ROS 2 node, create a new file called ``ros2_node.py`` inside the ``vulcanai_turtlesim_demo/vulcanai_turtlesim_demo`` folder with the following content:
 
@@ -100,7 +104,7 @@ Run the following commands to download the tools (make sure to replace ``<your_w
 .. code-block:: bash
 
     cd ~/<your_workspace>/src/vulcanai_turtlesim_demo/vulcanai_turtlesim_demo && \
-    wget https://https://raw.githubusercontent.com/eProsima/vulcanexus/refs/heads/main/docs/resources/tutorials/vulcanai/turtlesim/turtlesim_tools.py
+    wget https://https://raw.githubusercontent.com/eProsima/vulcanexus/refs/heads/main/code/vulcanai_turtlesim/vulcanai_turtlesim_demo/vulcanai_turtlesim_demo/turtlesim_tools.py
 
 Examining a tool with a service client
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -148,7 +152,7 @@ Examining a tool with a publisher
 The ``MoveTurtleTool`` uses a publisher to send velocity commands to a turtle.
 The tool is defined in the same way as the previous one, with the necessary basic attributes to inform the agent about its purpose and how to use it.
 
-.. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools.py
+.. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools_pub.py
     :language: python
     :lines: 1-12
 
@@ -157,14 +161,14 @@ First, the input parameters are retrieved from the ``kwargs`` dictionary.
 The name is used to create the topic name, which follows the pattern ``/<turtle_name>/cmd_vel``.
 Linear and angular velocities are used to create a ``Twist`` message that will be published to the topic.
 
-.. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools.py
+.. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools_pub.py
     :language: python
     :lines: 14-26
 
 Then, the generated message is published to the topic.
 A for loop is used to publish the message multiple times, based on the ``duration`` input parameter.
 
-.. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools.py
+.. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools_pub.py
     :language: python
     :lines: 27-31
 
@@ -174,7 +178,7 @@ Examining a tool with a subscriber
 The ``GetTurtlePoseTool`` uses a subscription to get the current pose of a turtle.
 The tool is defined in the same way as the previous ones, with the necessary basic attributes to inform the agent about its purpose and how to use it.
 
-.. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools.py
+.. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools_sub.py
     :language: python
     :lines: 1-14
 
@@ -182,7 +186,7 @@ In this case, the ``run()`` method needs to call the ``wait_for_message()``, whi
 Note that this method is the one responsible for the spinning of the node until a message is received, so we don't need to call ``rclpy.spin()`` or similar methods.
 The output of the method is the received message, which is then used to fill the output dictionary.
 
-.. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools.py
+.. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools_sub.py
     :language: python
     :lines: 16-28
 
@@ -195,7 +199,7 @@ Examining a tool with a *CompositeTool*
 The last tool we will examine is the ``DrawRectangleTool``, which is a composite tool that combines multiple atomic tools to draw a rectangle with a turtle.
 The definition of the tool remains almost the same as the previous ones, adding only one new attribute: ``dependencies``.
 
-.. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools.py
+.. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools_comp.py
     :language: python
     :lines: 1-11
 
@@ -206,7 +210,7 @@ In this example, dependencies are ``move_turtle`` and ``relative_teleport_turtle
 
 The definition of the ``run()`` is similar to the previous tools, as well as the retrieval of the shared node from the blackboard.
 
-.. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools.py
+.. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools_comp.py
     :language: python
     :lines: 13-25
 
@@ -216,7 +220,7 @@ This dictionary is automatically filled by VulcanAI when the tool is instantiate
 
 Note lines:
 
-.. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools.py
+.. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools_comp.py
     :language: python
     :lines: 24-25
 
@@ -226,14 +230,14 @@ This step is usually done by the VulcanAI manager when tools are called, but in 
 The Rectangle will be drawn by moving the turtle in a straight line and then turning 90 degrees, repeating this process four times but with different distances for the sides.
 Therefore, we create 3 sets of arguments that will be passed to the ``move_tool`` to move the turtle the desired distance and to ``tp_relative_tool`` to teleport it a rotation of 90 degrees.
 
-.. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools.py
+.. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools_comp.py
     :language: python
     :lines: 27-49
 
 Finally, we call the ``run()`` method of the dependent tools with the corresponding arguments, and return a success output.
 We could check the output of each tool call to ensure that the operation was successful, but for simplicity we will assume that everything works as expected.
 
-.. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools.py
+.. literalinclude:: /resources/tutorials/vulcanai/turtlesim/turtlesim_tools_comp.py
     :language: python
     :lines: 51-61
 

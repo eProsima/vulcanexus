@@ -3,12 +3,17 @@
 VulcanAI Tools
 ==============
 
+.. note::
+   VulcanAI is currently in active development, and new features and improvements are being added regularly.
+   Current version is in Beta stage.
+
 Background
 ----------
 
 VulcanAI is a library that provides a framework to easily and flexibly create powerful AI applications.
 To do so, it implements the concept of *tools*, which are Python classes that define specific functionalities that can be used by VulcanAI agents to accomplish complex tasks.
 Tools can be as simple as a calculator or a web search engine, or as complex as a robot controller or a data analysis pipeline.
+
 Tools are designed to be modular and reusable, but most importantly, to be easily integrated with Large Language Models (LLMs) output and reasoning.
 By combining different tools, VulcanAI agents can perform a wide range of tasks in various environments.
 This tutorial provides an overview of the different types of tools available in VulcanAI, as well as how to create custom tools to extend its capabilities.
@@ -18,14 +23,14 @@ Definition of Tools
 
 In the context of VulcanAI, a *tool* is a Python class that encapsulates a specific functionality or a set of related functionalities.
 Each tool can be thought of as a building block that can be combined with other tools to create more complex behaviors and capabilities.
-Every tool must inherit from either the `vulcanai.tools.AtomicTool` or the `vulcanai.tools.CompositeTool` class, depending on whether it represents a single action or a composition of multiple actions.
-Both types inherit from the base `vulcanai.tools.ITool` class, which provides common functionality and interfaces for all tools.
+Every tool must inherit from either the `AtomicTool` or the `CompositeTool` class of the `VulcanAI` library, depending on whether it represents a single action or a composition of multiple actions.
+Both types inherit from the base `ITool` class, which provides common functionality and interfaces for all tools.
 
-- Atomic tools are the simplest type of tools, representing a single action.
+- **Atomic tools** are the simplest type of tools, representing a single action.
   They do not have dependencies on other tools and can be executed independently.
   They are designed to be used as building blocks for more complex behaviors and can be easily combined with other tools to create more sophisticated workflows.
   An *AtomicTool* could be a tool listing ROS 2 topics, or a tool that performs a computation and then calls a ROS 2 service with the result.
-- Composite tools, on the other hand, are more complex and can encapsulate multiple actions or behaviors.
+- **Composite tools**, on the other hand, are more complex and can encapsulate multiple actions or behaviors.
   They have dependencies on other tools, which are specified during their initialization.
   Composite tools can be thought of as higher-level abstractions that combine the functionalities of multiple atomic tools to achieve a specific goal.
   An example of a *CompositeTool* could be a tool that gets all available ROS 2 topics through an atomic tool, and then uses that information to publish a message to a specific topic using another atomic tool.
@@ -34,11 +39,14 @@ Both types inherit from the base `vulcanai.tools.ITool` class, which provides co
   Note that most LLMs are able to obtain the same behavior of a *CompositeTool* by calling the atomic tools it depends on in the correct order, but this requires the LLM to reason about the correct sequence of actions to achieve the desired outcome.
 
   Composite tools allow to reduce indetermination and increase reliability by providing a predefined sequence of actions that are known to work together effectively.
-  Also, the same behavior achieved through a *CompositeTool* could also be accomplished by a single atomic tool that implements all the logic internally, but this would reduce modularity and reusability, as the complex behavior would be tightly coupled to a single tool.
-  The decision to use a *CompositeTool* or a single atomic tool depends on the developer's preference and the specific use case.
+  Also, the same behavior achieved through a *CompositeTool* could also be accomplished by a single *AtomicTool* that implements all the logic internally, but this would reduce modularity and reusability, as the complex behavior would be tightly coupled to a single tool.
+  The decision to use a *CompositeTool* or a single *AtomicTool* depends on the developer's preference and the specific use case.
 
 Tool Interfaces
 ---------------
+
+.. figure:: /rst/figures/vulcanai/tools_class_uml.png
+   :align: center
 
 The class *ITool* defines the interface that all tools must implement.
 It provides the basic structure and functionality that all tools share, ensuring consistency and interoperability between different tools.
@@ -159,7 +167,7 @@ The tool then must process the input data and return the output parameters as de
 
 However, there might be scenarios where the output of one tool needs to be used as the input for another tool.
 For example, if there is a tool that retrieves data from a database and another tool that processes that data, the output of the first tool must be passed as input to the second tool.
-VulcanAI agents are capable of handling such scenarios by managing the flow of data between tools, and automatically assigning a dynamic input which will be solved at runtime.
+VulcanAI agents are capable of handling such scenarios by managing the flow of data between tools, and automatically assigning a dynamic input which will be resolved at runtime.
 
 A quick example using the tools defined in the previous section can illustrate this concept.
 First, delete the `AddAndMultiplyTool` composite tool from the tools files and then call the VulcanAI console again:
@@ -203,3 +211,8 @@ This example can be tested in the same way as before, but now using the modified
 
 A good rule of thumb is to use the *blackboard* for sharing data between tools when the data is complex or the input could be hard to interpret by the LLM.
 For simple cases where the output of one tool is directly used as the input for another tool, it is usually better to let the agent handle the data flow, as it keeps the tools more decoupled and easier to maintain.
+
+Next steps
+----------
+
+To learn more about VulcanAI tools and the rest of its capabilities, you can explore a real case use example in the :ref:`VulcanAI with TurtleSim <tutorials_vulcanai_turtlesim_tutorials>` tutorial, which guides you through the process of creating custom tools to control the TurtleSim simulator using VulcanAI.

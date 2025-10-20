@@ -3,6 +3,10 @@
 Vulcanexus VulcanAI
 ===================
 
+.. note::
+   VulcanAI is currently in active development, and new features and improvements are being added regularly.
+   Current version is in Beta stage.
+
 The following VulcanAI tutorial shows how to use most of VulcanAI's features, starting from the basics concepts and gradually increasing in complexity until a complete application is built.
 VulcanAI is completely compatible with Vulcanexus and ROS 2 applications, making it a powerful tool to create intelligent robotic systems.
 
@@ -15,8 +19,7 @@ This tutorial showcases how to use VulcanAI to control a turtlesim robot using n
 
     turtlesim/vulcanai_turtlesim.rst
 
-Quick Demo
-----------
+.. rubric:: Quick Demo
 
 A simple demo of the potential of VulcanAI can be found in the following video:
 

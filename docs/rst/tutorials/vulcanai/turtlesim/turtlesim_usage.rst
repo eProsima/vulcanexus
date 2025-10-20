@@ -3,6 +3,10 @@
 Using VulcanAI to control TurtleSim
 ===================================
 
+.. note::
+   VulcanAI is currently in active development, and new features and improvements are being added regularly.
+   Current version is in Beta stage.
+
 We have already created the necessary tools and main node to control TurtleSim using VulcanAI in the :ref:`tutorials_vulcanai_turtlesim_tools` and :ref:`tutorials_vulcanai_turtlesim_main` tutorials.
 
 Now, we will learn how to use these tools to control TurtleSim through the VulcanAI console.
@@ -92,7 +96,7 @@ This can be checked in the input arguments of the tool selected in the plan gene
 
       <div class="video-center">
         <video controls playsinline muted loop>
-          <source src="../../../../../_static/resources/tutorials/vulcanai/forward_2_units.mp4">
+          <source src="../../../../_static/resources/tutorials/vulcanai/forward_2_units.mp4">
         </video>
       </div>
 
@@ -108,7 +112,7 @@ The agent will generate a plan that involves moving the turtle in a circular pat
 
       <div class="video-center">
         <video controls playsinline muted loop>
-          <source src="../../../../../_static/resources/tutorials/vulcanai/circular_path.mp4">
+          <source src="../../../../_static/resources/tutorials/vulcanai/circular_path.mp4">
         </video>
       </div>
 
@@ -122,7 +126,7 @@ Before moving to more complex prompts, let's reset the environment:
 
       <div class="video-center">
         <video controls playsinline muted loop>
-          <source src="../../../../../_static/resources/tutorials/vulcanai/reset_environment.mp4">
+          <source src="../../../../_static/resources/tutorials/vulcanai/reset_environment.mp4">
         </video>
       </div>
 
@@ -148,7 +152,7 @@ Doing this manually would require some calculations and multiple publisher calls
 
       <div class="video-center">
         <video controls playsinline muted loop>
-          <source src="../../../../../_static/resources/tutorials/vulcanai/pentagon.mp4">
+          <source src="../../../../_static/resources/tutorials/vulcanai/pentagon.mp4">
         </video>
       </div>
 
@@ -166,6 +170,6 @@ This example also showcases the ability of VulcanAI to handle parallel tasks whe
 
       <div class="video-center">
         <video controls playsinline muted loop>
-          <source src="../../../../../_static/resources/tutorials/vulcanai/parallel_circles.mp4">
+          <source src="../../../../_static/resources/tutorials/vulcanai/parallel_circles.mp4">
         </video>
       </div>

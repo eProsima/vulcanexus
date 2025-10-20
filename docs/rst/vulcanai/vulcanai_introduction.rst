@@ -3,6 +3,10 @@
 VulcanAI Overview
 =================
 
+.. note::
+   VulcanAI is currently in active development, and new features and improvements are being added regularly.
+   Current version is in Beta stage.
+
 VulcanAI is a library that provides a framework to easily and flexibly create powerful AI applications.
 Leveraging LLM capabilities, VulcanAI acts as an intelligent assistant, capable of understanding and
 executing complex tasks by decomposing them into manageable sub-tasks in any environment.

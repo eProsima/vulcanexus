@@ -3,18 +3,21 @@
 VulcanAI Installation
 =====================
 
+.. note::
+   VulcanAI is currently in active development, and new features and improvements are being added regularly.
+   Current version is in Beta stage.
+
 The following section provides step-by-step instructions to install and configure *VulcanAI*.
-For more info about *VulcanAI* and its capabilities, please refer to the main :ref:`VulcanAI <tutorials_vulcanai_vulcanai_tutorials>` page.
 
 Requirements
 ------------
 
 - Python 3.10 or higher
 
-Installation via 'pip'
+Installation via `pip`
 ----------------------
 
-The fastest and simplest way to install VulcanAI is using 'pip'.
+The fastest and simplest way to install VulcanAI is using `pip`.
 To do so, open a terminal and run the following command:
 
 .. code-block:: bash
@@ -34,7 +37,7 @@ To create a virtual environment, run the following command:
 This will create a new virtual environment named `vulcanai_venv` and activate it.
 Now, you can proceed to install VulcanAI using the `pip install` command mentioned above.
 
-If venv or pip are not installed in your system, you can install them using your package manager with the following commands:
+If `venv` or `pip` are not installed in your system, you can install them using your package manager with the following commands:
 
 .. code-block:: bash
 
@@ -84,7 +87,7 @@ It also applies to any other Python virtual environments.
 To run VulcanAI with Vulcanexus, you need to have a Vulcanexus distribution installed in your system.
 You can follow the official Vulcanexus installation guide for :ref:`binaries <linux_binary_installation>` or :ref:`docker <docker_installation>`.
 
-Once you have a Vulcanexus distribution installed and a virtual environment for VulcanAI created and activated, you need to append the VulcanAI virtual environment's Python path to the `PYTHONPATH` environment variable.
+Once you have a Vulcanexus distribution installed and a virtual environment for VulcanAI created, you need to append the VulcanAI virtual environment's Python path to the `PYTHONPATH` environment variable.
 In this way, both Vulcanexus and VulcanAI will be able to find the required Python packages.
 
 To do so, source Vulcanexus and then run the following command in the terminal where you want to run VulcanAI:
