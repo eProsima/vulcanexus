@@ -46,7 +46,7 @@ This code creates a ROS 2 node that can be shared between multiple tools, exposi
     :lines: 1-5
 
 We import the basic ``threading`` module to create a lock that will ensure that the creation of new entities is thread-safe.
-If you don't how locks work, just consider them as a protection mechanism needed to avoid errors when **multiple threads** access the same shared resource simultaneously.
+If you don't know how locks work, just consider them as a protection mechanism needed to avoid errors when **multiple threads** access the same shared resource simultaneously.
 It will avoid the creation of duplicate entities when multiple tools try to create them at the same time.
 
 The other imports are related to ROS 2, including the ``rclpy`` library, the ``Node`` class and a ``Future`` object that will be used to wait for messages.
