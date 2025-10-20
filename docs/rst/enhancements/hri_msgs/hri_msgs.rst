@@ -83,7 +83,7 @@ Using the same example as before, with keyed topics, the number of DDS entities 
      -
        - 16 entities
        - 8 topics
-     - Keys allow **all faces** to share a single topic and publisher/subscriber pair.
+     - Keys allow **all faces topics** to share a single topic and publisher/subscriber pair.
    * - **Bodies** |br| **(10 detected)**
      -
        - 120 entities
@@ -91,7 +91,7 @@ Using the same example as before, with keyed topics, the number of DDS entities 
      -
        - 12 entities
        - 6 topics
-     - Keys allow **all bodies** to share a single topic and publisher/subscriber pair.
+     - Keys allow **all bodies topics** to share a single topic and publisher/subscriber pair.
    * - **Total (10 faces + 10 bodies)**
      -
        - **280 entities**
@@ -107,8 +107,39 @@ This further reduces the number of topics to just 2 topics in total for both fac
 
 The final tally is impressive:
 
-- **Total DDS entities**: 4 (2 topics x 1 publisher x 1 subscriber)
-- **Total topics**: 2 (``humans/faces`` and ``humans/bodies``)
+.. list-table::
+   :header-rows: 1
+   :widths: 20 20 20 40
+   :class: longtable
+
+   * - Scenario
+     - REP-155 |br| ROS4HRI
+     - Vulcanexus HRI (``hri_msgs``) with aggregated messages
+     - Notes
+   * - **Faces** |br| **(10 detected)**
+     -
+       - 160 entities
+       - 80 topics
+     -
+       - 2 entities
+       - 1 topic
+     - Aggregated messages with keys allow **all faces** to share a single topic and publisher/subscriber pair.
+   * - **Bodies** |br| **(10 detected)**
+     -
+       - 120 entities
+       - 60 topics
+     -
+       - 2 entities
+       - 1 topic
+     - Aggregated messages with keys allow **all bodies** to share a single topic and publisher/subscriber pair.
+   * - **Total (10 faces + 10 bodies)**
+     -
+       - **280 entities**
+       - 140 topics
+     -
+       - **4 entities**
+       - 2 topics
+     - With aggregated messages and keyed topics, the number of entities and topics remains **constant**, no matter how many humans are detected.
 
 These constant values contrast sharply with the linear growth seen in the REP-155 model.
 
