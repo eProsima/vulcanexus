@@ -48,6 +48,7 @@ To run the emotion detection node create a new ``emotion-compose.yaml`` file (or
             <<: *common-config
             environment:
                 <<: *common-variables
+                FASTDDS_DEFAULT_PROFILES_FILE: ~/image.xml
             profiles: ["emotion"]
             command: >
             ros2 launch hri_emotion_detect emotion_detect.launch.py rgb_camera_topic:=/color/image_raw

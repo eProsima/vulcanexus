@@ -33,6 +33,20 @@ Images are expected to be in ``sensor_msgs/msg/Image`` format and topic ``/color
 The next section describes how to set up a simple image publisher using a webcam.
 If you already have a node publishing images, you can skip this section and proceed to the next one (:ref:`tutorials_hri_face_detect_run`).
 
+To improve communication performance, we will increase sockets buffer sizes by setting an XML configuration file before running any ROS 2 nodes.
+First, ensure your system has enabled system sockets buffer sizes of 11 MB or higher (see [this guide](https://fast-dds.docs.eprosima.com/en/latest/fastdds/use_cases/large_data/large_data.html#finding-out-system-maximum-values)).
+Then, download the following XML file and save it as ``~/image.xml``:
+
+.. code-block:: bash
+
+   wget https://raw.githubusercontent.com/eProsima/agile-hri/refs/heads/main/hri_detection_display/config/image.xml -O ~/image.xml
+
+Then, export the following environment variable to every terminal where ROS 2 nodes will be run:
+
+.. code-block:: bash
+
+   export FASTDDS_DEFAULT_PROFILES_FILE="~/image.xml"
+
 Use a webcam as image source
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -121,6 +135,7 @@ To run both nodes simultaneously, create a ``compose.yaml`` file with the follow
             <<: *common-config
             environment:
                 <<: *common-variables
+                FASTDDS_DEFAULT_PROFILES_FILE: ~/image.xml
             deploy:
                 resources:
                     reservations:
@@ -142,6 +157,7 @@ To run both nodes simultaneously, create a ``compose.yaml`` file with the follow
                 <<: *common-variables
                 DISPLAY: ":1"
                 LIBGL_ALWAYS_SOFTWARE: 1
+                FASTDDS_DEFAULT_PROFILES_FILE: ~/image.xml
             profiles: ["display"]
             command: >
                 ros2 launch hri_detection_display person_detection_display.launch.py rgb_camera_topic:=/color/image_raw rviz:=True
@@ -152,6 +168,7 @@ To run both nodes simultaneously, create a ``compose.yaml`` file with the follow
             <<: *common-config
             environment:
                 <<: *common-variables
+                FASTDDS_DEFAULT_PROFILES_FILE: ~/image.xml
             devices:
             - /dev/video0
             profiles: ["usb_cam"]
