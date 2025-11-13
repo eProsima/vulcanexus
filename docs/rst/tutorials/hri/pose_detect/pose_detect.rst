@@ -34,7 +34,7 @@ The next section describes how to set up a simple image publisher using a webcam
 If you already have a node publishing images, you can skip this section and proceed to the next one (:ref:`tutorials_hri_face_detect_run`).
 
 To improve communication performance, we will increase sockets buffer sizes by setting an XML configuration file before running any ROS 2 nodes.
-First, ensure your system has enabled system sockets buffer sizes of 11 MB or higher (see [this guide](https://fast-dds.docs.eprosima.com/en/latest/fastdds/use_cases/large_data/large_data.html#finding-out-system-maximum-values)).
+First, ensure your system has enabled system sockets buffer sizes of 11 MB or higher (see `this guide <https://fast-dds.docs.eprosima.com/en/latest/fastdds/use_cases/large_data/large_data.html#finding-out-system-maximum-values>`_).
 Then, download the following XML file and save it as ``~/image.xml``:
 
 .. code-block:: bash
