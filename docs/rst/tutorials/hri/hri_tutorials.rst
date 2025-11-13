@@ -13,8 +13,8 @@ Whether you are building interactive robots or enhancing existing systems, these
 .. toctree::
     :maxdepth: 1
 
-    face_detect/face_detect
-    pose_detect/pose_detect
-    emotion_detect/emotion_detect
-    stt/stt
-    tts/tts
+    face_detect
+    pose_detect
+    emotion_detect
+    stt
+    tts
