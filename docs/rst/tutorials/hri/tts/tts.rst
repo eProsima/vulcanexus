@@ -91,7 +91,7 @@ Create a ``tts-compose.yaml`` file with the following content, replacing ``<VULC
                 ros2 launch hri_tts tts.launch.py launch_pub:=False launch_sub:=True card_number:=1
 
 Note that the docker enables GPU support by reserving one NVIDIA GPU device and giving it to the container.
-The ``volumes`` and ``devices`` sections of the  tts file will be explained in the following sections.
+The ``volumes`` and ``devices`` sections of the  TTS file will be explained in the following sections.
 
 Also note that the file has two services: ``tts_publisher`` and ``tts_subscriber``.
 
@@ -297,7 +297,7 @@ The TTS publisher will send the preset ID through the ``preset`` field of the Au
         "_music": 105,
     }
 
-To check this behavior, replace the speech of previouses commands with any of the keys of the ``preset_phrases`` dictionary, like the following command:
+To check this behavior, replace the speech of previous commands with any of the keys of the ``preset_phrases`` dictionary, like the following command:
 
 .. code-block:: bash
 
@@ -310,7 +310,7 @@ However, it is needed to clone the ``hri_tts`` package, modify the source code b
 Additionally, the preset audio file needs to be added to the appropriate directory within the package, which is called ``audio_files``.
 
 To generate new preset audio files, the TTS node can be used as an audio file generator.
-This mode of operation follows the same patther as the TTS publisher, but it saves the generated audio in a ``.wav`` file instead of publishing it as an Audio message.
+This mode of operation follows the same pattern as the TTS publisher, but it saves the generated audio in a ``.wav`` file instead of publishing it as an Audio message.
 
 Run the generator node
 ----------------------

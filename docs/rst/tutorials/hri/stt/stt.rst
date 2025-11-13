@@ -149,7 +149,7 @@ To list the available audio input devices, run the following command:
 This command will print an indexed list of all available audio input devices in the system.
 The name of the device is the string printed between brackets at the beginning of each line.
 The parameter name must contain the name printed here, without including the brackets.
-Note that the whole name is not required to select the device, but just a substring that uniquely identifies the device.
+Note that the whole name is not required to select the device, but just a sub-string that uniquely identifies the device.
 For example, if the output of the command is:
 
 .. code-block:: console
