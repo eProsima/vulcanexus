@@ -18,3 +18,4 @@ Whether you are building interactive robots or enhancing existing systems, these
     emotion_detect
     stt
     tts
+    migration_ros4hri
