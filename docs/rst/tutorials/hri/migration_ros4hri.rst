@@ -118,7 +118,7 @@ Similarly, the creation of HRI listener objects and access to detected faces or 
       };
 
 Data under each face/body instance is also accessed using the same APIs, although not all data fields are available in both libraries.
-For example, Vulcanexus HRI library do not publish cropped or aligned images for faces or bodies to reduce bandwidth usage.
+For example, Vulcanexus HRI library does not publish cropped or aligned images for faces or bodies to reduce bandwidth usage.
 In this case, the corresponding APIs will return ``None`` (Python) or ``std::nullopt`` (C++).
 As the API signatures are identical and each method always returns an ``std::optional``, existing code will still compile and run without modifications.
 Just ensure that your code correctly handles the absence of data when using these APIs and never attempt to access the cropped/aligned images without checking for their existence first.
