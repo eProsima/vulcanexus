@@ -27,6 +27,7 @@ composable
 conf
 config
 const
+convolutional
 costmap
 cpp
 cryptographic
@@ -70,6 +71,7 @@ Github
 gpg
 Hemisson
 Hierro
+HRI
 Husarion
 idl
 ie
@@ -83,6 +85,8 @@ IPv
 jitter
 jolo
 kB
+keypoint
+keypoints
 keypresses
 keyring
 keyrings
@@ -119,6 +123,7 @@ namespace
 namespaces
 nano
 Nao
+natively
 NetX
 Nucleo
 NuttX
@@ -138,6 +143,7 @@ prepended
 proto
 qos
 QoS
+Quickview
 rcl
 rclc
 rclcpp
@@ -161,6 +167,7 @@ sSL
 stdout
 str
 structs
+STT
 sudo
 syntaxes
 teleoperate
@@ -172,12 +179,14 @@ toolchain
 toolchains
 toolset
 topologies
+TTS
 turtlesim
 typesupport
 ubuntu
 UDP
 unexisting
 unicast
+univocally
 usr
 utils
 ve

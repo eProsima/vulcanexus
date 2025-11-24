@@ -103,4 +103,3 @@ For details on how to use topic keys in *Vulcanexus*, please refer to the docume
 
   * :ref:`vulcanexus_topic_keys_tutorial`
   * :ref:`vulcanexus_filtered_topic_keys_tutorial`
-
