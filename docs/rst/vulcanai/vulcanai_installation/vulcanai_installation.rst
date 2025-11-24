@@ -17,6 +17,10 @@ Requirements
 Installation via `pip`
 ----------------------
 
+.. warning::
+
+   Pip installation will be available soon. Installation from source is recommended until then.
+
 The fastest and simplest way to install VulcanAI is using `pip`.
 To do so, open a terminal and run the following command:
 
