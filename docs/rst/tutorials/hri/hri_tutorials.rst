@@ -13,6 +13,7 @@ Whether you are building interactive robots or enhancing existing systems, these
 .. toctree::
     :maxdepth: 1
 
+    hri_installation
     face_detect
     pose_detect
     emotion_detect

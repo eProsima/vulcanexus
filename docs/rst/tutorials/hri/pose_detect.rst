@@ -16,7 +16,7 @@ Prerequisites
 
 Before starting this tutorial, ensure you have the following prerequisites:
 
-- A working installation of Vulcanexus with `HRI modules <https://docs.vulcanexus.org/en/latest/rst/introduction/metapackages.html#vulcanexus-hri>`_.
+- A working installation of Vulcanexus with :ref:`HRI modules <tutorials_hri_installation>`.
 - Docker and Docker Compose installed on your system.
 - Familiarity with ROS 2 concepts and tools.
 - Webcam or a ROS 2 compatible video input device.

@@ -23,7 +23,7 @@ Prerequisites
 
 Before starting this tutorial, ensure you have the following prerequisites:
 
-- A working installation of Vulcanexus with `HRI modules <https://docs.vulcanexus.org/en/latest/rst/introduction/metapackages.html#vulcanexus-hri>`_.
+- A working installation of Vulcanexus with :ref:`HRI modules <tutorials_hri_installation>`.
 - Docker and Docker Compose installed on your system.
 - GPU with CUDA support (not mandatory, but recommended).
 - Familiarity with ROS 2 concepts and tools.
