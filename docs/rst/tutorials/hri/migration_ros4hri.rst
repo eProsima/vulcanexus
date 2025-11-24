@@ -310,10 +310,10 @@ HRIListener API
      - Available
    * - **getSpeech**
      - Available
-     - **NOT Implemented**
+     - **Not Implemented**
    * - **set_stt_timeouts**
      - Available
-     - **NOT Implemented**
+     - **Not Implemented**
    * - **onVoice**
      - Replaced by HRI_STT with `getSpeech()`
      - **Not Available**
