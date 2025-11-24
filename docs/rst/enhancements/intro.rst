@@ -12,3 +12,4 @@ Vulcanexus Enhancements
    fastdds3/fastdds3.rst
    keys/topic-keys.rst
    easy_mode/easy_mode.rst
+   hri_msgs/hri_msgs.rst

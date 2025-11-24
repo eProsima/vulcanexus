@@ -101,6 +101,11 @@ Using Topic Keys
 
 For details on how to use topic keys in *Vulcanexus*, please refer to the documented tutorials in this regard:
 
+<<<<<<< HEAD
   * :ref:`topic_keys_tutorial`
   * :ref:`filtered_topic_keys_tutorial`
 
+=======
+  * :ref:`vulcanexus_topic_keys_tutorial`
+  * :ref:`vulcanexus_filtered_topic_keys_tutorial`
+>>>>>>> aa20e43 (Add HRI tutorials (#255))
