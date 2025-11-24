@@ -30,7 +30,7 @@ This script will automatically download and install all necessary packages and d
 It will also add to the ``bashrc`` any paths or environment variables needed for proper operation.
 
 Note that this script installs apt packages and python packages via pip.
-In case a virtual environment is desired, make sure to use the arg ``--venv`` pointing to the root directory of your virtual environment.
+In case a virtual environment is desired, make sure to use the argument ``--venv`` pointing to the root directory of your virtual environment.
 
 .. code-block:: bash
 
@@ -55,5 +55,5 @@ Afterwards, open a new terminal in your host machine and commit the changes made
 
    docker commit vulcanexus_hri_container ubuntu-vulcanexus:<VULCANEXUS_DISTRO>-hri
 
-All tutorials in this section uses docker compose files that rely on this image.
+All tutorials in this section use docker compose files that rely on this image.
 Even if your Vulcanexus installation is native, it is recommended to create this image to run the tutorials in Docker containers.
