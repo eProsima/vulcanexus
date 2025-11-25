@@ -100,6 +100,7 @@ To make such contributions, please refer to the
    /rst/microros_documentation/index.rst
    /rst/enhancements/intro.rst
    /rst/hri/intro.rst
+   /rst/vulcanai/vulcanai_introduction.rst
 
 .. toctree::
    :caption: Tutorials
@@ -112,6 +113,7 @@ To make such contributions, please refer to the
    /rst/tutorials/cloud/cloud_tutorials
    /rst/tutorials/micro/micro_tutorials
    /rst/tutorials/hri/hri_tutorials
+   /rst/tutorials/vulcanai/vulcanai_tutorials
 
 .. toctree::
    :caption: Use cases
