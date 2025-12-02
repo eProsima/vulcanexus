@@ -15,8 +15,8 @@
 cmake_minimum_required(VERSION 3.8)
 project(vulcanexus_base)
 
-set(vulcanexus_base_MAJOR_VERSION 4)
-set(vulcanexus_base_MINOR_VERSION 2)
+set(vulcanexus_base_MAJOR_VERSION 5)
+set(vulcanexus_base_MINOR_VERSION 1)
 set(vulcanexus_base_PATCH_VERSION 0)
 set(vulcanexus_base_MAJOR_VERSION
     ${vulcanexus_base_MAJOR_VERSION}.${vulcanexus_base_MINOR_VERSION}.${vulcanexus_base_PATCH_VERSION})
@@ -28,11 +28,23 @@ else()
 endif()
 string(REPLACE ${PROJECT_NAME} "" VULCANEXUS_HOME ${VULCANEXUS_HOME})
 
+# HRI install script URL. Must be updated according ROS 2 distro
+set(HRI_INSTALL_SCRIPT_URL
+    "https://raw.githubusercontent.com/eProsima/agile-hri/refs/heads/kilted/install_hri.sh")
+set(EXTERNAL_SCRIPT_PATH "${CMAKE_CURRENT_BINARY_DIR}/hri_install.sh")
+file(DOWNLOAD
+    "${HRI_INSTALL_SCRIPT_URL}"
+    "${EXTERNAL_SCRIPT_PATH}"
+    TLS_VERIFY ON
+    SHOW_PROGRESS
+)
+
 # Configure bash script
 configure_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/environment/vulcanexus_base-setup.bash.in
     ${CMAKE_INSTALL_PREFIX}/share/vulcanexus_base/environment/vulcanexus_base-setup.bash
     @ONLY)
 
+install(PROGRAMS "${EXTERNAL_SCRIPT_PATH}" DESTINATION share/hri)
 install(FILES resource/vulcanexus_base DESTINATION share/ament_index/resource_index/packages)
 install(FILES resource/package.dsv DESTINATION share/vulcanexus_base)
