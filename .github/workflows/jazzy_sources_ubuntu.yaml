@@ -19,6 +19,9 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
+      - name: Free disk space
+        uses: eProsima/eProsima-CI/ubuntu/free_disk_space@v0
+
       - name: Remove default swig version
         run: sudo apt-get remove -y swig
 
