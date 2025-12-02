@@ -1,7 +1,7 @@
 .. _tutorials_vulcanai_turtlesim_requirements:
 
-Requisites
-==========
+Prerequisites
+=============
 
 .. note::
    VulcanAI is currently in active development, and new features and improvements are being added regularly.
