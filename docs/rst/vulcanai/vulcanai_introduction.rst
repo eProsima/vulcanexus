@@ -24,3 +24,13 @@ The following sections describe the main features of VulcanAI and introduces its
 
     vulcanai_installation/vulcanai_installation.rst
     vulcanai_tools/vulcanai_tools.rst
+
+A simple demo of the potential of VulcanAI can be found in the following video:
+
+.. raw:: html
+
+      <div class="video-center">
+        <video controls playsinline muted loop>
+          <source src="../../_static/resources/tutorials/vulcanai/pentagon.mp4">
+        </video>
+      </div>
