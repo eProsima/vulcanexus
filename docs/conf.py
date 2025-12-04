@@ -117,7 +117,8 @@ extensions = [
     'sphinx.ext.ifconfig',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
-    'sphinxcontrib.plantuml'
+    'sphinxcontrib.plantuml',
+    'sphinxcontrib.mermaid',
 ]
 
 sphinx_tabs_disable_css_loading = False
@@ -132,9 +133,9 @@ try:
         'ros2_docs_spelling_wordlist.txt',
     ]
 
-    from sphinxcontrib.spelling.filters import ContractionFilter
-    spelling_filters = [ContractionFilter]
-    spelling_ignore_contributor_names = False
+    # from sphinxcontrib.spelling.filters import ContractionFilter
+    # spelling_filters = [ContractionFilter]
+    # spelling_ignore_contributor_names = False
 except ImportError:
     pass
 
@@ -176,7 +177,7 @@ release = version
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = 'English'
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
@@ -282,6 +283,10 @@ html_static_path = ['rst/_static']
 html_context = {
         'css_files': select_css(project_source_docs_dir),
         }
+
+# Base URL for the built HTML documentation (required by sphinx-sitemap)
+# Update this value if the public docs URL changes.
+html_baseurl = 'https://docs.vulcanexus.org/'
 
 
 # Add any extra paths that contain custom files (such as robots.txt or
