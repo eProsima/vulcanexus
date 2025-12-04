@@ -31,7 +31,7 @@ string(REPLACE ${PROJECT_NAME} "" VULCANEXUS_HOME ${VULCANEXUS_HOME})
 # HRI install script URL. Must be updated according ROS 2 distro
 set(HRI_INSTALL_SCRIPT_URL
     "https://raw.githubusercontent.com/eProsima/agile-hri/refs/heads/kilted/install_hri.sh")
-set(EXTERNAL_SCRIPT_PATH "${CMAKE_CURRENT_BINARY_DIR}/hri_install.sh")
+set(EXTERNAL_SCRIPT_PATH "${CMAKE_CURRENT_BINARY_DIR}/install_hri.sh")
 file(DOWNLOAD
     "${HRI_INSTALL_SCRIPT_URL}"
     "${EXTERNAL_SCRIPT_PATH}"
