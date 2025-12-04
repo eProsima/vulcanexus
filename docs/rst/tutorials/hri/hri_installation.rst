@@ -24,7 +24,7 @@ To install it, just run the following command in your terminal:
 
 .. code-block:: bash
 
-   sudo install_hri
+   install_hri
 
 This script will automatically download and install all necessary packages and dependencies required for HRI functionalities in Vulcanexus.
 It will also add to the ``bashrc`` any paths or environment variables needed for proper operation.
@@ -34,7 +34,7 @@ In case a virtual environment is desired, make sure to use the argument ``--venv
 
 .. code-block:: bash
 
-   sudo install_hri --venv /path/to/your/venv
+   install_hri --venv /path/to/your/venv
 
 Docker Image Creation
 ---------------------
