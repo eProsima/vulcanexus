@@ -12,8 +12,8 @@ This version ships the following packages:
       - Package version
       - Since Vulcanexus version
     * - eProsima Fast CDR
-      - `v2.2.5 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.2.5>`__
-      - v2.9.0
+      - `v1.1.1 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.2.5>`__
+      - v2.4.0
     * - eProsima Fast DDS
       - `v2.14.5 <https://fast-dds.docs.eprosima.com/en/latest/notes/previous_versions/supported_versions.html#id11>`__
       - v2.9.0
