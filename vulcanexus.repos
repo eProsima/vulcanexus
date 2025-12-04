@@ -22,11 +22,11 @@ repositories:
   eProsima/Fast-CDR:
     type: git
     url: https://github.com/eProsima/Fast-CDR.git
-    version: v1.1.1
+    version: v2.2.5
   eProsima/Fast-DDS:
     type: git
     url: https://github.com/eProsima/Fast-DDS.git
-    version: v2.14.4
+    version: v2.14.5
   eProsima/Fast-DDS-Gen:
     type: git
     url: https://github.com/eProsima/Fast-DDS-Gen.git
@@ -66,7 +66,7 @@ repositories:
   eProsima/Micro-XRCE-DDS-Agent:
     type: git
     url: https://github.com/eProsima/Micro-XRCE-DDS-Agent
-    version: v2.4.2
+    version: v2.4.3
   eProsima/Micro-XRCE-DDS-Gen:
     type: git
     url: https://github.com/eProsima/Micro-XRCE-DDS-Gen.git
@@ -74,11 +74,11 @@ repositories:
   eProsima/RMW-Fast-DDS:
     type: git
     url: https://github.com/eProsima/rmw_fastrtps.git
-    version: v2.7.0
+    version: v2.9.0
   eProsima/Shapes-Demo:
     type: git
     url: https://github.com/eProsima/ShapesDemo.git
-    version: v2.14.4
+    version: v2.14.5
   eProsima/Shapes-Demo-TypeSupport:
     type: git
     url: https://github.com/eProsima/ShapesDemo-TypeSupport.git
@@ -86,12 +86,12 @@ repositories:
   eProsima/Vulcanexus-Base:
     type: git
     url: https://github.com/eProsima/vulcanexus.git
-    version: v2.8.0
+    version: 2.9.0
   eProsima/rosidl:
     type: git
     url: https://github.com/eProsima/rosidl.git
-    version: v2.8.0
+    version: v2.9.0
   eProsima/ROSIDL-TypeSupport-FastRTPS:
     type: git
     url: https://github.com/eProsima/rosidl_typesupport_fastrtps
-    version: v2.7.0
+    version: v2.9.0
