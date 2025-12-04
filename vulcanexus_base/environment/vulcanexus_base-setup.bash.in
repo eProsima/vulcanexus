@@ -49,3 +49,20 @@ install_hri()
 
     "${script_path}" "$@"
 }
+
+uninstall_hri()
+{
+    local script_path="${VULCANEXUS_HOME%/}/share/hri/install_hri.sh"
+
+    if [ ! -f "${script_path}" ]; then
+        echo "ERROR: Could not uninstall HRI because script was not found at '${script_path}'" >&2
+        return 1
+    fi
+
+    if [ ! -x "${script_path}" ]; then
+        echo "ERROR: Could not uninstall HRI because script at '${script_path}' is not executable" >&2
+        return 1
+    fi
+
+    "${script_path}" -u "$@"
+}
