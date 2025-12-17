@@ -33,7 +33,7 @@ This version ships the following packages:
       - `3.1.3 <https://github.com/micro-ROS/micro_ros_setup/blob/3.1.3/CHANGELOG.rst#313-2023-06-12>`__
       - v2.4.0
     * - Micro-XRCE-DDS-Agent
-      - `v2.4.3 <https://micro-xrce-dds.docs.eprosima.com/en/latest/notes.html#version-2-4-3>`__
+      - `v2.4.2 <https://micro-xrce-dds.docs.eprosima.com/en/latest/notes.html#version-2-4-2>`__
       - v2.9.0
     * - Micro-XRCE-DDS-Gen
       - `v2.0.2 <https://micro-xrce-dds.docs.eprosima.com/en/latest/notes.html#version-2-4-2>`__
