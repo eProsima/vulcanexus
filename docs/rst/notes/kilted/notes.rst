@@ -21,7 +21,7 @@ This version ships the following packages:
       - `v2.3.0 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v2.3.0>`__
       - v5.0.0
     * - eProsima Fast DDS Gen
-      - `v4.0.4 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.0.4>`__
+      - `v4.1.0 <https://github.com/eProsima/Fast-DDS-Gen/releases/tag/v4.1.0>`__
       - v5.0.0
     * - foonathan_memory_vendor
       - `v1.3.1 <https://github.com/eProsima/foonathan_memory_vendor/releases/tag/v1.3.1>`__
@@ -72,8 +72,8 @@ This version ships the following packages:
       - `v1.3.0 <https://fast-dds-spy.readthedocs.io/en/latest/rst/notes/notes.html#version-v1-3-0>`__
       - v5.0.0
     * - Vulcanexus IDL Dynamic TypeSupport Fast DDS
-      - `v4.1.0 <https://github.com/eProsima/rosidl_dynamic_typesupport_fastrtps/releases/tag/v4.1.0>`__
-      - v4.1.0
+      - `0.4.1 <https://github.com/eProsima/rosidl_dynamic_typesupport_fastrtps/releases/tag/0.4.1>`__
+      - v5.0.0
     * - Vulcanexus Base
       - `v5.0.0 <https://docs.vulcanexus.org/en/latest/rst/notes/kilted/notes.html#kilted-kolumbo-v5-0-0>`__
       - v5.0.0
