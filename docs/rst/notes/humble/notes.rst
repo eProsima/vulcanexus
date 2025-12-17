@@ -12,7 +12,7 @@ This version ships the following packages:
       - Package version
       - Since Vulcanexus version
     * - eProsima Fast CDR
-      - `v1.1.1 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.2.5>`__
+      - `v1.1.1 <https://github.com/eProsima/Fast-CDR/releases/tag/v1.1.1>`__
       - v2.4.0
     * - eProsima Fast DDS
       - `v2.14.5 <https://fast-dds.docs.eprosima.com/en/latest/notes/previous_versions/supported_versions.html#id11>`__
@@ -28,10 +28,10 @@ This version ships the following packages:
       - v3.0.0
     * - micro-ROS Agent
       - `3.0.6 <https://github.com/micro-ROS/micro-ROS-Agent/blob/3.0.6/micro_ros_agent/CHANGELOG.rst#306-2024-01-29>`__
-      - v2.9.0
+      - v2.4.0
     * - micro-ROS Setup
       - `3.1.3 <https://github.com/micro-ROS/micro_ros_setup/blob/3.1.3/CHANGELOG.rst#313-2023-06-12>`__
-      - v2.9.0
+      - v2.4.0
     * - Micro-XRCE-DDS-Agent
       - `v2.4.3 <https://micro-xrce-dds.docs.eprosima.com/en/latest/notes.html#version-2-4-3>`__
       - v2.9.0
@@ -40,7 +40,7 @@ This version ships the following packages:
       - v2.4.0
     * - Micro-ROS-Msgs
       - `3.0.1 <https://github.com/micro-ROS/micro_ros_msgs/blob/humble/CHANGELOG.rst#301-2024-02-01>`__
-      - v2.9.0
+      - v2.4.0
     * - ROS 2 Monitor
       - `v2.1.0 <https://fast-dds-monitor.readthedocs.io/en/latest/rst/notes/notes.html#version-v2-1-0>`__
       - v2.5.0
