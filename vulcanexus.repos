@@ -78,7 +78,7 @@ repositories:
   eProsima/RMW-Fast-DDS:
     type: git
     url: https://github.com/eProsima/rmw_fastrtps.git
-    version: 9.4.4
+    version: v5.1.0
   eProsima/Shapes-Demo:
     type: git
     url: https://github.com/eProsima/ShapesDemo.git
