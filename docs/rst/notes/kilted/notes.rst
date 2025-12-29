@@ -83,3 +83,8 @@ This version ships the following packages:
     * - Vulcanexus Base
       - `v5.1.0 <https://docs.vulcanexus.org/en/latest/rst/notes/kilted/notes.html#kilted-kolumbo-v5-1-0>`__
       - v5.1.0
+
+Kilted Kolumbo previous versions
+================================
+
+.. include:: previous_versions/v5.0.0.rst
