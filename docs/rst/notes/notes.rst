@@ -28,7 +28,7 @@ The following table outlines the Vulcanexus releases and their support cycles:
      - Release Date
      - EOL Date
    * - :ref:`Kilted Kolumbo <notes_kilted_latest>`
-     - v5.0.0
+     - v5.1.0
      - September 2025
      - November 2026
    * - :ref:`Jazzy Jolo <notes_jazzy_latest>`
@@ -40,7 +40,7 @@ The following table outlines the Vulcanexus releases and their support cycles:
      - May 2023
      - November 2024
    * - :ref:`Humble Hierro <notes_humble_latest>`
-     - v2.7.0
+     - v2.9.0
      - May 2022
      - May 2027
    * - :ref:`Galactic Gamble <notes_galactic_latest>`
