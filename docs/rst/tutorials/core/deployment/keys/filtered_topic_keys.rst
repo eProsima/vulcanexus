@@ -1,6 +1,6 @@
 .. include:: ../../../../exports/alias.include
 
-.. _filtered_topic_keys_tutorial:
+.. _vulcanexus_filtered_topic_keys_tutorial:
 
 Topic Instances Subscription Filtering Tutorial
 ===============================================
@@ -31,7 +31,7 @@ This granular level of filtering enables applications to optimally manage data w
 Prerequisites
 -------------
 
-* It is highly recommended to have completed the :ref:`topic_keys_tutorial`.
+* It is highly recommended to have completed the :ref:`vulcanexus_topic_keys_tutorial`.
 * An up-to-date (latest) Vulcanexus installation using one of the following installation methods:
 
   * :ref:`linux_binary_installation`
@@ -215,4 +215,3 @@ Overall, the combination of topic instances with a content filter topic offers s
 By leveraging these capabilities, *Vulcanexus* applications can efficiently manage and distribute data in complex distributed environments.
 These and further benefits can be explored in :ref:`benefits_of_topic_keys`.
 Also, for additional materials regarding content filter topic, please refer to the :ref:`content_filtering_subscription_tutorial`.
-
