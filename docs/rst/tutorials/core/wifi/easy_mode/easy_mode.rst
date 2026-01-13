@@ -20,7 +20,7 @@ Prerequisites
 Preparation
 -----------
 
-Lets start by setting up the Vulcanexus environment.
+Let's start by setting up the Vulcanexus environment.
 First, create an isolated Docker network for the Vulcanexus containers:
 
 .. code-block:: bash
