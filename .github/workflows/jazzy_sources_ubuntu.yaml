@@ -18,6 +18,9 @@ jobs:
   ubuntu-install-from-sources:
     runs-on: ubuntu-24.04
 
+    env:
+      COLCON_EXTENSION_BLOCKLIST: "colcon_core.shell.powershell"
+
     steps:
       - name: Free disk space
         uses: eProsima/eProsima-CI/ubuntu/free_disk_space@v0
