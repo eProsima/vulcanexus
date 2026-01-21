@@ -1,0 +1,40 @@
+name: iron-sources-ubuntu-22.04
+
+on:
+  workflow_dispatch:
+
+  pull_request:
+    branches:
+      - iron
+
+  push:
+    branches:
+      - iron
+
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  ubuntu-install-from-sources:
+    runs-on: ubuntu-22.04
+
+    env:
+      COLCON_EXTENSION_BLOCKLIST: "colcon_core.shell.powershell"
+
+    steps:
+      - name: Free disk space
+        uses: eProsima/eProsima-CI/ubuntu/free_disk_space@v0
+
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || 'iron'}}
+          submodules: 'recursive'
+
+      - name: Get minimum supported version of CMake
+        uses: eProsima/eProsima-CI/external/get-cmake@v0
+        with:
+          cmakeVersion: '3.22.6'
+
+      - name: Install from sources
+        run: |
+          bash docs/resources/scripts/linux_source_installation.bash
