@@ -6,6 +6,7 @@ Astra
 Backend
 bare-metal
 behaviour
+bitrate
 blinky
 centric
 combinable
@@ -90,6 +91,7 @@ toolchains
 toolset
 topologies
 turtlesim
+UDP
 unexisting
 usr
 vulcanexus
