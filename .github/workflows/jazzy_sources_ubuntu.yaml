@@ -1,0 +1,43 @@
+name: jazzy-sources-ubuntu-24.04
+
+on:
+  workflow_dispatch:
+
+  pull_request:
+    branches:
+      - jazzy
+
+  push:
+    branches:
+      - jazzy
+
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  ubuntu-install-from-sources:
+    runs-on: ubuntu-24.04
+
+    env:
+      COLCON_EXTENSION_BLOCKLIST: "colcon_core.shell.powershell"
+
+    steps:
+      - name: Free disk space
+        uses: eProsima/eProsima-CI/ubuntu/free_disk_space@v0
+
+      - name: Remove default swig version
+        run: sudo apt-get remove -y swig
+
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || 'jazzy'}}
+          submodules: 'recursive'
+
+      - name: Get minimum supported version of CMake
+        uses: eProsima/eProsima-CI/external/get-cmake@v0
+        with:
+          cmakeVersion: '3.24.4'
+
+      - name: Install from sources
+        run: |
+          bash docs/resources/scripts/linux_source_installation.bash
