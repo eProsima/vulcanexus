@@ -12,7 +12,7 @@ This version ships the following packages:
       - Package version
       - Since Vulcanexus version
     * - eProsima Fast CDR
-      - `v2.3.5<https://github.com/eProsima/Fast-CDR/releases/tag/v2.3.4>`__
+      - `v2.3.5<https://github.com/eProsima/Fast-CDR/releases/tag/v2.3.5>`__
       - v4.4.1
     * - eProsima Fast DDS
       - `v3.4.2 <https://fast-dds.docs.eprosima.com/en/3.x/notes/previous_versions/supported_versions.html>`__
@@ -75,13 +75,14 @@ This version ships the following packages:
       - `v4.1.0 <https://github.com/eProsima/rosidl_dynamic_typesupport_fastrtps/releases/tag/v4.1.0>`__
       - v4.1.0
     * - Vulcanexus Base
-      - `v4.4.1 <https://docs.vulcanexus.org/en/latest/rst/notes/jazzy/notes.html#jazzy-imagination-v4-3-1>`__
+      - `v4.4.1 <https://docs.vulcanexus.org/en/latest/rst/notes/jazzy/notes.html#jazzy-imagination-v4-4-1>`__
       - v4.4.1
 
 Jazzy Jolo previous versions
 ============================
 
 .. include:: previous_versions/v4.4.0.rst
+.. include:: previous_versions/v4.3.1.rst
 .. include:: previous_versions/v4.3.0.rst
 .. include:: previous_versions/v4.2.0.rst
 .. include:: previous_versions/v4.1.0.rst
