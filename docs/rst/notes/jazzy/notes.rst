@@ -81,6 +81,7 @@ This version ships the following packages:
 Jazzy Jolo previous versions
 ============================
 
+.. include:: previous_versions/v4.4.0.rst
 .. include:: previous_versions/v4.3.1.rst
 .. include:: previous_versions/v4.3.0.rst
 .. include:: previous_versions/v4.2.0.rst
