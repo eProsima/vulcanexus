@@ -1,6 +1,6 @@
 .. _notes_kilted_latest:
 
-Kilted Kolumbo (v5.1.0)
+Kilted Kolumbo (v5.1.1)
 =======================
 
 This version ships the following packages:
@@ -12,11 +12,11 @@ This version ships the following packages:
       - Package version
       - Since Vulcanexus version
     * - eProsima Fast CDR
-      - `v2.3.4 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.3.4>`__
-      - v5.1.0
+      - `v2.3.5 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.3.4>`__
+      - v5.1.1
     * - eProsima Fast DDS
-      - `v3.4.1 <https://fast-dds.docs.eprosima.com/en/3.x/notes/previous_versions/supported_versions.html>`__
-      - v5.1.0
+      - `v3.4.2 <https://fast-dds.docs.eprosima.com/en/3.x/notes/previous_versions/supported_versions.html>`__
+      - v5.1.1
     * - eProsima Fast DDS Python
       - `v2.4.1 <https://github.com/eProsima/Fast-DDS-python/releases/tag/v2.4.1>`__
       - v5.1.0
@@ -81,10 +81,11 @@ This version ships the following packages:
       - `0.4.2 <https://github.com/eProsima/rosidl_dynamic_typesupport_fastrtps/releases/tag/0.4.2>`__
       - v5.1.0
     * - Vulcanexus Base
-      - `v5.1.0 <https://docs.vulcanexus.org/en/latest/rst/notes/kilted/notes.html#kilted-kolumbo-v5-1-0>`__
-      - v5.1.0
+      - `v5.1.1 <https://docs.vulcanexus.org/en/latest/rst/notes/kilted/notes.html#kilted-kolumbo-v5-1-0>`__
+      - v5.1.1
 
 Kilted Kolumbo previous versions
 ================================
 
+.. include:: previous_versions/v5.1.0.rst
 .. include:: previous_versions/v5.0.0.rst
