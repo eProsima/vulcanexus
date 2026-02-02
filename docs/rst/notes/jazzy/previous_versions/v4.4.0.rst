@@ -1,4 +1,4 @@
-Jazzy Jolo (v4.3.1)
+Jazzy Jolo (v4.4.0)
 -------------------
 
 This version ships the following packages:
