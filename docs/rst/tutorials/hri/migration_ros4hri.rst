@@ -24,7 +24,7 @@ Vulcanexus HRI libraries introduce a new approach by leveraging **Fast DDS keyed
 which drastically reduces the number of DDS entities required to manage HRI data.
 This tutorial will guide you through the process of migrating from ROS4HRI to Vulcanexus HRI packages, highlighting the key **API differences** and benefits of the new approach.
 
-For a deeper explanation of the Vulcanexus HRI messages or a direct comparison on a practical use case, please refer to the :ref:`hri_msgs` section.
+For a deeper explanation of the Vulcanexus HRI messages or a direct comparison on a practical use case, please refer to the :ref:`vulcanexus_hri_msgs` section.
 
 Key Differences between ROS4HRI and Vulcanexus HRI APIs
 -------------------------------------------------------
