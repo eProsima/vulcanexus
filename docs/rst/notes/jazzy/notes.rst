@@ -12,7 +12,7 @@ This version ships the following packages:
       - Package version
       - Since Vulcanexus version
     * - eProsima Fast CDR
-      - `v2.3.5<https://github.com/eProsima/Fast-CDR/releases/tag/v2.3.5>`__
+      - `v2.3.5 <https://github.com/eProsima/Fast-CDR/releases/tag/v2.3.5>`__
       - v4.4.1
     * - eProsima Fast DDS
       - `v3.4.2 <https://fast-dds.docs.eprosima.com/en/3.x/notes/previous_versions/supported_versions.html>`__
@@ -48,7 +48,7 @@ This version ships the following packages:
       - `v3.4.0 <https://eprosima-dds-router.readthedocs.io/en/latest/rst/notes/notes.html#version-v3-4-0>`__
       - v4.4.0
     * - ROS 2 Shapes Demo
-      - `v3.4.1 <https://eprosima-shapes-demo.readthedocs.io/en/latest/notes/notes.html#version-3-4-1>`__
+      - `v3.4.1 <https://eprosima-shapes-demo.readthedocs.io/en/latest/notes/previous_versions/supported_versions.html#version-3-4-1>`__
       - v4.4.0
     * - ROS 2 Shapes Demo TypeSupport
       - `v1.0.0 <https://github.com/eProsima/ShapesDemo-TypeSupport/releases/tag/v1.0.0>`__
