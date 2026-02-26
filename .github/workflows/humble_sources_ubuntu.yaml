@@ -18,6 +18,9 @@ jobs:
   ubuntu-install-from-sources:
     runs-on: ubuntu-22.04
 
+    env:
+      COLCON_EXTENSION_BLOCKLIST: "colcon_core.shell.powershell"
+
     steps:
       - uses: actions/checkout@v4
         with:
