@@ -38,7 +38,7 @@ To create the shared ROS 2 node, create a new file called ``ros2_node.py`` insid
 
 .. literalinclude:: /resources/tutorials/vulcanai/turtlesim/ros2_node.py
     :language: python
-    :lines: 1-5, 10-66
+    :lines: 1-5, 9-66
 
 Examine the code
 ^^^^^^^^^^^^^^^^
@@ -104,7 +104,7 @@ Run the following commands to download the tools (make sure to replace ``<your_w
 .. code-block:: bash
 
     cd ~/<your_workspace>/src/vulcanai_turtlesim_demo/vulcanai_turtlesim_demo && \
-    wget https://https://raw.githubusercontent.com/eProsima/vulcanexus/refs/heads/main/code/vulcanai_turtlesim/vulcanai_turtlesim_demo/vulcanai_turtlesim_demo/turtlesim_tools.py
+    wget https://raw.githubusercontent.com/eProsima/vulcanexus/refs/heads/main/code/vulcanai_turtlesim/vulcanai_turtlesim_demo/vulcanai_turtlesim_demo/turtlesim_tools.py
 
 Examining a tool with a service client
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

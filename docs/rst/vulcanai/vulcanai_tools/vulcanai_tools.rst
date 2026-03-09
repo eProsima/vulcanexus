@@ -117,6 +117,112 @@ Once the tools are decorated, they can be registered in the following ways:
 
   In case of using a *"setup.py"* file of a ROS 2 package, remember to add a new complete module, not another entry to the *"console_scripts"* entry point.
 
+
+Default Tools
+-------------
+
+VulcanAI contains a set of built-in tools that expose the ROS 2 command-line interface (CLI) to the agent.
+These tools allow VulcanAI agents to inspect and interact with a running ROS 2 system without any additional setup.
+They are automatically available once VulcanAI is installed and cover the most common ROS 2 CLI commands, grouped by resource type.
+
+.. list-table:: ros2 node
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Command
+     - Description
+   * - ``info``
+     - Output information about a node
+   * - ``list``
+     - Output a list of available nodes
+
+.. list-table:: ros2 topic
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Command
+     - Description
+   * - ``bw``
+     - Display bandwidth used by topic
+   * - ``delay``
+     - Display delay of topic from timestamp in header
+   * - ``echo``
+     - Output messages from a topic
+   * - ``find``
+     - Output a list of available topics of a given type
+   * - ``hz``
+     - Print the average receiving rate to screen
+   * - ``info``
+     - Print information about a topic
+   * - ``list``
+     - Output a list of available topics
+   * - ``pub``
+     - Publish a message to a topic
+   * - ``type``
+     - Print a topic's type
+
+.. list-table:: ros2 service
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Command
+     - Description
+   * - ``call``
+     - Call a service
+   * - ``echo``
+     - Echo a service
+   * - ``find``
+     - Output a list of available services of a given type
+   * - ``info``
+     - Print information about a service
+   * - ``list``
+     - Output a list of available services
+   * - ``type``
+     - Output a service's type
+
+.. list-table:: ros2 action
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Command
+     - Description
+   * - ``info``
+     - Print information about an action
+   * - ``list``
+     - Output a list of action names
+   * - ``send_goal``
+     - Send an action goal
+   * - ``type``
+     - Print an action's type
+   * - ``echo``
+     - Echo an action
+   * - ``find``
+     - Find actions from type
+
+.. list-table:: ros2 param
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Command
+     - Description
+   * - ``delete``
+     - Delete parameter
+   * - ``describe``
+     - Show descriptive information about declared parameters
+   * - ``dump``
+     - Show all of the parameters of a node in a YAML file format
+   * - ``get``
+     - Get parameter
+   * - ``list``
+     - Output a list of available parameters
+   * - ``load``
+     - Load parameter file for a node
+   * - ``set``
+     - Set parameter
+
+In addition to the CLI wrappers above, VulcanAI also provides tools to create ROS 2 **publishers** and **subscribers**.
+These tools allow the agent to write messages to or read messages from any ROS 2 topic, including topics whose type are not known until runtime.
+
 Tool Examples
 -------------
 

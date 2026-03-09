@@ -24,7 +24,7 @@ Just add the following content at the end of the ``ros2_node.py`` file:
 
 .. literalinclude:: /resources/tutorials/vulcanai/turtlesim/ros2_node.py
     :language: python
-    :lines: 69-88
+    :lines: 69-89
 
 And the following include at the beginning of the file:
 

@@ -75,7 +75,7 @@ To check the installation, you can run the following command to see if pip is ab
 
 .. code-block:: bash
 
-   pip show eprosima-vulcanai
+   pip show vulcanai
 
 .. _vulcanai_from_venv:
 

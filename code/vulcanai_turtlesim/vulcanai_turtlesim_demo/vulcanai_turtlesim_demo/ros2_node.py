@@ -80,12 +80,13 @@ def main(args=None):
 You are controlling the turtlesim simulation from ROS 2.
 The simulation has one or more turtles that can move around, drawing on the screen as they go."""
 
-    console = VulcanConsole()
-    console.manager.register_tools_from_entry_points("turtle_tools")
-    console.manager.add_user_context(user_context)
-    # Add the shared node to the console manager blackboard to be used by tools
-    console.manager.bb["main_node"] = node
-    console.run()
+    # OpenAI
+    console = VulcanConsole(tools_from_entrypoints="turtle_tools", user_context=user_context, main_node=node)
+    # Ollama
+    #console = VulcanConsole(tools_from_entry_points="turtle_tools", user_context=user_context, main_node=node, \
+    #    model="ollama-llama3.1:8b")
+
+    console.run_console()
 
 
 if __name__ == '__main__':
