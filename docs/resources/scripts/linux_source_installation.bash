@@ -104,6 +104,12 @@ vcs import --force src < vulcanexus.repos
 # Avoid compilation of some documentation and demo packages
 touch src/eProsima/Vulcanexus/docs/COLCON_IGNORE
 touch src/eProsima/Vulcanexus/code/COLCON_IGNORE
+
+# Skip Rust rosidl generators (not used by Vulcanexus). Workaround for
+# https://github.com/ros2-rust/rosidl_rust/issues/19: rosidl_generator_rs
+# rejects IDL files outside msg/srv/action folders, breaking shapes_demo_typesupport.
+find src -type d \( -name 'rosidl_generator_rs' -o -name 'rosidl_typesupport_rs' \) \
+    -exec touch {}/COLCON_IGNORE \;
 ##!
 
 ##LINUX_SOURCE_VULCA_DEPS
