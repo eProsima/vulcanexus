@@ -7,6 +7,27 @@ VulcanAI Tools
    VulcanAI is currently in active development, and new features and improvements are being added regularly.
    Current version is in Beta stage.
 
+Even though VulcanAI can be integrated directly in Python applications, the **VulcanAI Console** is the main interactive interface for most users.
+Using the console is not mandatory, but it improves readability and day-to-day usage by presenting prompts, plans, tool calls, and responses in a clearer way during execution.
+For development, debugging and demos, it is usually the most convenient way to run a VulcanAI agent.
+
+The simplest way to run VulcanAI with the console from your own script is to create a ``VulcanConsole`` object and call ``run_console()``:
+
+.. code-block:: python
+
+    from vulcanai import VulcanConsole
+
+    console = VulcanConsole(
+        tools_from_entrypoints="my_tools",
+        user_context="You are assisting with a ROS 2 system.",
+        model="gpt-5-nano"
+    )
+
+    console.run_console()
+
+For ROS 2 use cases, the console can also receive a shared node through the ``main_node`` argument, as shown in :ref:`tutorials_vulcanai_turtlesim_main`.
+See :ref:`vulcanai_terminal` for a detailed overview of the console features and shortcuts.
+
 Background
 ----------
 
@@ -118,12 +139,55 @@ Once the tools are decorated, they can be registered in the following ways:
   In case of using a *"setup.py"* file of a ROS 2 package, remember to add a new complete module, not another entry to the *"console_scripts"* entry point.
 
 
+Tool Examples
+-------------
+
+Here are some examples of both atomic and composite tools to illustrate how they can be implemented in VulcanAI.
+
+.. literalinclude:: /resources/tutorials/vulcanai/tools_basic/math_tools.py
+    :language: python
+
+Note that the ``run()`` method can also be defined with `**kwargs` to make it more flexible or easier for tools that require multiple inputs.
+In this case the input parameters must be extracted from the `kwargs` dictionary.
+The following ``run()`` method is equivalent to the previous one of the `AddAndMultiplyTool` tool:
+
+.. literalinclude:: /resources/tutorials/vulcanai/tools_basic/alternative_run_method.py
+    :language: python
+
+Also, note that we have not defined any constructor (`__init__` method) for the tools.
+This is because the base classes already provide a default constructor that handles the initialization of the tool's attributes.
+
+Lastly, take into account that no `tags` attribute has been defined for these tools.
+This is an optional attribute that can be used to categorize and organize tools, which can be especially useful when working with a large number of tools, but it is not strictly necessary for the tool to function correctly.
+
+To test these examples, we can use the **VulcanAI console**, which provides an interactive environment to experiment with VulcanAI agents and tools.
+First, we instantiate the console registering the tools in the console:
+
+.. code-block:: bash
+
+    wget -O math_tools.py https://raw.githubusercontent.com/eProsima/vulcanexus/kilted/docs/resources/tutorials/vulcanai/tools_basic/math_tools.py && \
+    vulcanai_console --register-from-file math_tools.py
+
+Now, use the console terminal to interact with the VulcanAI agent and test the tools:
+
+.. code-block:: bash
+
+    [USER] >>> add 4 and 2
+    [USER] >>> multiply 6 and 7
+    [USER] >>> add 4 and 2, then multiply the result by 7
+
+You can check the console logs to see the plan created by the agent to accomplish each task, as well as the tool calls made during the execution.
+
+.. _vulcanai_tools_sharing_data:
+
 Default Tools
 -------------
 
 VulcanAI contains a set of built-in tools that expose the ROS 2 command-line interface (CLI) to the agent.
 These tools allow VulcanAI agents to inspect and interact with a running ROS 2 system without any additional setup.
-They are automatically available once VulcanAI is installed and cover the most common ROS 2 CLI commands, grouped by resource type.
+They are automatically available once VulcanAI is installed and are organized by resource type, but each CLI command is exposed as an independent tool inside its category.
+For example, ``ros2 node info`` and ``ros2 node list`` are now two different tools instead of a single ``ros2 node`` tool.
+During terminal execution, tools can be enabled or disabled individually, and complete tool groups can also be enabled or disabled at once.
 
 .. list-table:: ros2 node
    :header-rows: 1
@@ -222,47 +286,6 @@ They are automatically available once VulcanAI is installed and cover the most c
 
 In addition to the CLI wrappers above, VulcanAI also provides tools to create ROS 2 **publishers** and **subscribers**.
 These tools allow the agent to write messages to or read messages from any ROS 2 topic, including topics whose type are not known until runtime.
-
-Tool Examples
--------------
-
-Here are some examples of both atomic and composite tools to illustrate how they can be implemented in VulcanAI.
-
-.. literalinclude:: /resources/tutorials/vulcanai/tools_basic/math_tools.py
-    :language: python
-
-Note that the ``run()`` method can also be defined with `**kwargs` to make it more flexible or easier for tools that require multiple inputs.
-In this case the input parameters must be extracted from the `kwargs` dictionary.
-The following ``run()`` method is equivalent to the previous one of the `AddAndMultiplyTool` tool:
-
-.. literalinclude:: /resources/tutorials/vulcanai/tools_basic/alternative_run_method.py
-    :language: python
-
-Also, note that we have not defined any constructor (`__init__` method) for the tools.
-This is because the base classes already provide a default constructor that handles the initialization of the tool's attributes.
-
-Lastly, take into account that no `tags` attribute has been defined for these tools.
-This is an optional attribute that can be used to categorize and organize tools, which can be especially useful when working with a large number of tools, but it is not strictly necessary for the tool to function correctly.
-
-To test these examples, we can use the **VulcanAI console**, which provides an interactive environment to experiment with VulcanAI agents and tools.
-First, we instantiate the console registering the tools in the console:
-
-.. code-block:: bash
-
-    wget -O math_tools.py https://raw.githubusercontent.com/eProsima/vulcanexus/kilted/docs/resources/tutorials/vulcanai/tools_basic/math_tools.py && \
-    vulcanai_console --register-from-file math_tools.py
-
-Now, use the console terminal to interact with the VulcanAI agent and test the tools:
-
-.. code-block:: bash
-
-    [USER] >>> add 4 and 2
-    [USER] >>> multiply 6 and 7
-    [USER] >>> add 4 and 2, then multiply the result by 7
-
-You can check the console logs to see the plan created by the agent to accomplish each task, as well as the tool calls made during the execution.
-
-.. _vulcanai_tools_sharing_data:
 
 Sharing data between tools
 --------------------------

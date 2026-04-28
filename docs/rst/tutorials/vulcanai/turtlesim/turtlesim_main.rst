@@ -57,11 +57,11 @@ We only need to specify the name of the module where the tools will be installed
     :lines: 79-81
     :dedent: 4
 
-Finally, we manually add the shared node to the console manager blackboard, so it can be accessed by the tools and call the ``run`` method to start the console.
+Finally, we pass the shared node through the ``main_node`` argument so it can be reused by the tools, and then call ``run_console()`` to start the console.
 
 .. literalinclude:: /resources/tutorials/vulcanai/turtlesim/ros2_node.py
     :language: python
-    :lines: 82-84
+    :lines: 82-86
     :dedent: 4
 
 The last two lines call the ``main`` method when the script is executed directly.
