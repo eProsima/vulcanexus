@@ -32,14 +32,14 @@ Keyboard Shortcuts
      - Description
    * - ``F2``
      - Display the terminal help message.
-   * - ``F3``
+   * - ``F4``
      - Copy the currently selected terminal area to the clipboard.
    * - ``Ctrl+R``
      - Start reverse search through command history.
    * - ``Ctrl+L``
      - Clear the terminal quickly.
    * - ``Tab``
-     - Autocomplete the command while typing.
+     - Auto-complete the command while typing.
 
 Image Placeholders
 ------------------
@@ -52,7 +52,7 @@ Use the following placeholders to add screenshots later.
 
 .. container::
 
-   **image_2** Text selection and copy with ``F3``
+   **image_2** Text selection and copy with ``F4``
 
 .. container::
 
