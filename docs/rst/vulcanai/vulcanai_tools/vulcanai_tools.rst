@@ -7,27 +7,6 @@ VulcanAI Tools
    VulcanAI is currently in active development, and new features and improvements are being added regularly.
    Current version is in Beta stage.
 
-Even though VulcanAI can be integrated directly in Python applications, the **VulcanAI Console** is the main interactive interface for most users.
-Using the console is not mandatory, but it improves readability and day-to-day usage by presenting prompts, plans, tool calls, and responses in a clearer way during execution.
-For development, debugging and demos, it is usually the most convenient way to run a VulcanAI agent.
-
-The simplest way to run VulcanAI with the console from your own script is to create a ``VulcanConsole`` object and call ``run_console()``:
-
-.. code-block:: python
-
-    from vulcanai import VulcanConsole
-
-    console = VulcanConsole(
-        tools_from_entrypoints="my_tools",
-        user_context="You are assisting with a ROS 2 system.",
-        model="gpt-5-nano"
-    )
-
-    console.run_console()
-
-For ROS 2 use cases, the console can also receive a shared node through the ``main_node`` argument, as shown in :ref:`tutorials_vulcanai_turtlesim_main`.
-See :ref:`vulcanai_terminal` for a detailed overview of the console features and shortcuts.
-
 Background
 ----------
 
@@ -138,7 +117,6 @@ Once the tools are decorated, they can be registered in the following ways:
 
   In case of using a *"setup.py"* file of a ROS 2 package, remember to add a new complete module, not another entry to the *"console_scripts"* entry point.
 
-
 Tool Examples
 -------------
 
@@ -178,16 +156,15 @@ Now, use the console terminal to interact with the VulcanAI agent and test the t
 
 You can check the console logs to see the plan created by the agent to accomplish each task, as well as the tool calls made during the execution.
 
-.. _vulcanai_tools_sharing_data:
-
 Default Tools
 -------------
 
-VulcanAI contains a set of built-in tools that expose the ROS 2 command-line interface (CLI) to the agent.
-These tools allow VulcanAI agents to inspect and interact with a running ROS 2 system without any additional setup.
-They are automatically available once VulcanAI is installed and are organized by resource type, but each CLI command is exposed as an independent tool inside its category.
-For example, ``ros2 node info`` and ``ros2 node list`` are now two different tools instead of a single ``ros2 node`` tool.
-During terminal execution, tools can be enabled or disabled individually, and complete tool groups can also be enabled or disabled at once.
+These tools give VulcanAI agents built-in access to inspect and interact with a running ROS 2 system, with no additional setup required.
+Once VulcanAI is installed, each supported ROS 2 command is available as its own independent tool.
+For example, ``ros2 node list`` and ``ros2 node info`` are exposed as separate tools rather than as a single generic ros2 topic tool.
+To make tool management easier, related tools are grouped by the first part of the ROS 2 command.
+For example, all tools based on ``ros2 node <command>``, such as ``ros2 node list`` and ``ros2 node info``, are included in the ``ros2 node`` tool group.
+During terminal execution, users can enable or disable tools one by one, or enable and disable an entire group at once.
 
 .. list-table:: ros2 node
    :header-rows: 1
@@ -286,6 +263,8 @@ During terminal execution, tools can be enabled or disabled individually, and co
 
 In addition to the CLI wrappers above, VulcanAI also provides tools to create ROS 2 **publishers** and **subscribers**.
 These tools allow the agent to write messages to or read messages from any ROS 2 topic, including topics whose type are not known until runtime.
+
+.. _vulcanai_tools_sharing_data:
 
 Sharing data between tools
 --------------------------
