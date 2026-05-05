@@ -162,6 +162,7 @@ Default Tools
 These tools give VulcanAI agents built-in access to inspect and interact with a running ROS 2 system, with no additional setup required.
 Once VulcanAI is installed, each supported ROS 2 command is available as its own independent tool.
 For example, ``ros2 node list`` and ``ros2 node info`` are exposed as separate tools rather than as a single generic ros2 topic tool.
+
 To make tool management easier, related tools are grouped by the first part of the ROS 2 command.
 For example, all tools based on ``ros2 node <command>``, such as ``ros2 node list`` and ``ros2 node info``, are included in the ``ros2 node`` tool group.
 During terminal execution, users can enable or disable tools one by one, or enable and disable an entire group at once.

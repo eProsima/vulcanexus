@@ -11,21 +11,6 @@ The VulcanAI Console is the main interactive interface for VulcanAI.
 Even though it is not mandatory to use the library, it improves readability and day-to-day usage by providing a structured terminal experience for prompts, tool execution, and responses.
 The VulcanAI textual terminal also provides interactive command execution, command history and keyboard shortcuts to speed up common operations.
 
-Text Selection and Clipboard
-----------------------------
-
-You can select any area in the terminal by left-clicking and dragging over the desired text.
-Once text is selected, press ``F4`` to copy the selected area to the system clipboard.
-Do not hold ``Shift`` while selecting text.
-If ``Shift`` is pressed during the selection, both the main panel and the history panel are selected, so copying with ``F4`` or ``Ctrl+C`` will not capture the intended text correctly.
-
-.. figure:: /rst/figures/vulcanai/terminal/copy_area.png
-   :align: center
-
-.. note::
-   On Linux, clipboard integration requires ``xsel`` or ``xclip`` to be installed.
-   For example, on Ubuntu systems, run ``sudo apt install xclip``.
-
 Keyboard Shortcuts
 ------------------
 
@@ -48,8 +33,20 @@ Keyboard Shortcuts
    * - ``Tab``
      - Auto-complete the command while typing.
 
-Console Images
---------------
+Text Selection and Clipboard
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You can select any area in the terminal by left-clicking and dragging over the desired text.
+Once text is selected, press ``F4`` to copy the selected area to the system clipboard.
+Do not hold ``Shift`` while selecting text.
+If ``Shift`` is pressed during the selection, both the main panel and the history panel are selected, so copying with ``F4`` or ``Ctrl+C`` will not capture the intended text correctly.
+
+.. figure:: /rst/figures/vulcanai/terminal/copy_area.png
+   :align: center
+
+.. note::
+   On Linux, clipboard integration requires ``xsel`` or ``xclip`` to be installed.
+   For example, on Ubuntu systems, run ``sudo apt install xclip``.
 
 Reverse search with ``Ctrl+R``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
