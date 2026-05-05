@@ -16,6 +16,11 @@ Text Selection and Clipboard
 
 You can select any area in the terminal by left-clicking and dragging over the desired text.
 Once text is selected, press ``F4`` to copy the selected area to the system clipboard.
+Do not hold ``Shift`` while selecting text.
+If ``Shift`` is pressed during the selection, both the main panel and the history panel are selected, so copying with ``F4`` or ``Ctrl+C`` will not capture the intended text correctly.
+
+.. figure:: /rst/figures/vulcanai/terminal/copy_area.png
+   :align: center
 
 .. note::
    On Linux, clipboard integration requires ``xsel`` or ``xclip`` to be installed.
@@ -34,6 +39,8 @@ Keyboard Shortcuts
      - Display the terminal help message.
    * - ``F4``
      - Copy the currently selected terminal area to the clipboard.
+   * - ``Ctrl+V``
+     - Paste the clipboard in the console input area. Using the middle buttom in the mouse also paste the clipboard.
    * - ``Ctrl+R``
      - Start reverse search through command history.
    * - ``Ctrl+L``
@@ -41,19 +48,14 @@ Keyboard Shortcuts
    * - ``Tab``
      - Auto-complete the command while typing.
 
-Image Placeholders
-------------------
+Console Images
+--------------
 
-Use the following placeholders to add screenshots later.
+Reverse search with ``Ctrl+R``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. container::
+The console also supports reverse search through the command history.
+Press ``Ctrl+R`` and start typing part of a previous prompt or command to browse matching entries, as shown below.
 
-   **image_1** Terminal main view
-
-.. container::
-
-   **image_2** Text selection and copy with ``F4``
-
-.. container::
-
-   **image_3** Reverse search with ``Ctrl+R``
+.. figure:: /rst/figures/vulcanai/terminal/reverse_search.png
+   :align: center

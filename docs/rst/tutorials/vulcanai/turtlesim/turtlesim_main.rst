@@ -58,11 +58,11 @@ the shared node so it can be reused by the tools and the model name (E.g.: `gpt-
     :lines: 83-88
     :dedent: 4
 
-VulcanAI is initialized, now, using the function ``run_console()`` the app starts.
+VulcanAI is initialized, now, using the method ``run_console()`` starts the console.
 
 .. literalinclude:: /resources/tutorials/vulcanai/turtlesim/ros2_node.py
     :language: python
-    :line: 90
+    :lines: 90
     :dedent: 4
 
 The last two lines call the ``main`` method when the script is executed directly.

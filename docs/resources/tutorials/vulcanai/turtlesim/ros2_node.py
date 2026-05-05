@@ -1,3 +1,7 @@
+"""
+This file contains a ROS 2 SharedNode and the main entrypoint to test the turtlesim tools.
+"""
+
 import threading
 
 import rclpy
