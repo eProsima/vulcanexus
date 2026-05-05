@@ -40,7 +40,7 @@ Keyboard Shortcuts
    * - ``F4``
      - Copy the currently selected terminal area to the clipboard.
    * - ``Ctrl+V``
-     - Paste the clipboard in the console input area. Using the middle buttom in the mouse also paste the clipboard.
+     - Paste the clipboard in the console input area. Using the middle button on the mouse also pastes the clipboard.
    * - ``Ctrl+R``
      - Start reverse search through command history.
    * - ``Ctrl+L``
