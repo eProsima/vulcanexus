@@ -17,16 +17,12 @@ Requirements
 Installation via `pip`
 ----------------------
 
-.. warning::
-
-   Pip installation will be available soon. Installation from source is recommended until then.
-
 The fastest and simplest way to install VulcanAI is using `pip`.
 To do so, open a terminal and run the following command:
 
 .. code-block:: bash
 
-   pip install eprosima-vulcanai
+   python3 -m pip install "git+https://github.com/eProsima/VulcanAI.git"
 
 This will install the latest stable version of VulcanAI and all its dependencies.
 However, it is recommended to create a virtual environment before installing VulcanAI to avoid potential conflicts with other Python packages.
