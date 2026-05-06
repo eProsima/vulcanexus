@@ -24,6 +24,7 @@ The following sections describe the main features of VulcanAI and introduces its
 
     vulcanai_installation/vulcanai_installation.rst
     vulcanai_tools/vulcanai_tools.rst
+    vulcanai_terminal/vulcanai_terminal.rst
 
 A simple demo of the potential of VulcanAI can be found in the following video:
 

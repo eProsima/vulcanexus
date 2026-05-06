@@ -38,7 +38,7 @@ To create the shared ROS 2 node, create a new file called ``ros2_node.py`` insid
 
 .. literalinclude:: /resources/tutorials/vulcanai/turtlesim/ros2_node.py
     :language: python
-    :lines: 1-5, 10-66
+    :lines: 5-9, 13-70
 
 Examine the code
 ^^^^^^^^^^^^^^^^
@@ -47,7 +47,7 @@ This code creates a ROS 2 node that can be shared between multiple tools, exposi
 
 .. literalinclude:: /resources/tutorials/vulcanai/turtlesim/ros2_node.py
     :language: python
-    :lines: 1-5
+    :lines: 5-9
 
 We import the basic ``threading`` module to create a lock that will ensure that the creation of new entities is thread-safe.
 If you don't know how locks work, just consider them as a protection mechanism needed to avoid errors when **multiple threads** access the same shared resource simultaneously.
@@ -57,7 +57,7 @@ The other imports are related to ROS 2, including the ``rclpy`` library, the ``N
 
 .. literalinclude:: /resources/tutorials/vulcanai/turtlesim/ros2_node.py
     :language: python
-    :lines: 10-19
+    :lines: 14-23
 
 The ``SharedNode`` class inherits from the ``Node`` class, and it initializes the node with the name ``vulcanai_shared_node``.
 Then, two dictionaries are created to store a reference to created service clients and publishers, so they can be reused later.
@@ -65,20 +65,20 @@ Finally, a lock from the ``threading`` module is created to ensure thread-safety
 
 .. literalinclude:: /resources/tutorials/vulcanai/turtlesim/ros2_node.py
     :language: python
-    :lines: 21-32
+    :lines: 25-36
 
 The method ``get_client`` creates a new service client if it doesn't exist yet, or returns the existing one if it has already been created.
 Everything under the ``with self.lock:`` statement is protected by the lock, ensuring that no duplicated service clients are created.
 
 .. literalinclude:: /resources/tutorials/vulcanai/turtlesim/ros2_node.py
     :language: python
-    :lines: 34-45
+    :lines: 38-49
 
 The method ``get_publisher`` works in a similar way, creating or returning an existing publisher.
 
 .. literalinclude:: /resources/tutorials/vulcanai/turtlesim/ros2_node.py
     :language: python
-    :lines: 47-66
+    :lines: 51-70
 
 Finally, the method ``wait_for_message`` is a utility function that allows waiting for a single message from a topic, which is needed for tools that will use subscriptions.
 Subscriptions, unlike publishers or service clients, will not be reused.
@@ -104,7 +104,7 @@ Run the following commands to download the tools (make sure to replace ``<your_w
 .. code-block:: bash
 
     cd ~/<your_workspace>/src/vulcanai_turtlesim_demo/vulcanai_turtlesim_demo && \
-    wget https://https://raw.githubusercontent.com/eProsima/vulcanexus/refs/heads/main/code/vulcanai_turtlesim/vulcanai_turtlesim_demo/vulcanai_turtlesim_demo/turtlesim_tools.py
+    wget https://raw.githubusercontent.com/eProsima/vulcanexus/refs/heads/main/code/vulcanai_turtlesim/vulcanai_turtlesim_demo/vulcanai_turtlesim_demo/turtlesim_tools.py
 
 Examining a tool with a service client
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
