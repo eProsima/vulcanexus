@@ -86,10 +86,6 @@ rosdep update
 rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-6.0.1 urdfdom_headers"
 ##!
 
-##REMOVE COLCON-POWERSHELL EXTENSION
-python3 -m pip uninstall -y colcon-powershell
-##!
-
 ##LINUX_SOURCE_CLONE_VULCA
 cd ~
 cd vulcanexus_jazzy
