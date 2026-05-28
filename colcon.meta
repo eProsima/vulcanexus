@@ -31,13 +31,6 @@
             [
                 "-DSECURITY=ON"
             ]
-        },
-        "plotjuggler":
-        {
-            "cmake-args":
-            [
-                "-DROS_BUILD=OFF"
-            ]
         }
     }
 }

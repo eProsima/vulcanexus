@@ -28,9 +28,7 @@
         "rmw_fastrtps_cpp",
         "rmw_fastrtps_dynamic_cpp",
         "ShapesDemo",
-        "shapes_demo_typesupport",
-        "fastdds_visualizer_plugin",
-        "plotjuggler"
+        "shapes_demo_typesupport"
     ],
     "hooks": [
         "share/vulcanexus_base/environment/vulcanexus_base-setup.bash",
