@@ -42,5 +42,7 @@ jobs:
           cmakeVersion: '3.28.3'
 
       - name: Install from sources
+        env:
+          COLCON_EXTENSION_BLOCKLIST: "colcon_core.shell.powershell"
         run: |
           bash docs/resources/scripts/linux_source_installation.bash
