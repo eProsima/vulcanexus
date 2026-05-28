@@ -16,6 +16,10 @@ on:
   schedule:
     - cron: '0 0 * * *'
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   ubuntu-install-from-sources:
     runs-on: ubuntu-24.04
@@ -35,8 +39,10 @@ jobs:
       - name: Get minimum supported version of CMake
         uses: eProsima/eProsima-CI/external/get-cmake@v0
         with:
-          cmakeVersion: '3.22.6'
+          cmakeVersion: '3.28.3'
 
       - name: Install from sources
+        env:
+          COLCON_EXTENSION_BLOCKLIST: "colcon_core.shell.powershell"
         run: |
           bash docs/resources/scripts/linux_source_installation.bash
