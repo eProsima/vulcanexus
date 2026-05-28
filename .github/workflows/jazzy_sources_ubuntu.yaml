@@ -16,6 +16,10 @@ on:
   schedule:
     - cron: '0 0 * * *'
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   ubuntu-install-from-sources:
     runs-on: ubuntu-24.04
