@@ -34,7 +34,7 @@ repositories:
   eProsima/Fast-DDS-Monitor:
     type: git
     url: https://github.com/eProsima/Fast-DDS-monitor.git
-    version: 4.2.0-vulcanexus
+    version: v4.2.0
   eProsima/Fast-DDS-Python:
     type: git
     url: https://github.com/eProsima/Fast-DDS-python.git
@@ -74,7 +74,7 @@ repositories:
   eProsima/Shapes-Demo:
     type: git
     url: https://github.com/eProsima/ShapesDemo.git
-    version: 3.6.1-vulcanexus
+    version: v3.6.1
   eProsima/Shapes-Demo-TypeSupport:
     type: git
     url: https://github.com/eProsima/ShapesDemo-TypeSupport.git
