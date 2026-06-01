@@ -22,6 +22,7 @@ import itertools
 import json
 import os
 import pathlib
+import re
 import requests
 import sys
 
@@ -191,16 +192,21 @@ def select_css(html_css_dir):
     :param html_css_dir: The directory to save the CSS stylesheet.
     :return: Returns a list of CSS files to be imported.
     """
-    ret = ""
     common_css = "css/eprosima-furo.css"
     if download_css(html_css_dir):
         print("Applying common CSS style file: {}".format(common_css))
-        ret = common_css
+        return common_css
 
-    return ret
+    css_path = os.path.join(html_css_dir, "_static", common_css)
+    if os.path.isfile(css_path):
+        print("Applying existing common CSS style file: {}".format(common_css))
+        return common_css
+
+    return None
 
 
 script_path = os.path.abspath(pathlib.Path(__file__).parent.absolute())
+sys.path.append(os.path.abspath("{}/ros2_documentation/plugins".format(script_path)))
 # Project directories
 project_source_docs_dir = os.path.abspath("{}/rst".format(script_path))
 
@@ -229,6 +235,9 @@ extensions = [
     "sphinx.ext.ifconfig",
     "sphinx.ext.intersphinx",
     "sphinx.ext.todo",
+    "sphinx_adopters",
+    "sphinx_tabs.tabs",
+    "sphinxcontrib.mermaid",
     "sphinxcontrib.plantuml",
 ]
 
@@ -370,7 +379,8 @@ html_theme_options.update(download_json())
 
 html_use_smartypants = True
 
-html_css_files = [select_css(project_source_docs_dir)]
+selected_css = select_css(project_source_docs_dir)
+html_css_files = [selected_css] if selected_css else []
 
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.
@@ -669,7 +679,32 @@ def expand_macros(app, docname, source):
     source[0] = result
 
 
+def rewrite_ros2_doc_links(app, docname, source):
+    if not docname.startswith("ros2_documentation/source/"):
+        return
+
+    ros2_prefix = "/ros2_documentation/source"
+    result = source[0]
+
+    # ROS 2 documentation is authored with ros2_documentation/source as its
+    # Sphinx root. Vulcanexus builds it under that directory, so root-relative
+    # :doc: links need the local prefix.
+    result = re.sub(r"(:doc:`[^`<]*<)/([^`>]+)>", rf"\1{ros2_prefix}/\2>", result)
+    result = re.sub(r"(:doc:`)/([^`>]+)`", rf"\1{ros2_prefix}/\2`", result)
+
+    # This upstream link points one level above the ROS 2 source root when the
+    # docs are embedded in Vulcanexus. Keep it inside the embedded ROS 2 tree.
+    result = re.sub(
+        r"(:doc:`[^`<]*<)\.\./How-To-Guides/",
+        rf"\1{ros2_prefix}/How-To-Guides/",
+        result,
+    )
+
+    source[0] = result
+
+
 def setup(app):
     app.connect("source-read", expand_macros)
+    app.connect("source-read", rewrite_ros2_doc_links)
     app.add_config_value("macros", {}, True)
     RedirectFrom.register(app)
