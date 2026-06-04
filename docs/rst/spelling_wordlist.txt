@@ -1,7 +1,11 @@
 acknowledgement
 allocator
 allocators
+allowlist
 allowlisting
+allowlists
+blocklist
+blocklists
 amd
 architectured
 Arduino

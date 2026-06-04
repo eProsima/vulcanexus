@@ -25,4 +25,4 @@ Next Steps
 ----------
 
 Visit `eProsima Fast DDS Spy Documentation <https://fast-dds-spy.readthedocs.io/en/latest>`_ for more information on how to configure and use *Fast DDS Spy*.
-Also feel free to review :ref:`Vulcanexus Tools Tutorials <tutorials_tools_tools_tutorials>` to discover the possibilities that this tool has to offer in different scenarios.
+Also feel free to follow the :ref:`Getting Started with Fast DDS Spy <tutorials_tools_fastddsspy>` tutorial for a step-by-step introduction using *ShapesDemo*, or review :ref:`Vulcanexus Tools Tutorials <tutorials_tools_tools_tutorials>` to discover the possibilities that this tool has to offer in different scenarios.
