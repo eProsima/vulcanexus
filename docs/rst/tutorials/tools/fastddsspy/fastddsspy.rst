@@ -181,9 +181,9 @@ Run:
         writers                                   : DataWriters discovered in the network.
         writers verbose                           : verbose information about DataWriters discovered in the network.
         writers <Guid>                            : verbose information related with a specific DataWriter.
-        reader                                    : DataReaders discovered in the network.
-        reader verbose                            : verbose information about DataReaders discovered in the network.
-        reader <Guid>                             : verbose information related with a specific DataReader.
+        readers                                   : DataReaders discovered in the network.
+        readers verbose                           : verbose information about DataReaders discovered in the network.
+        readers <Guid>                            : verbose information related with a specific DataReader.
         topics                                    : Topics discovered in the network in compact format.
         topics v                                  : Topics discovered in the network.
         topics vv                                 : verbose information about Topics discovered in the network.
@@ -304,13 +304,13 @@ Run:
 
 .. code-block:: bash
 
-    reader
+    readers
 
 You should see one DataReader associated with the ``Square`` topic.
 
 .. code-block:: text
 
-    >> reader
+    >> readers
     - guid: 01.0f.91.a5.1f.00.1c.08.00.00.01.00|0.0.2.7
       participant: Fast DDS ShapesDemo Participant
       topic: Square [ShapeType]
@@ -324,11 +324,11 @@ Running this command with the verbose option shows more detailed information abo
 
 .. code-block:: bash
 
-    reader verbose
+    readers verbose
 
 .. code-block:: text
 
-    >> reader verbose
+    >> readers verbose
     - guid: 01.0f.91.a5.1f.00.1c.08.00.00.01.00|0.0.2.7
       participant: Fast DDS ShapesDemo Participant
       topic:
