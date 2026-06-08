@@ -7,7 +7,7 @@ Background
 ----------
 
 Vulcanexus integrates `eProsima Fast DDS Spy <https://fast-dds-spy.readthedocs.io/en/latest/index.html>`_,
-an interactive command-line tool that allows inspecting DDS entities such as DomainParticipants, DataWriters,
+an interactive command-line tool that allows you to inspect DDS entities such as DomainParticipants, DataWriters,
 DataReaders, topics, and live user data in a human-readable format.
 Since ROS 2 relies on the `DDS specification <https://www.omg.org/spec/DDS/1.4/About-DDS/>`_ for communication between nodes,
 *Fast DDS Spy* is a useful tool for observing an existing DDS system and understanding what entities and data are visible.
@@ -80,7 +80,7 @@ Configure the participant
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the toolbar at the top, open the ``Options`` menu and select ``Participant Configuration``.
-This window lets you choose the transport mode, domain ID, and other advanced options.
+This window lets you choose the transport mode, Domain ID, and other advanced options.
 In this tutorial, set the Domain ID to ``10``.
 
 .. figure:: /rst/figures/tutorials/tools/fastddsspy/ParticipantConfiguration.png
@@ -304,13 +304,13 @@ Run:
 
 .. code-block:: bash
 
-    readers
+    reader
 
 You should see one DataReader associated with the ``Square`` topic.
 
 .. code-block:: text
 
-    >> readers
+    >> reader
     - guid: 01.0f.91.a5.1f.00.1c.08.00.00.01.00|0.0.2.7
       participant: Fast DDS ShapesDemo Participant
       topic: Square [ShapeType]
@@ -324,11 +324,11 @@ Running this command with the verbose option shows more detailed information abo
 
 .. code-block:: bash
 
-    readers verbose
+    reader verbose
 
 .. code-block:: text
 
-    >> readers verbose
+    >> reader verbose
     - guid: 01.0f.91.a5.1f.00.1c.08.00.00.01.00|0.0.2.7
       participant: Fast DDS ShapesDemo Participant
       topic:
@@ -374,12 +374,6 @@ Run:
 
     topics Square v
 
-For more detailed output, run:
-
-.. code-block:: bash
-
-    topics Square vv
-
 The verbose output includes the topic name, type, associated DataWriters and DataReaders, publication rate, and type discovery information.
 
 .. code-block:: text
@@ -390,6 +384,14 @@ The verbose output includes the topic name, type, associated DataWriters and Dat
       datawriters: 1
       datareaders: 1
       rate: 13.3329 Hz
+
+For more detailed output, run:
+
+.. code-block:: bash
+
+    topics Square vv
+
+The results include the GUIDs of the associated DataWriters and DataReaders, as well as their partitions.
 
 .. code-block:: text
 
@@ -463,11 +465,44 @@ Run:
 
 The exact values will change while *ShapesDemo* is running. Press ``Enter`` to stop printing live data and return to the *Fast DDS Spy* prompt.
 
-For more detailed output including topic name and type, writer GUID, partitions, and a timestamp, run:
+For more detailed output, including topic name and type, writer GUID, partitions, and a timestamp, run:
 
 .. code-block:: bash
 
     echo Square verbose
+
+The output will include additional information about the source of the data and the time it was received.
+
+.. code-block:: text
+
+    >> echo Square verbose
+    topic: Square [ShapeType]
+    writer: 01.0f.bc.7a.1f.00.59.d1.00.00.00.00|0.0.1.2
+    partitions: ""
+    timestamp: 2026/06/08 06:12:53
+    data:
+    ---
+    {
+        "color": "RED",
+        "shapesize": 30,
+        "x": 94,
+        "y": 65
+    }
+    ---
+
+    topic: Square [ShapeType]
+    writer: 01.0f.bc.7a.1f.00.59.d1.00.00.00.00|0.0.1.2
+    partitions: ""
+    timestamp: 2026/06/08 06:12:53
+    data:
+    ---
+    {
+        "color": "RED",
+        "shapesize": 30,
+        "x": 89,
+        "y": 59
+    }
+    ---
 
 *Fast DDS Spy* is now reading and displaying user data from the DDS network. This confirms that the topic data type was discovered and that live samples are being received.
 
@@ -500,7 +535,7 @@ A minimal configuration example:
 .. code-block:: yaml
 
     dds:
-      domain: 0
+      domain: 10
 
 You can also use topic filters to focus only on specific topics:
 
