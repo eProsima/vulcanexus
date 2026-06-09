@@ -172,36 +172,36 @@ Run:
     Fast DDS Spy is an interactive CLI that allows you to introspect DDS networks.
     Each command shows data related with the network in Yaml format.
     Commands available and the information they show:
-        help                                      : this help.
-        version                                   : tool version.
-        quit                                      : exit interactive CLI and close program.
-        participants                              : DomainParticipants discovered in the network.
-        participants verbose                      : verbose information about DomainParticipants discovered in the network.
-        participants <Guid>                       : verbose information related with a specific DomainParticipant.
-        writers                                   : DataWriters discovered in the network.
-        writers verbose                           : verbose information about DataWriters discovered in the network.
-        writers <Guid>                            : verbose information related with a specific DataWriter.
-        readers                                   : DataReaders discovered in the network.
-        readers verbose                           : verbose information about DataReaders discovered in the network.
-        readers <Guid>                            : verbose information related with a specific DataReader.
-        topics                                    : Topics discovered in the network in compact format.
-        topics v                                  : Topics discovered in the network.
-        topics vv                                 : verbose information about Topics discovered in the network.
-        topics <name>                             : Topics discovered in the network filtered by name (wildcard allowed (*)).
-        topics <name> idl                         : Display the IDL type definition for topics matching <name> (wildcards allowed).
-        filters                                   : Display the active filters.
-        filters clear                             : Clear all the filter lists.
-        filters remove                            : Remove all the filter lists.
-        filter clear <category>                   : Clear <category> filter list.
-        filter remove <category>                  : Remove <category> filter list.
-        filter set <category> <filter_str>        : Set <category> filter list with <filter_str> as first value.
-        filter add <category> <filter_str>        : Add <filter_str> in <category> filter list.
-        filter remove <category> <filter_str>     : Remove <filter_str> in <category> filter list.
-        echo <name>                               : data of a specific Topic (Data Type must be discovered).
-        echo <wildcard_name>                      : data of Topics matching the wildcard name (and whose Data Type is discovered).
-        echo <name> verbose                       : data with additional source info of a specific Topic.
-        echo <wildcard_name> verbose              : data with additional source info of Topics matching the topic name (wildcard allowed (*)).
-        echo all                                  : verbose data of all topics (only those whose Data Type is discovered).
+        help                                        : this help.
+        version                                     : tool version.
+        quit                                        : exit interactive CLI and close program.
+        participants                                : DomainParticipants discovered in the network.
+        participants verbose                        : verbose information about DomainParticipants discovered in the network.
+        participants <Guid>                         : verbose information related with a specific DomainParticipant.
+        writers                                     : DataWriters discovered in the network.
+        writers verbose                             : verbose information about DataWriters discovered in the network.
+        writers <Guid>                              : verbose information related with a specific DataWriter.
+        readers                                     : DataReaders discovered in the network.
+        readers verbose                             : verbose information about DataReaders discovered in the network.
+        readers <Guid>                              : verbose information related with a specific DataReader.
+        topics                                      : Topics discovered in the network in compact format.
+        topics v                                    : Topics discovered in the network.
+        topics vv                                   : verbose information about Topics discovered in the network.
+        topics <name>                               : Topics discovered in the network filtered by name (wildcard allowed (*)).
+        topics <name> idl                           : Display the IDL type definition for topics matching <name> (wildcards allowed).
+        topics <name> keys                          : Display the keys for topics matching <name> (wildcards allowed).
+        topics <name> keys v                        : verbose information about keys discovered in the network.
+        filters                                     : Display the active filters.
+        filters clear                               : Clear all the filter lists.
+        filters clear <category>                    : Clear <category> filter list.
+        filters add partitions <filter_str>         : Add <filter_str> in partitions filter list.
+        filters remove partitions <filter_str>      : Remove <filter_str> in partitions filter list.
+        filters set topic <topic_name> <filter_str> : Set topic filter list with <filter_str> as first value.
+        echo <name>                                 : data of a specific Topic (Data Type must be discovered).
+        echo <wildcard_name>                        : data of Topics matching the wildcard name (and whose Data Type is discovered).
+        echo <name> verbose                         : data with additional source info of a specific Topic.
+        echo <wildcard_name> verbose                : data with additional source info of Topics matching the topic name (wildcard allowed (*)).
+        echo all                                    : verbose data of all topics (only those whose Data Type is discovered).
 
     Notes and comments:
         To exit from data printing, press enter.
