@@ -3,7 +3,7 @@
 Linux installation from sources
 ===============================
 
-This section explains how to build Vulcanexus in Ubuntu Jammy.
+This section explains how to build Vulcanexus in Ubuntu Noble.
 Since Vulcanexus is a ROS 2 all-in-one tool set, certain ROS 2 prerequisites need to be met before building.
 
 ROS 2 prerequisites
@@ -187,5 +187,3 @@ In another terminal source the setup file and then run a Python ``listener``:
 At this point, the ``talker`` should prompt ``Publishing: Hello World: <id>`` messages while the ``listener`` echoes ``I heard: [Hello World: <id>]``.
 This verifies both the C++ and Python APIs are working properly.
 Hooray!
-
-
