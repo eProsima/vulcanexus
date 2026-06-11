@@ -1,7 +1,9 @@
 acknowledgement
 allocator
 allocators
+allowlist
 allowlisting
+allowlists
 amd
 architectured
 Arduino
@@ -13,6 +15,8 @@ behaviour
 benchmarking
 bitrate
 blinky
+blocklist
+blocklists
 booleans
 bringup
 cancelled
