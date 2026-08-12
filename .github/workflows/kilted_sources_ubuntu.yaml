@@ -1,24 +1,20 @@
-name: jazzy-sources-ubuntu-24.04
+name: kilted-sources-ubuntu-24.04
 
 on:
   workflow_dispatch:
 
   pull_request:
     branches:
-      - jazzy
+      - kilted
       - main
 
   push:
     branches:
-      - jazzy
+      - kilted
       - main
 
   schedule:
     - cron: '0 0 * * *'
-
-defaults:
-  run:
-    shell: bash
 
 jobs:
   ubuntu-install-from-sources:
@@ -36,16 +32,14 @@ jobs:
 
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref || 'jazzy'}}
+          ref: ${{ github.head_ref || 'kilted'}}
           submodules: 'recursive'
 
       - name: Get minimum supported version of CMake
         uses: eProsima/eProsima-CI/external/get-cmake@v0
         with:
-          cmakeVersion: '3.28.3'
+          cmakeVersion: '3.24.4'
 
       - name: Install from sources
-        env:
-          COLCON_EXTENSION_BLOCKLIST: "colcon_core.shell.powershell"
         run: |
           bash docs/resources/scripts/linux_source_installation.bash
