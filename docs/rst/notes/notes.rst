@@ -28,11 +28,11 @@ The following table outlines the Vulcanexus releases and their support cycles:
      - Release Date
      - EOL Date
    * - :ref:`Kilted Kolumbo <notes_kilted_latest>`
-     - v5.1.0
+     - v5.2.0
      - September 2025
      - November 2026
    * - :ref:`Jazzy Jolo <notes_jazzy_latest>`
-     - v4.3.1
+     - v4.5.0
      - October 2024
      - May 2029
    * - :ref:`Iron Imagination <notes_iron_latest>`
