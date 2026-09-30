@@ -345,6 +345,7 @@ codepaths
 Codespaces
 colcon
 Colli
+colorama
 Colosi
 colour
 Cominardi

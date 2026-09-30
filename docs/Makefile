@@ -70,7 +70,7 @@ test-style:
 test-spelling:
 	rm -rf $(SPELLINGDIR)
 	@echo ""
-	$(SPHINXBUILD) -Q -W --keep-going -b spelling $(ALLSPHINXOPTS) $(SOURCEDIR) $(SPELLINGDIR) || (echo "Spell checking failed:"; find $(SPELLINGDIR) -type f -exec cat {} \;; exit 1)
+	$(SPHINXBUILD) -q -W --keep-going -b spelling $(ALLSPHINXOPTS) $(SOURCEDIR) $(SPELLINGDIR) || (echo "Spell checking failed:"; find $(SPELLINGDIR) -type f -exec cat {} \;; exit 1)
 
 # Run documentation tests
 .PHONY: test
