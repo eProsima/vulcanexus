@@ -3,7 +3,11 @@
 Linux binary installation
 =========================
 
+<<<<<<< HEAD
 Debian packages for Vulcanexus Jazzy Jolo are currently available for Ubuntu Jammy.
+=======
+Debian packages for Vulcanexus Kilted Kolumbo are currently available for Ubuntu Noble.
+>>>>>>> c0f8555 (Fix Ubuntu version for installation (#287))
 Since Vulcanexus is a ROS 2 all-in-one tool set, certain ROS 2 prerequisites need to be met before installing.
 
 ROS 2 prerequisites
