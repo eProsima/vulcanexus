@@ -28,8 +28,8 @@ apt-cache policy | grep universe
 
 # This should print something similar to:
 #
-#  500 http://us.archive.ubuntu.com/ubuntu jammy/universe amd64 Packages
-# release v=22.04,o=Ubuntu,a=jammy,n=jammy,l=Ubuntu,c=universe,b=amd64
+#  500 http://us.archive.ubuntu.com/ubuntu noble/universe amd64 Packages
+# release v=24.04,o=Ubuntu,a=noble,n=noble,l=Ubuntu,c=universe,b=amd64
 #
 # Otherwise run
 
