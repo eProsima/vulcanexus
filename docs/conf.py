@@ -21,6 +21,7 @@
 import itertools
 import os
 import pathlib
+import sys
 
 from docutils.parsers.rst import Directive
 
@@ -75,7 +76,7 @@ def select_css(html_css_dir):
     :param html_css_dir: The directory to save the CSS stylesheet.
     :return: Returns a list of CSS files to be imported.
     """
-    ret = ['_static/tabs.css']
+    ret = ['_static/tabs.css', '_static/adopters.css']
     common_css = '_static/css/eprosima_rtd_theme.css'
     local_css = '_static/css/fiware_readthedocs.css'
     if download_css(html_css_dir):
@@ -89,6 +90,8 @@ def select_css(html_css_dir):
 
 
 script_path = os.path.abspath(pathlib.Path(__file__).parent.absolute())
+sys.path.insert(0, os.path.join(script_path, 'ros2_documentation', 'plugins'))
+
 # Project directories
 project_source_docs_dir = os.path.abspath('{}/rst'.format(script_path))
 
@@ -119,6 +122,7 @@ extensions = [
     'sphinx.ext.todo',
     'sphinxcontrib.plantuml',
     'sphinxcontrib.mermaid',
+    'sphinx_adopters',
 ]
 
 sphinx_tabs_disable_css_loading = False
@@ -278,7 +282,8 @@ html_favicon = 'rst/_static/css/imgs/vulcanexus_icon.ico'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['rst/_static']
+html_static_path = ['ros2_documentation/source/_static', 'rst/_static']
+html_js_files = ['adopters.js']
 
 html_context = {
         'css_files': select_css(project_source_docs_dir),
