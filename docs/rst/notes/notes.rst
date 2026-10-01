@@ -35,7 +35,7 @@ The following table outlines the Vulcanexus releases and their support cycles:
      - May 2023
      - November 2024
    * - :ref:`Humble Hierro <notes_humble_latest>`
-     - v2.7.0
+     - v2.10.0
      - May 2022
      - May 2027
    * - :ref:`Galactic Gamble <notes_galactic_latest>`
