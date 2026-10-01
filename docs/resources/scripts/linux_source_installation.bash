@@ -113,6 +113,8 @@ find src -type d \( -name 'rosidl_generator_rs' -o -name 'rosidl_typesupport_rs'
 ##!
 
 ##LINUX_SOURCE_VULCA_DEPS
+# Fast DDS Monitor and Shapes Demo require Qt6 on Ubuntu Noble.
+# Install the QML modules as well so the Monitor can run after compilation.
 sudo apt update && sudo apt install -y \
     libasio-dev \
     libdocopt-dev \
@@ -120,7 +122,6 @@ sudo apt update && sudo apt install -y \
     liblog4cxx-dev \
     liblz4-dev \
     libp11-dev \
-    libqt5charts5-dev \
     libssl-dev \
     libtinyxml2-dev \
     libxerces-c-dev \
@@ -129,11 +130,25 @@ sudo apt update && sudo apt install -y \
     openjdk-8-jdk \
     python3-sphinx \
     python3-sphinx-rtd-theme \
-    qtbase5-dev \
-    qtdeclarative5-dev \
-    qtquickcontrols2-5-dev \
-    libqt5websockets5-dev \
-    libqt5x11extras5-dev \
+    libxcb-cursor0 \
+    qml6-module-qt-labs-folderlistmodel \
+    qml6-module-qt-labs-settings \
+    qml6-module-qt5compat-graphicaleffects \
+    qml6-module-qtcharts \
+    qml6-module-qtqml \
+    qml6-module-qtqml-models \
+    qml6-module-qtqml-workerscript \
+    qml6-module-qtquick \
+    qml6-module-qtquick-controls \
+    qml6-module-qtquick-dialogs \
+    qml6-module-qtquick-layouts \
+    qml6-module-qtquick-shapes \
+    qml6-module-qtquick-templates \
+    qml6-module-qtquick-window \
+    qt6-base-dev \
+    qt6-charts-dev \
+    qt6-declarative-dev \
+    qt6-svg-dev \
     swig4.1
 ##!
 
