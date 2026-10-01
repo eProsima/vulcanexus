@@ -78,7 +78,7 @@ This version ships the following packages:
       - `v2.10.0 <https://github.com/eProsima/rosidl/releases/tag/v2.10.0>`__
       - v2.10.0
     * - Vulcanexus Base
-      - `v2.10.0 <https://github.com/eProsima/vulcanexus/releases/tag/2.10.0>`__
+      - `v2.10.0 <https://docs.vulcanexus.org/en/latest/rst/notes/humble/notes.html#humble-hierro-v2-10-0>`__
       - v2.10.0
 
 Humble Hierro previous versions
