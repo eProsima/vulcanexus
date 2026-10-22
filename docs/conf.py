@@ -589,7 +589,10 @@ texinfo_documents = [
 
 class RedirectFrom(Directive):
     has_content = True
-    template_name = "layout.html"
+    # Furo replaces any page rendered with "layout.html" by an error page
+    template_name = "redirect.html"
+    # Included documentation whose redirects are relative to its own source directory
+    source_dirs = ["ros2_documentation/source"]
     redirections = {}
 
     @classmethod
@@ -606,18 +609,30 @@ class RedirectFrom(Directive):
             return
 
         redirect_html_fragment = """
-            <link rel="canonical" href="{base_url}/{url}" />
             <meta http-equiv="refresh" content="0; url={url}" />
             <script>
                 window.location.href = '{url}';
             </script>
         """
-        redirections = {
-            os.path.splitext(os.path.relpath(document_path, app.srcdir))[
-                0
-            ]: redirect_urls
-            for document_path, redirect_urls in cls.redirections.items()
-        }
+        redirections = {}
+        for document_path, redirect_urls in cls.redirections.items():
+            canonical_url = os.path.splitext(
+                os.path.relpath(document_path, app.srcdir)
+            )[0]
+            # Skip redirects declared in included files that are not built as pages
+            if canonical_url not in app.env.all_docs:
+                continue
+            source_dir = next(
+                (
+                    source_dir
+                    for source_dir in cls.source_dirs
+                    if canonical_url.startswith(source_dir + "/")
+                ),
+                "",
+            )
+            redirections[canonical_url] = {
+                os.path.join(source_dir, redirect_url) for redirect_url in redirect_urls
+            }
         redirection_conflict = next(
             (
                 (canon_1, canon_2, redirs_1.intersection(redirs_2))
@@ -652,13 +667,17 @@ class RedirectFrom(Directive):
 
         for canonical_url, redirect_urls in redirections.items():
             for redirect_url in redirect_urls:
+                url = app.builder.get_relative_uri(redirect_url, canonical_url)
+                metatags = redirect_html_fragment.format(url=url)
+                if app.config.html_baseurl:
+                    metatags += '<link rel="canonical" href="{}/{}" />'.format(
+                        app.config.html_baseurl.rstrip("/"),
+                        app.builder.get_target_uri(canonical_url),
+                    )
                 context = {
-                    "canonical_url": os.path.relpath(canonical_url, redirect_url),
+                    "canonical_url": url,
                     "title": os.path.basename(redirect_url),
-                    "metatags": redirect_html_fragment.format(
-                        base_url=app.config.html_baseurl,
-                        url=app.builder.get_relative_uri(redirect_url, canonical_url),
-                    ),
+                    "metatags": metatags,
                 }
                 yield (redirect_url, context, cls.template_name)
 
