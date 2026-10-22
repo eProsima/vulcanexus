@@ -205,11 +205,12 @@ script_path = os.path.abspath(pathlib.Path(__file__).parent.absolute())
 project_source_docs_dir = os.path.abspath("{}/rst".format(script_path))
 
 macros = {
-    "DISTRO": "kilted",
-    "DISTRO_TITLE": "kilted",
-    "DISTRO_TITLE_FULL": "Kilted Kolumbo",
-    "REPOS_FILE_BRANCH": "kilted",
-    "FASTDDS_BRANCH": "v3.3.0",
+    "DISTRO": "lyrical",
+    "DISTRO_TITLE": "lyrical",
+    "DISTRO_TITLE_FULL": "Lyrical Luth",
+    "REPOS_FILE_BRANCH": "lyrical",
+    "FASTDDS_BRANCH": "v3.6.2",
+    "PRODUCT": "ROS 2",
 }
 
 # -- General configuration ------------------------------------------------
@@ -221,6 +222,8 @@ macros = {
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
+# ROS 2 documentation custom directives (short-description, showmeta)
+sys.path.insert(0, os.path.join(script_path, "ros2_documentation", "plugins"))
 extensions = [
     "notfound.extension",
     "sphinx_copybutton",
@@ -231,6 +234,9 @@ extensions = [
     "sphinx.ext.todo",
     "sphinxcontrib.plantuml",
     'sphinxcontrib.mermaid',
+    "short_description",
+    "showmeta",
+    "sphinx_adopters",
 ]
 
 try:
@@ -371,7 +377,8 @@ html_theme_options.update(download_json())
 
 html_use_smartypants = True
 
-html_css_files = [select_css(project_source_docs_dir)]
+html_css_files = [select_css(project_source_docs_dir), "adopters.css"]
+html_js_files = ["adopters.js"]
 
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.
@@ -396,7 +403,7 @@ html_favicon = "rst/_static/css/imgs/vulcanexus_icon.ico"
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ["rst/_static"]
+html_static_path = ["ros2_documentation/source/_static", "rst/_static"]
 
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied

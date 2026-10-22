@@ -45,8 +45,8 @@ Preparing all security certificates
 -----------------------------------
 
 Participants security can only be configured by XML, following the instructions of `Fast DDS Security Documentation <https://fast-dds.docs.eprosima.com/en/latest/fastdds/security/security.html>`_ to fulfill the pertinent requirements of the chosen security mechanisms.
-To generate the security certificates needed for both *talker* and *listener* nodes and both |rosrouter| participants please follow the `Setting up security <https://docs.vulcanexus.org/en/latest/ros2_documentation/source/Tutorials/Advanced/Security/Introducing-ros2-security.html>`_ ROS 2 tutorial.
-Additionally to the steps followed in the tutorial, when generating keys and certificates for the *talker* and *listener* nodes (`Section 3 <https://docs.vulcanexus.org/en/latest/ros2_documentation/source/Tutorials/Advanced/Security/Introducing-ros2-security.html#generate-keys-and-certificates>`__), generate also their corresponding security files for both |rosrouter| participants as follows:
+To generate the security certificates needed for both *talker* and *listener* nodes and both |rosrouter| participants please follow the :ref:`Setting up security <sros2>` ROS 2 tutorial.
+Additionally to the steps followed in the tutorial, when generating keys and certificates for the *talker* and *listener* nodes (:ref:`Section 3 <ros2_security_generate_keys_and_certificates>`), generate also their corresponding security files for both |rosrouter| participants as follows:
 
 .. code-block:: bash
 

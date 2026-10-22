@@ -69,6 +69,6 @@ Each DDS vendor provides its specific RMW implementation using their own DDS lib
 .. figure:: /rst/figures/intro/vulcanexus_architecture.svg
     :align: center
 
-For more information about *ROS 2*, the user is encouraged to read *ROS 2* documentation which is included within *Vulcanexus* documentation in the following section, especially the :doc:`Concepts <../../ros2_documentation/source/Concepts>` chapter.
+For more information about *ROS 2*, the user is encouraged to read *ROS 2* documentation which is included within *Vulcanexus* documentation in the following section, especially the :doc:`Framework <../../ros2_documentation/source/ROS-Framework>` chapter.
 
 .. [#] S. Macenski, T. Foote, B. Gerkey, C. Lalancette and W. Woodall, "Robot Operating System 2: Design, architecture, and uses in the wild", Science Robotics vol. 7, May 2022
