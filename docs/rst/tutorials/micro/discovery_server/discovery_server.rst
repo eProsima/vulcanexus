@@ -3,7 +3,7 @@
 micro-ROS and Discovery Server
 ==============================
 
-micro-ROS can be use with Fast DDS `Discovery Server <https://docs.vulcanexus.org/en/latest/ros2_documentation/source/Tutorials/Advanced/Discovery-Server/Discovery-Server.html>`_ as discovery protocol.
+micro-ROS can be use with Fast DDS :ref:`Discovery Server <ros2-advanced-tutorial-fastdds-discovery-server>` as discovery protocol.
 Fast DDS Discovery Server can be useful for several reasons, some of the most important:
 
 - An scenario where a considerable amount of participants and endpoints share the same domain.
