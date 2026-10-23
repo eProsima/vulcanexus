@@ -9,7 +9,7 @@ class MoveTurtleTool(AtomicTool):
         ("angular", "float"),
         ("duration", "int"),
     ]
-    output_schema = [{"success": "bool"}]
+    output_schema = {"success": "bool"}
 
     def run(self, **kwargs):
         node = self.bb.get("main_node", None)
