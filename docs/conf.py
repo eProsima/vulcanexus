@@ -378,7 +378,7 @@ html_theme_options.update(download_json())
 html_use_smartypants = True
 
 html_css_files = [select_css(project_source_docs_dir), "adopters.css"]
-html_js_files = ["adopters.js"]
+html_js_files = ["adopters.js", 'js/sidebar_scroll.js']
 
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.
