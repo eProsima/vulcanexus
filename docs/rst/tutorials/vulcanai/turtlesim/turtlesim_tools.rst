@@ -156,6 +156,9 @@ The tool is defined in the same way as the previous one, with the necessary basi
     :language: python
     :lines: 1-12
 
+The ``output_schema`` must be a dictionary mapping output names to type strings.
+Here, ``{"success": "bool"}`` describes the boolean returned by ``run()`` to indicate whether the command was sent successfully.
+
 The run method differs from the previous one, as it needs to create a publisher instead of a service client.
 First, the input parameters are retrieved from the ``kwargs`` dictionary.
 The name is used to create the topic name, which follows the pattern ``/<turtle_name>/cmd_vel``.
